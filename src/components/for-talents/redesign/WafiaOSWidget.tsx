@@ -1,10 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { 
-    LayoutGrid, 
-    Briefcase, 
-    BarChart3, 
+import {
+    LayoutGrid,
+    Briefcase,
+    BarChart3,
     Wallet,
     Bell,
     TrendingUp,
@@ -12,7 +12,9 @@ import {
     Users,
     CheckCircle2,
     Clock,
-    Zap
+    Zap,
+    Settings,
+    LogOut
 } from "lucide-react"
 
 // ============================================
@@ -30,17 +32,17 @@ const WAFIA_OS_DATA = {
         label: "REVENUS (CE MOIS)"
     },
     deals: [
-        { 
-            name: "Nike Sportswear", 
-            type: "Campagne Automne", 
+        {
+            name: "Nike Sportswear",
+            type: "Campagne Automne",
             logo: "/logos/talents/nike.svg",
-            active: true 
+            active: true
         },
-        { 
-            name: "Spotify", 
-            type: "Podcast Partner", 
+        {
+            name: "Spotify",
+            type: "Podcast Partner",
             logo: "/logos/talents/spotify.svg",
-            active: true 
+            active: true
         }
     ],
     audience: {
@@ -51,7 +53,7 @@ const WAFIA_OS_DATA = {
     nextEvent: {
         label: "PROCHAIN SHOOT",
         title: "Campagne Été - Paris",
-        location: "Studio 4, Le Marais • 14:00",
+        location: "Studio 4 • Le Marais",
         day: "14",
         month: "OCT"
     },
@@ -87,7 +89,7 @@ function SidebarMini() {
     ]
 
     return (
-        <motion.div 
+        <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -95,10 +97,11 @@ function SidebarMini() {
         >
             {/* Logo + Title */}
             <div className="flex items-center gap-2 px-2 py-2 mb-2">
-                <div className="w-7 h-7 rounded-lg bg-gray-900 flex items-center justify-center">
-                    <span className="text-white text-xs font-bold">W</span>
+                <div className="w-7 h-7 rounded-lg bg-gray-900 flex items-center justify-center shadow-md">
+                    <span className="text-white text-[10px] font-bold">W</span>
                 </div>
-                <div className="w-12 h-1.5 bg-gray-200 rounded-full" />
+                {/* REPLACED SKELETON WITH TEXT */}
+                <span className="text-xs font-bold text-gray-900 tracking-tight">Wafia OS</span>
             </div>
 
             {/* Nav Items */}
@@ -108,13 +111,12 @@ function SidebarMini() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 + i * 0.05 }}
-                    className={`flex items-center gap-2 px-2 py-2 rounded-lg text-xs font-medium cursor-pointer transition-all ${
-                        item.active 
-                            ? "bg-gray-100 text-gray-900" 
-                            : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                    }`}
+                    className={`flex items-center gap-2 px-2 py-2 rounded-lg text-[10px] font-medium cursor-pointer transition-all ${item.active
+                        ? "bg-gray-100 text-gray-900"
+                        : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                        }`}
                 >
-                    <item.icon size={14} />
+                    <item.icon size={13} strokeWidth={2} />
                     <span className="truncate">{item.label}</span>
                 </motion.div>
             ))}
@@ -122,16 +124,16 @@ function SidebarMini() {
             {/* Spacer */}
             <div className="flex-1" />
 
-            {/* Quick Stats Mini */}
-            <motion.div 
+            {/* Quick Stats Mini / Settings */}
+            <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
                 className="mt-2 pt-2 border-t border-gray-100"
             >
-                <div className="flex items-center gap-2 px-2 py-1">
-                    <div className="w-6 h-6 rounded-full bg-gray-100" />
-                    <div className="w-10 h-1.5 bg-gray-200 rounded-full" />
+                <div className="flex items-center gap-2 px-2 py-1.5 text-gray-400 hover:text-gray-600 cursor-pointer transition-colors">
+                    <Settings size={13} />
+                    <span className="text-[10px] font-medium">Paramètres</span>
                 </div>
             </motion.div>
         </motion.div>
@@ -145,12 +147,12 @@ function RevenueCard() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 relative overflow-hidden"
+            className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 relative overflow-hidden group hover:border-green-200 transition-colors"
         >
             {/* Label */}
             <div className="flex items-center gap-2 mb-3">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
-                <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
                     {WAFIA_OS_DATA.revenue.label}
                 </span>
             </div>
@@ -162,8 +164,8 @@ function RevenueCard() {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.3, delay: 0.4 }}
                 >
-                    <span className="text-3xl font-bold text-gray-900 tracking-tight">
-                        {WAFIA_OS_DATA.revenue.amount} {WAFIA_OS_DATA.revenue.currency}
+                    <span className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight block">
+                        {WAFIA_OS_DATA.revenue.amount} <span className="text-lg text-gray-400 font-medium">{WAFIA_OS_DATA.revenue.currency}</span>
                     </span>
                 </motion.div>
 
@@ -171,10 +173,10 @@ function RevenueCard() {
                     initial={{ x: 20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.6, type: "spring" }}
-                    className="flex items-center gap-1 px-2 py-1 bg-green-50 rounded-full"
+                    className="flex items-center gap-1 px-1.5 py-0.5 bg-green-50 rounded-md border border-green-100"
                 >
-                    <TrendingUp size={12} className="text-green-600" />
-                    <span className="text-xs font-bold text-green-600">
+                    <TrendingUp size={10} className="text-green-600" />
+                    <span className="text-[10px] font-bold text-green-700">
                         {WAFIA_OS_DATA.revenue.trend}
                     </span>
                 </motion.div>
@@ -190,16 +192,18 @@ function DealsCard() {
             initial={{ x: 20, opacity: 0, scale: 0.95 }}
             animate={{ x: 0, opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gray-900 rounded-2xl p-4 shadow-xl relative overflow-hidden"
+            className="bg-gray-900 rounded-2xl p-4 shadow-xl relative overflow-hidden group"
         >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gray-800/50 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
+
             {/* Header */}
-            <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-semibold text-white">Deals Actifs</span>
-                <Briefcase size={14} className="text-gray-500" />
+            <div className="flex items-center justify-between mb-4 relative z-10">
+                <span className="text-xs font-semibold text-white tracking-wide">Deals Actifs</span>
+                <Briefcase size={12} className="text-gray-500" />
             </div>
 
             {/* Deals List */}
-            <div className="space-y-3">
+            <div className="space-y-3 relative z-10">
                 {WAFIA_OS_DATA.deals.map((deal, i) => (
                     <motion.div
                         key={deal.name}
@@ -208,23 +212,23 @@ function DealsCard() {
                         transition={{ delay: 0.5 + i * 0.1 }}
                         className="flex items-center gap-3"
                     >
-                        <div className="w-9 h-9 rounded-xl bg-gray-800 flex items-center justify-center p-1.5 overflow-hidden">
-                            <img 
-                                src={deal.logo} 
+                        <div className="w-8 h-8 rounded-lg bg-gray-800/80 border border-gray-700 flex items-center justify-center p-1.5 overflow-hidden">
+                            <img
+                                src={deal.logo}
                                 alt={deal.name}
                                 className="w-full h-full object-contain brightness-0 invert"
                             />
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
-                                <span className="text-sm font-semibold text-white truncate">
+                                <span className="text-[11px] font-semibold text-gray-100 truncate">
                                     {deal.name}
                                 </span>
                                 {deal.active && (
-                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
+                                    <div className="w-1 h-1 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] flex-shrink-0" />
                                 )}
                             </div>
-                            <span className="text-[10px] text-gray-500">
+                            <span className="text-[9px] text-gray-500 uppercase tracking-wider">
                                 {deal.type}
                             </span>
                         </div>
@@ -242,16 +246,17 @@ function AudienceCard() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100"
+            className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 group hover:border-pink-100 transition-colors"
         >
             <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center">
-                    <Users size={18} className="text-purple-600" />
+                {/* CHANGED COLOR TO PINK (Originally Purple) */}
+                <div className="w-9 h-9 rounded-xl bg-pink-50 flex items-center justify-center text-pink-500">
+                    <Users size={16} />
                 </div>
                 <div>
                     <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold text-gray-500">Audience</span>
-                        <span className="text-[10px] text-gray-400 uppercase">TOTAL</span>
+                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Audience</span>
+                        <span className="text-[9px] text-gray-300 uppercase">Total</span>
                     </div>
                     <div className="flex items-baseline gap-2">
                         <motion.span
@@ -265,8 +270,8 @@ function AudienceCard() {
                     </div>
                 </div>
             </div>
-            <div className="mt-2 text-[10px] text-gray-400">
-                {WAFIA_OS_DATA.audience.label} ({WAFIA_OS_DATA.audience.trend})
+            <div className="mt-2 text-[9px] text-gray-400 font-medium">
+                {WAFIA_OS_DATA.audience.label} <span className="text-green-600 ml-1">{WAFIA_OS_DATA.audience.trend}</span>
             </div>
         </motion.div>
     )
@@ -279,34 +284,31 @@ function UpcomingEventCardLarge() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-between gap-6 min-h-[120px]"
+            className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center justify-between gap-6 min-h-[100px]"
         >
             <div className="flex items-center gap-4 min-w-0">
-                <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center flex-shrink-0">
-                    <Calendar size={22} className="text-orange-500" />
+                {/* CHANGED TO NEUTRAL/DARK THEME for 'PRO' feel */}
+                <div className="w-12 h-12 rounded-xl bg-gray-900 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <Calendar size={20} className="text-white" />
                 </div>
                 <div className="min-w-0">
-                    <span className="text-[10px] font-bold text-orange-500 uppercase tracking-wider">
+                    <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block mb-0.5">
                         {WAFIA_OS_DATA.nextEvent.label}
                     </span>
-                    <div className="text-xl font-bold text-gray-900">
+                    <div className="text-lg font-bold text-gray-900 leading-tight truncate">
                         {WAFIA_OS_DATA.nextEvent.title}
                     </div>
-                    <div className="text-sm text-gray-500 whitespace-normal">
+                    <div className="text-xs text-gray-500 font-medium mt-0.5">
                         {WAFIA_OS_DATA.nextEvent.location}
                     </div>
                 </div>
             </div>
 
-            <div className="flex items-center gap-4">
-                <div className="text-right">
-                    <div className="text-xs uppercase tracking-widest text-gray-400">Jour</div>
-                    <div className="text-xl font-semibold text-gray-900">{WAFIA_OS_DATA.nextEvent.day}</div>
-                    <div className="text-[10px] font-semibold text-gray-500 uppercase">{WAFIA_OS_DATA.nextEvent.month}</div>
-                </div>
-                <div className="w-20 h-20 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col items-center justify-center">
-                    <div className="text-3xl font-bold text-gray-900 leading-none">{WAFIA_OS_DATA.nextEvent.day}</div>
-                    <div className="text-[10px] font-semibold text-gray-500 uppercase">{WAFIA_OS_DATA.nextEvent.month}</div>
+            {/* REMOVED REDUNDANT TEXT DATE, KEPT CALENDAR BLOCK */}
+            <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-gray-50 rounded-xl border border-gray-100 flex flex-col items-center justify-center">
+                    <div className="text-2xl font-bold text-gray-900 leading-none">{WAFIA_OS_DATA.nextEvent.day}</div>
+                    <div className="text-[9px] font-bold text-gray-400 uppercase mt-0.5">{WAFIA_OS_DATA.nextEvent.month}</div>
                 </div>
             </div>
         </motion.div>
@@ -320,32 +322,34 @@ function PendingTasksCard() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.55 }}
-            className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-3 border border-orange-100/50"
+            className="bg-gradient-to-br from-amber-50 to-orange-50/50 rounded-2xl p-4 border border-orange-100/50"
         >
-            <div className="flex items-center gap-2 mb-2">
-                <Zap size={12} className="text-orange-500" />
-                <span className="text-[10px] font-bold text-orange-600 uppercase tracking-wider">
+            <div className="flex items-center gap-2 mb-3">
+                <div className="p-1 bg-white rounded-md shadow-sm">
+                    <Zap size={10} className="text-amber-500" fill="currentColor" />
+                </div>
+                <span className="text-[9px] font-bold text-amber-700 uppercase tracking-widest">
                     Actions en attente
                 </span>
-                <span className="ml-auto text-[10px] font-bold text-orange-500 bg-orange-100 px-1.5 py-0.5 rounded-full">
+                <span className="ml-auto text-[9px] font-bold text-amber-600 bg-white/60 px-1.5 py-0.5 rounded-full border border-amber-100">
                     {WAFIA_OS_DATA.pendingTasks.count}
                 </span>
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-2">
                 {WAFIA_OS_DATA.pendingTasks.items.map((task, i) => (
                     <motion.div
                         key={i}
                         initial={{ x: -10, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.7 + i * 0.1 }}
-                        className="flex items-center gap-2 text-[11px]"
+                        className="flex items-center gap-2.5 text-[11px]"
                     >
                         {task.urgent ? (
-                            <Clock size={10} className="text-red-500" />
+                            <Clock size={12} className="text-amber-600 flex-shrink-0" />
                         ) : (
-                            <CheckCircle2 size={10} className="text-gray-400" />
+                            <CheckCircle2 size={12} className="text-amber-400 flex-shrink-0" />
                         )}
-                        <span className={task.urgent ? "text-gray-800 font-medium" : "text-gray-600"}>
+                        <span className={`truncate ${task.urgent ? "text-gray-800 font-semibold" : "text-gray-600 font-medium"}`}>
                             {task.text}
                         </span>
                     </motion.div>
@@ -360,9 +364,9 @@ function PendingTasksCard() {
 // ============================================
 export function WafiaOSWidget() {
     return (
-        <div className="w-full h-full bg-gray-50/80 rounded-2xl p-3 overflow-hidden relative">
+        <div className="w-full h-full bg-gray-50/50 rounded-2xl p-3 overflow-hidden relative font-sans">
             {/* Subtle background pattern */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
 
             <div className="relative z-10 flex gap-3 h-full">
                 {/* Left: Sidebar */}
@@ -375,33 +379,33 @@ export function WafiaOSWidget() {
                         initial={{ y: -10, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.4 }}
-                        className="flex items-center justify-between"
+                        className="flex items-center justify-between pl-1"
                     >
                         <div>
-                            <h3 className="text-base font-bold text-gray-900">Tableau de bord</h3>
-                            <p className="text-[10px] text-gray-500">Dernière mise à jour: Aujourd'hui, 09:41</p>
+                            <h3 className="text-sm font-bold text-gray-900">Tableau de bord</h3>
+                            <p className="text-[10px] text-gray-500 font-medium">Mise à jour: Aujourd'hui, 09:41</p>
                         </div>
                         <div className="flex items-center gap-2">
                             {/* Notification Bell */}
                             <motion.div
-                                whileHover={{ scale: 1.1 }}
-                                className="relative w-8 h-8 rounded-full bg-white border border-gray-100 flex items-center justify-center cursor-pointer shadow-sm"
+                                whileHover={{ scale: 1.05 }}
+                                className="relative w-8 h-8 rounded-full bg-white border border-gray-100 flex items-center justify-center cursor-pointer shadow-sm text-gray-500 hover:text-gray-900 transition-colors"
                             >
-                                <Bell size={14} className="text-gray-600" />
+                                <Bell size={14} />
                                 {WAFIA_OS_DATA.notifications.hasNew && (
                                     <motion.div
                                         animate={{ scale: [1, 1.2, 1] }}
                                         transition={{ repeat: Infinity, duration: 2 }}
-                                        className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"
+                                        className="absolute top-2 right-2.5 w-1.5 h-1.5 bg-red-500 rounded-full border border-white"
                                     />
                                 )}
                             </motion.div>
                             {/* Avatar */}
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
-                                className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center cursor-pointer"
+                                className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center cursor-pointer text-white shadow-md border border-gray-700"
                             >
-                                <span className="text-[10px] font-bold text-white">
+                                <span className="text-[10px] font-bold">
                                     {WAFIA_OS_DATA.user.initials}
                                 </span>
                             </motion.div>
