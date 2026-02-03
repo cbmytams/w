@@ -1,0 +1,14 @@
+/* src/app/for-brands/branding.css */
+header {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Also hide by the specific classes we saw */
+.sticky.top-0.z-50.bg-white\/80 {
+    display: none !important;
+}
