@@ -14,6 +14,11 @@ export const BRAND_HERO_CONTENT = {
         highlight: "qui performe vraiment."
     },
     subtitle: "Wafia combine créateurs vérifiés, production premium et pilotage data pour des campagnes mesurables. Zéro improvisation.",
+    antiMarket: [
+        { type: "check", text: "Pas de casting au hasard : sélection cohérente, justifiée, traçable." },
+        { type: "check", text: "Pas de contenu générique : co-création + prod premium, social-first." },
+        { type: "check", text: "Pas d’opacité : pilotage, feedbacks, reporting clair et actionnable." }
+    ],
     stats: [
         { value: "15+", label: "Marques accompagnées", color: "orange" },
         { value: "200+", label: "Contenus produits", color: "blue" },

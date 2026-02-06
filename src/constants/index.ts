@@ -43,6 +43,7 @@ export {
     // New exports for redesign
     TALENT_PROBLEM,
     TALENT_DELIVERABLES,
+        TALENT_BUSINESS,
     TALENT_SERVICES,
     TALENT_METHOD,
     TALENT_TIMELINE,
@@ -76,3 +77,4 @@ export { HOME_OPTIONS } from "./home-blocks"
 // Deliverables Widgets (Wafia OS section)
 export { WIDGETS } from "./deliverables-widgets"
 export type { WidgetId, WidgetData } from "./deliverables-widgets"
+export * from "./talent-blocks"
