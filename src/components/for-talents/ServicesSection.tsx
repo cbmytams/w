@@ -1,9 +1,13 @@
 "use client"
 
+
 import { useState } from "react"
 import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
 import { TALENT_SERVICES } from "@/constants"
+
+// Type dérivé du constant (doit être après l'import)
+type TalentService = (typeof TALENT_SERVICES.services)[number];
 import { IdentityLensWidget } from "./widgets/IdentityLensWidget"
 import { ProductionPipelineWidget } from "./widgets/ProductionPipelineWidget"
 import { OpsHubWidget } from "./widgets/OpsHubWidget"
@@ -28,10 +32,10 @@ const widgetMap = {
     "Formation": FormationWidget
 }
 
-type Service = typeof TALENT_SERVICES.services[number]
+// type Service supprimé (dupliqué avec TalentService)
 
 export function ServicesSection() {
-    const [selectedService, setSelectedService] = useState<Service | null>(null)
+    const [selectedService, setSelectedService] = useState<TalentService | null>(null)
 
     return (
         <section id={TALENT_SERVICES.id} className="section-spacing px-4 bg-transparent">
@@ -51,7 +55,7 @@ export function ServicesSection() {
                     <div className="space-y-12">
                         {/* FOUNDATION Group (Services 1-3) */}
                         <div className="space-y-16">
-                            {TALENT_SERVICES.services.slice(0, 3).map((service, index) => {
+                            {TALENT_SERVICES.services.slice(0, 3).map((service: TalentService, index: number) => {
                                 const isEven = index % 2 === 0
                                 const WidgetComponent = service.widget ? widgetMap[service.widget as keyof typeof widgetMap] : null
 
@@ -113,7 +117,7 @@ export function ServicesSection() {
                                                         <WidgetComponent />
                                                     ) : (
                                                         <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center">
-                                                            <div className="text-6xl opacity-20">{service.icon || service.number}</div>
+                                                            <div className="text-6xl opacity-20">{(service as any)?.icon || (service as any)?.number || "🎯"}</div>
                                                         </div>
                                                     )}
                                                 </div>
@@ -137,7 +141,7 @@ export function ServicesSection() {
 
                         {/* GROWTH Group (Services 4-6) */}
                         <div className="space-y-16">
-                            {TALENT_SERVICES.services.slice(3, 6).map((service, index) => {
+                            {TALENT_SERVICES.services.slice(3, 6).map((service: TalentService, index: number) => {
                                 const actualIndex = index + 3
                                 const isEven = actualIndex % 2 === 0
                                 const WidgetComponent = service.widget ? widgetMap[service.widget as keyof typeof widgetMap] : null
@@ -200,7 +204,7 @@ export function ServicesSection() {
                                                         <WidgetComponent />
                                                     ) : (
                                                         <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center">
-                                                            <div className="text-6xl opacity-20">{service.icon || service.number}</div>
+                                                            <div className="text-6xl opacity-20">{(service as any)?.icon || (service as any)?.number || "🎯"}</div>
                                                         </div>
                                                     )}
                                                 </div>
@@ -224,7 +228,7 @@ export function ServicesSection() {
 
                         {/* SCALE Group (Services 7-9) */}
                         <div className="space-y-16">
-                            {TALENT_SERVICES.services.slice(6, 9).map((service, index) => {
+                            {TALENT_SERVICES.services.slice(6, 9).map((service: TalentService, index: number) => {
                                 const actualIndex = index + 6
                                 const isEven = actualIndex % 2 === 0
                                 const WidgetComponent = service.widget ? widgetMap[service.widget as keyof typeof widgetMap] : null
@@ -287,7 +291,7 @@ export function ServicesSection() {
                                                         <WidgetComponent />
                                                     ) : (
                                                         <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center">
-                                                            <div className="text-6xl opacity-20">{service.icon || service.number}</div>
+                                                            <div className="text-6xl opacity-20">{(service as any)?.icon || (service as any)?.number || "🎯"}</div>
                                                         </div>
                                                     )}
                                                 </div>

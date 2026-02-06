@@ -30,6 +30,7 @@ export default function FuturisticBackground() {
       return;
     }
 
+    if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) {
       return;
@@ -65,6 +66,7 @@ export default function FuturisticBackground() {
     }
 
     function recycleStar(star: Star) {
+      if (!context) return;
       let direction: "z" | "l" | "r" | "t" | "b" = "z";
 
       const vx = Math.abs(velocity.x);
@@ -113,15 +115,18 @@ export default function FuturisticBackground() {
       width = window.innerWidth * scale;
       height = window.innerHeight * scale;
 
+      if (!canvas) return;
       canvas.width = width;
       canvas.height = height;
       canvas.style.width = `${window.innerWidth}px`;
+      if (!canvas) return;
       canvas.style.height = `${window.innerHeight}px`;
 
       stars.forEach(placeStar);
     }
 
     function update() {
+      if (!context) return;
       velocity.tx *= 0.96;
       velocity.ty *= 0.96;
 
@@ -148,6 +153,8 @@ export default function FuturisticBackground() {
     }
 
     function render() {
+      if (!context) return;
+      if (!context) return;
       stars.forEach((star) => {
         context.beginPath();
         context.lineCap = "round";
@@ -174,6 +181,7 @@ export default function FuturisticBackground() {
     }
 
     function step() {
+      if (!context) return;
       context.clearRect(0, 0, width, height);
       update();
       render();
