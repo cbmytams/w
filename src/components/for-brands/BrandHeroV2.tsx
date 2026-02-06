@@ -14,18 +14,14 @@ const STAT_ICONS = {
     green: TrendingUp
 } as const
 
-export function BrandHeroV2({ onDashboardClick }: { onDashboardClick: () => void }) {
+export function BrandHeroV2() {
     const prefersReducedMotion = useReducedMotion()
 
     // Animation conditionnelle
     const floatingAnimation = prefersReducedMotion ? {} : { y: [0, -8, 0] }
 
     return (
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-            {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-orange-500/5 via-rose-500/5 to-transparent rounded-full blur-3xl -z-10" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-blue-500/5 via-indigo-500/5 to-transparent rounded-full blur-3xl -z-10" />
-
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32">
             <div className="container mx-auto px-6 max-w-7xl">
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
 
@@ -118,32 +114,27 @@ export function BrandHeroV2({ onDashboardClick }: { onDashboardClick: () => void
                             initial={{ scale: 0.95 }}
                             animate={{ scale: 1 }}
                             transition={{ duration: 1, delay: 0.2 }}
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 bg-white dark:bg-zinc-800 rounded-3xl shadow-2xl p-6 border border-gray-100 dark:border-zinc-700 z-10"
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 bg-white/60 dark:bg-zinc-800/60 backdrop-blur-2xl rounded-[32px] shadow-2xl shadow-orange-500/10 p-6 border border-white/40 dark:border-white/5 z-10"
                         >
                             <div className="flex justify-between items-center mb-6">
-                                <span className="font-bold text-gray-900 dark:text-white">Campaign Performance</span>
-                                <span className="text-green-500 font-bold text-xl">+47%</span>
+                                <span className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-xs">Performance</span>
+                                <span className="px-2 py-1 bg-green-500/10 border border-green-500/20 text-green-600 rounded-full text-xs font-bold">+47%</span>
                             </div>
                             {/* Graph */}
-                            <div className="h-32 flex items-end gap-2 justify-between">
+                            <div className="h-32 flex items-end gap-2 justify-between px-1">
                                 {[40, 65, 45, 80, 55, 90, 75].map((h, i) => (
                                     <motion.div
                                         key={i}
                                         initial={{ height: 0 }}
                                         animate={{ height: `${h}%` }}
                                         transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
-                                        className="w-full bg-gradient-to-t from-orange-500 to-rose-500 rounded-t-sm"
+                                        className="w-full bg-gradient-to-t from-orange-500 to-rose-500 rounded-t-sm opacity-90"
                                     />
                                 ))}
                             </div>
-                            <div className="mt-4 flex justify-between text-xs text-gray-400">
-                                <span>Sem 1</span>
-                                <span>Sem 2</span>
-                                <span>Sem 3</span>
-                                <span>Sem 4</span>
-                                <span>Sem 5</span>
-                                <span>Sem 6</span>
-                                <span>Sem 7</span>
+                            {/* Decor lines */}
+                            <div className="mt-4 flex justify-between">
+                                <div className="h-1 w-full bg-slate-100 dark:bg-zinc-700/50 rounded-full" />
                             </div>
                         </motion.div>
 
@@ -151,52 +142,55 @@ export function BrandHeroV2({ onDashboardClick }: { onDashboardClick: () => void
                         <motion.div
                             animate={floatingAnimation}
                             transition={prefersReducedMotion ? {} : { repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                            className="absolute top-20 left-10 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-4 py-3 rounded-2xl font-bold shadow-lg border border-green-100 dark:border-green-800"
+                            className="absolute top-20 left-10 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-xl px-5 py-4 rounded-2xl shadow-xl shadow-green-500/10 border border-white/50 dark:border-white/10"
                         >
-                            <div className="text-2xl">€2.4M</div>
-                            <div className="text-xs opacity-80">ROI généré</div>
+                            <div className="flex items-center gap-2 mb-1">
+                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">ROI Généré</div>
+                            </div>
+                            <div className="text-2xl font-bold text-slate-900 dark:text-white">€2.4M</div>
                         </motion.div>
 
                         {/* Creators count badge */}
                         <motion.div
                             animate={prefersReducedMotion ? {} : { y: [0, 10, 0] }}
                             transition={prefersReducedMotion ? {} : { repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
-                            className="absolute top-32 right-8 bg-white dark:bg-zinc-800 rounded-2xl p-4 shadow-xl border border-gray-50 dark:border-zinc-700"
+                            className="absolute top-32 right-8 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/50 dark:border-white/10"
                         >
                             <div className="flex -space-x-2 mb-2">
                                 {[1, 2, 3, 4].map((_, i) => (
-                                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white dark:border-zinc-800" />
+                                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white dark:border-zinc-800 ring-1 ring-black/5" />
                                 ))}
-                                <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-zinc-700 border-2 border-white dark:border-zinc-800 flex items-center justify-center text-xs font-bold text-gray-600">+8</div>
+                                <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-zinc-700 border-2 border-white dark:border-zinc-800 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-200">+8</div>
                             </div>
-                            <div className="text-sm font-bold text-gray-900 dark:text-white">12 créateurs actifs</div>
+                            <div className="text-sm font-bold text-slate-900 dark:text-white">12 créateurs actifs</div>
                         </motion.div>
 
                         {/* Engagement rate badge */}
                         <motion.div
                             animate={prefersReducedMotion ? {} : { y: [0, -10, 0], x: [0, 5, 0] }}
                             transition={prefersReducedMotion ? {} : { repeat: Infinity, duration: 7, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute bottom-24 right-20 bg-white dark:bg-zinc-800 rounded-2xl p-4 shadow-xl border border-gray-50 dark:border-zinc-700"
+                            className="absolute bottom-24 right-20 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/50 dark:border-white/10"
                         >
-                            <div className="text-xs text-gray-500 mb-1">Engagement Rate</div>
-                            <div className="text-3xl font-bold text-gray-900 dark:text-white">8.4%</div>
-                            <div className="text-xs text-green-500 font-semibold">+2.1% vs benchmark</div>
+                            <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">Eng. Rate</div>
+                            <div className="flex items-center gap-2">
+                                <div className="text-3xl font-bold text-slate-900 dark:text-white">8.4%</div>
+                                <TrendingUp className="w-4 h-4 text-green-500" />
+                            </div>
                         </motion.div>
 
                         {/* Content preview */}
                         <motion.div
                             animate={prefersReducedMotion ? {} : { y: [0, 12, 0] }}
                             transition={prefersReducedMotion ? {} : { repeat: Infinity, duration: 8, ease: "easeInOut", delay: 2 }}
-                            className="absolute bottom-32 left-0 bg-black rounded-3xl p-2 w-28 shadow-2xl rotate-[-6deg]"
+                            className="absolute bottom-32 left-0 bg-white p-2 rounded-3xl shadow-2xl rotate-[-6deg] max-w-[120px]"
                         >
-                            <div className="bg-gradient-to-br from-orange-500 to-rose-500 rounded-2xl w-full h-40 overflow-hidden relative">
+                            <div className="bg-gradient-to-br from-orange-400 to-rose-500 rounded-2xl w-full h-32 overflow-hidden relative shadow-inner">
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                <div className="absolute bottom-3 left-3 right-3">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <div className="w-5 h-5 rounded-full bg-white/30" />
-                                        <div className="h-1.5 w-12 bg-white/50 rounded-full" />
+                                <div className="absolute bottom-2 left-2 right-2">
+                                    <div className="text-white text-[10px] font-semibold flex items-center gap-1">
+                                        <Play className="w-3 h-3 fill-white" /> 12.4K
                                     </div>
-                                    <div className="text-white text-xs font-semibold">12.4K vues</div>
                                 </div>
                             </div>
                         </motion.div>

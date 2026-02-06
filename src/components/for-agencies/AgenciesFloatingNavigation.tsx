@@ -23,7 +23,13 @@ export function AgenciesFloatingNavigation() {
                     href="/for-agencies"
                     className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-2xl shadow-xl shadow-black/5 border border-gray-100/50 hover:scale-105 transition-all duration-300"
                 >
-                    <Image src="/wafia-logo.png" alt="Wafia" width={24} height={24} className="h-6 w-auto" />
+                    <Image
+                        src="/wafia-logo.png"
+                        alt="Wafia"
+                        width={24}
+                        height={24}
+                        className="h-6 w-auto dark:invert dark:brightness-200"
+                    />
                     <div className="flex items-center gap-2">
                         <div className="w-1 h-1 rounded-full bg-gray-300"></div>
                         <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Agencies</span>

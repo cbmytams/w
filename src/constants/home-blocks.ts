@@ -1,7 +1,7 @@
 export const HOME_OPTIONS = [
     {
         id: "talent",
-        label: "Talent",
+        label: "Talents",
         description: "Join our roster",
         icon: "Sparkles",
         route: "/for-talents",
@@ -23,7 +23,7 @@ export const HOME_OPTIONS = [
     },
     {
         id: "brand",
-        label: "Marque",
+        label: "Brands",
         description: "Launch campaigns",
         icon: "Briefcase",
         route: "/for-brands",

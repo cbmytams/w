@@ -1,45 +1,60 @@
 "use client"
 
-import { TalentsFloatingNavigation } from "@/components/for-talents/TalentsFloatingNavigation"
 import { HeroSection } from "@/components/for-talents/HeroSection"
 import { PersonaSection } from "@/components/for-talents/PersonaSection"
-import { IdentitySection } from "@/components/for-talents/IdentitySection"
-import { PlatformsSection } from "@/components/for-talents/PlatformsSection"
-import { BusinessSection } from "@/components/for-talents/BusinessSection"
+import { ProblemSection } from "@/components/for-talents/ProblemSection"
+import { DeliverablesSection } from "@/components/for-talents/DeliverablesSection"
+import { ServicesSection } from "@/components/for-talents/ServicesSection"
+import { MethodSection } from "@/components/for-talents/MethodSection"
 import { LevelsSection } from "@/components/for-talents/LevelsSection"
+import { ForWhoSection } from "@/components/for-talents/ForWhoSection"
 import { FaqSection } from "@/components/for-talents/FaqSection"
 import { CtaSection } from "@/components/for-talents/CtaSection"
-import { Footer } from "@/components/layout/footer"
+import { TalentsFloatingNavigation } from "@/components/for-talents/TalentsFloatingNavigation"
+import { PageShell } from "@/components/common/PageShell"
 
 export default function ForTalentsPage() {
     const scrollToContent = () => {
-        const element = document.getElementById("identity")
+        const element = document.getElementById("problem")
         if (element) {
             element.scrollIntoView({ behavior: "smooth" })
         }
     }
 
     return (
-        <div className="bg-white min-h-screen relative overflow-x-hidden">
-            <TalentsFloatingNavigation />
+        <PageShell variant="talents" nav={<TalentsFloatingNavigation />}>
+            {/* Content Layer (above background) */}
+            <div className="relative z-10">
+                {/* Hero + Scroll CTA */}
+                <HeroSection onContentClick={scrollToContent} />
 
-            <HeroSection onContentClick={scrollToContent} />
+                {/* Persona Tabs (kept high on page) */}
+                <PersonaSection />
 
-            <PersonaSection />
+                {/* Problem Statement */}
+                <ProblemSection />
 
-            <IdentitySection />
+                {/* Deliverables Bento Grid */}
+                <DeliverablesSection />
 
-            <PlatformsSection />
+                {/* Services Deep Dive (with widgets) */}
+                <ServicesSection />
 
-            <BusinessSection />
+                {/* Method (4 steps) */}
+                <MethodSection />
 
-            <LevelsSection />
+                {/* Timeline (5 phases) */}
+                <LevelsSection />
 
-            <FaqSection />
+                {/* For Who / Not For Who */}
+                <ForWhoSection />
 
-            <CtaSection />
+                {/* FAQ */}
+                <FaqSection />
 
-            <Footer />
-        </div>
+                {/* Final CTA */}
+                <CtaSection />
+            </div>
+        </PageShell>
     )
 }

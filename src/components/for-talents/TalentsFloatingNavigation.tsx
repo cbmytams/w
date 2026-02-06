@@ -22,12 +22,18 @@ export function TalentsFloatingNavigation() {
             >
                 <Link
                     href="/for-talents"
-                    className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-2xl shadow-xl shadow-black/5 border border-gray-100/50 hover:scale-105 transition-all duration-300"
+                    className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/80 dark:bg-white/10 backdrop-blur-2xl shadow-xl shadow-black/10 dark:shadow-black/30 border border-gray-200/60 dark:border-white/10 hover:scale-105 transition-all duration-300"
                 >
-                    <Image src="/wafia-logo.png" alt="Wafia" width={24} height={24} className="h-6 w-auto" />
+                    <Image
+                        src="/wafia-logo.png"
+                        alt="Wafia"
+                        width={24}
+                        height={24}
+                        className="h-6 w-auto dark:invert dark:brightness-200"
+                    />
                     <div className="flex items-center gap-2">
-                        <div className="w-1 h-1 rounded-full bg-gray-300"></div>
-                        <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Talents</span>
+                        <div className="w-1 h-1 rounded-full bg-gray-300 dark:bg-white/30"></div>
+                        <span className="text-xs font-bold text-gray-500 dark:text-white/70 uppercase tracking-widest">Talents</span>
                     </div>
                 </Link>
             </motion.div>
@@ -39,18 +45,18 @@ export function TalentsFloatingNavigation() {
                 transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
                 className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] hidden lg:block"
             >
-                <div className="bg-white/80 backdrop-blur-2xl rounded-2xl px-6 py-3 shadow-xl shadow-black/5 border border-gray-100/50">
-                    <div className="flex items-center gap-8 text-sm font-medium text-gray-600">
+                <div className="bg-white/80 dark:bg-white/10 backdrop-blur-2xl rounded-2xl px-6 py-3 shadow-xl shadow-black/10 dark:shadow-black/30 border border-gray-200/60 dark:border-white/10">
+                    <div className="flex items-center gap-8 text-sm font-medium text-gray-600 dark:text-white/70">
                         {TALENT_NAVIGATION.map((item) => (
                             <a
                                 key={item.label}
                                 href={item.href}
-                                className="hover:text-black transition-colors duration-200 hover:scale-105 transform"
+                                className="hover:text-gray-900 dark:hover:text-white transition-colors duration-200 hover:scale-105 transform"
                             >
                                 {item.label}
                             </a>
                         ))}
-                        <div className="w-px h-5 bg-gradient-to-b from-transparent via-gray-200 to-transparent"></div>
+                        <div className="w-px h-5 bg-gradient-to-b from-transparent via-gray-200 dark:via-white/20 to-transparent"></div>
                         <Link href="/contact?type=talent">
                             <Button
                                 size="sm"
@@ -73,7 +79,7 @@ export function TalentsFloatingNavigation() {
                 {/* Home - Desktop only */}
                 <Link
                     href="/"
-                    className="hidden lg:flex group items-center gap-2.5 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-2xl shadow-xl shadow-black/5 border border-gray-100/50 hover:scale-105 transition-all duration-300 text-sm font-semibold text-gray-600 hover:text-black"
+                    className="hidden lg:flex group items-center gap-2.5 px-6 py-3 rounded-2xl bg-white/80 dark:bg-white/10 backdrop-blur-2xl shadow-xl shadow-black/10 dark:shadow-black/30 border border-gray-200/60 dark:border-white/10 hover:scale-105 transition-all duration-300 text-sm font-semibold text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white"
                 >
                     <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                     <span>Menu principal</span>
@@ -82,10 +88,10 @@ export function TalentsFloatingNavigation() {
                 {/* Hamburger - Mobile only */}
                 <button
                     onClick={() => setMobileMenuOpen(true)}
-                    className="lg:hidden flex items-center justify-center w-12 h-12 rounded-2xl bg-white/80 backdrop-blur-2xl shadow-xl shadow-black/5 border border-gray-100/50 hover:scale-105 transition-all duration-300"
+                    className="lg:hidden flex items-center justify-center w-12 h-12 rounded-2xl bg-white/80 dark:bg-white/10 backdrop-blur-2xl shadow-xl shadow-black/10 dark:shadow-black/30 border border-gray-200/60 dark:border-white/10 hover:scale-105 transition-all duration-300"
                     aria-label="Ouvrir le menu"
                 >
-                    <Menu className="h-5 w-5 text-gray-700" />
+                    <Menu className="h-5 w-5 text-gray-700 dark:text-white/80" />
                 </button>
             </motion.div>
 
@@ -109,21 +115,21 @@ export function TalentsFloatingNavigation() {
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
                             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                            className="fixed top-0 right-0 bottom-0 w-full max-w-sm z-[200] bg-white shadow-2xl"
+                            className="fixed top-0 right-0 bottom-0 w-full max-w-sm z-[200] bg-white dark:bg-[#0b0f1a] shadow-2xl border-l border-gray-200 dark:border-white/10"
                         >
                             <div className="flex flex-col h-full p-8">
                                 {/* Header */}
                                 <div className="flex items-center justify-between mb-12">
                                     <div className="flex items-center gap-3">
-                                        <Image src="/wafia-logo.png" alt="Wafia" width={32} height={32} className="h-8 w-auto" />
-                                        <span className="text-lg font-bold text-gray-900">Talents</span>
+                                        <Image src="/wafia-logo.png" alt="Wafia" width={32} height={32} className="h-8 w-auto dark:invert dark:brightness-200" />
+                                        <span className="text-lg font-bold text-gray-900 dark:text-white">Talents</span>
                                     </div>
                                     <button
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+                                        className="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 flex items-center justify-center transition-colors"
                                         aria-label="Fermer le menu"
                                     >
-                                        <X className="h-5 w-5 text-gray-700" />
+                                        <X className="h-5 w-5 text-gray-700 dark:text-white/80" />
                                     </button>
                                 </div>
 
@@ -137,10 +143,10 @@ export function TalentsFloatingNavigation() {
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: index * 0.1 }}
                                             onClick={() => setMobileMenuOpen(false)}
-                                            className="flex items-center justify-between py-4 px-4 rounded-2xl text-lg font-semibold text-gray-900 hover:bg-gray-50 transition-colors group"
+                                            className="flex items-center justify-between py-4 px-4 rounded-2xl text-lg font-semibold text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group"
                                         >
                                             <span>{item.label}</span>
-                                            <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-pink-500 group-hover:translate-x-1 transition-all" />
+                                            <ArrowRight className="h-5 w-5 text-gray-400 dark:text-white/40 group-hover:text-pink-500 dark:group-hover:text-pink-300 group-hover:translate-x-1 transition-all" />
                                         </motion.a>
                                     ))}
 
@@ -153,13 +159,13 @@ export function TalentsFloatingNavigation() {
                                         <Link
                                             href="/"
                                             onClick={() => setMobileMenuOpen(false)}
-                                            className="flex items-center justify-between py-4 px-4 rounded-2xl text-lg font-semibold text-gray-500 hover:bg-gray-50 transition-colors group"
+                                            className="flex items-center justify-between py-4 px-4 rounded-2xl text-lg font-semibold text-gray-500 dark:text-white/60 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group"
                                         >
                                             <div className="flex items-center gap-3">
                                                 <Home className="h-5 w-5" />
                                                 <span>Menu principal</span>
                                             </div>
-                                            <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-pink-500 group-hover:translate-x-1 transition-all" />
+                                            <ArrowRight className="h-5 w-5 text-gray-400 dark:text-white/40 group-hover:text-pink-500 dark:group-hover:text-pink-300 group-hover:translate-x-1 transition-all" />
                                         </Link>
                                     </motion.div>
                                 </nav>
@@ -169,7 +175,7 @@ export function TalentsFloatingNavigation() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4 }}
-                                    className="pt-8 border-t border-gray-100"
+                                    className="pt-8 border-t border-gray-200 dark:border-white/10"
                                 >
                                     <Link
                                         href="/contact?type=talent"

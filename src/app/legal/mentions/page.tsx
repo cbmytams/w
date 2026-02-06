@@ -1,8 +1,25 @@
+import type { Metadata } from "next"
 import { Container } from "@/components/ui/container"
+import { siteConfig, sitePaths } from "@/lib/site"
+
+export const metadata: Metadata = {
+    title: "Mentions légales",
+    description: "Informations légales et éditoriales du site Wafia.",
+    alternates: {
+        canonical: sitePaths.legalMentions,
+    },
+    openGraph: {
+        title: "Mentions légales | Wafia",
+        description: "Informations légales et éditoriales du site Wafia.",
+        url: sitePaths.legalMentions,
+        siteName: siteConfig.name,
+        type: "article",
+    },
+}
 
 export default function MentionsLegales() {
     return (
-        <div className="py-24 bg-white">
+        <main id="main-content" className="py-24 bg-white">
             <Container className="prose prose-slate max-w-3xl mx-auto">
                 <h1>Mentions Légales</h1>
                 <h2>Éditeur du site</h2>
@@ -27,6 +44,6 @@ export default function MentionsLegales() {
                     L&apos;ensemble de ce site relève de la législation française et internationale sur le droit d&apos;auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés.
                 </p>
             </Container>
-        </div>
+        </main>
     )
 }

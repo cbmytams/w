@@ -1,13 +1,44 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Check, X, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { FadeIn, StaggerContainer } from "@/components/ui/fade-in"
+import { siteConfig, sitePaths } from "@/lib/site"
+import { breadcrumbSchema } from "@/lib/structured-data"
+
+export const metadata: Metadata = {
+  title: "Agence Influence & Studio",
+  description:
+    "Wafia connecte marques et talents avec un process clair, une production studio interne et une conformité totale.",
+  alternates: {
+    canonical: sitePaths.explore,
+  },
+  openGraph: {
+    title: "Agence Influence & Studio | Wafia",
+    description:
+      "Wafia connecte marques et talents avec un process clair, une production studio interne et une conformité totale.",
+    url: sitePaths.explore,
+    siteName: siteConfig.name,
+    type: "website",
+  },
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-24 pb-24">
+    <main id="main-content" className="flex flex-col gap-24 pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Accueil", url: new URL(sitePaths.home, siteConfig.url).toString() },
+              { name: "Agence", url: new URL(sitePaths.explore, siteConfig.url).toString() },
+            ])
+          ),
+        }}
+      />
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-100 via-white to-white opacity-70" />
@@ -255,6 +286,6 @@ export default function Home() {
           </div>
         </Container>
       </section>
-    </div>
+    </main>
   )
 }

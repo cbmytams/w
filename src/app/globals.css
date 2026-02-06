@@ -36,8 +36,8 @@
 
 /* Dark mode overrides */
 .dark {
-  --background: #0a0a0a;
-  --foreground: #fafafa;
+  --background: #0b111a;
+  --foreground: #f8fafc;
 }
 
 @theme inline {
@@ -67,10 +67,8 @@ body {
   scroll-behavior: smooth;
 }
 
-/* GPU Acceleration for smoother animations */
-.gpu-accelerated,
-[class*="blur-"],
-[class*="backdrop-blur"] {
+/* GPU acceleration opt-in for animated layers only */
+.gpu-accelerated {
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform, opacity;
@@ -119,6 +117,11 @@ body {
 /* Glass morphism card */
 .card-glass {
   @apply bg-white/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl;
+}
+
+.dark .card-glass {
+  background-color: rgb(11 15 20 / 0.78);
+  border-color: rgb(255 255 255 / 0.08);
 }
 
 /* ============================================

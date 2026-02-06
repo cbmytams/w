@@ -14,7 +14,7 @@ export function FloatingMetrics({ value, label, delay = 0 }: FloatingMetricsProp
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay, duration: 0.6 }}
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/80 dark:bg-white/10 backdrop-blur-xl border border-white/30 dark:border-white/20"
         >
             <motion.div
                 animate={{
@@ -31,7 +31,7 @@ export function FloatingMetrics({ value, label, delay = 0 }: FloatingMetricsProp
             >
                 {value}
             </motion.div>
-            <span className="text-sm font-medium text-white/80">{label}</span>
+            <span className="text-sm font-medium text-slate-600 dark:text-white/80">{label}</span>
 
             {/* Floating particles */}
             {[...Array(3)].map((_, i) => (

@@ -61,13 +61,14 @@ export default function Homepage() {
             {/* Grain Texture */}
             <div
                 className="fixed inset-0 pointer-events-none z-[1] opacity-[0.03] mix-blend-overlay"
-                style={{ backgroundImage: "url('/noise.png')", backgroundRepeat: "repeat" }}
+                style={{ backgroundImage: "url('/noise.svg')", backgroundRepeat: "repeat" }}
             />
 
             {/* ============================================
                 MAIN STAGE
                ============================================ */}
-            <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-6">
+            <main id="main-content" className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-6">
+                <h1 className="sr-only">Wafia — Influence & Creative Studio</h1>
 
                 {/* LOGO - Medium with Glow Effect */}
                 <motion.div

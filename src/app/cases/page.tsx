@@ -119,7 +119,7 @@ const CASE_STUDIES = [
 
 export default function CasesPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white dark:from-black dark:via-zinc-950 dark:to-black">
+        <main id="main-content" className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white dark:from-black dark:via-zinc-950 dark:to-black">
 
             {/* Background Effects */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -298,6 +298,6 @@ export default function CasesPage() {
                     </div>
                 </motion.div>
             </Container>
-        </div>
+        </main>
     )
 }

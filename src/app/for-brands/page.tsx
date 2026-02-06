@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { PageShell } from "@/components/common/PageShell"
 import { FloatingNavigation } from "@/components/for-brands/FloatingNavigation"
 import { BrandHeroV2 } from "@/components/for-brands/BrandHeroV2"
 import { ClientsSection } from "@/components/for-brands/ClientsSection"
@@ -19,60 +20,39 @@ import { EstimatorModal } from "@/components/for-brands/EstimatorModal"
 export default function ForBrandsPage() {
     const [showEstimator, setShowEstimator] = useState(false)
 
-    const scrollToDashboard = () => {
-        const dashboardElement = document.getElementById("dashboard")
-        if (dashboardElement) {
-            dashboardElement.scrollIntoView({ behavior: "smooth" })
-        }
-    }
-
     return (
-        <div className="min-h-screen relative overflow-x-hidden bg-gradient-to-b from-white via-gray-50 to-white dark:from-black dark:via-zinc-950 dark:to-black">
+        <PageShell
+            variant="brands"
+            nav={<FloatingNavigation onEstimateClick={() => setShowEstimator(true)} />}
+        >
+            <BrandHeroV2 />
 
-            {/* The Infinite Flow Line */}
-            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-gradient-to-b from-transparent via-orange-500/20 to-transparent lg:block hidden z-0 pointer-events-none" />
+            <ClientsSection />
 
-            {/* Global Color Melt Blobs - Optimized */}
-            <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[80px] pointer-events-none z-0 mix-blend-multiply dark:mix-blend-screen" />
-            <div className="absolute top-[45%] left-[-10%] w-[800px] h-[800px] bg-rose-500/5 rounded-full blur-[80px] pointer-events-none z-0 mix-blend-multiply dark:mix-blend-screen" />
-            <div className="absolute top-[75%] right-[-5%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[60px] pointer-events-none z-0 mix-blend-multiply dark:mix-blend-screen" />
+            <ValuePropositionSection />
 
+            <CaseStudiesSection />
 
-            {/* Noise Texture Overlay for Premium Feel */}
-            <div className="fixed inset-0 opacity-[0.03] pointer-events-none z-[60] bg-[url('/noise.png')] mix-blend-overlay" />
+            <AuthenticitySection />
 
-            <div className="relative z-10">
-                <FloatingNavigation onEstimateClick={() => setShowEstimator(true)} />
+            <DashboardSection />
 
-                <BrandHeroV2 onDashboardClick={scrollToDashboard} />
+            <DeliverablesSectionV3 />
 
-                <ClientsSection />
+            <ProcessSection />
 
-                <ValuePropositionSection />
+            <ComparisonSectionV2 />
 
-                <CaseStudiesSection />
+            <ComplianceSection />
 
-                <AuthenticitySection />
+            <FaqSection />
 
-                <DashboardSection />
+            <CtaSection onEstimateClick={() => setShowEstimator(true)} />
 
-                <DeliverablesSectionV3 />
-
-                <ProcessSection />
-
-                <ComparisonSectionV2 />
-
-                <ComplianceSection />
-
-                <FaqSection />
-
-                <CtaSection onEstimateClick={() => setShowEstimator(true)} />
-
-                <EstimatorModal
-                    isOpen={showEstimator}
-                    onClose={() => setShowEstimator(false)}
-                />
-            </div>
-        </div>
+            <EstimatorModal
+                isOpen={showEstimator}
+                onClose={() => setShowEstimator(false)}
+            />
+        </PageShell>
     )
 }

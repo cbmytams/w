@@ -182,11 +182,7 @@ function PillarCard({ pillar, index }: { pillar: typeof VALUE_PILLARS[number]; i
 
 export function ValuePropositionSection() {
     return (
-        <section className="py-28 lg:py-36 px-4 relative overflow-hidden">
-            {/* Background - Subtle Heat Gradient */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-orange-500/5 via-transparent to-transparent rounded-full blur-3xl" />
-            </div>
+        <section className="py-28 lg:py-36 px-4">
 
             <Container>
                 <div className="max-w-6xl mx-auto">

@@ -1,7 +1,40 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Check, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
+import { siteConfig, sitePaths } from "@/lib/site"
+import { serviceSchema, breadcrumbSchema } from "@/lib/structured-data"
+
+export const metadata: Metadata = {
+    title: "Services",
+    description:
+        "Influence, talent management, studio créatif et stratégie : un stack complet pour vos campagnes.",
+    alternates: {
+        canonical: sitePaths.services,
+    },
+    openGraph: {
+        title: "Services | Wafia",
+        description:
+            "Influence, talent management, studio créatif et stratégie : un stack complet pour vos campagnes.",
+        url: sitePaths.services,
+        siteName: siteConfig.name,
+        type: "website",
+    },
+}
+
+const servicesJsonLd = serviceSchema({
+    name: "Influence marketing, talent management & studio créatif",
+    description:
+        "Influence, talent management, studio créatif et stratégie : un stack complet pour vos campagnes.",
+    url: new URL(sitePaths.services, siteConfig.url).toString(),
+    serviceType: ["Influence Marketing", "Talent Management", "Creative Studio", "Strategy"],
+})
+
+const servicesBreadcrumbs = breadcrumbSchema([
+    { name: "Accueil", url: new URL(sitePaths.home, siteConfig.url).toString() },
+    { name: "Services", url: new URL(sitePaths.services, siteConfig.url).toString() },
+])
 
 const services = [
     {
@@ -60,7 +93,15 @@ const services = [
 
 export default function ServicesPage() {
     return (
-        <div className="py-24 bg-white">
+        <main id="main-content" className="py-24 bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesBreadcrumbs) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
+            />
             <Container>
                 <div className="flex flex-col lg:flex-row gap-16">
                     {/* Sticky Navigation */}
@@ -138,6 +179,6 @@ export default function ServicesPage() {
                     </div>
                 </div>
             </Container>
-        </div>
+        </main>
     )
 }

@@ -1,25 +1,31 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 import { Check, FileText } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/common/SectionHeading"
 import { PROCESS_STEPS } from "@/constants/process-steps"
+import { useReducedMotion } from "@/hooks/useReducedMotion"
 import { cn } from "@/lib/utils"
 
 export function ProcessSection() {
+    const prefersReducedMotion = useReducedMotion()
     const containerRef = useRef<HTMLDivElement>(null)
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start end", "end start"]
     })
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 120,
+        damping: 28,
+        mass: 0.32
+    })
 
-    // The central line fills up as we scroll
-    const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+    const lineScale = useTransform(smoothProgress, [0.08, 0.92], [0, 1], { clamp: true })
 
     return (
-        <section ref={containerRef} id="process" className="py-40 px-4 relative overflow-hidden">
+        <section ref={containerRef} id="process" className="py-40 px-4 relative">
             <Container>
                 <div className="max-w-5xl mx-auto relative">
                     <SectionHeading
@@ -37,8 +43,11 @@ export function ProcessSection() {
                         {/* THE NEURO-LINK SPINE (Central Line) */}
                         <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-1 bg-gray-100 dark:bg-zinc-800 -translate-x-1/2 rounded-full overflow-hidden">
                             <motion.div
-                                style={{ height: lineHeight }}
-                                className="w-full bg-gradient-to-b from-orange-500 via-red-500 to-purple-600 shadow-[0_0_20px_rgba(249,115,22,0.5)]"
+                                style={{
+                                    scaleY: prefersReducedMotion ? 1 : lineScale,
+                                    transformOrigin: "top center"
+                                }}
+                                className="h-full w-full origin-top gpu-accelerated bg-gradient-to-b from-orange-500 via-red-500 to-purple-600 shadow-[0_0_14px_rgba(249,115,22,0.38)]"
                             />
                         </div>
 
@@ -61,17 +70,25 @@ export function ProcessSection() {
 
                                         {/* Content Card */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                            viewport={{ once: true, margin: "-100px" }}
-                                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                                            initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+                                            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                                            viewport={prefersReducedMotion ? undefined : { once: true, margin: "-80px" }}
+                                            transition={
+                                                prefersReducedMotion
+                                                    ? undefined
+                                                    : {
+                                                          duration: 0.52,
+                                                          delay: Math.min(i * 0.06, 0.2),
+                                                          ease: [0.22, 1, 0.36, 1]
+                                                      }
+                                            }
                                             className={cn(
-                                                "ml-16 md:ml-0 w-full md:w-5/12",
+                                                "ml-16 md:ml-0 w-full md:w-5/12 gpu-accelerated",
                                                 "p-8 rounded-3xl",
-                                                "bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md", // Glass
+                                                "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm",
                                                 "border border-gray-200/50 dark:border-zinc-800",
-                                                "hover:border-orange-500/30 hover:bg-white/80 dark:hover:bg-zinc-900/80 hover:shadow-2xl hover:shadow-orange-500/10",
-                                                "transition-all duration-500"
+                                                "hover:border-orange-500/25 hover:bg-white/80 dark:hover:bg-zinc-900/80 hover:shadow-xl hover:shadow-orange-500/8",
+                                                "transition-[background-color,border-color,box-shadow,transform] duration-300"
                                             )}
                                         >
                                             <div className="flex items-center gap-4 mb-6">

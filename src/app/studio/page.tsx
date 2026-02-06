@@ -9,7 +9,7 @@ import { ArrowLeft } from "lucide-react"
 
 export default function StudioPage() {
     return (
-        <div className="fixed inset-0 z-50 bg-black text-white selection:bg-white selection:text-black overflow-hidden flex flex-col">
+        <main id="main-content" className="fixed inset-0 z-50 bg-black text-white selection:bg-white selection:text-black overflow-hidden flex flex-col">
             {/* Ambient Background Light */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-[-20%] left-[20%] w-[1000px] h-[1000px] bg-blue-900/10 rounded-full blur-[120px]" />
@@ -27,6 +27,7 @@ export default function StudioPage() {
 
             <div className="flex-1 flex flex-col justify-center relative z-10 px-4 py-6 h-full">
                 <Container className="h-full flex flex-col justify-between">
+                    <h1 className="sr-only">Studio créatif Wafia</h1>
                     {/* Header Minimaliste - Top of Layout */}
                     <div className="text-center shrink-0 pt-4">
                         <FadeIn>
@@ -59,6 +60,6 @@ export default function StudioPage() {
                     </div>
                 </Container>
             </div>
-        </div>
+        </main>
     )
 }

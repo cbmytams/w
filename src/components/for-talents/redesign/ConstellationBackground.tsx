@@ -1,11 +1,15 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { useReducedMotion } from "@/hooks/useReducedMotion"
 
 export function ConstellationBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
+    const prefersReducedMotion = useReducedMotion()
 
     useEffect(() => {
+        if (prefersReducedMotion) return
+
         const canvas = canvasRef.current
         if (!canvas) return
 
@@ -29,7 +33,7 @@ export function ConstellationBackground() {
             radius: number
         }> = []
 
-        const particleCount = 50
+        const particleCount = 36
         for (let i = 0; i < particleCount; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
@@ -76,7 +80,7 @@ export function ConstellationBackground() {
                 // Draw particle
                 ctx.beginPath()
                 ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2)
-                ctx.fillStyle = "rgba(236, 72, 153, 0.6)" // Pink
+                ctx.fillStyle = "rgba(99, 102, 241, 0.55)" // Indigo
                 ctx.fill()
 
                 // Draw connections
@@ -92,7 +96,7 @@ export function ConstellationBackground() {
                         ctx.moveTo(particle.x, particle.y)
                         ctx.lineTo(otherParticle.x, otherParticle.y)
                         const opacity = 1 - distance / 150
-                        ctx.strokeStyle = `rgba(6, 182, 212, ${opacity * 0.3})` // Cyan
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${opacity * 0.25})` // Cyan
                         ctx.lineWidth = 0.5
                         ctx.stroke()
                     }
@@ -108,12 +112,12 @@ export function ConstellationBackground() {
             window.removeEventListener("resize", setCanvasSize)
             window.removeEventListener("mousemove", handleMouseMove)
         }
-    }, [])
+    }, [prefersReducedMotion])
 
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none opacity-20 dark:opacity-60"
             style={{ mixBlendMode: "screen" }}
         />
     )

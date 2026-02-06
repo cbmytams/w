@@ -15,7 +15,7 @@ export function FaqSection() {
             <Container>
                 <div className="max-w-3xl mx-auto">
                     <RevealAnimation>
-                        <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-16 text-center">
+                        <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-16 text-center">
                             Questions fréquentes
                         </h2>
                     </RevealAnimation>
@@ -28,8 +28,8 @@ export function FaqSection() {
                                     className="w-full text-left bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-2xl p-6 hover:bg-white/80 dark:hover:bg-zinc-900/80 transition-colors border border-gray-200/50 dark:border-zinc-800"
                                 >
                                     <div className="flex justify-between items-center">
-                                        <h3 className="text-lg font-bold text-gray-900 pr-4">{faq.q}</h3>
-                                        <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform shrink-0 ${openFaq === i ? 'rotate-180' : ''}`} />
+                                        <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 pr-4">{faq.q}</h3>
+                                        <ChevronDown className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform shrink-0 ${openFaq === i ? 'rotate-180' : ''}`} />
                                     </div>
                                     <AnimatePresence>
                                         {openFaq === i && (
@@ -38,7 +38,7 @@ export function FaqSection() {
                                                 animate={{ opacity: 1, height: "auto" }}
                                                 exit={{ opacity: 0, height: 0 }}
                                             >
-                                                <p className="text-gray-600 mt-4">
+                                                <p className="text-gray-600 dark:text-gray-400 mt-4">
                                                     {faq.a}
                                                 </p>
                                             </motion.div>

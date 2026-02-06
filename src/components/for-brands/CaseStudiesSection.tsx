@@ -63,16 +63,14 @@ const CASE_STUDIES = [
 
 export function CaseStudiesSection() {
     return (
-        <section className="py-32 px-4 relative overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-50/50 dark:via-zinc-900/50 to-transparent pointer-events-none" />
+        <section className="py-32 px-4">
 
             <Container>
                 <div className="max-w-7xl mx-auto">
                     <SectionHeading
                         title={
                             <>
-                                Ce qu'on a{" "}
+                                Ce qu&apos;on a{" "}
                                 <span className="text-gradient-brand">déjà fait.</span>
                             </>
                         }

@@ -1,0 +1,247 @@
+# Theme & Design Tokens
+
+## Global Styles
+- File path: `src/app/globals.css`
+
+```css
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+
+/* ============================================
+   WAFIA DESIGN SYSTEM v2.0
+   ============================================ */
+
+:root {
+  /* --- Core Colors --- */
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+
+  /* --- Brand Gradient (Orange → Red) --- */
+  --brand-primary: #f97316;      /* orange-500 */
+  --brand-secondary: #ef4444;    /* red-500 */
+  --brand-tertiary: #ec4899;     /* rose-500 / pink-500 */
+
+  /* --- Accent Colors --- */
+  --accent-blue: #3b82f6;        /* blue-500 */
+  --accent-purple: #a855f7;      /* purple-500 */
+  --accent-green: #22c55e;       /* green-500 */
+  --accent-yellow: #eab308;      /* yellow-500 */
+
+  /* --- Neutral Palette --- */
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+
+  /* --- Shadows --- */
+  --shadow-brand: rgba(249, 115, 22, 0.25);
+  --shadow-brand-strong: rgba(249, 115, 22, 0.40);
+}
+
+/* Dark mode overrides */
+.dark {
+  --background: #0b111a;
+  --foreground: #f8fafc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-plus-jakarta);
+  --font-heading: var(--font-outfit);
+  --font-display: var(--font-syne);
+  
+  /* Expose brand colors to Tailwind */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* GPU Acceleration for smoother animations */
+.gpu-accelerated,
+[class*="blur-"],
+[class*="backdrop-blur"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* ============================================
+   UTILITY CLASSES - Layout
+   ============================================ */
+
+.section-spacing {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES - Cards
+   ============================================ */
+
+/* Standard card with border and shadow */
+.card-base {
+  @apply bg-white rounded-xl p-6 shadow-sm border border-gray-100;
+}
+
+.card-base-dark {
+  @apply dark:bg-zinc-900 dark:border-zinc-800;
+}
+
+/* Elevated card with stronger shadow */
+.card-elevated {
+  @apply bg-white rounded-2xl p-6 shadow-lg border border-gray-100;
+}
+
+/* Interactive card with hover effects */
+.card-interactive {
+  @apply bg-white rounded-xl p-6 shadow-sm border border-gray-100
+         hover:shadow-lg hover:border-gray-200 transition-all duration-300;
+}
+
+/* Glass morphism card */
+.card-glass {
+  @apply bg-white/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl;
+}
+
+.dark .card-glass {
+  background-color: rgb(11 15 20 / 0.78);
+  border-color: rgb(255 255 255 / 0.08);
+}
+
+/* ============================================
+   UTILITY CLASSES - Brand Gradient
+   ============================================ */
+
+/* Primary brand gradient (orange → red) */
+.gradient-brand {
+  @apply bg-gradient-to-r from-orange-500 to-red-500;
+}
+
+.gradient-brand-hover {
+  @apply hover:from-orange-600 hover:to-red-600;
+}
+
+/* Text with brand gradient */
+.text-gradient-brand {
+  @apply bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent;
+}
+
+/* Brand gradient for button */
+.btn-gradient-brand {
+  @apply bg-gradient-to-r from-orange-500 to-red-500 
+         hover:from-orange-600 hover:to-red-600 
+         text-white font-semibold 
+         shadow-lg shadow-orange-500/25 
+         hover:shadow-orange-500/40 
+         transition-all;
+}
+
+/* ============================================
+   UTILITY CLASSES - Glass Effects
+   ============================================ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ============================================
+   ANIMATIONS - Aurora Blobs
+   ============================================ */
+
+.aurora-blob {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.4;
+  z-index: 0;
+  animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -20px) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* ============================================
+   ANIMATIONS - Fade In
+   ============================================ */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Animation delay utilities */
+.animation-delay-200 { animation-delay: 200ms; }
+```
+
+## Page-Specific Styles
+- File path: `src/app/for-brands/branding.css`
+
+```css
+/* src/app/for-brands/branding.css */
+header {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Also hide by the specific classes we saw */
+.sticky.top-0.z-50.bg-white\/80 {
+    display: none !important;
+}
+```

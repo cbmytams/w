@@ -1,11 +1,42 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { siteConfig, sitePaths } from "@/lib/site"
+import { breadcrumbSchema } from "@/lib/structured-data"
+
+export const metadata: Metadata = {
+    title: "À propos",
+    description:
+        "Découvrez la vision Wafia : transparence, rigueur et créativité pour des campagnes d'influence traçables.",
+    alternates: {
+        canonical: sitePaths.about,
+    },
+    openGraph: {
+        title: "À propos | Wafia",
+        description:
+            "Découvrez la vision Wafia : transparence, rigueur et créativité pour des campagnes d'influence traçables.",
+        url: sitePaths.about,
+        siteName: siteConfig.name,
+        type: "website",
+    },
+}
 
 export default function AboutPage() {
     return (
-        <div className="py-24 bg-white">
+        <main id="main-content" className="py-24 bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(
+                        breadcrumbSchema([
+                            { name: "Accueil", url: new URL(sitePaths.home, siteConfig.url).toString() },
+                            { name: "À propos", url: new URL(sitePaths.about, siteConfig.url).toString() },
+                        ])
+                    ),
+                }}
+            />
             <Container>
                 {/* Intro */}
                 <div className="max-w-4xl mx-auto mb-24 text-center lg:text-left">
@@ -52,6 +83,6 @@ export default function AboutPage() {
                     </div>
                 </div>
             </Container>
-        </div>
+        </main>
     )
 }

@@ -1,10 +1,41 @@
+import type { Metadata } from "next"
 import { Container } from "@/components/ui/container"
 import { Card, CardContent } from "@/components/ui/card"
 import { Check, ShieldCheck, BarChart3, Clock } from "lucide-react"
+import { siteConfig, sitePaths } from "@/lib/site"
+import { breadcrumbSchema } from "@/lib/structured-data"
+
+export const metadata: Metadata = {
+    title: "Process & Méthode",
+    description:
+        "Découvrez la méthode Wafia : audit, casting, production, reporting et gates de validation.",
+    alternates: {
+        canonical: sitePaths.process,
+    },
+    openGraph: {
+        title: "Process & Méthode | Wafia",
+        description:
+            "Découvrez la méthode Wafia : audit, casting, production, reporting et gates de validation.",
+        url: sitePaths.process,
+        siteName: siteConfig.name,
+        type: "website",
+    },
+}
 
 export default function ProcessPage() {
     return (
-        <div className="py-24 bg-white">
+        <main id="main-content" className="py-24 bg-white">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(
+                        breadcrumbSchema([
+                            { name: "Accueil", url: new URL(sitePaths.home, siteConfig.url).toString() },
+                            { name: "Process", url: new URL(sitePaths.process, siteConfig.url).toString() },
+                        ])
+                    ),
+                }}
+            />
             <Container>
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-20">
@@ -127,6 +158,6 @@ export default function ProcessPage() {
                 </section>
 
             </Container>
-        </div>
+        </main>
     )
 }

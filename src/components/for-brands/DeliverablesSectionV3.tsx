@@ -20,7 +20,7 @@ export function DeliverablesSectionV3() {
     }
 
     return (
-        <section className="py-32 px-4 relative">
+        <section className="py-32 px-4 relative bg-transparent">
             <Container>
                 <div className="max-w-6xl mx-auto">
                     <SectionHeading
@@ -43,12 +43,15 @@ export function DeliverablesSectionV3() {
                                 transition={springTransition}
                                 className={cn(
                                     widget.colSpan,
-                                    "relative cursor-pointer group rounded-[32px] overflow-hidden card-glass",
+                                    "relative cursor-pointer group rounded-[32px] overflow-hidden backdrop-blur-xl",
+                                    "bg-white/80 border border-gray-200/60 shadow-xl",
+                                    "dark:bg-white/5 dark:border-white/10 dark:shadow-[0_20px_80px_rgba(0,0,0,0.45)]",
                                     "hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
                                 )}
                             >
                                 {/* Background Gradient Mesh */}
                                 <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br", widget.gradient)} />
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 dark:opacity-100 dark:group-hover:opacity-100 transition-opacity duration-500 dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_55%)]" />
 
                                 <div className="absolute top-6 left-6 right-6 flex justify-between items-start">
                                     <div
@@ -62,8 +65,8 @@ export function DeliverablesSectionV3() {
                                 </div>
 
                                 <div className="absolute bottom-6 left-6 right-6">
-                                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{widget.title}</h3>
-                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">{widget.subtitle}</p>
+                                    <h3 className="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-1">{widget.title}</h3>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-slate-400">{widget.subtitle}</p>
                                 </div>
 
                                 {/* Decorational Elements specific to widgets */}
@@ -85,7 +88,7 @@ export function DeliverablesSectionV3() {
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     onClick={() => setSelectedId(null)}
-                                    className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                                    className="absolute inset-0 bg-black/70 backdrop-blur-md"
                                 />
 
                                 {/* Expanded Card */}
@@ -94,7 +97,7 @@ export function DeliverablesSectionV3() {
                                         layoutId={`card-${widget.id}`}
                                         key={widget.id}
                                         transition={springTransition}
-                                        className="relative w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-[40px] overflow-hidden shadow-2xl z-10 flex flex-col"
+                                        className="relative w-full max-w-2xl bg-white dark:bg-[#0b111a] rounded-[40px] overflow-hidden shadow-2xl z-10 flex flex-col border border-transparent dark:border-white/10"
                                     >
                                         {/* Header */}
                                         <div className={cn("relative p-8 flex flex-col justify-between shrink-0 bg-gradient-to-br min-h-[220px]", widget.gradient)}>
@@ -132,9 +135,9 @@ export function DeliverablesSectionV3() {
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, transition: { duration: 0.1 } }}
                                             transition={{ delay: 0.15, duration: 0.4 }}
-                                            className="p-10 bg-white dark:bg-zinc-900 flex-1 overflow-y-auto"
+                                            className="p-10 bg-white dark:bg-[#0b111a] flex-1 overflow-y-auto"
                                         >
-                                            <p className="text-xl text-gray-600 dark:text-gray-300 font-medium mb-8 leading-relaxed">
+                                            <p className="text-xl text-gray-600 dark:text-slate-300 font-medium mb-8 leading-relaxed">
                                                 {widget.content}
                                             </p>
 
@@ -145,10 +148,10 @@ export function DeliverablesSectionV3() {
                                                         initial={{ opacity: 0, x: -10 }}
                                                         animate={{ opacity: 1, x: 0 }}
                                                         transition={{ delay: 0.3 + (i * 0.05) }}
-                                                        className="flex items-center gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-zinc-800/50 border border-gray-100 dark:border-zinc-800"
+                                                        className="flex items-center gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10"
                                                     >
                                                         <div className={cn("w-2 h-2 rounded-full", widget.color)} />
-                                                        <span className="font-semibold text-gray-800 dark:text-gray-200">{detail}</span>
+                                                        <span className="font-semibold text-gray-800 dark:text-slate-100">{detail}</span>
                                                     </motion.div>
                                                 ))}
                                             </div>

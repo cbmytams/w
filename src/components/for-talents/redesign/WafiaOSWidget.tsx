@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 import {
     LayoutGrid,
     Briefcase,
@@ -213,9 +214,12 @@ function DealsCard() {
                         className="flex items-center gap-3"
                     >
                         <div className="w-8 h-8 rounded-lg bg-gray-800/80 border border-gray-700 flex items-center justify-center p-1.5 overflow-hidden">
-                            <img
+                            <Image
                                 src={deal.logo}
                                 alt={deal.name}
+                                width={32}
+                                height={32}
+                                loading="lazy"
                                 className="w-full h-full object-contain brightness-0 invert"
                             />
                         </div>

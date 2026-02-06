@@ -35,11 +35,10 @@ export function HeroSection({ onDashboardClick }: HeroSectionProps) {
                         transition={{ duration: 0.8, delay: 0.1 }}
                         className="text-6xl sm:text-7xl lg:text-8xl font-bold text-gray-900 leading-[1.05] mb-8"
                     >
-                        {BRAND_HERO_CONTENT.title.prefix}{" "}
+                        {BRAND_HERO_CONTENT.title.line1}{" "}
                         <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
                             {BRAND_HERO_CONTENT.title.highlight}
-                        </span>{" "}
-                        {BRAND_HERO_CONTENT.title.suffix}
+                        </span>
                     </motion.h1>
 
                     {/* Sous-texte "Anti-Marché" */}

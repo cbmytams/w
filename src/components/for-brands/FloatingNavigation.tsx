@@ -23,12 +23,18 @@ export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps)
             >
                 <Link
                     href="/for-brands"
-                    className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-2xl shadow-xl shadow-black/5 border border-gray-100/50 hover:scale-105 transition-all duration-300"
+                    className="group flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-2xl shadow-xl shadow-black/5 border border-gray-100/50 dark:border-white/10 hover:scale-105 transition-all duration-300"
                 >
-                    <Image src="/wafia-logo.png" alt="Wafia" width={24} height={24} className="h-6 w-auto" />
+                    <Image
+                        src="/wafia-logo.png"
+                        alt="Wafia"
+                        width={24}
+                        height={24}
+                        className="h-6 w-auto dark:invert dark:brightness-200"
+                    />
                     <div className="flex items-center gap-2">
-                        <div className="w-1 h-1 rounded-full bg-gray-300"></div>
-                        <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Brands</span>
+                        <div className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+                        <span className="text-xs font-bold text-gray-400 dark:text-gray-300 uppercase tracking-widest">Brands</span>
                     </div>
                 </Link>
             </motion.div>
@@ -40,18 +46,18 @@ export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps)
                 transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
                 className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] hidden lg:block"
             >
-                <div className="bg-white/80 backdrop-blur-2xl rounded-2xl px-6 py-3 shadow-xl shadow-black/5 border border-gray-100/50">
-                    <div className="flex items-center gap-8 text-sm font-medium text-gray-600">
+                <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-2xl rounded-2xl px-6 py-3 shadow-xl shadow-black/5 border border-gray-100/50 dark:border-white/10">
+                    <div className="flex items-center gap-8 text-sm font-medium text-gray-600 dark:text-gray-300">
                         {BRAND_NAVIGATION.map((item) => (
                             <a
                                 key={item.label}
                                 href={item.href}
-                                className="hover:text-black transition-colors duration-200 hover:scale-105 transform"
+                                className="hover:text-black dark:hover:text-white transition-colors duration-200 hover:scale-105 transform"
                             >
                                 {item.label}
                             </a>
                         ))}
-                        <div className="w-px h-5 bg-gradient-to-b from-transparent via-gray-200 to-transparent"></div>
+                        <div className="w-px h-5 bg-gradient-to-b from-transparent via-gray-200 dark:via-zinc-700 to-transparent"></div>
                         <Button
                             size="sm"
                             onClick={onEstimateClick}
@@ -72,7 +78,7 @@ export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps)
             >
                 <Link
                     href="/"
-                    className="group flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-2xl shadow-xl shadow-black/5 border border-gray-100/50 hover:scale-105 transition-all duration-300 text-sm font-semibold text-gray-600 hover:text-black"
+                    className="group flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-2xl shadow-xl shadow-black/5 border border-gray-100/50 dark:border-white/10 hover:scale-105 transition-all duration-300 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
                 >
                     <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                     <span>Menu principal</span>

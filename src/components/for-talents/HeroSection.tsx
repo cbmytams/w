@@ -1,14 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Sparkles } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { TALENT_HERO } from "@/constants"
-import { GradientBackground } from "./redesign/GradientBackground"
-import { ConstellationBackground } from "./redesign/ConstellationBackground"
 import { MagneticButton } from "./redesign/MagneticButton"
-import { FloatingMetrics } from "./redesign/FloatingMetrics"
 import { GradientRevealText } from "./redesign/GradientRevealText"
 
 interface HeroSectionProps {
@@ -17,10 +13,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onContentClick }: HeroSectionProps) {
     return (
-        <GradientBackground variant="hero" className="pt-32 pb-32 px-4 min-h-[90vh] flex items-center relative overflow-hidden">
-            {/* Particules interactives */}
-            <ConstellationBackground />
-
+        <section className="pt-32 pb-32 px-4 min-h-[90vh] flex items-center relative">
             <Container className="relative z-10">
                 <div className="max-w-5xl mx-auto text-center">
                     {/* Badge */}
@@ -30,18 +23,17 @@ export function HeroSection({ onContentClick }: HeroSectionProps) {
                         transition={{ duration: 0.8 }}
                         className="mb-8"
                     >
-                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-pink-300 uppercase tracking-wider px-5 py-2.5 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
+                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wider px-5 py-2.5 bg-white/70 dark:bg-white/10 backdrop-blur-xl rounded-full border border-white/70 dark:border-white/20">
                             <Sparkles className="w-4 h-4" />
                             {TALENT_HERO.badge}
                         </span>
                     </motion.div>
 
-                    {/* Titre avec GradientRevealText */}
-                    <GradientRevealText className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[1.05] mb-8">
-                        <span className="block text-white">{TALENT_HERO.title}</span>
-                        <span className="block bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 bg-clip-text text-transparent">
-                            {TALENT_HERO.titleHighlight}
-                        </span>
+                    {/* Titre */}
+                    <GradientRevealText className="mb-8">
+                        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[1.05] text-slate-900 dark:text-white">
+                            {TALENT_HERO.title}
+                        </h1>
                     </GradientRevealText>
 
                     {/* Subtitle */}
@@ -49,12 +41,12 @@ export function HeroSection({ onContentClick }: HeroSectionProps) {
                         initial={{ y: 10 }}
                         animate={{ y: 0 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
-                        className="text-xl sm:text-2xl text-white/70 max-w-2xl mx-auto mb-12 font-medium"
+                        className="text-xl sm:text-2xl text-slate-600 dark:text-white/70 max-w-3xl mx-auto mb-12 font-medium whitespace-pre-line leading-relaxed"
                     >
                         {TALENT_HERO.subtitle}
                     </motion.p>
 
-                    {/* CTAs avec MagneticButton */}
+                    {/* CTAs */}
                     <motion.div
                         initial={{ y: 20 }}
                         animate={{ y: 0 }}
@@ -69,25 +61,34 @@ export function HeroSection({ onContentClick }: HeroSectionProps) {
                             onClick={onContentClick}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-10 py-5 rounded-full border-2 border-white/30 hover:border-white/50 text-white text-lg font-semibold backdrop-blur-xl bg-white/5 hover:bg-white/10 transition-all"
+                            className="px-10 py-5 rounded-full border-2 border-slate-200/80 dark:border-white/30 hover:border-slate-300 dark:hover:border-white/50 text-slate-900 dark:text-white text-lg font-semibold backdrop-blur-xl bg-white/70 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-all"
                         >
                             {TALENT_HERO.ctaSecondary}
                         </motion.button>
                     </motion.div>
 
-                    {/* Floating Metrics */}
+                    {/* Proof Points */}
                     <motion.div
                         initial={{ y: 10 }}
                         animate={{ y: 0 }}
                         transition={{ duration: 1, delay: 1 }}
-                        className="flex flex-wrap justify-center gap-4 mt-16"
+                        className="flex flex-wrap justify-center gap-6 mt-16"
                     >
-                        <FloatingMetrics value="15+" label="Talents" delay={1.1} />
-                        <FloatingMetrics value="5M+" label="Reach cumulé" delay={1.3} />
-                        <FloatingMetrics value="€2M+" label="Négociés" delay={1.5} />
+                        {TALENT_HERO.proofPoints.map((point, index) => (
+                            <motion.div
+                                key={point.label}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1.1 + index * 0.2 }}
+                                className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-slate-200/60 dark:border-white/10 rounded-full"
+                            >
+                                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-violet-500" />
+                                <span className="text-sm font-medium text-slate-700 dark:text-white/80">{point.label}</span>
+                            </motion.div>
+                        ))}
                     </motion.div>
                 </div>
             </Container>
-        </GradientBackground>
+        </section>
     )
 }

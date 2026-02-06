@@ -1,26 +1,27 @@
 /**
  * Liste des clients/marques affichés sur le site
- * Les logos sont des SVG optimisés dans /public/logos/
+ * Logos officiels à déposer dans /public/logos/ (light + dark si nécessaire)
  */
 
 export interface Client {
     name: string
-    logo: string  // Chemin vers le logo (relatif à /public)
-    width: string // Largeur Tailwind pour le conteneur
+    logoLight: string // Chemin vers le logo clair (relatif à /public)
+    logoDark?: string // Chemin vers le logo sombre (relatif à /public)
+    logoClass?: string // Ajustement optique optionnel
 }
 
 export const CLIENTS: Client[] = [
-    { name: "Basic Fit", logo: "/logos/basic-fit.svg", width: "w-32" },
-    { name: "BYD", logo: "/logos/byd.svg", width: "w-20" },
-    { name: "CJ Group", logo: "/logos/cj-group.svg", width: "w-28" },
-    { name: "Wandernana", logo: "/logos/wandernana.svg", width: "w-36" },
-    { name: "AirUp", logo: "/logos/airup.svg", width: "w-28" },
-    { name: "Citroën", logo: "/logos/citroen.svg", width: "w-28" },
-    { name: "Alipay", logo: "/logos/alipay.svg", width: "w-24" },
-    { name: "Alibaba", logo: "/logos/alibaba.svg", width: "w-28" },
-    { name: "Hostinger", logo: "/logos/hostinger.svg", width: "w-32" },
-    { name: "Odoo", logo: "/logos/odoo.svg", width: "w-24" },
-    { name: "HoYoverse", logo: "/logos/hoyoverse.svg", width: "w-32" }
+    { name: "Basic Fit", logoLight: "/logos/official/basic-fit-light.png", logoDark: "/logos/official/basic-fit-dark.png" },
+    { name: "BYD", logoLight: "/logos/byd.svg" },
+    { name: "CJ Group", logoLight: "/logos/cj-group.svg" },
+    { name: "Wandernana", logoLight: "/logos/wandernana.svg" },
+    { name: "AirUp", logoLight: "/logos/airup.svg" },
+    { name: "Citroën", logoLight: "/logos/citroen.svg" },
+    { name: "Alipay", logoLight: "/logos/alipay.svg" },
+    { name: "Alibaba", logoLight: "/logos/alibaba.svg" },
+    { name: "Hostinger", logoLight: "/logos/hostinger.svg" },
+    { name: "Odoo", logoLight: "/logos/official/odoo-light.svg", logoDark: "/logos/official/odoo-dark.svg" },
+    { name: "HoYoverse", logoLight: "/logos/hoyoverse.svg" }
 ] as const
 
 // Statistiques affichées dans le hero

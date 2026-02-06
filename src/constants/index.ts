@@ -36,16 +36,19 @@ export {
 
 // Talent blocks
 export {
-    TALENT_PROOF_STRIP,
-    TALENT_OS_SYSTEM,
-    TALENT_LEVELS,
+    TALENT_NAVIGATION,
+    TALENT_PERSONA,
     TALENT_FAQ,
     TALENT_HERO,
-    TALENT_IDENTITY,
-    TALENT_PLATFORMS,
-    TALENT_BUSINESS,
-    TALENT_PERSONA,
-    TALENT_NAVIGATION,
+    // New exports for redesign
+    TALENT_PROBLEM,
+    TALENT_DELIVERABLES,
+    TALENT_SERVICES,
+    TALENT_METHOD,
+    TALENT_TIMELINE,
+    TALENT_FOR_WHO,
+    TALENT_CTA,
+    // Gradient
     BRAND_GRADIENT
 } from "./talent-blocks"
 

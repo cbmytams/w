@@ -9,7 +9,7 @@ import { AGENCY_HERO, AGENCY_PROBLEM, AGENCY_MODES, AGENCY_CASES, AGENCY_STANDAR
 
 export default function ForAgenciesPage() {
     return (
-        <div className="bg-white">
+        <main id="main-content" className="bg-white">
             <AgenciesFloatingNavigation />
 
             {/* Hero Section */}
@@ -160,6 +160,6 @@ export default function ForAgenciesPage() {
                     </div>
                 </Container>
             </section>
-        </div>
+        </main>
     )
 }

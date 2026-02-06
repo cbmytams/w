@@ -2,14 +2,11 @@
 
 import { Check, ArrowRight, CircleDashed, CheckCircle } from "lucide-react"
 import { Container } from "@/components/ui/container"
-import { RevealAnimation } from "@/components/common/RevealAnimation"
 import { SectionHeading } from "@/components/common/SectionHeading"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
 
 export function ComparisonSectionV2() {
     return (
-        <section className="py-32 px-4 overflow-hidden">
+        <section className="py-32 px-4">
             <Container>
                 <div className="max-w-6xl mx-auto">
                     <SectionHeading
@@ -30,12 +27,12 @@ export function ComparisonSectionV2() {
                             <div className="hidden md:block absolute top-[10%] bottom-[10%] left-1/2 w-px bg-gradient-to-b from-transparent via-gray-200 dark:via-zinc-700 to-transparent z-10" />
 
                             {/* LEFT: Standard Market (The Problem) */}
-                            <div className="p-10 lg:p-14 bg-gray-50/50 dark:bg-zinc-900/30">
+                            <div className="p-10 lg:p-14 bg-gray-50/50 dark:bg-zinc-900/40">
                                 <div className="flex items-center gap-3 mb-10">
-                                    <div className="p-2 rounded-lg bg-gray-200/50 dark:bg-zinc-800 text-gray-500">
+                                    <div className="p-2 rounded-lg bg-gray-200/50 dark:bg-zinc-800 text-gray-500 dark:text-gray-300">
                                         <CircleDashed className="w-5 h-5" />
                                     </div>
-                                    <h3 className="text-lg font-bold text-gray-500 uppercase tracking-widest">
+                                    <h3 className="text-lg font-bold text-gray-500 dark:text-gray-300 uppercase tracking-widest">
                                         Ce que font les autres
                                     </h3>
                                 </div>
@@ -47,8 +44,8 @@ export function ComparisonSectionV2() {
                                         "Opérations 'One-shot'",
                                         "Black box (pas de learning)"
                                     ].map((item, i) => (
-                                        <li key={i} className="flex gap-4 text-gray-500 items-start group">
-                                            <span className="block w-1.5 h-1.5 rounded-full bg-gray-300 mt-2.5 group-hover:bg-gray-400 transition-colors" />
+                                        <li key={i} className="flex gap-4 text-gray-500 dark:text-gray-300 items-start group">
+                                            <span className="block w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-zinc-600 mt-2.5 group-hover:bg-gray-400 dark:group-hover:bg-zinc-500 transition-colors" />
                                             <span className="font-medium text-base leading-relaxed">{item}</span>
                                         </li>
                                     ))}
@@ -57,15 +54,12 @@ export function ComparisonSectionV2() {
 
                             {/* RIGHT: Wafia Methodology (The Solution) */}
                             <div className="p-10 lg:p-14 bg-white dark:bg-zinc-900 relative">
-                                {/* Subtle orange shine effect */}
-                                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-orange-500/5 rounded-bl-full pointer-events-none" />
-
                                 <div className="flex items-center gap-3 mb-10">
                                     <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900/20 text-orange-600">
                                         <CheckCircle className="w-5 h-5" />
                                     </div>
                                     <h3 className="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-widest">
-                                        Ce qu'on fait pour vous
+                                        Ce qu&apos;on fait pour vous
                                     </h3>
                                 </div>
                                 <ul className="space-y-8 relative z-10">

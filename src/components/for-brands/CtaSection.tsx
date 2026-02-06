@@ -35,14 +35,14 @@ export function CtaSection({ onEstimateClick }: CtaSectionProps) {
                             <Button size="lg" asChild className="h-16 px-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xl font-semibold shadow-2xl shadow-orange-500/25">
                                 <Link href="/contact?type=brand">Réserver un appel stratégique</Link>
                             </Button>
-                            <Button size="lg" onClick={onEstimateClick} variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 text-xl font-semibold">
+                            <Button size="lg" onClick={onEstimateClick} variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">
                                 Estimer mon plan
                             </Button>
                         </div>
                     </RevealAnimation>
 
                     <RevealAnimation delay={0.6}>
-                        <p className="mt-8 text-sm text-gray-500 flex items-center justify-center gap-2">
+                        <p className="mt-8 text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
                             <Check className="h-4 w-4 text-green-600" />
                             Réponse sous 24h · Process clair · Zéro blabla
                         </p>

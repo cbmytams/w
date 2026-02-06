@@ -71,7 +71,7 @@ export default function TalentsPage() {
         : talents.filter(t => t.category === activeCategory)
 
     return (
-        <div className="py-24 bg-white">
+        <main id="main-content" className="py-24 bg-white">
             <Container>
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                     <div className="max-w-xl">
@@ -168,6 +168,6 @@ export default function TalentsPage() {
                     </div>
                 )}
             </Container>
-        </div>
+        </main>
     )
 }
