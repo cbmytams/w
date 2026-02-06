@@ -192,7 +192,7 @@ export function ServicesSection() {
 
                                             {/* Widget */}
                                             <div className={isEven ? "lg:order-2" : "lg:order-1"}>
-                                                <div className="group relative h-[500px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-purple-500/20 hover:shadow-2xl">
+                                                <div className="group relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-purple-500/20 hover:shadow-2xl">
                                                     {/* Hover gradient overlay */}
                                                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/5 group-hover:to-violet-500/5 transition-all duration-300 pointer-events-none z-10" />
 

@@ -18,7 +18,7 @@ export function TalentsFloatingNavigation() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
-                className="fixed top-8 left-8 z-[100]"
+                className="fixed top-4 left-4 sm:top-8 sm:left-8 z-[100]"
             >
                 <Link
                     href="/for-talents"
@@ -74,7 +74,7 @@ export function TalentsFloatingNavigation() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
-                className="fixed top-8 right-8 z-[100] flex items-center gap-3"
+                className="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] flex items-center gap-3"
             >
                 {/* Home - Desktop only */}
                 <Link
@@ -88,7 +88,7 @@ export function TalentsFloatingNavigation() {
                 {/* Hamburger - Mobile only */}
                 <button
                     onClick={() => setMobileMenuOpen(true)}
-                    className="lg:hidden flex items-center justify-center w-12 h-12 rounded-2xl bg-white/80 dark:bg-white/10 backdrop-blur-2xl shadow-xl shadow-black/10 dark:shadow-black/30 border border-gray-200/60 dark:border-white/10 hover:scale-105 transition-all duration-300"
+                    className="lg:hidden flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white/80 dark:bg-white/10 backdrop-blur-2xl shadow-xl shadow-black/10 dark:shadow-black/30 border border-gray-200/60 dark:border-white/10 hover:scale-105 transition-all duration-300"
                     aria-label="Ouvrir le menu"
                 >
                     <Menu className="h-5 w-5 text-gray-700 dark:text-white/80" />
@@ -126,7 +126,7 @@ export function TalentsFloatingNavigation() {
                                     </div>
                                     <button
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 flex items-center justify-center transition-colors"
+                                        className="w-11 h-11 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 flex items-center justify-center transition-colors"
                                         aria-label="Fermer le menu"
                                     >
                                         <X className="h-5 w-5 text-gray-700 dark:text-white/80" />

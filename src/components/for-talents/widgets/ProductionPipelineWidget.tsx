@@ -47,11 +47,11 @@ export function ProductionPipelineWidget() {
                     <div className="p-3 bg-red-500/5 rounded-xl border border-red-500/10 flex flex-col justify-between relative overflow-hidden">
                         <div className="flex items-center gap-1 mb-1">
                             <AlertCircle className="w-3 h-3 text-red-500" />
-                            <span className="text-[10px] font-bold text-red-400 tracking-wider">MANUEL</span>
+                            <span className="text-xs sm:text-[10px] font-bold text-red-400 tracking-wider">MANUEL</span>
                         </div>
                         <div className="text-xs text-slate-400">
                             8h / vidéo<br />
-                            <span className="text-red-500/70 text-[10px]">Stress constant</span>
+                            <span className="text-red-500/70 text-xs sm:text-[10px]">Stress constant</span>
                         </div>
                     </div>
 
@@ -59,11 +59,11 @@ export function ProductionPipelineWidget() {
                     <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20 relative overflow-hidden shadow-[0_0_15px_rgba(99,102,241,0.15)]">
                         <div className="flex items-center gap-1 mb-1">
                             <Zap className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                            <span className="text-[10px] font-bold text-indigo-300 tracking-wider">ENGINE</span>
+                            <span className="text-xs sm:text-[10px] font-bold text-indigo-300 tracking-wider">ENGINE</span>
                         </div>
                         <div className="text-xs text-white font-medium">
                             3.5h / vidéo<br />
-                            <span className="text-green-400 text-[10px]">Gain 56%</span>
+                            <span className="text-green-400 text-xs sm:text-[10px]">Gain 56%</span>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ export function ProductionPipelineWidget() {
                                     <div className="absolute inset-0 rounded-full bg-indigo-500/20 animate-ping opacity-0 group-hover/step:opacity-100" />
                                     <step.icon className="w-4 h-4 text-slate-400 group-hover/step:text-white transition-colors" />
                                 </motion.div>
-                                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider group-hover/step:text-indigo-400 transition-colors">
+                                <span className="text-xs sm:text-[10px] uppercase font-bold text-slate-500 tracking-wider group-hover/step:text-indigo-400 transition-colors">
                                     {step.label}
                                 </span>
                             </div>
@@ -106,11 +106,11 @@ export function ProductionPipelineWidget() {
                 <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <Clock className="w-3 h-3 text-slate-500" />
-                        <div className="text-[10px] text-slate-400">Temps cycle moyen</div>
+                        <div className="text-xs sm:text-[10px] text-slate-400">Temps cycle moyen</div>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="text-xl font-bold text-white tracking-tight">2.5<span className="text-sm text-slate-500">j</span></div>
-                        <div className="text-[10px] text-green-400 bg-green-900/20 px-1.5 py-0.5 rounded border border-green-900/30">
+                        <div className="text-xs sm:text-[10px] text-green-400 bg-green-900/20 px-1.5 py-0.5 rounded border border-green-900/30">
                             -4j vs market
                         </div>
                     </div>

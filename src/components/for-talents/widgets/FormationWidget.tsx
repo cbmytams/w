@@ -58,7 +58,7 @@ export function FormationWidget() {
                             <GraduationCap className="w-5 h-5 text-green-400" />
                         </div>
                         <div>
-                            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Mastery Level</div>
+                            <div className="text-xs sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">Mastery Level</div>
                             <div className="text-xl font-bold text-white tracking-tight">Level 3</div>
                         </div>
                     </div>
@@ -119,11 +119,11 @@ export function FormationWidget() {
                 <div className="mt-6 pt-4 border-t border-white/5 grid grid-cols-2 gap-2">
                     <div className="flex items-center gap-2 bg-slate-800/50 p-2 rounded border border-white/5">
                         <BookOpen className="w-3 h-3 text-cyan-400" />
-                        <div className="text-[10px] text-cyan-300">CheatSheet_Pricing.pdf</div>
+                        <div className="text-xs sm:text-[10px] text-cyan-300">CheatSheet_Pricing.pdf</div>
                     </div>
                     <div className="flex items-center gap-2 bg-slate-800/50 p-2 rounded border border-white/5">
                         <BookOpen className="w-3 h-3 text-cyan-400" />
-                        <div className="text-[10px] text-cyan-300">Contract_Template.docx</div>
+                        <div className="text-xs sm:text-[10px] text-cyan-300">Contract_Template.docx</div>
                     </div>
                 </div>
 

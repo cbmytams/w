@@ -36,10 +36,10 @@ export function IdentityLensWidget() {
                         transition={{ delay: 0.2 }}
                         className="absolute top-0 right-0 p-2 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-lg border border-white/10 flex flex-col items-end"
                     >
-                        <div className="text-[10px] text-slate-400 font-medium tracking-wider mb-0.5">COHÉRENCE</div>
+                        <div className="text-xs sm:text-[10px] text-slate-400 font-medium tracking-wider mb-0.5">COHÉRENCE</div>
                         <div className="flex items-center gap-1.5">
                             <span className="text-2xl font-bold text-white tracking-tight">92%</span>
-                            <span className="text-[10px] font-bold text-green-400 bg-green-400/10 px-1 py-0.5 rounded">+58%</span>
+                            <span className="text-xs sm:text-[10px] font-bold text-green-400 bg-green-400/10 px-1 py-0.5 rounded">+58%</span>
                         </div>
                     </motion.div>
 
@@ -95,7 +95,7 @@ export function IdentityLensWidget() {
                 {/* 4. CONTENT THUMBNAILS (Abstract Representation) */}
                 <div className="flex-1 min-h-0 mb-6">
                     <div className="flex items-center justify-between mb-3">
-                        <span className="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Feed Cohérent</span>
+                        <span className="text-xs sm:text-[10px] font-bold text-slate-400 tracking-widest uppercase">Feed Cohérent</span>
                         <Sparkles className="w-3 h-3 text-purple-400" />
                     </div>
                     <div className="grid grid-cols-3 gap-2 h-24 sm:h-28">
@@ -125,7 +125,7 @@ export function IdentityLensWidget() {
                 <div>
                     <div className="flex items-center gap-2 mb-3">
                         <ShieldCheck className="w-3 h-3 text-slate-400" />
-                        <span className="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Brand Alignment</span>
+                        <span className="text-xs sm:text-[10px] font-bold text-slate-400 tracking-widest uppercase">Brand Alignment</span>
                     </div>
 
                     <div className="space-y-2">
@@ -140,7 +140,7 @@ export function IdentityLensWidget() {
                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
                                 <span className="text-sm font-medium text-white">Nike</span>
                             </div>
-                            <span className="text-[10px] text-green-400 font-medium tracking-wide">MATCH ✅</span>
+                            <span className="text-xs sm:text-[10px] text-green-400 font-medium tracking-wide">MATCH ✅</span>
                         </motion.div>
 
                         {/* Rejected Brand */}
@@ -154,7 +154,7 @@ export function IdentityLensWidget() {
                                 <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
                                 <span className="text-sm font-medium text-slate-400 line-through decoration-red-500/50">Fast Fashion</span>
                             </div>
-                            <span className="text-[10px] text-red-400 font-medium tracking-wide">AVOID ❌</span>
+                            <span className="text-xs sm:text-[10px] text-red-400 font-medium tracking-wide">AVOID ❌</span>
                         </motion.div>
                     </div>
                 </div>

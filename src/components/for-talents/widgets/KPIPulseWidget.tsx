@@ -18,6 +18,7 @@ export function KPIPulseWidget() {
             label: "Watch Time",
             value: "45%",
             trend: "up",
+            change: 12,
             status: "good",
             sparkline: [30, 35, 38, 42, 45, 43, 45],
             color: "text-green-400"
@@ -26,6 +27,7 @@ export function KPIPulseWidget() {
             label: "Retention",
             value: "62%",
             trend: "up",
+            change: 8,
             status: "good",
             sparkline: [50, 55, 58, 60, 62, 61, 62],
             color: "text-blue-400"
@@ -34,6 +36,7 @@ export function KPIPulseWidget() {
             label: "Shares",
             value: "850",
             trend: "up",
+            change: 15,
             status: "good",
             sparkline: [600, 650, 720, 800, 850, 820, 850],
             color: "text-purple-400"
@@ -64,7 +67,7 @@ export function KPIPulseWidget() {
                             <div className="w-2 h-2 bg-green-500 rounded-full" />
                             <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping" />
                         </div>
-                        <span className="text-[10px] font-bold text-green-500 tracking-widest uppercase">Live Mission Control</span>
+                        <span className="text-xs sm:text-[10px] font-bold text-green-500 tracking-widest uppercase">Live Mission Control</span>
                     </div>
                     <Activity className="w-4 h-4 text-green-500/50" />
                 </div>
@@ -75,7 +78,7 @@ export function KPIPulseWidget() {
                     <div className="p-3 bg-red-500/5 rounded-xl border border-red-500/10 relative overflow-hidden">
                         <div className="absolute inset-0 backdrop-blur-[2px] bg-slate-900/50" />
                         <div className="relative z-10 text-center">
-                            <div className="text-[10px] font-bold text-red-500 tracking-wider mb-1">AVANT</div>
+                            <div className="text-xs sm:text-[10px] font-bold text-red-500 tracking-wider mb-1">AVANT</div>
                             <div className="text-xs text-slate-500">Vue brouillée</div>
                             <div className="h-4 w-12 mx-auto mt-2 bg-red-500/20 blur-sm rounded" />
                         </div>
@@ -84,7 +87,7 @@ export function KPIPulseWidget() {
                     {/* After: Clarity */}
                     <div className="p-3 bg-green-500/10 rounded-xl border border-green-500/20 relative overflow-hidden shadow-[0_0_15px_rgba(16,185,129,0.1)]">
                         <div className="text-center">
-                            <div className="text-[10px] font-bold text-green-400 tracking-wider mb-1">AVEC WAFIA</div>
+                            <div className="text-xs sm:text-[10px] font-bold text-green-400 tracking-wider mb-1">AVEC WAFIA</div>
                             <div className="text-xs text-white">Ultra-Clarté</div>
                             <div className="flex justify-center gap-0.5 mt-2 h-4 items-end">
                                 {[3, 5, 4, 7, 6, 8, 9].map((h, i) => (
@@ -106,10 +109,10 @@ export function KPIPulseWidget() {
                             className="bg-slate-800/50 rounded-lg p-3 border border-white/5 hover:bg-slate-800/80 transition-all group/card cursor-default"
                         >
                             <div className="flex items-center justify-between mb-2">
-                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{kpi.label}</span>
-                                <div className={`px-1.5 py-0.5 rounded text-[10px] font-bold bg-white/5 border border-white/5 flex items-center gap-1 ${kpi.color}`}>
+                                <span className="text-xs sm:text-[10px] font-bold text-slate-400 uppercase tracking-wider">{kpi.label}</span>
+                                <div className={`px-1.5 py-0.5 rounded text-xs sm:text-[10px] font-bold bg-white/5 border border-white/5 flex items-center gap-1 ${kpi.color}`}>
                                     <TrendingUp className="w-3 h-3" />
-                                    {kpi.trend === "up" ? "+" : "-"}{Math.floor(Math.random() * 10) + 5}%
+                                    {kpi.trend === "up" ? "+" : "-"}{kpi.change}%
                                 </div>
                             </div>
 
@@ -135,7 +138,7 @@ export function KPIPulseWidget() {
                 <div className="mt-4 flex items-center justify-between p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
                     <div className="flex items-center gap-2">
                         <Radar className="w-4 h-4 text-blue-400 animate-spin-slow" />
-                        <div className="text-[10px] text-blue-300">
+                        <div className="text-xs sm:text-[10px] text-blue-300">
                             <strong>Insight:</strong> Forte rétention à 0:15s
                         </div>
                     </div>

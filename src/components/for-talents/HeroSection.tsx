@@ -31,7 +31,7 @@ export function HeroSection({ onContentClick }: HeroSectionProps) {
 
                     {/* Titre */}
                     <GradientRevealText className="mb-8">
-                        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[1.05] text-slate-900 dark:text-white">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] text-slate-900 dark:text-white">
                             {TALENT_HERO.title}
                         </h1>
                     </GradientRevealText>

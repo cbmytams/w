@@ -61,11 +61,11 @@ export function DealDeskWidget() {
                     <div className="p-3 bg-red-500/5 rounded-xl border border-red-500/10 flex flex-col justify-between group/risk">
                         <div className="flex items-center gap-2 mb-1">
                             <AlertTriangle className="w-3 h-3 text-red-500" />
-                            <span className="text-[10px] font-bold text-red-400 tracking-wider">STANDARD</span>
+                            <span className="text-xs sm:text-[10px] font-bold text-red-400 tracking-wider">STANDARD</span>
                         </div>
                         <div className="text-xs text-slate-400 leading-tight">
                             "Signez ici..."<br />
-                            <span className="text-red-500/70 text-[10px]">Clause abusive cachée</span>
+                            <span className="text-red-500/70 text-xs sm:text-[10px]">Clause abusive cachée</span>
                         </div>
                         {/* Glitch Overlay on Hover */}
                         <div className="absolute inset-0 bg-red-500/10 opacity-0 group-hover/risk:opacity-100 mix-blend-overlay transition-opacity" />
@@ -75,7 +75,7 @@ export function DealDeskWidget() {
                     <div className="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20 relative overflow-hidden shadow-[0_0_15px_rgba(16,185,129,0.1)]">
                         <div className="flex items-center gap-2 mb-1">
                             <Shield className="w-3 h-3 text-emerald-400" />
-                            <span className="text-[10px] font-bold text-emerald-400 tracking-wider">PROTECTED</span>
+                            <span className="text-xs sm:text-[10px] font-bold text-emerald-400 tracking-wider">PROTECTED</span>
                         </div>
                         <div className="text-xs text-emerald-100 font-medium">
                             Négociation experte
@@ -86,8 +86,8 @@ export function DealDeskWidget() {
                 {/* 3. NEGOTIATION TABLE (Glassmorphism) */}
                 <div className="flex-1 space-y-2 mb-4">
                     <div className="flex items-center justify-between px-2 mb-1">
-                        <span className="text-[10px] font-bold text-slate-500 tracking-wider">CLAUSE</span>
-                        <span className="text-[10px] font-bold text-slate-500 tracking-wider">CONTRE-OFFRE</span>
+                        <span className="text-xs sm:text-[10px] font-bold text-slate-500 tracking-wider">CLAUSE</span>
+                        <span className="text-xs sm:text-[10px] font-bold text-slate-500 tracking-wider">CONTRE-OFFRE</span>
                     </div>
 
                     {deals.map((item, i) => (
@@ -104,7 +104,7 @@ export function DealDeskWidget() {
                                 </div>
                                 <div>
                                     <div className="text-xs font-semibold text-slate-300">{item.term}</div>
-                                    <div className="text-[10px] text-red-400/60 line-through decoration-red-500/30">{item.offer}</div>
+                                    <div className="text-xs sm:text-[10px] text-red-400/60 line-through decoration-red-500/30">{item.offer}</div>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">
@@ -126,8 +126,8 @@ export function DealDeskWidget() {
 
                     <div className="relative p-4 flex items-center justify-between">
                         <div>
-                            <div className="text-[10px] text-emerald-400/80 font-bold tracking-widest uppercase mb-0.5">Valeur Sécurisée</div>
-                            <div className="text-[10px] text-slate-400">Sur ce contrat</div>
+                            <div className="text-xs sm:text-[10px] text-emerald-400/80 font-bold tracking-widest uppercase mb-0.5">Valeur Sécurisée</div>
+                            <div className="text-xs sm:text-[10px] text-slate-400">Sur ce contrat</div>
                         </div>
                         <div className="text-3xl font-bold text-white tracking-tight flex items-baseline gap-1">
                             <span className="text-emerald-500 text-lg">+</span>

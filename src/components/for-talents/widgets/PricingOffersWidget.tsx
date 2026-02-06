@@ -64,14 +64,14 @@ export function PricingOffersWidget() {
                 {/* 2. HEADER: Market vs Wafia (Compact) */}
                 <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-2 opacity-50">
-                        <div className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Marché</div>
+                        <div className="text-xs sm:text-[10px] text-slate-500 uppercase tracking-widest font-bold">Marché</div>
                         <div className="h-px w-8 bg-slate-700" />
-                        <div className="text-[10px] text-slate-500 italic">"Tarifs au doigt mouillé"</div>
+                        <div className="text-xs sm:text-[10px] text-slate-500 italic">"Tarifs au doigt mouillé"</div>
                     </div>
                     <div className="flex items-center gap-2">
-                        <div className="text-[10px] text-purple-400 uppercase tracking-widest font-bold">Wafia</div>
+                        <div className="text-xs sm:text-[10px] text-purple-400 uppercase tracking-widest font-bold">Wafia</div>
                         <div className="h-px w-8 bg-purple-500/50" />
-                        <div className="px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[10px] text-purple-300 font-medium">
+                        <div className="px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs sm:text-[10px] text-purple-300 font-medium">
                             Transparent & Scalable
                         </div>
                     </div>
@@ -129,7 +129,7 @@ export function PricingOffersWidget() {
                                 {/* Features */}
                                 <ul className="space-y-1.5 flex-1">
                                     {pack.features.map((feature) => (
-                                        <li key={feature} className="flex items-start gap-1.5 text-[10px] text-slate-400 group-hover/card:text-slate-300 transition-colors">
+                                        <li key={feature} className="flex items-start gap-1.5 text-xs sm:text-[10px] text-slate-400 group-hover/card:text-slate-300 transition-colors">
                                             <Check className={`w-3 h-3 shrink-0 ${pack.recommended ? "text-purple-400" : pack.premium ? "text-amber-400" : "text-slate-500"}`} />
                                             <span className="leading-tight">{feature}</span>
                                         </li>
@@ -144,7 +144,7 @@ export function PricingOffersWidget() {
                 <div className="pt-4 border-t border-white/5">
                     <div className="flex items-center gap-2 mb-3">
                         <Gem className="w-3 h-3 text-pink-400" />
-                        <div className="text-[10px] font-bold text-slate-500 tracking-widest">
+                        <div className="text-xs sm:text-[10px] font-bold text-slate-500 tracking-widest">
                             BOOSTERS
                         </div>
                     </div>

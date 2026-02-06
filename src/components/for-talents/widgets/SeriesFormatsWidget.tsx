@@ -39,9 +39,9 @@ export function SeriesFormatsWidget() {
                     {/* Before */}
                     <div className="p-3 bg-red-500/5 rounded-xl border border-red-500/10 relative overflow-hidden group/before">
                         <div className="absolute inset-0 bg-red-500/5 opacity-0 group-hover/before:opacity-100 transition-opacity" />
-                        <div className="text-[10px] font-bold text-red-400/70 tracking-wider mb-1">AVANT</div>
+                        <div className="text-xs sm:text-[10px] font-bold text-red-400/70 tracking-wider mb-1">AVANT</div>
                         <div className="text-sm font-medium text-slate-400 line-through decoration-red-500/50">3-5 posts/mois</div>
-                        <div className="text-[10px] text-red-400 mt-1 flex items-center gap-1">
+                        <div className="text-xs sm:text-[10px] text-red-400 mt-1 flex items-center gap-1">
                             <Zap className="w-3 h-3" />
                             <span>Incohérent</span>
                         </div>
@@ -56,9 +56,9 @@ export function SeriesFormatsWidget() {
                                 className="w-1.5 h-1.5 bg-green-400 rounded-full shadow-[0_0_5px_#4ade80]"
                             />
                         </div>
-                        <div className="text-[10px] font-bold text-green-400/90 tracking-wider mb-1">AVEC WAFIA</div>
+                        <div className="text-xs sm:text-[10px] font-bold text-green-400/90 tracking-wider mb-1">AVEC WAFIA</div>
                         <div className="text-sm font-bold text-white">12 vidéos/mois</div>
-                        <div className="text-[10px] text-green-400 mt-1 flex items-center gap-1">
+                        <div className="text-xs sm:text-[10px] text-green-400 mt-1 flex items-center gap-1">
                             <Layers className="w-3 h-3" />
                             <span>Machine active</span>
                         </div>
@@ -68,7 +68,7 @@ export function SeriesFormatsWidget() {
                 {/* 3. ACTIVE SERIES (Glowing Cards) */}
                 <div className="flex-1 space-y-3">
                     <div className="flex items-center justify-between mb-2">
-                        <div className="text-[10px] font-bold text-slate-400 tracking-widest uppercase flex items-center gap-2">
+                        <div className="text-xs sm:text-[10px] font-bold text-slate-400 tracking-widest uppercase flex items-center gap-2">
                             <Play className="w-3 h-3 text-purple-400" />
                             Séries Actives
                         </div>
@@ -94,7 +94,7 @@ export function SeriesFormatsWidget() {
                                         <h4 className="font-semibold text-sm text-white group-hover:text-purple-200 transition-colors">
                                             {s.name}
                                         </h4>
-                                        <div className="flex items-center gap-2 text-[10px] text-slate-400">
+                                        <div className="flex items-center gap-2 text-xs sm:text-[10px] text-slate-400">
                                             <span className="px-1.5 py-0.5 rounded bg-white/5 border border-white/5">{s.format}</span>
                                             <span>{s.count} épisodes</span>
                                         </div>
@@ -105,7 +105,7 @@ export function SeriesFormatsWidget() {
                                         <TrendingUp className="w-3 h-3" />
                                         <span>{s.performance}</span>
                                     </div>
-                                    <div className="text-[10px] text-slate-500">vs. last month</div>
+                                    <div className="text-xs sm:text-[10px] text-slate-500">vs. last month</div>
                                 </div>
                             </div>
                         </motion.div>
@@ -116,7 +116,7 @@ export function SeriesFormatsWidget() {
                 <div className="mt-6 pt-4 border-t border-white/5 grid grid-cols-2 gap-4">
                     {/* Backlog */}
                     <div>
-                        <div className="text-[10px] text-slate-500 mb-1">BACKLOG</div>
+                        <div className="text-xs sm:text-[10px] text-slate-500 mb-1">BACKLOG</div>
                         <div className="flex items-center gap-2">
                             <div className="flex -space-x-2">
                                 {[1, 2, 3].map(i => (
@@ -131,7 +131,7 @@ export function SeriesFormatsWidget() {
 
                     {/* Cadence */}
                     <div>
-                        <div className="text-[10px] text-slate-500 mb-1">CADENCE</div>
+                        <div className="text-xs sm:text-[10px] text-slate-500 mb-1">CADENCE</div>
                         <div className="flex items-center gap-1.5 p-1.5 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
                             <Calendar className="w-3 h-3 text-indigo-400" />
                             <span className="text-xs text-indigo-300 font-medium">3 / semaine</span>

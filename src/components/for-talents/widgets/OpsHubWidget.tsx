@@ -37,7 +37,7 @@ export function OpsHubWidget() {
                 <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-                        <span className="text-[10px] font-bold text-cyan-400 tracking-widest uppercase">System Online</span>
+                        <span className="text-xs sm:text-[10px] font-bold text-cyan-400 tracking-widest uppercase">System Online</span>
                     </div>
                     <Cpu className="w-4 h-4 text-cyan-500/50" />
                 </div>
@@ -50,7 +50,7 @@ export function OpsHubWidget() {
                         <div className="text-[9px] text-cyan-300/70 uppercase tracking-wider mb-2">Schedule</div>
                         <div className="flex flex-col items-center justify-center py-2">
                             <span className="text-2xl font-bold text-white mb-0.5">14</span>
-                            <span className="text-[10px] text-slate-400">OCTOBRE</span>
+                            <span className="text-xs sm:text-[10px] text-slate-400">OCTOBRE</span>
                         </div>
                         <div className="mt-2 text-[9px] text-cyan-400 bg-cyan-900/20 px-1 py-0.5 rounded text-center border border-cyan-500/10">
                             Shoot @ Sony Music
@@ -116,7 +116,7 @@ export function OpsHubWidget() {
                     </div>
                     <div className="flex-1">
                         <div className="text-[9px] text-indigo-300 font-bold uppercase tracking-wide">Incoming Intel</div>
-                        <div className="text-[10px] text-slate-300">Brief brand "Samsung" reçu</div>
+                        <div className="text-xs sm:text-[10px] text-slate-300">Brief brand "Samsung" reçu</div>
                     </div>
                 </motion.div>
 

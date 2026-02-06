@@ -50,7 +50,7 @@ export function EventEngineWidget() {
                         <div>
                             <div className="text-[9px] text-indigo-300 font-bold uppercase tracking-widest mb-1">PROCHAIN EVENT</div>
                             <div className="text-sm font-bold text-white">Nike Air Max Day</div>
-                            <div className="flex items-center gap-2 text-[10px] text-slate-400 mt-1">
+                            <div className="flex items-center gap-2 text-xs sm:text-[10px] text-slate-400 mt-1">
                                 <Calendar className="w-3 h-3" /> 26 Mars
                                 <MapPin className="w-3 h-3 ml-1" /> Paris
                             </div>
@@ -63,8 +63,8 @@ export function EventEngineWidget() {
                 <div className="flex-1 flex flex-col justify-center gap-4">
                     {/* Before */}
                     <div className="flex items-center justify-between opacity-40 px-2">
-                        <span className="text-[10px] text-slate-500 line-through">Juste une soirée...</span>
-                        <span className="text-[10px] text-red-500">0 Contenu</span>
+                        <span className="text-xs sm:text-[10px] text-slate-500 line-through">Juste une soirée...</span>
+                        <span className="text-xs sm:text-[10px] text-red-500">0 Contenu</span>
                     </div>
 
                     {/* After: Content Explosion */}
