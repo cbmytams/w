@@ -1,0 +1,17 @@
+node_modules/
+.next/
+output/
+.env
+.env.local
+tmp_*.js
+tmp_*.ts
+tmp_*.json
+.DS_Store
+**/.DS_Store
+.playwright-cli/
+.codex/
+SKILLS/
+tsconfig.tsbuildinfo
+wiki/vite_debug_log.txt
+wiki/test-parse.mjs
+public/studio/

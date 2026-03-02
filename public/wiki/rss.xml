@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wiki de l'Influence</title>
+    <link>https://wiki-influence.com/blog</link>
+    <description>Un wiki interactif de l'influence : algorithmes, monétisation, croissance et branding sur toutes les plateformes.</description>
+    <language>fr</language>
+    <atom:link href="https://wiki-influence.com/rss.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Comment les algorithmes des réseaux sociaux fonctionnent en 2025</title>
+      <link>https://wiki-influence.com/blog/algorithmes-reseaux-sociaux-2025</link>
+      <description>Comprendre les algorithmes de TikTok, Instagram, YouTube et plus encore pour maximiser votre portée organique.</description>
+      <pubDate>Wed, 26 Feb 2025 00:00:00 +0100</pubDate>
+      <guid>https://wiki-influence.com/blog/algorithmes-reseaux-sociaux-2025</guid>
+    </item>
+
+    <!-- Add new items here as articles are published -->
+  </channel>
+</rss>
