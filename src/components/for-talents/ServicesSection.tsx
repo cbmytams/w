@@ -10,26 +10,22 @@ import { TALENT_SERVICES } from "@/constants"
 type TalentService = (typeof TALENT_SERVICES.services)[number]
 import { IdentityLensWidget } from "./widgets/IdentityLensWidget"
 import { ProductionPipelineWidget } from "./widgets/ProductionPipelineWidget"
-import { OpsHubWidget } from "./widgets/OpsHubWidget"
 import { KPIPulseWidget } from "./widgets/KPIPulseWidget"
 import { DealDeskWidget } from "./widgets/DealDeskWidget"
 import { EventEngineWidget } from "./widgets/EventEngineWidget"
 import { SeriesFormatsWidget } from "./widgets/SeriesFormatsWidget"
 import { PricingOffersWidget } from "./widgets/PricingOffersWidget"
-import { FormationWidget } from "./widgets/FormationWidget"
 import { ServiceDetailDrawer } from "./ServiceDetailDrawer"
 import { ArrowRight } from "lucide-react"
 
 const widgetMap = {
     "IdentityLens": IdentityLensWidget,
     "ProductionPipeline": ProductionPipelineWidget,
-    "OpsHub": OpsHubWidget,
     "KPIPulse": KPIPulseWidget,
     "DealDesk": DealDeskWidget,
     "EventEngine": EventEngineWidget,
     "SeriesFormats": SeriesFormatsWidget,
-    "PricingOffers": PricingOffersWidget,
-    "Formation": FormationWidget
+    "PricingOffers": PricingOffersWidget
 }
 
 // type Service supprimé (dupliqué avec TalentService)

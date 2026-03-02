@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import { Sparkles, X, Check, ArrowRight, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
-import { HERO_STATS } from "@/constants/clients"
 import { BRAND_HERO_CONTENT } from "@/constants"
 
 interface HeroSectionProps {
@@ -84,21 +83,6 @@ export function HeroSection({ onDashboardClick }: HeroSectionProps) {
                         </Button>
                     </motion.div>
 
-                    {/* Stats */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.7 }}
-                        className="flex flex-wrap justify-center gap-12 mt-20 pt-12 border-t border-gray-200"
-                    >
-                        {HERO_STATS.map((item, i) => (
-                            <div key={i} className="text-center">
-                                <div className="text-3xl mb-2">{item.icon}</div>
-                                <div className="text-4xl font-bold text-gray-900 mb-1">{item.stat}</div>
-                                <div className="text-sm text-gray-600">{item.label}</div>
-                            </div>
-                        ))}
-                    </motion.div>
                 </div>
             </Container>
         </section>

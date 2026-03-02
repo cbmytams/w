@@ -37,3 +37,6 @@ export { BRAND_NAVIGATION } from "./brand-additions"
 
 // Home
 export { HOME_OPTIONS } from "./home-blocks"
+
+// Restore legacy for broken components
+export * from "./legacy"

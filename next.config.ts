@@ -91,6 +91,16 @@ const nextConfig: NextConfig = {
         destination: "/for-talents",
         permanent: true,
       },
+      {
+        source: "/questionnaire",
+        destination: "/questionnaire/talents",
+        permanent: true,
+      },
+      {
+        source: "/questionnaire-brands",
+        destination: "/questionnaire/brands",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

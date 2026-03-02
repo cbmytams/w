@@ -3,7 +3,6 @@
 import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
 import { TALENT_BUSINESS, BRAND_GRADIENT } from "@/constants"
-import { DealFlowWidget } from "./redesign/DealFlowWidget"
 
 export function BusinessSection() {
     return (
@@ -65,7 +64,7 @@ export function BusinessSection() {
                             <div className="absolute inset-0 bg-[radial-gradient(340px_260px_at_20%_20%,rgba(236,72,153,0.08),transparent_60%)] dark:bg-[radial-gradient(340px_260px_at_20%_20%,rgba(236,72,153,0.12),transparent_60%)]" />
 
                             <div className="relative z-10 w-full">
-                                <DealFlowWidget />
+                                {/* Widget removed temporarily for cleanup */}
                             </div>
                         </div>
                     </RevealAnimation>

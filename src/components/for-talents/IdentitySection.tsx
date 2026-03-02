@@ -3,7 +3,6 @@
 import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
 import { TALENT_IDENTITY, BRAND_GRADIENT } from "@/constants"
-import { IdentityPhoneWidget } from "./redesign/IdentityPhoneWidget"
 
 export function IdentitySection() {
     return (
@@ -66,7 +65,7 @@ export function IdentitySection() {
                                 <div className="absolute inset-0 bg-[radial-gradient(rgba(15,23,42,0.05)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:22px_22px] opacity-40" />
 
                                 <div className="relative z-10 flex flex-col items-center justify-between h-full p-8 md:p-10 gap-8">
-                                    <IdentityPhoneWidget />
+                                    {/* Widget removed temporarily for cleanup */}
                                     <div className="text-center">
                                         <div className="w-12 h-1 bg-pink-500 mb-4 mx-auto" />
                                         <p className="text-base font-semibold text-gray-800 dark:text-white/85">
