@@ -9,7 +9,7 @@ const securityHeaders = [
   },
   {
     key: "X-Frame-Options",
-    value: "DENY",
+    value: "SAMEORIGIN",
   },
   {
     key: "X-Content-Type-Options",
@@ -46,11 +46,11 @@ const securityHeaders = [
       [
         "default-src 'self'",
         `script-src 'self' 'unsafe-inline' ${!isProd ? "'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://plausible.io`,
-        "style-src 'self' 'unsafe-inline'",
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
         "img-src 'self' data: blob: https://images.unsplash.com https://assets.wafia.fr https://www.google-analytics.com",
         "font-src 'self' data: https://fonts.gstatic.com",
         "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://fonts.googleapis.com https://fonts.gstatic.com",
-        "frame-ancestors 'none'",
+        "frame-ancestors 'self'",
         "base-uri 'self'",
         "form-action 'self'"
       ]
@@ -63,6 +63,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   compress: true,
   output: "standalone",
+  typescript: {
+    // ignoreBuildErrors: true, // Temporarily disabled to ensure type safety. Can be changed if needed later.
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -91,24 +94,23 @@ const nextConfig: NextConfig = {
         destination: "/for-talents",
         permanent: true,
       },
-      {
-        source: "/questionnaire",
-        destination: "/questionnaire/talents",
-        permanent: true,
-      },
-      {
-        source: "/questionnaire-brands",
-        destination: "/questionnaire/brands",
-        permanent: true,
-      },
     ];
   },
   async rewrites() {
     return {
       beforeFiles: [
         { source: "/wiki", destination: "/wiki/index.html" },
-        { source: "/wiki/blog/:path*", destination: "/wiki/index.html" },
+        { source: "/wiki/blog", destination: "/wiki/blog/index.html" },
+        { source: "/wiki/blog/theme/:id", destination: "/wiki/blog/theme/:id/index.html" },
+        { source: "/wiki/blog/platform/:id", destination: "/wiki/blog/platform/:id/index.html" },
+        { source: "/wiki/blog/:slug", destination: "/wiki/blog/:slug/index.html" },
       ],
+      fallback: [
+        { source: "/questionnaire", destination: "/questionnaire/index.html" },
+        { source: "/questionnaire/:path*", destination: "/questionnaire/index.html" },
+        { source: "/questionnaire-brands", destination: "/questionnaire-brands/index.html" },
+        { source: "/questionnaire-brands/:path*", destination: "/questionnaire-brands/index.html" },
+      ]
     };
   },
 };
