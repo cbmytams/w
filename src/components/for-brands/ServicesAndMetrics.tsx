@@ -195,7 +195,7 @@ function CTAWidget() {
                 "cursor-pointer rotate-1"
             )}
         >
-            <Link href="/questionnaire/brands" className="absolute inset-0 z-10" />
+            <a href="/questionnaire/brands" className="absolute inset-0 z-10" />
 
             <div className="mb-6 p-4 rounded-full bg-white text-black dark:bg-black dark:text-white">
                 <ArrowRight className="w-8 h-8" />

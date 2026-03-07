@@ -89,7 +89,7 @@ export function HeroSection({ onContentClick }: HeroSectionProps) {
                         className="flex flex-wrap items-center gap-3 md:gap-4"
                     >
                         {/* Primary CTA - Filled */}
-                        <Link href={talentHeroCtaHref} className="inline-flex">
+                        <a href={talentHeroCtaHref} className="inline-flex">
                             <motion.span
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
@@ -97,7 +97,7 @@ export function HeroSection({ onContentClick }: HeroSectionProps) {
                             >
                                 {TALENT_HERO.ctaPrimary}
                             </motion.span>
-                        </Link>
+                        </a>
 
                         {/* Secondary CTA - White Pill High Vis / Dark Glass in Night Mode */}
                         <motion.button

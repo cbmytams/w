@@ -120,9 +120,8 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
   return createPortal(
     <div className={`fixed inset-0 z-[1040] ${isOpen ? "" : "pointer-events-none"}`}>
       <div
-        className={`absolute inset-0 bg-black/40 transition-opacity duration-200 dark:bg-black/60 ${
-          isOpen ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 bg-black/40 transition-opacity duration-200 dark:bg-black/60 ${isOpen ? "opacity-100" : "opacity-0"
+          }`}
         onClick={onClose}
       />
 
@@ -133,9 +132,8 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
           aria-modal="true"
           aria-labelledby="drawer-title"
           tabIndex={-1}
-          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-[transform,opacity] duration-200 ease-out will-change-transform dark:border-white/[0.08] dark:bg-[#1C1C1E] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${
-            isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-3 opacity-0 sm:translate-x-full sm:translate-y-0"
-          } pointer-events-auto`}
+          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-[transform,opacity] duration-200 ease-out will-change-transform dark:border-white/[0.08] dark:bg-[#1C1C1E] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-3 opacity-0 sm:translate-x-full sm:translate-y-0"
+            } pointer-events-auto`}
         >
           <div className="pointer-events-none absolute right-0 top-0 h-[200px] w-[200px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/[0.04] dark:bg-purple-500/[0.06]" />
 
@@ -255,14 +253,14 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
               <div className="min-h-8 flex-1" />
 
               <div className="mt-10 pb-2">
-                <Link
+                <a
                   href={ctaHref}
                   className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gray-900 px-6 py-4 text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)] active:scale-[0.98] dark:bg-white dark:text-gray-900 dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.15)]"
                 >
                   <div className="absolute inset-0 translate-x-[-200%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[200%] dark:via-black/10" />
                   <span className="relative z-10">Se référencer</span>
                   <ArrowRight className="relative z-10 h-4 w-4 opacity-50 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>

@@ -60,6 +60,9 @@ export function MagneticButton({ children, href, onClick, className = "" }: Magn
     )
 
     if (href) {
+        if (href.startsWith("/questionnaire")) {
+            return <a href={href}>{buttonContent}</a>
+        }
         return <Link href={href}>{buttonContent}</Link>
     }
 

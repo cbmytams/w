@@ -195,13 +195,13 @@ export function TalentsFloatingNavigation() {
                         })}
                     </div>
                     <div className="w-1"></div>
-                    <Link href={desktopCtaHref}>
+                    <a href={desktopCtaHref}>
                         <Button
                             className={`rounded-full bg-gradient-to-r ${BRAND_GRADIENT} hover:opacity-90 px-6 h-9 text-white text-[13px] font-bold tracking-wide shadow-md shadow-pink-500/25 hover:shadow-pink-500/40 transition-transform duration-300 hover:scale-105`}
                         >
                             Se référencer
                         </Button>
-                    </Link>
+                    </a>
                 </div>
             </motion.nav>
 
@@ -305,13 +305,13 @@ export function TalentsFloatingNavigation() {
                                     variants={menuItemVariants}
                                     className="mt-8 w-full relative z-10"
                                 >
-                                    <Link
+                                    <a
                                         href={mobileCtaHref}
                                         onClick={() => setMobileMenuOpen(false)}
                                         className={`h-14 w-full flex items-center justify-center rounded-full bg-gradient-to-r ${BRAND_GRADIENT} text-white font-bold text-lg shadow-[0_8px_20px_rgba(236,72,153,0.3)] hover:shadow-[0_8px_30px_rgba(236,72,153,0.5)] hover:scale-105 active:scale-95 transition-all duration-300`}
                                     >
                                         Se référencer
-                                    </Link>
+                                    </a>
                                 </motion.div>
                             </div>
                         </motion.div>
