@@ -119,7 +119,7 @@ export default function ServicesPage() {
                             ))}
                             <div className="pt-8">
                                 <Button className="w-full" asChild>
-                                    <Link href="/contact?type=brand">Discuter d&apos;un projet</Link>
+                                    <Link href="/questionnaire/brands">Discuter d&apos;un projet</Link>
                                 </Button>
                             </div>
                         </div>
@@ -170,7 +170,7 @@ export default function ServicesPage() {
                                 </div>
 
                                 <Button variant="outline" asChild>
-                                    <Link href="/contact?type=brand">
+                                    <Link href="/questionnaire/brands">
                                         Demander ce service <ArrowRight className="ml-2 h-4 w-4" />
                                     </Link>
                                 </Button>

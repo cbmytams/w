@@ -289,7 +289,7 @@ export function ProductionsGrid() {
                                             ) : (
                                                 <div className="pt-4">
                                                     <button
-                                                        onClick={() => router.push('/contact?type=brand')}
+                                                        onClick={() => router.push('/questionnaire/brands')}
                                                         className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-[15px] bg-white text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center"
                                                     >
                                                         Lancer le projet

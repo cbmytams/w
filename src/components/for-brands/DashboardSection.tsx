@@ -200,10 +200,10 @@ export function DashboardSection() {
 
                                 <div className="px-2">
                                     <Button size="lg" asChild className="w-full h-14 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-semibold shadow-xl shadow-slate-900/10 dark:bg-white dark:text-black dark:hover:bg-slate-200 group transition-all">
-                                        <Link href="/contact?type=brand">
+                                        <a href="/questionnaire/brands">
                                             Demander une démo
                                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                                        </Link>
+                                        </a>
                                     </Button>
 
                                 </div>

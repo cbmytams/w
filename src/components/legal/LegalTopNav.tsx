@@ -16,7 +16,7 @@ const LEGAL_LINKS = [
 const CTA_CONFIG: Record<LegalNavContext, { href: string; label: string }> = {
     brands: { href: "/questionnaire/brands", label: "Estimer mon plan" },
     talents: { href: "/for-talents#contact", label: "Rejoindre Wafia" },
-    default: { href: "/contact", label: "Nous contacter" },
+    default: { href: "/questionnaire/brands", label: "Nous contacter" },
 }
 
 const BACK_ROUTE: Record<LegalNavContext, string> = {

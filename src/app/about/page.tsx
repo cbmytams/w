@@ -78,7 +78,7 @@ export default function AboutPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <Button size="lg" variant="secondary" asChild>
-                            <Link href="/contact?type=brand">Brand : Réserver un call</Link>
+                            <Link href="/questionnaire/brands">Brand : Réserver un call</Link>
                         </Button>
                         <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-slate-900" asChild>
                             <Link href={talentCtaHref}>Talent : Proposer mon profil</Link>

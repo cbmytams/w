@@ -73,7 +73,7 @@ export function HeroSection({ onDashboardClick }: HeroSectionProps) {
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <Button size="lg" asChild className="h-14 px-10 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-lg font-semibold shadow-xl shadow-orange-500/25">
-                            <Link href="/contact?type=brand">
+                            <Link href="/questionnaire/brands">
                                 Lancer une campagne <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>

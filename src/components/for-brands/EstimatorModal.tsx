@@ -156,7 +156,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                             <li className="flex gap-2"><Check className="w-5 h-5 text-green-600 shrink-0" /> Dashboard live + reporting actionnable</li>
                                         </ul>
                                         <Button asChild className="w-full h-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600">
-                                            <Link href="/contact?type=brand">
+                                            <Link href="/questionnaire/brands">
                                                 Réserver un call stratégique <ArrowRight className="ml-2 h-5 w-5" />
                                             </Link>
                                         </Button>

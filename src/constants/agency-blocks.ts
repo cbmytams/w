@@ -121,6 +121,6 @@ export const AGENCY_KIT = {
     ],
     cta: {
         text: "Recevoir le kit partenaire →",
-        href: "/contact?type=agency&action=kit"
+        href: "/questionnaire/brands"
     }
 } as const;

@@ -155,7 +155,7 @@ export default function TalentsPage() {
                                     </CardContent>
                                     <CardFooter>
                                         <Button variant="outline" className="w-full" asChild>
-                                            <Link href={`/contact?type=brand&talent=${talent.id}`}>Demander ce profil</Link>
+                                            <Link href={`/questionnaire/brands?talent=${talent.id}`}>Demander ce profil</Link>
                                         </Button>
                                     </CardFooter>
                                 </Card>

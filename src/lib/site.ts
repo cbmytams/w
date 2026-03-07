@@ -23,7 +23,7 @@ export const sitePaths = {
   forTalents: "/for-talents",
   forAgencies: "/for-agencies",
   wiki: "/wiki",
-  contact: "/contact",
+
   explore: "/explore",
   legalPrivacy: "/legal/privacy",
   legalMentions: "/legal/mentions",
@@ -42,8 +42,7 @@ export const sitemapRoutes = [
   sitePaths.process,
   sitePaths.cases,
   sitePaths.studio,
-  sitePaths.about,
-  sitePaths.contact,
+
   sitePaths.legalPrivacy,
   sitePaths.legalMentions,
   sitePaths.legalCookies,

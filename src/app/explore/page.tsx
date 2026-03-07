@@ -67,7 +67,7 @@ export default function Home() {
           <FadeIn delay={0.4}>
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <Button size="lg" asChild className="w-full sm:w-auto text-base">
-                <Link href="/contact?type=brand">Je suis une Marque / Agence</Link>
+                <Link href="/questionnaire/brands">Je suis une Marque / Agence</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="w-full sm:w-auto text-base">
                 <Link href={talentHeroHref}>Je suis un Talent</Link>
@@ -282,7 +282,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg" asChild className="px-8">
-              <Link href="/contact?type=brand">Réserver un call (Marque)</Link>
+              <Link href="/questionnaire/brands">Réserver un call (Marque)</Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="px-8">
               <Link href={talentFinalCtaHref}>Postuler (Talent)</Link>

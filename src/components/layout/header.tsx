@@ -62,7 +62,7 @@ export function Header() {
                     </div>
                     <div className="hidden lg:flex lg:items-center lg:gap-x-4">
                         <Button variant="ghost" asChild>
-                            <Link href="/contact?type=brand">Je suis une Marque</Link>
+                            <Link href="/questionnaire/brands">Je suis une Marque</Link>
                         </Button>
                         <Button asChild>
                             <Link href={talentDesktopHref}>Je suis un Talent</Link>
@@ -103,7 +103,7 @@ export function Header() {
                         ))}
                         <div className="mt-6 flex flex-col gap-3">
                             <Button className="w-full justify-center" variant="secondary" asChild onClick={() => setMobileMenuOpen(false)}>
-                                <Link href="/contact?type=brand">Marque / Agence</Link>
+                                <Link href="/questionnaire/brands">Marque / Agence</Link>
                             </Button>
                             <Button className="w-full justify-center" asChild onClick={() => setMobileMenuOpen(false)}>
                                 <Link href={talentMobileHref}>Talent / Créateur</Link>

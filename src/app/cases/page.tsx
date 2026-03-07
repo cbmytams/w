@@ -66,14 +66,13 @@ export default function CasesPage() {
         </div>
 
         <div className="mt-10">
-          <Link
-            href="/contact?type=brand"
+          <a href="/questionnaire/brands"
             className="inline-flex items-center rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 dark:bg-white dark:text-black"
           >
             Discuter de votre projet
-          </Link>
+          </a>
         </div>
       </div>
-    </main>
+    </main >
   );
 }

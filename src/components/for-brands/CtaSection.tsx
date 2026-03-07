@@ -34,7 +34,7 @@ export function CtaSection({ onEstimateClick, estimateHref }: CtaSectionProps) {
                     <RevealAnimation delay={0.4}>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Button size="lg" asChild className="h-16 px-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xl font-semibold shadow-2xl shadow-orange-500/25">
-                                <Link href="/contact?type=brand">Réserver un appel stratégique</Link>
+                                <a href="/questionnaire/brands">Réserver un appel stratégique</a>
                             </Button>
                             {estimateHref ? (
                                 <Button size="lg" asChild variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">

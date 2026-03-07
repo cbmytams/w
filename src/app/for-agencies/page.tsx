@@ -28,7 +28,7 @@ export default function ForAgenciesPage() {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Button size="lg" asChild className="px-12 py-8 text-xl rounded-full bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all shadow-xl hover:shadow-blue-200">
-                                    <Link href="/contact?type=agency">{AGENCY_HERO.cta}</Link>
+                                    <Link href="/questionnaire/brands">{AGENCY_HERO.cta}</Link>
                                 </Button>
                             </div>
                         </div>
@@ -152,7 +152,7 @@ export default function ForAgenciesPage() {
                                 {AGENCY_CTA.text}
                             </p>
                             <Button size="lg" asChild className="px-12 py-8 text-xl rounded-full bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all shadow-xl hover:shadow-blue-200">
-                                <Link href="/contact?type=agency">
+                                <Link href="/questionnaire/brands">
                                     {AGENCY_CTA.button} <ArrowRight className="ml-2 h-6 w-6" />
                                 </Link>
                             </Button>
