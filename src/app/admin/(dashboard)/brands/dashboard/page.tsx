@@ -90,7 +90,7 @@ export default async function BrandsDashboardPage(
 
           <div className="divide-y divide-white/5">
             {recentResponses.length > 0 ? (
-              recentResponses.map((r) => {
+              recentResponses.map((r: typeof recentResponses[number]) => {
                 const answers = r.answersJson as Record<string, unknown> ?? {};
                 const name = (answers["ql_company"] as string) || r.talent?.name || "Anonyme";
                 const initials = name.slice(0, 2).toUpperCase();
@@ -114,7 +114,7 @@ export default async function BrandsDashboardPage(
                     </div>
                     <div className="flex items-center gap-3 flex-shrink-0">
                       <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${pct >= 100 ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                          : "bg-orange-500/10 text-orange-400 border border-orange-500/20"
+                        : "bg-orange-500/10 text-orange-400 border border-orange-500/20"
                         }`}>{pct}%</span>
                       <span className="text-white/20 text-xs group-hover:text-white/60 transition-colors">→</span>
                     </div>
