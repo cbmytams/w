@@ -157,7 +157,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                     <div className="w-1"></div>
                     {estimateHref ? (
                         <Button asChild className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-gray-100 px-6 h-9 text-white dark:text-black text-[13px] font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105">
-                            <Link href={estimateHref}>Estimer mon plan</Link>
+                            <a href={estimateHref}>Estimer mon plan</a>
                         </Button>
                     ) : (
                         <Button
@@ -270,13 +270,13 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                     className="mt-8 w-full relative z-10"
                                 >
                                     {estimateHref ? (
-                                        <Link
+                                        <a
                                             href={estimateHref}
                                             onClick={() => setMobileMenuOpen(false)}
                                             className="flex h-14 w-full items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
                                         >
                                             Estimer mon plan
-                                        </Link>
+                                        </a>
                                     ) : (
                                         <button
                                             onClick={() => {

@@ -38,7 +38,7 @@ export function CtaSection({ onEstimateClick, estimateHref }: CtaSectionProps) {
                             </Button>
                             {estimateHref ? (
                                 <Button size="lg" asChild variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">
-                                    <Link href={estimateHref}>Estimer mon plan</Link>
+                                    <a href={estimateHref}>Estimer mon plan</a>
                                 </Button>
                             ) : (
                                 <Button size="lg" onClick={onEstimateClick} variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">
