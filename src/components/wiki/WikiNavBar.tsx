@@ -17,11 +17,14 @@ interface NavBarProps {
     onToggleDark?: () => void;
 }
 
-export default function WikiNavBar({ isDeep, isReading, parentLabel, currentTitle, onBack, showUI = true, isDark, onToggleDark }: NavBarProps) {
+export default function WikiNavBar({ isDeep, isReading, parentLabel, currentTitle, onBack, showUI = true, isDark, onToggleDark, mounted }: NavBarProps & { mounted?: boolean }) {
     const router = useRouter();
     const prefersReducedMotion = useReducedMotion();
     const [isTransitioning, setIsTransitioning] = useState(false);
     const navigationTimeoutRef = useRef<number | null>(null);
+
+    // Default to true if mounted isn't passed from the parent to avoid breaking standard usages
+    const isReady = mounted ?? true;
 
     useEffect(() => {
         return () => {
@@ -102,7 +105,7 @@ export default function WikiNavBar({ isDeep, isReading, parentLabel, currentTitl
             )}
 
             <div className="absolute right-6 bottom-4 flex items-center gap-3">
-                {onToggleDark && (
+                {onToggleDark && isReady && (
                     <button
                         onClick={onToggleDark}
                         aria-label={isDark ? "Passer en mode clair" : "Passer en mode sombre"}
@@ -111,6 +114,9 @@ export default function WikiNavBar({ isDeep, isReading, parentLabel, currentTitl
                     >
                         {isDark ? <Sun size={18} strokeWidth={1.5} /> : <Moon size={18} strokeWidth={1.5} />}
                     </button>
+                )}
+                {onToggleDark && !isReady && (
+                    <div className="w-10 h-10" />
                 )}
 
                 <button

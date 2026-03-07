@@ -51,7 +51,7 @@ export default function WikiArticleView({
     const [showUI, setShowUI] = useState(true);
     const mainRef = useRef<HTMLElement>(null);
     const lastScrollY = useRef(0);
-    const { isDark, toggle: toggleDark } = useWikiDarkMode();
+    const { isDark, toggle: toggleDark, mounted } = useWikiDarkMode();
 
     // --- Zen Mode: hide navbar on scroll down ---
     useEffect(() => {
@@ -122,7 +122,7 @@ export default function WikiArticleView({
             <WikiSearchDialog articles={allArticles} />
             <WikiNavBar isDeep isReading parentLabel={article.category}
                 currentTitle={article.title} onBack={() => router.push("/wiki")} showUI={showUI}
-                isDark={isDark} onToggleDark={toggleDark} />
+                isDark={isDark} onToggleDark={toggleDark} mounted={mounted} />
 
             {/* Progress Bar */}
             <motion.div

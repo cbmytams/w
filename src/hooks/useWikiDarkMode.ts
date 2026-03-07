@@ -3,14 +3,21 @@
 import { useState, useEffect } from "react";
 
 export function useWikiDarkMode() {
-    const [isDark, setIsDark] = useState(() => {
-        if (typeof window === "undefined") return false;
-        const stored = localStorage.getItem("wiki-theme");
-        if (stored) return stored === "dark";
-        return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    });
+    const [isDark, setIsDark] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+        const stored = localStorage.getItem("wiki-theme");
+        if (stored) {
+            setIsDark(stored === "dark");
+        } else {
+            setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
         const root = document.documentElement;
         if (isDark) {
             root.classList.add("wiki-dark");
@@ -19,9 +26,9 @@ export function useWikiDarkMode() {
             root.classList.remove("wiki-dark");
             localStorage.setItem("wiki-theme", "light");
         }
-    }, [isDark]);
+    }, [isDark, mounted]);
 
     const toggle = () => setIsDark((prev) => !prev);
 
-    return { isDark, toggle };
+    return { isDark, toggle, mounted };
 }
