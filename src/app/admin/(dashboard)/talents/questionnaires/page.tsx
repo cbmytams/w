@@ -1,6 +1,5 @@
 import { TalentListClient, TalentListItem } from './TalentListClient';
 import { prisma } from '@/lib/db';
-import { Prisma } from '@prisma/client';
 import { computeCompletion } from '@/lib/completion';
 import { TALENTS_QUESTIONNAIRE_MAP } from '@/lib/questionnaireMap';
 
@@ -15,7 +14,7 @@ export default async function TalentsListPage() {
     orderBy: { submittedAt: 'desc' }
   });
 
-  const formattedData: TalentListItem[] = responses.map((res: Prisma.QuestionnaireResponseGetPayload<{ include: { talent: true } }>) => {
+  const formattedData: TalentListItem[] = responses.map((res: typeof responses[number]) => {
     const completion = computeCompletion(res.answersJson, TALENTS_QUESTIONNAIRE_MAP);
     return {
       id: res.id,

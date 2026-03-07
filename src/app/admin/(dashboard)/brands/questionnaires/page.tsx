@@ -1,6 +1,5 @@
 import { BrandListClient, BrandListItem } from './BrandListClient';
 import { prisma } from '@/lib/db';
-import { Prisma } from '@prisma/client';
 import { type QuestionValue } from '@/lib/questionnaireIntegrity';
 import { computeCompletion } from '@/lib/completion';
 import { BRANDS_QUESTIONNAIRE_MAP } from '@/lib/questionnaireMap';
@@ -13,7 +12,7 @@ export default async function BrandsListPage() {
     orderBy: { submittedAt: 'desc' }
   });
 
-  const formattedData: BrandListItem[] = responses.map((res: Prisma.QuestionnaireResponseGetPayload<undefined>) => {
+  const formattedData: BrandListItem[] = responses.map((res: typeof responses[number]) => {
     const dataObj = res.answersJson as Record<string, QuestionValue>;
     const completion = computeCompletion(res.answersJson, BRANDS_QUESTIONNAIRE_MAP);
 

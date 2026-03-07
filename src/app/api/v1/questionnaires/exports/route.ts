@@ -3,7 +3,7 @@ import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { prisma } from "@/lib/db";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
-import { QuestionnaireType, Prisma } from "@prisma/client";
+import { QuestionnaireType, type QuestionnaireResponse } from "@prisma/client";
 
 const BATCH_SIZE = 500;
 
@@ -121,7 +121,7 @@ function createJSONStream(version: string, type: QuestionnaireType) {
                 let isFirst = true;
 
                 while (hasMore) {
-                    const chunkResponses: Prisma.QuestionnaireResponseGetPayload<undefined>[] = await prisma.questionnaireResponse.findMany({
+                    const chunkResponses: QuestionnaireResponse[] = await prisma.questionnaireResponse.findMany({
                         where: { questionnaireId: questionnaire.id, type },
                         take: BATCH_SIZE,
                         skip: cursor ? 1 : 0,
