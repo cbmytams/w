@@ -2,7 +2,6 @@
 
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { Shield, ArrowLeft } from "lucide-react";
 
 function IframeRenderer({ type }: { type: "talents" | "brands" }) {
@@ -36,24 +35,24 @@ function IframeRenderer({ type }: { type: "talents" | "brands" }) {
         <>
             {/* Top Right Floating Actions */}
             <div className="fixed top-6 right-6 z-[999999] flex items-center gap-3">
-                <Link
+                <a
                     href={type === "talents" ? "/for-talents" : "/for-brands"}
                     className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white/70 hover:text-white text-sm font-medium backdrop-blur-xl"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Retour au site
-                </Link>
+                </a>
                 <div
                     className={`transition-all duration-500 ease-in-out ${showAdmin ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"
                         }`}
                 >
-                    <Link
+                    <a
                         href="/admin/login"
                         className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white/70 hover:text-white text-sm font-medium backdrop-blur-xl"
                     >
                         <Shield className="w-4 h-4" />
                         Admin
-                    </Link>
+                    </a>
                 </div>
             </div>
 
