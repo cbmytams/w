@@ -79,7 +79,7 @@ export function ContactFormPanel({ contactType, objective }: ContactFormPanelPro
     }
 
     return (
-        <main className="min-h-screen px-6 py-20">
+        <main id="main-content" className="min-h-screen px-6 py-20">
             <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-white/5">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                     Contact
@@ -108,7 +108,7 @@ export function ContactFormPanel({ contactType, objective }: ContactFormPanelPro
                                 Envoyer un autre message
                             </button>
                             <Link
-                                href="/questionnaire-brands/index.html"
+                                href="/questionnaire/brands"
                                 className="inline-flex min-h-11 items-center rounded-full border border-emerald-700/30 px-5 py-2 text-sm font-semibold transition hover:bg-emerald-100 dark:border-emerald-300/30 dark:hover:bg-emerald-300/10"
                             >
                                 Lancer le diagnostic
@@ -194,7 +194,7 @@ export function ContactFormPanel({ contactType, objective }: ContactFormPanelPro
                                 {status === "loading" ? "Envoi en cours..." : "Envoyer"}
                             </button>
                             <Link
-                                href="/questionnaire-brands/index.html"
+                                href="/questionnaire/brands"
                                 className="inline-flex min-h-11 items-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold transition hover:bg-slate-100 dark:border-white/20 dark:hover:bg-white/10"
                             >
                                 Lancer le diagnostic

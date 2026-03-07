@@ -17,10 +17,8 @@ export {
     AGENCY_NAVIGATION
 } from "./agency-blocks"
 
-// Talent blocks
+// Talent blocks (still used by existing section components)
 export {
-    TALENT_BUSINESS,
-    TALENT_IDENTITY,
     TALENT_TIMELINE,
     TALENT_METHOD,
     TALENT_SERVICES,
@@ -29,16 +27,9 @@ export {
     TALENT_OS_SYSTEM
 } from "./talent-blocks"
 
-// Brand additions
+// Brand additions (only AUTHENTICITY_CARDS and BRAND_HERO_CONTENT still consumed)
 export {
-    CASTING_VALIDATION,
-    TIMING_HERO,
-    TIMING_STEP,
-    AUTHENTICITY,
-    KPIS_FEATURE,
-    SOURCING_PROBLEM,
-    FIRST_CAMPAIGN_STEP,
-    FIRST_CAMPAIGN_FAQ,
+    AUTHENTICITY_CARDS,
     BRAND_HERO_CONTENT
 } from "./brand-additions"
 

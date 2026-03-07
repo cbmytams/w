@@ -1,5 +1,6 @@
 import { TalentListClient, TalentListItem } from './TalentListClient';
 import { prisma } from '@/lib/db';
+import { Prisma } from '@prisma/client';
 import { computeCompletion } from '@/lib/completion';
 import { TALENTS_QUESTIONNAIRE_MAP } from '@/lib/questionnaireMap';
 
@@ -14,7 +15,7 @@ export default async function TalentsListPage() {
     orderBy: { submittedAt: 'desc' }
   });
 
-  const formattedData: TalentListItem[] = responses.map((res: any) => {
+  const formattedData: TalentListItem[] = responses.map((res: Prisma.QuestionnaireResponseGetPayload<{ include: { talent: true } }>) => {
     const completion = computeCompletion(res.answersJson, TALENTS_QUESTIONNAIRE_MAP);
     return {
       id: res.id,
@@ -28,10 +29,10 @@ export default async function TalentsListPage() {
 
   return (
     <div className="space-y-6">
-      <div className="surface-card p-6 bg-questionnaire-surface border border-questionnaire-muted rounded-xl">
-        <div className="text-xs uppercase tracking-[0.3em] text-gray-400">Plateforme Talents</div>
-        <h1 className="text-2xl font-semibold mt-2 text-white">Réponses au Diagnostic</h1>
-        <p className="text-sm text-gray-400 mt-2">
+      <div className="surface-card p-6">
+        <div className="text-[10px] uppercase tracking-[0.35em] text-white/25 font-medium mb-1">Plateforme Talents</div>
+        <h1 className="text-lg font-semibold text-white/90">Réponses au Diagnostic</h1>
+        <p className="text-sm text-white/40 mt-1">
           Vue d'ensemble des talents ayant complété ou démarré le questionnaire d'onboarding.
         </p>
       </div>

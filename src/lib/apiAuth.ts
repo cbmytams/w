@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 import { DASHBOARD_ROLES, canAccessDashboardRole, type DashboardRole } from "./rbac";
 
 export type AdminSession = {
@@ -21,7 +21,15 @@ export async function requireDashboardRole(
   request: NextRequest,
   minimumRole: DashboardRole = DASHBOARD_ROLES.VIEWER
 ): Promise<DashboardAuthResult> {
-  const session = await getServerSession(authOptions) as any;
+  const session = await getServerSession(authOptions) as {
+    user?: {
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+      role?: string;
+    };
+  } | null;
+
   if (!session?.user) {
     return { session: null, response: unauthorizedResponse("Unauthorized", 401) };
   }
@@ -32,5 +40,5 @@ export async function requireDashboardRole(
     return { session: null, response: unauthorizedResponse("Forbidden", 403) };
   }
 
-  return { session: { id: "1", name: session.user.name, role }, response: null };
+  return { session: { id: "1", name: session.user.name || "Unknown", role }, response: null };
 }

@@ -1,40 +1,70 @@
-import Link from "next/link";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Exports | WAFIA BDD Talents",
-  description: "Générez et suivez les exports shortlists CSV/PDF."
-};
+import { useState } from "react";
+import { Download, FileSpreadsheet, Loader2, FileText } from "lucide-react";
 
-export default function ExportsPage() {
+export default function TalentsExportsPage() {
+  const [exporting, setExporting] = useState(false);
+
+  const handleExport = async (format: string) => {
+    setExporting(true);
+    try {
+      window.location.href = `/api/v1/exports?type=TALENTS&format=${format}`;
+    } finally {
+      setTimeout(() => setExporting(false), 2500);
+    }
+  };
+
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="surface-card p-6">
-        <div className="text-xs uppercase tracking-[0.3em] text-soft">Exports</div>
-        <h1 className="text-2xl font-semibold mt-2">Shortlists & one-pagers</h1>
-        <p className="text-sm text-muted mt-2">
-          Préparez des exports CSV et des PDF premium pour les marques.
-        </p>
+        <div className="text-[10px] uppercase tracking-[0.35em] text-white/25 font-medium mb-1">Exports</div>
+        <h1 className="text-lg font-semibold text-white/90">Télécharger les données Talents</h1>
+        <p className="text-sm text-white/40 mt-1">Exportez l'ensemble des réponses au questionnaire Talents.</p>
       </div>
 
-      <div className="surface-card p-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Dernières shortlists</h2>
-          <Link
-            href="../leads"
-            className="rounded-full bg-black text-white dark:bg-white dark:text-black px-4 py-2 text-xs font-semibold"
-          >
-            Créer une shortlist
-          </Link>
-        </div>
-        <div className="mt-6 space-y-3 text-sm text-muted">
-          <div className="flex items-center justify-between">
-            <span>Beauty x LVMH</span>
-            <span>Export CSV • 3h</span>
+      {/* Export Cards */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {/* CSV */}
+        <button
+          onClick={() => handleExport("csv")}
+          disabled={exporting}
+          className="surface-card p-8 text-left group hover:border-emerald-500/20 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+          style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+        >
+          <div className="flex items-start justify-between mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/20 transition">
+              <FileSpreadsheet className="w-6 h-6 text-emerald-400" />
+            </div>
+            <div className="text-white/20 group-hover:text-white/60 transition">
+              {exporting ? (
+                <Loader2 className="w-5 h-5 animate-spin text-emerald-400" />
+              ) : (
+                <Download className="w-5 h-5" />
+              )}
+            </div>
           </div>
-          <div className="flex items-center justify-between">
-            <span>Gaming x Samsung</span>
-            <span>PDF • Hier</span>
+          <h3 className="text-base font-semibold text-white/80 group-hover:text-white transition">Export CSV</h3>
+          <p className="text-sm text-white/35 mt-2 leading-relaxed">
+            Compatible Excel, Google Sheets et tout tableur. Toutes les réponses dans un fichier structuré.
+          </p>
+          <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400">
+            {exporting ? "En cours…" : "Télécharger"}
+          </div>
+        </button>
+
+        {/* PDF – coming soon */}
+        <div className="surface-card p-8 opacity-40 cursor-not-allowed">
+          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/8 flex items-center justify-center mb-6">
+            <FileText className="w-6 h-6 text-white/30" />
+          </div>
+          <h3 className="text-base font-semibold text-white/60">Export PDF</h3>
+          <p className="text-sm text-white/30 mt-2 leading-relaxed">
+            Shortlists formatées avec profils détaillés. Disponible prochainement.
+          </p>
+          <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/8 text-xs font-medium text-white/30">
+            Bientôt disponible
           </div>
         </div>
       </div>

@@ -87,9 +87,14 @@ export function KanbanBoard({ onOpenLead, sortBy = 'interest' }: KanbanBoardProp
                 </div>
             </div>
 
-            <DragOverlay>
-                {activeLead ? <LeadCard lead={activeLead} /> : null}
-            </DragOverlay>
+            {activeLead ? (
+                <DragOverlay dropAnimation={{
+                    duration: 250,
+                    easing: 'ease'
+                }}>
+                    <LeadCard lead={activeLead} />
+                </DragOverlay>
+            ) : null}
         </DndContext>
     );
 }

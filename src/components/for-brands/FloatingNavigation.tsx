@@ -39,10 +39,11 @@ const menuItemVariants: Variants = {
 };
 
 interface FloatingNavigationProps {
-    onEstimateClick: () => void
+    onEstimateClick?: () => void
+    estimateHref?: string
 }
 
-export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps) {
+export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNavigationProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [activeSection, setActiveSection] = useState<string | null>(null)
 
@@ -86,6 +87,10 @@ export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps)
         }
         return () => { document.body.style.overflow = "" }
     }, [mobileMenuOpen])
+
+    const handleEstimateClick = () => {
+        onEstimateClick?.()
+    }
 
     return (
         <>
@@ -150,12 +155,18 @@ export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps)
                         })}
                     </div>
                     <div className="w-1"></div>
-                    <Button
-                        onClick={onEstimateClick}
-                        className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-gray-100 px-6 h-9 text-white dark:text-black text-[13px] font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105"
-                    >
-                        Estimer mon plan
-                    </Button>
+                    {estimateHref ? (
+                        <Button asChild className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-gray-100 px-6 h-9 text-white dark:text-black text-[13px] font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105">
+                            <Link href={estimateHref}>Estimer mon plan</Link>
+                        </Button>
+                    ) : (
+                        <Button
+                            onClick={handleEstimateClick}
+                            className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-gray-100 px-6 h-9 text-white dark:text-black text-[13px] font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105"
+                        >
+                            Estimer mon plan
+                        </Button>
+                    )}
                 </div>
             </motion.nav>
 
@@ -227,16 +238,16 @@ export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps)
                                     {BRAND_NAVIGATION.map((item) => {
                                         const isActive = activeSection === item.href
                                         return (
-                                        <motion.a
-                                            key={item.label}
-                                            href={item.href}
-                                            variants={menuItemVariants}
-                                            aria-current={isActive ? "page" : undefined}
-                                            onClick={() => setMobileMenuOpen(false)}
-                                            className="text-4xl font-black tracking-tighter text-gray-900 dark:text-gray-100 transition-all duration-300 hover:scale-105 active:scale-95 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]"
-                                        >
-                                            {item.label}
-                                        </motion.a>
+                                            <motion.a
+                                                key={item.label}
+                                                href={item.href}
+                                                variants={menuItemVariants}
+                                                aria-current={isActive ? "page" : undefined}
+                                                onClick={() => setMobileMenuOpen(false)}
+                                                className="text-4xl font-black tracking-tighter text-gray-900 dark:text-gray-100 transition-all duration-300 hover:scale-105 active:scale-95 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]"
+                                            >
+                                                {item.label}
+                                            </motion.a>
                                         )
                                     })}
 
@@ -249,6 +260,7 @@ export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps)
                                             <Home className="h-5 w-5 group-hover:scale-110 transition-transform" />
                                             Menu principal
                                         </Link>
+
                                     </motion.div>
                                 </motion.nav>
 
@@ -257,15 +269,25 @@ export function FloatingNavigation({ onEstimateClick }: FloatingNavigationProps)
                                     variants={menuItemVariants}
                                     className="mt-8 w-full relative z-10"
                                 >
-                                    <button
-                                        onClick={() => {
-                                            setMobileMenuOpen(false)
-                                            onEstimateClick()
-                                        }}
-                                        className="h-14 w-full rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
-                                    >
-                                        Estimer mon plan
-                                    </button>
+                                    {estimateHref ? (
+                                        <Link
+                                            href={estimateHref}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="flex h-14 w-full items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
+                                        >
+                                            Estimer mon plan
+                                        </Link>
+                                    ) : (
+                                        <button
+                                            onClick={() => {
+                                                setMobileMenuOpen(false)
+                                                handleEstimateClick()
+                                            }}
+                                            className="h-14 w-full rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
+                                        >
+                                            Estimer mon plan
+                                        </button>
+                                    )}
                                 </motion.div>
                             </div>
                         </motion.div>

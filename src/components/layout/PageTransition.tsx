@@ -23,7 +23,16 @@ export function PageTransition({ children }: PageTransitionProps) {
     const pathname = usePathname() ?? "/"
     const prefersReducedMotion = useReducedMotion()
     const [deviceProfile, setDeviceProfile] = useState<RouteDeviceProfile>("desktop")
-    const [previousPathname, setPreviousPathname] = useState(pathname)
+    const [routeContext, setRouteContext] = useState({ current: pathname, prev: pathname })
+
+    // Use derived state pattern to update previousPathname *during* render synchronously
+    // Eliminates the double-render/framer-motion reset caused by useEffect
+    if (routeContext.current !== pathname) {
+        setRouteContext({
+            prev: routeContext.current,
+            current: pathname,
+        })
+    }
 
     useEffect(() => {
         if (typeof window === "undefined") return
@@ -52,15 +61,13 @@ export function PageTransition({ children }: PageTransitionProps) {
         }
     }, [])
 
-    useEffect(() => {
-        setPreviousPathname(pathname)
-    }, [pathname])
+    // (useEffect for previousPathname removed, handled synchronously above)
 
     if (prefersReducedMotion) {
         return <>{children}</>
     }
 
-    const previousCluster = getRouteCluster(previousPathname)
+    const previousCluster = getRouteCluster(routeContext.prev)
     const cluster = getRouteCluster(pathname)
     const isHomeToTalentsOrBrands =
         previousCluster === "home" && (cluster === "talents" || cluster === "brands")

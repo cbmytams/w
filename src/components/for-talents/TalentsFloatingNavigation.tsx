@@ -132,8 +132,8 @@ export function TalentsFloatingNavigation() {
         <>
             {/* 1. Left - Logo (Minimal & Clean) */}
             <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: DURATION.slow, ease: EASING.entrance }}
                 className="fixed top-4 left-4 sm:top-8 sm:left-8 z-[100]"
             >
@@ -151,7 +151,7 @@ export function TalentsFloatingNavigation() {
                     }}
                     className="h-12 group flex items-center px-5 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
                 >
-                    <WafiaLogo className="h-4 w-auto text-black dark:text-white" />
+                    <WafiaLogo className="h-4 w-auto text-gray-900 dark:text-white" />
                     <div className="flex items-center justify-center w-6 z-10 mx-1">
                         <div className="w-[5px] h-[5px] rounded-full bg-purple-500 animate-pulse shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
                     </div>
@@ -161,10 +161,10 @@ export function TalentsFloatingNavigation() {
 
             {/* 2. Center - Navigation Pill (Premium Apple Style) - Desktop only */}
             <motion.nav
-                initial={{ y: -100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: DURATION.slower, ease: EASING.entrance }}
-                className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] hidden lg:block"
+                className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] hidden lg:!block"
             >
                 <div className="h-12 bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 flex items-center justify-center gap-1 relative">
                     <div className="flex items-center gap-0.5 relative z-10 h-9">
@@ -207,24 +207,26 @@ export function TalentsFloatingNavigation() {
 
             {/* 3. Right - Home button (Desktop) / Hamburger (Mobile) */}
             <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: DURATION.slow, ease: EASING.entrance }}
                 className="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] flex items-center gap-3"
             >
                 {/* Home - Desktop only */}
                 <Link
                     href="/"
-                    className="h-12 hidden lg:flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                    className="h-12 hidden lg:!flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                 >
                     <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                     <span>Menu principal</span>
                 </Link>
 
+
+
                 {/* Hamburger - Mobile only */}
                 <button
                     onClick={() => setMobileMenuOpen(true)}
-                    className="h-12 w-12 lg:hidden flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
+                    className="h-12 w-12 flex lg:!hidden items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
                     aria-label="Ouvrir le menu"
                 >
                     <Menu className="h-5 w-5 text-gray-900 dark:text-white" />
@@ -261,7 +263,7 @@ export function TalentsFloatingNavigation() {
 
                                 {/* Header with Pulsing Dot & Context */}
                                 <div className="flex items-center justify-center mb-8 relative z-10">
-                                    <WafiaLogo className="h-6 w-auto text-black dark:text-white" />
+                                    <WafiaLogo className="h-6 w-auto text-gray-900 dark:text-white" />
                                     <div className="flex items-center justify-center w-6 z-10 mx-3">
                                         <div className="w-[6px] h-[6px] rounded-full bg-purple-500 animate-pulse shadow-[0_0_10px_rgba(168,85,247,0.8)]"></div>
                                     </div>
@@ -285,7 +287,6 @@ export function TalentsFloatingNavigation() {
                                             {item.label}
                                         </motion.a>
                                     ))}
-
                                     <motion.div variants={menuItemVariants}>
                                         <Link
                                             href="/"
@@ -295,6 +296,7 @@ export function TalentsFloatingNavigation() {
                                             <Home className="h-5 w-5 group-hover:scale-110 transition-transform" />
                                             Menu principal
                                         </Link>
+
                                     </motion.div>
                                 </motion.nav>
 

@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback } from "react";
 
 interface WikiArticleSummary {
     slug: string;
@@ -18,20 +16,6 @@ interface WikiArticleCardProps {
 }
 
 export default function WikiArticleCard({ article, index }: WikiArticleCardProps) {
-    const router = useRouter();
-
-    const handleClick = useCallback((e: React.MouseEvent) => {
-        e.preventDefault();
-        router.push(`/wiki/${article.slug}`);
-    }, [router, article.slug]);
-
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            router.push(`/wiki/${article.slug}`);
-        }
-    };
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -42,8 +26,6 @@ export default function WikiArticleCard({ article, index }: WikiArticleCardProps
         >
             <Link
                 href={`/wiki/${article.slug}`}
-                onClick={handleClick}
-                onKeyDown={handleKeyDown}
                 className="block py-8 cursor-pointer no-underline"
                 aria-label={`Lire l'article : ${article.title}`}
             >

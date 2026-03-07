@@ -1,5 +1,7 @@
 import { BrandListClient, BrandListItem } from './BrandListClient';
 import { prisma } from '@/lib/db';
+import { Prisma } from '@prisma/client';
+import { type QuestionValue } from '@/lib/questionnaireIntegrity';
 import { computeCompletion } from '@/lib/completion';
 import { BRANDS_QUESTIONNAIRE_MAP } from '@/lib/questionnaireMap';
 
@@ -11,12 +13,12 @@ export default async function BrandsListPage() {
     orderBy: { submittedAt: 'desc' }
   });
 
-  const formattedData: BrandListItem[] = responses.map((res: any) => {
-    const dataObj = res.answersJson as Record<string, any>;
+  const formattedData: BrandListItem[] = responses.map((res: Prisma.QuestionnaireResponseGetPayload<undefined>) => {
+    const dataObj = res.answersJson as Record<string, QuestionValue>;
     const completion = computeCompletion(res.answersJson, BRANDS_QUESTIONNAIRE_MAP);
 
     // For Brands, company name is stored heavily in "ql_company" according to our map
-    const companyName = dataObj?.['ql_company'] || 'Anonyme';
+    const companyName = (dataObj?.['ql_company'] as string) || 'Anonyme';
 
     return {
       id: res.id,
@@ -30,10 +32,10 @@ export default async function BrandsListPage() {
 
   return (
     <div className="space-y-6">
-      <div className="surface-card p-6 bg-questionnaire-surface border border-questionnaire-muted rounded-xl">
-        <div className="text-xs uppercase tracking-[0.3em] text-gray-400">Plateforme Brands</div>
-        <h1 className="text-2xl font-semibold mt-2 text-white">Réponses au Diagnostic</h1>
-        <p className="text-sm text-gray-400 mt-2">
+      <div className="surface-card p-6">
+        <div className="text-[10px] uppercase tracking-[0.35em] text-white/25 font-medium mb-1">Plateforme Brands</div>
+        <h1 className="text-lg font-semibold text-white/90">Réponses au Diagnostic</h1>
+        <p className="text-sm text-white/40 mt-1">
           Vue d'ensemble des marques ayant complété ou démarré le questionnaire de projet.
         </p>
       </div>

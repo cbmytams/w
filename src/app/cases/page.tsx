@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { siteConfig, sitePaths } from "@/lib/site";
 
 const CASES = [
   {
@@ -21,11 +22,17 @@ const CASES = [
 ];
 
 export const metadata: Metadata = {
-  title: "Cas clients | Wafia",
+  title: "Cas clients",
   description: "Découvrez des exemples de campagnes influence et studio opérées par Wafia.",
+  alternates: {
+    canonical: sitePaths.cases,
+  },
   openGraph: {
     title: "Cas clients | Wafia",
-    description: "Découvrez des exemples de campagnes influence et studio opérées par Wafia."
+    description: "Découvrez des exemples de campagnes influence et studio opérées par Wafia.",
+    url: sitePaths.cases,
+    siteName: siteConfig.name,
+    type: "website",
   },
   twitter: {
     card: "summary",
@@ -36,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function CasesPage() {
   return (
-    <main className="min-h-screen px-6 py-20">
+    <main id="main-content" className="min-h-screen px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Cases</p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight">Quelques exemples</h1>

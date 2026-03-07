@@ -1,16 +1,21 @@
 "use client"
 
 import * as React from "react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { WafiaLogo } from "@/components/ui/WafiaLogo"
-import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import { HOME_OPTIONS } from "@/constants"
 import { Sparkles, ArrowUpRight, Users, Palette, Megaphone, type LucideIcon } from "lucide-react"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 import { EASING, DURATION } from "@/lib/easing"
 import { WikiPremiumCTA } from "@/components/home/WikiPremiumCTA"
+
+const DeferredParticlesBackground = dynamic(
+    () => import("@/components/ui/RefinedParticlesBackground"),
+    { ssr: false, loading: () => null }
+)
 
 function StaticBackground() {
     return (
@@ -20,10 +25,7 @@ function StaticBackground() {
     )
 }
 
-const RefinedParticlesBackground = dynamic(() => import("@/components/ui/RefinedParticlesBackground"), {
-    ssr: false,
-    loading: () => <StaticBackground />
-})
+// The RefinedParticlesBackground is explicitly imported and SSR safe natively
 
 // Better icon mapping for space theme
 const ICONS: Record<string, LucideIcon> = {
@@ -40,25 +42,35 @@ const ICONS: Record<string, LucideIcon> = {
 export function HomeClient() {
     const router = useRouter()
     const prefersReducedMotion = useReducedMotion()
-    const [enableBackground, setEnableBackground] = React.useState(false)
+    const [showParticles, setShowParticles] = React.useState(false)
+    const [enableBackground, setEnableBackground] = React.useState(() => {
+        // Initialize synchronously on the client to prevent flash
+        if (typeof window !== "undefined") {
+            const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+            const saveData = connection?.saveData === true
+            return !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !saveData
+        }
+        return true // Default server value (replaced by next/dynamic loading state anyway)
+    })
 
     React.useEffect(() => {
         const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
         const saveData = connection?.saveData === true
-
-        // Keep animated background enabled unless user explicitly asks for reduced motion
-        // or activates data saving mode.
         setEnableBackground(!prefersReducedMotion && !saveData)
     }, [prefersReducedMotion])
 
     React.useEffect(() => {
-        const seen = new Set<string>()
-        for (const option of HOME_OPTIONS) {
-            if (seen.has(option.route)) continue
-            seen.add(option.route)
-            router.prefetch(option.route)
+        if (!enableBackground) {
+            setShowParticles(false)
+            return
         }
-    }, [router])
+
+        const frame = window.requestAnimationFrame(() => {
+            setShowParticles(true)
+        })
+
+        return () => window.cancelAnimationFrame(frame)
+    }, [enableBackground])
 
     React.useLayoutEffect(() => {
         if (typeof window === "undefined") return
@@ -81,13 +93,18 @@ export function HomeClient() {
         return () => window.clearTimeout(cleanupTimer)
     }, [])
 
+    const prefetchRoute = React.useCallback((route: string) => {
+        void router.prefetch(route)
+    }, [router])
+
     return (
         <div id="home-root" className="min-h-screen w-full bg-black flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
 
             {/* ============================================
-                SPACE BACKGROUND 
+                SPACE BACKGROUND
                ============================================ */}
-            {enableBackground ? <RefinedParticlesBackground /> : <StaticBackground />}
+            <StaticBackground />
+            {enableBackground && showParticles && <DeferredParticlesBackground />}
 
             {/* Grain Texture */}
             <div
@@ -137,6 +154,10 @@ export function HomeClient() {
                             >
                                 <Link
                                     href={option.route}
+                                    prefetch={false}
+                                    onMouseEnter={() => prefetchRoute(option.route)}
+                                    onFocus={() => prefetchRoute(option.route)}
+                                    onTouchStart={() => prefetchRoute(option.route)}
                                     className="group relative flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.08] hover:border-white/25 hover:scale-105 active:scale-95 transition-all duration-300"
                                 >
                                     {/* Icon */}

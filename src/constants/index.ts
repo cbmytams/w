@@ -29,6 +29,8 @@ export {
     TALENT_DELIVERABLES,
     TALENT_FOR_WHO,
     TALENT_CTA,
+    TALENT_BUSINESS,
+    TALENT_IDENTITY,
     BRAND_GRADIENT
 } from "./talent-blocks"
 
@@ -39,4 +41,35 @@ export { BRAND_NAVIGATION } from "./brand-additions"
 export { HOME_OPTIONS } from "./home-blocks"
 
 // Restore legacy for broken components
-export * from "./legacy"
+export {
+    CLIENTS,
+    PROCESS_STEPS,
+    AGENCY_KIT,
+    AGENCY_NAVIGATION,
+    TALENT_TIMELINE,
+    TALENT_METHOD,
+    TALENT_SERVICES,
+    TALENT_PLATFORMS,
+    TALENT_PROOF_STRIP,
+    TALENT_OS_SYSTEM,
+    AUTHENTICITY_CARDS,
+    BRAND_HERO_CONTENT,
+    MAIN_NAVIGATION,
+    FOOTER_NAVIGATION,
+    SOCIAL_LINKS,
+    WIDGETS,
+    TALENT_JOURNEY_HEADER,
+    TALENT_JOURNEY_PHASES,
+    TALENT_JOURNEY_STEPS,
+    getStepsByPhase,
+    getPhaseConfig
+} from "./legacy"
+
+export type {
+    SocialLink,
+    WidgetId,
+    WidgetData,
+    JourneyPhase,
+    JourneyStep,
+    PhaseConfig
+} from "./legacy"

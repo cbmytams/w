@@ -26,72 +26,11 @@ export const BRAND_HERO_CONTENT = {
     ],
     cta: {
         primary: { text: "Voir nos réalisations", href: "#case-studies" },
-        secondary: { text: "Estimer mon plan", href: "/questionnaire-brands/index.html" }
+        secondary: { text: "Estimer mon plan", href: "/questionnaire/brands" }
     },
     timing: "⏱️ 4–6 semaines pour une campagne complète."
 } as const;
 
-// (A) Casting validation client
-export const CASTING_VALIDATION = {
-    id: "casting-validation",
-    title: "Casting validé. Ensemble.",
-    highlightWord: "validé",
-    subtitle: "On recommande. Vous validez. On tranche ensemble.",
-    bullets: [
-        "Shortlist documentée (critères clairs).",
-        "Allers-retours rapides pour alignement.",
-        "Validation finale = côté marque."
-    ]
-} as const;
-
-// (B) Timing flexibility
-export const TIMING_HERO = {
-    text: "⏱️ 4–6 semaines recommandé. Last minute possible."
-} as const;
-
-export const TIMING_STEP = {
-    title: "Timing",
-    text: "Idéal : 4–6 semaines. Urgence ? On sait sortir vite."
-} as const;
-
-// (C) Authenticité
-export const AUTHENTICITY = {
-    id: "authenticity",
-    title: "Authentique. Sinon inutile.",
-    highlightWord: "Authentique",
-    subtitle: "On choisit des créateurs qui matchent vraiment votre marque.",
-    bullets: [
-        "Audience fit (pas juste des stats).",
-        "Valeurs + tonalité alignées.",
-        "Co-création : contenu naturel, pas plaqué."
-    ]
-} as const;
-
-// (D) KPIs dashboard feature
-export const KPIS_FEATURE = {
-    title: "KPIs utiles",
-    description: "Rétention, complétion, saves, shares/DM, trafic, conversions. Selon l'objectif."
-} as const;
-
-// (E) Sourcing problem
-export const SOURCING_PROBLEM = {
-    title: "Sourcing = chronophage",
-    highlightWord: "Sourcing",
-    lines: [
-        "Trouver, contacter, relancer, négocier.",
-        "On le fait pour vous avec une shortlist cohérente."
-    ]
-} as const;
-
-// (F) First campaign support
-export const FIRST_CAMPAIGN_STEP = {
-    text: "Première campagne ? On vous guide de A à Z."
-} as const;
-
-export const FIRST_CAMPAIGN_FAQ = {
-    question: "Je n'ai jamais lancé de campagne, vous m'aidez ?",
-    answer: "Oui. On vous guide pas à pas : stratégie, casting, prod, diffusion, pilotage et analyse. Vous suivez, on exécute."
-} as const;
 
 export const AUTHENTICITY_CARDS = [
     {

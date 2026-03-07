@@ -1,15 +1,15 @@
 ---
-title: "Recycler et Repurposer son Contenu Multi-Plateforme : Le Guide Complet 2025"
+title: "Réutilisation multi-plateforme du contenu : méthode et cadence"
 slug: "recycler-repurposer-contenu-multi-plateforme-2025"
 category: "Stratégie — Production"
-theme: "croissance"
+theme: "production"
 publishedAt: "2025-08-10"
 ---
 
-# Recycler et Repurposer son Contenu Multi-Plateforme : Le Guide Complet 2025
+# Réutilisation multi-plateforme du contenu : méthode et cadence
 
 **Slug :** recycler-repurposer-contenu-multi-plateforme-2025  
-**Meta description :** Stratégie multi-plateforme, comment transformer un contenu TikTok en YouTube/Instagram/Newsletter, maximiser le ROI du contenu, outils 2025.  
+**Meta description :** Méthode de réutilisation multi-plateforme d’un contenu source, avec cadence de diffusion et priorisation des formats.  
 **Catégorie :** Stratégie — Production
 
 ---
@@ -96,7 +96,7 @@ Regarde ton pillar content et identifie les "chunks" (segments).
 - Hack 1 de 90 sec → Possible 2 versions : 60 sec TikTok + 30 sec super hook video pour YouTube shorts.
 
 **Outils :**
-- CapCut (free, puissant, idéal pour ce use case).[cite:89][cite:95]
+- CapCut (free, puissant, idéal pour ce use case).
 - Adobe Premiere Rush (payant mais plus pro).
 
 ---
@@ -144,7 +144,7 @@ Transforme ta vidéo YouTube en article blog (2 000-3 000 mots).
 Les meilleures moments de ta vidéo mère deviennent des clips standalone.
 
 Outils :
-- Opus Clip (AI, find best moments automatiquement).[cite:86][cite:89]
+- Opus Clip (AI, find best moments automatiquement).
 - Runway ou Descript (manuel mais très fin).
 
 **Process :**
@@ -249,6 +249,3 @@ Semaine 1 :
 
 **Total reach : ~60k en une semaine pour 1 pillar content original + recycling smart.**
 
----
-
-*Sources : Plann repurposing guide, Vbout multi-platform strategy, Sotrender TikTok repurposing 2025.*

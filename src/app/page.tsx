@@ -1,10 +1,16 @@
 import { HomeClient } from "@/components/home/HomeClient"
+import { sitePaths } from "@/lib/site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Accueil",
+    title: {
+        absolute: "Wafia | Influence & Creative Studio",
+    },
     description:
         "Studio créatif et moteur d'influence Wafia pour marques, agences et talents.",
+    alternates: {
+        canonical: sitePaths.home,
+    },
     openGraph: {
         title: "Wafia | Influence & Creative Studio",
         description:

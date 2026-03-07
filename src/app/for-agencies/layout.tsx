@@ -3,7 +3,7 @@ import { siteConfig, sitePaths } from "@/lib/site"
 import { breadcrumbSchema } from "@/lib/structured-data"
 
 export const metadata: Metadata = {
-    title: "Wafia | Partenaire Influence pour Agences",
+    title: "Partenaire Influence pour Agences",
     description: "Sous-traitance clé-en-main ou renfort ponctuel pour agences. Casting, production et pilotage de vos campagnes d'influence.",
     keywords: ["agence influence", "partenariat B2B", "white label", "sous-traitance influence", "production créative"],
     alternates: {

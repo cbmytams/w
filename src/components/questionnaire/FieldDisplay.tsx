@@ -1,14 +1,26 @@
 import React from 'react';
 import { FieldType } from '@/lib/questionnaireMap';
+import { BRANDS_QUESTIONS, TALENTS_QUESTIONS } from '@/lib/questionnaireData'; import { type QuestionValue } from '@/lib/questionnaireIntegrity';
 
 interface FieldDisplayProps {
     label: string;
-    value: any;
+    value: QuestionValue;
     type: FieldType;
     required: boolean;
+    questionType?: 'BRANDS' | 'TALENTS';
+    fieldKey?: string;
 }
 
-export function FieldDisplay({ label, value, type, required }: FieldDisplayProps) {
+const getOptionLabel = (questionType: 'BRANDS' | 'TALENTS', key: string, val: string) => {
+    const list = questionType === 'BRANDS' ? BRANDS_QUESTIONS : TALENTS_QUESTIONS;
+    const q = list.find(q => q.id === key);
+    if (!q || !q.options) return val;
+    const opt = q.options.find(o => o.id === val);
+    if (!opt) return val;
+    return opt.emoji ? `${opt.label} ${opt.emoji}` : opt.label;
+}
+
+export function FieldDisplay({ label, value, type, required, questionType, fieldKey }: FieldDisplayProps) {
     const isMissing = required && (value === undefined || value === null || value === '');
     const isPresentWithEmpty = !required && (value === undefined || value === null || value === '');
 
@@ -34,11 +46,14 @@ export function FieldDisplay({ label, value, type, required }: FieldDisplayProps
         if (type === 'multiple' && Array.isArray(value)) {
             return (
                 <div className="flex flex-wrap gap-2 mt-1">
-                    {value.map((v, i) => (
-                        <span key={i} className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-xs text-gray-200">
-                            {v}
-                        </span>
-                    ))}
+                    {value.map((v, i) => {
+                        const formatted = (questionType && fieldKey) ? getOptionLabel(questionType, fieldKey, v) : v;
+                        return (
+                            <span key={i} className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-xs text-gray-200">
+                                {formatted}
+                            </span>
+                        );
+                    })}
                 </div>
             );
         }
@@ -59,7 +74,11 @@ export function FieldDisplay({ label, value, type, required }: FieldDisplayProps
             )
         }
 
-        return <span className="text-white">{String(value)}</span>;
+        const formattedValue = (type === 'single' && questionType && fieldKey && typeof value === 'string')
+            ? getOptionLabel(questionType, fieldKey, value)
+            : String(value);
+
+        return <span className="text-white">{formattedValue}</span>;
     }
 
     return (

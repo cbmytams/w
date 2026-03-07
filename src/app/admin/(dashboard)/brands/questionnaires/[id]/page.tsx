@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/db';
 import { notFound } from 'next/navigation';
+import { type QuestionValue } from '@/lib/questionnaireIntegrity';
 import { EntityDetailLayout } from '@/components/dashboard/EntityDetailLayout';
 import { SectionCard } from '@/components/questionnaire/SectionCard';
 import { FieldDisplay } from '@/components/questionnaire/FieldDisplay';
@@ -8,8 +9,12 @@ import { computeCompletion } from '@/lib/completion';
 
 export const dynamic = 'force-dynamic';
 
-export default async function BrandDetail({ params }: { params: { id: string } }) {
-    const { id } = params;
+type BrandQuestionnaireDetailProps = {
+    params: Promise<{ id: string }>;
+};
+
+export default async function BrandDetail({ params }: BrandQuestionnaireDetailProps) {
+    const { id } = await params;
 
     const response = await prisma.questionnaireResponse.findUnique({
         where: { id }
@@ -19,8 +24,8 @@ export default async function BrandDetail({ params }: { params: { id: string } }
         notFound();
     }
 
-    const dataObj = response.answersJson as Record<string, any>;
-    const companyName = dataObj?.['ql_company'] || 'Entreprise Anonyme';
+    const dataObj = response.answersJson as Record<string, QuestionValue>;
+    const companyName = (dataObj?.['ql_company'] as string) || 'Entreprise Anonyme';
 
     // Computations
     const globalCompletion = computeCompletion(response.answersJson, BRANDS_QUESTIONNAIRE_MAP);
@@ -80,6 +85,8 @@ export default async function BrandDetail({ params }: { params: { id: string } }
                                 value={dataObj[field.key]}
                                 type={field.type}
                                 required={field.required}
+                                questionType="BRANDS"
+                                fieldKey={field.key}
                             />
                         ))}
                     </SectionCard>

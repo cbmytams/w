@@ -3,7 +3,7 @@
  * Direction: Premium warm gradient (Orange/Red) — Brand identity
  */
 
-import { ArrowRight, Mail, ArrowLeft } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface DiagnosticLandingProps {
@@ -14,14 +14,6 @@ interface DiagnosticLandingProps {
 export function DiagnosticLanding({ onStart, onStartExpress }: DiagnosticLandingProps) {
     return (
         <div className="h-full min-h-0 flex flex-col items-center justify-center px-6 relative overflow-hidden bg-[var(--bg-deep)]">
-
-            {/* Back to Site */}
-            <div className="absolute top-6 left-6 z-20">
-                <a href="/" className="flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors">
-                    <ArrowLeft className="w-4 h-4" />
-                    Retour au site
-                </a>
-            </div>
 
             {/* Background Ambient Glows (Orange/Red) */}
             {/* Background Ambient Glows (Orange/Red) */}

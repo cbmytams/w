@@ -1,20 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Wiki de l'Influence</title>
-    <link>https://wiki-influence.com/blog</link>
-    <description>Un wiki interactif de l'influence : algorithmes, monétisation, croissance et branding sur toutes les plateformes.</description>
-    <language>fr</language>
-    <atom:link href="https://wiki-influence.com/rss.xml" rel="self" type="application/rss+xml"/>
-
+    <title>Wiki de l&apos;Influence</title>
+    <link>https://wafia.fr/wiki/blog</link>
+    <description>Guides, analyses et stratégies sur l&apos;influence, les plateformes et la monétisation des créateurs.</description>
+    <language>fr-FR</language>
+    <atom:link href="https://wafia.fr/wiki/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
-      <title>Comment les algorithmes des réseaux sociaux fonctionnent en 2025</title>
-      <link>https://wiki-influence.com/blog/algorithmes-reseaux-sociaux-2025</link>
-      <description>Comprendre les algorithmes de TikTok, Instagram, YouTube et plus encore pour maximiser votre portée organique.</description>
-      <pubDate>Wed, 26 Feb 2025 00:00:00 +0100</pubDate>
-      <guid>https://wiki-influence.com/blog/algorithmes-reseaux-sociaux-2025</guid>
+      <title>Outils IA pour créateurs : usages, gains de productivité et limites</title>
+      <link>https://wafia.fr/wiki/blog/ai-tools-creators-automation-2025</link>
+      <description>Usages des outils IA pour créateurs en 2025 : production, édition, automatisation et limites à anticiper.</description>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/ai-tools-creators-automation-2025</guid>
     </item>
-
-    <!-- Add new items here as articles are published -->
+    <item>
+      <title>Facebook : usages créateurs, distribution et monétisation</title>
+      <link>https://wafia.fr/wiki/blog/guide-facebook-2025-createur-influenceur</link>
+      <description>Repères Facebook 2025 : distribution organique, formats vidéo, groupes et monétisation.</description>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/guide-facebook-2025-createur-influenceur</guid>
+    </item>
+    <item>
+      <title>Réutilisation multi-plateforme du contenu : méthode et cadence</title>
+      <link>https://wafia.fr/wiki/blog/recycler-repurposer-contenu-multi-plateforme-2025</link>
+      <description>Méthode de réutilisation multi-plateforme d’un contenu source, avec cadence de diffusion et priorisation des formats.</description>
+      <pubDate>Sun, 10 Aug 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/recycler-repurposer-contenu-multi-plateforme-2025</guid>
+    </item>
+    <item>
+      <title>X (Twitter) : distribution, formats éditoriaux et monétisation</title>
+      <link>https://wafia.fr/wiki/blog/guide-x-twitter-2025-influenceur-monetisation</link>
+      <description>Repères X (Twitter) 2025 : formats éditoriaux, distribution For You, analytics et monétisation.</description>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/guide-x-twitter-2025-influenceur-monetisation</guid>
+    </item>
+    <item>
+      <title>Choisir sa niche : méthode de validation et positionnement</title>
+      <link>https://wafia.fr/wiki/blog/choisir-niche-createur-2025</link>
+      <description>Méthode de choix de niche pour créateurs : validation marché, positionnement et trajectoire de développement.</description>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/choisir-niche-createur-2025</guid>
+    </item>
+    <item>
+      <title>Snapchat : positionnement créateur, formats et revenus</title>
+      <link>https://wafia.fr/wiki/blog/guide-snapchat-2025-createur-influenceur</link>
+      <description>Repères Snapchat 2025 : rôle de Spotlight et Stories, mesure de performance et opportunités de revenus.</description>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/guide-snapchat-2025-createur-influenceur</guid>
+    </item>
+    <item>
+      <title>Contrats de marque : négociation, clauses clés et sécurisation</title>
+      <link>https://wafia.fr/wiki/blog/contrats-influenceur-marques-2025</link>
+      <description>Négocier des contrats de marque en 2025 : clauses sensibles, droits d’usage, exclusivité et cadre de négociation.</description>
+      <pubDate>Sun, 27 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/contrats-influenceur-marques-2025</guid>
+    </item>
+    <item>
+      <title>Twitch : croissance communautaire et modèle de revenus</title>
+      <link>https://wafia.fr/wiki/blog/guide-twitch-2025-streamer-monetisation</link>
+      <description>Repères Twitch 2025 : acquisition, fidélisation communautaire et structure de revenus.</description>
+      <pubDate>Tue, 22 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/guide-twitch-2025-streamer-monetisation</guid>
+    </item>
+    <item>
+      <title>IRL streaming : exigences techniques et organisation opérationnelle</title>
+      <link>https://wafia.fr/wiki/blog/irl-streaming-mobile-setup-2025</link>
+      <description>Référentiel opérationnel IRL streaming : équipement mobile, connectivité, sécurité et organisation de production.</description>
+      <pubDate>Sun, 20 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/irl-streaming-mobile-setup-2025</guid>
+    </item>
+    <item>
+      <title>YouTube : stratégie éditoriale, croissance et monétisation</title>
+      <link>https://wafia.fr/wiki/blog/guide-youtube-2025-influenceur-monetisation</link>
+      <description>Repères YouTube 2025 : stratégie éditoriale, SEO, analytics et revenus (AdSense, sponsoring, affiliation).</description>
+      <pubDate>Tue, 15 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/guide-youtube-2025-influenceur-monetisation</guid>
+    </item>
+    <item>
+      <title>Live shopping : formats, modèles économiques et mise en œuvre</title>
+      <link>https://wafia.fr/wiki/blog/live-shopping-social-commerce-2025</link>
+      <description>Évaluer et exécuter une stratégie de live shopping en 2025 : plateformes, formats et modèles économiques.</description>
+      <pubDate>Sun, 13 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/live-shopping-social-commerce-2025</guid>
+    </item>
+    <item>
+      <title>Instagram : distribution, formats et monétisation</title>
+      <link>https://wafia.fr/wiki/blog/guide-instagram-2025-influenceur-strategie</link>
+      <description>Repères Instagram 2025 : fonctionnement des surfaces, signaux de distribution et leviers de monétisation.</description>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/guide-instagram-2025-influenceur-strategie</guid>
+    </item>
+    <item>
+      <title>Discord pour créateurs : structuration de communauté et revenus récurrents</title>
+      <link>https://wafia.fr/wiki/blog/discord-server-communaute-createurs-2025</link>
+      <description>Mettre en place un serveur Discord créateur : architecture, animation communautaire et options de revenus récurrents.</description>
+      <pubDate>Sun, 06 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/discord-server-communaute-createurs-2025</guid>
+    </item>
+    <item>
+      <title>TikTok : distribution, croissance et monétisation</title>
+      <link>https://wafia.fr/wiki/blog/guide-tiktok-2025-strategie-influenceur</link>
+      <description>Repères TikTok 2025 : logique de distribution, métriques utiles, formats performants et options de monétisation.</description>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/guide-tiktok-2025-strategie-influenceur</guid>
+    </item>
+    <item>
+      <title>Newsletter créateur : stratégie éditoriale et leviers de monétisation</title>
+      <link>https://wafia.fr/wiki/blog/newsletter-influenceur-monetisation-2025</link>
+      <description>Structurer une newsletter créateur en 2025 : acquisition, calendrier éditorial et modèles de monétisation.</description>
+      <pubDate>Sun, 29 Jun 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/newsletter-influenceur-monetisation-2025</guid>
+    </item>
+    <item>
+      <title>Personal branding : positionnement, cohérence et stratégie de long terme</title>
+      <link>https://wafia.fr/wiki/blog/personal-branding-marketing-influence-2025</link>
+      <description>Cadre de personal branding pour créateurs en 2025 : niche, identité, cohérence éditoriale et relation aux marques.</description>
+      <pubDate>Sun, 22 Jun 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/personal-branding-marketing-influence-2025</guid>
+    </item>
+    <item>
+      <title>Croissance organique : hook, rétention et collaborations</title>
+      <link>https://wafia.fr/wiki/blog/croissance-organique-reseaux-sociaux-2025</link>
+      <description>Méthodes de croissance organique en 2025 : qualité du hook, rétention, itération et collaborations multi-plateformes.</description>
+      <pubDate>Sun, 15 Jun 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/croissance-organique-reseaux-sociaux-2025</guid>
+    </item>
+    <item>
+      <title>Monétisation des créateurs : modèles, ordres de grandeur et priorités</title>
+      <link>https://wafia.fr/wiki/blog/monetisation-influenceurs-2025</link>
+      <description>Panorama des leviers de monétisation des créateurs en 2025, par plateforme, avec ordres de grandeur et priorités d’activation.</description>
+      <pubDate>Sun, 08 Jun 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/monetisation-influenceurs-2025</guid>
+    </item>
+    <item>
+      <title>Algorithmes des réseaux sociaux : principes de diffusion par plateforme</title>
+      <link>https://wafia.fr/wiki/blog/algorithmes-reseaux-sociaux-2025</link>
+      <description>Analyse des mécanismes de recommandation sur TikTok, Instagram, YouTube, Twitch, Snapchat, X et Facebook, avec des principes d’optimisation applicables en 2025.</description>
+      <pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://wafia.fr/wiki/blog/algorithmes-reseaux-sociaux-2025</guid>
+    </item>
   </channel>
 </rss>

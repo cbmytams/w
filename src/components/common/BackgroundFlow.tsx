@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { m, useScroll, useSpring, useTransform } from "framer-motion"
+import { m, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 
 export type BackgroundFlowVariant = "brands" | "talents"
@@ -99,9 +99,20 @@ const FLOW_MOTION: Record<BackgroundFlowVariant, {
 
 export function BackgroundFlow({ variant = "brands" }: { variant?: BackgroundFlowVariant }) {
     const prefersReducedMotion = useReducedMotion()
-    const [isMobile, setIsMobile] = useState(false)
-    const [saveData, setSaveData] = useState(false)
-    const [lowMemory, setLowMemory] = useState(false)
+    const [isMobile, setIsMobile] = useState(() => {
+        if (typeof window === "undefined") return false
+        return window.matchMedia("(max-width: 768px)").matches
+    })
+    const [saveData, setSaveData] = useState(() => {
+        if (typeof navigator === "undefined") return false
+        const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+        return Boolean(connection?.saveData)
+    })
+    const [lowMemory, setLowMemory] = useState(() => {
+        if (typeof navigator === "undefined") return false
+        const nav = navigator as Navigator & { deviceMemory?: number }
+        return Boolean(nav.deviceMemory && nav.deviceMemory <= 4)
+    })
     const { scrollYProgress } = useScroll()
     const isBrandsVariant = variant === "brands"
 
@@ -114,7 +125,7 @@ export function BackgroundFlow({ variant = "brands" }: { variant?: BackgroundFlo
         mobileQuery.addEventListener("change", updateMobile)
 
         const nav = navigator as Navigator & {
-            connection?: { saveData?: boolean; addEventListener?: (event: string, cb: () => void) => void; removeEventListener?: (event: string, cb: () => void) => void }
+            connection?: { addEventListener?: (event: string, cb: () => void) => void; removeEventListener?: (event: string, cb: () => void) => void, saveData?: boolean }
             deviceMemory?: number
         }
         const connection = nav.connection
@@ -138,9 +149,12 @@ export function BackgroundFlow({ variant = "brands" }: { variant?: BackgroundFlo
     })
 
     const motion = FLOW_MOTION[variant]
-    const ySlow = useTransform(smoothProgress, [0, 1], motion.ySlow)
-    const yMid = useTransform(smoothProgress, [0, 1], motion.yMid)
-    const yFast = useTransform(smoothProgress, [0, 1], motion.yFast)
+    const ySlowTarget = useTransform(smoothProgress, [0, 1], motion.ySlow)
+    const yMidTarget = useTransform(smoothProgress, [0, 1], motion.yMid)
+    const yFastTarget = useTransform(smoothProgress, [0, 1], motion.yFast)
+    const ySlow = useMotionValue(motion.ySlow[0])
+    const yMid = useMotionValue(motion.yMid[0])
+    const yFast = useMotionValue(motion.yFast[0])
 
     const palette = PALETTES[variant]
     // iOS/WebKit can crash when complex animated glow layers run under fixed
@@ -165,26 +179,57 @@ export function BackgroundFlow({ variant = "brands" }: { variant?: BackgroundFlo
         : (isBrandsVariant
             ? (isMobile
                 ? {
-                      first: "absolute -top-32 left-1/2 h-[420px] w-[620px] -translate-x-1/2 rounded-full blur-[84px] dark:opacity-75 gpu-accelerated",
-                      second: "absolute top-[20%] right-[-10%] h-[380px] w-[520px] rounded-full blur-[94px] dark:opacity-70 gpu-accelerated",
-                      third: "absolute bottom-[-16%] left-[-12%] h-[440px] w-[560px] rounded-full blur-[98px] dark:opacity-70 gpu-accelerated"
-                  }
+                    first: "absolute -top-32 left-1/2 h-[420px] w-[620px] -translate-x-1/2 rounded-full blur-[84px] dark:opacity-75 gpu-accelerated",
+                    second: "absolute top-[20%] right-[-10%] h-[380px] w-[520px] rounded-full blur-[94px] dark:opacity-70 gpu-accelerated",
+                    third: "absolute bottom-[-16%] left-[-12%] h-[440px] w-[560px] rounded-full blur-[98px] dark:opacity-70 gpu-accelerated"
+                }
                 : {
-                      first: "absolute -top-44 left-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full blur-[120px] dark:opacity-75 gpu-accelerated",
-                      second: "absolute top-[18%] right-[-8%] h-[520px] w-[680px] rounded-full blur-[130px] dark:opacity-70 gpu-accelerated",
-                      third: "absolute bottom-[-20%] left-[-10%] h-[600px] w-[740px] rounded-full blur-[136px] dark:opacity-70 gpu-accelerated"
-                  })
+                    first: "absolute -top-44 left-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full blur-[120px] dark:opacity-75 gpu-accelerated",
+                    second: "absolute top-[18%] right-[-8%] h-[520px] w-[680px] rounded-full blur-[130px] dark:opacity-70 gpu-accelerated",
+                    third: "absolute bottom-[-20%] left-[-10%] h-[600px] w-[740px] rounded-full blur-[136px] dark:opacity-70 gpu-accelerated"
+                })
             : (isMobile
                 ? {
-                      first: "absolute -top-36 left-1/2 h-[500px] w-[760px] -translate-x-1/2 rounded-full blur-[96px] dark:opacity-80 gpu-accelerated",
-                      second: "absolute top-[20%] right-[-10%] h-[460px] w-[620px] rounded-full blur-[104px] dark:opacity-70 gpu-accelerated",
-                      third: "absolute bottom-[-18%] left-[-12%] h-[520px] w-[680px] rounded-full blur-[112px] dark:opacity-70 gpu-accelerated"
-                  }
+                    first: "absolute -top-36 left-1/2 h-[500px] w-[760px] -translate-x-1/2 rounded-full blur-[96px] dark:opacity-80 gpu-accelerated",
+                    second: "absolute top-[20%] right-[-10%] h-[460px] w-[620px] rounded-full blur-[104px] dark:opacity-70 gpu-accelerated",
+                    third: "absolute bottom-[-18%] left-[-12%] h-[520px] w-[680px] rounded-full blur-[112px] dark:opacity-70 gpu-accelerated"
+                }
                 : {
-                      first: "absolute -top-48 left-1/2 h-[640px] w-[980px] -translate-x-1/2 rounded-full blur-[140px] dark:opacity-80 gpu-accelerated",
-                      second: "absolute top-[18%] right-[-8%] h-[600px] w-[760px] rounded-full blur-[150px] dark:opacity-70 gpu-accelerated",
-                      third: "absolute bottom-[-24%] left-[-12%] h-[680px] w-[820px] rounded-full blur-[160px] dark:opacity-70 gpu-accelerated"
-                  }))
+                    first: "absolute -top-48 left-1/2 h-[640px] w-[980px] -translate-x-1/2 rounded-full blur-[140px] dark:opacity-80 gpu-accelerated",
+                    second: "absolute top-[18%] right-[-8%] h-[600px] w-[760px] rounded-full blur-[150px] dark:opacity-70 gpu-accelerated",
+                    third: "absolute bottom-[-24%] left-[-12%] h-[680px] w-[820px] rounded-full blur-[160px] dark:opacity-70 gpu-accelerated"
+                }))
+
+    useEffect(() => {
+        if (!allowParallax) {
+            ySlow.set(0)
+            yMid.set(0)
+            yFast.set(0)
+            return
+        }
+
+        ySlow.set(motion.ySlow[0])
+        yMid.set(motion.yMid[0])
+        yFast.set(motion.yFast[0])
+    }, [allowParallax, motion, yFast, yMid, ySlow])
+
+    useMotionValueEvent(ySlowTarget, "change", (value) => {
+        if (allowParallax) {
+            ySlow.set(value)
+        }
+    })
+
+    useMotionValueEvent(yMidTarget, "change", (value) => {
+        if (allowParallax) {
+            yMid.set(value)
+        }
+    })
+
+    useMotionValueEvent(yFastTarget, "change", (value) => {
+        if (allowParallax) {
+            yFast.set(value)
+        }
+    })
 
     return (
         <div className="pointer-events-none fixed inset-0 z-0">

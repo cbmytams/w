@@ -44,6 +44,12 @@ export function QuestionCard({ question, answer, onAnswer, calibration, onSubmit
     const { containerRef, mousePosition, handleMouseMove } = useSpotlight();
     const [isDragging, setIsDragging] = useState(false);
 
+    const handleAnswer = (value: AnswerValue) => {
+        if (!isDragging) {
+            onAnswer(value);
+        }
+    };
+
     // Generate unique IDs for ARIA
     const questionLabelId = `question-label-${question.id}`;
     const MAX_TEXT_LENGTH = 500;
@@ -182,11 +188,10 @@ export function QuestionCard({ question, answer, onAnswer, calibration, onSubmit
                         </div>
 
                         <div className="relative w-full h-14 flex items-center group">
-                            <div className="absolute left-0 right-0 h-1.5 bg-white/10 rounded-full" />
-                            <motion.div
-                                className="absolute left-0 h-1.5 bg-gradient-to-r from-[var(--heat-start)] to-[var(--heat-end)] rounded-full shadow-[0_0_15px_var(--heat-end)]"
-                                animate={{ width: `${intensity * 100}%` }}
-                                transition={isDragging ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 30 }}
+                            <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1.5 bg-white/10 rounded-full" />
+                            <div
+                                className="absolute left-0 top-1/2 -translate-y-1/2 h-1.5 bg-gradient-to-r from-[var(--heat-start)] to-[var(--heat-end)] rounded-full shadow-[0_0_15px_var(--heat-end)]"
+                                style={{ width: `${intensity * 100}%` }}
                             />
                             <input
                                 type="range"
@@ -197,17 +202,16 @@ export function QuestionCard({ question, answer, onAnswer, calibration, onSubmit
                                 onMouseUp={() => setIsDragging(false)}
                                 onTouchStart={() => setIsDragging(true)}
                                 onTouchEnd={() => setIsDragging(false)}
-                                onChange={(e) => { const v = parseInt(e.target.value); onAnswer(v); }}
+                                onChange={(e) => { const v = parseInt(e.target.value); handleAnswer(v); }}
                                 data-testid="scale-input"
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-50"
                             />
-                            <motion.div
-                                className="absolute h-8 w-8 sm:h-6 sm:w-6 bg-white rounded-full shadow-[0_0_20px_white] pointer-events-none z-20 flex items-center justify-center border-2 border-[var(--heat-start)]"
-                                animate={{ left: `${intensity * 100}%`, x: '-50%' }}
-                                transition={isDragging ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 30 }}
+                            <div
+                                className="absolute top-1/2 -translate-y-1/2 h-8 w-8 sm:h-6 sm:w-6 bg-white rounded-full shadow-[0_0_20px_white] pointer-events-none z-20 flex items-center justify-center border-2 border-[var(--heat-start)]"
+                                style={{ left: `${intensity * 100}%`, transform: 'translate(-50%, -50%)' }}
                             >
                                 <div className="w-2.5 h-2.5 sm:w-2 sm:h-2 rounded-full bg-[var(--heat-start)]" />
-                            </motion.div>
+                            </div>
                         </div>
                         <div className="w-full flex justify-between mt-4 text-xs font-bold tracking-widest uppercase text-zinc-600">
                             <span>{question.labels?.min}</span>

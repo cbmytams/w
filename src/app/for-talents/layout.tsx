@@ -4,7 +4,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/structured-data"
 import { TALENT_FAQ } from "@/constants"
 
 export const metadata: Metadata = {
-    title: "Wafia | Talent Management & Stratégie Créateurs",
+    title: "Talent Management & Stratégie Créateurs",
     description: "Passe pro sans te perdre. Management de talents, structure business et production studio pour créateurs, artistes et comédiens ambitieux.",
     keywords: ["talent management", "créateur", "artiste", "management musical", "influenceur", "carrière créateur"],
     alternates: {

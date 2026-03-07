@@ -17,6 +17,26 @@ export async function POST(request: Request) {
         const type = body.type; // "TALENTS" or "BRANDS"
         const responses = body.responses;
 
+        // Strict Doctrine: Reject empty or highly anomalous data
+        if (typeof responses !== 'object' || Object.keys(responses).length === 0) {
+            return NextResponse.json(
+                { error: "Payload rejected: responses object is empty or malformed." },
+                { status: 400 }
+            );
+        }
+
+        const name = responses.ql_name || responses.ql_company;
+        const email = responses.ql_email;
+
+        // We require at least a name or an email to consider this a valid lead.
+        // Otherwise, it's a ghost/bot submission that pollutes the database.
+        if (!name && !email) {
+            return NextResponse.json(
+                { error: "Payload rejected: Missing basic identification (name or email)." },
+                { status: 400 }
+            );
+        }
+
         // Find a default Tenant or create one
         let tenant = await db.tenant.findFirst();
         if (!tenant) {
@@ -30,13 +50,13 @@ export async function POST(request: Request) {
 
         // We use "Talent" for both because in this schema everything is a "Talent" 
         // regardless if it's a Brand or an actual Talent (hence QuestionnaireType is used to differentiate).
-        const name = responses.ql_name || responses.ql_company || `Anonyme ${type}`;
+        const finalName = name || `Inconnu (${email})`;
         const timestamp = Date.now().toString();
-        const slug = `${name.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${timestamp}`;
+        const slug = `${finalName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${timestamp}`;
 
         const talentRecord = await db.talent.create({
             data: {
-                name: name,
+                name: finalName,
                 slug: slug,
                 tenantId: tenant.id,
             }

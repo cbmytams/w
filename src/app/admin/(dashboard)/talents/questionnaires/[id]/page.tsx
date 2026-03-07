@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/db';
 import { notFound } from 'next/navigation';
+import { type QuestionValue } from '@/lib/questionnaireIntegrity';
 import { EntityDetailLayout } from '@/components/dashboard/EntityDetailLayout';
 import { SectionCard } from '@/components/questionnaire/SectionCard';
 import { FieldDisplay } from '@/components/questionnaire/FieldDisplay';
@@ -8,8 +9,12 @@ import { computeCompletion } from '@/lib/completion';
 
 export const dynamic = 'force-dynamic';
 
-export default async function TalentDetail({ params }: { params: { id: string } }) {
-    const { id } = params;
+type TalentQuestionnaireDetailProps = {
+    params: Promise<{ id: string }>;
+};
+
+export default async function TalentDetail({ params }: TalentQuestionnaireDetailProps) {
+    const { id } = await params;
 
     const response = await prisma.questionnaireResponse.findUnique({
         where: { id },
@@ -20,7 +25,7 @@ export default async function TalentDetail({ params }: { params: { id: string } 
         notFound();
     }
 
-    const dataObj = response.answersJson as Record<string, any>;
+    const dataObj = response.answersJson as Record<string, QuestionValue>;
     const name = response.talent?.name || 'Anonyme';
 
     // Computations
@@ -81,6 +86,8 @@ export default async function TalentDetail({ params }: { params: { id: string } 
                                 value={dataObj[field.key]}
                                 type={field.type}
                                 required={field.required}
+                                questionType="TALENTS"
+                                fieldKey={field.key}
                             />
                         ))}
                     </SectionCard>

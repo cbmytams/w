@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { ContactFormPanel } from "@/components/contact/ContactFormPanel";
 
 type ContactSearchParams = Promise<{
@@ -17,20 +16,6 @@ function sanitizeType(value: string | undefined) {
   if (value === "agency") return "agency";
   return "brand";
 }
-
-export const metadata: Metadata = {
-  title: "Contact | Wafia",
-  description: "Parlez à l'équipe Wafia pour lancer votre projet influence, studio ou acquisition.",
-  openGraph: {
-    title: "Contact | Wafia",
-    description: "Parlez à l'équipe Wafia pour lancer votre projet influence, studio ou acquisition."
-  },
-  twitter: {
-    card: "summary",
-    title: "Contact | Wafia",
-    description: "Parlez à l'équipe Wafia pour lancer votre projet influence, studio ou acquisition."
-  }
-};
 
 export default async function ContactPage({
   searchParams

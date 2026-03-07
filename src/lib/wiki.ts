@@ -1,261 +1,397 @@
-/**
- * Wiki article library — server-side only.
- *
- * Reads Markdown files from `content/wiki/`, parses frontmatter via
- * gray-matter, and converts Markdown → HTML with remark/rehype at build time.
- * Every function here runs during `next build` (SSG) and never ships to the
- * client bundle.
- */
-
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkRehype from "remark-rehype";
-import rehypeRaw from "rehype-raw";
-import rehypeStringify from "rehype-stringify";
-
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
+import {
+  WIKI_PLATFORM_LABELS,
+  WIKI_PLATFORM_ORDER,
+  WIKI_THEME_LABELS,
+  WIKI_THEME_ORDER,
+} from "./wiki-taxonomy";
 
 export interface WikiChapter {
-    title: string;
-    /** Raw markdown content */
-    content: string;
-    /** Pre-rendered HTML for SSR/SEO */
-    contentHtml: string;
-}
-
-/** FAQ item auto-extracted from H3 headings ending with "?" */
-export interface WikiFaqItem {
-    q: string;
-    a: string;
+  title: string;
+  content: string;
+  contentHtml: string;
 }
 
 export interface WikiArticle {
-    /** URL-safe identifier (from frontmatter `slug`) */
-    slug: string;
-    /** Human-readable title */
-    title: string;
-    /** Short description for meta tags */
-    description: string;
-    /** Category label, e.g. "Plateforme — Instagram" */
-    category: string;
-    /** ISO date string, e.g. "2025-06-01" */
-    publishedAt: string;
-    /** Optional theme id, e.g. "algorithmes" */
-    theme?: string;
-    /** Optional platform id, e.g. "instagram" */
-    platform?: string;
-    /** SEO keywords */
-    keywords: string[];
-    /** Slugs of related articles for internal linking */
-    relatedSlugs: string[];
-    /** Estimated reading time, e.g. "8 min" */
-    readTime: string;
-    /** Author name for E-E-A-T (from frontmatter, defaults to "Équipe Wafia") */
-    author: string;
-    /** Pre-rendered HTML of the full article body */
-    contentHtml: string;
-    /** Chapters with both raw markdown AND pre-rendered HTML */
-    chapters: WikiChapter[];
-    /** Auto-extracted FAQ items from H3 headings ending with "?" */
-    faqItems: WikiFaqItem[];
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  publishedAt: string;
+  theme?: string;
+  platform?: string;
+  readTime: string;
+  chapters: WikiChapter[];
+  contentHtml: string;
+  sourcePath: string;
 }
 
-// ---------------------------------------------------------------------------
-// Paths
-// ---------------------------------------------------------------------------
+export interface WikiArticleSummary {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  readTime: string;
+  publishedAt: string;
+  theme?: string;
+  platform?: string;
+}
 
-const CONTENT_DIR = path.join(process.cwd(), "content", "wiki");
+const CONTENT_DIR = path.join(process.cwd(), "wiki", "src", "content", "blog");
+const DEFAULT_DESCRIPTION =
+  "Guides, analyses et stratégies sur l'influence, les plateformes et la monétisation des créateurs.";
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-// ---------------------------------------------------------------------------
-// Markdown → HTML pipeline
-// ---------------------------------------------------------------------------
+interface ParseResult {
+  article: WikiArticle | null;
+  errors: string[];
+}
+
+let cache: WikiArticle[] | null = null;
+
+function toSafeString(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizeDescription(value: string): string {
+  const clean = value.replace(/\s+/g, " ").trim();
+  if (!clean) return DEFAULT_DESCRIPTION;
+  if (clean.length <= 165) return clean;
+  return `${clean.slice(0, 162).trimEnd()}...`;
+}
+
+function stripMarkdown(input: string): string {
+  return input
+    .replace(/!\[.*?\]\(.*?\)/g, " ")
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    .replace(/`{1,3}[^`]+`{1,3}/g, " ")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/_{1,2}(.*?)_{1,2}/g, "$1")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^\s*>\s?/gm, "")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*\d+\.\s+/gm, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractMetaDescription(markdownBody: string): string {
+  const match = markdownBody.match(/^\*\*Meta description\s*:\*\*\s*(.+)$/im);
+  return match ? match[1].trim() : "";
+}
+
+function cleanMarkdown(markdown: string): string {
+  return markdown
+    .replace(/^#\s+.*$/m, "")
+    .replace(/^\*\*Slug\s*:.*$/gim, "")
+    .replace(/^\*\*Meta description\s*:.*$/gim, "")
+    .replace(/^\*\*Cat[ée]gorie\s*:.*$/gim, "")
+    .replace(/^---$/gm, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function extractFirstParagraph(markdownBody: string): string {
+  const cleaned = cleanMarkdown(markdownBody);
+  const paragraphs = cleaned
+    .split(/\n\s*\n/g)
+    .map((part) => part.trim())
+    .filter((part) => part && !part.startsWith("## "));
+  return paragraphs[0] || "";
+}
+
+function computeReadTime(markdownBody: string): string {
+  const wordCount = stripMarkdown(markdownBody)
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return `${Math.max(1, Math.ceil(wordCount / 225))} min`;
+}
+
+function toIsoDate(value: string): string | null {
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toISOString();
+}
 
 async function markdownToHtml(markdown: string): Promise<string> {
-    const result = await unified()
-        .use(remarkParse)
-        .use(remarkGfm)
-        .use(remarkRehype, { allowDangerousHtml: true })
-        .use(rehypeRaw)
-        .use(rehypeStringify)
-        .process(markdown);
+  const [{ unified }, { default: remarkParse }, { default: remarkGfm }, { default: remarkRehype }, { default: rehypeRaw }, { default: rehypeStringify }] =
+    await Promise.all([
+      import("unified"),
+      import("remark-parse"),
+      import("remark-gfm"),
+      import("remark-rehype"),
+      import("rehype-raw"),
+      import("rehype-stringify"),
+    ]);
 
-    return String(result);
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeStringify)
+    .process(markdown);
+
+  return String(result);
 }
-
-/**
- * Strip duplicated title / slug / meta description lines written
- * inside the body of the Markdown (they're already in frontmatter).
- */
-function cleanMarkdown(markdown: string): string {
-    let cleaned = markdown;
-    cleaned = cleaned.replace(/^#\s+.*$/m, ""); // remove leading # title
-    cleaned = cleaned.replace(/^\*\*Slug\s*:.*$/m, "");
-    cleaned = cleaned.replace(/^\*\*Meta description\s*:.*$/m, "");
-    cleaned = cleaned.replace(/^\*\*Cat[ée]gorie\s*:.*$/m, "");
-    return cleaned;
-}
-
-// ---------------------------------------------------------------------------
-// Chapter splitting (matches original wiki/src/lib/blog.ts)
-// ---------------------------------------------------------------------------
 
 async function splitIntoChapters(markdown: string): Promise<WikiChapter[]> {
-    const cleaned = cleanMarkdown(markdown);
+  const sections = cleanMarkdown(markdown).split(/^(?=## )/m).filter((section) => section.trim());
+  const chapters: WikiChapter[] = [];
 
-    const sections = cleaned.split(/^(?=## )/m).filter((s) => s.trim());
-    const chapters: WikiChapter[] = [];
+  for (const section of sections) {
+    const lines = section.split("\n");
+    const titleMatch = lines[0].match(/^##\s+(.+)/);
 
-    for (const section of sections) {
-        const lines = section.split("\n");
-        const titleLine = lines[0];
-        const titleMatch = titleLine.match(/^##\s+(.+)/);
-        if (titleMatch) {
-            chapters.push({
-                title: titleMatch[1].trim(),
-                content: lines.slice(1).join("\n").trim(),
-                contentHtml: "", // filled below
-            });
-        } else if (chapters.length === 0) {
-            // Content before first heading — add as intro chapter
-            const trimmed = section.trim();
-            if (trimmed) {
-                chapters.push({ title: "Introduction", content: trimmed, contentHtml: "" });
-            }
-        } else {
-            // Append to last chapter
-            chapters[chapters.length - 1].content += "\n\n" + section.trim();
-        }
+    if (titleMatch) {
+      const content = lines.slice(1).join("\n").trim();
+      const contentHtml = await markdownToHtml(content);
+      chapters.push({
+        title: titleMatch[1].trim(),
+        content,
+        contentHtml,
+      });
+      continue;
     }
 
-    // Strip trailing --- (horizontal rules) from each chapter
-    // and generate per-chapter HTML
-    const result: WikiChapter[] = [];
-    for (const ch of chapters) {
-        const cleanedContent = ch.content.replace(/\n---\s*$/g, "").trim();
-        const html = await markdownToHtml(cleanedContent);
-        result.push({
-            title: ch.title,
-            content: cleanedContent,
-            contentHtml: html,
+    if (chapters.length === 0) {
+      const content = section.trim();
+      if (content) {
+        const contentHtml = await markdownToHtml(content);
+        chapters.push({
+          title: "Introduction",
+          content,
+          contentHtml,
         });
+      }
+      continue;
     }
 
-    return result;
+    const mergedContent = `${chapters[chapters.length - 1].content}\n\n${section.trim()}`.trim();
+    chapters[chapters.length - 1].content = mergedContent;
+    chapters[chapters.length - 1].contentHtml = await markdownToHtml(mergedContent);
+  }
+
+  return chapters;
 }
 
-// ---------------------------------------------------------------------------
-// FAQ extraction — finds H3 headings ending with "?" and uses the
-// following paragraph(s) as the answer. Powers FAQPage JSON-LD.
-// ---------------------------------------------------------------------------
+function validateFrontmatter(
+  frontmatter: Record<string, unknown>,
+  sourcePath: string,
+): { errors: string[]; normalized: Omit<WikiArticle, "chapters" | "contentHtml" | "readTime"> } {
+  const errors: string[] = [];
 
-function extractFaqItems(chapters: WikiChapter[]): WikiFaqItem[] {
-    const items: WikiFaqItem[] = [];
+  const title = toSafeString(frontmatter.title);
+  const slug = toSafeString(frontmatter.slug);
+  const category = toSafeString(frontmatter.category);
+  const publishedAtRaw = toSafeString(frontmatter.publishedAt);
+  const theme = toSafeString(frontmatter.theme);
+  const platform = toSafeString(frontmatter.platform);
 
-    for (const ch of chapters) {
-        // Split chapter content by H3 headings
-        const h3Sections = ch.content.split(/^(?=### )/m);
+  if (!title) errors.push(`title manquant (${sourcePath})`);
+  if (!slug) errors.push(`slug manquant (${sourcePath})`);
+  if (slug && !SLUG_PATTERN.test(slug)) {
+    errors.push(`slug invalide "${slug}" (${sourcePath})`);
+  }
+  if (!category) errors.push(`category manquante (${sourcePath})`);
+  if (!publishedAtRaw) errors.push(`publishedAt manquant (${sourcePath})`);
+  if (!theme && !platform) errors.push(`theme ou platform requis (${sourcePath})`);
 
-        for (const section of h3Sections) {
-            const match = section.match(/^###\s+(.+\?)\s*\n([\s\S]*?)(?=\n###|\s*$)/);
-            if (match) {
-                const question = match[1].trim();
-                // Take the answer text: strip markdown formatting for the JSON-LD
-                const answerRaw = match[2].trim();
-                // Convert to plain text: strip bold, links, etc.
-                const answer = answerRaw
-                    .replace(/\*\*(.+?)\*\*/g, "$1")
-                    .replace(/\[(.+?)\]\(.+?\)/g, "$1")
-                    .replace(/^[-*]\s+/gm, "• ")
-                    .trim();
+  const publishedAt = toIsoDate(publishedAtRaw);
+  if (publishedAtRaw && !publishedAt) {
+    errors.push(`publishedAt invalide "${publishedAtRaw}" (${sourcePath})`);
+  }
 
-                if (question && answer) {
-                    items.push({ q: question, a: answer });
-                }
-            }
-        }
+  return {
+    errors,
+    normalized: {
+      slug,
+      title,
+      description: "",
+      category,
+      publishedAt: publishedAt ?? "",
+      theme: theme || undefined,
+      platform: platform || undefined,
+      sourcePath,
+    },
+  };
+}
+
+async function parseRawWikiDocument(
+  sourcePath: string,
+  raw: string,
+): Promise<ParseResult> {
+  const { data, content } = matter(raw);
+  const { errors, normalized } = validateFrontmatter(data, sourcePath);
+
+  if (errors.length > 0) {
+    return { article: null, errors };
+  }
+
+  const metaDescription = extractMetaDescription(content);
+  const firstParagraph = extractFirstParagraph(content);
+  const description = normalizeDescription(
+    toSafeString(data.description) || metaDescription || stripMarkdown(firstParagraph),
+  );
+  const chapters = await splitIntoChapters(content);
+
+  if (chapters.length === 0) {
+    return {
+      article: null,
+      errors: [`aucun chapitre analysable (${sourcePath})`],
+    };
+  }
+
+  const cleanedContent = cleanMarkdown(content);
+  const contentHtml = await markdownToHtml(cleanedContent);
+  const readTime = computeReadTime(content);
+
+  return {
+    article: {
+      ...normalized,
+      description,
+      readTime,
+      chapters,
+      contentHtml,
+    },
+    errors: [],
+  };
+}
+
+function listMarkdownFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((name) => name.endsWith(".md") || name.endsWith(".mdx"))
+    .sort((a, b) => a.localeCompare(b, "fr"));
+}
+
+function ensureNoDuplicateSlugs(articles: WikiArticle[]) {
+  const seen = new Map<string, string>();
+  const duplicates: string[] = [];
+
+  for (const article of articles) {
+    const previous = seen.get(article.slug);
+    if (previous) {
+      duplicates.push(
+        `slug dupliqué "${article.slug}" (${previous}) et (${article.sourcePath})`,
+      );
+      continue;
     }
+    seen.set(article.slug, article.sourcePath);
+  }
 
-    return items;
+  if (duplicates.length > 0) {
+    throw new Error(`Invalid wiki content:\n${duplicates.map((d) => `- ${d}`).join("\n")}`);
+  }
 }
 
-// ---------------------------------------------------------------------------
-// Public API
-// ---------------------------------------------------------------------------
+function sortIdsByKnownOrder(ids: string[], knownOrder: string[]): string[] {
+  const index = new Map(knownOrder.map((id, position) => [id, position]));
+  return [...ids].sort((a, b) => {
+    const aIndex = index.get(a);
+    const bIndex = index.get(b);
+    if (aIndex !== undefined && bIndex !== undefined) return aIndex - bIndex;
+    if (aIndex !== undefined) return -1;
+    if (bIndex !== undefined) return 1;
+    return a.localeCompare(b, "fr");
+  });
+}
 
-let _cache: WikiArticle[] | null = null;
+async function loadAllWikiArticles(): Promise<WikiArticle[]> {
+  const files = listMarkdownFiles(CONTENT_DIR);
+  const parseErrors: string[] = [];
+  const parsedArticles: WikiArticle[] = [];
 
-/**
- * Return every wiki article, parsed and HTML-rendered.
- * Results are cached in-process (safe for build-time SSG).
- */
+  for (const fileName of files) {
+    const absolutePath = path.join(CONTENT_DIR, fileName);
+    const raw = fs.readFileSync(absolutePath, "utf8");
+    const parsed = await parseRawWikiDocument(absolutePath, raw);
+    if (parsed.errors.length > 0) {
+      parseErrors.push(...parsed.errors);
+      continue;
+    }
+    if (parsed.article) parsedArticles.push(parsed.article);
+  }
+
+  ensureNoDuplicateSlugs(parsedArticles);
+
+  if (parseErrors.length > 0) {
+    throw new Error(`Invalid wiki content:\n${parseErrors.map((d) => `- ${d}`).join("\n")}`);
+  }
+
+  return parsedArticles.sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
+}
+
 export async function getAllWikiArticles(): Promise<WikiArticle[]> {
-    if (_cache) return _cache;
-
-    const files = fs
-        .readdirSync(CONTENT_DIR)
-        .filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
-
-    const articles: WikiArticle[] = [];
-
-    for (const file of files) {
-        const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf-8");
-        const { data, content } = matter(raw);
-
-        const wordCount = content.split(/\s+/).filter((w) => w.length > 0).length;
-        const readTime = `${Math.max(1, Math.ceil(wordCount / 225))} min`;
-
-        const contentHtml = await markdownToHtml(cleanMarkdown(content));
-        const chapters = await splitIntoChapters(content);
-        const faqItems = extractFaqItems(chapters);
-
-        articles.push({
-            slug: data.slug ?? file.replace(/\.mdx?$/, ""),
-            title: data.title ?? "Sans titre",
-            description: data.description ?? "",
-            category: data.category ?? "Article",
-            publishedAt: data.publishedAt ?? "2025-01-01",
-            theme: data.theme,
-            platform: data.platform,
-            keywords: data.keywords ?? [],
-            relatedSlugs: data.relatedSlugs ?? [],
-            readTime,
-            author: data.author ?? "Équipe Wafia",
-            contentHtml,
-            chapters,
-            faqItems,
-        });
-    }
-
-    // Sort by publication date descending
-    articles.sort(
-        (a, b) =>
-            new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-    );
-
-    _cache = articles;
-    return articles;
+  if (!cache) {
+    cache = await loadAllWikiArticles();
+  }
+  return cache;
 }
 
-/**
- * Return a single article by slug, or `null` if not found.
- */
-export async function getWikiArticleBySlug(
-    slug: string,
-): Promise<WikiArticle | null> {
-    const articles = await getAllWikiArticles();
-    return articles.find((a) => a.slug === slug) ?? null;
+export async function getWikiArticleBySlug(slug: string): Promise<WikiArticle | null> {
+  const articles = await getAllWikiArticles();
+  return articles.find((article) => article.slug === slug) ?? null;
 }
 
-/**
- * Return all slugs — used by `generateStaticParams`.
- */
 export async function getAllWikiSlugs(): Promise<string[]> {
-    const articles = await getAllWikiArticles();
-    return articles.map((a) => a.slug);
+  const articles = await getAllWikiArticles();
+  return articles.map((article) => article.slug);
 }
+
+export async function getWikiThemes(): Promise<string[]> {
+  const articles = await getAllWikiArticles();
+  const themeSet = new Set<string>(WIKI_THEME_ORDER);
+
+  for (const article of articles) {
+    if (article.theme) themeSet.add(article.theme);
+  }
+
+  return sortIdsByKnownOrder([...themeSet], WIKI_THEME_ORDER);
+}
+
+export async function getWikiPlatforms(): Promise<string[]> {
+  const articles = await getAllWikiArticles();
+  const platformSet = new Set<string>(WIKI_PLATFORM_ORDER);
+
+  for (const article of articles) {
+    if (article.platform) platformSet.add(article.platform);
+  }
+
+  return sortIdsByKnownOrder([...platformSet], WIKI_PLATFORM_ORDER);
+}
+
+export async function getWikiArticleSummaries(): Promise<WikiArticleSummary[]> {
+  const articles = await getAllWikiArticles();
+  return articles.map((article) => ({
+    slug: article.slug,
+    title: article.title,
+    description: article.description,
+    category: article.category,
+    readTime: article.readTime,
+    publishedAt: article.publishedAt,
+    theme: article.theme,
+    platform: article.platform,
+  }));
+}
+
+export function clearWikiCacheForTests() {
+  cache = null;
+}
+
+export const __wikiInternals = {
+  stripMarkdown,
+  extractMetaDescription,
+  extractFirstParagraph,
+  cleanMarkdown,
+  parseRawWikiDocument,
+  ensureNoDuplicateSlugs,
+};
+
+export { WIKI_THEME_LABELS, WIKI_PLATFORM_LABELS };

@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import Link from "next/link"
 import { JulienHero } from "@/components/studio/julien/JulienHero"
 import { JulienBio } from "@/components/studio/julien/JulienBio"
 import { JulienStats } from "@/components/studio/julien/JulienStats"
@@ -8,15 +9,26 @@ import { Container } from "@/components/ui/container"
 import { FadeIn } from "@/components/ui/fade-in"
 import { SmartBackButton } from "@/components/ui/SmartBackButton"
 import { ArrowRight, ArrowLeft } from "lucide-react"
+import { siteConfig } from "@/lib/site"
 
 export const metadata: Metadata = {
     title: "Julien Ardid | Studio Créatif Wafia",
-    description: "Réalisateur & Créateur Vidéo spécialiste studio et produit. Du terrain au studio, explorez l'envers du décor des plus grandes marques."
+    description: "Réalisateur & Créateur Vidéo spécialiste studio et produit. Du terrain au studio, explorez l'envers du décor des plus grandes marques.",
+    alternates: {
+        canonical: "/studio/julien-ardid",
+    },
+    openGraph: {
+        title: "Julien Ardid | Studio Créatif Wafia",
+        description: "Réalisateur & Créateur Vidéo spécialiste studio et produit. Du terrain au studio, explorez l'envers du décor des plus grandes marques.",
+        url: "/studio/julien-ardid",
+        siteName: siteConfig.name,
+        type: "article",
+    },
 }
 
 export default function JulienArdidPage() {
     return (
-        <main className="min-h-screen bg-zinc-950 text-white selection:bg-white selection:text-black font-sans relative pt-12">
+        <main id="main-content" className="min-h-screen bg-zinc-950 text-white selection:bg-white selection:text-black font-sans relative pt-12">
 
             {/* Back to Studio Button */}
             <div className="fixed top-24 left-4 md:left-8 z-50 mix-blend-difference hidden md:block">
@@ -48,13 +60,13 @@ export default function JulienArdidPage() {
                             <p className="text-zinc-400 font-medium text-lg md:text-xl max-w-2xl mx-auto mb-12">
                                 Propulsez vos visuels produits avec une esthétique premium, colorée et social-first.
                             </p>
-                            <a
-                                href="/questionnaire-brands/index.html"
+                            <Link
+                                href="/questionnaire/brands"
                                 className="inline-flex items-center gap-4 px-8 py-5 md:px-12 md:py-6 rounded-full bg-white text-black font-black text-sm md:text-base uppercase tracking-widest hover:scale-105 active:scale-95 transition-transform duration-300 focus:outline-none focus:ring-4 focus:ring-white/30"
                             >
                                 Booker une Production
                                 <ArrowRight className="w-5 h-5 mb-0.5" />
-                            </a>
+                            </Link>
                         </FadeIn>
                     </Container>
 

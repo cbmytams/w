@@ -47,11 +47,21 @@ const columns: ColumnDef<BrandListItem>[] = [
     },
     {
         header: "Activité",
-        cell: (item) => (
-            <span className="text-xs text-gray-400">
-                il y a {formatDistanceToNow(new Date(item.updatedAt), { locale: fr })}
-            </span>
-        )
+        cell: (item) => {
+            const isNew = new Date().getTime() - new Date(item.updatedAt).getTime() < 24 * 60 * 60 * 1000;
+            return (
+                <div className="flex items-center gap-2">
+                    <span className="text-xs text-gray-400">
+                        il y a {formatDistanceToNow(new Date(item.updatedAt), { locale: fr })}
+                    </span>
+                    {isNew && (
+                        <span className="px-1.5 py-0.5 rounded text-[9px] uppercase tracking-wider font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                            Nouveau
+                        </span>
+                    )}
+                </div>
+            )
+        }
     },
     {
         header: "Statut",
@@ -59,8 +69,8 @@ const columns: ColumnDef<BrandListItem>[] = [
             const isComplete = item.completionPercent === 100;
             return (
                 <span className={`px-2 py-1 rounded text-[10px] uppercase tracking-wider font-semibold 
-          ${isComplete ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'}`}>
-                    {isComplete ? 'Complet' : 'Incomplet'}
+          ${isComplete ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-orange-500/10 text-orange-400 border border-orange-500/20'}`}>
+                    {isComplete ? 'Complet' : 'En cours'}
                 </span>
             );
         }

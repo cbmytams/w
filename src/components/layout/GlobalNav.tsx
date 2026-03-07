@@ -1,8 +1,17 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { usePathname } from "next/navigation"
-import { FloatingNavigation } from "@/components/for-brands/FloatingNavigation"
-import { TalentsFloatingNavigation } from "@/components/for-talents/TalentsFloatingNavigation"
+
+const FloatingNavigation = dynamic(
+    () => import("@/components/for-brands/FloatingNavigation").then((mod) => mod.FloatingNavigation),
+    { loading: () => null }
+)
+
+const TalentsFloatingNavigation = dynamic(
+    () => import("@/components/for-talents/TalentsFloatingNavigation").then((mod) => mod.TalentsFloatingNavigation),
+    { loading: () => null }
+)
 
 export function GlobalNav() {
     const pathname = usePathname()
@@ -23,18 +32,13 @@ export function GlobalNav() {
     }
 
     // Brands page specific nav
-    if (pathname?.startsWith("/for-brands")) {
-        const navigateToQuestionnaire = () => {
-            if (typeof window !== 'undefined') {
-                window.location.assign('/questionnaire-brands/index.html')
-            }
-        }
-        return <FloatingNavigation onEstimateClick={navigateToQuestionnaire} />
+    if (pathname === "/for-brands") {
+        return <FloatingNavigation key={`brands-${pathname}`} estimateHref="/questionnaire/brands" />
     }
 
     // Talents page specific nav
-    if (pathname?.startsWith("/for-talents")) {
-        return <TalentsFloatingNavigation />
+    if (pathname === "/for-talents") {
+        return <TalentsFloatingNavigation key={`talents-${pathname}`} />
     }
 
     // All other pages manage their own navigation

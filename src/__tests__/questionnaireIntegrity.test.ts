@@ -54,4 +54,32 @@ describe("Questionnaire Integrity Monitor", () => {
         const { issues } = validateQuestionnaireIntegrity(sections);
         expect(issues.length).toBe(0);
     });
+
+    it("should detect an infinite loop (cycle)", () => {
+        const sections = [
+            {
+                id: "s1", title: "Section 1", questions: [
+                    { id: "q1", title: "Q1", logic: [{ jumpTo: "q2" }] },
+                    { id: "q2", title: "Q2", logic: [{ jumpTo: "q3" }] },
+                    { id: "q3", title: "Q3", logic: [{ jumpTo: "q1" }] } // Cycle back to q1
+                ]
+            }
+        ];
+
+        const { issues } = validateQuestionnaireIntegrity(sections);
+        expect(issues.some(i => i.type === "infinite_loop")).toBe(true);
+    });
+
+    it("should detect a self-referential infinite loop", () => {
+        const sections = [
+            {
+                id: "s1", title: "Section 1", questions: [
+                    { id: "q1", title: "Q1", logic: [{ jumpTo: "q1" }] }
+                ]
+            }
+        ];
+
+        const { issues } = validateQuestionnaireIntegrity(sections);
+        expect(issues.some(i => i.type === "infinite_loop")).toBe(true);
+    });
 });

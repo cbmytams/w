@@ -89,14 +89,14 @@ export function HeroSection({ onContentClick }: HeroSectionProps) {
                         className="flex flex-wrap items-center gap-3 md:gap-4"
                     >
                         {/* Primary CTA - Filled */}
-                        <Link href={talentHeroCtaHref}>
-                            <motion.button
+                        <Link href={talentHeroCtaHref} className="inline-flex">
+                            <motion.span
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="px-6 md:px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-base font-semibold shadow-lg shadow-slate-900/20 dark:shadow-white/20 hover:shadow-xl transition-all"
+                                className="inline-flex px-6 md:px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-base font-semibold shadow-lg shadow-slate-900/20 dark:shadow-white/20 hover:shadow-xl transition-all"
                             >
                                 {TALENT_HERO.ctaPrimary}
-                            </motion.button>
+                            </motion.span>
                         </Link>
 
                         {/* Secondary CTA - White Pill High Vis / Dark Glass in Night Mode */}

@@ -1,65 +1,42 @@
-import { getAllWikiArticles } from "@/lib/wiki";
-import { siteConfig, sitePaths } from "@/lib/site";
-import {
-    breadcrumbSchema,
-    collectionPageSchema,
-} from "@/lib/structured-data";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { getWikiArticleSummaries } from "@/lib/wiki";
+import { siteConfig } from "@/lib/site";
 import WikiIndexView from "@/components/wiki/WikiIndexView";
 
-/**
- * Wiki index — SSG page.
- *
- * Server Component handles: metadata, JSON-LD, data fetching.
- * Client Component (WikiIndexView) handles: tabs, animations, dark mode.
- * All content is in the initial HTML for SEO.
- */
+const WIKI_TITLE = "Wiki de l'Influence";
+const WIKI_DESCRIPTION =
+  "Guides, analyses et stratégies sur l'influence, les plateformes et la monétisation des créateurs.";
+
+export const dynamic = "force-static";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: WIKI_TITLE,
+    description: WIKI_DESCRIPTION,
+    alternates: {
+      canonical: "/wiki",
+    },
+    openGraph: {
+      title: `${WIKI_TITLE} | Wafia`,
+      description: WIKI_DESCRIPTION,
+      url: new URL("/wiki", siteConfig.url).toString(),
+      type: "website",
+      locale: "fr_FR",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${WIKI_TITLE} | Wafia`,
+      description: WIKI_DESCRIPTION,
+    },
+  };
+}
+
 export default async function WikiIndexPage() {
-    const articles = await getAllWikiArticles();
-
-    // ── JSON-LD ──────────────────────────────────────────────────
-    const collectionLd = collectionPageSchema({
-        name: "Wiki de l'Influence",
-        description:
-            "Guides, analyses et stratégies pour le marketing d'influence et le digital.",
-        url: new URL(sitePaths.wiki, siteConfig.url).toString(),
-        items: articles.map((a) => ({
-            url: new URL(`/wiki/${a.slug}`, siteConfig.url).toString(),
-            name: a.title,
-        })),
-    });
-
-    const breadcrumbLd = breadcrumbSchema([
-        { name: "Accueil", url: new URL("/", siteConfig.url).toString() },
-        {
-            name: "Wiki",
-            url: new URL(sitePaths.wiki, siteConfig.url).toString(),
-        },
-    ]);
-
-    // Serializable article data for the client component
-    const articleSummaries = articles.map((a) => ({
-        slug: a.slug,
-        title: a.title,
-        category: a.category,
-        readTime: a.readTime,
-        theme: a.theme,
-        platform: a.platform,
-    }));
-
-    return (
-        <>
-            {/* Structured data — server-rendered for crawlers */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-            />
-
-            {/* Client-side interactive view — same design as original Vite SPA */}
-            <WikiIndexView articles={articleSummaries} />
-        </>
-    );
+  const articleSummaries = await getWikiArticleSummaries();
+  return (
+    <Suspense fallback={null}>
+      <WikiIndexView articles={articleSummaries} />
+    </Suspense>
+  );
 }

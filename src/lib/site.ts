@@ -14,6 +14,7 @@ export const siteConfig = {
 export const sitePaths = {
   home: "/",
   about: "/about",
+  blog: "/blog",
   services: "/services",
   process: "/process",
   cases: "/cases",
@@ -32,6 +33,7 @@ export const sitePaths = {
 export const sitemapRoutes = [
   sitePaths.home,
   sitePaths.explore,
+  sitePaths.blog,
   sitePaths.forBrands,
   sitePaths.forTalents,
   sitePaths.forAgencies,

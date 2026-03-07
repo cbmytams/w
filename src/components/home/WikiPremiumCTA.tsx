@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from "next/navigation"
 import { motion, MotionConfig } from "framer-motion"
 import { Orbit, Sparkle, ArrowDown } from "lucide-react"
 import { EASING } from "@/lib/easing"
@@ -14,6 +15,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion"
  * to avoid Next.js SSR hydration issues with FM's repeat: Infinity.
  */
 export function WikiPremiumCTA() {
+    const router = useRouter()
     const prefersReducedMotion = useReducedMotion()
     const [isTransitioning, setIsTransitioning] = React.useState(false)
     const navigationTimeoutRef = React.useRef<number | null>(null)
@@ -36,9 +38,10 @@ export function WikiPremiumCTA() {
         if (isTransitioning) return
 
         const exitDelay = window.matchMedia("(max-width: 768px)").matches ? 520 : 620
+        void router.prefetch("/wiki")
 
         if (prefersReducedMotion) {
-            window.location.assign("/wiki")
+            router.push("/wiki")
             return
         }
 
@@ -48,15 +51,18 @@ export function WikiPremiumCTA() {
         root?.classList.add("home-to-wiki-exit")
 
         navigationTimeoutRef.current = window.setTimeout(() => {
-            window.location.assign("/wiki")
+            router.push("/wiki")
         }, exitDelay)
-    }, [isTransitioning, prefersReducedMotion])
+    }, [isTransitioning, prefersReducedMotion, router])
 
     return (
         <MotionConfig reducedMotion="never">
             <motion.a
                 href="/wiki"
                 onClick={handleClick}
+                onMouseEnter={() => void router.prefetch("/wiki")}
+                onFocus={() => void router.prefetch("/wiki")}
+                onTouchStart={() => void router.prefetch("/wiki")}
                 aria-disabled={isTransitioning}
                 className={`wiki-cta group relative mt-20 md:mt-28 flex flex-col items-center justify-center outline-none ${isTransitioning ? "wiki-cta--transitioning pointer-events-none" : ""}`}
                 initial={{ opacity: 0, y: 20 }}

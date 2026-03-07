@@ -94,17 +94,32 @@ const nextConfig: NextConfig = {
         destination: "/for-talents",
         permanent: true,
       },
+      {
+        source: "/wiki/blog",
+        destination: "/wiki",
+        statusCode: 301,
+      },
+      {
+        source: "/wiki/blog/theme/:id",
+        destination: "/wiki/theme/:id",
+        statusCode: 301,
+      },
+      {
+        source: "/wiki/blog/platform/:id",
+        destination: "/wiki/platform/:id",
+        statusCode: 301,
+      },
+      {
+        source: "/wiki/blog/:slug",
+        destination: "/wiki/:slug",
+        statusCode: 301,
+      },
     ];
   },
   async rewrites() {
     return {
-      beforeFiles: [
-        { source: "/wiki", destination: "/wiki/index.html" },
-        { source: "/wiki/blog", destination: "/wiki/blog/index.html" },
-        { source: "/wiki/blog/theme/:id", destination: "/wiki/blog/theme/:id/index.html" },
-        { source: "/wiki/blog/platform/:id", destination: "/wiki/blog/platform/:id/index.html" },
-        { source: "/wiki/blog/:slug", destination: "/wiki/blog/:slug/index.html" },
-      ],
+      beforeFiles: [],
+      afterFiles: [],
       fallback: [
         { source: "/questionnaire", destination: "/questionnaire/index.html" },
         { source: "/questionnaire/:path*", destination: "/questionnaire/index.html" },

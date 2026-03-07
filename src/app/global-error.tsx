@@ -10,7 +10,7 @@ export default function GlobalError({
   return (
     <html lang="fr">
       <body className="min-h-screen flex items-center justify-center px-6">
-        <main className="max-w-lg rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+        <main id="main-content" className="max-w-lg rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
           <h1 className="text-2xl font-bold">Erreur globale</h1>
           <p className="mt-3 text-sm text-slate-600">
             Une erreur inattendue est survenue. Réessayez ou revenez plus tard.

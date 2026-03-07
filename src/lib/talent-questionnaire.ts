@@ -10,7 +10,7 @@ const TRACKING_QUERY_KEYS = [
 ] as const;
 
 const QUESTIONNAIRE_ENTRYPOINT = "site";
-const INTERNAL_QUESTIONNAIRE_PATH = "/questionnaire/index.html";
+const INTERNAL_QUESTIONNAIRE_PATH = "/questionnaire/talents";
 
 type SearchParamsLike = Pick<URLSearchParams, "get">;
 

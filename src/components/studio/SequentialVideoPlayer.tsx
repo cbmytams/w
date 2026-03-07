@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Volume2, VolumeX, ChevronRight, ChevronLeft, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -10,25 +10,91 @@ interface SequentialVideoPlayerProps {
 
 export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlayerProps) {
     const videoRef = useRef<HTMLVideoElement>(null)
+    const progressRefs = useRef<Array<HTMLDivElement | null>>([])
+    const animationFrameRef = useRef<number | null>(null)
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isMuted, setIsMuted] = useState(false) // Try unmuted by default
     const [isPlaying, setIsPlaying] = useState(false)
-    const [progress, setProgress] = useState(0)
+
+    const stopProgressLoop = useCallback(() => {
+        if (animationFrameRef.current !== null) {
+            window.cancelAnimationFrame(animationFrameRef.current)
+            animationFrameRef.current = null
+        }
+    }, [])
+
+    const syncProgressBars = useCallback(() => {
+        const video = videoRef.current
+        const total = video?.duration ?? 0
+        const ratio = total > 0 ? (video?.currentTime ?? 0) / total : 0
+
+        progressRefs.current.forEach((node, index) => {
+            if (!node) return
+
+            const scale = index < currentIndex ? 1 : index === currentIndex ? ratio : 0
+            node.style.transform = `scaleX(${scale})`
+        })
+    }, [currentIndex])
+
+    const startProgressLoop = useCallback(() => {
+        stopProgressLoop()
+
+        const tick = () => {
+            syncProgressBars()
+            animationFrameRef.current = window.requestAnimationFrame(tick)
+        }
+
+        animationFrameRef.current = window.requestAnimationFrame(tick)
+    }, [stopProgressLoop, syncProgressBars])
 
     const handleTimeUpdate = () => {
+        if (animationFrameRef.current === null) {
+            syncProgressBars()
+        }
+    }
+
+    const handlePlay = () => {
+        setIsPlaying(true)
+        startProgressLoop()
+    }
+
+    const handlePause = () => {
+        setIsPlaying(false)
+        stopProgressLoop()
+        syncProgressBars()
+    }
+
+    const handleLoadedMetadata = () => {
+        syncProgressBars()
+
+        if (videoRef.current && !videoRef.current.paused) {
+            startProgressLoop()
+            setIsPlaying(true)
+        }
+    }
+
+    useEffect(() => {
+        syncProgressBars()
+    }, [currentIndex, syncProgressBars, videos.length])
+
+    useEffect(() => {
+        return () => {
+            stopProgressLoop()
+        }
+    }, [stopProgressLoop])
+
+    const playVideo = async () => {
         if (videoRef.current) {
-            const current = videoRef.current.currentTime
-            const total = videoRef.current.duration
-            if (!isNaN(total)) {
-                // Update progress only if we are playing
-                setProgress((current / total) * 100)
+            try {
+                await videoRef.current.play()
+            } catch {
+                setIsPlaying(false)
             }
         }
     }
 
     const handleEnded = () => {
-        setProgress(0)
-        setIsPlaying(true)
+        syncProgressBars()
         if (currentIndex < videos.length - 1) {
             setCurrentIndex(prev => prev + 1)
         } else {
@@ -43,9 +109,8 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
             if (isPlaying) {
                 videoRef.current.pause()
             } else {
-                videoRef.current.play()
+                void playVideo()
             }
-            setIsPlaying(!isPlaying)
         }
     }
 
@@ -59,8 +124,6 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
 
     const nextVideo = (e: React.MouseEvent) => {
         e.stopPropagation()
-        setProgress(0)
-        setIsPlaying(true)
         if (currentIndex < videos.length - 1) {
             setCurrentIndex(prev => prev + 1)
         } else {
@@ -70,8 +133,6 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
 
     const prevVideo = (e: React.MouseEvent) => {
         e.stopPropagation()
-        setProgress(0)
-        setIsPlaying(true)
         if (currentIndex > 0) {
             setCurrentIndex(prev => prev - 1)
         } else {
@@ -95,11 +156,15 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     onTimeUpdate={handleTimeUpdate}
+                    onPlay={handlePlay}
+                    onPause={handlePause}
+                    onLoadedMetadata={handleLoadedMetadata}
                     onEnded={handleEnded}
                     onClick={togglePlay}
                     muted={isMuted}
                     playsInline
                     autoPlay
+                    preload="metadata"
                 />
             </AnimatePresence>
 
@@ -108,13 +173,12 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
                 {videos.map((_, idx) => (
                     <div key={idx} className="h-1 flex-1 bg-white/20 rounded-full overflow-hidden">
                         <motion.div
-                            className="h-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"
-                            initial={{ width: idx < currentIndex ? "100%" : "0%" }}
-                            animate={{
-                                width: idx < currentIndex ? "100%" :
-                                    idx === currentIndex ? `${progress}%` : "0%"
+                            ref={(node) => {
+                                progressRefs.current[idx] = node
                             }}
-                            transition={{ ease: "linear", duration: idx === currentIndex ? 0.1 : 0.3 }}
+                            className="h-full origin-left bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                            initial={false}
+                            style={{ transform: idx < currentIndex ? "scaleX(1)" : "scaleX(0)" }}
                         />
                     </div>
                 ))}

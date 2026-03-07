@@ -18,6 +18,9 @@ const DISPLAY_NAMES: Record<string, string> = {
     monetisation: "Monétisation",
     croissance: "Croissance",
     branding: "Branding",
+    audience: "Audience & Communauté",
+    production: "Production & Outils",
+    business: "Business & Contrats",
 };
 
 export default function ArticleListPage() {

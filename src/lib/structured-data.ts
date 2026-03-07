@@ -106,3 +106,40 @@ export function collectionPageSchema({
     },
   };
 }
+
+export function articleSchema({
+  headline,
+  description,
+  url,
+  datePublished,
+}: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline,
+    description,
+    url,
+    datePublished,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: new URL(siteConfig.logo, siteConfig.url).toString(),
+      },
+    },
+    mainEntityOfPage: url,
+    inLanguage: "fr",
+  };
+}

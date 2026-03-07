@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import Link from "next/link";
 
 export default function Error({
   error,
@@ -30,7 +31,7 @@ export default function Error({
         <div className="mt-8 flex justify-center gap-4">
           <Button onClick={() => reset()}>Réessayer</Button>
           <Button variant="outline" asChild>
-            <a href="/questionnaire-brands/index.html">Support</a>
+            <Link href="/questionnaire/brands">Support</Link>
           </Button>
         </div>
       </Container>

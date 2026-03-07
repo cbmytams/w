@@ -1,6 +1,3 @@
-"use client"
-
-
 import { PageShell } from "@/components/common/PageShell"
 import { BrandHeroV2 } from "@/components/for-brands/BrandHeroV2"
 import { ClientsSection } from "@/components/for-brands/ClientsSection"
@@ -17,8 +14,6 @@ import { CtaSection } from "@/components/for-brands/CtaSection"
 
 
 export default function ForBrandsPage() {
-    const navigateToQuestionnaire = () => window.location.assign('/questionnaire-brands/index.html')
-
     return (
         <PageShell>
             <BrandHeroV2 />
@@ -26,8 +21,6 @@ export default function ForBrandsPage() {
             <ClientsSection />
 
             <ValuePropositionSection />
-
-            {/* <GlobalPresentationSection /> */}
 
             <ServicesAndMetrics />
 
@@ -45,7 +38,7 @@ export default function ForBrandsPage() {
 
             <FaqSection />
 
-            <CtaSection onEstimateClick={navigateToQuestionnaire} />
+            <CtaSection estimateHref="/questionnaire/brands" />
         </PageShell>
     )
 }

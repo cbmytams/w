@@ -20,8 +20,10 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
     const [data, setData] = useState<HealthData | null>(null);
     const [loading, setLoading] = useState(true);
     const [exporting, setExporting] = useState(false);
+    const [purging, setPurging] = useState(false);
 
-    useEffect(() => {
+    const refreshHealth = () => {
+        setLoading(true);
         fetch(`/api/v1/questionnaires/health?type=${type}`)
             .then((res) => res.json())
             .then((json) => {
@@ -32,6 +34,11 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
                 setData({ status: "critical", version: "unknown", totalQuestions: 0, issues: [{ type: "error", message: "Failed to load health data" }] });
                 setLoading(false);
             });
+    };
+
+    useEffect(() => {
+        refreshHealth();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type]);
 
     const handleExport = async () => {
@@ -41,6 +48,17 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
             window.location.href = `/api/v1/exports?type=${type}&format=csv`;
         } finally {
             setTimeout(() => setExporting(false), 1500);
+        }
+    };
+
+    const handlePurge = async () => {
+        if (!confirm("Voulez-vous vraiment purger les données orphelines (Ghost Respondents) ? Cette action est irréversible.")) return;
+        setPurging(true);
+        try {
+            await fetch(`/api/v1/questionnaires/health?type=${type}`, { method: 'DELETE' });
+            refreshHealth();
+        } finally {
+            setPurging(false);
         }
     };
 
@@ -105,8 +123,17 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
             </div>
 
             <div className="rounded-2xl bg-questionnaire-surface border border-questionnaire-muted overflow-hidden glass-panel">
-                <div className="p-6 border-b border-questionnaire-muted bg-white/[0.01]">
+                <div className="p-6 border-b border-questionnaire-muted bg-white/[0.01] flex justify-between items-center">
                     <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Journal des Anomalies</h3>
+                    {data.issues.some(i => i.type === "ghost_respondent") && (
+                        <button
+                            onClick={handlePurge}
+                            disabled={purging}
+                            className="text-xs font-semibold bg-red-500/20 text-red-400 px-3 py-1.5 rounded-md hover:bg-red-500/30 transition-colors"
+                        >
+                            {purging ? "Purge en cours..." : "Purger les Fantômes"}
+                        </button>
+                    )}
                 </div>
                 <div className="p-6">
                     {data.issues.length > 0 ? (

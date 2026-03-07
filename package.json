@@ -4,22 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build --webpack",
+    "build:standalone": "npm run build && node scripts/prepare-standalone.mjs",
+    "start": "node .next/standalone/server.js",
     "lint": "eslint src next.config.ts",
     "type-check": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest",
+    "verify:standalone": "node scripts/verify-standalone.mjs",
+    "wiki:release": "bash scripts/wiki-release.sh",
+    "wiki:verify": "bash scripts/wiki-verify.sh"
   },
   "dependencies": {
-    "@opentelemetry/api": "^1.9.0",
-    "@opentelemetry/exporter-metrics-otlp-http": "^0.212.0",
-    "@opentelemetry/exporter-trace-otlp-http": "^0.212.0",
-    "@opentelemetry/instrumentation-http": "^0.212.0",
-    "@opentelemetry/instrumentation-undici": "^0.22.0",
-    "@opentelemetry/resources": "^2.5.1",
-    "@opentelemetry/sdk-metrics": "^2.5.1",
-    "@opentelemetry/sdk-node": "^0.212.0",
-    "@opentelemetry/semantic-conventions": "^1.40.0",
     "@prisma/client": "^6.19.2",
     "@radix-ui/react-slot": "^1.2.4",
     "@tsparticles/engine": "^3.9.1",
@@ -73,6 +68,6 @@
     "typescript": "^5"
   },
   "overrides": {
-    "minimatch": "^10.2.1"
+    "minimatch": "^10.2.3"
   }
 }

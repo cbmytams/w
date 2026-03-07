@@ -24,7 +24,7 @@ export function AgenciesFloatingNavigation() {
                     href="/for-agencies"
                     className="h-12 group flex items-center px-5 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
                 >
-                    <WafiaLogo className="h-4 w-auto text-black dark:text-white" />
+                    <WafiaLogo className="h-4 w-auto text-gray-900 dark:text-white" />
                     <div className="flex items-center justify-center w-6 z-10 mx-1">
                         <div className="w-[5px] h-[5px] rounded-full bg-purple-500 animate-pulse shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
                     </div>

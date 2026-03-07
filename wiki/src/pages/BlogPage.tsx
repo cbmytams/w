@@ -11,6 +11,9 @@ const THEMES = [
     { id: "monetisation", label: "Monétisation", num: "02" },
     { id: "croissance", label: "Croissance", num: "03" },
     { id: "branding", label: "Branding", num: "04" },
+    { id: "audience", label: "Audience & Communauté", num: "05" },
+    { id: "production", label: "Production & Outils", num: "06" },
+    { id: "business", label: "Business & Contrats", num: "07" },
 ];
 const PLATFORMS = [
     { id: "tiktok", label: "TikTok", num: "01" },

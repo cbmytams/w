@@ -1,15 +1,15 @@
 ---
-title: "Live Shopping & Social Commerce en 2025 : Le Guide pour Créateurs"
+title: "Live shopping : formats, modèles économiques et mise en œuvre"
 slug: "live-shopping-social-commerce-2025"
 category: "Monétisation — Live & Commerce"
 theme: "monetisation"
 publishedAt: "2025-07-13"
 ---
 
-# Live Shopping & Social Commerce en 2025 : Le Guide pour Créateurs
+# Live shopping : formats, modèles économiques et mise en œuvre
 
 **Slug :** live-shopping-social-commerce-2025  
-**Meta description :** Live shopping, TikTok Shop, Instagram Shopping, monétisation directe : le guide complet pour créateurs et influenceurs en 2025. Chiffres, plateformes, stratégies.  
+**Meta description :** Évaluer et exécuter une stratégie de live shopping en 2025 : plateformes, formats et modèles économiques.  
 **Catégorie :** Monétisation — Live & Commerce
 
 ---
@@ -25,9 +25,9 @@ Ce guide détaille comment utiliser le live shopping comme créateur pour monét
 ### Statistiques 2024-2025
 
 **En France :**
-- 67 % des Français se disent intéressés par le live shopping.[cite:42]
+- 67 % des Français se disent intéressés par le live shopping.
 - 40+ % ont déjà participé à un live shopping selon les enquêtes récentes.
-- Taux de conversion moyen : 8-12 % (comparer à 2-3 % pour un e-commerce classique).[cite:42][cite:45]
+- Taux de conversion moyen : 8-12 % (comparer à 2-3 % pour un e-commerce classique).
 - Panier moyen : 40-60 € par acheteur sur un live shopping (supérieur à un achat e-commerce classique).
 
 **Côté créateurs :**
@@ -36,7 +36,7 @@ Ce guide détaille comment utiliser le live shopping comme créateur pour monét
 
 **Côté marques :**
 - 72 % des marques prévoient d'augmenter leur budget live shopping en 2025-2026.
-- Le ROI du live shopping vs influencer sponsoring classique est estimé à 3-7x.[cite:73][cite:51]
+- Le ROI du live shopping vs influencer sponsoring classique est estimé à 3-7x.
 
 ### Pourquoi ça marche si bien ?
 
@@ -70,8 +70,6 @@ TikTok a lancé TikTok Shop directement dans l'app. Les créateurs avec le statu
 **Frein :**
 - TikTok Shop en France en est à ses débuts (février 2026). Fonctionnalités en phase de rollout.
 
-*Source : [cite:42][cite:45][cite:73]*
-
 ### Instagram Shopping & Instagram Live Shopping
 
 **Fonctionnement :**
@@ -94,8 +92,6 @@ Pour le **live shopping Instagram**, tu peux :
 **Limites :**
 - Reach organique d'Instagram très réduite (besoin de promotion externe).
 - Moins "native" que TikTok Shop.
-
-*Source : [cite:79][cite:82]*
 
 ### YouTube Live Shopping
 
@@ -238,6 +234,3 @@ Forfait 3 000 € + commission 8 % sur dépassement 10 000 €.
 
 **Les créateurs qui se positionnent maintenant comme "live shopping specialists" dans leur niche auront un avantage compétitif énorme.**
 
----
-
-*Sources : Nova Digital live shopping guide 2025, Clak Prod live shopping strategy, Bambuser social commerce report, Influence4You France data.*

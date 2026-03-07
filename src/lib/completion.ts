@@ -13,7 +13,7 @@ export function computeCompletion(responses: Prisma.JsonValue, map: Questionnair
         return { total: 0, answered: 0, percent: 0, missingFields: [] };
     }
 
-    const responseMap = responses as Record<string, any>;
+    const responseMap = responses as Record<string, unknown>;
 
     const requiredFields = map.sections.flatMap(s => s.fields.filter(f => f.required));
 

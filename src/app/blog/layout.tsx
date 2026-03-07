@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import { siteConfig, sitePaths } from "@/lib/site";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -16,7 +17,22 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Wafia Knowledge - Wiki de l'Influence",
-  description: "Wiki interactif Wafia Knowledge sur l'influence, les plateformes et la monetisation.",
+  description: "Blog Wafia Knowledge sur l'influence, les plateformes et la monetisation des createurs.",
+  alternates: {
+    canonical: sitePaths.blog,
+  },
+  openGraph: {
+    title: "Wafia Knowledge - Wiki de l'Influence | Wafia",
+    description: "Blog Wafia Knowledge sur l'influence, les plateformes et la monetisation des createurs.",
+    url: sitePaths.blog,
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wafia Knowledge - Wiki de l'Influence | Wafia",
+    description: "Blog Wafia Knowledge sur l'influence, les plateformes et la monetisation des createurs.",
+  },
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {

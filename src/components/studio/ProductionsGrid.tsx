@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { motion, AnimatePresence, type Transition } from "framer-motion"
 import { X, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -9,6 +10,7 @@ import { SequentialVideoPlayer } from "@/components/studio/SequentialVideoPlayer
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 
 export function ProductionsGrid() {
+    const router = useRouter()
     const [selectedId, setSelectedId] = useState<string | null>(null)
     const [videoMode, setVideoMode] = useState<'process' | 'result'>('result')
     const prefersReducedMotion = useReducedMotion()
@@ -267,7 +269,7 @@ export function ProductionsGrid() {
                                             {prod.id === 'krh' ? (
                                                 <div className="flex flex-col sm:flex-row gap-3 pt-4">
                                                     <button
-                                                        onClick={() => window.location.assign('/questionnaire-brands/index.html')}
+                                                        onClick={() => router.push('/questionnaire/brands')}
                                                         className="w-full sm:flex-1 py-4 px-6 rounded-full font-semibold text-[15px] bg-white text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center text-center"
                                                     >
                                                         Estimer le volume
@@ -287,7 +289,7 @@ export function ProductionsGrid() {
                                             ) : (
                                                 <div className="pt-4">
                                                     <button
-                                                        onClick={() => window.location.assign('/contact?type=brand')}
+                                                        onClick={() => router.push('/contact?type=brand')}
                                                         className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-[15px] bg-white text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center"
                                                     >
                                                         Lancer le projet

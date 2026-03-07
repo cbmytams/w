@@ -1,9 +1,15 @@
-import { QuestionnaireEngine } from "@/components/questionnaire-public/QuestionnaireEngine";
+import type { Metadata } from 'next';
+import { QuestionnaireIframe } from '@/components/questionnaire/QuestionnaireIframe';
+
+export const metadata: Metadata = {
+    title: 'Diagnostic Marques | Wafia',
+    description: 'Estimez votre plan budget et diagnostic avec Wafia Studio.',
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
 
 export default function BrandsQuestionnairePage() {
-    return (
-        <main className="w-full min-h-screen bg-[#050510] text-[#E0E0E0] overflow-hidden selection:bg-purple-500/30 font-sans">
-            <QuestionnaireEngine type="BRANDS" />
-        </main>
-    );
+    return <QuestionnaireIframe type="brands" />;
 }

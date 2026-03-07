@@ -12,7 +12,8 @@ const CASE_STUDIES = [
         description: "Idalia est une marque émergente qui cartonne grâce à leurs framboises enrobées de chocolat. C'est sûrement la publicité que j'ai le plus aimé réaliser car la marque m'a donné sa confiance totale en me laissant carte blanche.",
         tags: ["Gourmand", "Coloré", "Plusieurs Millions de Vues"],
         videoUrl: "https://www.tiktok.com/@ardidprod/video/1234567890", // Placeholder if we don't embed iframe, or we can use a mock
-        mockUrl: "/studio/basic-fit/NOAH BASIC FIT VF.mp4" // Reusing available video for demo if needed
+        mockUrl: "/studio/previews/noah-basic-fit-preview.mp4",
+        posterUrl: "/studio/previews/noah-basic-fit-poster.jpg"
     },
     {
         id: "haribo",
@@ -20,7 +21,8 @@ const CASE_STUDIES = [
         title: "30 Millions de vues",
         description: "L'histoire a commencé avec une publicité fictive pour les dragibus. Les backstages ont atteint plus de 30 millions de vues. Cela m'a permis d'être repéré par la marque et de travailler officiellement avec eux. Coloré, gourmand, la bonne humeur pure.",
         tags: ["Viral", "Coloré", "Storytelling"],
-        mockUrl: "/studio/basic-fit/BASIC FIT REDHA VF.mp4"
+        mockUrl: "/studio/previews/redha-basic-fit-preview.mp4",
+        posterUrl: "/studio/previews/redha-basic-fit-poster.jpg"
     },
     {
         id: "monster",
@@ -28,7 +30,8 @@ const CASE_STUDIES = [
         title: "La Marque de Cœur",
         description: "Première marque qui m'a fait confiance, et première vidéo qui a véritablement fait exploser les statistiques de ma chaîne TikTok. Des produits avec lesquels j'adore travailler, une esthétique sombre et survoltée.",
         tags: ["Énergie", "Sombre", "Explosif"],
-        mockUrl: "/studio/basic-fit/ANA BASIC FIT VF.mp4"
+        mockUrl: "/studio/previews/ana-basic-fit-preview.mp4",
+        posterUrl: "/studio/previews/ana-basic-fit-poster.jpg"
     }
 ]
 
@@ -57,11 +60,13 @@ export function JulienCaseStudies() {
                                     {/* Video simulation */}
                                     <video
                                         src={study.mockUrl}
+                                        poster={study.posterUrl}
                                         className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
                                         autoPlay
                                         muted
                                         loop
                                         playsInline
+                                        preload="metadata"
                                     />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors duration-500">
                                         <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all">

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
-import { ChevronDown, Search, ArrowUpDown } from 'lucide-react';
+import React, { useState } from "react";
+import { Search, ArrowUpDown } from "lucide-react";
 
 export type ColumnDef<T> = {
     header: string;
@@ -21,7 +21,7 @@ export function DataTable<T>({
     data,
     columns,
     searchPlaceholder = "Rechercher...",
-    onSearch
+    onSearch,
 }: DataTableProps<T>) {
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -31,16 +31,16 @@ export function DataTable<T>({
     };
 
     return (
-        <div className="w-full flex md:block flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
             {/* Search Bar */}
-            <div className="flex items-center justify-between py-4">
+            <div className="flex items-center py-2">
                 <div className="relative max-w-sm w-full">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <Search className="w-4 h-4 text-gray-400" />
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                        <Search className="w-3.5 h-3.5 text-white/30" />
                     </div>
                     <input
                         type="text"
-                        className="bg-questionnaire-surface border border-questionnaire-muted text-white text-sm rounded-lg focus:ring-questionnaire-primary focus:border-questionnaire-primary block w-full pl-10 p-2.5 outline-none transition-colors"
+                        className="w-full bg-white/5 border border-white/10 text-white text-sm rounded-xl focus:ring-1 focus:ring-white/20 focus:border-white/20 pl-10 pr-4 py-2.5 outline-none transition-all placeholder-white/20"
                         placeholder={searchPlaceholder}
                         value={searchTerm}
                         onChange={handleSearch}
@@ -49,51 +49,63 @@ export function DataTable<T>({
             </div>
 
             {/* Table */}
-            <div className="relative overflow-x-auto rounded-xl border border-questionnaire-muted glass-panel">
-                <table className="w-full text-sm text-left text-gray-300">
-                    <thead className="text-xs text-gray-400 uppercase bg-questionnaire-elevated border-b border-questionnaire-muted">
-                        <tr>
-                            {columns.map((col, idx) => (
-                                <th key={idx} scope="col" className="px-6 py-4 font-medium tracking-wider">
-                                    <div className="flex items-center gap-2">
-                                        {col.header}
-                                        {col.sortable && (
-                                            <button className="hover:text-white transition-colors">
-                                                <ArrowUpDown className="w-3 h-3" />
-                                            </button>
-                                        )}
-                                    </div>
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.length > 0 ? (
-                            data.map((row, rowIndex) => (
-                                <tr
-                                    key={rowIndex}
-                                    className="border-b border-questionnaire-muted hover:bg-white/[0.02] transition-colors last:border-0"
-                                >
-                                    {columns.map((col, colIndex) => (
-                                        <td key={colIndex} className="px-6 py-4 whitespace-nowrap">
-                                            {col.cell
-                                                ? col.cell(row)
-                                                : col.accessorKey
-                                                    ? (row[col.accessorKey] as React.ReactNode)
-                                                    : null}
-                                        </td>
-                                    ))}
-                                </tr>
-                            ))
-                        ) : (
+            <div className="surface-card overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left">
+                        <thead className="border-b border-white/5">
                             <tr>
-                                <td colSpan={columns.length} className="px-6 py-8 text-center text-gray-500">
-                                    Aucun résultat trouvé.
-                                </td>
+                                {columns.map((col, idx) => (
+                                    <th
+                                        key={idx}
+                                        scope="col"
+                                        className="px-6 py-3 text-[9px] uppercase tracking-[0.3em] text-white/25 font-medium whitespace-nowrap"
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            {col.header}
+                                            {col.sortable && (
+                                                <button className="hover:text-white/60 transition-colors text-white/20">
+                                                    <ArrowUpDown className="w-3 h-3" />
+                                                </button>
+                                            )}
+                                        </div>
+                                    </th>
+                                ))}
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-white/5">
+                            {data.length > 0 ? (
+                                data.map((row, rowIndex) => (
+                                    <tr
+                                        key={rowIndex}
+                                        className="hover:bg-white/[0.02] transition-colors"
+                                    >
+                                        {columns.map((col, colIndex) => (
+                                            <td
+                                                key={colIndex}
+                                                className="px-6 py-4 whitespace-nowrap text-white/70"
+                                            >
+                                                {col.cell
+                                                    ? col.cell(row)
+                                                    : col.accessorKey
+                                                        ? (row[col.accessorKey] as React.ReactNode)
+                                                        : null}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td
+                                        colSpan={columns.length}
+                                        className="px-6 py-12 text-center text-white/25 text-sm"
+                                    >
+                                        Aucun résultat trouvé.
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

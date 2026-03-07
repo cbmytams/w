@@ -3,7 +3,7 @@ import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { prisma } from "@/lib/db";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
-import { QuestionnaireType } from "@prisma/client";
+import { QuestionnaireType, Prisma } from "@prisma/client";
 
 const BATCH_SIZE = 500;
 
@@ -24,7 +24,7 @@ function createCSVStream(version: string, type: QuestionnaireType) {
                 }
 
                 // Generate CSV Header dynamically based on sectionsJson
-                const sectionsJson = questionnaire.sectionsJson as any[];
+                const sectionsJson = questionnaire.sectionsJson as Array<{ id: string; title: string; questions: Array<{ id: string; title?: string }> }>;
                 const questionHeaders = [];
                 for (const section of sectionsJson || []) {
                     for (const q of section.questions || []) {
@@ -39,7 +39,7 @@ function createCSVStream(version: string, type: QuestionnaireType) {
                 let hasMore = true;
 
                 while (hasMore) {
-                    const chunkResponses: any[] = await prisma.questionnaireResponse.findMany({
+                    const chunkResponses: Array<Record<string, unknown> & { id: string, talentId: string, type: string, score: number | null, completionRate: number, submittedAt: Date, answersJson: unknown }> = await prisma.questionnaireResponse.findMany({
                         where: { questionnaireId: questionnaire.id, type },
                         take: BATCH_SIZE,
                         skip: cursor ? 1 : 0,
@@ -54,13 +54,13 @@ function createCSVStream(version: string, type: QuestionnaireType) {
 
                     let chunk = "";
                     for (const response of chunkResponses) {
-                        const answers = response.answersJson as Record<string, any>;
+                        const answers = response.answersJson as Record<string, unknown>;
 
-                        const row = [
+                        const row: string[] = [
                             response.id,
                             response.talentId,
-                            response.score ?? "",
-                            response.completionRate,
+                            String(response.score ?? ""),
+                            String(response.completionRate),
                             response.submittedAt.toISOString()
                         ];
 
@@ -121,7 +121,7 @@ function createJSONStream(version: string, type: QuestionnaireType) {
                 let isFirst = true;
 
                 while (hasMore) {
-                    const chunkResponses: any[] = await prisma.questionnaireResponse.findMany({
+                    const chunkResponses: Prisma.QuestionnaireResponseGetPayload<undefined>[] = await prisma.questionnaireResponse.findMany({
                         where: { questionnaireId: questionnaire.id, type },
                         take: BATCH_SIZE,
                         skip: cursor ? 1 : 0,

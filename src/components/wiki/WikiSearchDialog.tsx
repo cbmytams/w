@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Search, X } from "lucide-react";
 
 interface SearchArticle {
@@ -17,7 +17,6 @@ interface SearchArticle {
 export default function WikiSearchDialog({ articles }: { articles: SearchArticle[] }) {
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState("");
-    const router = useRouter();
 
     const closeDialog = () => {
         setIsOpen(false);
@@ -122,9 +121,10 @@ export default function WikiSearchDialog({ articles }: { articles: SearchArticle
                         {results.length > 0 ? (
                             <div className="py-2">
                                 {results.map((r) => (
-                                    <button
+                                    <Link
                                         key={r.slug}
-                                        onClick={() => { closeDialog(); router.push(`/wiki/${r.slug}`); }}
+                                        href={`/wiki/${r.slug}`}
+                                        onClick={closeDialog}
                                         className="w-full text-left px-6 py-4 flex items-center justify-between border-b last:border-0 group focus-visible:outline-none transition-opacity hover:opacity-70"
                                         style={{ borderColor: 'var(--wiki-line)' }}
                                     >
@@ -133,7 +133,7 @@ export default function WikiSearchDialog({ articles }: { articles: SearchArticle
                                             <p className="font-mono text-[10px] uppercase tracking-widest mt-2" style={{ color: 'var(--wiki-ink-secondary)' }}>{r.category} • {r.readTime}</p>
                                         </div>
                                         <span style={{ color: 'var(--wiki-ink-secondary)' }}>→</span>
-                                    </button>
+                                    </Link>
                                 ))}
                             </div>
                         ) : query.length > 1 ? (

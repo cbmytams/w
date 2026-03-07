@@ -12,6 +12,7 @@ import { Container } from "@/components/ui/container"
 import { Marquee } from "@/components/ui/marquee"
 import { cn } from "@/lib/utils"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
+import Link from "next/link"
 
 // --- Constants ---
 
@@ -194,7 +195,7 @@ function CTAWidget() {
                 "cursor-pointer rotate-1"
             )}
         >
-            <a href="/questionnaire-brands/index.html" className="absolute inset-0 z-10" />
+            <Link href="/questionnaire/brands" className="absolute inset-0 z-10" />
 
             <div className="mb-6 p-4 rounded-full bg-white text-black dark:bg-black dark:text-white">
                 <ArrowRight className="w-8 h-8" />

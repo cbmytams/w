@@ -166,7 +166,7 @@ export default function BlogHome({ articles }: BlogHomeProps) {
   }, [activePlatform, activeTheme, articles, tab]);
 
   return (
-    <div className="fixed inset-0 overflow-hidden bg-black text-white">
+    <main id="main-content" className="fixed inset-0 overflow-hidden bg-black text-white">
       <LayoutGroup>
         <IOSNavBar
           isDeep={Boolean(openSlug)}
@@ -411,6 +411,6 @@ export default function BlogHome({ articles }: BlogHomeProps) {
           ) : null}
         </AnimatePresence>
       </LayoutGroup>
-    </div>
+    </main>
   );
 }

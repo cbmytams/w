@@ -7,10 +7,11 @@ import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
 
 interface CtaSectionProps {
-    onEstimateClick: () => void
+    onEstimateClick?: () => void
+    estimateHref?: string
 }
 
-export function CtaSection({ onEstimateClick }: CtaSectionProps) {
+export function CtaSection({ onEstimateClick, estimateHref }: CtaSectionProps) {
     return (
         <section className="py-24 md:py-32 px-4">
             <Container>
@@ -35,9 +36,15 @@ export function CtaSection({ onEstimateClick }: CtaSectionProps) {
                             <Button size="lg" asChild className="h-16 px-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xl font-semibold shadow-2xl shadow-orange-500/25">
                                 <Link href="/contact?type=brand">Réserver un appel stratégique</Link>
                             </Button>
-                            <Button size="lg" onClick={onEstimateClick} variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">
-                                Estimer mon plan
-                            </Button>
+                            {estimateHref ? (
+                                <Button size="lg" asChild variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">
+                                    <Link href={estimateHref}>Estimer mon plan</Link>
+                                </Button>
+                            ) : (
+                                <Button size="lg" onClick={onEstimateClick} variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">
+                                    Estimer mon plan
+                                </Button>
+                            )}
                         </div>
                     </RevealAnimation>
 

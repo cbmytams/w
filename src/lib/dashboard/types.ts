@@ -9,15 +9,16 @@ export interface DashboardFilters {
   segment?: string;
   owner?: string;
   status?: string;
+  type?: "TALENTS" | "BRANDS";
 }
 
 export interface KpiCard {
   id:
-    | "leads_incoming"
-    | "leads_qualified"
-    | "questionnaire_completion_rate"
-    | "avg_processing_time_hours"
-    | "conversion_to_interview_rate";
+  | "leads_incoming"
+  | "leads_qualified"
+  | "questionnaire_completion_rate"
+  | "avg_processing_time_hours"
+  | "conversion_to_interview_rate";
   label: string;
   value: number;
   unit?: "%" | "h" | "count";
@@ -58,6 +59,7 @@ export interface LeadRecord {
   priority: LeadPriority;
   slaState: LeadSlaState;
   ownerId?: string;
+  responseId?: string;
   createdAt: string;
   updatedAt: string;
 }

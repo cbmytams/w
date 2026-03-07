@@ -6,7 +6,6 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { GlobalNav } from "@/components/layout/GlobalNav";
 import { GlobalBackground } from "@/components/common/GlobalBackground";
 import { siteConfig } from "@/lib/site";
-import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import { CookieBanner } from "@/components/compliance/CookieBanner";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
@@ -46,9 +45,6 @@ export const metadata: Metadata = {
     "production contenu",
     "campagnes social media",
   ],
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Wafia | Influence & Creative Studio",
     description: siteConfig.description,
@@ -119,14 +115,6 @@ export default function RootLayout({
         >
           Aller au contenu
         </a>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
         <Suspense fallback={null}><GlobalBackground /></Suspense>
         <GlobalNav />
         <PageTransition>{children}</PageTransition>

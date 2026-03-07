@@ -1,15 +1,15 @@
 ---
-title: "IRL Streaming & Mobile Setup : Le Guide Complet pour Créateurs"
+title: "IRL streaming : exigences techniques et organisation opérationnelle"
 slug: "irl-streaming-mobile-setup-2025"
 category: "Production — Équipement"
-theme: "croissance"
+theme: "production"
 publishedAt: "2025-07-20"
 ---
 
-# IRL Streaming & Mobile Setup : Le Guide Complet pour Créateurs
+# IRL streaming : exigences techniques et organisation opérationnelle
 
 **Slug :** irl-streaming-mobile-setup-2025  
-**Meta description :** Setup complet IRL streaming, équipement, encodeurs, backpack 5G, logistique : guide pour streamers en déplacement et créateurs de contenu en 2025.  
+**Meta description :** Référentiel opérationnel IRL streaming : équipement mobile, connectivité, sécurité et organisation de production.  
 **Catégorie :** Production — Équipement
 
 ---
@@ -24,7 +24,7 @@ En 2025, faire du IRL streaming en France est devenu viable techniquement — gr
 
 ### Chiffres d'audience
 
-Un streameur avec 50k viewers habituels en gaming peut faire 100-200k viewers sur un IRL stream populaire.[cite:63][cite:74][cite:77]
+Un streameur avec 50k viewers habituels en gaming peut faire 100-200k viewers sur un IRL stream populaire.
 
 Raison ? **FOMO** (Fear Of Missing Out) : chacun se demande "qu'est-ce qui va se passer ?". C'est plus imprévisible et donc plus captivant qu'un stream de jeu.
 
@@ -215,6 +215,3 @@ Si les gens entendent rien, ils partent. Investir dans un bon micro = priorité 
 **Setup confortable :** 3 000-4 000 € (encodeur + caméra dédiée + bon micro).  
 **Setup professionnel :** 5 000+ € (dual encodeurs, multiple caméras, monitoring setup, etc.).
 
----
-
-*Sources : TVU Networks IRL streaming guide, Speedify IRL streaming technical guide, Reddit IRL streamer setups.*

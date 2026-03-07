@@ -30,7 +30,6 @@ export function useRevealViewport() {
 
         const media = window.matchMedia("(max-width: 768px)")
         const update = () => setIsMobile(media.matches)
-
         update()
         media.addEventListener("change", update)
 

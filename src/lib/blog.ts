@@ -90,3 +90,26 @@ export function getAllArticles(): BlogArticle[] {
     .filter((article): article is BlogArticle => article !== null)
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
+
+export function getAllArticleSlugs(): string[] {
+  return getAllArticles().map((article) => article.slug);
+}
+
+export function getArticleBySlug(slug: string): BlogArticle | null {
+  return getAllArticles().find((article) => article.slug === slug) ?? null;
+}
+
+export function getArticleDescription(article: Pick<BlogArticle, "body" | "chapters">): string {
+  const source = article.body || article.chapters[0]?.content || "";
+  const normalized = source.replace(/\s+/g, " ").trim();
+
+  if (!normalized) {
+    return "Analyse Wafia Knowledge sur l'influence, les plateformes et la monétisation des créateurs.";
+  }
+
+  if (normalized.length <= 160) {
+    return normalized;
+  }
+
+  return `${normalized.slice(0, 157).trimEnd()}...`;
+}
