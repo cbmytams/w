@@ -57,16 +57,16 @@ export default async function TalentDetailPage({ params }: TalentDetailPageProps
           </div>
           <div className="flex items-center gap-3">
             <span className={`rounded-full px-3 py-1 text-xs font-semibold border ${talent.approvalStatus === 'APPROVED'
-                ? 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20'
-                : talent.approvalStatus === 'REJECTED'
-                  ? 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20'
-                  : 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20'
+              ? 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20'
+              : talent.approvalStatus === 'REJECTED'
+                ? 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20'
+                : 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20'
               }`}>
               {talent.approvalStatus === 'APPROVED' ? 'Approuvé' : talent.approvalStatus === 'REJECTED' ? 'Rejeté' : 'En attente'}
             </span>
             <span className={`rounded-full px-3 py-1 text-xs font-semibold border ${talent.status === 'ACTIVE'
-                ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20'
-                : 'bg-black/5 dark:bg-white/5 text-muted border-black/10 dark:border-white/10'
+              ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20'
+              : 'bg-black/5 dark:bg-white/5 text-muted border-black/10 dark:border-white/10'
               }`}>
               {talent.status}
             </span>
@@ -115,7 +115,7 @@ export default async function TalentDetailPage({ params }: TalentDetailPageProps
           <h2 className="text-xs uppercase tracking-[0.3em] text-soft mb-4">Plateformes</h2>
           {talent.platformAccounts.length > 0 ? (
             <div className="space-y-3 text-sm">
-              {talent.platformAccounts.map((account) => (
+              {talent.platformAccounts.map((account: typeof talent.platformAccounts[number]) => (
                 <div key={account.id} className="flex items-center justify-between">
                   <span className="font-medium">{account.platform} @{account.handle}</span>
                   <span className={`text-xs px-2 py-0.5 rounded ${account.syncStatus === 'OK' ? 'bg-green-500/10 text-green-500' : 'bg-orange-500/10 text-orange-500'
@@ -156,7 +156,7 @@ export default async function TalentDetailPage({ params }: TalentDetailPageProps
         <h2 className="text-xs uppercase tracking-[0.3em] text-soft mb-4">Réponses au Questionnaire</h2>
         {talent.questionnaireResponses.length > 0 ? (
           <div className="space-y-3">
-            {talent.questionnaireResponses.map((response) => (
+            {talent.questionnaireResponses.map((response: typeof talent.questionnaireResponses[number]) => (
               <Link
                 key={response.id}
                 href={`/admin/talents/questionnaires/${response.id}`}

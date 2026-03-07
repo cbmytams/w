@@ -65,10 +65,10 @@ export default async function BrandDetailPage({ params }: BrandDetailPageProps) 
             </div>
           </div>
           <span className={`rounded-full px-3 py-1 text-xs font-semibold border ${talent.approvalStatus === 'APPROVED'
-              ? 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20'
-              : talent.approvalStatus === 'REJECTED'
-                ? 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20'
-                : 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20'
+            ? 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20'
+            : talent.approvalStatus === 'REJECTED'
+              ? 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20'
+              : 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20'
             }`}>
             {talent.approvalStatus === 'APPROVED' ? 'Approuvé' : talent.approvalStatus === 'REJECTED' ? 'Rejeté' : 'En attente'}
           </span>
@@ -138,7 +138,7 @@ export default async function BrandDetailPage({ params }: BrandDetailPageProps) 
         <h2 className="text-xs uppercase tracking-[0.3em] text-soft mb-4">Réponses au Questionnaire</h2>
         {talent.questionnaireResponses.length > 0 ? (
           <div className="space-y-3">
-            {talent.questionnaireResponses.map((response) => (
+            {talent.questionnaireResponses.map((response: typeof talent.questionnaireResponses[number]) => (
               <Link
                 key={response.id}
                 href={`/admin/brands/questionnaires/${response.id}`}
