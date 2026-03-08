@@ -23,6 +23,9 @@ const eslintConfig = defineConfig([
     rules: {
       // Disable for French language content (apostrophes in C'est, l'art, etc.)
       "react/no-unescaped-entities": "off",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+      // This repo might have some unused vars, so let's warn except for prefix '_'
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     },
   },
 ]);
