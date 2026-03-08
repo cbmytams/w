@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 import { WafiaLogo } from "@/components/ui/WafiaLogo"
 import { motion } from "framer-motion"
 import { HOME_OPTIONS } from "@/constants"
-import { Sparkles, ArrowUpRight, Users, Palette, Megaphone, type LucideIcon } from "lucide-react"
+import { ArrowUpRight, Fingerprint, Aperture, Globe, type LucideIcon } from "lucide-react"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 import { EASING, DURATION } from "@/lib/easing"
 import { WikiPremiumCTA } from "@/components/home/WikiPremiumCTA"
@@ -27,12 +27,12 @@ function StaticBackground() {
 
 // The RefinedParticlesBackground is explicitly imported and SSR safe natively
 
-// Better icon mapping for space theme
+// V2 Premium Icon Mapping - Advanced Jobs/Ive conceptual approach:
+// We strip away literal utility (cliché human, palette, or megaphone) and replace it with pure essence.
 const ICONS: Record<string, LucideIcon> = {
-    Sparkles: Users,      // Talent = People
-    Building2: Palette,   // Studio = Creative
-    Briefcase: Megaphone, // Brand = Marketing
-    // BookOpen              // Knowledge
+    Sparkles: Fingerprint, // Talents = Authenticity, individual DNA, unique personal branding.
+    Building2: Aperture,   // Studio = The lens, focus, light capture, surgical precision of craft.
+    Briefcase: Globe,      // Brands = Macro scale, global reach, infinite brand ecosystem and orbit.
 };
 
 /**
@@ -139,7 +139,7 @@ export function HomeClient() {
                 {/* NAVIGATION - Minimalist Horizontal Pills */}
                 <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
                     {HOME_OPTIONS.map((option, index) => {
-                        const IconComponent = ICONS[option.icon] || Sparkles;
+                        const IconComponent = ICONS[option.icon] || Fingerprint;
 
                         return (
                             <motion.div
