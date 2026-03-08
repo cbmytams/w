@@ -42,46 +42,36 @@ export function DeliverablesSection() {
                                     transition: { duration: 0.1, ease: "easeOut" }
                                 }}
                                 onClick={() => setSelectedItem(item)}
-                                className="group relative p-7 bg-white/60 dark:bg-white/5 backdrop-blur-[32px] rounded-[2rem] border border-white/50 dark:border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.08)] dark:shadow-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 active:scale-[0.98]"
+                                className="group relative p-8 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] rounded-[2.5rem] border border-black/[0.05] dark:border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_64px_rgba(0,0,0,0.08)] dark:shadow-none hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 text-left cursor-pointer focus-visible:outline-none flex flex-col min-h-[240px] active:scale-[0.98]"
                                 aria-label={`Voir le détail: ${item.title}`}
                             >
-                                {/* Chevron Indicator */}
-                                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 md:group-hover:translate-x-1">
-                                    <ArrowRight className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                                <div className="flex flex-col h-full relative z-10">
+                                    {/* Top Row: Huge Icon + Minimal Arrow */}
+                                    <div className="flex justify-between items-start mb-auto w-full">
+                                        <div className="text-[42px] leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left">
+                                            {item.icon}
+                                        </div>
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 opacity-0 group-hover:opacity-100 group-hover:bg-black/10 dark:group-hover:bg-white/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform group-hover:scale-110">
+                                            <ArrowRight className="w-4 h-4 text-slate-800 dark:text-white/90 -rotate-45" />
+                                        </div>
+                                    </div>
+
+                                    {/* Bottom Content: Ultra Clean Typography */}
+                                    <div className="mt-12">
+                                        <h3 className="text-[22px] font-bold tracking-tight text-slate-900 dark:text-white mb-2 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-[14px] font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
+                                            {item.subtitle}
+                                        </p>
+                                    </div>
                                 </div>
 
-                                {/* Icon */}
-                                <div className="text-4xl mb-4 transition-transform duration-300 group-hover:scale-110 origin-left w-fit">
-                                    {item.icon}
-                                </div>
+                                {/* Subtle Light Leak for Glass Edge */}
+                                <div className="absolute inset-0 rounded-[2.5rem] border border-white/20 dark:border-white/5 pointer-events-none" />
 
-                                {/* Title */}
-                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                                    {item.title}
-                                </h3>
-
-                                {/* Subtitle */}
-                                <p className="text-sm text-slate-600 dark:text-white/70 leading-relaxed mb-3">
-                                    {item.subtitle}
-                                </p>
-
-                                {/* MicroDescription (NEW) */}
-                                {item.microDescription && (
-                                    <p className="text-xs text-slate-500 dark:text-white/60 leading-relaxed">
-                                        {item.microDescription}
-                                    </p>
-                                )}
-
-                                {/* Sublte reflection/light leak for glass realism */}
-                                <div className="absolute inset-0 rounded-[2rem] border border-white/20 dark:border-white/5 pointer-events-none" />
-
-                                {/* Hover Glow */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/5 group-hover:to-violet-500/5 rounded-[2rem] transition-all duration-500 pointer-events-none" />
-
-                                {/* Affordance clic parfaite sur mobile (visible en bas), subtile sur desktop (en hover absolu) */}
-                                <div className="mt-4 flex justify-end md:absolute md:bottom-4 md:right-4 text-xs font-bold text-purple-600 dark:text-purple-400 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                                    <span>Voir le détail &rarr;</span>
-                                </div>
+                                {/* Organic Hover Glow */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/[0.03] group-hover:to-violet-500/[0.03] dark:group-hover:from-purple-500/[0.05] dark:group-hover:to-violet-500/[0.05] rounded-[2.5rem] transition-all duration-500 pointer-events-none" />
                             </motion.button>
                         ))}
                     </div>
