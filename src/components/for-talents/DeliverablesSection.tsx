@@ -42,7 +42,7 @@ export function DeliverablesSection() {
                                     transition: { duration: 0.1, ease: "easeOut" }
                                 }}
                                 onClick={() => setSelectedItem(item)}
-                                className="group relative p-6 bg-white/80 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-slate-200 dark:border-white/10 hover:border-purple-500/50 dark:hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 active:scale-[0.98]"
+                                className="group relative p-7 bg-white/60 dark:bg-white/5 backdrop-blur-[32px] rounded-[2rem] border border-white/50 dark:border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.08)] dark:shadow-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 active:scale-[0.98]"
                                 aria-label={`Voir le détail: ${item.title}`}
                             >
                                 {/* Chevron Indicator */}
@@ -72,8 +72,11 @@ export function DeliverablesSection() {
                                     </p>
                                 )}
 
+                                {/* Sublte reflection/light leak for glass realism */}
+                                <div className="absolute inset-0 rounded-[2rem] border border-white/20 dark:border-white/5 pointer-events-none" />
+
                                 {/* Hover Glow */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/5 group-hover:to-violet-500/5 rounded-2xl transition-all duration-300 pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/5 group-hover:to-violet-500/5 rounded-[2rem] transition-all duration-500 pointer-events-none" />
 
                                 {/* Affordance clic parfaite sur mobile (visible en bas), subtile sur desktop (en hover absolu) */}
                                 <div className="mt-4 flex justify-end md:absolute md:bottom-4 md:right-4 text-xs font-bold text-purple-600 dark:text-purple-400 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">

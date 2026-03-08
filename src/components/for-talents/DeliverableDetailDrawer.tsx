@@ -132,18 +132,20 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
           aria-modal="true"
           aria-labelledby="drawer-title"
           tabIndex={-1}
-          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-[transform,opacity] duration-200 ease-out will-change-transform dark:border-white/[0.08] dark:bg-[#1C1C1E] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-3 opacity-0 sm:translate-x-full sm:translate-y-0"
+          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-white/40 bg-white/70 backdrop-blur-[40px] shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform dark:border-white/10 dark:bg-[#151517]/70 dark:shadow-[0_24px_80px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-8 opacity-0 sm:translate-x-full sm:translate-y-0"
             } pointer-events-auto`}
         >
-          <div className="pointer-events-none absolute right-0 top-0 h-[200px] w-[200px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/[0.04] dark:bg-purple-500/[0.06]" />
+          {/* Subtle light leak for glass effect */}
+          <div className="pointer-events-none absolute -inset-px rounded-[2.5rem] border border-white/20 dark:border-white/5" />
+          <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/10 dark:bg-purple-500/10 blur-[60px]" />
 
           <button
             onClick={onClose}
-            className="group absolute right-5 top-5 z-50 cursor-pointer rounded-full border border-gray-200 bg-gray-100 p-2.5 transition-colors duration-300 dark:border-white/[0.1] dark:bg-white/[0.08]"
+            className="group absolute right-5 top-5 z-50 flex h-8 w-8 items-center justify-center cursor-pointer rounded-full bg-black/5 backdrop-blur-md transition-colors duration-200 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20"
             aria-label="Fermer"
             type="button"
           >
-            <X className="h-4 w-4 text-gray-500 transition-colors duration-200 group-hover:text-gray-900 dark:text-white/50 dark:group-hover:text-white" />
+            <X className="h-4 w-4 text-gray-700 transition-colors duration-200 dark:text-gray-300" />
           </button>
 
           <div
@@ -176,8 +178,8 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                   </div>
 
                   <div>
-                    <div className="mb-5 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                    <div className="mb-5 inline-flex flex-col">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
                         Le Processus
                       </span>
                     </div>
@@ -192,16 +194,16 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                   </div>
 
                   <div>
-                    <div className="mb-5 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                    <div className="mb-5 inline-flex flex-col">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
                         Livrables Concrets
                       </span>
                     </div>
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-3">
                       {renderedItem.detail.deliverables?.map((deliverable, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3.5 rounded-2xl border border-black/[0.04] bg-black/[0.02] p-3.5 dark:border-white/[0.06] dark:bg-white/[0.03]"
+                          className="flex items-start gap-3.5 rounded-2xl bg-black/5 backdrop-blur-sm p-4 dark:bg-white/5"
                         >
                           <GlassCheck />
                           <span className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
@@ -213,8 +215,8 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                   </div>
 
                   <div>
-                    <div className="mb-6 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                    <div className="mb-6 inline-flex flex-col">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
                         La Méthode
                       </span>
                     </div>
@@ -238,11 +240,11 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                   </div>
 
                   <div>
-                    <div className="rounded-2xl border border-l-2 border-l-purple-500/50 border-purple-200/50 bg-purple-50/60 p-5 dark:border-white/[0.06] dark:bg-purple-500/[0.06]">
-                      <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500">
+                    <div className="rounded-3xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-md dark:border-purple-400/20 dark:from-purple-500/10">
+                      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-purple-700 dark:text-purple-300">
                         Cible
                       </span>
-                      <p className="text-sm font-medium italic leading-relaxed text-gray-700 dark:text-gray-300">
+                      <p className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
                         {renderedItem.detail.forWho}
                       </p>
                     </div>
