@@ -51,8 +51,9 @@ export function DeliverablesSection() {
                                         <div className="text-[42px] leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left">
                                             {item.icon}
                                         </div>
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 opacity-0 group-hover:opacity-100 group-hover:bg-black/10 dark:group-hover:bg-white/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform group-hover:scale-110">
-                                            <ArrowRight className="w-4 h-4 text-slate-800 dark:text-white/90 -rotate-45" />
+                                        {/* Always-visible subtle affordance (fixes mobile non-clickability issue), highlights on hover */}
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.05] group-hover:bg-purple-500/10 dark:group-hover:bg-purple-500/20 group-hover:border-purple-500/20 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform group-hover:scale-110">
+                                            <ArrowRight className="w-4 h-4 text-slate-400 dark:text-white/30 group-hover:text-purple-600 dark:group-hover:text-purple-300 -rotate-45 transition-colors duration-500" />
                                         </div>
                                     </div>
 
