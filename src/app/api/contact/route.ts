@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
+import { ContactFormSchema } from "@/lib/validations"
+import { validateBody, apiError } from "@/lib/api-response"
 
 export const runtime = "nodejs"
 
@@ -6,23 +8,6 @@ const RATE_LIMIT_WINDOW_MS = 60_000
 const RATE_LIMIT_MAX_REQUESTS = 5
 
 const requestBuckets = new Map<string, { count: number; resetAt: number }>()
-
-interface ContactRequestBody {
-    name?: string
-    email?: string
-    company?: string
-    message?: string
-    type?: "agency" | "brand"
-    objective?: string | null
-}
-
-function normalizeField(value: unknown) {
-    return typeof value === "string" ? value.trim() : ""
-}
-
-function isValidEmail(value: string) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-}
 
 function getClientKey(request: NextRequest) {
     const forwardedFor = request.headers.get("x-forwarded-for")
@@ -82,39 +67,13 @@ export async function POST(request: NextRequest) {
         )
     }
 
-    let body: ContactRequestBody
-    try {
-        body = (await request.json()) as ContactRequestBody
-    } catch {
-        return NextResponse.json({ error: "Payload invalide." }, { status: 400 })
-    }
+    const body = await request.json().catch(() => null)
+    if (!body) return apiError("Payload invalide.")
 
-    const name = normalizeField(body.name)
-    const email = normalizeField(body.email)
-    const company = normalizeField(body.company)
-    const message = normalizeField(body.message)
-    const type = body.type === "agency" ? "agency" : "brand"
-    const objective = typeof body.objective === "string" ? body.objective.trim() : null
+    const validation = validateBody(ContactFormSchema, body)
+    if (!validation.success) return validation.response
 
-    if (!name || !email || !company || !message) {
-        return NextResponse.json({ error: "Tous les champs sont obligatoires." }, { status: 400 })
-    }
-
-    if (name.length < 2 || name.length > 80) {
-        return NextResponse.json({ error: "Le nom doit contenir entre 2 et 80 caractères." }, { status: 400 })
-    }
-
-    if (!isValidEmail(email) || email.length > 160) {
-        return NextResponse.json({ error: "Adresse email invalide." }, { status: 400 })
-    }
-
-    if (company.length > 120) {
-        return NextResponse.json({ error: "Le nom de société est trop long." }, { status: 400 })
-    }
-
-    if (message.length < 20 || message.length > 3000) {
-        return NextResponse.json({ error: "Le message doit contenir entre 20 et 3000 caractères." }, { status: 400 })
-    }
+    const { name, email, company, message, type, objective } = validation.data
 
     const payload = {
         name,
@@ -122,7 +81,7 @@ export async function POST(request: NextRequest) {
         company,
         message,
         type,
-        objective,
+        objective: objective ?? null,
         createdAt: new Date().toISOString(),
         source: "wafia-website-contact",
     }

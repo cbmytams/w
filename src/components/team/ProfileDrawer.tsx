@@ -8,7 +8,7 @@ import type { LucideIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { TeamMember } from "@/data/team"
+import { TeamMember } from "@/constants/team"
 import { useFocusTrap } from "@/hooks/useFocusTrap"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 

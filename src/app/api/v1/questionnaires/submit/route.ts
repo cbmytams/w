@@ -1,32 +1,23 @@
 import { NextResponse } from "next/server";
+import type { Prisma } from "@prisma/client";
 import { prisma as db } from "@/lib/db";
 import { computeCompletion } from "@/lib/completion";
 import { BRANDS_QUESTIONNAIRE_MAP, TALENTS_QUESTIONNAIRE_MAP } from "@/lib/questionnaireMap";
+import { QuestionnaireSubmitSchema } from "@/lib/validations";
+import { validateBody, apiError } from "@/lib/api-response";
 
 export async function POST(request: Request) {
     try {
-        const body = await request.json();
+        const rawBody = await request.json().catch(() => null);
+        if (!rawBody) return apiError("Invalid JSON body");
 
-        if (!body.type || !body.responses) {
-            return NextResponse.json(
-                { error: "Invalid payload: type and responses are required." },
-                { status: 400 }
-            );
-        }
+        const validation = validateBody(QuestionnaireSubmitSchema, rawBody);
+        if (!validation.success) return validation.response;
 
-        const type = body.type; // "TALENTS" or "BRANDS"
-        const responses = body.responses;
+        const { type, responses } = validation.data;
 
-        // Strict Doctrine: Reject empty or highly anomalous data
-        if (typeof responses !== 'object' || Object.keys(responses).length === 0) {
-            return NextResponse.json(
-                { error: "Payload rejected: responses object is empty or malformed." },
-                { status: 400 }
-            );
-        }
-
-        const name = responses.ql_name || responses.ql_company;
-        const email = responses.ql_email;
+        const name = (responses.ql_name || responses.ql_company) as string | undefined;
+        const email = responses.ql_email as string | undefined;
 
         // We require at least a name or an email to consider this a valid lead.
         // Otherwise, it's a ghost/bot submission that pollutes the database.
@@ -79,7 +70,7 @@ export async function POST(request: Request) {
 
         // Calculate completion
         const map = type === "BRANDS" ? BRANDS_QUESTIONNAIRE_MAP : TALENTS_QUESTIONNAIRE_MAP;
-        const completionData = computeCompletion(responses, map);
+        const completionData = computeCompletion(responses as Record<string, string>, map);
 
         // Store the questionnaire response
         const newResponse = await db.questionnaireResponse.create({
@@ -87,7 +78,7 @@ export async function POST(request: Request) {
                 talentId: talentRecord.id,
                 questionnaireId: questionnaire.id,
                 type: type === "BRANDS" ? "BRANDS" : "TALENTS",
-                answersJson: responses,
+                answersJson: responses as Prisma.InputJsonValue,
                 completionRate: completionData.percent,
             }
         });

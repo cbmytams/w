@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { notFound } from "next/navigation";
-import { TEAM } from "@/data/team";
+import { TEAM } from "@/constants/team";
 import { Metadata } from "next";
 import { SmartBackButton } from "@/components/ui/SmartBackButton";
 

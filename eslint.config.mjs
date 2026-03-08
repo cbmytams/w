@@ -13,7 +13,7 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     // Embedded sub-project (kept for static questionnaire assets/source)
-    "wafia - questionnaire brands/**",
+    "wafia-questionnaire-brands/**",
     // Generated static questionnaire bundle
     "public/questionnaire/assets/**",
     "public/questionnaire-brands/assets/**",

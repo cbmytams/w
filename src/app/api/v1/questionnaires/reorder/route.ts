@@ -4,6 +4,8 @@ import { prisma } from "@/lib/db";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
+import { ReorderSchema } from "@/lib/validations";
+import { validateBody, apiError } from "@/lib/api-response";
 
 async function getCurrentQuestionnaire() {
   const current = await prisma.questionnaire.findFirst({
@@ -43,20 +45,13 @@ export async function POST(request: NextRequest) {
   const auth = await requireDashboardRole(request, DASHBOARD_ROLES.ADMIN);
   if (auth.response) return auth.response;
 
-  const body = await request.json().catch(() => null) as
-    | { startIndex?: number; endIndex?: number }
-    | null;
-  const startIndex = body?.startIndex;
-  const endIndex = body?.endIndex;
+  const body = await request.json().catch(() => null);
+  if (!body) return apiError("Invalid JSON body");
 
-  if (
-    typeof startIndex !== "number" ||
-    typeof endIndex !== "number" ||
-    !Number.isInteger(startIndex) ||
-    !Number.isInteger(endIndex)
-  ) {
-    return Response.json({ error: "Invalid payload: startIndex/endIndex required." }, { status: 400 });
-  }
+  const validation = validateBody(ReorderSchema, body);
+  if (!validation.success) return validation.response;
+
+  const { startIndex, endIndex } = validation.data;
 
   const current = await getCurrentQuestionnaire();
   const questions = Array.isArray(current.sectionsJson) ? [...current.sectionsJson] : [];

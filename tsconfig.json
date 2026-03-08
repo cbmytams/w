@@ -40,7 +40,7 @@
     "node_modules",
     "wiki",
     "wiki/**",
-    "wafia - questionnaire brands",
-    "wafia - questionnaire brands/**"
+    "wafia-questionnaire-brands",
+    "wafia-questionnaire-brands/**"
   ]
 }

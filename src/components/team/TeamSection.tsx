@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { TEAM } from "@/data/team";
+import { TEAM } from "@/constants/team";
 import { TeamCard } from "./TeamCard";
 
 export function TeamSection() {

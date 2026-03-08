@@ -80,7 +80,7 @@ Le [Caddyfile](Caddyfile) configure:
 │   ├── questionnaire-brands/    # Bundle statique questionnaire brands
 │   └── wiki/                    # Bundle statique wiki
 ├── wiki/                        # Source Vite du wiki
-├── wafia - questionnaire brands/# Source Vite du questionnaire brands (+ platform)
+├── wafia-questionnaire-brands/# Source Vite du questionnaire brands (+ platform)
 ├── docs/                        # Documentation interne
 ├── next.config.ts               # Config Next (headers, rewrites, redirects)
 ├── tsconfig.json                # Config TypeScript
@@ -99,7 +99,7 @@ Servies par le site principal:
 Sources embarquées dans ce repo:
 
 - Source wiki (Vite): [`wiki/`](wiki)
-- Source questionnaire brands (Vite): [`wafia - questionnaire brands/`](wafia%20-%20questionnaire%20brands)
+- Source questionnaire brands (Vite): [`wafia-questionnaire-brands/`](wafia-questionnaire-brands)
 
 ## Variables d'environnement
 

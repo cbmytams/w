@@ -9,6 +9,8 @@ import {
 } from "@/lib/authSession";
 import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
+import { LoginSchema } from "@/lib/validations";
+import { validateBody } from "@/lib/api-response";
 
 function safeEqual(a: string, b: string) {
   const left = Buffer.from(a);
@@ -79,15 +81,15 @@ export async function POST(request: NextRequest) {
   });
   if (rateLimitError) return rateLimitError;
 
-  const body = await request.json().catch(() => null) as
-    | { username?: string; password?: string }
-    | null;
-  const username = body?.username?.trim();
-  const password = body?.password;
-
-  if (!username || !password) {
-    return Response.json({ error: "Missing credentials" }, { status: 400, headers: noStoreHeaders });
+  const body = await request.json().catch(() => null);
+  if (!body) {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400, headers: noStoreHeaders });
   }
+
+  const validation = validateBody(LoginSchema, body);
+  if (!validation.success) return validation.response;
+
+  const { username, password } = validation.data;
 
   const credentials = getCredentialMap();
   if (credentials.size === 0) {

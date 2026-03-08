@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
-import { TeamMember } from "@/data/team";
+import { TeamMember } from "@/constants/team";
 
 interface TeamCardProps {
     member: TeamMember;
