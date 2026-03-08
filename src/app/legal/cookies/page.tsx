@@ -16,16 +16,28 @@ export const metadata: Metadata = {
     },
 }
 
+import { LegalContainer, LegalHeader, LegalSection } from "@/components/legal/LegalComponents"
+
 export default function CookiesPolicy() {
     return (
-        <div className="prose prose-slate dark:prose-invert max-w-none">
-            <h1>Politique des Cookies</h1>
-            <p>
-                Ce site utilise des cookies pour améliorer votre expérience et mesurer l&apos;audience (via Google Analytics si activé).
-            </p>
-            <p>
-                Vous pouvez configurer votre navigateur pour refuser les cookies.
-            </p>
-        </div>
+        <LegalContainer>
+            <LegalHeader
+                title="Politique des Cookies"
+                subtitle="Nous utilisons les cookies avec parcimonie pour améliorer votre expérience sans compromettre votre vie privée."
+                date="03 Février 2026"
+            />
+
+            <LegalSection title="Utilisation">
+                <p>
+                    Ce site utilise des cookies pour améliorer votre expérience et mesurer l&apos;audience (via Google Analytics si activé).
+                </p>
+            </LegalSection>
+
+            <LegalSection title="Vos choix">
+                <p>
+                    Vous pouvez configurer votre navigateur pour refuser les cookies.
+                </p>
+            </LegalSection>
+        </LegalContainer>
     )
 }

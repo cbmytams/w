@@ -76,12 +76,15 @@ export default function MentionsLegales() {
             </LegalSection>
 
             <LegalSection title="Propriété Intellectuelle">
-                <div className="bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 md:p-8">
-                    <div className="flex items-start gap-4">
-                        <ShieldCheck className="w-8 h-8 text-violet-500 mt-1 shrink-0" />
+                <div className="relative bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] border border-black/[0.05] dark:border-white/[0.05] rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-none">
+                    <div className="absolute inset-0 rounded-[2.5rem] border border-white/20 dark:border-white/5 pointer-events-none" />
+                    <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-8">
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-violet-500/10 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400">
+                            <ShieldCheck className="w-8 h-8" />
+                        </div>
                         <div>
-                            <h3 className="font-bold text-slate-900 dark:text-white mb-2">Tous droits réservés</h3>
-                            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">Tous droits réservés</h3>
+                            <p className="text-slate-600 dark:text-white/70 text-base md:text-lg leading-relaxed font-medium">
                                 L&apos;ensemble de ce site (structure, design, textes, images, animations, logo) relève de la législation française et internationale sur le droit d&apos;auteur et la propriété intellectuelle. Toute reproduction, modification ou utilisation non autorisée est strictement interdite sans l&apos;accord écrit de Wafia Agency.
                             </p>
                         </div>
