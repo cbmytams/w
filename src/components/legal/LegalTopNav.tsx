@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation"
 import { SmartBackButton } from "@/components/ui/SmartBackButton"
 import { cn } from "@/lib/utils"
 
+import { motion } from "framer-motion"
+
 export type LegalNavContext = "brands" | "talents" | "default"
 
 const LEGAL_LINKS = [
@@ -34,17 +36,20 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
     const cta = CTA_CONFIG[context]
 
     return (
-        <nav className="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-xl">
-            <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
+        <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-fit px-4 sm:px-0">
+            <div className="h-14 bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 flex items-center justify-between gap-2 md:gap-4 relative overflow-x-auto no-scrollbar">
                 <SmartBackButton
                     fallback={BACK_ROUTE[context]}
                     ariaLabel="Retour"
-                    className="inline-flex min-h-11 items-center rounded-full px-3 text-sm font-medium text-white/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                    className="shrink-0 flex items-center justify-center h-10 w-10 md:w-auto md:px-4 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors text-slate-700 dark:text-slate-300 group"
                 >
-                    ← Retour
+                    <span className="md:hidden">←</span>
+                    <span className="hidden md:inline-flex md:items-center md:gap-2">
+                        <span className="group-hover:-translate-x-0.5 transition-transform">←</span> Retour
+                    </span>
                 </SmartBackButton>
 
-                <div className="hidden items-center gap-3 md:flex">
+                <div className="flex items-center gap-1 shrink-0 relative z-10 h-10 px-2 lg:px-4">
                     {LEGAL_LINKS.map((item) => {
                         const isActive = pathname === item.href
                         return (
@@ -52,12 +57,17 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                                 key={item.href}
                                 href={item.href}
                                 aria-current={isActive ? "page" : undefined}
-                                className={cn(
-                                    "rounded-full px-3 py-2 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40",
-                                    isActive ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
-                                )}
+                                className={`relative h-9 px-4 sm:px-5 rounded-full transition-all duration-300 text-[13px] font-semibold leading-[1.2] text-center flex items-center justify-center whitespace-nowrap ${isActive ? "text-gray-900 dark:text-white" : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
+                                    }`}
                             >
-                                {item.label}
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="activeBubbleLegal"
+                                        className="absolute inset-0 bg-white/60 dark:bg-white/20 rounded-full shadow-sm border border-black/5 dark:border-white/10"
+                                        transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                                    />
+                                )}
+                                <span className="relative z-10">{item.label}</span>
                             </Link>
                         )
                     })}
@@ -65,7 +75,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
 
                 <a
                     href={cta.href}
-                    className="inline-flex min-h-11 items-center rounded-full bg-orange-500 px-4 text-sm font-semibold text-black transition-colors hover:bg-orange-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
+                    className="shrink-0 inline-flex h-11 items-center justify-center rounded-full bg-gradient-to-r from-[#FF4C00] to-[#FF8C00] px-6 text-[13px] font-bold tracking-wide text-white transition-all hover:scale-105 active:scale-95 shadow-md shadow-orange-500/25 hover:shadow-orange-500/40"
                 >
                     {cta.label}
                 </a>
