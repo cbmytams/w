@@ -6,9 +6,9 @@ export const nyanConfig: ISourceOptions = {
             value: "#050510", // Matching Wafia dark background
         },
         image: "url('/images/nyan-cat.gif')",
-        position: "center",
+        position: "0 80%", // Pinned to the left edge so the rainbow tail makes sense, but lower down to avoid Wafia main UI
         repeat: "no-repeat",
-        size: "150px", // Just enough to see it without blurring
+        size: "40%", // Large enough to see the cat and tail, but doesn't cross into the center buttons
     },
     particles: {
         color: {
@@ -17,8 +17,8 @@ export const nyanConfig: ISourceOptions = {
         move: {
             direction: "left",
             enable: true,
-            speed: 4,
-            straight: false, // Allow small deviations
+            speed: 6,
+            straight: false,
             outModes: {
                 default: "out",
             },
@@ -27,10 +27,10 @@ export const nyanConfig: ISourceOptions = {
             density: {
                 enable: true,
             },
-            value: 120,
+            value: 120, // Enough stars rushing left to simulate the cat flying right
         },
         opacity: {
-            value: { min: 0.3, max: 0.8 },
+            value: { min: 0.1, max: 0.8 },
             animation: {
                 enable: true,
                 speed: 1,
@@ -38,22 +38,20 @@ export const nyanConfig: ISourceOptions = {
             },
         },
         shape: {
-            // Include circle fallback in case star shape isn't bundled in slim
-            type: ["star", "circle"],
-            options: {
-                star: {
-                    sides: 5,
-                },
-            },
+            // Using circle instead of star so it safely works natively without needing @tsparticles/shape-star plugin
+            type: "circle",
         },
         size: {
-            value: { min: 2, max: 4 },
+            value: { min: 1, max: 4 },
             animation: {
                 enable: true,
                 speed: 3,
                 sync: false,
             },
         },
+        zIndex: {
+            value: 0
+        }
     },
     detectRetina: true,
     interactivity: {
