@@ -2,6 +2,10 @@
   "name": "wafia-website",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20 <25",
+    "npm": ">=10"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
@@ -11,6 +15,7 @@
     "type-check": "tsc --noEmit",
     "test": "jest",
     "verify:standalone": "node scripts/verify-standalone.mjs",
+    "release:check": "npm run build:standalone && npm run verify:standalone && WIKI_VERIFY_SKIP_BUILD=1 npm run wiki:verify",
     "wiki:release": "bash scripts/wiki-release.sh",
     "wiki:verify": "bash scripts/wiki-verify.sh"
   },

@@ -15,7 +15,7 @@ Site principal Wafia basé sur Next.js (App Router), TypeScript et Tailwind CSS.
 
 ### Prérequis
 
-- Node.js 20+
+- Node.js 20.x ou 22.x (`>=20 <25`)
 - npm 10+
 
 ### Installation
@@ -37,6 +37,15 @@ Application: `http://localhost:3000`
 ```bash
 npm run lint
 npm run type-check
+npm run test -- --runInBand
+npm run build:standalone
+npm run verify:standalone
+```
+
+Vérification release complète:
+
+```bash
+npm run release:check
 ```
 
 ### Build production
@@ -78,7 +87,6 @@ Le [Caddyfile](Caddyfile) configure:
 ├── public/                      # Assets servis en statique
 │   ├── questionnaire/           # Bundle statique questionnaire talents
 │   ├── questionnaire-brands/    # Bundle statique questionnaire brands
-│   └── wiki/                    # Bundle statique wiki
 ├── wiki/                        # Source Vite du wiki
 ├── wafia-questionnaire-brands/# Source Vite du questionnaire brands (+ platform)
 ├── docs/                        # Documentation interne
@@ -92,7 +100,7 @@ Le [Caddyfile](Caddyfile) configure:
 
 Servies par le site principal:
 
-- Wiki: `/wiki` et `/wiki/index.html`
+- Wiki: `/wiki`
 - Questionnaire talents: `/questionnaire/index.html`
 - Questionnaire brands: `/questionnaire-brands/index.html`
 
@@ -106,6 +114,14 @@ Sources embarquées dans ce repo:
 Voir [.env.example](.env.example). Principales variables utilisées:
 
 - `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_SITE_SOCIALS` (URLs absolues HTTPS separées par virgules)
 - `NEXT_PUBLIC_GA_ID`
 - `CONTACT_WEBHOOK_URL`
-- `CONTACT_WEBHOOK_TOKEN`
+- `CONTACT_INTAKE_TOKEN`
+
+Variables optionnelles pour soumission IndexNow:
+
+- `INDEXNOW_HOST`
+- `INDEXNOW_KEY`
+- `INDEXNOW_KEY_LOCATION`
+- `INDEXNOW_URLS` (liste d'URLs absolues séparées par des virgules)

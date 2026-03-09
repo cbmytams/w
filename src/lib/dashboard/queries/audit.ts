@@ -1,4 +1,5 @@
 import { prisma } from "../../db";
+import { getConfiguredDashboardActors } from "../../authOptions";
 import { DASHBOARD_ROLES, mapPlatformRoleToDashboardRole } from "../../rbac";
 import type { DashboardFilters, AuditEvent } from "../types";
 import { normalizeRange } from "./utils";
@@ -30,11 +31,15 @@ export async function getAuditEvents(filters: DashboardFilters & { actor?: strin
     const rolesByActor = new Map(
         users.map((user) => [user.id, mapPlatformRoleToDashboardRole(user.role)])
     );
+    const configuredActors = getConfiguredDashboardActors();
 
     return logs.map((log) => ({
         id: log.id,
         actorId: log.actorId,
-        actorRole: rolesByActor.get(log.actorId) || DASHBOARD_ROLES.VIEWER,
+        actorRole:
+            rolesByActor.get(log.actorId) ||
+            configuredActors.get(log.actorId)?.role ||
+            DASHBOARD_ROLES.VIEWER,
         action: log.action,
         entity: log.entity,
         entityId: log.entityId,

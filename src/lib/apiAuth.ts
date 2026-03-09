@@ -23,6 +23,7 @@ export async function requireDashboardRole(
 ): Promise<DashboardAuthResult> {
   const session = await getServerSession(authOptions) as {
     user?: {
+      id?: string;
       name?: string | null;
       email?: string | null;
       image?: string | null;
@@ -30,7 +31,7 @@ export async function requireDashboardRole(
     };
   } | null;
 
-  if (!session?.user) {
+  if (!session?.user?.id) {
     return { session: null, response: unauthorizedResponse("Unauthorized", 401) };
   }
 
@@ -40,5 +41,8 @@ export async function requireDashboardRole(
     return { session: null, response: unauthorizedResponse("Forbidden", 403) };
   }
 
-  return { session: { id: "1", name: session.user.name || "Unknown", role }, response: null };
+  return {
+    session: { id: session.user.id, name: session.user.name || session.user.id, role },
+    response: null
+  };
 }

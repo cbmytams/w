@@ -1,5 +1,72 @@
 import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
+
+function requiredEnv(name: string) {
+  const value = process.env[name]?.trim();
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+  return value;
+}
+
+const ADMIN_USERNAME = requiredEnv("ADMIN_USERNAME");
+const ADMIN_PASSWORD = requiredEnv("ADMIN_PASSWORD");
+const NEXTAUTH_SECRET = requiredEnv("NEXTAUTH_SECRET");
+
+type DashboardCredential = {
+  password: string;
+  role: DashboardRole;
+  name: string;
+};
+
+type DashboardActor = Omit<DashboardCredential, "password">;
+
+function optionalEnv(name: string) {
+  return process.env[name]?.trim() || undefined;
+}
+
+function getDashboardCredentials() {
+  const credentials = new Map<string, DashboardCredential>();
+
+  credentials.set(ADMIN_USERNAME, {
+    password: ADMIN_PASSWORD,
+    role: DASHBOARD_ROLES.ADMIN,
+    name: "Admin",
+  });
+
+  const managerUsername = optionalEnv("MANAGER_USERNAME");
+  const managerPassword = optionalEnv("MANAGER_PASSWORD");
+  if (managerUsername && managerPassword) {
+    credentials.set(managerUsername, {
+      password: managerPassword,
+      role: DASHBOARD_ROLES.MANAGER,
+      name: "Manager",
+    });
+  }
+
+  const viewerUsername = optionalEnv("VIEWER_USERNAME");
+  const viewerPassword = optionalEnv("VIEWER_PASSWORD");
+  if (viewerUsername && viewerPassword) {
+    credentials.set(viewerUsername, {
+      password: viewerPassword,
+      role: DASHBOARD_ROLES.VIEWER,
+      name: "Viewer",
+    });
+  }
+
+  return credentials;
+}
+
+export function getConfiguredDashboardActors() {
+  const actors = new Map<string, DashboardActor>();
+
+  for (const [username, credential] of getDashboardCredentials()) {
+    actors.set(username, { role: credential.role, name: credential.name });
+  }
+
+  return actors;
+}
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -12,33 +79,47 @@ export const authOptions: AuthOptions = {
       async authorize(credentials) {
         if (!credentials?.username || !credentials?.password) return null;
 
-        const adminUsername = process.env.ADMIN_USERNAME || "admin";
-        const adminPassword = process.env.ADMIN_PASSWORD || "admin";
+        const user = getDashboardCredentials().get(credentials.username);
+        if (!user || user.password !== credentials.password) return null;
 
-        if (
-          credentials.username === adminUsername &&
-          credentials.password === adminPassword
-        ) {
-          return { id: "1", name: "Admin", role: "ADMIN" };
-        }
-
-        return null;
+        return {
+          id: credentials.username,
+          name: user.name,
+          role: user.role,
+        };
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
+      const nextToken = token as typeof token & { role?: DashboardRole };
+
       if (user) {
-        // @ts-expect-error - Expected for Custom JWT
-        token.role = user.role;
+        const authUser = user as { id?: string; role?: DashboardRole };
+        if (authUser.id) {
+          nextToken.sub = authUser.id;
+        }
+        if (authUser.role) {
+          nextToken.role = authUser.role;
+        }
       }
 
-      return token;
+      return nextToken;
     },
     async session({ session, token }) {
-      if (token) {
-        // @ts-expect-error - Expected for Custom Session
-        session.user.role = token.role;
+      if (session.user) {
+        const sessionUser = session.user as typeof session.user & {
+          id?: string;
+          role?: DashboardRole;
+        };
+
+        if (token.sub) {
+          sessionUser.id = token.sub;
+        }
+
+        if (typeof (token as { role?: string }).role === "string") {
+          sessionUser.role = (token as { role: DashboardRole }).role;
+        }
       }
 
       return session;
@@ -48,5 +129,5 @@ export const authOptions: AuthOptions = {
   pages: {
     signIn: "/admin/login",
   },
-  secret: process.env.NEXTAUTH_SECRET || "default-secret-for-dev",
+  secret: NEXTAUTH_SECRET,
 };

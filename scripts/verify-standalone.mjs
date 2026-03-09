@@ -8,6 +8,7 @@ const standaloneNextDir = path.join(standaloneDir, ".next");
 const serverPath = path.join(standaloneDir, "server.js");
 const port = Number(process.env.STANDALONE_PORT || 3410);
 const baseUrl = `http://127.0.0.1:${port}`;
+const canonicalOrigin = (process.env.CANONICAL_ORIGIN || "https://wafia.fr").replace(/\/$/, "");
 
 async function assertExists(target) {
   try {
@@ -54,6 +55,23 @@ async function fetchOk(url) {
   return response;
 }
 
+function assertNoLocalhostLeak(content, label) {
+  if (/http:\/\/localhost:3000/i.test(content)) {
+    throw new Error(`Detected localhost leak in ${label}.`);
+  }
+}
+
+function assertCanonicalOrigin(content, label) {
+  const canonical = content.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];
+  if (!canonical) {
+    throw new Error(`Missing canonical tag in ${label}.`);
+  }
+
+  if (!canonical.startsWith(canonicalOrigin)) {
+    throw new Error(`Canonical origin mismatch in ${label}: ${canonical}`);
+  }
+}
+
 function extractAsset(html, pattern, label) {
   const match = html.match(pattern);
   if (!match?.[1]) {
@@ -64,20 +82,87 @@ function extractAsset(html, pattern, label) {
 }
 
 async function verifyRuntime() {
-  const brandsHtml = await fetchText(`${baseUrl}/for-brands`);
+  const [
+    homeHtml,
+    aboutHtml,
+    wikiHtml,
+    blogHtml,
+    wikiArticleHtml,
+    brandsHtml,
+    robotsTxt,
+    sitemapXml,
+    wikiSitemapXml,
+    llmsTxt,
+    rssXml,
+  ] =
+    await Promise.all([
+      fetchText(`${baseUrl}/`),
+      fetchText(`${baseUrl}/about`),
+      fetchText(`${baseUrl}/wiki`),
+      fetchText(`${baseUrl}/blog/tiktok-fyp-decrypte`),
+      fetchText(`${baseUrl}/wiki/guide-tiktok-2025-strategie-influenceur`),
+      fetchText(`${baseUrl}/for-brands`),
+      fetchText(`${baseUrl}/robots.txt`),
+      fetchText(`${baseUrl}/sitemap.xml`),
+      fetchText(`${baseUrl}/wiki/sitemap.xml`),
+      fetchText(`${baseUrl}/llms.txt`),
+      fetchText(`${baseUrl}/rss.xml`),
+    ]);
 
   const cssAsset = extractAsset(brandsHtml, /href="(\/_next\/static\/[^"]+\.css)"/, "CSS asset");
   const fontAsset = extractAsset(brandsHtml, /href="(\/_next\/static\/[^"]+\.woff2)"/, "font asset");
+
+  [
+    [homeHtml, "/"],
+    [aboutHtml, "/about"],
+    [wikiHtml, "/wiki"],
+    [blogHtml, "/blog/[slug]"],
+    [wikiArticleHtml, "/wiki/[slug]"],
+    [robotsTxt, "/robots.txt"],
+    [sitemapXml, "/sitemap.xml"],
+    [wikiSitemapXml, "/wiki/sitemap.xml"],
+    [llmsTxt, "/llms.txt"],
+    [rssXml, "/rss.xml"],
+  ].forEach(([content, label]) => {
+    assertNoLocalhostLeak(content, label);
+  });
+
+  assertCanonicalOrigin(homeHtml, "/");
+  assertCanonicalOrigin(aboutHtml, "/about");
+  assertCanonicalOrigin(wikiHtml, "/wiki");
+  assertCanonicalOrigin(blogHtml, "/blog/[slug]");
+  assertCanonicalOrigin(wikiArticleHtml, "/wiki/[slug]");
+
+  if (!robotsTxt.includes(`${canonicalOrigin}/sitemap.xml`)) {
+    throw new Error("robots.txt does not declare canonical /sitemap.xml.");
+  }
+  if (!robotsTxt.includes(`${canonicalOrigin}/wiki/sitemap.xml`)) {
+    throw new Error("robots.txt does not declare canonical /wiki/sitemap.xml.");
+  }
+  if (!sitemapXml.includes(canonicalOrigin)) {
+    throw new Error("sitemap.xml does not use canonical origin.");
+  }
+  if (!wikiSitemapXml.includes(canonicalOrigin)) {
+    throw new Error("wiki/sitemap.xml does not use canonical origin.");
+  }
+  if (!llmsTxt.includes(canonicalOrigin)) {
+    throw new Error("llms.txt does not use canonical origin.");
+  }
+  if (!rssXml.includes(canonicalOrigin)) {
+    throw new Error("rss.xml does not use canonical origin.");
+  }
 
   await Promise.all([
     fetchOk(`${baseUrl}/`),
     fetchOk(`${baseUrl}/for-brands`),
     fetchOk(`${baseUrl}/studio`),
     fetchOk(`${baseUrl}/wiki`),
+    fetchOk(`${baseUrl}/rss.xml`),
     fetchOk(`${baseUrl}${cssAsset}`),
     fetchOk(`${baseUrl}${fontAsset}`),
     fetchOk(`${baseUrl}/logos/adidas-2.svg`),
-    fetchOk(`${baseUrl}/_next/image?url=%2Fbasic_fit_campaign.png&w=828&q=75`),
+    fetchOk(`${baseUrl}/llms.txt`),
+    fetchOk(`${baseUrl}/_next/image?url=%2Fcases%2Ffashion-ugc.png&w=828&q=75`),
   ]);
 }
 
@@ -85,6 +170,8 @@ async function main() {
   await Promise.all([
     assertExists(serverPath),
     assertExists(path.join(standaloneNextDir, "static")),
+    assertExists(path.join(standaloneNextDir, "routes-manifest.json")),
+    assertExists(path.join(standaloneNextDir, "images-manifest.json")),
     assertExists(path.join(standaloneDir, "public")),
   ]);
 

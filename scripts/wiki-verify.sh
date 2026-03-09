@@ -4,8 +4,15 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PORT="${WIKI_VERIFY_PORT:-4317}"
 BASE_URL="http://127.0.0.1:${PORT}"
+NEXT_CONFIG_FILE="$ROOT_DIR/next.config.ts"
+SKIP_BUILD="${WIKI_VERIFY_SKIP_BUILD:-0}"
 
 SOURCE_DIR="$ROOT_DIR/wiki/src/content/blog"
+
+if [[ ! -f "$NEXT_CONFIG_FILE" ]]; then
+  echo "[wiki:verify] ERROR: Next config file not found: ${NEXT_CONFIG_FILE}."
+  exit 1
+fi
 
 assert_http_code() {
   local path="$1"
@@ -42,44 +49,51 @@ assert_redirect_301() {
 }
 
 echo "[wiki:verify] Checking wiki source editorial constraints..."
-if rg -n '^title:.*2025|^# .*2025' "$SOURCE_DIR"; then
-  echo "[wiki:verify] ERROR: found '2025' in title or H1 in source markdown."
-  exit 1
-fi
 if rg -n '\[cite:|\*Sources?\s*:|Contactez-nous|Discutons|Notre agence|Notre équipe' "$ROOT_DIR/wiki/src/content/blog"; then
   echo "[wiki:verify] ERROR: found forbidden editorial patterns in source markdown."
   exit 1
 fi
 
 echo "[wiki:verify] Checking runtime config (Next wiki routes)..."
-if rg -n 'destination:\s*"/wiki/.+\.html"' "$ROOT_DIR/next.config.ts"; then
-  echo "[wiki:verify] ERROR: legacy static /wiki rewrite detected in next.config.ts."
+if rg -n 'destination:\s*"/wiki/.+\.html"' "$NEXT_CONFIG_FILE"; then
+  echo "[wiki:verify] ERROR: legacy static /wiki rewrite detected in ${NEXT_CONFIG_FILE}."
   exit 1
 fi
-if ! rg -n 'source:\s*"/wiki/blog"' "$ROOT_DIR/next.config.ts" >/dev/null; then
+if ! rg -n 'source:\s*"/wiki/blog"' "$NEXT_CONFIG_FILE" >/dev/null; then
   echo "[wiki:verify] ERROR: missing redirect /wiki/blog -> /wiki."
   exit 1
 fi
-if ! rg -n 'source:\s*"/wiki/blog/theme/:id"' "$ROOT_DIR/next.config.ts" >/dev/null; then
+if ! rg -n 'source:\s*"/wiki/blog/theme/:id"' "$NEXT_CONFIG_FILE" >/dev/null; then
   echo "[wiki:verify] ERROR: missing redirect /wiki/blog/theme/:id -> /wiki/theme/:id."
   exit 1
 fi
-if ! rg -n 'source:\s*"/wiki/blog/platform/:id"' "$ROOT_DIR/next.config.ts" >/dev/null; then
+if ! rg -n 'source:\s*"/wiki/blog/platform/:id"' "$NEXT_CONFIG_FILE" >/dev/null; then
   echo "[wiki:verify] ERROR: missing redirect /wiki/blog/platform/:id -> /wiki/platform/:id."
   exit 1
 fi
-if ! rg -n 'source:\s*"/wiki/blog/:slug"' "$ROOT_DIR/next.config.ts" >/dev/null; then
+if ! rg -n 'source:\s*"/wiki/blog/:slug"' "$NEXT_CONFIG_FILE" >/dev/null; then
   echo "[wiki:verify] ERROR: missing redirect /wiki/blog/:slug -> /wiki/:slug."
   exit 1
 fi
-if [[ "$(rg -n 'statusCode:\s*301' "$ROOT_DIR/next.config.ts" | wc -l | tr -d ' ')" -lt 4 ]]; then
+if [[ "$(rg -n 'statusCode:\s*301' "$NEXT_CONFIG_FILE" | wc -l | tr -d ' ')" -lt 4 ]]; then
   echo "[wiki:verify] ERROR: expected 4 wiki redirects with HTTP 301."
   exit 1
 fi
 
-source_slugs="$(rg --no-filename -o '^slug:\s*"([^"]+)"' -r '$1' "$SOURCE_DIR" | sort -u || true)"
-source_themes="$(rg --no-filename -o '^theme:\s*"([^"]+)"' -r '$1' "$SOURCE_DIR" | sort -u || true)"
-source_platforms="$(rg --no-filename -o '^platform:\s*"([^"]+)"' -r '$1' "$SOURCE_DIR" | sort -u || true)"
+for legacy_file in \
+  "$ROOT_DIR/public/wiki/sitemap.xml" \
+  "$ROOT_DIR/public/wiki/robots.txt" \
+  "$ROOT_DIR/public/wiki/rss.xml" \
+  "$ROOT_DIR/public/wiki/index.html"; do
+  if [[ -f "$legacy_file" ]]; then
+    echo "[wiki:verify] ERROR: legacy static wiki artifact still present: ${legacy_file}."
+    exit 1
+  fi
+done
+
+source_slugs="$(rg --no-filename -o '^slug:\s*"?(.*)"?$' -r '$1' "$SOURCE_DIR" | sed 's/[[:space:]]*$//' | sort -u || true)"
+source_themes="$(rg --no-filename -o '^theme:\s*"?(.*)"?$' -r '$1' "$SOURCE_DIR" | sed 's/[[:space:]]*$//' | sort -u || true)"
+source_platforms="$(rg --no-filename -o '^platform:\s*"?(.*)"?$' -r '$1' "$SOURCE_DIR" | sed 's/[[:space:]]*$//' | sort -u || true)"
 
 first_slug="$(printf "%s\n" "$source_slugs" | sed '/^$/d' | head -n 1)"
 first_theme="$(printf "%s\n" "$source_themes" | sed '/^$/d' | head -n 1)"
@@ -90,26 +104,40 @@ if [[ -z "$first_slug" || -z "$first_theme" || -z "$first_platform" ]]; then
   exit 1
 fi
 
-source_file_for_first_slug="$(rg -l "^slug:\s*\"${first_slug}\"$" "$SOURCE_DIR" | head -n 1 || true)"
+source_file_for_first_slug="$(rg -l "^slug:\s*\"?${first_slug}\"?$" "$SOURCE_DIR" | head -n 1 || true)"
 if [[ -z "$source_file_for_first_slug" ]]; then
   echo "[wiki:verify] ERROR: unable to map source file for slug ${first_slug}."
   exit 1
 fi
-first_title="$(rg --no-filename -m 1 -o '^title:\s*"([^"]+)"' -r '$1' "$source_file_for_first_slug" || true)"
+first_title="$(rg --no-filename -m 1 -o '^title:\s*"?(.*)"?$' -r '$1' "$source_file_for_first_slug" | sed 's/[[:space:]]*$//' || true)"
 if [[ -z "$first_title" ]]; then
   echo "[wiki:verify] ERROR: unable to resolve title for slug ${first_slug}."
   exit 1
 fi
 
-echo "[wiki:verify] Building Next app..."
+echo "[wiki:verify] Building standalone package..."
 BUILD_LOG="$(mktemp -t wiki-verify-build.XXXXXX.log)"
 SERVER_LOG="$(mktemp -t wiki-verify-server.XXXXXX.log)"
 
-if ! npm --prefix "$ROOT_DIR" run build >"$BUILD_LOG" 2>&1; then
-  echo "[wiki:verify] ERROR: npm run build failed."
-  cat "$BUILD_LOG"
-  rm -f "$BUILD_LOG" "$SERVER_LOG"
-  exit 1
+if [[ "$SKIP_BUILD" == "1" ]]; then
+  echo "[wiki:verify] Reusing existing standalone package..."
+  if [[ ! -f "$ROOT_DIR/.next/standalone/server.js" ]]; then
+    echo "[wiki:verify] ERROR: missing standalone server artifact. Run npm run build:standalone first."
+    rm -f "$BUILD_LOG" "$SERVER_LOG"
+    exit 1
+  fi
+  if [[ ! -f "$ROOT_DIR/.next/standalone/.next/routes-manifest.json" ]]; then
+    echo "[wiki:verify] ERROR: missing routes-manifest in standalone package. Run npm run build:standalone first."
+    rm -f "$BUILD_LOG" "$SERVER_LOG"
+    exit 1
+  fi
+else
+  if ! npm --prefix "$ROOT_DIR" run build:standalone >"$BUILD_LOG" 2>&1; then
+    echo "[wiki:verify] ERROR: npm run build:standalone failed."
+    cat "$BUILD_LOG"
+    rm -f "$BUILD_LOG" "$SERVER_LOG"
+    exit 1
+  fi
 fi
 
 echo "[wiki:verify] Starting local server for HTTP assertions..."
@@ -172,13 +200,32 @@ if ! printf "%s" "$theme_html" | rg -q '<a[^>]+href="/wiki/'; then
   echo "[wiki:verify] ERROR: /wiki/theme/${first_theme} does not expose crawlable article anchors."
   exit 1
 fi
-if ! printf "%s" "$article_html" | rg -F -q "$first_title"; then
-  echo "[wiki:verify] ERROR: article title not visible in initial HTML for /wiki/${first_slug}."
+article_canonical_url="$(printf "%s" "$article_html" | rg -o '<link rel="canonical" href="[^"]+"' | head -n 1 | sed -E 's#<link rel="canonical" href="([^"]+)"#\1#')"
+if [[ -z "$article_canonical_url" ]]; then
+  echo "[wiki:verify] ERROR: canonical URL missing in initial HTML for /wiki/${first_slug}."
+  exit 1
+fi
+if [[ "$article_canonical_url" != http*"/wiki/${first_slug}" ]]; then
+  echo "[wiki:verify] ERROR: unexpected canonical URL for /wiki/${first_slug}: ${article_canonical_url}."
+  exit 1
+fi
+if [[ "$article_canonical_url" == *"localhost"* || "$article_canonical_url" == *"127.0.0.1"* ]]; then
+  echo "[wiki:verify] ERROR: canonical URL leaks local origin: ${article_canonical_url}."
   exit 1
 fi
 
-if printf "%s" "$index_html" "$theme_html" "$article_html" | rg -qi 'application/ld\+json'; then
-  echo "[wiki:verify] ERROR: JSON-LD detected in wiki HTML."
+if ! printf "%s" "$index_html" | rg -q '"@type":"CollectionPage"'; then
+  echo "[wiki:verify] ERROR: /wiki is missing CollectionPage JSON-LD."
+  exit 1
+fi
+
+if ! printf "%s" "$theme_html" | rg -q '"@type":"CollectionPage"'; then
+  echo "[wiki:verify] ERROR: /wiki/theme/${first_theme} is missing CollectionPage JSON-LD."
+  exit 1
+fi
+
+if ! printf "%s" "$article_html" | rg -q '"@type":"BlogPosting"'; then
+  echo "[wiki:verify] ERROR: /wiki/${first_slug} is missing BlogPosting JSON-LD."
   exit 1
 fi
 

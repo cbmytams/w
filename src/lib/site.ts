@@ -1,30 +1,87 @@
+const PROD_CANONICAL_ORIGIN = "https://wafia.fr";
+const LOCAL_DEV_ORIGIN = "http://localhost:3000";
+const LOOPBACK_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
+
+function normalizeOrigin(value: string): string | null {
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+
+  try {
+    const url = new URL(trimmed);
+    return url.origin;
+  } catch {
+    return null;
+  }
+}
+
+function isLocalOrigin(origin: string | null): boolean {
+  if (!origin) return false;
+
+  try {
+    return LOOPBACK_HOSTS.has(new URL(origin).hostname);
+  } catch {
+    return false;
+  }
+}
+
+function resolveSiteOrigin(): string {
+  const envOrigin = normalizeOrigin(process.env.NEXT_PUBLIC_SITE_URL ?? "");
+
+  if (process.env.NODE_ENV === "production") {
+    if (!envOrigin) return PROD_CANONICAL_ORIGIN;
+    if (envOrigin === LOCAL_DEV_ORIGIN || isLocalOrigin(envOrigin)) {
+      return PROD_CANONICAL_ORIGIN;
+    }
+    return envOrigin;
+  }
+
+  return envOrigin ?? LOCAL_DEV_ORIGIN;
+}
+
+function resolveSiteSocials(): string[] {
+  const raw = process.env.NEXT_PUBLIC_SITE_SOCIALS ?? "";
+  const values = raw
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  return values.filter((value) => {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:";
+    } catch {
+      return false;
+    }
+  });
+}
+
 export const siteConfig = {
   name: "Wafia",
   legalName: "Wafia",
   description:
     "Agence hybride : Influence, Talents, Studio Créatif et Stratégie. Campagnes traçables, production brand-ready.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  url: resolveSiteOrigin(),
   locale: "fr_FR",
   logo: "/wafia.svg",
   ogImage: "/opengraph-image",
   twitterHandle: "",
-  socials: [] as string[],
+  socials: resolveSiteSocials(),
 } as const;
 
 export const sitePaths = {
   home: "/",
   about: "/about",
   blog: "/blog",
+  explore: "/explore",
+  cases: "/cases",
   services: "/services",
   process: "/process",
-  cases: "/cases",
   studio: "/studio",
+  forAgencies: "/for-agencies",
   forBrands: "/for-brands",
   forTalents: "/for-talents",
-  forAgencies: "/for-agencies",
   wiki: "/wiki",
 
-  explore: "/explore",
   legalPrivacy: "/legal/privacy",
   legalMentions: "/legal/mentions",
   legalCookies: "/legal/cookies",
@@ -32,15 +89,15 @@ export const sitePaths = {
 
 export const sitemapRoutes = [
   sitePaths.home,
-  sitePaths.explore,
   sitePaths.blog,
-  sitePaths.forBrands,
-  sitePaths.forTalents,
-  sitePaths.forAgencies,
-  sitePaths.wiki,
+  sitePaths.explore,
+  sitePaths.cases,
   sitePaths.services,
   sitePaths.process,
-  sitePaths.cases,
+  sitePaths.forAgencies,
+  sitePaths.forBrands,
+  sitePaths.forTalents,
+  sitePaths.wiki,
   sitePaths.studio,
 
   sitePaths.legalPrivacy,

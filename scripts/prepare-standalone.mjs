@@ -4,6 +4,21 @@ import path from "node:path";
 const root = process.cwd();
 const standaloneDir = path.join(root, ".next", "standalone");
 const standaloneNextDir = path.join(standaloneDir, ".next");
+const nextDir = path.join(root, ".next");
+
+const REQUIRED_NEXT_ROOT_FILES = [
+  "BUILD_ID",
+  "app-path-routes-manifest.json",
+  "build-manifest.json",
+  "images-manifest.json",
+  "next-minimal-server.js.nft.json",
+  "next-server.js.nft.json",
+  "prerender-manifest.json",
+  "react-loadable-manifest.json",
+  "required-server-files.js",
+  "required-server-files.json",
+  "routes-manifest.json",
+];
 
 async function ensureExists(target) {
   try {
@@ -17,6 +32,10 @@ async function copyIntoStandalone() {
   await ensureExists(standaloneNextDir);
 
   const tasks = [
+    ...REQUIRED_NEXT_ROOT_FILES.map((filename) => ({
+      from: path.join(nextDir, filename),
+      to: path.join(standaloneNextDir, filename),
+    })),
     {
       from: path.join(root, ".next", "static"),
       to: path.join(standaloneNextDir, "static"),
