@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { getWikiArticleSummaries } from "@/lib/wiki";
 import { siteConfig } from "@/lib/site";
 import WikiIndexView from "@/components/wiki/WikiIndexView";
+import { collectionPageSchema } from "@/lib/structured-data";
 
 const WIKI_TITLE = "Wiki de l'Influence";
 const WIKI_DESCRIPTION =
@@ -35,8 +36,26 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function WikiIndexPage() {
   const articleSummaries = await getWikiArticleSummaries();
   return (
-    <Suspense fallback={null}>
-      <WikiIndexView articles={articleSummaries} />
-    </Suspense>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            collectionPageSchema({
+              name: WIKI_TITLE,
+              description: WIKI_DESCRIPTION,
+              url: new URL("/wiki", siteConfig.url).toString(),
+              items: articleSummaries.map((article) => ({
+                name: article.title,
+                url: new URL(`/wiki/${article.slug}`, siteConfig.url).toString(),
+              })),
+            }),
+          ),
+        }}
+      />
+      <Suspense fallback={null}>
+        <WikiIndexView articles={articleSummaries} />
+      </Suspense>
+    </>
   );
 }

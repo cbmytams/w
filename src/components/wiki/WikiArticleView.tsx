@@ -20,6 +20,8 @@ interface ArticleData {
     category: string;
     readTime: string;
     chapters: Chapter[];
+    theme?: string;
+    platform?: string;
 }
 
 interface SearchArticle {
@@ -121,7 +123,15 @@ export default function WikiArticleView({
         <div id="wiki-root" className="min-h-screen font-sans flex flex-col" style={{ backgroundColor: 'var(--wiki-bg)', color: 'var(--wiki-ink)' }}>
             <WikiSearchDialog articles={allArticles} />
             <WikiNavBar isDeep isReading parentLabel={article.category}
-                currentTitle={article.title} onBack={() => router.push("/wiki")} showUI={showUI}
+                currentTitle={article.title} onBack={() => {
+                    if (article.theme) {
+                        router.push(`/wiki/theme/${article.theme}`);
+                    } else if (article.platform) {
+                        router.push(`/wiki/platform/${article.platform}`);
+                    } else {
+                        router.push("/wiki");
+                    }
+                }} showUI={showUI}
                 isDark={isDark} onToggleDark={toggleDark} mounted={mounted} />
 
             {/* Progress Bar */}

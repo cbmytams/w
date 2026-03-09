@@ -45,7 +45,14 @@ describe("wiki SEO contract", () => {
       ]),
     );
 
-    expect(fs.existsSync(path.join(process.cwd(), "public/wiki/sitemap.xml"))).toBe(false);
+    [
+      "public/wiki/sitemap.xml",
+      "public/wiki/robots.txt",
+      "public/wiki/rss.xml",
+      "public/wiki/index.html",
+    ].forEach((relativePath) => {
+      expect(fs.existsSync(path.join(process.cwd(), relativePath))).toBe(false);
+    });
   });
 
   it("enforces static wiki route generation in route source files", () => {

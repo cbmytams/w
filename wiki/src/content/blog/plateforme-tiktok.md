@@ -1,9 +1,14 @@
 ---
-title: "TikTok : distribution, croissance et monétisation"
-slug: "guide-tiktok-2025-strategie-influenceur"
-category: "Plateforme — TikTok"
-platform: "tiktok"
-publishedAt: "2025-07-01"
+title: 'TikTok : distribution, croissance et monétisation'
+slug: guide-tiktok-2025-strategie-influenceur
+description: 'Repères TikTok 2025 : logique de distribution, métriques utiles, formats performants et options de monétisation.'
+authorSlug: sasha-guettat
+platform: tiktok
+category: Plateforme — TikTok
+publishedAt: '2025-07-01'
+updatedAt: '2025-07-01'
+lastReviewedAt: '2025-07-01'
+sources: []
 ---
 
 # TikTok : distribution, croissance et monétisation

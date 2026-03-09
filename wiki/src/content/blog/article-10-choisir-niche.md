@@ -1,9 +1,14 @@
 ---
-title: "Choisir sa niche : méthode de validation et positionnement"
-slug: "choisir-niche-createur-2025"
-category: "Stratégie — Fondamentaux"
-theme: "branding"
-publishedAt: "2025-08-03"
+title: 'Choisir sa niche : méthode de validation et positionnement'
+slug: choisir-niche-createur-2025
+description: 'Méthode de choix de niche pour créateurs : validation marché, positionnement et trajectoire de développement.'
+authorSlug: yaelle
+theme: branding
+category: Stratégie — Fondamentaux
+publishedAt: '2025-08-03'
+updatedAt: '2025-08-03'
+lastReviewedAt: '2025-08-03'
+sources: []
 ---
 
 # Choisir sa niche : méthode de validation et positionnement

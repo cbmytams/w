@@ -3,17 +3,21 @@
 import { useState, useEffect } from "react";
 
 export function useWikiDarkMode() {
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setIsDark] = useState(() => {
+        if (typeof window === "undefined") return false;
+        const stored = localStorage.getItem("wiki-theme");
+        if (stored === "dark") return true;
+        if (stored === "light") return false;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    });
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
-        const stored = localStorage.getItem("wiki-theme");
-        if (stored) {
-            setIsDark(stored === "dark");
-        } else {
-            setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
-        }
+        const frame = window.requestAnimationFrame(() => {
+            setMounted(true);
+        });
+
+        return () => window.cancelAnimationFrame(frame);
     }, []);
 
     useEffect(() => {

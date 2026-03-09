@@ -9,7 +9,7 @@ export default function TalentsExportsPage() {
   const handleExport = async (format: string) => {
     setExporting(true);
     try {
-      window.location.href = `/api/v1/exports?type=TALENTS&format=${format}`;
+      window.location.href = `/api/v1/questionnaires/exports?type=TALENTS&format=${format}&version=v1`;
     } finally {
       setTimeout(() => setExporting(false), 2500);
     }

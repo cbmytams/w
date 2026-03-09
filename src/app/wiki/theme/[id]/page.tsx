@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import WikiCategoryView from "@/components/wiki/WikiCategoryView";
 import { WIKI_THEME_LABELS, getWikiArticleSummaries, getWikiThemes } from "@/lib/wiki";
 import { siteConfig } from "@/lib/site";
+import { collectionPageSchema } from "@/lib/structured-data";
 
 interface WikiThemePageProps {
   params: Promise<{
@@ -59,13 +60,32 @@ export default async function WikiThemePage({ params }: WikiThemePageProps) {
 
   const themeTitle = resolveThemeLabel(id);
   const themeArticles = allArticles.filter((article) => article.theme === id);
+  const canonicalUrl = new URL(`/wiki/theme/${id}`, siteConfig.url).toString();
 
   return (
-    <WikiCategoryView
-      type="theme"
-      title={themeTitle}
-      articles={themeArticles}
-      allArticles={allArticles}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            collectionPageSchema({
+              name: `${themeTitle} | Wiki de l'Influence`,
+              description: `Articles du theme ${themeTitle.toLowerCase()} sur le Wiki de l'Influence.`,
+              url: canonicalUrl,
+              items: themeArticles.map((article) => ({
+                name: article.title,
+                url: new URL(`/wiki/${article.slug}`, siteConfig.url).toString(),
+              })),
+            }),
+          ),
+        }}
+      />
+      <WikiCategoryView
+        type="theme"
+        title={themeTitle}
+        articles={themeArticles}
+        allArticles={allArticles}
+      />
+    </>
   );
 }

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import { Clock } from "lucide-react"
-import Link from "next/link"
 import { Container } from "@/components/ui/container"
 import { TALENT_HERO } from "@/constants"
 import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire"

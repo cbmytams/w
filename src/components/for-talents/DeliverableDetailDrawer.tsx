@@ -2,9 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import { motion } from "framer-motion"
 import { X, ArrowRight } from "lucide-react"
-import Link from "next/link"
 import type { TALENT_DELIVERABLES } from "@/constants"
 import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire"
 import { useFocusTrap } from "@/hooks/useFocusTrap"
@@ -223,13 +221,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                     </div>
                     <div className="relative space-y-5 before:absolute before:bottom-4 before:left-[15px] before:top-4 before:w-[1px] before:bg-gradient-to-b before:from-purple-400/30 before:via-gray-300/20 before:to-transparent dark:before:from-purple-500/20 dark:before:via-white/[0.06]">
                       {renderedItem.detail.howItWorks?.map((step, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                          className="relative flex gap-4"
-                        >
+                        <div key={i} className="relative flex gap-4">
                           <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/80 shadow-sm dark:border-white/[0.12] dark:bg-white/[0.08] dark:shadow-none">
                             <span className="text-[11px] font-bold text-gray-500 dark:text-gray-400">{i + 1}</span>
                           </div>
@@ -241,7 +233,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                               {step.description}
                             </div>
                           </div>
-                        </motion.div>
+                        </div>
                       ))}
                     </div>
                   </div>

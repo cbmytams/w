@@ -9,6 +9,9 @@
 :80 {
     encode zstd gzip
 
+    @insecure_proto header X-Forwarded-Proto http
+    redir @insecure_proto https://{host}{uri} permanent
+
     @static {
         path /_next/static/* /images/* /logos/* /cases/* /questionnaire* /questionnaire-brands/*
     }
@@ -16,6 +19,10 @@
 
     header {
         Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
     }
 
     reverse_proxy 127.0.0.1:3000

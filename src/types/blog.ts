@@ -1,3 +1,5 @@
+import type { ArticleSource } from "@/types/content";
+
 export interface BlogArticleChapter {
   title: string;
   content: string;
@@ -6,11 +8,16 @@ export interface BlogArticleChapter {
 export interface BlogArticle {
   title: string;
   slug: string;
+  description: string;
+  authorSlug: string;
   platform: string;
   theme: string;
   category: string;
   time: string;
   publishedAt: string;
+  updatedAt: string;
+  lastReviewedAt: string;
+  sources: ArticleSource[];
   chapters: BlogArticleChapter[];
   body: string;
   sourcePath: string;

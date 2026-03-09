@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import WikiCategoryView from "@/components/wiki/WikiCategoryView";
 import { WIKI_PLATFORM_LABELS, getWikiArticleSummaries, getWikiPlatforms } from "@/lib/wiki";
 import { siteConfig } from "@/lib/site";
+import { collectionPageSchema } from "@/lib/structured-data";
 
 interface WikiPlatformPageProps {
   params: Promise<{
@@ -62,13 +63,32 @@ export default async function WikiPlatformPage({ params }: WikiPlatformPageProps
 
   const platformTitle = resolvePlatformLabel(id);
   const platformArticles = allArticles.filter((article) => article.platform === id);
+  const canonicalUrl = new URL(`/wiki/platform/${id}`, siteConfig.url).toString();
 
   return (
-    <WikiCategoryView
-      type="platform"
-      title={platformTitle}
-      articles={platformArticles}
-      allArticles={allArticles}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            collectionPageSchema({
+              name: `${platformTitle} | Wiki de l'Influence`,
+              description: `Articles dedies a la plateforme ${platformTitle} sur le Wiki de l'Influence.`,
+              url: canonicalUrl,
+              items: platformArticles.map((article) => ({
+                name: article.title,
+                url: new URL(`/wiki/${article.slug}`, siteConfig.url).toString(),
+              })),
+            }),
+          ),
+        }}
+      />
+      <WikiCategoryView
+        type="platform"
+        title={platformTitle}
+        articles={platformArticles}
+        allArticles={allArticles}
+      />
+    </>
   );
 }

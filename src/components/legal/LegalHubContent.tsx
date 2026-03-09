@@ -8,7 +8,7 @@ interface LegalHubContentProps {
 
 export function LegalHubContent({ context = "talents" }: LegalHubContentProps) {
     const isBrand = context === "brands"
-    const query = isBrand ? "?context=brands" : ""
+    const query = `?context=${context}`
 
     // Color classes
     const hoverBorderColor = isBrand ? "hover:border-orange-500/50" : "hover:border-violet-500/50"

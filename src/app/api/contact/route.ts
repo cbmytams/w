@@ -41,12 +41,15 @@ async function forwardToWebhook(payload: Record<string, unknown>) {
         throw new Error("CONTACT_WEBHOOK_URL is not configured")
     }
 
+    const webhookToken =
+        process.env.CONTACT_INTAKE_TOKEN || process.env.CONTACT_WEBHOOK_TOKEN || null
+
     const webhookResponse = await fetch(webhookUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            ...(process.env.CONTACT_WEBHOOK_TOKEN
-                ? { Authorization: `Bearer ${process.env.CONTACT_WEBHOOK_TOKEN}` }
+            ...(webhookToken
+                ? { Authorization: `Bearer ${webhookToken}` }
                 : {}),
         },
         body: JSON.stringify(payload),

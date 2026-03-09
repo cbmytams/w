@@ -24,7 +24,7 @@ function IframeRenderer({ type }: { type: "talents" | "brands" }) {
                     const isMain = !hashPath || hashPath === '#/' || hashPath === '#';
                     setShowAdmin(isMain);
                 }
-            } catch (e) {
+            } catch {
                 // Cross-origin block (should not happen since it's same origin, but safe fallback)
             }
         }, 500);

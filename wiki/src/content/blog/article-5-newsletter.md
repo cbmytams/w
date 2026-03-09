@@ -1,9 +1,14 @@
 ---
-title: "Newsletter créateur : stratégie éditoriale et leviers de monétisation"
-slug: "newsletter-influenceur-monetisation-2025"
-category: "Stratégie — Owned Audience"
-theme: "croissance"
-publishedAt: "2025-06-29"
+title: 'Newsletter créateur : stratégie éditoriale et leviers de monétisation'
+slug: newsletter-influenceur-monetisation-2025
+description: 'Structurer une newsletter créateur en 2025 : acquisition, calendrier éditorial et modèles de monétisation.'
+authorSlug: yaelle
+theme: croissance
+category: Stratégie — Owned Audience
+publishedAt: '2025-06-29'
+updatedAt: '2025-06-29'
+lastReviewedAt: '2025-06-29'
+sources: []
 ---
 
 # Newsletter créateur : stratégie éditoriale et leviers de monétisation

@@ -1,9 +1,14 @@
 ---
-title: "Contrats de marque : négociation, clauses clés et sécurisation"
-slug: "contrats-influenceur-marques-2025"
-category: "Business — Légal & Contrats"
-theme: "business"
-publishedAt: "2025-07-27"
+title: 'Contrats de marque : négociation, clauses clés et sécurisation'
+slug: contrats-influenceur-marques-2025
+description: 'Négocier des contrats de marque en 2025 : clauses sensibles, droits d’usage, exclusivité et cadre de négociation.'
+authorSlug: sasha-guettat
+theme: business
+category: Business — Légal & Contrats
+publishedAt: '2025-07-27'
+updatedAt: '2025-07-27'
+lastReviewedAt: '2025-07-27'
+sources: []
 ---
 
 # Contrats de marque : négociation, clauses clés et sécurisation

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import type { ArticleSource, ArticleSourceType } from "@/types/content";
 import {
   WIKI_PLATFORM_LABELS,
   WIKI_PLATFORM_ORDER,
@@ -18,10 +19,14 @@ export interface WikiArticle {
   slug: string;
   title: string;
   description: string;
+  authorSlug: string;
   category: string;
   publishedAt: string;
+  updatedAt: string;
+  lastReviewedAt: string;
   theme?: string;
   platform?: string;
+  sources: ArticleSource[];
   readTime: string;
   chapters: WikiChapter[];
   contentHtml: string;
@@ -32,9 +37,12 @@ export interface WikiArticleSummary {
   slug: string;
   title: string;
   description: string;
+  authorSlug: string;
   category: string;
   readTime: string;
   publishedAt: string;
+  updatedAt: string;
+  lastReviewedAt: string;
   theme?: string;
   platform?: string;
 }
@@ -43,6 +51,13 @@ const CONTENT_DIR = path.join(process.cwd(), "wiki", "src", "content", "blog");
 const DEFAULT_DESCRIPTION =
   "Guides, analyses et stratégies sur l'influence, les plateformes et la monétisation des créateurs.";
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const VALID_SOURCE_TYPES = new Set<ArticleSourceType>([
+  "platform-doc",
+  "first-party-data",
+  "third-party-report",
+  "field-observation",
+]);
+const VALID_AUTHOR_SLUGS = new Set(["sasha-guettat", "yaelle"]);
 
 interface ParseResult {
   article: WikiArticle | null;
@@ -116,6 +131,59 @@ function toIsoDate(value: string): string | null {
   return parsed.toISOString();
 }
 
+function normalizeWikiAuthorSlug(theme: string, rawAuthorSlug: string): string {
+  const authorSlug = rawAuthorSlug.trim();
+  if (authorSlug) return authorSlug;
+
+  const yaelleThemes = new Set(["croissance", "branding", "production", "audience"]);
+  return yaelleThemes.has(theme) ? "yaelle" : "sasha-guettat";
+}
+
+function toSources(value: unknown, sourcePath: string): ArticleSource[] {
+  if (value == null) return [];
+  if (!Array.isArray(value)) {
+    throw new Error(`Invalid wiki frontmatter in ${sourcePath}: sources must be an array.`);
+  }
+
+  return value.map((item, index) => {
+    if (!item || typeof item !== "object") {
+      throw new Error(`Invalid wiki frontmatter in ${sourcePath}: sources[${index}] must be an object.`);
+    }
+
+    const candidate = item as Record<string, unknown>;
+    const label = toSafeString(candidate.label);
+    const url = toSafeString(candidate.url);
+    const sourceType = toSafeString(candidate.sourceType) as ArticleSourceType;
+    const accessedAtRaw = toSafeString(candidate.accessedAt);
+    const accessedAt = toIsoDate(accessedAtRaw);
+
+    if (!label || !url || !sourceType || !accessedAt) {
+      throw new Error(
+        `Invalid wiki frontmatter in ${sourcePath}: sources[${index}] requires label, url, sourceType and accessedAt.`,
+      );
+    }
+
+    if (!VALID_SOURCE_TYPES.has(sourceType)) {
+      throw new Error(
+        `Invalid wiki frontmatter in ${sourcePath}: sources[${index}].sourceType "${sourceType}" is invalid.`,
+      );
+    }
+
+    try {
+      new URL(url);
+    } catch {
+      throw new Error(`Invalid wiki frontmatter in ${sourcePath}: sources[${index}].url must be absolute.`);
+    }
+
+    return {
+      label,
+      url,
+      sourceType,
+      accessedAt,
+    };
+  });
+}
+
 async function markdownToHtml(markdown: string): Promise<string> {
   const [{ unified }, { default: remarkParse }, { default: remarkGfm }, { default: remarkRehype }, { default: rehypeRaw }, { default: rehypeStringify }] =
     await Promise.all([
@@ -186,10 +254,20 @@ function validateFrontmatter(
 
   const title = toSafeString(frontmatter.title);
   const slug = toSafeString(frontmatter.slug);
+  const description = toSafeString(frontmatter.description);
+  const authorSlugRaw = toSafeString(frontmatter.authorSlug);
   const category = toSafeString(frontmatter.category);
   const publishedAtRaw = toSafeString(frontmatter.publishedAt);
+  const updatedAtRaw = toSafeString(frontmatter.updatedAt) || publishedAtRaw;
+  const lastReviewedAtRaw = toSafeString(frontmatter.lastReviewedAt) || updatedAtRaw;
   const theme = toSafeString(frontmatter.theme);
   const platform = toSafeString(frontmatter.platform);
+  let sources: ArticleSource[] = [];
+  try {
+    sources = toSources(frontmatter.sources, sourcePath);
+  } catch (error) {
+    errors.push(error instanceof Error ? error.message : String(error));
+  }
 
   if (!title) errors.push(`title manquant (${sourcePath})`);
   if (!slug) errors.push(`slug manquant (${sourcePath})`);
@@ -198,11 +276,28 @@ function validateFrontmatter(
   }
   if (!category) errors.push(`category manquante (${sourcePath})`);
   if (!publishedAtRaw) errors.push(`publishedAt manquant (${sourcePath})`);
+  if (!updatedAtRaw) errors.push(`updatedAt manquant (${sourcePath})`);
+  if (!lastReviewedAtRaw) errors.push(`lastReviewedAt manquant (${sourcePath})`);
   if (!theme && !platform) errors.push(`theme ou platform requis (${sourcePath})`);
 
   const publishedAt = toIsoDate(publishedAtRaw);
+  const updatedAt = toIsoDate(updatedAtRaw);
+  const lastReviewedAt = toIsoDate(lastReviewedAtRaw);
   if (publishedAtRaw && !publishedAt) {
     errors.push(`publishedAt invalide "${publishedAtRaw}" (${sourcePath})`);
+  }
+  if (updatedAtRaw && !updatedAt) {
+    errors.push(`updatedAt invalide "${updatedAtRaw}" (${sourcePath})`);
+  }
+  if (lastReviewedAtRaw && !lastReviewedAt) {
+    errors.push(`lastReviewedAt invalide "${lastReviewedAtRaw}" (${sourcePath})`);
+  }
+
+  const authorSlug = normalizeWikiAuthorSlug(theme, authorSlugRaw);
+  if (!authorSlug) {
+    errors.push(`authorSlug manquant (${sourcePath})`);
+  } else if (!VALID_AUTHOR_SLUGS.has(authorSlug)) {
+    errors.push(`authorSlug invalide "${authorSlug}" (${sourcePath})`);
   }
 
   return {
@@ -210,11 +305,15 @@ function validateFrontmatter(
     normalized: {
       slug,
       title,
-      description: "",
+      description,
+      authorSlug,
       category,
       publishedAt: publishedAt ?? "",
+      updatedAt: updatedAt ?? "",
+      lastReviewedAt: lastReviewedAt ?? "",
       theme: theme || undefined,
       platform: platform || undefined,
+      sources,
       sourcePath,
     },
   };
@@ -234,7 +333,7 @@ async function parseRawWikiDocument(
   const metaDescription = extractMetaDescription(content);
   const firstParagraph = extractFirstParagraph(content);
   const description = normalizeDescription(
-    toSafeString(data.description) || metaDescription || stripMarkdown(firstParagraph),
+    normalized.description || metaDescription || stripMarkdown(firstParagraph),
   );
   const chapters = await splitIntoChapters(content);
 
@@ -373,9 +472,12 @@ export async function getWikiArticleSummaries(): Promise<WikiArticleSummary[]> {
     slug: article.slug,
     title: article.title,
     description: article.description,
+    authorSlug: article.authorSlug,
     category: article.category,
     readTime: article.readTime,
     publishedAt: article.publishedAt,
+    updatedAt: article.updatedAt,
+    lastReviewedAt: article.lastReviewedAt,
     theme: article.theme,
     platform: article.platform,
   }));

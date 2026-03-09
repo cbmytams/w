@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getAllArticleSlugs, getArticleBySlug, getArticleDescription } from "@/lib/blog";
 import { articleSchema, breadcrumbSchema } from "@/lib/structured-data";
 import { siteConfig, sitePaths } from "@/lib/site";
+import { getAuthorBySlug, getDefaultAuthor } from "@/lib/authors";
 
 interface BlogArticlePageProps {
   params: Promise<{
@@ -50,6 +51,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt,
     },
     twitter: {
       card: "summary_large_image",
@@ -69,6 +71,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
   const canonicalUrl = new URL(`/blog/${article.slug}`, siteConfig.url).toString();
   const description = getArticleDescription(article);
+  const author = getAuthorBySlug(article.authorSlug) ?? getDefaultAuthor();
   const publishedLabel = new Date(article.publishedAt).toLocaleDateString("fr-FR", {
     day: "numeric",
     month: "long",
@@ -86,6 +89,9 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
               description,
               url: canonicalUrl,
               datePublished: article.publishedAt,
+              dateModified: article.updatedAt,
+              author,
+              keywords: [article.platform, article.theme, article.category],
             }),
           ),
         }}

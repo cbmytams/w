@@ -1,9 +1,14 @@
 ---
-title: "Outils IA pour créateurs : usages, gains de productivité et limites"
-slug: "ai-tools-creators-automation-2025"
-category: "Production — Outils & Tech"
-theme: "production"
-publishedAt: "2025-08-17"
+title: 'Outils IA pour créateurs : usages, gains de productivité et limites'
+slug: ai-tools-creators-automation-2025
+description: 'Usages des outils IA pour créateurs en 2025 : production, édition, automatisation et limites à anticiper.'
+authorSlug: yaelle
+theme: production
+category: Production — Outils & Tech
+publishedAt: '2025-08-17'
+updatedAt: '2025-08-17'
+lastReviewedAt: '2025-08-17'
+sources: []
 ---
 
 # Outils IA pour créateurs : usages, gains de productivité et limites

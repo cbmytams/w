@@ -9,6 +9,7 @@ import { siteConfig } from "@/lib/site";
 import { CookieBanner } from "@/components/compliance/CookieBanner";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { BfCacheScrollRecovery } from "@/components/common/BfCacheScrollRecovery";
+import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -111,6 +112,14 @@ export default function RootLayout({
       >
         <GoogleAnalytics />
         <BfCacheScrollRecovery />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900"

@@ -1,22 +1,22 @@
-import { ReactNode } from "react"
-import { cn } from "@/lib/utils"
+import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
-interface HighlightProps {
-    children: ReactNode
-    className?: string
-    color?: "primary" | "secondary" | "default"
-}
+type HighlightProps = {
+  children: ReactNode;
+  color?: "primary" | "neutral";
+  className?: string;
+};
 
-const colorClasses = {
-    primary: "text-indigo-600",
-    secondary: "text-pink-600",
-    default: "text-slate-600",
-}
-
-export function Highlight({ children, className, color = "primary" }: HighlightProps) {
-    return (
-        <span className={cn(colorClasses[color], "font-extrabold", className)}>
-            {children}
-        </span>
-    )
+export function Highlight({ children, color = "primary", className }: HighlightProps) {
+  return (
+    <span
+      className={cn(
+        "inline-block",
+        color === "primary" ? "text-blue-600" : "text-slate-900",
+        className
+      )}
+    >
+      {children}
+    </span>
+  );
 }

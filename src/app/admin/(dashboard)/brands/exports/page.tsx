@@ -9,7 +9,7 @@ export default function BrandsExportsPage() {
   const handleExport = async (format: string) => {
     setExporting(true);
     try {
-      window.location.href = `/api/v1/exports?type=BRANDS&format=${format}`;
+      window.location.href = `/api/v1/questionnaires/exports?type=BRANDS&format=${format}&version=v1`;
     } finally {
       setTimeout(() => setExporting(false), 2500);
     }

@@ -1,9 +1,14 @@
 ---
-title: "YouTube : stratégie éditoriale, croissance et monétisation"
-slug: "guide-youtube-2025-influenceur-monetisation"
-category: "Plateforme — YouTube"
-platform: "youtube"
-publishedAt: "2025-07-15"
+title: 'YouTube : stratégie éditoriale, croissance et monétisation'
+slug: guide-youtube-2025-influenceur-monetisation
+description: 'Repères YouTube 2025 : stratégie éditoriale, SEO, analytics et revenus (AdSense, sponsoring, affiliation).'
+authorSlug: sasha-guettat
+platform: youtube
+category: Plateforme — YouTube
+publishedAt: '2025-07-15'
+updatedAt: '2025-07-15'
+lastReviewedAt: '2025-07-15'
+sources: []
 ---
 
 # YouTube : stratégie éditoriale, croissance et monétisation

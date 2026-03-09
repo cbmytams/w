@@ -1,9 +1,14 @@
 ---
-title: "Live shopping : formats, modèles économiques et mise en œuvre"
-slug: "live-shopping-social-commerce-2025"
-category: "Monétisation — Live & Commerce"
-theme: "monetisation"
-publishedAt: "2025-07-13"
+title: 'Live shopping : formats, modèles économiques et mise en œuvre'
+slug: live-shopping-social-commerce-2025
+description: 'Évaluer et exécuter une stratégie de live shopping en 2025 : plateformes, formats et modèles économiques.'
+authorSlug: sasha-guettat
+theme: monetisation
+category: Monétisation — Live & Commerce
+publishedAt: '2025-07-13'
+updatedAt: '2025-07-13'
+lastReviewedAt: '2025-07-13'
+sources: []
 ---
 
 # Live shopping : formats, modèles économiques et mise en œuvre

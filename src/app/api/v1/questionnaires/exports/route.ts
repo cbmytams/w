@@ -7,6 +7,20 @@ import { QuestionnaireType, type QuestionnaireResponse } from "@prisma/client";
 
 const BATCH_SIZE = 500;
 
+function serializeCsvCell(value: unknown) {
+    const raw = value == null ? "" : String(value);
+    const neutralized = /^[=+\-@]/.test(raw) ? `'${raw}` : raw;
+    return `"${neutralized.replace(/"/g, '""')}"`;
+}
+
+async function resolveAuditTenantId() {
+    const tenant = await prisma.tenant.findFirst({
+        orderBy: { createdAt: "asc" },
+        select: { id: true }
+    });
+    return tenant?.id ?? null;
+}
+
 function createCSVStream(version: string, type: QuestionnaireType) {
     const encoder = new TextEncoder();
 
@@ -68,9 +82,7 @@ function createCSVStream(version: string, type: QuestionnaireType) {
                         for (const section of sectionsJson || []) {
                             for (const q of section.questions || []) {
                                 const answer = answers[q.id];
-                                // Escape quotes and wrap in quotes to prevent CSV injection / breaking format
-                                const formattedAnswer = answer ? `"${String(answer).replace(/"/g, '""')}"` : '""';
-                                row.push(formattedAnswer);
+                                row.push(serializeCsvCell(answer));
                             }
                         }
 
@@ -195,17 +207,19 @@ export async function GET(request: NextRequest) {
 
     const type = typeParam as QuestionnaireType;
 
-    // Audit logging the export event
-    await prisma.auditLog.create({
-        data: {
-            tenantId: "system",
-            actorId: auth.session.id,
-            action: "EXPORT_DATA",
-            entity: "QuestionnaireResponse",
-            entityId: `${type}-${version}-${format}`,
-            diffJson: { format, type, version, ip: request.headers.get("x-forwarded-for") || "unknown" }
-        }
-    });
+    const tenantId = await resolveAuditTenantId();
+    if (tenantId) {
+        await prisma.auditLog.create({
+            data: {
+                tenantId,
+                actorId: auth.session.id,
+                action: "EXPORT_DATA",
+                entity: "QuestionnaireResponse",
+                entityId: `${type}-${version}-${format}`,
+                diffJson: { format, type, version, ip: request.headers.get("x-forwarded-for") || "unknown" }
+            }
+        }).catch(() => null);
+    }
 
     if (format === "json") {
         return createJSONStream(version, type);

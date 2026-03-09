@@ -1,9 +1,14 @@
 ---
-title: "Réutilisation multi-plateforme du contenu : méthode et cadence"
-slug: "recycler-repurposer-contenu-multi-plateforme-2025"
-category: "Stratégie — Production"
-theme: "production"
-publishedAt: "2025-08-10"
+title: 'Réutilisation multi-plateforme du contenu : méthode et cadence'
+slug: recycler-repurposer-contenu-multi-plateforme-2025
+description: 'Méthode de réutilisation multi-plateforme d’un contenu source, avec cadence de diffusion et priorisation des formats.'
+authorSlug: yaelle
+theme: production
+category: Stratégie — Production
+publishedAt: '2025-08-10'
+updatedAt: '2025-08-10'
+lastReviewedAt: '2025-08-10'
+sources: []
 ---
 
 # Réutilisation multi-plateforme du contenu : méthode et cadence

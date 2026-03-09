@@ -1,9 +1,16 @@
 ---
-title: "Tarifs influenceur : la méthode pour calculer ton prix (CPM, CPE, valeur créa, usage rights)"
-slug: "tarifs-influenceur-calcul-prix-cpm-cpe-usage-rights"
-category: "Business & Contrats"
-theme: "business"
-publishedAt: "2026-03-05"
+title: 'Tarifs influenceur : la méthode pour calculer ton prix (CPM, CPE, valeur créa, usage rights)'
+slug: tarifs-influenceur-calcul-prix-cpm-cpe-usage-rights
+description: >-
+  Méthode complète pour fixer tes tarifs : CPM/CPE, valeur créative, complexité, exclusivité et droits d’usage (usage
+  rights) + checklists et erreurs.
+authorSlug: sasha-guettat
+theme: business
+category: Business & Contrats
+publishedAt: '2026-03-05'
+updatedAt: '2026-03-05'
+lastReviewedAt: '2026-03-05'
+sources: []
 ---
 
 # Tarifs influenceur : la méthode pour calculer ton prix (CPM, CPE, valeur créa, usage rights)

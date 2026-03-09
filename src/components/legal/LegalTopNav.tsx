@@ -106,10 +106,11 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                     <div className="flex items-center gap-0.5 relative z-10 h-9 px-1">
                         {LEGAL_LINKS.map((item) => {
                             const isActive = pathname === item.href
+                            const hrefWithContext = context !== "default" ? `${item.href}?context=${context}` : item.href
                             return (
                                 <Link
                                     key={item.href}
-                                    href={item.href}
+                                    href={hrefWithContext}
                                     aria-current={isActive ? "page" : undefined}
                                     className={`relative h-9 px-5 rounded-full transition-all duration-300 text-[13px] font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-gray-900 dark:text-white" : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
                                         }`}
@@ -185,17 +186,20 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                                 </div>
 
                                 <motion.nav className="flex-1 flex flex-col items-center justify-center space-y-6 relative z-10 w-full">
-                                    {LEGAL_LINKS.map((item) => (
-                                        <motion.div key={item.label} variants={menuItemVariants}>
-                                            <Link
-                                                href={item.href}
-                                                onClick={() => setMobileMenuOpen(false)}
-                                                className={`text-3xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 ${pathname === item.href ? "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]" : "text-gray-900 dark:text-gray-100"}`}
-                                            >
-                                                {item.label}
-                                            </Link>
-                                        </motion.div>
-                                    ))}
+                                    {LEGAL_LINKS.map((item) => {
+                                        const hrefWithContext = context !== "default" ? `${item.href}?context=${context}` : item.href
+                                        return (
+                                            <motion.div key={item.label} variants={menuItemVariants}>
+                                                <Link
+                                                    href={hrefWithContext}
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                    className={`text-3xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 ${pathname === item.href ? "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]" : "text-gray-900 dark:text-gray-100"}`}
+                                                >
+                                                    {item.label}
+                                                </Link>
+                                            </motion.div>
+                                        )
+                                    })}
                                 </motion.nav>
 
                                 <motion.div

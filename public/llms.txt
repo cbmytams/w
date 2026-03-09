@@ -1,0 +1,26 @@
+# Wafia
+> Canonical source: https://wafia.fr
+> Language: fr-FR
+
+## Primary knowledge hub
+- https://wafia.fr/wiki
+- https://wafia.fr/wiki/theme/algorithmes
+- https://wafia.fr/wiki/theme/monetisation
+- https://wafia.fr/wiki/platform/tiktok
+- https://wafia.fr/wiki/platform/instagram
+- https://wafia.fr/wiki/platform/youtube
+
+## Author profiles
+- https://wafia.fr/equipe/sasha-guettat
+- https://wafia.fr/equipe/yaelle
+
+## Supporting hubs
+- https://wafia.fr/blog
+- https://wafia.fr/about
+- https://wafia.fr/legal/mentions
+
+## Machine-readable discovery
+- https://wafia.fr/robots.txt
+- https://wafia.fr/sitemap.xml
+- https://wafia.fr/wiki/sitemap.xml
+- https://wafia.fr/rss.xml

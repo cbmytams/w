@@ -1,9 +1,16 @@
 ---
-title: "Gestion de crise : bad buzz, backlash, erreurs — protocole de réponse"
-slug: "gestion-crise-bad-buzz-protocole"
-category: "Audience & Communauté"
-theme: "audience"
-publishedAt: "2026-03-05"
+title: 'Gestion de crise : bad buzz, backlash, erreurs — protocole de réponse'
+slug: gestion-crise-bad-buzz-protocole
+description: >-
+  Protocole complet de gestion de crise pour créateurs : triage, premières 60 minutes, scripts, modération, marques,
+  recovery et post-mortem.
+authorSlug: yaelle
+theme: audience
+category: Audience & Communauté
+publishedAt: '2026-03-05'
+updatedAt: '2026-03-05'
+lastReviewedAt: '2026-03-05'
+sources: []
 ---
 
 # Gestion de crise : bad buzz, backlash, erreurs — protocole de réponse

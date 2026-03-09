@@ -1,13 +1,24 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import type { Prisma } from "@prisma/client";
 import { prisma as db } from "@/lib/db";
 import { computeCompletion } from "@/lib/completion";
 import { BRANDS_QUESTIONNAIRE_MAP, TALENTS_QUESTIONNAIRE_MAP } from "@/lib/questionnaireMap";
 import { QuestionnaireSubmitSchema } from "@/lib/validations";
 import { validateBody, apiError } from "@/lib/api-response";
+import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
+        const originError = enforceSameOrigin(request);
+        if (originError) return originError;
+
+        const rateLimitError = enforceRateLimit(request, {
+            scope: "questionnaire-submit",
+            limit: 20,
+            windowMs: 60 * 1000
+        });
+        if (rateLimitError) return rateLimitError;
+
         const rawBody = await request.json().catch(() => null);
         if (!rawBody) return apiError("Invalid JSON body");
 
@@ -28,59 +39,62 @@ export async function POST(request: Request) {
             );
         }
 
-        // Find a default Tenant or create one
-        let tenant = await db.tenant.findFirst();
+        // Resolve tenant from config or fallback to oldest tenant.
+        const defaultTenantSlug = process.env.DEFAULT_TENANT_SLUG?.trim() || null;
+        const tenant = defaultTenantSlug
+            ? await db.tenant.findUnique({ where: { slug: defaultTenantSlug } })
+            : await db.tenant.findFirst({ orderBy: { createdAt: "asc" } });
+
         if (!tenant) {
-            tenant = await db.tenant.create({
-                data: {
-                    name: "Wafia",
-                    slug: "wafia"
-                }
-            });
+            return NextResponse.json(
+                { error: "No tenant configured for questionnaire submissions." },
+                { status: 503 }
+            );
         }
 
-        // We use "Talent" for both because in this schema everything is a "Talent" 
-        // regardless if it's a Brand or an actual Talent (hence QuestionnaireType is used to differentiate).
-        const finalName = name || `Inconnu (${email})`;
-        const timestamp = Date.now().toString();
-        const slug = `${finalName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${timestamp}`;
-
-        const talentRecord = await db.talent.create({
-            data: {
-                name: finalName,
-                slug: slug,
-                tenantId: tenant.id,
-            }
-        });
-
-        // Ensure a Questionnaire template exists for this type
-        let questionnaire = await db.questionnaire.findFirst({
-            where: { type: type === "BRANDS" ? "BRANDS" : "TALENTS" }
+        // Ensure an active questionnaire exists for this type.
+        const questionnaire = await db.questionnaire.findFirst({
+            where: {
+                type: type === "BRANDS" ? "BRANDS" : "TALENTS",
+                isActive: true
+            },
+            orderBy: { createdAt: "desc" }
         });
 
         if (!questionnaire) {
-            questionnaire = await db.questionnaire.create({
-                data: {
-                    type: type === "BRANDS" ? "BRANDS" : "TALENTS",
-                    version: "1.0.0",
-                    sectionsJson: {}
-                }
-            });
+            return NextResponse.json(
+                { error: "No active questionnaire configured for this submission type." },
+                { status: 503 }
+            );
         }
 
         // Calculate completion
         const map = type === "BRANDS" ? BRANDS_QUESTIONNAIRE_MAP : TALENTS_QUESTIONNAIRE_MAP;
         const completionData = computeCompletion(responses as Record<string, string>, map);
 
-        // Store the questionnaire response
-        const newResponse = await db.questionnaireResponse.create({
-            data: {
-                talentId: talentRecord.id,
-                questionnaireId: questionnaire.id,
-                type: type === "BRANDS" ? "BRANDS" : "TALENTS",
-                answersJson: responses as Prisma.InputJsonValue,
-                completionRate: completionData.percent,
-            }
+        // Keep lead creation and questionnaire response atomic to avoid orphan talents.
+        const finalName = name || `Inconnu (${email})`;
+        const timestamp = Date.now().toString();
+        const slug = `${finalName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${timestamp}`;
+
+        const newResponse = await db.$transaction(async (tx) => {
+            const talentRecord = await tx.talent.create({
+                data: {
+                    name: finalName,
+                    slug,
+                    tenantId: tenant.id,
+                }
+            });
+
+            return tx.questionnaireResponse.create({
+                data: {
+                    talentId: talentRecord.id,
+                    questionnaireId: questionnaire.id,
+                    type: type === "BRANDS" ? "BRANDS" : "TALENTS",
+                    answersJson: responses as Prisma.InputJsonValue,
+                    completionRate: completionData.percent,
+                }
+            });
         });
 
         return NextResponse.json({ success: true, data: newResponse }, { status: 201 });

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { parseDashboardFilters, getOverviewKpis } from "@/lib/dashboard/queries";
-import { prisma } from "@/lib/db";
 import { Users, TrendingUp, FileCheck, Clock } from "lucide-react";
 import Link from "next/link";
+import { getDashboardOverviewData } from "@/server/dashboard/get-dashboard-overview";
 
 export const metadata: Metadata = {
   title: "Dashboard | WAFIA Brands",
@@ -22,24 +21,10 @@ export default async function BrandsDashboardPage(
   props: { searchParams: Promise<Record<string, string | string[] | undefined>> }
 ) {
   const searchParams = await props.searchParams;
-  const sp = new URLSearchParams();
-  for (const [k, v] of Object.entries(searchParams)) {
-    if (v) sp.append(k, Array.isArray(v) ? v[0] : v);
-  }
-  sp.set("type", "BRANDS");
-  const filters = parseDashboardFilters(sp);
-  const kpis = await getOverviewKpis(filters);
-
-  const recentResponses = await prisma.questionnaireResponse.findMany({
-    where: { type: "BRANDS" },
-    orderBy: { submittedAt: "desc" },
-    take: 6,
-    include: { talent: { select: { name: true } } },
-  });
-
-  const totalBrands = await prisma.talent.count({
-    where: { questionnaireResponses: { some: { type: "BRANDS" } } },
-  });
+  const { kpis, recentResponses, totalEntries: totalBrands } = await getDashboardOverviewData(
+    searchParams,
+    "BRANDS"
+  );
 
   return (
     <div className="space-y-6">

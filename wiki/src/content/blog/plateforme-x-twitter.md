@@ -1,9 +1,14 @@
 ---
-title: "X (Twitter) : distribution, formats éditoriaux et monétisation"
-slug: "guide-x-twitter-2025-influenceur-monetisation"
-category: "Plateforme — X / Twitter"
-platform: "x"
-publishedAt: "2025-08-05"
+title: 'X (Twitter) : distribution, formats éditoriaux et monétisation'
+slug: guide-x-twitter-2025-influenceur-monetisation
+description: 'Repères X (Twitter) 2025 : formats éditoriaux, distribution For You, analytics et monétisation.'
+authorSlug: sasha-guettat
+platform: x
+category: Plateforme — X / Twitter
+publishedAt: '2025-08-05'
+updatedAt: '2025-08-05'
+lastReviewedAt: '2025-08-05'
+sources: []
 ---
 
 # X (Twitter) : distribution, formats éditoriaux et monétisation

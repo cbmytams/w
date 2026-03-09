@@ -1,9 +1,14 @@
 ---
-title: "IRL streaming : exigences techniques et organisation opérationnelle"
-slug: "irl-streaming-mobile-setup-2025"
-category: "Production — Équipement"
-theme: "production"
-publishedAt: "2025-07-20"
+title: 'IRL streaming : exigences techniques et organisation opérationnelle'
+slug: irl-streaming-mobile-setup-2025
+description: 'Référentiel opérationnel IRL streaming : équipement mobile, connectivité, sécurité et organisation de production.'
+authorSlug: yaelle
+theme: production
+category: Production — Équipement
+publishedAt: '2025-07-20'
+updatedAt: '2025-07-20'
+lastReviewedAt: '2025-07-20'
+sources: []
 ---
 
 # IRL streaming : exigences techniques et organisation opérationnelle

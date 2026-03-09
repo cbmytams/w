@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import Link from "next/link"
 import { Container } from "@/components/ui/container"
 import { MagneticButton } from "@/components/for-talents/redesign/MagneticButton"
 import { TALENT_CTA } from "@/constants"

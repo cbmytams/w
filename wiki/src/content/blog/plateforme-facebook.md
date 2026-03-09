@@ -1,9 +1,14 @@
 ---
-title: "Facebook : usages créateurs, distribution et monétisation"
-slug: "guide-facebook-2025-createur-influenceur"
-category: "Plateforme — Facebook"
-platform: "facebook"
-publishedAt: "2025-08-12"
+title: 'Facebook : usages créateurs, distribution et monétisation'
+slug: guide-facebook-2025-createur-influenceur
+description: 'Repères Facebook 2025 : distribution organique, formats vidéo, groupes et monétisation.'
+authorSlug: sasha-guettat
+platform: facebook
+category: Plateforme — Facebook
+publishedAt: '2025-08-12'
+updatedAt: '2025-08-12'
+lastReviewedAt: '2025-08-12'
+sources: []
 ---
 
 # Facebook : usages créateurs, distribution et monétisation

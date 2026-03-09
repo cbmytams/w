@@ -1,9 +1,14 @@
 ---
-title: "Twitch : croissance communautaire et modèle de revenus"
-slug: "guide-twitch-2025-streamer-monetisation"
-category: "Plateforme — Twitch"
-platform: "twitch"
-publishedAt: "2025-07-22"
+title: 'Twitch : croissance communautaire et modèle de revenus'
+slug: guide-twitch-2025-streamer-monetisation
+description: 'Repères Twitch 2025 : acquisition, fidélisation communautaire et structure de revenus.'
+authorSlug: sasha-guettat
+platform: twitch
+category: Plateforme — Twitch
+publishedAt: '2025-07-22'
+updatedAt: '2025-07-22'
+lastReviewedAt: '2025-07-22'
+sources: []
 ---
 
 # Twitch : croissance communautaire et modèle de revenus

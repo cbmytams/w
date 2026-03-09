@@ -44,8 +44,7 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
     const handleExport = async () => {
         setExporting(true);
         try {
-            // Usually hits /api/v1/exports?type=TALENTS
-            window.location.href = `/api/v1/exports?type=${type}&format=csv`;
+            window.location.href = `/api/v1/questionnaires/exports?type=${type}&format=csv&version=v1`;
         } finally {
             setTimeout(() => setExporting(false), 1500);
         }

@@ -1,9 +1,14 @@
 ---
-title: "Discord pour créateurs : structuration de communauté et revenus récurrents"
-slug: "discord-server-communaute-createurs-2025"
-category: "Stratégie — Communauté"
-theme: "croissance"
-publishedAt: "2025-07-06"
+title: 'Discord pour créateurs : structuration de communauté et revenus récurrents'
+slug: discord-server-communaute-createurs-2025
+description: 'Mettre en place un serveur Discord créateur : architecture, animation communautaire et options de revenus récurrents.'
+authorSlug: yaelle
+theme: croissance
+category: Stratégie — Communauté
+publishedAt: '2025-07-06'
+updatedAt: '2025-07-06'
+lastReviewedAt: '2025-07-06'
+sources: []
 ---
 
 # Discord pour créateurs : structuration de communauté et revenus récurrents

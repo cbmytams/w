@@ -1,9 +1,14 @@
 ---
-title: "Snapchat : positionnement créateur, formats et revenus"
-slug: "guide-snapchat-2025-createur-influenceur"
-category: "Plateforme — Snapchat"
-platform: "snapchat"
-publishedAt: "2025-07-29"
+title: 'Snapchat : positionnement créateur, formats et revenus'
+slug: guide-snapchat-2025-createur-influenceur
+description: 'Repères Snapchat 2025 : rôle de Spotlight et Stories, mesure de performance et opportunités de revenus.'
+authorSlug: sasha-guettat
+platform: snapchat
+category: Plateforme — Snapchat
+publishedAt: '2025-07-29'
+updatedAt: '2025-07-29'
+lastReviewedAt: '2025-07-29'
+sources: []
 ---
 
 # Snapchat : positionnement créateur, formats et revenus

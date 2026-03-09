@@ -1,9 +1,16 @@
 ---
-title: "Algorithmes des réseaux sociaux : principes de diffusion par plateforme"
-slug: "algorithmes-reseaux-sociaux-2025"
-category: "Stratégie Digitale"
-theme: "algorithmes"
-publishedAt: "2025-06-01"
+title: 'Algorithmes des réseaux sociaux : principes de diffusion par plateforme'
+slug: algorithmes-reseaux-sociaux-2025
+description: >-
+  Analyse des mécanismes de recommandation sur TikTok, Instagram, YouTube, Twitch, Snapchat, X et Facebook, avec des
+  principes d’optimisation applicables en 2025.
+authorSlug: sasha-guettat
+theme: algorithmes
+category: Stratégie Digitale
+publishedAt: '2025-06-01'
+updatedAt: '2025-06-01'
+lastReviewedAt: '2025-06-01'
+sources: []
 ---
 
 # Algorithmes des réseaux sociaux : principes de diffusion par plateforme

@@ -5,7 +5,6 @@ import { ValuePropositionSection } from "@/components/for-brands/ValuePropositio
 import { CaseStudiesSection } from "@/components/for-brands/CaseStudiesSection"
 import { AuthenticitySection } from "@/components/for-brands/AuthenticitySection"
 import { ServicesAndMetrics } from "@/components/for-brands/ServicesAndMetrics"
-import { ProcessSection } from "@/components/for-brands/ProcessSection"
 import { ComparisonSectionV2 } from "@/components/for-brands/ComparisonSectionV2"
 import { ComplianceSection } from "@/components/for-brands/ComplianceSection"
 import { TeamSectionBrands } from "@/components/for-brands/TeamSectionBrands"
@@ -27,8 +26,6 @@ export default function ForBrandsPage() {
             <CaseStudiesSection />
 
             <AuthenticitySection />
-
-            <ProcessSection />
 
             <ComparisonSectionV2 />
 

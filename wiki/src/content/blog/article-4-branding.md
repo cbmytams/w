@@ -1,9 +1,14 @@
 ---
-title: "Personal branding : positionnement, cohérence et stratégie de long terme"
-slug: "personal-branding-marketing-influence-2025"
-category: "Branding & Influence"
-theme: "branding"
-publishedAt: "2025-06-22"
+title: 'Personal branding : positionnement, cohérence et stratégie de long terme'
+slug: personal-branding-marketing-influence-2025
+description: 'Cadre de personal branding pour créateurs en 2025 : niche, identité, cohérence éditoriale et relation aux marques.'
+authorSlug: yaelle
+theme: branding
+category: Branding & Influence
+publishedAt: '2025-06-22'
+updatedAt: '2025-06-22'
+lastReviewedAt: '2025-06-22'
+sources: []
 ---
 
 # Personal branding : positionnement, cohérence et stratégie de long terme

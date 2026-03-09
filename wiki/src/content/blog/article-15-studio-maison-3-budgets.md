@@ -1,9 +1,16 @@
 ---
-title: "Studio maison : lumière + audio + décor — setup en 3 budgets (smartphone → semi-pro → pro)"
-slug: "studio-maison-setup-lumiere-audio-decor-3-budgets"
-category: "Production & Outils"
-theme: "production"
-publishedAt: "2026-03-05"
+title: 'Studio maison : lumière + audio + décor — setup en 3 budgets (smartphone → semi-pro → pro)'
+slug: studio-maison-setup-lumiere-audio-decor-3-budgets
+description: >-
+  Créer un studio maison en 2026 sans excuses : audio + lumière + décor. 3 budgets (smartphone, semi-pro, pro) +
+  checklists et erreurs à éviter.
+authorSlug: yaelle
+theme: production
+category: Production & Outils
+publishedAt: '2026-03-05'
+updatedAt: '2026-03-05'
+lastReviewedAt: '2026-03-05'
+sources: []
 ---
 
 # Studio maison : lumière + audio + décor — setup en 3 budgets (smartphone → semi-pro → pro)

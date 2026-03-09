@@ -12,7 +12,6 @@ import { Container } from "@/components/ui/container"
 import { Marquee } from "@/components/ui/marquee"
 import { cn } from "@/lib/utils"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
-import Link from "next/link"
 
 // --- Constants ---
 

@@ -1,9 +1,14 @@
 ---
-title: "Instagram : distribution, formats et monétisation"
-slug: "guide-instagram-2025-influenceur-strategie"
-category: "Plateforme — Instagram"
-platform: "instagram"
-publishedAt: "2025-07-08"
+title: 'Instagram : distribution, formats et monétisation'
+slug: guide-instagram-2025-influenceur-strategie
+description: 'Repères Instagram 2025 : fonctionnement des surfaces, signaux de distribution et leviers de monétisation.'
+authorSlug: sasha-guettat
+platform: instagram
+category: Plateforme — Instagram
+publishedAt: '2025-07-08'
+updatedAt: '2025-07-08'
+lastReviewedAt: '2025-07-08'
+sources: []
 ---
 
 # Instagram : distribution, formats et monétisation

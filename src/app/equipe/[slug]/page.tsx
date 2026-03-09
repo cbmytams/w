@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { notFound } from "next/navigation";
-import { TEAM } from "@/constants/team";
+import { TEAM } from "@/data/team";
 import { Metadata } from "next";
 import { SmartBackButton } from "@/components/ui/SmartBackButton";
 
@@ -20,19 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!member) {
         return {
             title: "Membre non trouvé | Wafia",
-            robots: {
-                index: false,
-                follow: false,
-            },
         };
     }
 
     return {
         title: `${member.name} - ${member.role}`,
         description: member.shortBio,
-        alternates: {
-            canonical: `/equipe/${member.slug}`,
-        },
         openGraph: {
             title: `${member.name} | Wafia`,
             description: member.shortBio,
@@ -57,7 +50,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ slug: 
     }
 
     return (
-        <main id="main-content" className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+        <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
             {/* Back to Team Link */}
             <div className="fixed top-6 left-6 z-50 mix-blend-difference">
                 <SmartBackButton

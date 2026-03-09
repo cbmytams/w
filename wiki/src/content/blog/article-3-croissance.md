@@ -1,9 +1,14 @@
 ---
-title: "Croissance organique : hook, rétention et collaborations"
-slug: "croissance-organique-reseaux-sociaux-2025"
-category: "Stratégie de Contenu"
-theme: "croissance"
-publishedAt: "2025-06-15"
+title: 'Croissance organique : hook, rétention et collaborations'
+slug: croissance-organique-reseaux-sociaux-2025
+description: 'Méthodes de croissance organique en 2025 : qualité du hook, rétention, itération et collaborations multi-plateformes.'
+authorSlug: yaelle
+theme: croissance
+category: Stratégie de Contenu
+publishedAt: '2025-06-15'
+updatedAt: '2025-06-15'
+lastReviewedAt: '2025-06-15'
+sources: []
 ---
 
 # Croissance organique : hook, rétention et collaborations

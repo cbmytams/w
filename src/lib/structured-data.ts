@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site";
+import type { AuthorProfile } from "@/lib/authors";
 
 export type BreadcrumbItem = {
   name: string;
@@ -12,7 +13,7 @@ export const organizationSchema = {
   legalName: siteConfig.legalName,
   url: siteConfig.url,
   logo: new URL(siteConfig.logo, siteConfig.url).toString(),
-  sameAs: siteConfig.socials,
+  ...(siteConfig.socials.length > 0 ? { sameAs: siteConfig.socials } : {}),
 };
 
 export const websiteSchema = {
@@ -22,6 +23,36 @@ export const websiteSchema = {
   url: siteConfig.url,
   inLanguage: "fr",
 };
+
+export function personSchema(author: AuthorProfile, profileUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: author.name,
+    description: author.shortBio,
+    image: author.image,
+    url: profileUrl,
+    jobTitle: author.role,
+    homeLocation: author.location,
+    worksFor: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    knowsAbout: author.knowsAbout,
+    sameAs: author.sameAs,
+  };
+}
+
+export function profilePageSchema(author: AuthorProfile, profileUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: profileUrl,
+    inLanguage: "fr",
+    mainEntity: personSchema(author, profileUrl),
+  };
+}
 
 export function breadcrumbSchema(items: BreadcrumbItem[]) {
   return {
@@ -112,12 +143,19 @@ export function articleSchema({
   description,
   url,
   datePublished,
+  dateModified,
+  author,
+  keywords,
 }: {
   headline: string;
   description: string;
   url: string;
   datePublished: string;
+  dateModified?: string;
+  author: AuthorProfile;
+  keywords?: string[];
 }) {
+  const authorProfileUrl = new URL(`/equipe/${author.slug}`, siteConfig.url).toString();
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -125,11 +163,8 @@ export function articleSchema({
     description,
     url,
     datePublished,
-    author: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
+    ...(dateModified ? { dateModified } : {}),
+    author: personSchema(author, authorProfileUrl),
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
@@ -141,5 +176,6 @@ export function articleSchema({
     },
     mainEntityOfPage: url,
     inLanguage: "fr",
+    ...(keywords && keywords.length > 0 ? { keywords } : {}),
   };
 }

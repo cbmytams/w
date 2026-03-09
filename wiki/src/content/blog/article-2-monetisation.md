@@ -1,9 +1,16 @@
 ---
-title: "Monétisation des créateurs : modèles, ordres de grandeur et priorités"
-slug: "monetisation-influenceurs-2025"
-category: "Monétisation"
-theme: "monetisation"
-publishedAt: "2025-06-08"
+title: 'Monétisation des créateurs : modèles, ordres de grandeur et priorités'
+slug: monetisation-influenceurs-2025
+description: >-
+  Panorama des leviers de monétisation des créateurs en 2025, par plateforme, avec ordres de grandeur et priorités
+  d’activation.
+authorSlug: sasha-guettat
+theme: monetisation
+category: Monétisation
+publishedAt: '2025-06-08'
+updatedAt: '2025-06-08'
+lastReviewedAt: '2025-06-08'
+sources: []
 ---
 
 # Monétisation des créateurs : modèles, ordres de grandeur et priorités

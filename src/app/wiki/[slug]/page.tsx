@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import WikiArticleView from "@/components/wiki/WikiArticleView";
 import { getAllWikiSlugs, getWikiArticleBySlug, getWikiArticleSummaries } from "@/lib/wiki";
-import { siteConfig } from "@/lib/site";
+import { articleSchema, breadcrumbSchema } from "@/lib/structured-data";
+import { siteConfig, sitePaths } from "@/lib/site";
+import { getAuthorBySlug, getDefaultAuthor } from "@/lib/authors";
 
 interface WikiArticlePageProps {
   params: Promise<{
@@ -47,6 +49,7 @@ export async function generateMetadata({ params }: WikiArticlePageProps): Promis
       type: "article",
       locale: "fr_FR",
       publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt,
     },
     twitter: {
       card: "summary_large_image",
@@ -67,16 +70,51 @@ export default async function WikiArticlePage({ params }: WikiArticlePageProps) 
     notFound();
   }
 
+  const canonicalUrl = new URL(`/wiki/${article.slug}`, siteConfig.url).toString();
+  const author = getAuthorBySlug(article.authorSlug) ?? getDefaultAuthor();
+
   return (
-    <WikiArticleView
-      article={{
-        slug: article.slug,
-        title: article.title,
-        category: article.category,
-        readTime: article.readTime,
-        chapters: article.chapters,
-      }}
-      allArticles={allArticles}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            articleSchema({
+              headline: article.title,
+              description: article.description,
+              url: canonicalUrl,
+              datePublished: article.publishedAt,
+              dateModified: article.updatedAt,
+              author,
+              keywords: [article.category, article.theme ?? "", article.platform ?? ""].filter(Boolean),
+            }),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Accueil", url: new URL(sitePaths.home, siteConfig.url).toString() },
+              { name: "Wiki", url: new URL(sitePaths.wiki, siteConfig.url).toString() },
+              { name: article.title, url: canonicalUrl },
+            ]),
+          ),
+        }}
+      />
+      <WikiArticleView
+        article={{
+          slug: article.slug,
+          title: article.title,
+          category: article.category,
+          readTime: article.readTime,
+          chapters: article.chapters,
+          theme: article.theme,
+          platform: article.platform,
+        }}
+        allArticles={allArticles}
+      />
+    </>
   );
 }

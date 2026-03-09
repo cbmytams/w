@@ -1,9 +1,16 @@
 ---
-title: "Réactivation d’une audience “morte” : plan 14 jours pour relancer l’engagement sans changer de niche"
-slug: "reactiver-audience-morte-plan-14-jours"
-category: "Audience & Communauté"
-theme: "audience"
-publishedAt: "2026-03-05"
+title: 'Réactivation d’une audience “morte” : plan 14 jours pour relancer l’engagement sans changer de niche'
+slug: reactiver-audience-morte-plan-14-jours
+description: >-
+  Plan d’action sur 14 jours pour réchauffer une audience inactive : audit, Stories, DM, séries, collabs, lives +
+  métriques à suivre.
+authorSlug: yaelle
+theme: audience
+category: Audience & Communauté
+publishedAt: '2026-03-05'
+updatedAt: '2026-03-05'
+lastReviewedAt: '2026-03-05'
+sources: []
 ---
 
 # Réactivation d’une audience “morte” : plan 14 jours pour relancer l’engagement sans changer de niche
