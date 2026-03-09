@@ -2,17 +2,9 @@ import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
 
-function requiredEnv(name: string) {
-  const value = process.env[name]?.trim();
-  if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
-  }
-  return value;
+function optionalEnv(name: string) {
+  return process.env[name]?.trim() || undefined;
 }
-
-const ADMIN_USERNAME = requiredEnv("ADMIN_USERNAME");
-const ADMIN_PASSWORD = requiredEnv("ADMIN_PASSWORD");
-const NEXTAUTH_SECRET = requiredEnv("NEXTAUTH_SECRET");
 
 type DashboardCredential = {
   password: string;
@@ -22,18 +14,25 @@ type DashboardCredential = {
 
 type DashboardActor = Omit<DashboardCredential, "password">;
 
-function optionalEnv(name: string) {
-  return process.env[name]?.trim() || undefined;
-}
-
 function getDashboardCredentials() {
   const credentials = new Map<string, DashboardCredential>();
 
-  credentials.set(ADMIN_USERNAME, {
-    password: ADMIN_PASSWORD,
-    role: DASHBOARD_ROLES.ADMIN,
-    name: "Admin",
-  });
+  const adminUsername = optionalEnv("ADMIN_USERNAME");
+  const adminPassword = optionalEnv("ADMIN_PASSWORD");
+
+  if (adminUsername && adminPassword) {
+    credentials.set(adminUsername, {
+      password: adminPassword,
+      role: DASHBOARD_ROLES.ADMIN,
+      name: "Admin",
+    });
+  } else if (process.env.NODE_ENV !== "production") {
+    credentials.set("admin", {
+      password: "admin",
+      role: DASHBOARD_ROLES.ADMIN,
+      name: "Admin (Dev)",
+    });
+  }
 
   const managerUsername = optionalEnv("MANAGER_USERNAME");
   const managerPassword = optionalEnv("MANAGER_PASSWORD");
@@ -129,5 +128,5 @@ export const authOptions: AuthOptions = {
   pages: {
     signIn: "/admin/login",
   },
-  secret: NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 };
