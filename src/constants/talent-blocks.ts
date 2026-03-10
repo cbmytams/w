@@ -3,6 +3,10 @@ export * from "./talent-blocks/faq";
 export * from "./talent-blocks/persona";
 export * from "./talent-blocks/deliverables";
 export * from "./talent-blocks/services";
+export * from "./talent-blocks/timeline";
+export * from "./talent-blocks/method";
+export * from "./talent-blocks/proof";
+export * from "./talent-blocks/os";
 
 // Not exporting everything from old talent-blocks.ts to keep the barrel clean
 export const TALENT_NAVIGATION = [
@@ -11,9 +15,22 @@ export const TALENT_NAVIGATION = [
     { href: "#faq", label: "FAQ" }
 ] as const;
 
-// Legacy compatibility exports (kept to avoid breaking older imports)
-export const TALENT_TIMELINE = [] as const;
-export const TALENT_METHOD = [] as const;
-export const TALENT_PLATFORMS = [] as const;
-export const TALENT_PROOF_STRIP = [] as const;
-export const TALENT_OS_SYSTEM = [] as const;
+// Not extracting this tiny platform block into a dedicated file since it's the only one left
+export const TALENT_PLATFORMS = {
+    label: "Centralisation",
+    title: "On centralise",
+    titleLine2: "tout au même endroit.",
+    subtitle: "Ta roadmap sur une seule plateforme.",
+    items: [
+        { name: "Briefs & Contrats", icon: "FileText" },
+        { name: "Validation", icon: "CheckSquare" },
+        { name: "Stats", icon: "LineChart" },
+        { name: "Ops & Admin", icon: "Archive" }
+    ],
+    cards: [
+        { title: "Visibilité", text: "Suivi en temps réel de tes performances sur toutes tes plateformes.", icon: "Activity", color: "text-pink-500" },
+        { title: "Engagement", text: "Analyse de l'engagement de ta communauté et insights actionnables.", icon: "Heart", color: "text-red-500" },
+        { title: "Communication", text: "Central de messages pour gérer toutes tes conversations pros.", icon: "MessageCircle", color: "text-blue-500" }
+    ]
+} as const;
+
