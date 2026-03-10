@@ -15,6 +15,8 @@ output
 .claude
 SKILLS
 docs
-wiki
+wiki/node_modules
+wiki/dist
+wiki/.env
+wiki/.env.*
 wafia-questionnaire-brands
-public/wiki
