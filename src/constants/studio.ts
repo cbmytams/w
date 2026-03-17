@@ -35,9 +35,9 @@ export const STUDIO_PRODUCTIONS: StudioProduction[] = [
         ],
         services: ["TikTok & Reels Creation", "Trend Jacking", "UGC Editing", "Motion Design Express"],
         samples: [
-            "/studio/krh/1 - KRH.MP4",
-            "/studio/krh/2 - KRH.MP4",
-            "/studio/krh/3 - KRH.MP4"
+            "/studio/krh/1%20-%20KRH.MP4",
+            "/studio/krh/2%20-%20KRH.MP4",
+            "/studio/krh/3%20-%20KRH.MP4"
         ],
         showcase: [
             "/studio/krh/noah-basic-fit-vf.mp4",

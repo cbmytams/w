@@ -161,7 +161,7 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
                 <motion.video
                     key={videos[currentIndex]}
                     ref={videoRef}
-                    src={encodeURI(videos[currentIndex])}
+                    src={videos[currentIndex]}
                     className="w-full h-full object-cover"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
