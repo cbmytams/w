@@ -15,6 +15,7 @@ export interface TeamMember {
     links: {
         linkedin?: string;
         instagram?: string;
+        email?: string;
     };
     image: string;
 }
@@ -45,8 +46,9 @@ export const TEAM: TeamMember[] = [
             }
         ],
         links: {
-            linkedin: "https://www.linkedin.com/in/wahib-guettat/",
-            instagram: "https://www.instagram.com/wahibguettat/"
+            linkedin: "https://www.linkedin.com/in/sasha-guettat-a37464220/",
+            instagram: "https://www.instagram.com/cbmytams/",
+            email: "sasha@wafia.fr"
         },
         image: "https://assets.wafia.fr/photo-mail/sasha.jpg"
     },
@@ -75,7 +77,8 @@ export const TEAM: TeamMember[] = [
             }
         ],
         links: {
-            linkedin: "https://www.linkedin.com/in/yaelle-neault-33b872232/"
+            linkedin: "https://www.linkedin.com/in/yaelle-neault-33b872232/",
+            email: "yaelle@wafia.fr"
         },
         image: "https://assets.wafia.fr/photo-mail/yaelle.jpg"
     }

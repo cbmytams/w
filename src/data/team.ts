@@ -16,6 +16,8 @@ export type TeamMember = {
   longSections: TeamSection[];
   links: {
     linkedin?: string;
+    instagram?: string;
+    email?: string;
   };
 };
 

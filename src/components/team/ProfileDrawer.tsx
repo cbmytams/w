@@ -307,11 +307,13 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                                 </Link>
                                                             </motion.div>
                                                         )}
-                                                        <motion.div whileHover={{ scale: 1.1, rotate: -5 }} whileTap={{ scale: 0.9 }}>
-                                                            <Link href="mailto:contact@wafia.fr" className="p-3 rounded-2xl bg-gray-50 dark:bg-white/5 text-gray-400 hover:text-orange-500 hover:bg-orange-500/10 transition-colors block border border-transparent hover:border-orange-500/20">
-                                                                <Mail className="w-5 h-5" />
-                                                            </Link>
-                                                        </motion.div>
+                                                        {member.links?.email && (
+                                                            <motion.div whileHover={{ scale: 1.1, rotate: -5 }} whileTap={{ scale: 0.9 }}>
+                                                                <Link href={`mailto:${member.links.email}`} className="p-3 rounded-2xl bg-gray-50 dark:bg-white/5 text-gray-400 hover:text-orange-500 hover:bg-orange-500/10 transition-colors block border border-transparent hover:border-orange-500/20">
+                                                                    <Mail className="w-5 h-5" />
+                                                                </Link>
+                                                            </motion.div>
+                                                        )}
                                                     </div>
 
                                                     <div className="relative pt-2">
@@ -385,16 +387,14 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 <div className="p-4 border-t border-gray-100 dark:border-white/10 bg-white dark:bg-[#0A0A0A] shrink-0 z-20">
                                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                                         <Link
-                                            href={member.id === 'sasha' ? "https://calendrier.wafia.fr/sasha" : "https://calendrier.wafia.fr/yaelle"}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                            href={`mailto:${member.links?.email || 'contact@wafia.fr'}?subject=Organiser un appel`}
                                             className={cn(
                                                 "flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl text-white font-bold text-base shadow-lg shadow-orange-500/20 hover:shadow-xl transition-all",
                                                 `bg-gradient-to-r ${gradientClass}`
                                             )}
                                         >
                                             Organiser un appel
-                                            <Calendar className="w-4 h-4" />
+                                            <Mail className="w-4 h-4" />
                                         </Link>
                                     </motion.div>
                                 </div>
