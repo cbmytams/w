@@ -5,13 +5,13 @@
 Plusieurs assets sont référencés par le code, mais non versionnés dans Git:
 
 - `src/constants/studio.ts`
-  - `/studio/krh/1 - KRH.MP4`
+  - `/studio/krh/1 - KRH.MP4` (samples KRH)
   - `/studio/krh/2 - KRH.MP4`
   - `/studio/krh/3 - KRH.MP4`
-  - `/studio/basic-fit/NOAH BASIC FIT VF.mp4`
-  - `/studio/basic-fit/BASIC FIT REDHA VF.mp4`
-  - `/studio/basic-fit/ANA BASIC FIT VF.mp4`
-  - `/studio/basic-fit/SHAYNA BASIC FIT VF.mp4`
+  - `/studio/krh/noah-basic-fit-vf.mp4` (showcase Basic Fit — produits par KRH)
+  - `/studio/krh/basic-fit-redha-vf.mp4`
+  - `/studio/krh/ana-basic-fit-vf.mp4`
+  - `/studio/krh/shayna-basic-fit-vf.mp4`
 - `src/app/cases/page.tsx`
   - `/cases/fashion-ugc.png`
   - `/cases/tech-launch.png`
@@ -23,7 +23,6 @@ Le repository reste léger: les médias lourds ne sont pas versionnés.
 
 - On garde les dossiers publics avec `.gitkeep`:
   - `public/studio/krh/.gitkeep`
-  - `public/studio/basic-fit/.gitkeep`
   - `public/cases/.gitkeep`
 - Les médias sont provisionnés hors Git (stockage interne/CDN/sync local).
 - Les patterns d'ignore sont explicites dans `.gitignore`.
@@ -33,7 +32,6 @@ Le repository reste léger: les médias lourds ne sont pas versionnés.
 Déposer les fichiers fournis par l'équipe dans:
 
 - `public/studio/krh/`
-- `public/studio/basic-fit/`
 - `public/cases/`
 
 Si ces fichiers manquent, les pages concernées afficheront des médias absents (404).
