@@ -218,6 +218,7 @@ export function ProductionsGrid() {
                                                         <SequentialVideoPlayer
                                                             key={videoMode} // Force reset on mode change
                                                             videos={videoMode === 'process' ? prod.samples : (prod.showcase || [])}
+                                                            className="absolute inset-0"
                                                         />
                                                     </div>
                                                 ) : (
