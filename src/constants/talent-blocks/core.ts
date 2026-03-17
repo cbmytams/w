@@ -1,10 +1,10 @@
 export const TALENT_HERO = {
-    badge: "Pour ceux qui veulent une vraie structure",
+    badge: "Pour les créateurs qui visent l'excellence",
     title: "Passe de créateur",
-    titleHighlight: "à structure.",
-    subtitle: "On construit le système autour de toi : image, contenu, deals, ops. Objectif : autonomie.",
-    ctaPrimary: "Se référencer",
-    ctaSecondary: "Voir le process",
+    titleHighlight: "à institution.",
+    subtitle: "Nous concevons l'architecture autour de votre profil : direction artistique, production, gestion contractuelle et pilotage de carrière. L'objectif : pérenniser votre influence.",
+    ctaPrimary: "Se faire représenter",
+    ctaSecondary: "Notre méthodologie",
     callsAvailable: 2,
     proofPoints: [
         { label: "Positionnement & image", value: "Identité" },
@@ -15,16 +15,16 @@ export const TALENT_HERO = {
 
 export const TALENT_PROBLEM = {
     id: "problem",
-    title: "Le talent démarre tout. Le système décide de la suite.",
-    description: "Chaque année, des milliers de nouveaux talents émergent sur les réseaux, mais très peu arrivent à vraiment s'imposer dans la durée. Ce qui fait la différence, c'est d'avoir une image forte, authentique et réfléchie.",
-    painTags: ["Pas de direction claire", "Pas de pipeline", "Devis/prix au hasard", "Deals pas alignés"],
-    conclusion: "On ne te 'signe' pas pour t'ajouter à une liste. On te construit une structure."
+    title: "Le talent amorce le mouvement. L'infrastructure assure la durée.",
+    description: "Des milliers de nouveaux créateurs émergent chaque année, mais seule une infime minorité s'impose sur le long terme. Ce qui fait la différence ? Une direction artistique marquée, une régularité de production, et un pilotage stratégique de sa carrière.",
+    painTags: ["Manque de vision globale", "Flux de production instable", "Négociations complexes", "Partenariats peu pertinents"],
+    conclusion: "Nous ne vous 'signons' pas pour gonfler un catalogue. Nous construisons votre valeur."
 } as const;
 
 export const TALENT_CTA = {
-    title: "Prêt à passer un cap ?",
-    description: "Référence-toi pour être présenté à nos clients. Si ton profil match, on revient vers toi.",
-    ctaText: "S'inscrire au répertoire"
+    title: "Prêt à franchir le prochain palier ?",
+    description: "Soumettez votre profil à notre comité de sélection. Si votre vision rejoint nos exigences, nous vous recontactons.",
+    ctaText: "Déposer une candidature"
 } as const;
 
 export const TALENT_FOR_WHO = {
@@ -54,31 +54,31 @@ export const BRAND_GRADIENT = "from-pink-500 to-pink-600";
 
 export const TALENT_BUSINESS = {
     label: "Business & Revenus",
-    title: "Transforme ton contenu",
-    titleLine2: "en business.",
-    description: "On structure ton activité pour que chaque contenu génère de la valeur. Rate card, négociation, facturation, protection juridique — tout est cadré.",
-    quote: "Un talent sans business model, c'est un hobby. On en fait un métier.",
+    title: "Changez d'échelle",
+    titleLine2: "financière.",
+    description: "Nous structurons votre activité pour maximiser la valeur de chaque prise de parole. Rate card, négociation stratégique, structuration légale et facturation — une gestion intégrale et rigoureuse.",
+    quote: "Un créateur sans modèle économique est un passionné. Avec une structure, c'est une entreprise.",
     steps: [
-        "Audit de ta monétisation actuelle",
-        "Création de ta rate card personnalisée",
-        "Mise en place du process deals & négociation",
-        "Protection juridique et contractuelle"
+        "Audit de la monétisation et des assets",
+        "Élaboration d'une grille tarifaire dynamique",
+        "Mise en place des protocoles de négociation",
+        "Sécurisation juridique des partenariats"
     ],
-    conclusion: "De l'audience à la structure. Du contenu au revenu. Valider."
+    conclusion: "De l'audience résiduelle au capital pérenne."
 } as const;
 
 export const TALENT_IDENTITY = {
     label: "Identité & Image",
-    title: "Construis une image",
-    titleLine2: "qui te ressemble.",
-    subtitle: "Ton identité, c'est ta fondation.",
-    description: "On travaille ton positionnement, ton univers visuel et ta ligne éditoriale pour que chaque contenu soit aligné avec qui tu es vraiment.",
-    quote: "L'image la plus forte est celle qui ne force rien.",
+    title: "Forgez une marque",
+    titleLine2: "incontournable.",
+    subtitle: "Votre identité est votre actif le plus précieux.",
+    description: "Nous définissons ensemble votre positionnement, votre grammaire visuelle et votre ligne éditoriale. Une empreinte unique qui résonne avec précision sur le marché.",
+    quote: "La puissance d'une marque ne réside pas dans l'effort, mais dans la cohérence.",
     services: [
-        { title: "Positionnement", description: "Définition de ta niche, de ton ton et de ta direction artistique." },
-        { title: "Identité visuelle", description: "Palette, typographie, templates et guidelines cohérentes." },
-        { title: "Ligne éditoriale", description: "Stratégie de contenu alignée avec ton audience cible." },
-        { title: "Branding personnel", description: "Construction d'une marque authentique et mémorable." }
+        { title: "Positionnement", description: "Définition de la niche, du ton of voice et de la direction artistique globale." },
+        { title: "Identité visuelle", description: "Élaboration de la palette de couleurs, typographie, design system et guidelines." },
+        { title: "Ligne éditoriale", description: "Stratégie de prises de parole calibrées pour vos audiences cibles." },
+        { title: "Personal Branding", description: "Construction d'une architecture de marque singulière et pérenne." }
     ]
 } as const;
 

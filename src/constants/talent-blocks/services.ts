@@ -1,19 +1,19 @@
 export const TALENT_SERVICES = {
     id: "services",
     title: "Services",
-    subtitle: "Tout ce dont tu as besoin pour exploser.",
+    subtitle: "L'infrastructure complète pour bâtir une institution.",
     services: [
         {
             id: "identity",
             number: "01",
             label: "Identité",
             headline: "Identité & Image",
-            microDescription: "On clarifie ce que tu représentes et ce que tu refuses. Une image lisible, cohérente, qui attire les bons deals.",
-            points: ["Positionnement (promesse simple + signature)", "Direction éditoriale (ton, sujets, limites)", "Cohérence visuelle (profil, thumbnails, univers)"],
+            microDescription: "Nous clarifions votre positionnement. Une image lisible et cohérente qui attire les partenariats stratégiques.",
+            points: ["Positionnement (promesse simple + signature)", "Direction éditoriale (ton, sujets, limites)", "Design system visuel (profil, thumbnails, univers)"],
             widget: "IdentityLens",
             icon: "🎯",
             detail: {
-                intro: "Une identité claire fait gagner du temps partout : contenu, collaborations, décisions. C'est la base.",
+                intro: "Une identité affirmée fait gagner du temps sur chaque décision : contenu, collaborations, trajectoire. C'est l'architecture de base.",
                 whatWeDo: [
                     "Positionnement (promesse simple + signature)",
                     "Direction éditoriale (ton, sujets, limites)",
@@ -33,7 +33,7 @@ export const TALENT_SERVICES = {
                     { step: "Reco & alignement", description: "validation rapide" },
                     { step: "Mise en place", description: "pack profil + guidelines" }
                 ],
-                forWho: "Pour les talents qui veulent être lisibles et crédibles, sans se dénaturer."
+                forWho: "Pour les créateurs qui exigent d'être lisibles et crédibles, sans dénaturer leur essence."
             }
         },
         {
@@ -41,12 +41,12 @@ export const TALENT_SERVICES = {
             number: "02",
             label: "Contenu",
             headline: "Séries & Formats",
-            microDescription: "On transforme ton talent en formats répétés. Plus de régularité, moins de stress.",
-            points: ["Création de 2–3 séries principales", "Structures de vidéos (hooks, déroulé, chute)", "Banque d'idées (backlog vivant)"],
+            microDescription: "Nous transformons votre talent en formats pérennes. Une régularité absolue, la charge mentale en moins.",
+            points: ["Création de 2–3 séries phares", "Structures narratives (hooks, déroulé, rétention)", "Banque d'idées (backlog vivant)"],
             widget: "SeriesFormats",
             icon: "📦",
             detail: {
-                intro: "Les séries construisent la fidélité. Les formats rendent la production simple et stable.",
+                intro: "Les séries forgent la fidélité de l'audience. Les formats structurés rendent la production fluide et prédictible.",
                 whatWeDo: [
                     "Création de 2–3 séries principales (promesse claire)",
                     "Structures de vidéos (hooks, déroulé, chute)",
@@ -66,7 +66,7 @@ export const TALENT_SERVICES = {
                     { step: "Design des séries", description: "promesse + répétabilité" },
                     { step: "Backlog + templates", description: "prêt à tourner" }
                 ],
-                forWho: "Pour ceux qui veulent une machine à idées claire, sans s'éparpiller."
+                forWho: "Pour les esprits créatifs exigeant un système clair sans jamais s'éparpiller."
             }
         },
         {
@@ -74,12 +74,12 @@ export const TALENT_SERVICES = {
             number: "03",
             label: "Production",
             headline: "Workflow Production",
-            microDescription: "On met un pipeline pro : idée → script → tournage → montage → QA → publication.",
-            points: ["Routine hebdo (batching intelligent)", "Checklists (tournage, montage, upload, QA)", "Organisation fichiers + naming"],
+            microDescription: "Mise en place d'un pipeline professionnel : idéation → script → tournage → post-production → QA → publication.",
+            points: ["Routines de batching intelligentes", "Process de QA (tournage, montage, upload)", "Sécurisation et structuration data"],
             widget: "ProductionPipeline",
             icon: "⚙️",
             detail: {
-                intro: "Le talent crée. Le workflow protège : qualité stable, délais tenus, moins de charge mentale.",
+                intro: "Le créateur innove, l'infrastructure exécute. Un workflow solide garantit une qualité constante et absorbe la charge mentale.",
                 whatWeDo: [
                     "Routine hebdo (batching intelligent)",
                     "Checklists (tournage, montage, upload, QA)",
@@ -99,7 +99,7 @@ export const TALENT_SERVICES = {
                     { step: "On supprime les frictions", description: "bottlenecks identifiés" },
                     { step: "On installe un workflow simple et durable", description: "SOPs + templates" }
                 ],
-                forWho: "Pour les talents qui veulent de la constance sans sacrifier leur énergie."
+                forWho: "Pour les créateurs cherchant l'hyper-régularité sans sacrifier leur vision."
             }
         },
         {
@@ -107,12 +107,12 @@ export const TALENT_SERVICES = {
             number: "04",
             label: "Performance",
             headline: "Pilotage & KPIs",
-            microDescription: "On pilote avec 5 KPIs max. Chaque semaine : Stop / Scale / Test.",
-            points: ["Définition North Star", "KPIs par plateforme", "Revue hebdo (top 10 + analyse)"],
+            microDescription: "Nous pilotons votre trajectoire par la data. Chaque semaine : itération, mise à l'échelle ou suppression.",
+            points: ["Définition de la North Star Metric", "KPIs qualifiés par plateforme", "Revues analytiques hebdomadaires"],
             widget: "KPIPulse",
             icon: "📊",
             detail: {
-                intro: "Sans pilotage, tu répètes au hasard. Avec pilotage, tu construis une trajectoire.",
+                intro: "L'intuition démarre la dynamique, la data la pérennise. Le pilotage transforme l'aléatoire en croissance construite.",
                 whatWeDo: [
                     "Définition North Star (objectif principal)",
                     "KPIs par plateforme (seuils minimums)",
@@ -132,7 +132,7 @@ export const TALENT_SERVICES = {
                     { step: "On installe le rituel hebdo", description: "15 min top chrono" },
                     { step: "On itère jusqu'à stabiliser la perf", description: "amélioration continue" }
                 ],
-                forWho: "Pour ceux qui veulent comprendre ce qui marche, sans se prendre la tête."
+                forWho: "Pour les créateurs analytiques souhaitant des métriques d'aide à la décision claires."
             }
         },
         {
@@ -140,12 +140,12 @@ export const TALENT_SERVICES = {
             number: "05",
             label: "Business",
             headline: "Offres & Pricing",
-            microDescription: "On structure ton business : 3 offres claires, un prix plancher, des options propres.",
-            points: ["Packs (starter / standard / premium)", "Pricing plancher + conditions", "Encadrement des droits"],
+            microDescription: "Nous structurons vos flux financiers : 3 offres intégrées, une grille tarifaire plancher, et un encadrement des conditions.",
+            points: ["Création de packages (starter / standard / premium)", "Grille tarifaire plancher + conditions", "Encadrement strict des droits d'exploitation"],
             widget: "PricingOffers",
             icon: "💰",
             detail: {
-                intro: "Une offre nette = moins de négos inutiles, plus de deals alignés.",
+                intro: "Une offre lisible réduit les frictions de négociation et filtre naturellement les partenariats non pertinents.",
                 whatWeDo: [
                     "Packs (starter / standard / premium)",
                     "Pricing plancher + conditions",
@@ -165,7 +165,7 @@ export const TALENT_SERVICES = {
                     { step: "On fixe un plancher et des règles", description: "jamais en dessous" },
                     { step: "On met tout en templates", description: "zéro improvisation" }
                 ],
-                forWho: "Pour les talents qui veulent être payés proprement, sans se brader."
+                forWho: "Pour les créateurs qui souhaitent sécuriser leur valeur financière avec des arguments fiables."
             }
         },
         {
@@ -173,12 +173,12 @@ export const TALENT_SERVICES = {
             number: "06",
             label: "Sales",
             headline: "Commercial & Deals",
-            microDescription: "On filtre, on négocie, on suit. Tu prends les décisions — on gère la machine commerciale.",
-            points: ["Filtrage (brand-fit, budget, red flags)", "Négociation (budget, livrables, droits)", "Suivi pipeline"],
+            microDescription: "Nous filtrons, négocions et pilotons les contrats. Vous maîtrisez la décision finale, nous sécurisons l'exécution commerciale.",
+            points: ["Filtrage préliminaire (brand-fit, budget, risques)", "Négociation intégrale (budget, livrables, droits)", "Suivi du pipeline et relances"],
             widget: "DealDesk",
             icon: "🤝",
             detail: {
-                intro: "Le but n'est pas d'avoir plus de demandes. Le but est d'avoir de meilleures demandes.",
+                intro: "L'objectif d'une agence premium n'est pas d'accumuler les requêtes, mais de filtrer celles qui valorisent son talent.",
                 whatWeDo: [
                     "Filtrage (brand-fit, budget, red flags)",
                     "Négociation (budget, livrables, droits, timing)",
@@ -198,7 +198,7 @@ export const TALENT_SERVICES = {
                     { step: "On gère la négo + le suivi", description: "tu valides, on exécute" },
                     { step: "Tu valides sur une synthèse courte", description: "décision éclairée, rapide" }
                 ],
-                forWho: "Pour ceux qui veulent des deals alignés, pas du bruit."
+                forWho: "Pour ceux qui exigent des deals prestigieux et alignés avec leur image de marque."
             }
         },
         {
@@ -206,12 +206,12 @@ export const TALENT_SERVICES = {
             number: "07",
             label: "Ops",
             headline: "Ops & Admin",
-            microDescription: "On met l'administratif au carré : factures, relances, documents, organisation.",
-            points: ["Centralisation docs", "Facturation + suivi paiements", "Organisation calendrier"],
+            microDescription: "Nous reprenons la gestion administrative globale : conformité, factures, recouvrement, organisation documentaire.",
+            points: ["Centralisation des contrats et briefs", "Systématisation des factures et suivi paiements", "Organisation fine de l'agenda global"],
             widget: "OpsHub",
             icon: "📋",
             detail: {
-                intro: "L'admin n'est pas glamour, mais c'est ce qui sécurise une carrière.",
+                intro: "La rigueur opérationnelle est l'atout invisible qui sécurise durablement les relations avec les marques.",
                 whatWeDo: [
                     "Centralisation docs (contrats, briefs, factures)",
                     "Facturation + suivi paiements + relances",
@@ -231,7 +231,7 @@ export const TALENT_SERVICES = {
                     { step: "On met des templates", description: "actions répétables" },
                     { step: "On suit avec un board simple", description: "visibilité totale" }
                 ],
-                forWho: "Pour ceux qui veulent être crédibles et carrés avec les marques."
+                forWho: "Pour ceux nécessitant une infrastructure impénétrable et d'une fiabilité absolue."
             }
         },
         {
@@ -239,12 +239,12 @@ export const TALENT_SERVICES = {
             number: "08",
             label: "Events",
             headline: "Événementiel",
-            microDescription: "On produit et on opère tes activations : logistique, coordination, captation.",
-            points: ["Gestion booking / conditions", "Coordination terrain", "Production & captation"],
+            microDescription: "Nous orchestrons vos activations terrain : logistique, coordination de production, et captation de contenu.",
+            points: ["Contractualisation et booking", "Coordination des équipes sur le terrain", "Production intégrale des captations"],
             widget: "EventEngine",
             icon: "🎪",
             detail: {
-                intro: "Un event bien géré peut devenir : contenu, image, réseau, revenus. Mal géré, ça abîme tout.",
+                intro: "Une activation événementielle parfaitement orchestrée devient un atout pour votre image et vos revenus. L'improvisation n'a pas sa place.",
                 whatWeDo: [
                     "Gestion booking / conditions / planning",
                     "Coordination terrain (équipes, timings, livrables)",
@@ -264,7 +264,7 @@ export const TALENT_SERVICES = {
                     { step: "On opère sur le terrain", description: "prod + logistique" },
                     { step: "On sort le contenu", description: "recap + distribution" }
                 ],
-                forWho: "Pour les talents qui veulent des activations propres et exploitables."
+                forWho: "Pour les créateurs qui souhaitent des activations physiques aux standards d'une production premium."
             }
         },
         {
@@ -272,12 +272,12 @@ export const TALENT_SERVICES = {
             number: "09",
             label: "Formation",
             headline: "Autonomie",
-            microDescription: "Tu comprends ce qu'on fait et pourquoi. Objectif : autonomie — pas dépendance.",
-            points: ["Algorithmes & mécaniques plateformes", "Lecture analytics + décisions", "Négociation & protection"],
+            microDescription: "Nous vous transmettons l'expertise. Objectif final : faire de vous l'unique maître structuré de votre carrière.",
+            points: ["Maîtrise fondamentale des algorithmes", "Interprétation de la data pour décisions rapides", "Bases de la négociation et sécurisation juridique"],
             widget: "Formation",
             icon: "🎓",
             detail: {
-                intro: "Former, c'est accélérer. Et surtout : protéger ton avenir.",
+                intro: "Transférer l'expertise à nos talents, c'est leur garantir la possibilité d'une influence saine et durable.",
                 whatWeDo: [
                     "Algorithmes & mécaniques plateformes",
                     "Lecture analytics + décisions",
@@ -297,7 +297,7 @@ export const TALENT_SERVICES = {
                     { step: "On forme en pratique", description: "cas réels, zéro théorie" },
                     { step: "On transfère les process", description: "autonomie progressive" }
                 ],
-                forWho: "Pour les talents qui veulent comprendre et maîtriser leur carrière."
+                forWho: "Pour les créateurs désirant acquérir les clés pour piloter stratégiquement une longue carrière."
             }
         }
     ]
