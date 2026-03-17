@@ -1,0 +1,22 @@
+{
+    "name": "Wiki de l'Influence",
+    "short_name": "Wiki Influence",
+    "description": "Un wiki interactif de l'influence : algorithmes, monétisation, croissance et branding sur toutes les plateformes.",
+    "start_url": "/blog",
+    "display": "standalone",
+    "background_color": "#FAFAFA",
+    "theme_color": "#0A0A0A",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "education",
+        "news"
+    ]
+}

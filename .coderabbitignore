@@ -1,0 +1,10 @@
+node_modules/
+public/
+output/
+coverage/
+docs/
+wiki/
+SKILLS/
+*.lock
+*.log
+tsconfig.tsbuildinfo

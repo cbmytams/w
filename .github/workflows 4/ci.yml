@@ -1,0 +1,35 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    env:
+      ADMIN_USERNAME: ci-admin
+      ADMIN_PASSWORD: ci-password
+      NEXTAUTH_SECRET: ci-nextauth-secret-at-least-32-characters-long
+      NEXTAUTH_URL: http://127.0.0.1:3000
+      DEFAULT_TENANT_SLUG: wafia
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run type-check
+      - run: npm run test -- --runInBand
+      - run: npm run build:standalone
+      - run: npm run verify:standalone
+      - run: WIKI_VERIFY_SKIP_BUILD=1 npm run wiki:verify
+      - name: Prisma schema sanity
+        run: |
+          npx prisma validate
+          find prisma/migrations -mindepth 2 -maxdepth 2 -name migration.sql | grep -q .
+      - name: knip (advisory)
+        run: npx knip --config knip.json || true
+      - run: npm audit --omit=dev
+      - name: Prevent duplicate "* 2.*" tracked files
+        run: |
+          if git ls-files | grep -E '(^|/).+ 2\.[^/]+$'; then
+            echo "Duplicate tracked files with ' 2' suffix detected."
+            exit 1
+          fi
