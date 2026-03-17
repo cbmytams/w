@@ -1,5 +1,5 @@
 "use client"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Volume2, VolumeX } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -13,6 +13,14 @@ export function StudioVideo({ src, className }: StudioVideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null)
     const [isMuted, setIsMuted] = useState(true)
     const [isHovered, setIsHovered] = useState(false)
+
+    // React bug: the `muted` prop on <video> is not applied to the DOM attribute.
+    // We must set it imperatively via the ref.
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.muted = isMuted
+        }
+    }, [isMuted])
 
     const toggleMute = (e: React.MouseEvent) => {
         e.stopPropagation()
