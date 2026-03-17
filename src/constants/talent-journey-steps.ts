@@ -32,10 +32,10 @@ export interface PhaseConfig {
 export const TALENT_JOURNEY_HEADER = {
     id: "journey",
     badge: "Parcours 3 ans",
-    title: "Un process",
-    titleHighlight: "carré",
-    subtitle: "Simple, transparent, toujours humain. 🤝",
-    signature: "Si on bosse bien, un jour t'as plus besoin de nous."
+    title: "Méthodologie",
+    titleHighlight: "d'excellence",
+    subtitle: "Précision, transparence, résultat. 🤝",
+    signature: "Notre succès se mesure à votre indépendance."
 } as const
 
 // Phases Configuration
@@ -194,10 +194,10 @@ export const TALENT_JOURNEY_STEPS: JourneyStep[] = [
         duration: "12+ mois",
         deliverable: "Autonomie totale",
         points: [
-            "Recrutement : monteur, assistant, manager",
-            "Process internes documentés",
-            "Formation continue & transfert des compétences",
-            "Wafia passe en mode conseil"
+            "Recrutement de l'équipe (monteur, asst, manager)",
+            "Documentation des protocoles internes",
+            "Transfert de compétences & formations avancées",
+            "Notre agence évolue vers un rôle de conseil stratégique"
         ]
     }
 ] as const
