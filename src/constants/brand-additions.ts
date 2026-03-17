@@ -34,10 +34,10 @@ export const BRAND_HERO_CONTENT = {
 export const AUTHENTICITY_CARDS = [
     {
         id: "01",
-        title: "L'audience qui match",
-        description: "On cible les créateurs dont l'audience",
+        title: "Une audience qualifiée",
+        description: "Nous sélectionnons les créateurs dont l'audience",
         highlight: "EST",
-        suffix: "vos clients.",
+        suffix: "votre cible commerciale.",
         color: "text-pink-400", // Tailwind class for easy usage
         gradient: "bg-pink-500/20",
         hover: "group-hover:bg-pink-500/30",
@@ -45,10 +45,10 @@ export const AUTHENTICITY_CARDS = [
     },
     {
         id: "02",
-        title: "Le ton qui sonne vrai",
-        description: "Des créateurs qui",
-        highlight: "CROIENT",
-        suffix: "en votre produit.",
+        title: "Une affinité sincère",
+        description: "Des profils qui",
+        highlight: "ADHÈRENT",
+        suffix: "réellement à votre vision.",
         color: "text-purple-400",
         gradient: "bg-purple-500/20",
         hover: "group-hover:bg-purple-500/30",
@@ -56,8 +56,8 @@ export const AUTHENTICITY_CARDS = [
     },
     {
         id: "03",
-        title: "Du contenu authentique",
-        description: "On co-crée avec eux, pas de script robotique.",
+        title: "Des campagnes organiques",
+        description: "Une co-création sur-mesure, loin des discours publicitaires formatés.",
         highlight: "",
         suffix: "",
         color: "",

@@ -1,66 +1,65 @@
-// Étapes du process d'accompagnement
 export const PROCESS_STEPS = [
     {
         num: "01",
         title: "Audit & cadrage",
-        deliverable: "Doc de cadrage validé",
+        deliverable: "Document de cadrage opérationnel",
         points: [
-            "Session stratégique (1h30) : objectifs business, contraintes, timing",
-            "Audit de l'existant : ce qui a marché/raté avant",
-            "Définition KPIs : on ne suit QUE ce qui sert vos décisions",
-            "Brand safety map : tonalités acceptées/refusées, sujets sensibles",
-            "Budget allocation : casting, prod, amplification",
-            "Timing : Idéal 4–6 semaines. Urgence ? On sait sortir vite.",
-            "Première campagne ? On vous guide de A à Z."
+            "Session stratégique de définition (objectifs, contraintes, planning)",
+            "Audit croisé et retours d'expériences antérieures",
+            "Définition des KPIs décisionnels exclusifs",
+            "Mise en place de la brand safety map",
+            "Allocation budgétaire (casting, production, médiatisation)",
+            "Gestion des impératifs calendaires et des délais courts",
+            "Accompagnement pédagogique complet (si primo-investisseurs)"
         ]
     },
     {
         num: "02",
         title: "Concept & casting",
-        deliverable: "Shortlist documentée + Brief créatif",
+        deliverable: "Shortlist documentée + Briefs de production",
         points: [
-            "Shortlist claire et argumentée (critères explicites)",
-            "Plan de contenus aligné plateformes",
-            "Validation brand safety + audience fit",
-            "Brief créatif détaillé pour chaque créateur",
-            "Timeline de production validée",
-            "Casting validé ensemble : on recommande, vous validez, on tranche ensemble"
+            "Sélection argumentée et filtrage qualitatif exclusif",
+            "Plan éditorial adapté à l'architecture de chaque plateforme",
+            "Double validation d'audience et de brand safety",
+            "Élaboration des briefs directeurs",
+            "Structuration du rétroplanning de production",
+            "Validation collaborative de la sélection finale"
         ]
     },
     {
         num: "03",
         title: "Production & exécution",
-        deliverable: "Contenus validés + Planning ops",
+        deliverable: "Contenus validés + Planning de campagne",
         points: [
-            "Gestion création (DA, scripts, tournages)",
-            "Validations clients à chaque étape",
-            "Coordination talents (deadlines, retouches)",
-            "Conformité légale (mentions, droits, ARPP)",
-            "Planning de diffusion optimisé"
+            "Supervision créative complète (DA, conception, tournages)",
+            "Étapes de validation intermédiaires rigoureuses",
+            "Coordination des créateurs et gestion des correctifs",
+            "Conformité réglementaire (droits, ARPP, mentions légales)",
+            "Orchestration du planning de diffusion"
         ]
     },
     {
         num: "04",
         title: "Pilotage & optimisation",
-        deliverable: "Dashboard live 24/7",
+        deliverable: "Tableau de bord de performance (Live)",
         points: [
-            "Suivi live des performances (24h/48h/7j)",
-            "Identification rapide des formats qui fonctionnent",
-            "Ajustements en cours de route si nécessaire",
-            "Veille sentiment communauté (positif/négatif)",
-            "Modération et protection marque si besoin"
+            "Monitoring continu des métriques transactionnelles",
+            "Analyse prédictive des formats performants",
+            "Ajustements de stratégie en temps réel",
+            "Vigilance et audit des sentiments d'audience",
+            "Mesures de modération et protection de l'image de marque"
         ]
     },
     {
         num: "05",
         title: "Reporting & roadmap",
-        deliverable: "Playbook + Roadmap",
+        deliverable: "Playbook Stratégique + Roadmap Itérative",
         points: [
-            "Synthèse actionnable (ce qui a marché, pourquoi)",
-            "Comparaison vs objectifs et vs benchmark",
-            "Recommandations pour scaler",
-            "Plan d'activation suivant",
-            "Base de données créateurs enrichie"
+            "Bilan d'exécution actionnable et argumenté",
+            "Comparatif analytique (réel vs objectifs vs benchmarks)",
+            "Recommandations de passage à l'échelle",
+            "Conception du prochain cycle d'activation",
+            "Enrichissement du vivier de talents qualifiés"
         ]
     }
 ] as const;

@@ -10,29 +10,29 @@ export const AGENCY_NAVIGATION = [
 export const AGENCY_HERO = {
     title: "Votre département",
     highlight: "influence",
-    subtitle: "Wafia est le bras armé des agences.",
-    text: "Marque blanche ou co-branding.\nOn gère l’opérationnel. Vous gardez la relation client.",
-    cta: "Monter un partenariat (réponse rapide)"
+    subtitle: "Wafia devient l'infrastructure de votre agence.",
+    text: "En marque blanche ou co-branding.\nNous exécutons. Vous conservez la relation client.",
+    cta: "Étudier une collaboration"
 } as const;
 
 export const AGENCY_PROBLEM = {
-    title: "Le problème :",
-    highlight: "l’influence te bouffe.",
+    title: "La réalité :",
+    highlight: "l’influence est chronophage.",
     items: [
-        "Sourcing trop long",
-        "Coordination infernale",
-        "Marges faibles sur l’exécution",
-        "Deadlines client intenables",
-        "Trop de prestas à gérer (UGC, talents, prod)"
+        "Sourcing interminable",
+        "Coordination complexe",
+        "Faible rentabilité sur l'exécution",
+        "Délais clients contraignants",
+        "Multiplication des prestataires (UGC, talents, prod)"
     ],
-    conclusion: "Tu perds du temps. Tu perds de la marge."
+    conclusion: "Vous perdez un temps précieux. Vous sacrifiez vos marges."
 } as const;
 
 export const AGENCY_MODES = {
     id: "agency-modes",
     title: "Wafia =",
     highlight: "plug-and-play",
-    subtitle: "Tu branches Wafia, tu scales.",
+    subtitle: "Une intégration fluide pour accélérer votre croissance.",
     modes: [
         {
             title: "Roster & casting",
@@ -64,21 +64,21 @@ export const AGENCY_CASES = {
 
 export const AGENCY_STANDARDS = {
     id: "agency-standards",
-    title: "Ce que tu gagnes",
+    title: "Vos leviers d'optimisation",
     items: [
-        "vitesse",
-        "capacité",
-        "marges",
-        "fiabilité",
-        "tranquillité"
+        "Vélocité",
+        "Capacité",
+        "Rentabilité",
+        "Fiabilité",
+        "Sérénité"
     ]
 } as const;
 
 export const AGENCY_CTA = {
-    title: "Montons un",
+    title: "Structurons un",
     highlight: "partenariat",
-    text: "Marque blanche ou co-branding.\nWafia s’intègre dans ton process.\nEt tu livres plus fort, plus vite. 🤝",
-    button: "Monter un partenariat"
+    text: "En marque blanche ou co-branding.\nWafia s’intègre scrupuleusement à vos impératifs.\nPour une livraison plus qualitative et sécurisée. 🤝",
+    button: "Étudier une collaboration"
 } as const;
 
 // (Legacy blocks kept if needed elsewhere, otherwise superseded by above)
