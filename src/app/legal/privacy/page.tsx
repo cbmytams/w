@@ -67,8 +67,8 @@ export default function PrivacyPolicy() {
                         <p className="font-medium text-slate-900 dark:text-white">
                             Pour exercer ce droit, écrivez-nous simplement à :
                             <br />
-                            <a href="mailto:privacy@wafia.agency" className="inline-block mt-3 px-6 py-3 bg-white/50 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 border border-black/5 dark:border-white/10 rounded-full text-violet-600 dark:text-violet-400 font-semibold tracking-tight transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
-                                privacy@wafia.agency
+                            <a href="mailto:contact@wafia.fr" className="inline-block mt-3 px-6 py-3 bg-white/50 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 border border-black/5 dark:border-white/10 rounded-full text-violet-600 dark:text-violet-400 font-semibold tracking-tight transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+                                contact@wafia.fr
                             </a>
                         </p>
                     </div>

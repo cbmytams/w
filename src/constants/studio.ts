@@ -35,9 +35,9 @@ export const STUDIO_PRODUCTIONS: StudioProduction[] = [
         ],
         services: ["TikTok & Reels Creation", "Trend Jacking", "UGC Editing", "Motion Design Express"],
         samples: [
-            "/studio/krh/1 - KRH.MP4",
-            "/studio/krh/2 - KRH.MP4",
-            "/studio/krh/3 - KRH.MP4"
+            "/studio/krh/1%20-%20KRH.MP4",
+            "/studio/krh/2%20-%20KRH.MP4",
+            "/studio/krh/3%20-%20KRH.MP4"
         ],
         showcase: [
             "/studio/krh/noah-basic-fit-vf.mp4",
@@ -47,11 +47,11 @@ export const STUDIO_PRODUCTIONS: StudioProduction[] = [
         ]
     },
     {
-        id: "lumen",
-        name: "LUMEN",
+        id: "assaud",
+        name: "Assaud",
         tagline: "High-End Cinematography",
         description: "Publicités TVC, Brand Movies et storytelling visuel premium.",
-        longDescription: "LUMEN apporte l'exigence du cinéma à votre marque. Équipes de tournages complètes, caméras RED/Arri, étalonnage cinéma... Nous créons les pièces maîtresses de votre communication, celles qui définissent votre image de marque pour les années à venir.",
+        longDescription: "Assaud apporte l'exigence du cinéma à votre marque. Équipes de tournages complètes, caméras RED/Arri, étalonnage cinéma... Nous créons les pièces maîtresses de votre communication, celles qui définissent votre image de marque pour les années à venir.",
         icon: Aperture,
         color: "bg-blue-500",
         gradient: "from-blue-600 to-cyan-400",

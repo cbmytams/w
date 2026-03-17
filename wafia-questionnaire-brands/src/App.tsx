@@ -38,7 +38,6 @@ function App() {
     resetDiagnostic,
     interstitial,
     completeInterstitial,
-    startContact,
   } = useDiagnostic();
 
   // Dynamic document title based on phase
@@ -71,7 +70,6 @@ function App() {
         return (
           <DiagnosticLanding
             onStart={startDiagnostic}
-            onStartExpress={startContact}
           />
         );
 

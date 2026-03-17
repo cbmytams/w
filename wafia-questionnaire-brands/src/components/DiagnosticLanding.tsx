@@ -3,15 +3,14 @@
  * Direction: Premium warm gradient (Orange/Red) — Brand identity
  */
 
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface DiagnosticLandingProps {
     onStart: () => void;
-    onStartExpress?: () => void;
 }
 
-export function DiagnosticLanding({ onStart, onStartExpress }: DiagnosticLandingProps) {
+export function DiagnosticLanding({ onStart }: DiagnosticLandingProps) {
     return (
         <div className="h-full min-h-0 flex flex-col items-center justify-center px-6 relative overflow-hidden bg-[var(--bg-deep)]">
 
@@ -97,41 +96,9 @@ export function DiagnosticLanding({ onStart, onStartExpress }: DiagnosticLanding
                         <div className="absolute inset-0 bg-gradient-to-r from-orange-100 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     </motion.button>
 
-                    {/* Secondary CTA: Express */}
-                    {onStartExpress && (
-                        <motion.button
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.7 }}
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.97 }}
-                            onClick={onStartExpress}
-                            data-testid="start-express"
-                            className="group flex items-center gap-2 px-8 py-4 rounded-full border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium transition-all duration-300"
-                        >
-                            <Mail className="w-4 h-4 opacity-60" />
-                            Être recontacté
-                        </motion.button>
-                    )}
                 </div>
 
-                {/* Timing info */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1, duration: 1 }}
-                    className="mt-8 flex flex-col sm:flex-row items-center gap-6 text-xs text-zinc-500"
-                >
-                    <span className="flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-green-500/60" />
-                        Diagnostic complet : ~8 min
-                    </span>
-                    <span className="hidden sm:block w-px h-3 bg-zinc-700" />
-                    <span className="flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-orange-500/60" />
-                        Résultats personnalisés instantanés
-                    </span>
-                </motion.div>
+
 
                 {/* Footer Note */}
                 <motion.div

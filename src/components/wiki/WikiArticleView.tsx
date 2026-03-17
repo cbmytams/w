@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import WikiNavBar from "./WikiNavBar";
 import WikiSearchDialog from "./WikiSearchDialog";
 import { useWikiDarkMode } from "@/hooks/useWikiDarkMode";
+import DOMPurify from "isomorphic-dompurify";
 
 interface Chapter {
     title: string;
@@ -210,7 +211,7 @@ export default function WikiArticleView({
                                     <div
                                         className="font-serif text-lg md:text-[1.3rem] leading-[1.8] prose-p:mb-6 prose-a:underline prose-strong:font-semibold prose-ul:list-disc prose-ul:pl-6 prose-li:mb-2 prose-h3:font-sans prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-10 prose-h3:mb-4 prose-blockquote:border-l-2 prose-blockquote:pl-6 prose-blockquote:italic prose-hr:hidden"
                                         style={{ color: 'var(--wiki-prose-body)' }}
-                                        dangerouslySetInnerHTML={{ __html: c.contentHtml }}
+                                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(c.contentHtml) }}
                                     />
                                 </section>
                             );

@@ -41,7 +41,7 @@ export default async function BrandDetailPage({ params }: BrandDetailPageProps) 
     <div className="space-y-6 max-w-5xl mx-auto">
       <Link
         href="/admin/brands/leads"
-        className="inline-flex items-center gap-2 text-xs font-medium text-soft hover:text-black dark:hover:text-white transition"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-full w-fit bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white/70 hover:text-white text-sm font-medium backdrop-blur-xl"
       >
         <ArrowLeft className="w-4 h-4" />
         Retour aux Marques

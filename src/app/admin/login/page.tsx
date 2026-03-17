@@ -3,6 +3,8 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { ArrowLeft } from "lucide-react";
+import { WafiaLogo } from "@/components/ui/WafiaLogo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -41,18 +43,17 @@ export default function LoginPage() {
     <main id="main-content" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black text-white">
       {/* Premium Apple / VisionOS Background Gradients */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-pink-500/20 rounded-full blur-[120px] mix-blend-screen opacity-50" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-orange-500/20 rounded-full blur-[150px] mix-blend-screen opacity-50" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 rounded-full blur-[100px] md:opacity-100 opacity-50 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:24px_24px] opacity-30 mix-blend-overlay" />
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] mix-blend-screen" />
+        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-[120px] mix-blend-screen" />
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:24px_24px] mix-blend-overlay" />
       </div>
       {/* Back button */}
       <button
         type="button"
         onClick={() => router.back()}
-        className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-xs font-medium text-white/30 hover:text-white/70 transition-colors duration-200 cursor-pointer"
+        className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white/70 hover:text-white text-sm font-medium backdrop-blur-xl cursor-pointer"
       >
-        <span className="text-base leading-none">←</span>
+        <ArrowLeft className="w-4 h-4" />
         Retour
       </button>
 
@@ -63,14 +64,13 @@ export default function LoginPage() {
 
         <div className="relative z-20">
           <div className="flex justify-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shadow-2xl backdrop-blur-xl group-hover:scale-105 transition-transform duration-500">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-orange-400 to-pink-500" />
+            <div className="w-24 h-24 rounded-2xl flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-500">
+              <WafiaLogo className="w-full h-full text-white" />
             </div>
           </div>
 
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-semibold tracking-tight text-white/90">Wafia OS</h1>
-            <p className="text-sm font-medium text-white/40 mt-1.5 uppercase tracking-widest">Workspace Personnel</p>
+            <p className="text-sm font-medium text-white/40 uppercase tracking-widest">Workspace Personnel</p>
           </div>
 
           <div className="space-y-4">

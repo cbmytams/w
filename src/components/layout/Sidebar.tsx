@@ -7,6 +7,7 @@ import {
   Menu, X, LayoutDashboard, Users, FileText,
   Download, Activity, Settings, ArrowLeftRight, ExternalLink, type LucideIcon
 } from "lucide-react";
+import { WafiaLogo } from "@/components/ui/WafiaLogo";
 
 const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -48,7 +49,9 @@ function SidebarContent({
       <div className="px-6 pt-8 pb-6 border-b border-white/5">
         {/* Logo / Brand */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-orange-400 to-pink-500 shadow-lg shadow-orange-500/30 flex-shrink-0" />
+          <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
+             <WafiaLogo className="w-full h-full text-white" />
+          </div>
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-medium">Wafia OS</div>
             <div className="text-sm font-semibold text-white/90 leading-tight">{portalLabel}</div>

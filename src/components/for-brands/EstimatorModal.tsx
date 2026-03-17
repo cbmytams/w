@@ -74,6 +74,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                 </div>
                                 <button
                                     onClick={onClose}
+                                    type="button"
                                     className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
                                     aria-label="Fermer"
                                 >
@@ -83,13 +84,14 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
 
                             <div className="space-y-6">
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-700 mb-3">
+                                    <p className="block text-sm font-semibold text-gray-700 mb-3">
                                         1. Votre objectif principal ?
-                                    </label>
+                                    </p>
                                     <div className="grid grid-cols-2 gap-3">
                                         {["Notoriété", "Trafic", "Conversion", "Fidélisation"].map((obj) => (
                                             <button
                                                 key={obj}
+                                                type="button"
                                                 onClick={() => setEstimatorData({ ...estimatorData, objective: obj })}
                                                 className={`p-4 rounded-xl border-2 font-medium transition-all ${estimatorData.objective === obj
                                                     ? "border-orange-500 bg-orange-50 text-orange-700"
@@ -103,13 +105,14 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-700 mb-3">
+                                    <p className="block text-sm font-semibold text-gray-700 mb-3">
                                         2. Budget range ?
-                                    </label>
+                                    </p>
                                     <div className="grid grid-cols-3 gap-3">
                                         {["< 10K€", "10-50K€", "> 50K€"].map((budget) => (
                                             <button
                                                 key={budget}
+                                                type="button"
                                                 onClick={() => setEstimatorData({ ...estimatorData, budget })}
                                                 className={`p-4 rounded-xl border-2 font-medium transition-all ${estimatorData.budget === budget
                                                     ? "border-orange-500 bg-orange-50 text-orange-700"
@@ -123,13 +126,14 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-gray-700 mb-3">
+                                    <p className="block text-sm font-semibold text-gray-700 mb-3">
                                         3. Timing souhaité ?
-                                    </label>
+                                    </p>
                                     <div className="grid grid-cols-3 gap-3">
                                         {["Urgent (< 1 mois)", "Court terme (1-3 mois)", "Long terme (3+ mois)"].map((timing) => (
                                             <button
                                                 key={timing}
+                                                type="button"
                                                 onClick={() => setEstimatorData({ ...estimatorData, timing })}
                                                 className={`p-4 rounded-xl border-2 font-medium transition-all text-sm ${estimatorData.timing === timing
                                                     ? "border-orange-500 bg-orange-50 text-orange-700"
