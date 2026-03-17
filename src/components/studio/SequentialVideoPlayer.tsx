@@ -13,7 +13,7 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
     const progressRefs = useRef<Array<HTMLDivElement | null>>([])
     const animationFrameRef = useRef<number | null>(null)
     const [currentIndex, setCurrentIndex] = useState(0)
-    const [isMuted, setIsMuted] = useState(false) // Try unmuted by default
+    const [isMuted, setIsMuted] = useState(true) // MUST be true by default for browsers to allow autoplay
     const [isPlaying, setIsPlaying] = useState(false)
 
     const stopProgressLoop = useCallback(() => {
@@ -149,7 +149,7 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
                 <motion.video
                     key={videos[currentIndex]}
                     ref={videoRef}
-                    src={videos[currentIndex]}
+                    src={encodeURI(videos[currentIndex])}
                     className="w-full h-full object-cover"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

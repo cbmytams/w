@@ -40,10 +40,10 @@ export const STUDIO_PRODUCTIONS: StudioProduction[] = [
             "/studio/krh/3 - KRH.MP4"
         ],
         showcase: [
-            "/studio/basic-fit/NOAH BASIC FIT VF.mp4",
-            "/studio/basic-fit/BASIC FIT REDHA VF.mp4",
-            "/studio/basic-fit/ANA BASIC FIT VF.mp4",
-            "/studio/basic-fit/SHAYNA BASIC FIT VF.mp4"
+            "/studio/krh/noah-basic-fit-vf.mp4",
+            "/studio/krh/basic-fit-redha-vf.mp4",
+            "/studio/krh/ana-basic-fit-vf.mp4",
+            "/studio/krh/shayna-basic-fit-vf.mp4"
         ]
     },
     {

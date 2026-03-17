@@ -30,7 +30,7 @@ export function StudioVideo({ src, className }: StudioVideoProps) {
         >
             <video
                 ref={videoRef}
-                src={src}
+                src={encodeURI(src)}
                 autoPlay
                 loop
                 muted={isMuted}
