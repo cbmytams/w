@@ -1,9 +1,21 @@
 import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
+import { timingSafeEqual } from "crypto";
 
 function optionalEnv(name: string) {
   return process.env[name]?.trim() || undefined;
+}
+
+function safeCompare(a: string, b: string): boolean {
+  try {
+    const bufA = Buffer.from(a, "utf8")
+    const bufB = Buffer.from(b, "utf8")
+    if (bufA.length !== bufB.length) return false
+    return timingSafeEqual(bufA, bufB)
+  } catch {
+    return false
+  }
 }
 
 type DashboardCredential = {
@@ -79,7 +91,7 @@ export const authOptions: AuthOptions = {
         if (!credentials?.username || !credentials?.password) return null;
 
         const user = getDashboardCredentials().get(credentials.username);
-        if (!user || user.password !== credentials.password) return null;
+        if (!user || !safeCompare(user.password, credentials.password)) return null;
 
         return {
           id: credentials.username,
