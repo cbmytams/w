@@ -54,7 +54,7 @@ export default function CasesPage() {
               className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-white/5"
             >
               <div className="relative h-56 w-full">
-                <Image src={item.image} alt={item.title} fill className="object-cover" />
+                <Image src={item.image} alt={item.title} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
               </div>
               <div className="p-5">
                 <h2 className="text-lg font-semibold">{item.title}</h2>

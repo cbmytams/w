@@ -5,12 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
 
-interface CtaSectionProps {
-    onEstimateClick?: () => void
+type CtaSectionProps = {
     estimateHref?: string
 }
 
-export function CtaSection({ onEstimateClick, estimateHref }: CtaSectionProps) {
+export function CtaSection({ estimateHref = "/questionnaire/brands" }: CtaSectionProps) {
     return (
         <section className="py-24 md:py-32 px-4">
             <Container>
@@ -31,19 +30,10 @@ export function CtaSection({ onEstimateClick, estimateHref }: CtaSectionProps) {
                     </RevealAnimation>
 
                     <RevealAnimation delay={0.4}>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <div className="flex items-center justify-center">
                             <Button size="lg" asChild className="h-16 px-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xl font-semibold shadow-2xl shadow-orange-500/25">
-                                <a href="/questionnaire/brands">Réserver un appel stratégique</a>
+                                <a href={estimateHref}>Réserver un appel stratégique</a>
                             </Button>
-                            {estimateHref ? (
-                                <Button size="lg" asChild variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">
-                                    <a href={estimateHref}>Estimer mon plan</a>
-                                </Button>
-                            ) : (
-                                <Button size="lg" onClick={onEstimateClick} variant="outline" className="h-16 px-12 rounded-full border-2 border-gray-300 hover:border-gray-400 dark:border-zinc-600 dark:hover:border-zinc-500 text-xl font-semibold dark:text-gray-200">
-                                    Estimer mon plan
-                                </Button>
-                            )}
                         </div>
                     </RevealAnimation>
 

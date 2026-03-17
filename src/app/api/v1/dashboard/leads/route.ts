@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import { ApprovalStatus, TalentStatus } from "@prisma/client";
+import { ApprovalStatus, Prisma, TalentStatus } from "@prisma/client";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { getLeadsPage, parseDashboardFilters } from "@/lib/dashboard/queries";
 import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
@@ -85,20 +85,25 @@ export async function PATCH(request: NextRequest) {
       return Response.json({ error: "Unsupported status" }, { status: 400 });
   }
 
-  const updated = await prisma.talent.update({
-    where: { id },
-    data: updates,
-    select: {
-      id: true,
-      status: true,
-      approvalStatus: true,
-      updatedAt: true
+  try {
+    const updated = await prisma.talent.update({
+      where: { id },
+      data: updates,
+      select: {
+        id: true,
+        status: true,
+        approvalStatus: true,
+        updatedAt: true
+      }
+    });
+
+    return Response.json({ ok: true, lead: updated });
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
+      return Response.json({ error: "Lead not found" }, { status: 404 });
     }
-  }).catch(() => null);
 
-  if (!updated) {
-    return Response.json({ error: "Lead not found" }, { status: 404 });
+    console.error("Failed to update lead status", error);
+    return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
-
-  return Response.json({ ok: true, lead: updated });
 }

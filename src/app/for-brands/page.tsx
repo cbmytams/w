@@ -9,6 +9,7 @@ import { ComparisonSectionV2 } from "@/components/for-brands/ComparisonSectionV2
 import { ComplianceSection } from "@/components/for-brands/ComplianceSection"
 import { TeamSectionBrands } from "@/components/for-brands/TeamSectionBrands"
 import { FaqSection } from "@/components/for-brands/FaqSection"
+import { ProcessSection } from "@/components/for-brands/ProcessSection"
 import { CtaSection } from "@/components/for-brands/CtaSection"
 
 
@@ -24,6 +25,8 @@ export default function ForBrandsPage() {
             <ServicesAndMetrics />
 
             <CaseStudiesSection />
+
+            <ProcessSection />
 
             <AuthenticitySection />
 

@@ -2,6 +2,7 @@
 
 import { usePathname, useSearchParams } from "next/navigation"
 import { BackgroundFlow } from "@/components/common/BackgroundFlow"
+import { getGlobalBackgroundConfig } from "@/lib/background-flow"
 
 export function GlobalBackground() {
     const pathname = usePathname()
@@ -22,17 +23,6 @@ export function GlobalBackground() {
         return null
     }
 
-    // Talents pages
-    if (pathname?.startsWith("/for-talents")) {
-        return <BackgroundFlow variant="talents" />
-    }
-
-    // Legal pages: respect ?context param, default to talents
-    if (pathname?.startsWith("/legal")) {
-        const context = searchParams.get("context")
-        return <BackgroundFlow variant={context === "brands" ? "brands" : "talents"} />
-    }
-
-    // Default to brands background for other pages
-    return <BackgroundFlow variant="brands" />
+    const config = getGlobalBackgroundConfig(pathname, searchParams.get("context"))
+    return <BackgroundFlow variant={config.variant} intensity={config.intensity} />
 }

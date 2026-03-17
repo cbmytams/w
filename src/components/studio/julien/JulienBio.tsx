@@ -16,6 +16,7 @@ export function JulienBio() {
                                 src="/korea_house_paris_2024.png"
                                 alt="Julien Ardid"
                                 fill
+                                sizes="(min-width: 1024px) 448px, 90vw"
                                 className="object-cover"
                             />
                             {/* Subtle inner overlay */}

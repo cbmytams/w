@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { getWebsiteEnv } from "@/lib/env.server";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
-import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
+import { enforceRateLimit, enforceSameOrigin, getAllowedOriginsForRequest } from "@/lib/requestSecurity";
 
 type RouteContext = {
   params: Promise<{ path: string[] }>;
@@ -10,6 +10,7 @@ type RouteContext = {
 
 const METHODS_WITH_BODY = new Set(["POST", "PUT", "PATCH", "DELETE"]);
 const PROXY_TIMEOUT_MS = 10_000;
+const DEFAULT_PROXY_MAX_BODY_BYTES = 1_048_576;
 
 function parseAllowlist() {
   const raw = process.env.PLATFORM_PROXY_ALLOWLIST || "";
@@ -86,10 +87,22 @@ function unavailableResponse() {
   );
 }
 
-async function handleProxy(request: NextRequest, context: RouteContext) {
-  const baseUrl = resolvePlatformBaseUrl();
-  if (!baseUrl) return unavailableResponse();
+function payloadTooLargeResponse() {
+  return Response.json(
+    {
+      error: "Request body too large",
+      code: "PAYLOAD_TOO_LARGE"
+    },
+    { status: 413 }
+  );
+}
 
+function resolveProxyMaxBodyBytes() {
+  const parsed = Number(process.env.PLATFORM_PROXY_MAX_BODY_BYTES);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_PROXY_MAX_BODY_BYTES;
+}
+
+async function handleProxy(request: NextRequest, context: RouteContext) {
   const { path } = await context.params;
   if (hasUnsafePathSegment(path || [])) {
     return Response.json(
@@ -104,6 +117,20 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
       { error: "Route not exposed by proxy", code: "ROUTE_NOT_ALLOWED" },
       { status: 404 }
     );
+  }
+
+  let body: ArrayBuffer | undefined;
+  if (METHODS_WITH_BODY.has(request.method)) {
+    const maxBodyBytes = resolveProxyMaxBodyBytes();
+    const contentLength = Number(request.headers.get("content-length"));
+    if (Number.isFinite(contentLength) && contentLength > maxBodyBytes) {
+      return payloadTooLargeResponse();
+    }
+
+    body = await request.arrayBuffer();
+    if (body.byteLength > maxBodyBytes) {
+      return payloadTooLargeResponse();
+    }
   }
 
   const internalTokenAuthorized = hasValidInternalToken(request);
@@ -124,6 +151,8 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
     if (auth.response) return auth.response;
   }
 
+  const baseUrl = resolvePlatformBaseUrl();
+  if (!baseUrl) return unavailableResponse();
   const targetUrl = `${baseUrl}/api/v1/${joinedPath}${request.nextUrl.search}`;
 
   const controller = new AbortController();
@@ -136,8 +165,8 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
     signal: controller.signal
   };
 
-  if (METHODS_WITH_BODY.has(request.method)) {
-    init.body = await request.arrayBuffer();
+  if (body) {
+    init.body = body;
   }
 
   try {
@@ -184,5 +213,41 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
 }
 
 export async function OPTIONS(request: NextRequest, context: RouteContext) {
-  return handleProxy(request, context);
+  const { path } = await context.params;
+  if (hasUnsafePathSegment(path || [])) {
+    return Response.json(
+      { error: "Invalid proxy path", code: "INVALID_PATH" },
+      { status: 400 }
+    );
+  }
+
+  const joinedPath = (path || []).join("/");
+  if (!isPathAllowed(joinedPath)) {
+    return Response.json(
+      { error: "Route not exposed by proxy", code: "ROUTE_NOT_ALLOWED" },
+      { status: 404 }
+    );
+  }
+
+  const requestOrigin = request.headers.get("origin");
+  const allowedOrigins = getAllowedOriginsForRequest(request);
+  if (!requestOrigin || !allowedOrigins.includes(requestOrigin)) {
+    return Response.json({ error: "Invalid origin" }, { status: 403 });
+  }
+
+  const requestedHeaders = request.headers.get("access-control-request-headers");
+  const allowHeaders = requestedHeaders || "content-type,authorization";
+  const allowMethods = "GET,POST,PUT,PATCH,DELETE,OPTIONS";
+
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": requestOrigin,
+      "Access-Control-Allow-Methods": allowMethods,
+      "Access-Control-Allow-Headers": allowHeaders,
+      "Access-Control-Max-Age": "600",
+      "Vary": "Origin, Access-Control-Request-Headers",
+      "Allow": allowMethods
+    }
+  });
 }

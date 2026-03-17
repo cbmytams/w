@@ -81,6 +81,7 @@ export function PageTransition({ children }: PageTransitionProps) {
         : deviceProfile === "desktop"
             ? "duration-300"
             : "duration-200"
+    const showContinuityBackdrop = cluster !== "talents" && cluster !== "brands"
     const veilClassName = isHomeToTalentsOrBrands
         ? cluster === "talents"
             ? "bg-gradient-to-b from-violet-500/16 via-transparent to-transparent"
@@ -89,10 +90,12 @@ export function PageTransition({ children }: PageTransitionProps) {
 
     return (
         <div className="relative w-full">
-            <div
-                aria-hidden="true"
-                className={`pointer-events-none fixed inset-0 z-0 transition-colors ${backdropDurationClass} ${routeBackdropClassNames[cluster]}`}
-            />
+            {showContinuityBackdrop ? (
+                <div
+                    aria-hidden="true"
+                    className={`pointer-events-none fixed inset-0 z-0 transition-colors ${backdropDurationClass} ${routeBackdropClassNames[cluster]}`}
+                />
+            ) : null}
             <AnimatePresence mode={presenceMode} initial={false}>
                 <motion.div
                     key={pathname}

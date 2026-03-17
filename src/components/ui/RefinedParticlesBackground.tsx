@@ -30,6 +30,20 @@ function buildOptionsPool(): ISourceOptions[] {
     return [...customOptions, ...presetOptions];
 }
 
+// Module-level: selected once when the chunk first loads and reused across
+// all mounts within the same browser session. This prevents a double-animation
+// glitch during page transitions where the component can briefly unmount and
+// remount (e.g. AnimatePresence sync mode + rAF timing), which would otherwise
+// pick a different random animation on the second mount.
+let _sessionOptions: ISourceOptions | null = null;
+function getSessionOptions(): ISourceOptions {
+    if (!_sessionOptions) {
+        const pool = buildOptionsPool();
+        _sessionOptions = pool[Math.floor(Math.random() * pool.length)];
+    }
+    return _sessionOptions;
+}
+
 export default function RefinedParticlesBackground() {
     const [init, setInit] = useState(false);
 
@@ -39,11 +53,9 @@ export default function RefinedParticlesBackground() {
     const instanceId = useId();
     const [containerId] = useState(() => `tsparticles-${instanceId.replace(/:/g, "")}-${Math.random().toString(36).slice(2, 7)}`);
 
-    // Stable random selection computed once during initial state per mount
-    const [options] = useState<ISourceOptions>(() => {
-        const pool = buildOptionsPool();
-        return pool[Math.floor(Math.random() * pool.length)];
-    });
+    // Use the session-stable options: same animation throughout the browser session,
+    // changes only on hard page refresh (module re-evaluation).
+    const [options] = useState<ISourceOptions>(getSessionOptions);
 
     // Initialize engine with all presets, THEN mark as ready
     useEffect(() => {

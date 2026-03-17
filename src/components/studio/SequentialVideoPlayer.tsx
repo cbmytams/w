@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils"
 
 interface SequentialVideoPlayerProps {
     videos: string[]
+    branding?: { client: string; campaign: string }[]
     className?: string
 }
 
-export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlayerProps) {
+export function SequentialVideoPlayer({ videos, branding, className }: SequentialVideoPlayerProps) {
     const videoRef = useRef<HTMLVideoElement>(null)
     const progressRefs = useRef<Array<HTMLDivElement | null>>([])
     const animationFrameRef = useRef<number | null>(null)
@@ -195,6 +196,35 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
                     </div>
                 ))}
             </div>
+
+            {/* Branding Overlay (floating pill) */}
+            <AnimatePresence>
+                {branding?.[currentIndex] && (
+                    <motion.div
+                        key={`branding-${currentIndex}`}
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+                        className="absolute bottom-6 left-6 z-30 pointer-events-none"
+                    >
+                        <div className="flex flex-col gap-1 px-5 py-3 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
+                            <span className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] leading-none mb-1">
+                                Client
+                            </span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm font-bold text-white leading-none">
+                                    {branding[currentIndex].client}
+                                </span>
+                                <div className="h-3 w-px bg-white/20 mx-1" />
+                                <span className="text-xs font-medium text-white/70 leading-none">
+                                    {branding[currentIndex].campaign}
+                                </span>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Controls Overlay */}
             <div className="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover/player:opacity-100 transition-opacity duration-300 pointer-events-none">

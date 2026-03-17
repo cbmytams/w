@@ -157,14 +157,14 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                     <div className="w-1"></div>
                     {estimateHref ? (
                         <Button asChild className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-gray-100 px-6 h-9 text-white dark:text-black text-[13px] font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105">
-                            <a href={estimateHref}>Estimer mon plan</a>
+                            <a href={estimateHref}>Cadrer ma campagne</a>
                         </Button>
                     ) : (
                         <Button
                             onClick={handleEstimateClick}
                             className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-gray-100 px-6 h-9 text-white dark:text-black text-[13px] font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105"
                         >
-                            Estimer mon plan
+                            Cadrer ma campagne
                         </Button>
                     )}
                 </div>
@@ -275,7 +275,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                             onClick={() => setMobileMenuOpen(false)}
                                             className="flex h-14 w-full items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
                                         >
-                                            Estimer mon plan
+                                            Cadrer ma campagne
                                         </a>
                                     ) : (
                                         <button
@@ -285,7 +285,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                             }}
                                             className="h-14 w-full rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
                                         >
-                                            Estimer mon plan
+                                            Cadrer ma campagne
                                         </button>
                                     )}
                                 </motion.div>

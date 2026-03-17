@@ -7,10 +7,38 @@ import { QuestionnaireType, type QuestionnaireResponse } from "@prisma/client";
 
 const BATCH_SIZE = 500;
 
+type QuestionnaireForExport = {
+    id: string
+    version: string
+    type: QuestionnaireType
+    sectionsJson: unknown
+}
+
+type QuestionnaireSection = {
+    id: string
+    title: string
+    questions: Array<{ id: string; title?: string }>
+}
+
 function serializeCsvCell(value: unknown) {
     const raw = value == null ? "" : String(value);
     const neutralized = /^[=+\-@]/.test(raw) ? `'${raw}` : raw;
     return `"${neutralized.replace(/"/g, '""')}"`;
+}
+
+function serializeCsvRow(values: unknown[]) {
+    return `${values.map((value) => serializeCsvCell(value)).join(",")}\n`;
+}
+
+function getQuestionHeaders(sectionsJson: unknown) {
+    const sections = sectionsJson as QuestionnaireSection[];
+    const questionHeaders: string[] = [];
+    for (const section of sections || []) {
+        for (const question of section.questions || []) {
+            questionHeaders.push(question.title || question.id);
+        }
+    }
+    return { sections, questionHeaders };
 }
 
 async function resolveAuditTenantId() {
@@ -21,40 +49,25 @@ async function resolveAuditTenantId() {
     return tenant?.id ?? null;
 }
 
-function createCSVStream(version: string, type: QuestionnaireType) {
+function createCSVStream(questionnaire: QuestionnaireForExport) {
     const encoder = new TextEncoder();
+    const { sections, questionHeaders } = getQuestionHeaders(questionnaire.sectionsJson);
 
     const stream = new ReadableStream({
         async start(controller) {
             try {
-                const questionnaire = await prisma.questionnaire.findFirst({
-                    where: { version, type },
-                });
-
-                if (!questionnaire) {
-                    controller.enqueue(encoder.encode("Error: Questionnaire version not found"));
-                    controller.close();
-                    return;
-                }
-
-                // Generate CSV Header dynamically based on sectionsJson
-                const sectionsJson = questionnaire.sectionsJson as Array<{ id: string; title: string; questions: Array<{ id: string; title?: string }> }>;
-                const questionHeaders = [];
-                for (const section of sectionsJson || []) {
-                    for (const q of section.questions || []) {
-                        questionHeaders.push(q.title || q.id);
-                    }
-                }
-
-                const headers = ["ID", "Talent ID", "Score", "Completion Rate", "Submitted At", ...questionHeaders].join(",") + "\n";
-                controller.enqueue(encoder.encode(headers));
+                controller.enqueue(
+                    encoder.encode(
+                        serializeCsvRow(["ID", "Talent ID", "Score", "Completion Rate", "Submitted At", ...questionHeaders])
+                    )
+                );
 
                 let cursor: string | undefined = undefined;
                 let hasMore = true;
 
                 while (hasMore) {
                     const chunkResponses: Array<Record<string, unknown> & { id: string, talentId: string, type: string, score: number | null, completionRate: number, submittedAt: Date, answersJson: unknown }> = await prisma.questionnaireResponse.findMany({
-                        where: { questionnaireId: questionnaire.id, type },
+                        where: { questionnaireId: questionnaire.id, type: questionnaire.type },
                         take: BATCH_SIZE,
                         skip: cursor ? 1 : 0,
                         cursor: cursor ? { id: cursor } : undefined,
@@ -70,23 +83,23 @@ function createCSVStream(version: string, type: QuestionnaireType) {
                     for (const response of chunkResponses) {
                         const answers = response.answersJson as Record<string, unknown>;
 
-                        const row: string[] = [
+                        const row: unknown[] = [
                             response.id,
                             response.talentId,
-                            String(response.score ?? ""),
-                            String(response.completionRate),
+                            response.score ?? "",
+                            response.completionRate,
                             response.submittedAt.toISOString()
                         ];
 
                         // Map answers to the exact order of questions
-                        for (const section of sectionsJson || []) {
+                        for (const section of sections || []) {
                             for (const q of section.questions || []) {
                                 const answer = answers[q.id];
-                                row.push(serializeCsvCell(answer));
+                                row.push(answer);
                             }
                         }
 
-                        chunk += row.join(",") + "\n";
+                        chunk += serializeCsvRow(row);
                     }
 
                     controller.enqueue(encoder.encode(chunk));
@@ -103,29 +116,19 @@ function createCSVStream(version: string, type: QuestionnaireType) {
     return new Response(stream, {
         headers: {
             "Content-Type": "text/csv; charset=utf-8",
-            "Content-Disposition": `attachment; filename="export-${type.toLowerCase()}-${version}-${new Date().toISOString().split('T')[0]}.csv"`,
+            "Content-Disposition": `attachment; filename="export-${questionnaire.type.toLowerCase()}-${questionnaire.version}-${new Date().toISOString().split('T')[0]}.csv"`,
             "Cache-Control": "no-cache",
             "Transfer-Encoding": "chunked"
         }
     });
 }
 
-function createJSONStream(version: string, type: QuestionnaireType) {
+function createJSONStream(questionnaire: QuestionnaireForExport) {
     const encoder = new TextEncoder();
 
     const stream = new ReadableStream({
         async start(controller) {
             try {
-                const questionnaire = await prisma.questionnaire.findFirst({
-                    where: { version, type },
-                });
-
-                if (!questionnaire) {
-                    controller.enqueue(encoder.encode(JSON.stringify({ error: "Version not found" })));
-                    controller.close();
-                    return;
-                }
-
                 controller.enqueue(encoder.encode("[\n"));
 
                 let cursor: string | undefined = undefined;
@@ -134,7 +137,7 @@ function createJSONStream(version: string, type: QuestionnaireType) {
 
                 while (hasMore) {
                     const chunkResponses: QuestionnaireResponse[] = await prisma.questionnaireResponse.findMany({
-                        where: { questionnaireId: questionnaire.id, type },
+                        where: { questionnaireId: questionnaire.id, type: questionnaire.type },
                         take: BATCH_SIZE,
                         skip: cursor ? 1 : 0,
                         cursor: cursor ? { id: cursor } : undefined,
@@ -176,7 +179,7 @@ function createJSONStream(version: string, type: QuestionnaireType) {
     return new Response(stream, {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
-            "Content-Disposition": `attachment; filename="export-${type.toLowerCase()}-${version}-${new Date().toISOString().split('T')[0]}.json"`,
+            "Content-Disposition": `attachment; filename="export-${questionnaire.type.toLowerCase()}-${questionnaire.version}-${new Date().toISOString().split('T')[0]}.json"`,
             "Cache-Control": "no-cache",
             "Transfer-Encoding": "chunked"
         }
@@ -206,6 +209,19 @@ export async function GET(request: NextRequest) {
     }
 
     const type = typeParam as QuestionnaireType;
+    const questionnaire = await prisma.questionnaire.findFirst({
+        where: { version, type },
+        select: {
+            id: true,
+            version: true,
+            type: true,
+            sectionsJson: true
+        }
+    });
+
+    if (!questionnaire) {
+        return Response.json({ error: "Questionnaire version not found" }, { status: 404 });
+    }
 
     const tenantId = await resolveAuditTenantId();
     if (tenantId) {
@@ -222,8 +238,8 @@ export async function GET(request: NextRequest) {
     }
 
     if (format === "json") {
-        return createJSONStream(version, type);
+        return createJSONStream(questionnaire);
     }
 
-    return createCSVStream(version, type);
+    return createCSVStream(questionnaire);
 }

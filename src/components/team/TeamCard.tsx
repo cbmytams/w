@@ -36,6 +36,7 @@ export function TeamCard({ member }: TeamCardProps) {
                                 src={member.image}
                                 alt={member.name}
                                 fill
+                                sizes="(min-width: 768px) 80px, 64px"
                                 className="object-cover"
                             />
                         </div>
@@ -86,4 +87,3 @@ export function TeamCard({ member }: TeamCardProps) {
         </Link>
     );
 }
-

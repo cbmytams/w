@@ -1,7 +1,6 @@
 // Ajouts commerciaux pour /for-brands
 
 export const BRAND_NAVIGATION = [
-    { href: "#dashboard", label: "Dashboard" },
     { href: "#services", label: "Services" },
     { href: "#process", label: "Méthode" },
     { href: "#faq", label: "FAQ" }
@@ -26,7 +25,7 @@ export const BRAND_HERO_CONTENT = {
     ],
     cta: {
         primary: { text: "Voir nos réalisations", href: "#case-studies" },
-        secondary: { text: "Estimer mon plan", href: "/questionnaire/brands" }
+        secondary: { text: "Cadrer ma campagne", href: "/questionnaire/brands" }
     },
     timing: "⏱️ 4–6 semaines pour une campagne complète."
 } as const;

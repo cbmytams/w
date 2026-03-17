@@ -21,6 +21,7 @@ const LogoCard = ({
                     src={logoLight}
                     alt={`Logo ${name}`}
                     fill
+                    sizes="(min-width: 768px) 192px, 128px"
                     className="object-contain grayscale transition-all duration-300 hover:grayscale-0 opacity-70 hover:opacity-100 dark:invert"
                 />
             </div>

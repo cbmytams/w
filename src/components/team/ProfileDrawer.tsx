@@ -241,7 +241,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                             transition={shouldReduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
                                             className="w-full h-full rounded-[2rem] overflow-hidden shadow-2xl ring-4 ring-white/40 dark:ring-white/10"
                                         >
-                                            <Image src={member.image} alt={member.name} fill className="object-cover" />
+                                            <Image src={member.image} alt={member.name} fill sizes="128px" className="object-cover" />
                                         </motion.div>
                                     </motion.div>
                                 </div>

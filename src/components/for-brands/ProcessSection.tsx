@@ -33,10 +33,10 @@ export function ProcessSection() {
                         title={
                             <>
                                 Un process{" "}
-                                <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">transparent</span>
+                                <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">carré</span>
                             </>
                         }
-                        subtitle="Simple, transparent, toujours humain. 🤝"
+                        subtitle="Précis, transparent, toujours humain. 🤝"
                         className="mb-24 text-center"
                     />
 

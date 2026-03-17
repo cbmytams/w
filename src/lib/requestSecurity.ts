@@ -104,12 +104,16 @@ function buildExpectedOrigins(request: NextRequest) {
   );
 }
 
+export function getAllowedOriginsForRequest(request: NextRequest) {
+  return buildExpectedOrigins(request);
+}
+
 export function enforceSameOrigin(request: NextRequest) {
   const origin = normalizeUrlOrigin(request.headers.get("origin"));
   const refererOrigin = normalizeUrlOrigin(request.headers.get("referer"));
   const requestOrigin = origin || refererOrigin;
 
-  const allowedOrigins = buildExpectedOrigins(request);
+  const allowedOrigins = getAllowedOriginsForRequest(request);
   if (!requestOrigin) {
     return Response.json({ error: "Missing origin" }, { status: 403 });
   }

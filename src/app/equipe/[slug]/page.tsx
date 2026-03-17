@@ -72,6 +72,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ slug: 
                                 src={member.image}
                                 alt={member.name}
                                 fill
+                                sizes="(min-width: 768px) 128px, 96px"
                                 className="object-cover"
                             />
                         </div>

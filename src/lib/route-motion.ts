@@ -100,8 +100,8 @@ export const routeVeilClassNames: Record<RouteCluster, string> = {
 // Fixed continuity backdrop to prevent body flash during route handoff.
 export const routeBackdropClassNames: Record<RouteCluster, string> = {
     home: "bg-[#050510]",
-    talents: "bg-[#f8f7ff] dark:bg-[#050508]",
-    brands: "bg-[#fff7f1] dark:bg-[#07080c]",
+    talents: "bg-transparent",
+    brands: "bg-transparent",
     studio: "bg-black",
     other: "bg-[var(--background)]",
 }

@@ -14,6 +14,7 @@ export interface StudioProduction {
     services: string[]
     samples?: string[]
     showcase?: string[]
+    showcaseBranding?: { client: string; campaign: string }[]
     comingSoon?: boolean
 }
 
@@ -40,10 +41,16 @@ export const STUDIO_PRODUCTIONS: StudioProduction[] = [
             "/studio/krh/3%20-%20KRH.MP4"
         ],
         showcase: [
-            "/studio/krh/noah-basic-fit-vf.mp4",
             "/studio/krh/basic-fit-redha-vf.mp4",
+            "/studio/krh/noah-basic-fit-vf.mp4",
             "/studio/krh/ana-basic-fit-vf.mp4",
             "/studio/krh/shayna-basic-fit-vf.mp4"
+        ],
+        showcaseBranding: [
+            { client: "Basic-Fit", campaign: "Booste ton énergie" },
+            { client: "Basic-Fit", campaign: "Booste ton énergie" },
+            { client: "Basic-Fit", campaign: "Booste ton énergie" },
+            { client: "Basic-Fit", campaign: "Booste ton énergie" }
         ]
     },
     {

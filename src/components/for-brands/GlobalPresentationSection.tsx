@@ -75,6 +75,7 @@ export function GlobalPresentationSection() {
                             src="/wafia_abstract_expertise.png"
                             alt="Wafia Expertise Abstract"
                             fill
+                            sizes="(min-width: 768px) 42vw, 100vw"
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

@@ -95,6 +95,11 @@ body {
   padding-right: env(safe-area-inset-right);
 }
 
+html,
+body {
+  position: relative;
+}
+
 /* GPU acceleration opt-in for animated layers only */
 .gpu-accelerated {
   transform: translateZ(0);
