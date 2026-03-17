@@ -16,6 +16,14 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
     const [isMuted, setIsMuted] = useState(true) // MUST be true by default for browsers to allow autoplay
     const [isPlaying, setIsPlaying] = useState(false)
 
+    // React bug: the `muted` prop on <video> is not applied to the DOM attribute.
+    // We must set it imperatively via the ref.
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.muted = isMuted
+        }
+    }, [isMuted])
+
     const stopProgressLoop = useCallback(() => {
         if (animationFrameRef.current !== null) {
             window.cancelAnimationFrame(animationFrameRef.current)
@@ -75,7 +83,11 @@ export function SequentialVideoPlayer({ videos, className }: SequentialVideoPlay
 
     useEffect(() => {
         syncProgressBars()
-    }, [currentIndex, syncProgressBars, videos.length])
+        // Re-apply muted when video element remounts (Framer Motion AnimatePresence)
+        if (videoRef.current) {
+            videoRef.current.muted = isMuted
+        }
+    }, [currentIndex, syncProgressBars, videos.length, isMuted])
 
     useEffect(() => {
         return () => {
