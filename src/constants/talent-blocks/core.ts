@@ -42,10 +42,10 @@ export const TALENT_FOR_WHO = {
     notForYou: {
         title: "Pas pour toi si :",
         items: [
-            "Tu débutes de zéro sans métriques prouvées.",
-            "Tu privilégies le 'quick money' à la vision long terme.",
-            "Tu cherches juste un agent commercial sans approche stratégique.",
-            "Tu refuses d'adopter des process d'excellence."
+            "Ton audience est encore en pleine phase de lancement.",
+            "Tu cherches uniquement de la mise en relation ponctuelle.",
+            "La stratégie d'image et la direction artistique ne sont pas tes priorités.",
+            "L'idée de process et de délégation (admin, legal) te correspond moins."
         ]
     }
 } as const;
