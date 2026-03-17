@@ -131,16 +131,16 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
           aria-modal="true"
           aria-labelledby="drawer-title"
           tabIndex={-1}
-          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-white/40 bg-white/70 backdrop-blur-[40px] shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform dark:border-white/10 dark:bg-[#151517]/70 dark:shadow-[0_24px_80px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-8 opacity-0 sm:translate-x-full sm:translate-y-0"
+          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-white/50 bg-white/40 backdrop-blur-[60px] saturate-[180%] shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform dark:border-white/10 dark:bg-[#1C1C1E]/40 dark:shadow-[0_24px_80px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-8 opacity-0 sm:translate-x-full sm:translate-y-0"
             } pointer-events-auto`}
         >
           {/* Subtle light leak for glass effect */}
-          <div className="pointer-events-none absolute -inset-px rounded-[2.5rem] border border-white/20 dark:border-white/5" />
-          <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/10 dark:bg-purple-500/10 blur-[60px]" />
+          <div className="pointer-events-none absolute -inset-px rounded-[2.5rem] border border-white/20 dark:border-white-[0.08]" />
+          <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/20 dark:bg-purple-500/30 blur-[70px]" />
 
           <button
             onClick={onClose}
-            className="group absolute right-5 top-5 z-50 flex h-8 w-8 items-center justify-center cursor-pointer rounded-full bg-black/5 backdrop-blur-md transition-colors duration-200 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20"
+            className="group absolute right-5 top-5 z-50 flex h-8 w-8 items-center justify-center cursor-pointer rounded-full bg-black/5 backdrop-blur-md transition-all duration-200 hover:bg-black/10 hover:scale-105 dark:bg-white/10 dark:hover:bg-white/20"
             aria-label="Fermer"
             type="button"
           >
@@ -202,7 +202,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                       {renderedItem.detail.deliverables?.map((deliverable, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3.5 rounded-2xl bg-black/5 backdrop-blur-sm p-4 dark:bg-white/5"
+                          className="flex items-start gap-3.5 rounded-2xl bg-black/[0.03] backdrop-blur-md p-4 dark:bg-white/[0.04] border border-black/[0.02] dark:border-white/[0.05] shadow-sm"
                         >
                           <GlassCheck />
                           <span className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
@@ -222,7 +222,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                     <div className="relative space-y-5 before:absolute before:bottom-4 before:left-[15px] before:top-4 before:w-[1px] before:bg-gradient-to-b before:from-purple-400/30 before:via-gray-300/20 before:to-transparent dark:before:from-purple-500/20 dark:before:via-white/[0.06]">
                       {renderedItem.detail.howItWorks?.map((step, i) => (
                         <div key={i} className="relative flex gap-4">
-                          <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/80 shadow-sm dark:border-white/[0.12] dark:bg-white/[0.08] dark:shadow-none">
+                          <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/60 backdrop-blur-md shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-none">
                             <span className="text-[11px] font-bold text-gray-500 dark:text-gray-400">{i + 1}</span>
                           </div>
                           <div className="flex-1 pt-1">
@@ -239,7 +239,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                   </div>
 
                   <div>
-                    <div className="rounded-3xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-md dark:border-purple-400/20 dark:from-purple-500/10">
+                    <div className="rounded-3xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-[20px] dark:border-purple-400/20 dark:from-purple-500/10">
                       <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-purple-700 dark:text-purple-300">
                         Cible
                       </span>
