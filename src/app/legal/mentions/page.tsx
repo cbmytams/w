@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { siteConfig, sitePaths } from "@/lib/site"
 import { LegalContainer, LegalHeader, LegalSection, LegalGrid, LegalCard } from "@/components/legal/LegalComponents"
-import { Building2, Globe, Server, ShieldCheck } from "lucide-react"
+import { Building2, Globe, Mail, Server, ShieldCheck } from "lucide-react"
 
 export const metadata: Metadata = {
     title: "Mentions légales",
@@ -23,36 +23,45 @@ export default function MentionsLegales() {
         <LegalContainer>
             <LegalHeader
                 title="Mentions Légales"
-                subtitle="La transparence est au cœur de notre modèle. Voici les informations officielles concernant Wafia Agency."
-                date="03 Février 2026"
+                subtitle="La transparence est au cœur de notre modèle. Voici les informations officielles concernant Wafia."
+                date="17 Mars 2026"
             />
 
             <LegalSection title="Éditeur du site">
                 <p className="mb-6">
-                    Le site Wafia est édité par l&apos;agence Wafia, une structure dédiée à l&apos;accompagnement des talents et à la stratégie des marques.
+                    Le site wafia.fr est édité par la société WAFIA, une agence dédiée à l&apos;accompagnement des talents et à la stratégie des marques dans l&apos;économie de l&apos;influence.
                 </p>
                 <LegalGrid>
                     <LegalCard
                         title="Raison Sociale"
-                        value="Wafia Agency SAS"
+                        value="WAFIA"
                         icon={<Building2 className="w-4 h-4 text-slate-400" />}
                     />
                     <LegalCard
-                        title="Capital Social"
-                        value="1 000,00 €"
+                        title="Forme juridique"
+                        value="Société par Actions Simplifiée (SAS)"
                     />
                     <LegalCard
-                        title="RCS Paris"
-                        value="B 123 456 789"
+                        title="SIREN"
+                        value="929 439 735"
+                    />
+                    <LegalCard
+                        title="RCS Créteil"
+                        value="929 439 735"
                     />
                     <LegalCard
                         title="Siège Social"
-                        value="[Adresse Wafia]"
+                        value="8 rue Amédée Simon, 94290 Villeneuve-le-Roi"
                         icon={<Globe className="w-4 h-4 text-slate-400" />}
                     />
                     <LegalCard
                         title="Directeur de la publication"
-                        value="Sasha"
+                        value="Wahib Guettat"
+                    />
+                    <LegalCard
+                        title="Contact"
+                        value="contact@wafia.fr"
+                        icon={<Mail className="w-4 h-4 text-slate-400" />}
                     />
                 </LegalGrid>
             </LegalSection>
@@ -66,8 +75,8 @@ export default function MentionsLegales() {
                         title="Hébergeur"
                         value={
                             <div className="space-y-1">
-                                <span className="block font-bold">Vercel Inc.</span>
-                                <span className="block text-sm text-slate-500 font-normal">440 N Barranca Ave #4133<br />Covina, CA 91723<br />United States</span>
+                                <span className="block font-bold">OVH SAS</span>
+                                <span className="block text-sm text-slate-500 font-normal">2 rue Kellermann<br />59100 Roubaix<br />France</span>
                             </div>
                         }
                         icon={<Server className="w-4 h-4 text-slate-400" />}
