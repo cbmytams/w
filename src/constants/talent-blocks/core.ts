@@ -33,19 +33,19 @@ export const TALENT_FOR_WHO = {
     forYou: {
         title: "C'est fait pour toi si :",
         items: [
-            "Tu as déjà une audience (même petite) + tu postes déjà.",
-            "Tu veux une carrière, pas juste des collabs.",
-            "Tu acceptes un cadre : process, routine, validation.",
-            "Tu veux des deals alignés + protection."
+            "Tu as déjà une audience engagée et une production régulière.",
+            "Tu as l'ambition d'une vraie carrière de créateur, pas juste des 'collabs'.",
+            "Tu cherches une infrastructure solide : légal, admin, stratégie, production.",
+            "Tu veux accéder à des deals premiums et protéger ta valeur."
         ]
     },
     notForYou: {
         title: "Pas pour toi si :",
         items: [
-            "Tu débutes de zéro.",
-            "Tu veux du quick money sans structure.",
-            "Tu veux déléguer sans comprendre.",
-            "Tu refuses la discipline."
+            "Tu débutes de zéro sans métriques prouvées.",
+            "Tu privilégies le 'quick money' à la vision long terme.",
+            "Tu cherches juste un agent commercial sans approche stratégique.",
+            "Tu refuses d'adopter des process d'excellence."
         ]
     }
 } as const;
