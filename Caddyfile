@@ -17,6 +17,11 @@
     }
     header @static Cache-Control "public, max-age=31536000, immutable"
 
+    @videos {
+        path /studio/*
+    }
+    header @videos Cache-Control "public, max-age=86400"
+
     header {
         Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
         X-Frame-Options "DENY"
