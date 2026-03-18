@@ -304,17 +304,6 @@ export function TalentsFloatingNavigation() {
                                             </motion.a>
                                         )
                                     })}
-                                    <motion.div variants={menuItemVariants} className="pt-2">
-                                        <Link
-                                            href="/"
-                                            onClick={() => setMobileMenuOpen(false)}
-                                            className="text-lg font-semibold tracking-tight text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors flex items-center justify-center gap-2 group"
-                                        >
-                                            <Home className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                                            Menu principal
-                                        </Link>
-
-                                    </motion.div>
                                 </motion.nav>
 
                                 {/* Action Buttons (Global & Conversion) */}
@@ -341,6 +330,7 @@ export function TalentsFloatingNavigation() {
                                         Se référencer
                                     </a>
                                 </motion.div>
+                                </div>
                             </div>
                         </motion.div>
 
