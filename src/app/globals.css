@@ -49,10 +49,18 @@
   --questionnaire-muted: rgba(255, 255, 255, 0.08);
 }
 
-/* Dark mode overrides */
+/* Dark mode overrides — class-based (for manual toggle) */
 .dark {
   --background: #0b111a;
   --foreground: #f8fafc;
+}
+
+/* Dark mode overrides — system preference (automatic) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b111a;
+    --foreground: #f8fafc;
+  }
 }
 
 @theme inline {

@@ -7,7 +7,7 @@ export function LegalPageTransition({ children }: { children: React.ReactNode })
     const pathname = usePathname()
 
     return (
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
             <motion.div
                 key={pathname}
                 initial={{ opacity: 0, scale: 0.98, filter: "blur(12px)" }}
