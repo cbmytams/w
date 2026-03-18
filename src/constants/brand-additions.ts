@@ -21,7 +21,7 @@ export const BRAND_HERO_CONTENT = {
     stats: [
         { value: "15+", label: "Marques accompagnées", color: "orange" },
         { value: "200+", label: "Contenus produits", color: "blue" },
-        { value: "€2M+", label: "Valeur générée", color: "green" }
+        { value: "100%", label: "Reporting transparent", color: "green" }
     ],
     cta: {
         primary: { text: "Voir nos réalisations", href: "#case-studies" },

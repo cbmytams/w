@@ -1,7 +1,7 @@
 export const TALENT_HERO = {
     badge: "Pour les créateurs qui visent juste",
-    title: "De créateur",
-    titleHighlight: "à institution.",
+    title: "Votre talent.",
+    titleHighlight: "Notre infrastructure.",
     subtitle: "On construit l'architecture autour de vous : image, production, deals, admin. L'objectif : une carrière qui tient.",
     ctaPrimary: "Rejoindre le roster",
     ctaSecondary: "Notre approche",
