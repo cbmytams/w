@@ -43,8 +43,8 @@ export default function ProcessPage() {
                         La méthode Wafia
                     </h1>
                     <p className="text-xl text-slate-600">
-                        Nous avons industrialisé l&apos;influence marketing sans sacrifier la créativité.
-                        Notre process garantit la sécurité de votre marque et la performance de vos campagnes.
+                        L&apos;influence n&apos;est pas une question de hasard. C&apos;est une question de système.<br />
+                        La liberté créative naît d&apos;un cadre opérationnel parfait.
                     </p>
                 </div>
 
