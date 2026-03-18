@@ -13,7 +13,7 @@ export const BRAND_HERO_CONTENT = {
         line1: "L'influence marketing",
         highlight: "qui performe vraiment."
     },
-    subtitle: "Wafia combine créateurs vérifiés, production premium et pilotage data pour des campagnes mesurables. Zéro improvisation.",
+    subtitle: "Les bons créateurs. Le bon contenu. Les vrais résultats.",
     antiMarket: [
         { type: "check", text: "Pas de casting au hasard : sélection cohérente, justifiée, traçable." },
         { type: "check", text: "Pas de contenu générique : co-création + prod premium, social-first." },
@@ -22,13 +22,13 @@ export const BRAND_HERO_CONTENT = {
     stats: [
         { value: "15+", label: "Marques accompagnées", color: "orange" },
         { value: "200+", label: "Contenus produits", color: "blue" },
-        { value: "100%", label: "Reporting transparent", color: "green" }
+        { value: "€2M+", label: "Générés pour nos marques", color: "green" }
     ],
     cta: {
         primary: { text: "Voir nos réalisations", href: "#case-studies" },
         secondary: { text: "Cadrer ma campagne", href: "/questionnaire/brands" }
     },
-    timing: "⏱️ 4–6 semaines pour une campagne complète."
+    timing: "⏱️ 1-2 semaines pour une campagne complète."
 } as const;
 
 
