@@ -39,8 +39,7 @@ export function CtaSection({ estimateHref = "/questionnaire/brands" }: CtaSectio
 
                     <RevealAnimation delay={0.6}>
                         <p className="mt-8 text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
-                            <Check className="h-4 w-4 text-green-600" />
-                            Réponse sous 24h · Process clair · Zéro blabla
+                            Réponse sous 24h · Transparence totale
                         </p>
                     </RevealAnimation>
                 </div>
