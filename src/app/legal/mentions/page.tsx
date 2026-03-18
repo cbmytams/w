@@ -67,19 +67,39 @@ export default function MentionsLegales() {
 
             <LegalSection title="Hébergement">
                 <p>
-                    L&apos;infrastructure technique du site est assurée par un leader mondial de l&apos;hébergement cloud, garantissant performance et sécurité.
+                    L&apos;infrastructure technique du site est assurée par OVH, leader européen de l&apos;hébergement cloud, garantissant performance et sécurité.
                 </p>
                 <div className="mt-6">
-                    <LegalCard
-                        title="Hébergeur"
-                        value={
-                            <div className="space-y-1">
-                                <span className="block font-bold">Vercel Inc.</span>
-                                <span className="block text-sm text-slate-500 font-normal">440 N Barranca Ave #4133<br />Covina, CA 91723<br />United States</span>
-                            </div>
-                        }
-                        icon={<Server className="w-4 h-4 text-slate-400" />}
-                    />
+                    <LegalGrid>
+                        <LegalCard
+                            title="Hébergeur"
+                            value={
+                                <div className="space-y-1">
+                                    <span className="block font-bold">OVH SAS</span>
+                                    <span className="block text-sm text-slate-500 dark:text-slate-400 font-normal">SAS au capital de 50 000 000 €</span>
+                                </div>
+                            }
+                            icon={<Server className="w-4 h-4 text-slate-400" />}
+                        />
+                        <LegalCard
+                            title="Siège social"
+                            value={
+                                <div className="space-y-1">
+                                    <span className="block font-bold">2 rue Kellermann</span>
+                                    <span className="block text-sm text-slate-500 dark:text-slate-400 font-normal">59100 Roubaix — France</span>
+                                </div>
+                            }
+                            icon={<Globe className="w-4 h-4 text-slate-400" />}
+                        />
+                        <LegalCard
+                            title="RCS"
+                            value="Lille Métropole 424 761 419 00045"
+                        />
+                        <LegalCard
+                            title="N° TVA"
+                            value="FR 22 424 761 419"
+                        />
+                    </LegalGrid>
                 </div>
             </LegalSection>
 
