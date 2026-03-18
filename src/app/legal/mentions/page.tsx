@@ -34,25 +34,33 @@ export default function MentionsLegales() {
                 <LegalGrid>
                     <LegalCard
                         title="Raison Sociale"
-                        value="Wafia Agency SAS"
+                        value="Wafia Agency SASU"
                         icon={<Building2 className="w-4 h-4 text-slate-400" />}
+                    />
+                    <LegalCard
+                        title="SIREN"
+                        value="929 439 735"
+                    />
+                    <LegalCard
+                        title="RCS Créteil"
+                        value="929 439 735"
                     />
                     <LegalCard
                         title="Capital Social"
                         value="1 000,00 €"
                     />
                     <LegalCard
-                        title="RCS"
-                        value="À compléter avant mise en ligne"
+                        title="Date de création"
+                        value="30 mai 2024"
                     />
                     <LegalCard
                         title="Siège Social"
-                        value="À compléter avant mise en ligne"
+                        value="Villeneuve-le-Roi, 94290"
                         icon={<Globe className="w-4 h-4 text-slate-400" />}
                     />
                     <LegalCard
                         title="Directeur de la publication"
-                        value="Sasha"
+                        value="Wahib GUETTAT"
                     />
                 </LegalGrid>
             </LegalSection>
