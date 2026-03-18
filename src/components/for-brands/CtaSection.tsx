@@ -1,6 +1,5 @@
 "use client"
 
-import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
@@ -37,11 +36,6 @@ export function CtaSection({ estimateHref = "/questionnaire/brands" }: CtaSectio
                         </div>
                     </RevealAnimation>
 
-                    <RevealAnimation delay={0.6}>
-                        <p className="mt-8 text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
-                            Réponse sous 24h · Transparence totale
-                        </p>
-                    </RevealAnimation>
                 </div>
             </Container>
         </section>
