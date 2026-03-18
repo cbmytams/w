@@ -42,12 +42,12 @@ export default function MentionsLegales() {
                         value="1 000,00 €"
                     />
                     <LegalCard
-                        title="RCS Paris"
-                        value="B 123 456 789"
+                        title="RCS"
+                        value="À compléter avant mise en ligne"
                     />
                     <LegalCard
                         title="Siège Social"
-                        value="[Adresse Wafia]"
+                        value="À compléter avant mise en ligne"
                         icon={<Globe className="w-4 h-4 text-slate-400" />}
                     />
                     <LegalCard

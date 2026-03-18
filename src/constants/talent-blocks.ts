@@ -20,17 +20,17 @@ export const TALENT_PLATFORMS = {
     label: "Centralisation",
     title: "On centralise",
     titleLine2: "tout au même endroit.",
-    subtitle: "Ta roadmap sur une seule plateforme.",
+    subtitle: "Votre roadmap sur une seule plateforme.",
     items: [
         { name: "Briefs & Contrats", icon: "FileText" },
         { name: "Validation", icon: "CheckSquare" },
-        { name: "Stats", icon: "LineChart" },
+        { name: "Statistiques", icon: "LineChart" },
         { name: "Ops & Admin", icon: "Archive" }
     ],
     cards: [
-        { title: "Visibilité", text: "Suivi en temps réel de tes performances sur toutes tes plateformes.", icon: "Activity", color: "text-pink-500" },
-        { title: "Engagement", text: "Analyse de l'engagement de ta communauté et insights actionnables.", icon: "Heart", color: "text-red-500" },
-        { title: "Communication", text: "Central de messages pour gérer toutes tes conversations pros.", icon: "MessageCircle", color: "text-blue-500" }
+        { title: "Visibilité", text: "Suivi en temps réel de vos performances sur toutes vos plateformes.", icon: "Activity", color: "text-pink-500" },
+        { title: "Engagement", text: "Analyse de l'engagement de votre communauté et recommandations stratégiques.", icon: "Heart", color: "text-red-500" },
+        { title: "Communication", text: "Central de messages pour gérer toutes vos conversations professionnelles.", icon: "MessageCircle", color: "text-blue-500" }
     ]
 } as const;
 

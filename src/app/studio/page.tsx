@@ -43,7 +43,7 @@ export default function StudioPage() {
                     <div className="text-center shrink-0 pb-4">
                         <FadeIn delay={0.4}>
                             <p className="text-xs font-medium text-white/20 tracking-widest uppercase">
-                                Select a label to launch
+                                Sélectionnez un label pour explorer
                             </p>
                         </FadeIn>
                     </div>

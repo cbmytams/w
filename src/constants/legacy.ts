@@ -13,7 +13,6 @@ export { PROCESS_STEPS } from "./process-steps"
 
 // Agency blocks
 export {
-    AGENCY_KIT,
     AGENCY_NAVIGATION
 } from "./agency-blocks"
 
@@ -23,7 +22,6 @@ export {
     TALENT_METHOD,
     TALENT_SERVICES,
     TALENT_PLATFORMS,
-    TALENT_PROOF_STRIP,
     TALENT_OS_SYSTEM
 } from "./talent-blocks"
 

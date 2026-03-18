@@ -51,7 +51,7 @@ export default function ProcessPage() {
                 {/* Timeline */}
                 <section className="mb-24">
                     <h2 className="font-heading text-2xl font-bold mb-12 flex items-center">
-                        <Clock className="mr-3 h-6 w-6 text-slate-900" /> Timeline Type
+                        <Clock className="mr-3 h-6 w-6 text-slate-900" /> Déroulé type d&apos;une campagne
                     </h2>
 
                     <div className="relative border-l-2 border-slate-200 ml-4 lg:ml-8 space-y-16">
@@ -69,7 +69,7 @@ export default function ProcessPage() {
                             {
                                 title: "Semaine 3-4 : Production & Ops",
                                 desc: "Tournage, montage, validation des assets finaux. Programmation des publications.",
-                                points: ["Tournage studio ou home", "Montage & VFX", "Aprobation finale"]
+                                points: ["Tournage studio ou home", "Montage & VFX", "Approbation finale"]
                             },
                             {
                                 title: "Post-Campagne : Reporting & Analyse",
@@ -148,10 +148,10 @@ export default function ProcessPage() {
                             </ul>
                         </div>
                         <Card className="bg-slate-50 border-slate-100 shadow-sm">
-                            <CardContent className="p-8 text-center text-slate-400 italic">
-                                [Visuel factice Dashboard Reporting]
-                                <br />
-                                Graphiques d&apos;évolution et top contenus
+                            <CardContent className="p-8 flex flex-col items-center justify-center min-h-[200px] gap-3 text-center">
+                                <BarChart3 className="h-8 w-8 text-slate-300" />
+                                <p className="text-sm font-medium text-slate-400">Dashboard de reporting</p>
+                                <p className="text-xs text-slate-300">Accessible après signature du devis</p>
                             </CardContent>
                         </Card>
                     </div>

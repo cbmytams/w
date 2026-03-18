@@ -1,10 +1,10 @@
-// Nouveaux blocs pour /for-agencies
+// Blocs de contenu — /for-agencies
 
 export const AGENCY_NAVIGATION = [
-    { href: "#modes", label: "Modes" },
-    { href: "#standards", label: "Standards" },
-    { href: "#kit", label: "Kit" },
-    { href: "#cases", label: "Cas" }
+    { href: "#modes", label: "Services" },
+    { href: "#cases", label: "Références" },
+    { href: "#standards", label: "Avantages" },
+    { href: "#kit", label: "Process" }
 ] as const;
 
 export const AGENCY_HERO = {
@@ -17,7 +17,7 @@ export const AGENCY_HERO = {
 
 export const AGENCY_PROBLEM = {
     title: "La réalité :",
-    highlight: "l’influence est chronophage.",
+    highlight: "l'influence est chronophage.",
     items: [
         "Sourcing interminable",
         "Coordination complexe",
@@ -30,8 +30,8 @@ export const AGENCY_PROBLEM = {
 
 export const AGENCY_MODES = {
     id: "agency-modes",
-    title: "Wafia =",
-    highlight: "plug-and-play",
+    title: "Comment on",
+    highlight: "s'intègre",
     subtitle: "Une intégration fluide pour accélérer votre croissance.",
     modes: [
         {
@@ -43,12 +43,12 @@ export const AGENCY_MODES = {
             desc: "UGC volume, montage, déclinaisons, VFX si besoin."
         },
         {
-            title: "Ops",
+            title: "Ops & coordination",
             desc: "Planning, validation, delivery, suivi complet."
         },
         {
             title: "Reporting",
-            desc: "Clair, actionnable, prêt à montrer au client."
+            desc: "Clair, structuré, prêt à présenter au client."
         }
     ]
 } as const;
@@ -56,15 +56,15 @@ export const AGENCY_MODES = {
 export const AGENCY_CASES = {
     title: "Cas concrets",
     cases: [
-        { type: "RP", text: "20 talents pour un event → sourcing + coordination + contenu." },
-        { type: "Média", text: "UGC en masse → déclinaisons ads + hooks multiples." },
-        { type: "Créa", text: "Besoin montage/VFX → social-first, rapide, propre." }
+        { type: "RP", text: "20 talents pour un événement — sourcing, coordination, contenu." },
+        { type: "Média", text: "UGC en volume — déclinaisons ads et hooks multiples." },
+        { type: "Créa", text: "Post-production et VFX — social-first, rapide, propre." }
     ]
 } as const;
 
 export const AGENCY_STANDARDS = {
     id: "agency-standards",
-    title: "Vos leviers d'optimisation",
+    title: "Ce que vous gagnez",
     items: [
         "Vélocité",
         "Capacité",
@@ -77,50 +77,6 @@ export const AGENCY_STANDARDS = {
 export const AGENCY_CTA = {
     title: "Structurons un",
     highlight: "partenariat",
-    text: "En marque blanche ou co-branding.\nWafia s’intègre scrupuleusement à vos impératifs.\nPour une livraison plus qualitative et sécurisée. 🤝",
+    text: "En marque blanche ou co-branding.\nWafia s'intègre à vos impératifs de livraison et de qualité.",
     button: "Étudier une collaboration"
-} as const;
-
-// (Legacy blocks kept if needed elsewhere, otherwise superseded by above)
-export const AGENCY_KIT = {
-    id: "agency-kit",
-    title: "Ce que vous récupérez.",
-    highlightWord: "récupérez",
-    subtitle: "Pas juste une presta. Un département complet, branché à votre process.",
-    deliverables: [
-        {
-            icon: "📁",
-            title: "Kit process",
-            description: "Étapes claires, rôles, validations."
-        },
-        {
-            icon: "🧾",
-            title: "Templates",
-            description: "Briefs, suivi, reporting, relances."
-        },
-        {
-            icon: "👥",
-            title: "Accès roster / sourcing",
-            description: "Shortlists prêtes & documentées."
-        },
-        {
-            icon: "🎬",
-            title: "Menu studio",
-            description: "UGC volume, post-prod, déclinaisons ads."
-        },
-        {
-            icon: "📊",
-            title: "Reporting actionnable",
-            description: "Prêt à montrer au client final."
-        },
-        {
-            icon: "🤝",
-            title: "Modèle de partenariat",
-            description: "White label / co-branding / task force cadré."
-        }
-    ],
-    cta: {
-        text: "Recevoir le kit partenaire →",
-        href: "/questionnaire/brands"
-    }
 } as const;
