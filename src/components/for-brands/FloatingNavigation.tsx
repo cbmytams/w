@@ -51,13 +51,20 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+            
+            // If we are at the very top of the page, clear the active section
+            if (window.scrollY < 100) {
+                setActiveSection(null);
+                return;
+            }
+
             if (visibleEntries.length > 0) {
                 visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
                 const activeId = visibleEntries[0].target.id;
                 setActiveSection(`#${activeId}`);
             }
         }, {
-            rootMargin: "-20% 0px -60% 0px", // Trigger active state when section is near top
+            rootMargin: "-20% 0px -40% 0px", // Trigger active state when section is near top, improved ratio
             threshold: [0, 0.1, 0.25, 0.5, 0.75, 1]
         });
 
@@ -218,14 +225,14 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                             exit="exit"
                             className="fixed inset-x-4 top-[10%] bottom-[15%] z-[200] flex flex-col items-center justify-center pointer-events-none"
                         >
-                            <div className="w-full h-full max-h-[600px] max-w-sm bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 rounded-[3rem] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-8 flex flex-col justify-between pointer-events-auto relative overflow-hidden">
+                            <div className="w-full h-full max-h-[520px] max-w-sm bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 rounded-[3rem] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-6 sm:p-8 flex flex-col justify-between pointer-events-auto relative overflow-hidden">
 
                                 {/* The Living Glass Aura (Ambient Orange Glow) */}
                                 <div className="absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-orange-500/20 dark:from-orange-500/10 to-transparent blur-[40px] pointer-events-none rounded-full" />
                                 <div className="absolute inset-x-0 -bottom-24 h-48 bg-gradient-to-t from-red-500/20 dark:from-red-500/10 to-transparent blur-[40px] pointer-events-none rounded-full" />
 
                                 {/* Header with Pulsing Dot & Context */}
-                                <div className="flex items-center justify-center mb-8 relative z-10">
+                                <div className="flex items-center justify-center mb-6 relative z-10">
                                     <WafiaLogo className="h-6 w-auto text-black dark:text-white" />
                                     <div className="flex items-center justify-center w-6 z-10 mx-3">
                                         <div className="w-[6px] h-[6px] rounded-full bg-orange-500 animate-pulse shadow-[0_0_10px_rgba(249,115,22,0.8)]"></div>
@@ -234,7 +241,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                 </div>
 
                                 {/* Monumental Navigation Links (Cascading) */}
-                                <motion.nav className="flex-1 flex flex-col items-center justify-center space-y-8 overflow-y-auto relative z-10">
+                                <motion.nav className="flex-1 flex flex-col items-center justify-center space-y-3 overflow-y-auto relative z-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                                     {BRAND_NAVIGATION.map((item) => {
                                         const isActive = activeSection === item.href
                                         return (
@@ -244,14 +251,14 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                                 variants={menuItemVariants}
                                                 aria-current={isActive ? "page" : undefined}
                                                 onClick={() => setMobileMenuOpen(false)}
-                                                className={`relative px-8 py-3 text-4xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 group ${isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]" : "text-gray-900 dark:text-gray-100 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]"
+                                                className={`relative px-6 py-2.5 text-2xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 group ${isActive ? "text-gray-900 dark:text-white" : "text-gray-500/80 dark:text-gray-400/80 hover:text-gray-900 dark:hover:text-white"
                                                     }`}
                                             >
                                                 {isActive && (
                                                     <motion.div
                                                         layoutId="activeBubbleMobileBrand"
-                                                        className="absolute inset-0 bg-white/40 dark:bg-white/10 rounded-3xl shadow-sm border border-black/5 dark:border-white/10 -z-10"
-                                                        transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                                                        className="absolute inset-0 bg-white/70 dark:bg-white/20 backdrop-blur-md rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 -z-10"
+                                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                                     />
                                                 )}
                                                 <span className="relative z-10">{item.label}</span>
@@ -259,11 +266,11 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                         )
                                     })}
 
-                                    <motion.div variants={menuItemVariants}>
+                                    <motion.div variants={menuItemVariants} className="pt-2">
                                         <Link
                                             href="/"
                                             onClick={() => setMobileMenuOpen(false)}
-                                            className="text-xl font-bold tracking-tight text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors mt-6 flex items-center justify-center gap-2 group"
+                                            className="text-lg font-semibold tracking-tight text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors flex items-center justify-center gap-2 group"
                                         >
                                             <Home className="h-5 w-5 group-hover:scale-110 transition-transform" />
                                             Menu principal
@@ -275,7 +282,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                 {/* Physical CTA Button */}
                                 <motion.div
                                     variants={menuItemVariants}
-                                    className="mt-8 w-full relative z-10"
+                                    className="mt-6 w-full relative z-10 shrink-0"
                                 >
                                     {estimateHref ? (
                                         <a
