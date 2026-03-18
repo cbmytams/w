@@ -87,7 +87,7 @@ export function TalentsClient() {
                         </p>
                     </div>
                     <Button asChild>
-                        <Link href={talentQuestionnaireHref}>Rejoindre le roster</Link>
+                        <Link href={talentQuestionnaireHref}>Se référencer</Link>
                     </Button>
                 </div>
 
