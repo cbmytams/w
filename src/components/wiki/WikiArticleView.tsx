@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import WikiNavBar from "./WikiNavBar";
 import WikiSearchDialog from "./WikiSearchDialog";
 import { useWikiDarkMode } from "@/hooks/useWikiDarkMode";
@@ -267,6 +268,21 @@ export default function WikiArticleView({
                         </button>
                     </nav>
                 )}
+
+                {/* Internal links to service pages */}
+                <div style={{ borderTop: "1px solid var(--wiki-line)", paddingTop: "2rem", marginTop: "3rem" }}>
+                    <p style={{ color: "var(--wiki-ink)", opacity: 0.6, fontSize: "0.9rem", marginBottom: "0.75rem" }}>
+                        Vous travaillez sur une campagne d&apos;influence ?
+                    </p>
+                    <div style={{ display: "flex", gap: "1.5rem" }}>
+                        <Link href="/for-brands" style={{ color: "var(--wiki-ink)", fontWeight: 600, fontSize: "0.9rem" }}>
+                            Pour les marques &rarr;
+                        </Link>
+                        <Link href="/for-agencies" style={{ color: "var(--wiki-ink)", fontWeight: 600, fontSize: "0.9rem" }}>
+                            Pour les agences &rarr;
+                        </Link>
+                    </div>
+                </div>
             </article>
 
             {/* Table of Contents (Desktop Sidebar) */}

@@ -1,27 +1,27 @@
 // Questions fréquentes (FAQ) - Reformulées pour répondre aux objections
 export const FAQ_ITEMS = [
     {
-        q: "On peut travailler ensemble si je suis une startup ?",
-        a: "Oui. Startups, DNVB, retail, tech, beauté… Ce qui compte : votre objectif et votre ambition. On s'adapte au budget, mais on reste exigeants sur la qualité."
+        q: "Travaillez-vous avec des startups ?",
+        a: "Oui. Ce qui compte : votre ambition et la clarté de votre objectif. On s'adapte au budget. Pas à la qualité."
     },
     {
-        q: "C'est possible de tester sur une seule campagne ?",
-        a: "Absolument. On accepte les one-shots intelligents. Mais on vous dira toujours comment capitaliser sur cette campagne pour la suite."
+        q: "Peut-on tester sur une seule campagne ?",
+        a: "Oui. On accepte les collaborations ciblées. Et on vous donne toujours les clés pour capitaliser après."
     },
     {
         q: "Vous faites uniquement de l'influence ?",
-        a: "Non. Wafia est hybride : stratégie + studio + talent. L'influence marche mieux quand le contenu et le système sont solides. On gère les deux."
+        a: "Non. Wafia c'est stratégie, studio et talents. L'influence fonctionne mieux quand tout le reste est solide. On gère les deux."
     },
     {
-        q: "Comment je sais si ça a marché ?",
-        a: "Dashboard live 24/7. Vous voyez les KPIs qui comptent : rétention, complétion, saves, conversions, trafic. Pas de metrics vanity, juste ce qui sert vos décisions."
+        q: "Comment mesure-t-on les résultats ?",
+        a: "Tableau de bord en temps réel. Rétention, taux de complétion, conversions, trafic. Zéro vanity metric."
     },
     {
-        q: "Vous gérez les droits d'utilisation ?",
-        a: "Oui. On sécurise tout avant lancement : usage organique, paid, durée, territoire. Pas de surprise juridique 6 mois après."
+        q: "Les droits d'utilisation sont gérés ?",
+        a: "Oui. On sécurise tout avant le lancement : usage organique, paid, durée, territoire. Aucune zone grise."
     },
     {
-        q: "Je n'ai jamais lancé de campagne, vous m'aidez ?",
-        a: "C'est notre spécialité. On vous guide de A à Z : stratégie, casting, prod, diffusion, pilotage et analyse. Vous validez, on exécute."
+        q: "On n'a jamais fait de campagne influence. Vous nous aidez ?",
+        a: "C'est notre spécialité. On pose les bases avec vous : stratégie, casting, production, diffusion, analyse. Vous validez, on exécute."
     }
 ] as const;

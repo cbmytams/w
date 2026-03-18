@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container"
 import { FadeIn } from "@/components/ui/fade-in"
 import { Highlight } from "@/components/ui/highlight"
 import { AgenciesFloatingNavigation } from "@/components/for-agencies/AgenciesFloatingNavigation"
+import { AgencyProofSection } from "@/components/for-agencies/AgencyProofSection"
 import { AGENCY_HERO, AGENCY_PROBLEM, AGENCY_MODES, AGENCY_CASES, AGENCY_STANDARDS, AGENCY_CTA } from "@/constants"
 
 export default function ForAgenciesPage() {
@@ -121,6 +122,9 @@ export default function ForAgenciesPage() {
                     </div>
                 </Container>
             </section>
+
+            {/* Proof Section (Stats) */}
+            <AgencyProofSection />
 
             {/* Benefits Section (Standards) */}
             <section id="standards" className="section-spacing bg-blue-50">

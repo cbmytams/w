@@ -7,14 +7,14 @@ import { siteConfig, sitePaths } from "@/lib/site"
 import { serviceSchema, breadcrumbSchema } from "@/lib/structured-data"
 
 export const metadata: Metadata = {
-    title: "Services",
+    title: "Influence Marketing, Studio & Talent Management",
     description:
         "Influence, talent management, studio créatif et stratégie : un stack complet pour vos campagnes.",
     alternates: {
         canonical: sitePaths.services,
     },
     openGraph: {
-        title: "Services | Wafia",
+        title: "Influence Marketing, Studio & Talent Management | Wafia",
         description:
             "Influence, talent management, studio créatif et stratégie : un stack complet pour vos campagnes.",
         url: sitePaths.services,

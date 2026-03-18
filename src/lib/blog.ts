@@ -54,14 +54,14 @@ function normalizeDescription(
   body: string,
 ): string {
   const fromFrontmatter = description.replace(/\s+/g, " ").trim();
-  if (fromFrontmatter) return fromFrontmatter.length <= 165 ? fromFrontmatter : `${fromFrontmatter.slice(0, 162).trimEnd()}...`;
+  if (fromFrontmatter) return fromFrontmatter.length <= 155 ? fromFrontmatter : `${fromFrontmatter.slice(0, 152).trimEnd()}...`;
 
   const fallback = (chapters[0]?.content || body).replace(/\s+/g, " ").trim();
   if (!fallback) {
     return "Analyse Wafia Knowledge sur l'influence, les plateformes et la monetisation des createurs.";
   }
 
-  return fallback.length <= 165 ? fallback : `${fallback.slice(0, 162).trimEnd()}...`;
+  return fallback.length <= 155 ? fallback : `${fallback.slice(0, 152).trimEnd()}...`;
 }
 
 function normalizeAuthorSlug(theme: string, rawAuthorSlug: string): string {

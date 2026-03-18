@@ -1,22 +1,22 @@
 export const TALENT_FAQ = [
     {
         q: "Combien ça coûte ?",
-        a: "Commission uniquement. Pas de frais fixes. Si tu gagnes rien, on gagne rien. Alignement total."
+        a: "Commission uniquement. Zéro frais fixe. On gagne quand vous gagnez. L'alignement total."
     },
     {
-        q: "Vous prenez combien de talents ?",
-        a: "Très peu. On préfère un roster de 15 talents bien suivis qu'une liste de 200 noms sans impact."
+        q: "Combien de talents accompagnez-vous ?",
+        a: "Très peu. Quinze profils suivis sermés valent mieux que deux cents noms sur une liste. Qualité avant tout."
     },
     {
-        q: "Je dois poster plus ?",
-        a: "Pas forcément. On optimise ce que tu fais déjà avant de rajouter. Qualité > quantité."
+        q: "Faut-il publier davantage ?",
+        a: "Pas forcément. On commence par optimiser ce qui existe déjà. La fréquence n'est pas une fin en soi."
     },
     {
-        q: "Vous gérez mes réseaux ?",
-        a: "Non. Ton identité reste chez toi. Nous, on structure et on opère autour : production, deals, ops, stratégie."
+        q: "Gérez-vous nos réseaux ?",
+        a: "Non. Votre voix vous appartient. On structure tout ce qui l'entoure : production, deals, admin, stratégie."
     },
     {
-        q: "C'est quoi la différence avec une agence classique ?",
-        a: "Une agence te place sur des deals. Wafia te construit un système : studio, ops, pricing, protection, traçabilité — puis on te le transfère."
+        q: "Quelle différence avec une agence classique ?",
+        a: "Une agence vous place sur des deals. Wafia construit le système autour de vous : studio, pricing, cadre juridique. Et vous le transmet."
     }
 ] as const;

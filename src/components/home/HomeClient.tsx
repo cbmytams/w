@@ -116,7 +116,7 @@ export function HomeClient() {
                 MAIN STAGE
                ============================================ */}
             <main id="main-content" className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-6 py-20">
-                <h1 className="sr-only">Wafia — Influence & Creative Studio</h1>
+                <h1 className="sr-only">Agence d'influence marketing – Studio créatif</h1>
 
                 {/* LOGO - Medium with Glow Effect */}
                 <motion.div
