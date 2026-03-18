@@ -78,18 +78,6 @@ export function CaseStudiesSection() {
         <section className="py-20 md:py-28 px-4 relative overflow-hidden">
             <Container className="relative z-10">
                 <div className="max-w-[1200px] mx-auto">
-                    <SectionHeading
-                        title={
-                            <>
-                                Sachez exactement où va{" "}
-                                <span className="text-gradient-brand">chaque euro.</span>
-                            </>
-                        }
-                        subtitle="Fini les rapports PDF reçus 3 semaines en retard. Vous voyez tout, en direct."
-                        className="mb-20 text-center"
-                    />
-
-                    {/* DASHBOARD VISUALIZATION HERO REMOVED ALONG WITH ITS HARDCODED DATA AS PER USER REQUEST */}
 
                     <SectionHeading
                         title={
@@ -101,6 +89,7 @@ export function CaseStudiesSection() {
                         className="mb-16 text-center scroll-mt-32"
                         id="case-studies"
                     />
+
 
                     {/* RESTORED CASES GRID */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
