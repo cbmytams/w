@@ -3,10 +3,7 @@ export const TALENT_FAQ = [
         q: "Combien ça coûte ?",
         a: "Commission uniquement. Zéro frais fixe. On gagne quand vous gagnez. L'alignement total."
     },
-    {
-        q: "Combien de talents accompagnez-vous ?",
-        a: "Très peu. Quinze profils suivis sermés valent mieux que deux cents noms sur une liste. Qualité avant tout."
-    },
+
     {
         q: "Faut-il publier davantage ?",
         a: "Pas forcément. On commence par optimiser ce qui existe déjà. La fréquence n'est pas une fin en soi."
