@@ -75,7 +75,7 @@ export function CaseStudiesSection() {
     const { disableMotion, viewport, transitionDuration, clampDelay } = useRevealViewport()
 
     return (
-        <section className="py-20 md:py-28 px-4 relative overflow-hidden">
+        <section id="case-studies" className="py-20 md:py-28 px-4 relative overflow-hidden">
             <Container className="relative z-10">
                 <div className="max-w-[1200px] mx-auto">
 
@@ -87,7 +87,6 @@ export function CaseStudiesSection() {
                         }
                         subtitle="Quelques exemples de campagnes réussies."
                         className="mb-16 text-center scroll-mt-32"
-                        id="case-studies"
                     />
 
 

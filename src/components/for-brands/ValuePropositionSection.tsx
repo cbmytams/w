@@ -187,7 +187,7 @@ export function ValuePropositionSection() {
     const { disableMotion, viewport, transitionDuration, clampDelay } = useRevealViewport()
 
     return (
-        <section id="dashboard" className="py-20 md:py-28 px-4">
+        <section id="proposition" className="py-20 md:py-28 px-4">
 
             <Container>
                 <div className="max-w-6xl mx-auto">
