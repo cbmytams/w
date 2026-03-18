@@ -24,7 +24,7 @@ export const TALENT_PROBLEM = {
 export const TALENT_CTA = {
     title: "Prêt à passer un cap ?",
     description: "Soumettez votre profil. Si ça matche avec nos exigences, on revient vers vous.",
-    ctaText: "Déposer ma candidature"
+    ctaText: "Se référencer"
 } as const;
 
 export const TALENT_FOR_WHO = {
