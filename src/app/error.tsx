@@ -19,6 +19,9 @@ export default function Error({
   }, [error]);
 
   return (
+    <>
+    <title>Erreur – Wafia</title>
+    <meta name="robots" content="noindex, follow" />
     <main id="main-content" className="min-h-[70vh] bg-white py-24">
       <Container className="text-center">
         <p className="text-sm uppercase tracking-widest text-slate-400">Erreur 500</p>
@@ -36,5 +39,6 @@ export default function Error({
         </div>
       </Container>
     </main>
+    </>
   );
 }

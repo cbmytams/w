@@ -9,6 +9,10 @@ export default function GlobalError({
 }) {
   return (
     <html lang="fr">
+      <head>
+        <title>Erreur – Wafia</title>
+        <meta name="robots" content="noindex, follow" />
+      </head>
       <body className="min-h-screen flex items-center justify-center px-6">
         <main id="main-content" className="max-w-lg rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
           <h1 className="text-2xl font-bold">Erreur globale</h1>

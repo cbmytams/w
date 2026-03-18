@@ -8,14 +8,14 @@ import { breadcrumbSchema } from "@/lib/structured-data"
 import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire"
 
 export const metadata: Metadata = {
-    title: "À propos",
+    title: "À propos – L'agence d'influence marketing Wafia",
     description:
         "Découvrez la vision Wafia : transparence, rigueur et créativité pour des campagnes d'influence traçables.",
     alternates: {
         canonical: sitePaths.about,
     },
     openGraph: {
-        title: "À propos | Wafia",
+        title: "À propos – L'agence d'influence marketing Wafia",
         description:
             "Découvrez la vision Wafia : transparence, rigueur et créativité pour des campagnes d'influence traçables.",
         url: sitePaths.about,

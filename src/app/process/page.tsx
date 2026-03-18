@@ -6,14 +6,14 @@ import { siteConfig, sitePaths } from "@/lib/site"
 import { breadcrumbSchema } from "@/lib/structured-data"
 
 export const metadata: Metadata = {
-    title: "Process & Méthode",
+    title: "Process & Méthode – Comment fonctionne Wafia",
     description:
         "Découvrez la méthode Wafia : audit, casting, production, reporting et gates de validation.",
     alternates: {
         canonical: sitePaths.process,
     },
     openGraph: {
-        title: "Process & Méthode | Wafia",
+        title: "Process & Méthode – Comment fonctionne Wafia",
         description:
             "Découvrez la méthode Wafia : audit, casting, production, reporting et gates de validation.",
         url: sitePaths.process,
