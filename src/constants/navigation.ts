@@ -30,7 +30,7 @@ export interface SocialLink {
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
-    { name: "Instagram", href: "#", icon: Instagram },
-    { name: "LinkedIn", href: "#", icon: Linkedin },
-    { name: "TikTok", href: "#", icon: Music },
+    { name: "Instagram", href: "https://www.instagram.com/wafia.agency", icon: Instagram },
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/wafia-agency", icon: Linkedin },
+    { name: "TikTok", href: "https://www.tiktok.com/@wafia.agency", icon: Music },
 ]

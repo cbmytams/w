@@ -5,8 +5,6 @@ export * from "./talent-blocks/deliverables";
 export * from "./talent-blocks/services";
 export * from "./talent-blocks/timeline";
 export * from "./talent-blocks/method";
-export * from "./talent-blocks/proof";
-export * from "./talent-blocks/os";
 
 // Not exporting everything from old talent-blocks.ts to keep the barrel clean
 export const TALENT_NAVIGATION = [

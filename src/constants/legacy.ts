@@ -21,8 +21,7 @@ export {
     TALENT_TIMELINE,
     TALENT_METHOD,
     TALENT_SERVICES,
-    TALENT_PLATFORMS,
-    TALENT_OS_SYSTEM
+    TALENT_PLATFORMS
 } from "./talent-blocks"
 
 // Brand additions (only AUTHENTICITY_CARDS and BRAND_HERO_CONTENT still consumed)
