@@ -272,21 +272,32 @@ export function TalentsFloatingNavigation() {
 
                                 {/* Monumental Navigation Links (Cascading) */}
                                 <motion.nav className="flex-1 flex flex-col items-center justify-center space-y-8 overflow-y-auto relative z-10">
-                                    {TALENT_NAVIGATION.map((item) => (
-                                        <motion.a
-                                            key={item.label}
-                                            href={item.href}
-                                            variants={menuItemVariants}
-                                            onClick={(e) => {
-                                                e.preventDefault()
-                                                setMobileMenuOpen(false)
-                                                scrollToSection(item.href)
-                                            }}
-                                            className="text-4xl font-black tracking-tighter text-gray-900 dark:text-gray-100 transition-all duration-300 hover:scale-105 active:scale-95 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-400 hover:drop-shadow-[0_0_15px_rgba(236,72,153,0.8)]"
-                                        >
-                                            {item.label}
-                                        </motion.a>
-                                    ))}
+                                    {TALENT_NAVIGATION.map((item) => {
+                                        const isActive = activeSection === item.href
+                                        return (
+                                            <motion.a
+                                                key={item.label}
+                                                href={item.href}
+                                                variants={menuItemVariants}
+                                                onClick={(e) => {
+                                                    e.preventDefault()
+                                                    setMobileMenuOpen(false)
+                                                    scrollToSection(item.href)
+                                                }}
+                                                className={`relative px-8 py-3 text-4xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 group ${isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 drop-shadow-[0_0_15px_rgba(236,72,153,0.8)]" : "text-gray-900 dark:text-gray-100 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-pink-500 hover:to-orange-400 hover:drop-shadow-[0_0_15px_rgba(236,72,153,0.8)]"
+                                                    }`}
+                                            >
+                                                {isActive && (
+                                                    <motion.div
+                                                        layoutId="activeBubbleMobileTalent"
+                                                        className="absolute inset-0 bg-white/40 dark:bg-white/10 rounded-3xl shadow-sm border border-black/5 dark:border-white/10 -z-10"
+                                                        transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                                                    />
+                                                )}
+                                                <span className="relative z-10">{item.label}</span>
+                                            </motion.a>
+                                        )
+                                    })}
                                     <motion.div variants={menuItemVariants}>
                                         <Link
                                             href="/"

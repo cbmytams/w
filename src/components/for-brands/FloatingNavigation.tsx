@@ -244,9 +244,17 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                                 variants={menuItemVariants}
                                                 aria-current={isActive ? "page" : undefined}
                                                 onClick={() => setMobileMenuOpen(false)}
-                                                className="text-4xl font-black tracking-tighter text-gray-900 dark:text-gray-100 transition-all duration-300 hover:scale-105 active:scale-95 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]"
+                                                className={`relative px-8 py-3 text-4xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 group ${isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]" : "text-gray-900 dark:text-gray-100 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]"
+                                                    }`}
                                             >
-                                                {item.label}
+                                                {isActive && (
+                                                    <motion.div
+                                                        layoutId="activeBubbleMobileBrand"
+                                                        className="absolute inset-0 bg-white/40 dark:bg-white/10 rounded-3xl shadow-sm border border-black/5 dark:border-white/10 -z-10"
+                                                        transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
+                                                    />
+                                                )}
+                                                <span className="relative z-10">{item.label}</span>
                                             </motion.a>
                                         )
                                     })}
