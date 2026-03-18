@@ -317,11 +317,22 @@ export function TalentsFloatingNavigation() {
                                     </motion.div>
                                 </motion.nav>
 
-                                {/* Physical CTA Button */}
-                                <motion.div
-                                    variants={menuItemVariants}
-                                    className="mt-6 w-full relative z-10 shrink-0"
-                                >
+                                {/* Action Buttons (Global & Conversion) */}
+                                <div className="mt-6 w-full flex flex-col gap-3 relative z-10 shrink-0">
+                                    {/* Secondary: Menu principal */}
+                                    <motion.div variants={menuItemVariants}>
+                                        <Link
+                                            href="/"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="h-12 w-full flex items-center justify-center gap-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300 text-[15px] font-semibold text-gray-700 dark:text-gray-300 group"
+                                        >
+                                            <Home className="h-[18px] w-[18px] group-hover:scale-110 transition-transform" />
+                                            Menu principal
+                                        </Link>
+                                    </motion.div>
+
+                                    {/* Primary CTA Button */}
+                                    <motion.div variants={menuItemVariants}>
                                     <a
                                         href={mobileCtaHref}
                                         onClick={() => setMobileMenuOpen(false)}

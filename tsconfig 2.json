@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "**/*.mts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "node_modules_old_*",
+    "node_modules_old_*/**",
+    "output",
+    "output/**",
+    "coverage",
+    "coverage/**",
+    ".playwright-cli",
+    ".playwright-cli/**",
+    "public/wiki",
+    "public/wiki/**",
+    "wafia-wiki-legacy-*",
+    "wafia-wiki-legacy-*/**",
+    "wiki",
+    "wiki/**",
+    "wafia-questionnaire-brands",
+    "wafia-questionnaire-brands/**"
+  ]
+}
