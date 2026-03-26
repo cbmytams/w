@@ -15,8 +15,6 @@
 - https://wafia.fr/equipe/yaelle
 
 ## Supporting hubs
-- https://wafia.fr/blog
-- https://wafia.fr/about
 - https://wafia.fr/legal/mentions
 
 ## Machine-readable discovery

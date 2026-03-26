@@ -1,4 +1,4 @@
-import { cp, mkdir, rm } from "node:fs/promises";
+import { access, cp, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
@@ -10,6 +10,8 @@ const REQUIRED_NEXT_ROOT_FILES = [
   "BUILD_ID",
   "app-path-routes-manifest.json",
   "build-manifest.json",
+  "export-marker.json",
+  "fallback-build-manifest.json",
   "images-manifest.json",
   "next-minimal-server.js.nft.json",
   "next-server.js.nft.json",
@@ -28,14 +30,32 @@ async function ensureExists(target) {
   }
 }
 
+async function pathExists(target) {
+  try {
+    await access(target);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function copyIntoStandalone() {
   await ensureExists(standaloneNextDir);
 
+  const rootFileTasks = [];
+
+  for (const filename of REQUIRED_NEXT_ROOT_FILES) {
+    const from = path.join(nextDir, filename);
+    if (await pathExists(from)) {
+      rootFileTasks.push({
+        from,
+        to: path.join(standaloneNextDir, filename),
+      });
+    }
+  }
+
   const tasks = [
-    ...REQUIRED_NEXT_ROOT_FILES.map((filename) => ({
-      from: path.join(nextDir, filename),
-      to: path.join(standaloneNextDir, filename),
-    })),
+    ...rootFileTasks,
     {
       from: path.join(root, ".next", "static"),
       to: path.join(standaloneNextDir, "static"),

@@ -1,4 +1,3 @@
-import { getAllArticles, getArticleDescription } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 import { getWikiArticleSummaries } from "@/lib/wiki";
 
@@ -70,10 +69,7 @@ function toFeedXml(items: FeedItem[]): string {
 }
 
 export async function GET() {
-  const [wikiArticles, blogArticles] = await Promise.all([
-    getWikiArticleSummaries(),
-    Promise.resolve(getAllArticles()),
-  ]);
+  const wikiArticles = await getWikiArticleSummaries();
 
   const wikiItems: FeedItem[] = wikiArticles.map((article) => ({
     title: article.title,
@@ -84,16 +80,7 @@ export async function GET() {
     category: article.category,
   }));
 
-  const blogItems: FeedItem[] = blogArticles.map((article) => ({
-    title: article.title,
-    description: getArticleDescription(article),
-    url: new URL(`/blog/${article.slug}`, siteConfig.url).toString(),
-    publishedAt: article.publishedAt,
-    updatedAt: article.updatedAt,
-    category: article.category,
-  }));
-
-  const items = [...wikiItems, ...blogItems]
+  const items = wikiItems
     .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
     .slice(0, RSS_LIMIT);
 

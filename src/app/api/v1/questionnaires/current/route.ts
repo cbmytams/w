@@ -1,10 +1,11 @@
 import type { NextRequest } from "next/server";
 import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
-import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestionList } from "@/lib/questionnaireValidation";
+import { requireDashboardRole } from "@/lib/apiAuth";
+import { TALENTS_QUESTIONS } from "@/lib/questionnaireData";
 
 async function getOrCreateCurrentQuestionnaire() {
   const current = await prisma.questionnaire.findFirst({
@@ -32,18 +33,25 @@ async function ensureTenantId() {
   return tenant?.id || null;
 }
 
-export async function GET(request: NextRequest) {
-  const auth = await requireDashboardRole(request);
-  if (auth.response) return auth.response;
+export async function GET(_request: NextRequest) {
+  try {
+    const questionnaire = await getOrCreateCurrentQuestionnaire();
+    const questions = Array.isArray(questionnaire.sectionsJson) ? questionnaire.sectionsJson : [];
 
-  const questionnaire = await getOrCreateCurrentQuestionnaire();
-  const questions = Array.isArray(questionnaire.sectionsJson) ? questionnaire.sectionsJson : [];
+    return Response.json({
+      questionnaireId: questionnaire.id,
+      version: questionnaire.version,
+      questions
+    });
+  } catch (error) {
+    console.warn("Questionnaire current API fallback enabled.", error);
 
-  return Response.json({
-    questionnaireId: questionnaire.id,
-    version: questionnaire.version,
-    questions
-  });
+    return Response.json({
+      questionnaireId: "local-fallback",
+      version: "v1",
+      questions: TALENTS_QUESTIONS
+    });
+  }
 }
 
 export async function PUT(request: NextRequest) {

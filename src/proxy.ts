@@ -2,9 +2,10 @@ import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 import { canAccessDashboardRole, DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
 
-function getRouteChecks(pathname: string) {
+export function getRouteChecks(pathname: string) {
     const isQuestionnaireAdminApi =
         pathname.startsWith("/api/v1/questionnaires") &&
+        pathname !== "/api/v1/questionnaires/current" &&
         pathname !== "/api/v1/questionnaires/submit";
     const isApiAdmin =
         pathname.startsWith("/api/v1/admin") ||

@@ -10,7 +10,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:standalone": "npm run build && node scripts/prepare-standalone.mjs",
-    "start": "node .next/standalone/server.js",
+    "start": "node scripts/prepare-standalone.mjs && node scripts/run-standalone.mjs",
     "lint": "eslint src next.config.ts",
     "type-check": "tsc --noEmit",
     "test": "jest",

@@ -58,10 +58,10 @@ const SERVICES = [
         id: "influence-marketing",
         title: "Campagnes d'Influence Marketing",
         description:
-            "Nous concevons et pilotons des campagnes d'influence marketing de bout en bout : identification des créateurs, négociation, production et reporting. Chaque activation repose sur une sélection data-driven et un suivi KPI en temps réel, selon notre",
-        descriptionLinkText: "méthode éprouvée",
-        descriptionLinkHref: "/process",
-        descriptionSuffix: ".",
+            "Nous concevons et pilotons des campagnes d'influence marketing de bout en bout : identification des créateurs, négociation, production et reporting. Chaque activation repose sur une sélection data-driven et un suivi KPI en temps réel, selon notre méthode éprouvée.",
+        descriptionLinkText: null,
+        descriptionLinkHref: null,
+        descriptionSuffix: "",
         points: [
             "Stratégie de casting et sélection data-driven",
             "Activation multi-plateforme (TikTok, Instagram, YouTube)",
@@ -106,30 +106,13 @@ const SERVICES = [
         cta: { label: "Découvrir le Talent Management", href: "/for-talents" },
     },
     {
-        id: "agences",
-        title: "Partenaire Influence pour Agences",
-        description:
-            "En marque blanche ou co-branding, Wafia devient votre département influence externalisé. Nous exécutons le casting, la production et le pilotage — vous conservez la relation client et vos marges.",
-        descriptionLinkText: null,
-        descriptionLinkHref: null,
-        descriptionSuffix: "",
-        points: [
-            "Casting et activation en marque blanche",
-            "Studio à la demande pour UGC et production",
-            "Orchestration complète des campagnes",
-            "Reporting client-ready à votre marque",
-        ],
-        deliverables: ["Shortlist white-label", "Contenus brandés", "Planning opérationnel", "Reporting sur mesure"],
-        cta: { label: "Solutions pour Agences", href: "/for-agencies" },
-    },
-    {
         id: "data-tracabilite",
         title: "Traçabilité & Reporting Data",
         description:
-            "Nous avons construit nos propres outils pour suivre chaque étape de la campagne en temps réel. Transparence totale sur le budget, les validations et les résultats — intégré à",
-        descriptionLinkText: "notre process",
-        descriptionLinkHref: "/process",
-        descriptionSuffix: ".",
+            "Nous avons construit nos propres outils pour suivre chaque étape de la campagne en temps réel. Transparence totale sur le budget, les validations et les résultats — intégré à notre process.",
+        descriptionLinkText: null,
+        descriptionLinkHref: null,
+        descriptionSuffix: "",
         points: [
             "Dashboard client en temps réel",
             "KPIs décisionnels, zéro vanity metrics",
@@ -204,13 +187,6 @@ const talentServiceJsonLd = serviceSchema({
     serviceType: ["Talent Management", "Gestion de Talents"],
 })
 
-const agencyServiceJsonLd = serviceSchema({
-    name: "Partenaire Influence pour Agences",
-    description: "Sous-traitance influence en marque blanche : casting, production UGC, pilotage et reporting client-ready.",
-    url: new URL(sitePaths.forAgencies, baseUrl).toString(),
-    serviceType: ["White Label Influence", "Partenariat Agences"],
-})
-
 const dataServiceJsonLd = serviceSchema({
     name: "Traçabilité & Reporting Data",
     description: "Outils propriétaires de suivi campagne : dashboard temps réel, KPIs décisionnels et traçabilité complète.",
@@ -232,7 +208,6 @@ export default function ServicesPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(influenceServiceJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(studioServiceJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(talentServiceJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(agencyServiceJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dataServiceJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesFaqJsonLd) }} />
 

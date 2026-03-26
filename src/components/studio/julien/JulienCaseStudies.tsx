@@ -12,8 +12,7 @@ const CASE_STUDIES = [
         description: "Idalia est une marque émergente qui cartonne grâce à leurs framboises enrobées de chocolat. C'est sûrement la publicité que j'ai le plus aimé réaliser car la marque m'a donné sa confiance totale en me laissant carte blanche.",
         tags: ["Gourmand", "Coloré", "Plusieurs Millions de Vues"],
         videoUrl: "https://www.tiktok.com/@ardidprod/video/1234567890", // Placeholder if we don't embed iframe, or we can use a mock
-        mockUrl: "/studio/previews/noah-basic-fit-preview.mp4",
-        posterUrl: "/studio/previews/noah-basic-fit-poster.jpg"
+        mockUrl: "/studio/krh/noah-basic-fit-vf.mp4"
     },
     {
         id: "haribo",
@@ -21,8 +20,7 @@ const CASE_STUDIES = [
         title: "30 Millions de vues",
         description: "L'histoire a commencé avec une publicité fictive pour les dragibus. Les backstages ont atteint plus de 30 millions de vues. Cela m'a permis d'être repéré par la marque et de travailler officiellement avec eux. Coloré, gourmand, la bonne humeur pure.",
         tags: ["Viral", "Coloré", "Storytelling"],
-        mockUrl: "/studio/previews/redha-basic-fit-preview.mp4",
-        posterUrl: "/studio/previews/redha-basic-fit-poster.jpg"
+        mockUrl: "/studio/krh/basic-fit-redha-vf.mp4"
     },
     {
         id: "monster",
@@ -30,8 +28,7 @@ const CASE_STUDIES = [
         title: "La Marque de Cœur",
         description: "Première marque qui m'a fait confiance, et première vidéo qui a véritablement fait exploser les statistiques de ma chaîne TikTok. Des produits avec lesquels j'adore travailler, une esthétique sombre et survoltée.",
         tags: ["Énergie", "Sombre", "Explosif"],
-        mockUrl: "/studio/previews/ana-basic-fit-preview.mp4",
-        posterUrl: "/studio/previews/ana-basic-fit-poster.jpg"
+        mockUrl: "/studio/krh/ana-basic-fit-vf.mp4"
     }
 ]
 
@@ -60,7 +57,6 @@ export function JulienCaseStudies() {
                                     {/* Video simulation */}
                                     <video
                                         src={study.mockUrl}
-                                        poster={study.posterUrl}
                                         className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
                                         autoPlay
                                         muted

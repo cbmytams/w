@@ -278,9 +278,6 @@ export default function WikiArticleView({
                         <Link href="/for-brands" style={{ color: "var(--wiki-ink)", fontWeight: 600, fontSize: "0.9rem" }}>
                             Pour les marques &rarr;
                         </Link>
-                        <Link href="/for-agencies" style={{ color: "var(--wiki-ink)", fontWeight: 600, fontSize: "0.9rem" }}>
-                            Pour les agences &rarr;
-                        </Link>
                         <Link href="/for-talents" style={{ color: "var(--wiki-ink)", fontWeight: 600, fontSize: "0.9rem" }}>
                             Pour les talents &rarr;
                         </Link>

@@ -11,11 +11,6 @@ export { CLIENTS } from "./clients"
 // Process steps
 export { PROCESS_STEPS } from "./process-steps"
 
-// Agency blocks
-export {
-    AGENCY_NAVIGATION
-} from "./agency-blocks"
-
 // Talent blocks (still used by existing section components)
 export {
     TALENT_TIMELINE,

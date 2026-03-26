@@ -9,16 +9,6 @@
 // FAQ
 export { FAQ_ITEMS } from "./faq"
 
-// Agency blocks
-export {
-    AGENCY_MODES,
-    AGENCY_STANDARDS,
-    AGENCY_HERO,
-    AGENCY_PROBLEM,
-    AGENCY_CASES,
-    AGENCY_CTA
-} from "./agency-blocks"
-
 // Talent blocks
 export {
     TALENT_NAVIGATION,
@@ -31,6 +21,8 @@ export {
     TALENT_CTA,
     TALENT_BUSINESS,
     TALENT_IDENTITY,
+    TALENT_PROOF_STRIP,
+    TALENT_OS_SYSTEM,
     BRAND_GRADIENT
 } from "./talent-blocks"
 
@@ -44,7 +36,6 @@ export { HOME_OPTIONS } from "./home-blocks"
 export {
     CLIENTS,
     PROCESS_STEPS,
-    AGENCY_NAVIGATION,
     TALENT_TIMELINE,
     TALENT_METHOD,
     TALENT_SERVICES,

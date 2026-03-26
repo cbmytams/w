@@ -5,6 +5,8 @@ export * from "./talent-blocks/deliverables";
 export * from "./talent-blocks/services";
 export * from "./talent-blocks/timeline";
 export * from "./talent-blocks/method";
+export * from "./talent-blocks/proof";
+export * from "./talent-blocks/os";
 
 // Not exporting everything from old talent-blocks.ts to keep the barrel clean
 export const TALENT_NAVIGATION = [
@@ -31,4 +33,3 @@ export const TALENT_PLATFORMS = {
         { title: "Communication", text: "Central de messages pour gérer toutes vos conversations professionnelles.", icon: "MessageCircle", color: "text-blue-500" }
     ]
 } as const;
-
