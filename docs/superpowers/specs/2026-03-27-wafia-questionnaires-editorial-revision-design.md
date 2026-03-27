@@ -114,6 +114,8 @@ These questions remain useful, but their wording or block placement must change:
 | `f_deadline` | Deadline or business milestone |
 | `i_constraints` | Final open expectations / specific expectations vis-a-vis Wafia |
 | `e_*` block | Accompaniment expected, phrased neutrally and non-commercially |
+| `g_competitors` | Optional competitor context for AM orientation, non-scoring by default |
+| `g_tone` + `g_creative_codes` | Merge into one creative direction / guardrails signal inside `Accompaniment expected` |
 
 ### Scoring continuity constraints
 
@@ -130,6 +132,34 @@ Mandatory scoring continuity rules:
 Additional mapping constraint:
 
 - `i_discovery` and `i_constraints` must both appear in the final mapping appendix, even if one is removed, so dev can clean `scoring.ts` and related admin/reporting code without inference.
+
+### Pending editorial decisions (blocking for scoring migration)
+
+These two replacement questions must exist in the spec before implementation planning because scoring migration cannot wire placeholders safely.
+
+| Placeholder | Suggested id | Target block | Role | Signal inherited |
+| --- | --- | --- | --- | --- |
+| "acquisition structuring" | `c_acquisition_structure` | `Marketing maturity` | `score` | `DATA` (conversion) from `c_roas` |
+| "marketing steering quality" | `c_piloting_quality` | `Marketing maturity` | `score` | `ACTIVATION` + `DATA` from `d3_cac_target` + `d3_roas_target` |
+
+Provisional target definitions:
+
+- `c_acquisition_structure`
+  - target editorial intent: understand whether acquisition is ad hoc, partially structured, or already piloted with an explicit framework
+  - provisional label: `Comment votre acquisition est-elle structuree aujourd'hui ?`
+  - provisional answer direction:
+    - no structured setup
+    - scattered tests
+    - active setup but partially structured
+    - structured and regularly piloted
+- `c_piloting_quality`
+  - target editorial intent: measure the reliability and maturity of current marketing steering without asking for CAC or ROAS targets directly
+  - provisional label: `A quel point pilotez-vous votre marketing avec des donnees fiables ?`
+  - provisional answer direction:
+    - very limited visibility
+    - partial visibility
+    - reliable steering on key metrics
+    - advanced multi-channel steering
 
 ## Target Structure
 
@@ -263,6 +293,8 @@ What the account manager must know in 30 seconds from the answers:
 - Keep the quick lead section very short
 
 ## Deliverables to Produce After This Design
+
+Livrable numbering is intentionally non-sequential in reading order. `Deliverable 4` appears before `Deliverable 2` and `Deliverable 3` on purpose so removal logic is seen before the revised questionnaires. Do not "fix" this numbering by reflex.
 
 ## Deliverable 1 - Audit Table
 
