@@ -9,6 +9,7 @@ import { PROCESS_STEPS } from "@/constants/process-steps"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 import { cn } from "@/lib/utils"
 import { EASING } from "@/lib/easing"
+import { SPRING } from "@/lib/design-tokens"
 
 export function ProcessSection() {
     const prefersReducedMotion = useReducedMotion()
@@ -18,9 +19,7 @@ export function ProcessSection() {
         offset: ["start end", "end start"]
     })
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 120,
-        damping: 28,
-        mass: 0.32
+        ...SPRING.gentle,
     })
 
     const lineScale = useTransform(smoothProgress, [0.08, 0.92], [0, 1], { clamp: true })

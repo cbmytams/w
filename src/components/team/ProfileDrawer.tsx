@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ExternalLink, Calendar, Award, Briefcase, GraduationCap, Quote, Linkedin, Instagram, Mail } from "lucide-react"
+import { SPRING } from "@/lib/design-tokens"
 import type { LucideIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -77,9 +78,7 @@ const modalVariants = {
         y: 0,
         transition: {
             type: "spring" as const,
-            damping: 20,
-            stiffness: 300,
-            mass: 0.8
+            ...SPRING.responsive
         }
     },
     exit: { opacity: 0, scale: 0.95, y: 10, transition: { duration: 0.2 } }
@@ -93,8 +92,7 @@ const contentVariants = {
         transition: {
             delay: 0.1 + (i * 0.05),
             type: "spring" as const,
-            damping: 20,
-            stiffness: 200
+            ...SPRING.responsive
         }
     })
 }
@@ -257,7 +255,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                 left: activeTab === "manifesto" ? "4px" : "50%",
                                                 width: "calc(50% - 4px)"
                                             }}
-                                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                                            transition={{ type: "spring", ...SPRING.responsive }}
                                         />
 
                                         {(["manifesto", "expertise"] as const).map((tab) => (

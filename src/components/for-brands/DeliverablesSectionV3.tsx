@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence, type Transition } from "framer-motion"
 import { X, ChevronRight, BarChart3 } from "lucide-react"
+import { SPRING } from "@/lib/design-tokens"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/common/SectionHeading"
 import { cn } from "@/lib/utils"
@@ -14,9 +15,7 @@ export function DeliverablesSectionV3() {
     // Animation transition configuration
     const springTransition: Transition = {
         type: "spring",
-        stiffness: 300,
-        damping: 30,
-        mass: 0.8
+        ...SPRING.responsive
     }
 
     return (

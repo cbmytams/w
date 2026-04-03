@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Check, ArrowRight, Zap, Target, Rocket } from "lucide-react"
+import { SPRING } from "@/lib/design-tokens"
 import { Container } from "@/components/ui/container"
 import { TALENT_TIMELINE } from "@/constants"
 
@@ -46,7 +47,7 @@ export function LevelsSection() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { type: "spring" as const, stiffness: 100, damping: 15 }
+            transition: { type: "spring" as const, ...SPRING.gentle }
         }
     }
 
@@ -56,7 +57,7 @@ export function LevelsSection() {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
-            transition: { type: "spring" as const, stiffness: 80, damping: 20 }
+            transition: { type: "spring" as const, ...SPRING.gentle }
         },
         exit: {
             opacity: 0,
@@ -77,7 +78,7 @@ export function LevelsSection() {
         animate: {
             opacity: 1,
             y: 0,
-            transition: { type: "spring" as const, stiffness: 120, damping: 15 }
+            transition: { type: "spring" as const, ...SPRING.gentle }
         }
     }
 
@@ -101,7 +102,7 @@ export function LevelsSection() {
                         <motion.span
                             initial={{ scale: 0, rotate: -180 }}
                             whileInView={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
+                            transition={{ type: "spring", ...SPRING.responsive, delay: 0.2 }}
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 text-sm font-medium mb-6"
                         >
                             <Rocket className="w-4 h-4" />
@@ -135,7 +136,7 @@ export function LevelsSection() {
                                 initial={{ scaleX: 0 }}
                                 animate={{
                                     scaleX: activePhaseIndex / (phases.length - 1),
-                                    transition: { type: "spring", stiffness: 100, damping: 20 }
+                                    transition: { type: "spring", ...SPRING.gentle }
                                 }}
                             />
                         </div>

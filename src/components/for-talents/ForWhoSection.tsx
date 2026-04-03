@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import { SPRING } from "@/lib/design-tokens"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
 import { TALENT_FOR_WHO } from "@/constants"
 import { cn } from "@/lib/utils"
@@ -68,7 +69,7 @@ export function ForWhoSection() {
                                 : "radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(0,0,0,0) 70%)", // Neutral Violet Default
                         x: hoveredCard === "yes" ? -200 : hoveredCard === "no" ? 200 : 0
                     }}
-                    transition={{ type: "spring", damping: 40, stiffness: 50 }}
+                    transition={{ type: "spring", ...SPRING.gentle }}
                 />
             </div>
 
@@ -94,7 +95,7 @@ export function ForWhoSection() {
                                 opacity: hoveredCard === "no" ? 0.4 : 1,
                                 filter: hoveredCard === "no" ? "blur(4px)" : "blur(0px)"
                             }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            transition={{ type: "spring", ...SPRING.responsive }}
                         >
                             {/* Card Container */}
                             <div className="h-full p-8 md:p-10 rounded-2xl bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl relative overflow-hidden flex flex-col group/yes cursor-default">
@@ -123,7 +124,7 @@ export function ForWhoSection() {
                                             initial={{ opacity: 0, x: -10 }}
                                             whileInView={{ opacity: 1, x: 0 }}
                                             viewport={{ once: true, margin: "-50px" }}
-                                            transition={{ delay: index * 0.1, type: "spring", stiffness: 200, damping: 20 }}
+                                            transition={{ delay: index * 0.1, type: "spring", ...SPRING.responsive }}
                                             className="flex items-start gap-4 group/item"
                                         >
                                             <div className="mt-1 flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/10 border border-emerald-500/30 group-hover/item:bg-emerald-500/20 transition-colors duration-300">
@@ -150,7 +151,7 @@ export function ForWhoSection() {
                                 opacity: hoveredCard === "yes" ? 0.4 : 1,
                                 filter: hoveredCard === "yes" ? "blur(4px)" : "blur(0px)"
                             }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            transition={{ type: "spring", ...SPRING.responsive }}
                         >
                             {/* Card Container */}
                             <div className="h-full p-8 md:p-10 rounded-2xl bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl relative overflow-hidden flex flex-col group/no cursor-default">
@@ -179,7 +180,7 @@ export function ForWhoSection() {
                                             initial={{ opacity: 0, x: -10 }}
                                             whileInView={{ opacity: 1, x: 0 }}
                                             viewport={{ once: true, margin: "-50px" }}
-                                            transition={{ delay: index * 0.1, type: "spring", stiffness: 200, damping: 20 }}
+                                            transition={{ delay: index * 0.1, type: "spring", ...SPRING.responsive }}
                                             className="flex items-start gap-4 group/item"
                                         >
                                             <div className="mt-1 flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/10 border border-rose-500/30 group-hover/item:bg-rose-500/20 transition-colors duration-300">

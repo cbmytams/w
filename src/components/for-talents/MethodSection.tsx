@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion"
 import { Container } from "@/components/ui/container"
+import { SPRING } from "@/lib/design-tokens"
 import { TALENT_METHOD } from "@/constants"
 import { ArrowRight, Check, Sparkles } from "lucide-react"
 
@@ -27,8 +28,8 @@ export function MethodSection() {
     // Mouse tracking for spotlight effect
     const mouseX = useMotionValue(0)
     const mouseY = useMotionValue(0)
-    const spotlightX = useSpring(mouseX, { stiffness: 100, damping: 30 })
-    const spotlightY = useSpring(mouseY, { stiffness: 100, damping: 30 })
+    const spotlightX = useSpring(mouseX, { ...SPRING.gentle })
+    const spotlightY = useSpring(mouseY, { ...SPRING.gentle })
 
     const steps = TALENT_METHOD.steps
     const STEP_DURATION = 6000
@@ -87,8 +88,7 @@ export function MethodSection() {
             filter: "blur(0px)",
             transition: {
                 type: "spring" as const,
-                stiffness: 100,
-                damping: 15
+                ...SPRING.gentle
             }
         }
     }
@@ -158,7 +158,7 @@ export function MethodSection() {
                         <motion.div
                             initial={{ scale: 0, rotate: -180 }}
                             whileInView={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.3 }}
+                            transition={{ type: "spring", ...SPRING.responsive, delay: 0.3 }}
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 text-sm font-medium mb-6"
                         >
                             <Sparkles className="w-4 h-4" />
@@ -227,7 +227,7 @@ export function MethodSection() {
                                                 layoutId="stepGlow"
                                                 className="absolute inset-0 rounded-full bg-violet-500/30 blur-xl"
                                                 initial={false}
-                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                                transition={{ type: "spring", ...SPRING.responsive }}
                                                 style={{ scale: 2 }}
                                             />
                                         )}
@@ -259,7 +259,7 @@ export function MethodSection() {
                                                         initial={{ scale: 0, rotate: -90 }}
                                                         animate={{ scale: 1, rotate: 0 }}
                                                         exit={{ scale: 0, rotate: 90 }}
-                                                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                                        transition={{ type: "spring", ...SPRING.responsive }}
                                                     >
                                                         <Check className="w-6 h-6 text-white" strokeWidth={3} />
                                                     </motion.div>
@@ -348,9 +348,7 @@ export function MethodSection() {
                                 }}
                                 transition={{
                                     type: "spring",
-                                    stiffness: 100,
-                                    damping: 20,
-                                    mass: 1
+                                    ...SPRING.gentle
                                 }}
                                 className="relative"
                                 style={{ transformStyle: "preserve-3d" }}
@@ -428,8 +426,7 @@ export function MethodSection() {
                                                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                                                     transition={{
                                                         type: "spring",
-                                                        stiffness: 100,
-                                                        damping: 15,
+                                                        ...SPRING.gentle,
                                                         delay: i * 0.1
                                                     }}
                                                 >

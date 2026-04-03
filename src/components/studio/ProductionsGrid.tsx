@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { motion, AnimatePresence, type Transition } from "framer-motion"
 import { X, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { SPRING } from "@/lib/design-tokens"
 import { STUDIO_PRODUCTIONS } from "@/constants/studio"
 import { SequentialVideoPlayer } from "@/components/studio/SequentialVideoPlayer"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
@@ -24,9 +25,7 @@ export function ProductionsGrid() {
     // Apple-style spring physics (smooth, deliberate, heavy)
     const springTransition: Transition = {
         type: "spring",
-        stiffness: 400,
-        damping: 40,
-        mass: 1.2
+        ...SPRING.responsive
     }
 
     return (

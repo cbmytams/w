@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion as m, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion"
+import { SPRING } from "@/lib/design-tokens"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 import {
     getBackgroundRuntimeProfile,
@@ -295,9 +296,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
     }, [])
 
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 70,
-        damping: 24,
-        mass: 0.7,
+        ...SPRING.gentle,
     })
 
     const motion = FLOW_MOTION[variant]

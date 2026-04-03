@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { ReactNode, MouseEvent } from "react"
+import { SPRING } from "@/lib/design-tokens"
 
 interface ParallaxCardProps {
     children: ReactNode
@@ -45,7 +46,7 @@ export function ParallaxCard({ children, className = "" }: ParallaxCardProps) {
                 transformStyle: "preserve-3d",
             }}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            transition={{ type: "spring", ...SPRING.responsive }}
             className={`bg-white rounded-2xl shadow-2xl hover:shadow-pink-500/20 transition-shadow ${className}`}
         >
             <div className="w-full h-full" style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d" }}>

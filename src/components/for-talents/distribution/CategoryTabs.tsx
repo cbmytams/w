@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Category } from "./types";
+import { SPRING } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 
 interface CategoryTabsProps {
@@ -31,7 +32,7 @@ export function CategoryTabs({ categories, activeCategoryId, onChange }: Categor
                             <motion.div
                                 layoutId="activeCategoryTab"
                                 className="absolute bottom-0 left-0 right-0 h-[2px] bg-black dark:bg-white"
-                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                transition={{ type: "spring", ...SPRING.responsive }}
                             />
                         )}
                     </button>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { SPRING } from "@/lib/design-tokens"
 import { Check, Music, Clapperboard, Smartphone } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
@@ -76,7 +77,7 @@ function PersonaVisual({ type }: { type: PersonaType }) {
                 <motion.div
                     initial={{ y: 40, opacity: 0, scale: 0.9 }}
                     animate={{ y: 0, opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.5, type: "spring", stiffness: 200, damping: 20 }}
+                    transition={{ delay: 1.5, type: "spring", ...SPRING.responsive }}
                     className="absolute bottom-10 flex items-center gap-3 px-5 py-3 bg-slate-900/95 backdrop-blur-md text-white rounded-xl shadow-xl border border-white/10"
                 >
                     <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">

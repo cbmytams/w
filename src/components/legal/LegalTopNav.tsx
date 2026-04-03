@@ -7,6 +7,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion"
 import { Menu, X } from "lucide-react"
 
 import { WafiaLogo } from "@/components/ui/WafiaLogo"
+import { SPRING } from "@/lib/design-tokens"
 
 export type LegalNavContext = "brands" | "talents" | "default"
 
@@ -40,7 +41,7 @@ const menuPlaqueVariants: Variants = {
         scale: 1,
         y: 0,
         transition: {
-            type: "spring" as const, damping: 25, stiffness: 300,
+            type: "spring" as const, ...SPRING.responsive,
             staggerChildren: 0.1,
             delayChildren: 0.15
         }
@@ -57,7 +58,7 @@ const menuItemVariants: Variants = {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        transition: { type: "spring" as const, stiffness: 300, damping: 24 }
+        transition: { type: "spring" as const, ...SPRING.responsive }
     }
 }
 
@@ -221,7 +222,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                             initial={{ opacity: 0, scale: 0.5, y: 50 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.5, y: 50 }}
-                            transition={{ type: "spring", damping: 20, stiffness: 400, delay: 0.3 }}
+                            transition={{ type: "spring", ...SPRING.responsive, delay: 0.3 }}
                             onClick={() => setMobileMenuOpen(false)}
                             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[250] h-14 w-14 flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 shadow-lg hover:scale-110 active:scale-95 transition-all"
                             aria-label="Fermer le menu"

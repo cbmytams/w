@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { SPRING } from "@/lib/design-tokens";
 import {
     ArrowRight,
     Globe,
@@ -228,7 +229,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                             initial={{ x: "100%", opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: "100%", opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 35 }}
+                            transition={{ type: "spring", ...SPRING.responsive }}
                             className="absolute right-0 top-0 h-full w-full sm:w-[460px] bg-white dark:bg-[#0b111a] border-l border-black/5 dark:border-white/10 shadow-2xl flex flex-col"
                         >
                             <div className="flex items-center justify-between p-6 sm:p-8 border-b border-black/5 dark:border-white/5">

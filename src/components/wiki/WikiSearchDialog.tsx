@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { SPRING } from "@/lib/design-tokens";
 import Link from "next/link";
 import { Search, X } from "lucide-react";
 
@@ -89,7 +90,7 @@ export default function WikiSearchDialog({ articles }: { articles: SearchArticle
                     initial={{ opacity: 0, scale: 0.95, y: -20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -20 }}
-                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                    transition={{ type: "spring", ...SPRING.responsive }}
                     onClick={e => e.stopPropagation()}
                     className="w-full max-w-2xl border rounded-xl shadow-2xl overflow-hidden flex flex-col mx-4 md:mx-0"
                     style={{ backgroundColor: 'var(--wiki-bg-elevated)', borderColor: 'var(--wiki-line)' }}
