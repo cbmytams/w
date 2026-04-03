@@ -1,7 +1,6 @@
 // Ajouts commerciaux pour /for-brands
 
 export const BRAND_NAVIGATION = [
-    { href: "#services", label: "Services" },
     { href: "#case-studies", label: "Réalisations" },
     { href: "#process", label: "Méthode" },
     { href: "#faq", label: "FAQ" }

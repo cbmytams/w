@@ -4,7 +4,6 @@ import { ClientsSection } from "@/components/for-brands/ClientsSection"
 import { ValuePropositionSection } from "@/components/for-brands/ValuePropositionSection"
 import { CaseStudiesSection } from "@/components/for-brands/CaseStudiesSection"
 import { AuthenticitySection } from "@/components/for-brands/AuthenticitySection"
-import { ServicesAndMetrics } from "@/components/for-brands/ServicesAndMetrics"
 import { ComparisonSectionV2 } from "@/components/for-brands/ComparisonSectionV2"
 import { ComplianceSection } from "@/components/for-brands/ComplianceSection"
 import { TeamSectionBrands } from "@/components/for-brands/TeamSectionBrands"
@@ -21,8 +20,6 @@ export default function ForBrandsPage() {
             <ClientsSection />
 
             <ValuePropositionSection />
-
-            <ServicesAndMetrics />
 
             <CaseStudiesSection />
 
