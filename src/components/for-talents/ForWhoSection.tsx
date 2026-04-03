@@ -97,7 +97,7 @@ export function ForWhoSection() {
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
                             {/* Card Container */}
-                            <div className="h-full p-8 md:p-10 rounded-3xl bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl relative overflow-hidden flex flex-col group/yes cursor-default">
+                            <div className="h-full p-8 md:p-10 rounded-2xl bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl relative overflow-hidden flex flex-col group/yes cursor-default">
 
                                 {/* Top Emerald Glow Border effect */}
                                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent opacity-0 group-hover/yes:opacity-100 transition-opacity duration-500" />
@@ -153,7 +153,7 @@ export function ForWhoSection() {
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
                             {/* Card Container */}
-                            <div className="h-full p-8 md:p-10 rounded-3xl bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl relative overflow-hidden flex flex-col group/no cursor-default">
+                            <div className="h-full p-8 md:p-10 rounded-2xl bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl relative overflow-hidden flex flex-col group/no cursor-default">
 
                                 {/* Top Rose Glow Border effect */}
                                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-rose-500/50 to-transparent opacity-0 group-hover/no:opacity-100 transition-opacity duration-500" />

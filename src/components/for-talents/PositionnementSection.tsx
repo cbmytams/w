@@ -185,7 +185,7 @@ export function PositionnementSection() {
                                 transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.44), delay: clampDelay(0.18) }}
                                 className="flex items-center"
                             >
-                                <div className="relative p-8 sm:p-10 rounded-3xl bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-xl shadow-purple-500/5 overflow-hidden w-full">
+                                <div className="relative p-8 sm:p-10 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-xl shadow-purple-500/5 overflow-hidden w-full">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-500/10 to-transparent rounded-bl-full" />
                                     <div className="flex items-start gap-5">
                                         <div className="hidden sm:flex flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/10 items-center justify-center border border-violet-500/20">
@@ -247,7 +247,7 @@ export function PositionnementSection() {
 
                         {/* Persona Content — with interactive visual widgets */}
                         <RevealAnimation delay={0.2}>
-                            <div className="relative rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_28px_70px_rgba(0,0,0,0.12)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
+                            <div className="relative rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_28px_70px_rgba(0,0,0,0.12)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
                                 <div className={`absolute inset-0 bg-gradient-to-br ${content.color} opacity-45 dark:opacity-70`} />
                                 <div className="absolute inset-0 bg-[radial-gradient(600px_420px_at_10%_20%,rgba(236,72,153,0.12),transparent_60%)] dark:bg-[radial-gradient(600px_420px_at_10%_20%,rgba(236,72,153,0.18),transparent_60%)]" />
 

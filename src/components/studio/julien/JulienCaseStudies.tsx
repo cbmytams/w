@@ -53,7 +53,7 @@ export function JulienCaseStudies() {
                             <div className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 md:gap-16 items-center`}>
 
                                 {/* Image / Video Placeholder */}
-                                <div className="w-full md:w-1/2 aspect-[4/5] md:aspect-square bg-zinc-900 rounded-[2rem] md:rounded-[3rem] border border-white/10 overflow-hidden relative group shadow-2xl">
+                                <div className="w-full md:w-1/2 aspect-[4/5] md:aspect-square bg-zinc-900 rounded-2xl md:rounded-2xl border border-white/10 overflow-hidden relative group shadow-2xl">
                                     {/* Video simulation */}
                                     <video
                                         src={study.mockUrl}

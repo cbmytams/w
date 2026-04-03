@@ -10,7 +10,7 @@ export function ComplianceSection() {
             <Container>
                 <div className="max-w-4xl mx-auto">
                     <RevealAnimation>
-                        <div className="bg-white dark:bg-zinc-900/70 rounded-3xl p-12 shadow-xl border-2 border-slate-200 dark:border-zinc-800">
+                        <div className="bg-white dark:bg-zinc-900/70 rounded-2xl p-12 shadow-xl border-2 border-slate-200 dark:border-zinc-800">
                             <div className="text-center mb-10">
                                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-semibold mb-4">
                                     <Shield className="w-4 h-4" />

@@ -46,7 +46,7 @@ export function ParallaxCard({ children, className = "" }: ParallaxCardProps) {
             }}
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className={`bg-white rounded-3xl shadow-2xl hover:shadow-pink-500/20 transition-shadow ${className}`}
+            className={`bg-white rounded-2xl shadow-2xl hover:shadow-pink-500/20 transition-shadow ${className}`}
         >
             <div className="w-full h-full" style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d" }}>
                 {children}

@@ -84,7 +84,7 @@ function TeamCardBrands({
         >
             {/* Glow Effect - Geography Based */}
             <motion.div
-                className="absolute -inset-1 rounded-3xl blur-2xl transition-all duration-500"
+                className="absolute -inset-1 rounded-2xl blur-2xl transition-all duration-500"
                 style={{
                     background: `radial-gradient(circle, ${geoConfig.shadowColor.replace("0.15", "0.3")} 0%, transparent 70%)`,
                     opacity: isHovered ? 0.6 : 0
@@ -94,7 +94,7 @@ function TeamCardBrands({
             {/* Card Content - Div instead of Link */}
             <div
                 className={cn(
-                    "block relative h-full rounded-3xl overflow-hidden transition-all duration-300",
+                    "block relative h-full rounded-2xl overflow-hidden transition-all duration-300",
                     "bg-white/90 dark:bg-zinc-900/80 backdrop-blur-xl",
                     "border border-slate-200/50 dark:border-white/10",
                     "hover:shadow-2xl hover:-translate-y-2"
@@ -129,7 +129,7 @@ function TeamCardBrands({
                     <div className="flex flex-col sm:flex-row gap-6 sm:items-start mb-6">
                         {/* Photo Avatar */}
                         <div
-                            className="relative w-24 h-24 flex-shrink-0 rounded-3xl overflow-hidden ring-4 transition-all duration-300"
+                            className="relative w-24 h-24 flex-shrink-0 rounded-2xl overflow-hidden ring-4 transition-all duration-300"
                             style={{
                                 "--tw-ring-color": isHovered ? geoConfig.ringColor : "transparent",
                                 boxShadow: isHovered ? `0 8px 20px ${geoConfig.shadowColor}` : "none"

@@ -226,7 +226,7 @@ function CampaignView() {
             className="space-y-6"
         >
             {/* Main Metric: Total Reach - SaaS Card Style */}
-            <div className="bg-white dark:bg-zinc-800 rounded-3xl p-8 border border-slate-100 dark:border-zinc-700 shadow-sm relative overflow-hidden">
+            <div className="bg-white dark:bg-zinc-800 rounded-2xl p-8 border border-slate-100 dark:border-zinc-700 shadow-sm relative overflow-hidden">
                 <div className="flex justify-between items-start mb-8 relative z-10">
                     <div>
                         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Total Reach</p>

@@ -21,7 +21,7 @@ export function ComparisonSection() {
                     />
 
                     <RevealAnimation delay={0.2}>
-                        <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                        <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
                             <div className="grid md:grid-cols-2">
                                 <div className="p-8 bg-slate-50">
                                     <h3 className="text-xl font-bold text-slate-500 mb-6 uppercase tracking-wide text-center">Agences classiques</h3>

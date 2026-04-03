@@ -356,9 +356,9 @@ export function MethodSection() {
                                 style={{ transformStyle: "preserve-3d" }}
                             >
                                 {/* Card with gradient border */}
-                                <div className="relative rounded-3xl overflow-hidden">
+                                <div className="relative rounded-2xl overflow-hidden">
                                     {/* Animated gradient border */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-violet-500/50 via-purple-500/50 to-fuchsia-500/50 p-[1px] rounded-3xl">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-violet-500/50 via-purple-500/50 to-fuchsia-500/50 p-[1px] rounded-2xl">
                                         <div className="absolute inset-0 bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 opacity-20 animate-pulse" />
                                     </div>
 

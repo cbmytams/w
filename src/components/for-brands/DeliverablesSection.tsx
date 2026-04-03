@@ -38,7 +38,7 @@ export function DeliverablesSection() {
                     </div>
 
                     <RevealAnimation delay={0.4}>
-                        <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl p-12 text-center text-white">
+                        <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-12 text-center text-white">
                             <p className="text-3xl sm:text-4xl font-bold leading-tight">
                                 La campagne ne s&apos;arrête pas quand les posts sortent.<br />
                                 Elle commence quand vous comprenez ce qui marche.

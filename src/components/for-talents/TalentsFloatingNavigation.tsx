@@ -261,7 +261,7 @@ export function TalentsFloatingNavigation() {
                             exit="exit"
                             className="fixed inset-x-4 top-[10%] bottom-[15%] z-[200] flex flex-col items-center justify-center pointer-events-none"
                         >
-                            <div className="w-full h-full max-h-[520px] max-w-sm bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 rounded-[3rem] shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-6 sm:p-8 flex flex-col justify-between pointer-events-auto relative overflow-hidden">
+                            <div className="w-full h-full max-h-[520px] max-w-sm bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-6 sm:p-8 flex flex-col justify-between pointer-events-auto relative overflow-hidden">
 
                                 {/* The Living Glass Aura (Ambient Magenta Glow) */}
                                 <div className="absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-pink-500/20 dark:from-pink-500/10 to-transparent blur-[40px] pointer-events-none rounded-full" />

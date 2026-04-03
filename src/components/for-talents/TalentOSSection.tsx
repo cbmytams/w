@@ -37,7 +37,7 @@ export function TalentOSSection() {
                                     viewport={{ once: true, margin: "-120px" }}
                                     transition={{ duration: 0.5, delay: i * 0.05 }}
                                     className={cn(
-                                        "relative rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl p-6 shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)] overflow-hidden",
+                                        "relative rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl p-6 shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)] overflow-hidden",
                                         isWide && "md:col-span-2"
                                     )}
                                 >

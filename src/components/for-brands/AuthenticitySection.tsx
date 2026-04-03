@@ -36,11 +36,11 @@ export function AuthenticitySection() {
 
                     <div className="relative mx-auto w-full max-w-[560px]">
                         {/* Subtle panel to anchor the stack (Apple-style) */}
-                        <div className="absolute inset-0 -z-10 rounded-[36px] bg-white border border-slate-200 shadow-[0_30px_80px_rgba(15,23,42,0.08)] dark:bg-white/5 dark:border-white/10 dark:shadow-[0_30px_80px_rgba(0,0,0,0.35)]" />
+                        <div className="absolute inset-0 -z-10 rounded-2xl bg-white border border-slate-200 shadow-[0_30px_80px_rgba(15,23,42,0.08)] dark:bg-white/5 dark:border-white/10 dark:shadow-[0_30px_80px_rgba(0,0,0,0.35)]" />
                         <StaggerContainer className="space-y-5 p-6 lg:p-8">
                             {AUTHENTICITY_CARDS.map((card) => (
                                 <FadeIn key={card.id} delay={card.delay}>
-                                    <div className="group relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300/80 hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:hover:bg-white/10">
+                                    <div className="group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300/80 hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:hover:bg-white/10">
                                         <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-orange-500 via-pink-500 to-rose-500 opacity-70" />
                                         <div className={`absolute -top-10 -right-10 h-32 w-32 rounded-full blur-3xl opacity-0 transition-opacity duration-500 ${card.gradient} ${card.hover} group-hover:opacity-60`} />
 

@@ -64,7 +64,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                         aria-labelledby="estimator-modal-title"
                         tabIndex={-1}
                         ref={dialogRef}
-                        className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl bg-white rounded-3xl shadow-2xl z-[1050] overflow-hidden"
+                        className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl bg-white rounded-2xl shadow-2xl z-[1050] overflow-hidden"
                     >
                         <div className="p-8">
                             <div className="flex justify-between items-start mb-8">

@@ -26,7 +26,7 @@ export function IdentitySection() {
                     <div className="grid md:grid-cols-12 gap-8">
                         {/* Main Text Card */}
                         <RevealAnimation delay={0.1} className="md:col-span-7">
-                            <div className="bg-slate-50 dark:bg-white/5 backdrop-blur-xl rounded-3xl p-10 md:p-12 h-full border border-slate-200 dark:border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
+                            <div className="bg-slate-50 dark:bg-white/5 backdrop-blur-xl rounded-2xl p-10 md:p-12 h-full border border-slate-200 dark:border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
                                 <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-5">
                                     {TALENT_IDENTITY.subtitle}
                                 </h3>
@@ -59,7 +59,7 @@ export function IdentitySection() {
 
                         {/* Image Card */}
                         <RevealAnimation delay={0.2} className="md:col-span-5">
-                            <div className="relative h-full min-h-[460px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl bg-slate-50 dark:bg-white/5 backdrop-blur-xl">
+                            <div className="relative h-full min-h-[460px] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl bg-slate-50 dark:bg-white/5 backdrop-blur-xl">
                                 <div className="absolute inset-0 bg-[radial-gradient(280px_240px_at_20%_20%,rgba(236,72,153,0.18),transparent_60%)] dark:bg-[radial-gradient(280px_240px_at_20%_20%,rgba(236,72,153,0.25),transparent_60%)]" />
                                 <div className="absolute inset-0 bg-[radial-gradient(320px_260px_at_80%_80%,rgba(249,115,22,0.18),transparent_60%)] dark:bg-[radial-gradient(320px_260px_at_80%_80%,rgba(249,115,22,0.22),transparent_60%)]" />
                                 <div className="absolute inset-0 bg-[radial-gradient(rgba(15,23,42,0.05)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:22px_22px] opacity-40" />

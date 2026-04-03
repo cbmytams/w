@@ -19,7 +19,7 @@ export function TeamCard({ member }: TeamCardProps) {
         >
             <div
                 className={`
-          relative w-full h-full bg-[var(--background)] rounded-3xl overflow-hidden
+          relative w-full h-full bg-[var(--background)] rounded-2xl overflow-hidden
           border border-[var(--neutral-200)] dark:border-[var(--neutral-800)]
           shadow-lg dark:shadow-none
           transition-all duration-300 ease-out

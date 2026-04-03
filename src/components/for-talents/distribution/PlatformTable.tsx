@@ -111,7 +111,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                             transition={{ delay: index * 0.04 }}
                             onClick={() => setSelection({ id: platform.id, subCategoryId })}
                             className={cn(
-                                "group relative w-full text-left rounded-[20px] transition-all duration-300 overflow-hidden",
+                                "group relative w-full text-left rounded-xl transition-all duration-300 overflow-hidden",
                                 "border border-transparent hover:border-black/5 dark:hover:border-white/10",
                                 "hover:bg-black/[0.02] dark:hover:bg-white/[0.04]",
                                 isSelected && "bg-black/[0.03] dark:bg-white/[0.05] border-black/10 dark:border-white/10"
@@ -286,7 +286,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                             { label: "Support", value: selectedPlatform.metrics.support },
                                             { label: "Territoires", value: selectedPlatform.metrics.geo }
                                         ].map((item) => (
-                                            <div key={item.label} className="bg-slate-50 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 rounded-[20px] p-5">
+                                            <div key={item.label} className="bg-slate-50 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 rounded-xl p-5">
                                                 <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.1em]">
                                                     {item.label}
                                                 </div>

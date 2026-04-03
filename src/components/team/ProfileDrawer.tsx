@@ -183,7 +183,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 aria-labelledby="profile-drawer-title"
                                 tabIndex={-1}
                                 ref={modalRef}
-                                className="relative w-full max-w-[440px] max-h-[90vh] flex flex-col bg-white dark:bg-[#0b111a] shadow-2xl rounded-[36px] overflow-hidden sm:aspect-[9/16] md:aspect-auto"
+                                className="relative w-full max-w-[440px] max-h-[90vh] flex flex-col bg-white dark:bg-[#0b111a] shadow-2xl rounded-2xl overflow-hidden sm:aspect-[9/16] md:aspect-auto"
                             >
                                 {/* Noise Texture Overlay */}
                                 <div className="absolute inset-0 opacity-[0.03] z-[5] pointer-events-none"
@@ -239,7 +239,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                         <motion.div
                                             animate={shouldReduceMotion ? undefined : { y: [0, -8, 0], rotate: [3, 5, 3] }}
                                             transition={shouldReduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                                            className="w-full h-full rounded-[2rem] overflow-hidden shadow-2xl ring-4 ring-white/40 dark:ring-white/10"
+                                            className="w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/40 dark:ring-white/10"
                                         >
                                             <Image src={member.image} alt={member.name} fill sizes="128px" className="object-cover" />
                                         </motion.div>
@@ -364,7 +364,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                                 boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)",
                                                                 zIndex: 10
                                                             }}
-                                                            className="group p-5 rounded-3xl bg-slate-50/80 dark:bg-white/5 border border-transparent transition-all hover:bg-white dark:hover:bg-white/10 cursor-pointer transform-gpu"
+                                                            className="group p-5 rounded-2xl bg-slate-50/80 dark:bg-white/5 border border-transparent transition-all hover:bg-white dark:hover:bg-white/10 cursor-pointer transform-gpu"
                                                         >
                                                             <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 group-hover:rotate-[-5deg]", bgSoftClass)}>
                                                                 <item.icon className="w-6 h-6 stroke-[1.5]" style={{ color: primaryColor }} />

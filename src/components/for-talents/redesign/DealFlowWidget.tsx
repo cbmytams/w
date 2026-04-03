@@ -17,7 +17,7 @@ export function DealFlowWidget() {
                     initial={{ y: 20, opacity: 0, scale: 0.95 }}
                     whileInView={{ y: 0, opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6 }}
-                    className="bg-white/80 backdrop-blur-xl border border-white/40 p-5 rounded-3xl shadow-2xl shadow-purple-500/10 relative overflow-hidden group hover:scale-[1.02] transition-transform duration-500"
+                    className="bg-white/80 backdrop-blur-xl border border-white/40 p-5 rounded-2xl shadow-2xl shadow-purple-500/10 relative overflow-hidden group hover:scale-[1.02] transition-transform duration-500"
                 >
                     {/* Shimmer Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-shimmer" />
@@ -70,7 +70,7 @@ export function DealFlowWidget() {
                     initial={{ y: 40, opacity: 0, scale: 0.9 }}
                     whileInView={{ y: 0, opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="bg-white/90 backdrop-blur-xl border border-white/60 p-5 rounded-3xl shadow-xl shadow-pink-500/10 relative"
+                    className="bg-white/90 backdrop-blur-xl border border-white/60 p-5 rounded-2xl shadow-xl shadow-pink-500/10 relative"
                 >
                     <div className="flex justify-between items-start mb-4">
                         <div className="flex items-center gap-3">

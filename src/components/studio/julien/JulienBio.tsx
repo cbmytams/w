@@ -11,7 +11,7 @@ export function JulienBio() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
                     <FadeIn delay={0.1}>
-                        <div className="relative w-full max-w-md mx-auto aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                        <div className="relative w-full max-w-md mx-auto aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                             <Image
                                 src="/korea_house_paris_2024.png"
                                 alt="Julien Ardid"
@@ -20,7 +20,7 @@ export function JulienBio() {
                                 className="object-cover"
                             />
                             {/* Subtle inner overlay */}
-                            <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10" />
+                            <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
                         </div>
                     </FadeIn>
 

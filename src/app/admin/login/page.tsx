@@ -60,7 +60,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit} className="relative z-10 admin-glass-panel p-10 sm:p-12 w-full max-w-md mx-4 overflow-hidden group">
 
         {/* Subtle inner highlight */}
-        <div className="absolute inset-0 rounded-3xl border border-white/10 pointer-events-none mix-blend-overlay" />
+        <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none mix-blend-overlay" />
 
         <div className="relative z-20">
           <div className="flex justify-center mb-8">

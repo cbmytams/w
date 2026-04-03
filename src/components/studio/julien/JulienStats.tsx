@@ -34,7 +34,7 @@ export function JulienStats() {
                         <FadeIn key={stat.label} delay={index * 0.1}>
                             <motion.div
                                 whileHover={{ y: -5 }}
-                                className="p-6 md:p-8 rounded-[2rem] bg-zinc-900 border border-zinc-800 flex flex-col justify-between h-full min-h-[200px] shadow-2xl relative overflow-hidden group"
+                                className="p-6 md:p-8 rounded-2xl bg-zinc-900 border border-zinc-800 flex flex-col justify-between h-full min-h-[200px] shadow-2xl relative overflow-hidden group"
                             >
                                 {/* Hover Glow */}
                                 <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

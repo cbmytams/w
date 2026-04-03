@@ -141,7 +141,7 @@ export function PersonaSection() {
 
                     {/* Content */}
                     <RevealAnimation delay={0.2}>
-                        <div className="relative rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_28px_70px_rgba(0,0,0,0.2)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
+                        <div className="relative rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_28px_70px_rgba(0,0,0,0.2)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
                             <div className={`absolute inset-0 bg-gradient-to-br ${content.color} opacity-45 dark:opacity-70`} />
                             <div className="absolute inset-0 bg-[radial-gradient(600px_420px_at_10%_20%,rgba(236,72,153,0.12),transparent_60%)] dark:bg-[radial-gradient(600px_420px_at_10%_20%,rgba(236,72,153,0.18),transparent_60%)]" />
                             <div className="relative grid md:grid-cols-2 gap-12 items-center">

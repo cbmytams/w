@@ -19,7 +19,7 @@ export function CtaSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="relative p-12 sm:p-16 bg-gradient-to-br from-violet-600 to-fuchsia-600 rounded-3xl overflow-hidden shadow-2xl"
+                        className="relative p-12 sm:p-16 bg-gradient-to-br from-violet-600 to-fuchsia-600 rounded-2xl overflow-hidden shadow-2xl"
                     >
                         {/* Background Pattern */}
                         <div className="absolute inset-0 opacity-10">

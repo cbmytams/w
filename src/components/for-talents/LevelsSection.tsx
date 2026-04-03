@@ -258,7 +258,7 @@ export function LevelsSection() {
                                 initial="initial"
                                 animate="animate"
                                 exit="exit"
-                                className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 rounded-3xl p-8 md:p-10 overflow-hidden"
+                                className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 rounded-2xl p-8 md:p-10 overflow-hidden"
                             >
                                 {/* Gradient accent */}
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500" />

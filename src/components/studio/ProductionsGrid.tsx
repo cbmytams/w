@@ -45,7 +45,7 @@ export function ProductionsGrid() {
                         key={prod.id}
                         onClick={() => setSelectedId(prod.id)}
                         className={cn(
-                            "relative aspect-[4/5] sm:aspect-square md:aspect-auto md:min-h-[500px] lg:min-h-[600px] md:col-span-2 rounded-[3rem] overflow-hidden bg-black border border-white/5 transition-all shadow-2xl cursor-pointer"
+                            "relative aspect-[4/5] sm:aspect-square md:aspect-auto md:min-h-[500px] lg:min-h-[600px] md:col-span-2 rounded-2xl overflow-hidden bg-black border border-white/5 transition-all shadow-2xl cursor-pointer"
                         )}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.96 }}
@@ -59,7 +59,7 @@ export function ProductionsGrid() {
                             <div className="flex justify-between items-start">
                                 <motion.div
                                     layoutId={`icon-${prod.id}`}
-                                    className={cn("w-16 h-16 rounded-3xl flex items-center justify-center text-black shadow-lg bg-gradient-to-br", prod.gradient)}
+                                    className={cn("w-16 h-16 rounded-2xl flex items-center justify-center text-black shadow-lg bg-gradient-to-br", prod.gradient)}
                                 >
                                     <prod.icon className="w-8 h-8" strokeWidth={1.5} />
                                 </motion.div>
@@ -85,7 +85,7 @@ export function ProductionsGrid() {
                     {STUDIO_PRODUCTIONS.filter(p => p.comingSoon).map((prod) => (
                         <motion.div
                             key={prod.id}
-                            className="relative flex-1 min-h-[220px] md:min-h-0 rounded-[2.5rem] overflow-hidden bg-white/[0.02] border border-white/5 shadow-2xl backdrop-blur-2xl"
+                            className="relative flex-1 min-h-[220px] md:min-h-0 rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 shadow-2xl backdrop-blur-2xl"
                             transition={springTransition}
                         >
                             {/* Very faint background tint indicating brand color */}
@@ -138,7 +138,7 @@ export function ProductionsGrid() {
                             <motion.div
                                 layoutId={`card-${prod.id}`}
                                 key={prod.id}
-                                className="relative w-full max-w-[100vw] sm:max-w-6xl h-[95vh] md:h-[85vh] bg-[#0b111a] rounded-t-[2.5rem] sm:rounded-[3rem] overflow-hidden shadow-2xl flex flex-col ring-1 ring-white/10"
+                                className="relative w-full max-w-[100vw] sm:max-w-6xl h-[95vh] md:h-[85vh] bg-[#0b111a] rounded-t-[2.5rem] sm:rounded-2xl overflow-hidden shadow-2xl flex flex-col ring-1 ring-white/10"
                                 transition={springTransition}
                             >
                                 {/* HEADER - Clean, Apple-style */}
@@ -211,9 +211,9 @@ export function ProductionsGrid() {
                                             <div className="w-full relative">
                                                 {/* Primary Video / Featured - Vertical Phone Style */}
                                                 {prod.samples && prod.samples.length > 0 ? (
-                                                    <div className="relative w-full aspect-[9/16] rounded-[3rem] overflow-hidden shadow-2xl bg-black border-[8px] border-[#151515]">
+                                                    <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl bg-black border-[8px] border-[#151515]">
                                                         {/* Gloss illusion line */}
-                                                        <div className="absolute inset-0 z-10 pointer-events-none rounded-[2.5rem] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)]" />
+                                                        <div className="absolute inset-0 z-10 pointer-events-none rounded-2xl shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)]" />
 
                                                         <SequentialVideoPlayer
                                                             key={videoMode} // Force reset on mode change
@@ -223,7 +223,7 @@ export function ProductionsGrid() {
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <div className="w-full aspect-[9/16] rounded-[3rem] bg-white/5 border-[8px] border-[#151515] flex items-center justify-center text-white/20">
+                                                    <div className="w-full aspect-[9/16] rounded-2xl bg-white/5 border-[8px] border-[#151515] flex items-center justify-center text-white/20">
                                                         <div className="flex flex-col items-center gap-4">
                                                             <prod.icon className="w-12 h-12 opacity-20" />
                                                             <p className="text-sm font-medium">No Media Available</p>

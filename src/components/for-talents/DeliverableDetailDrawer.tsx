@@ -131,11 +131,11 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
           aria-modal="true"
           aria-labelledby="drawer-title"
           tabIndex={-1}
-          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-white/50 bg-white/40 backdrop-blur-[60px] saturate-[180%] shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform dark:border-white/10 dark:bg-[#1C1C1E]/40 dark:shadow-[0_24px_80px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-8 opacity-0 sm:translate-x-full sm:translate-y-0"
+          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-2xl border border-white/50 bg-white/40 backdrop-blur-[60px] saturate-[180%] shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform dark:border-white/10 dark:bg-[#1C1C1E]/40 dark:shadow-[0_24px_80px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-8 opacity-0 sm:translate-x-full sm:translate-y-0"
             } pointer-events-auto`}
         >
           {/* Subtle light leak for glass effect */}
-          <div className="pointer-events-none absolute -inset-px rounded-[2.5rem] border border-white/20 dark:border-white-[0.08]" />
+          <div className="pointer-events-none absolute -inset-px rounded-2xl border border-white/20 dark:border-white-[0.08]" />
           <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/20 dark:bg-purple-500/30 blur-[70px]" />
 
           <button
@@ -239,7 +239,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                   </div>
 
                   <div>
-                    <div className="rounded-3xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-[20px] dark:border-purple-400/20 dark:from-purple-500/10">
+                    <div className="rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-[20px] dark:border-purple-400/20 dark:from-purple-500/10">
                       <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-purple-700 dark:text-purple-300">
                         Cible
                       </span>

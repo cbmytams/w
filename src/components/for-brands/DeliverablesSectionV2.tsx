@@ -73,7 +73,7 @@ export function DeliverablesSectionV2() {
                     />
 
                     {/* THE ASSET TERMINAL */}
-                    <div className="bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5 grid lg:grid-cols-12 min-h-[600px]">
+                    <div className="bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 grid lg:grid-cols-12 min-h-[600px]">
 
                         {/* Sidebar (Master) */}
                         <div className="lg:col-span-4 bg-white/50 dark:bg-zinc-900/50 border-b lg:border-b-0 lg:border-r border-slate-200/50 dark:border-zinc-800 p-6 flex flex-col justify-between">

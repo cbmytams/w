@@ -101,7 +101,7 @@ export function CaseStudiesSection() {
                                 transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(i * 0.12) }}
                                 className="group cursor-pointer w-full"
                             >
-                                <div className="h-full bg-white dark:bg-zinc-900 rounded-[28px] overflow-hidden border border-slate-100 dark:border-zinc-800 shadow-sm hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                                <div className="h-full bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border border-slate-100 dark:border-zinc-800 shadow-sm hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 hover:-translate-y-2 flex flex-col">
                                     {/* Image Container */}
                                     <div className="relative h-48 sm:h-64 overflow-hidden shrink-0">
                                         <Image

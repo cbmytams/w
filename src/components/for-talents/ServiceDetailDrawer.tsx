@@ -133,7 +133,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
           aria-modal="true"
           aria-labelledby="service-drawer-title"
           tabIndex={-1}
-          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-[transform,opacity] duration-200 ease-out will-change-transform dark:border-white/[0.08] dark:bg-[#1C1C1E] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-3 opacity-0 sm:translate-x-full sm:translate-y-0"
+          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-[transform,opacity] duration-200 ease-out will-change-transform dark:border-white/[0.08] dark:bg-[#1C1C1E] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-3 opacity-0 sm:translate-x-full sm:translate-y-0"
             } pointer-events-auto`}
         >
           <div className="pointer-events-none absolute right-0 top-0 h-[200px] w-[200px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/[0.04] dark:bg-purple-500/[0.06]" />

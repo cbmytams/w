@@ -80,7 +80,7 @@ function PillarCard({ pillar, index }: { pillar: typeof VALUE_PILLARS[number]; i
         >
             {/* Glow Effect - Brand Heat */}
             <motion.div
-                className="absolute -inset-1 rounded-3xl blur-2xl transition-all duration-500"
+                className="absolute -inset-1 rounded-2xl blur-2xl transition-all duration-500"
                 style={{
                     background: `radial-gradient(circle, ${pillar.glowColor} 0%, transparent 70%)`,
                     opacity: isHovered ? 0.6 : 0
@@ -89,7 +89,7 @@ function PillarCard({ pillar, index }: { pillar: typeof VALUE_PILLARS[number]; i
 
             {/* Card - Glassmorphism */}
             <div className={cn(
-                "relative h-full rounded-3xl overflow-hidden transition-all duration-500",
+                "relative h-full rounded-2xl overflow-hidden transition-all duration-500",
                 "bg-white/90 dark:bg-zinc-900/80 backdrop-blur-xl",
                 "border border-slate-200/50 dark:border-white/10",
                 "hover:shadow-2xl hover:-translate-y-2"

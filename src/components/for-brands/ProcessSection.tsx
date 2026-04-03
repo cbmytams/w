@@ -85,7 +85,7 @@ export function ProcessSection() {
                                             }
                                             className={cn(
                                                 "ml-16 md:ml-0 w-full md:w-5/12 gpu-accelerated",
-                                                "p-8 rounded-3xl",
+                                                "p-8 rounded-2xl",
                                                 "bg-white/70 dark:bg-zinc-900/70 backdrop-blur-sm",
                                                 "border border-slate-200/50 dark:border-zinc-800",
                                                 "hover:border-orange-500/25 hover:bg-white/80 dark:hover:bg-zinc-900/80 hover:shadow-xl hover:shadow-orange-500/8",
