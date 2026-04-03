@@ -2,10 +2,8 @@
 
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { Users, Camera, BarChart3, ArrowRight, Check } from "lucide-react"
+import { Users, Camera, BarChart3, Check } from "lucide-react"
 import { Container } from "@/components/ui/container"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { EASING } from "@/lib/easing"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
@@ -243,25 +241,6 @@ export function ValuePropositionSection() {
                         ))}
                     </div>
 
-                    {/* Bottom CTA - Brand Heat Button */}
-                    <motion.div
-                        initial={disableMotion ? false : { opacity: 0, y: 30 }}
-                        whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
-                        viewport={disableMotion ? undefined : viewport}
-                        transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.22) }}
-                        className="text-center"
-                    >
-                        <Button
-                            size="lg"
-                            asChild
-                            className="rounded-full bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 text-white font-semibold px-8 h-14 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300 hover:scale-105"
-                        >
-                            <Link href="#case-studies">
-                                Découvrir nos réalisations
-                                <ArrowRight className="w-5 h-5 ml-2" />
-                            </Link>
-                        </Button>
-                    </motion.div>
                 </div>
             </Container>
         </section>
