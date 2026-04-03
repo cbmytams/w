@@ -15,6 +15,8 @@ export function ServicesFaqAccordion({ items }: { items: FaqItem[] }) {
         <div className="space-y-4">
             {items.map((item, i) => {
                 const isOpen = openIndex === i
+                const panelId = `faq-services-panel-${i}`
+                const triggerId = `faq-services-trigger-${i}`
                 return (
                     <motion.div
                         key={i}
@@ -30,8 +32,12 @@ export function ServicesFaqAccordion({ items }: { items: FaqItem[] }) {
                         )}
                     >
                         <button
+                            id={triggerId}
+                            type="button"
                             onClick={() => setOpenIndex(isOpen ? null : i)}
-                            className="w-full flex items-center justify-between p-6 md:p-8 text-left"
+                            aria-expanded={isOpen}
+                            aria-controls={panelId}
+                            className="w-full flex items-center justify-between p-6 md:p-8 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 rounded-2xl"
                         >
                             <span className={cn(
                                 "text-lg md:text-xl font-medium transition-colors pr-8",
@@ -52,6 +58,9 @@ export function ServicesFaqAccordion({ items }: { items: FaqItem[] }) {
                         <AnimatePresence>
                             {isOpen && (
                                 <motion.div
+                                    id={panelId}
+                                    role="region"
+                                    aria-labelledby={triggerId}
                                     initial={{ height: 0, opacity: 0 }}
                                     animate={{ height: "auto", opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}

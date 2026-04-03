@@ -73,6 +73,8 @@ export function FaqSection() {
 }
 
 function FaqItem({ item, isOpen, onClick, index }: { item: { q: string, a: React.ReactNode }, isOpen: boolean, onClick: () => void, index: number }) {
+    const panelId = `faq-brands-panel-${index}`
+    const triggerId = `faq-brands-trigger-${index}`
     return (
         <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -87,8 +89,12 @@ function FaqItem({ item, isOpen, onClick, index }: { item: { q: string, a: React
             )}
         >
             <button
+                id={triggerId}
+                type="button"
                 onClick={onClick}
-                className="w-full flex items-center justify-between p-6 md:p-8 text-left"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                className="w-full flex items-center justify-between p-6 md:p-8 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 rounded-2xl"
             >
                 <span className={cn(
                     "text-lg md:text-xl font-medium transition-colors pr-8",
@@ -109,6 +115,9 @@ function FaqItem({ item, isOpen, onClick, index }: { item: { q: string, a: React
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={triggerId}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}

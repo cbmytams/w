@@ -31,7 +31,7 @@ export function StatCard({
             </div>
 
             <div className="flex items-baseline gap-3 relative z-10">
-                <div className="text-4xl font-display font-bold text-white tracking-tight">{value}</div>
+                <div className="text-4xl font-heading font-bold text-white tracking-tight">{value}</div>
                 {trend && (
                     <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${trendPositive ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'}`}>
                         {trend}

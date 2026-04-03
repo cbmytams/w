@@ -83,6 +83,7 @@ export function SmartDistributionTable() {
                                     alt={partner.name}
                                     width={24}
                                     height={24}
+                                    sizes="24px"
                                     className="w-full h-full object-contain brightness-0 dark:brightness-200 opacity-80"
                                 />
                             </div>

@@ -49,7 +49,7 @@ export function DeliverablesSection() {
                                 <div className="flex flex-col h-full relative z-10">
                                     {/* Top Row: Huge Icon + Minimal Arrow */}
                                     <div className="flex justify-between items-start mb-auto w-full">
-                                        <div className="text-[42px] leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left">
+                                        <div className="text-4xl leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left">
                                             {item.icon}
                                         </div>
                                         {/* Always-visible subtle affordance (fixes mobile non-clickability issue), highlights on hover */}
@@ -60,7 +60,7 @@ export function DeliverablesSection() {
 
                                     {/* Bottom Content: Ultra Clean Typography */}
                                     <div className="mt-12">
-                                        <h3 className="text-[22px] font-bold tracking-tight text-slate-900 dark:text-white mb-2 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
+                                        <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white mb-2 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
                                             {item.title}
                                         </h3>
                                         <p className="text-[14px] font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">

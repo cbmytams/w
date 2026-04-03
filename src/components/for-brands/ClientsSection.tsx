@@ -13,6 +13,7 @@ function LogoCard({ name, logoLight }: { name: string; logoLight: string }) {
                 alt={name}
                 width={120}
                 height={40}
+                sizes="120px"
                 className="h-8 w-auto object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
             />
         </div>

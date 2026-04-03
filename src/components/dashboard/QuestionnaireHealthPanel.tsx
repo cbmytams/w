@@ -83,7 +83,7 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
                 <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-2">
                         <StatusIcon className={`w-6 h-6 ${statusColor}`} />
-                        <h2 className="text-2xl font-bold font-display text-white tracking-tight">Status d'Intégrité</h2>
+                        <h2 className="text-2xl font-bold font-heading text-white tracking-tight">Status d'Intégrité</h2>
                     </div>
                     <p className="text-sm text-slate-400">Scan complet de la base de données et des correspondances avec le schéma.</p>
                 </div>

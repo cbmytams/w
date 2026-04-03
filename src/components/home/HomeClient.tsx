@@ -151,8 +151,7 @@ export function HomeClient() {
                                     </div>
 
                                     <span
-                                        className="text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors duration-300"
-                                        style={{ fontFamily: "var(--font-heading)" }}
+                                        className="font-heading text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors duration-300"
                                     >
                                         {option.label}
                                     </span>

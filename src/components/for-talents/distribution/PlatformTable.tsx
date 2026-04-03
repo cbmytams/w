@@ -128,6 +128,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                                 alt={platform.name}
                                                 width={28}
                                                 height={28}
+                                                sizes="28px"
                                                 className="w-full h-full max-w-[28px] max-h-[28px] object-contain transition-transform duration-300 group-hover:scale-110"
                                             />
                                         ) : (
@@ -236,7 +237,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                 <div className="flex items-center gap-4">
                                     <div className="w-14 h-14 rounded-[14px] bg-slate-50 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center justify-center">
                                         {selectedPlatform.logo ? (
-                                            <Image src={selectedPlatform.logo} alt={selectedPlatform.name} width={32} height={32} className="object-contain" />
+                                            <Image src={selectedPlatform.logo} alt={selectedPlatform.name} width={32} height={32} sizes="32px" className="object-contain" />
                                         ) : (
                                             <Music className="w-6 h-6 text-slate-400" />
                                         )}
