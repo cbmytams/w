@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { BRAND_HERO_CONTENT } from "@/constants/brand-additions"
 import {
     MainPerformanceModule,
-    FinancialCoreModule,
     TalentStreamModule,
     ContentReactorModule
 } from "./HeroWidgets"
@@ -114,12 +113,7 @@ export function BrandHeroV2() {
                                 <MainPerformanceModule />
                             </div>
 
-                            {/* 2. Financial Core (Top-Right) */}
-                            <div className="col-span-4 row-span-2 z-20 mt-8 -ml-4">
-                                <FinancialCoreModule />
-                            </div>
-
-                            {/* 3. Talent Stream (Mid-Right) */}
+                            {/* 2. Talent Stream (Mid-Right) */}
                             <div className="col-span-2 row-span-3 z-30 -ml-12 mt-4 h-[120%]">
                                 <TalentStreamModule />
                             </div>
