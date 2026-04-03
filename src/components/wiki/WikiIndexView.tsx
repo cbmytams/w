@@ -39,7 +39,7 @@ export default function WikiIndexView({ articles }: { articles: WikiArticleSumma
     <div
       id="wiki-root"
       className="min-h-screen font-sans flex flex-col"
-      style={{ color: "var(--wiki-ink)" }}
+      style={{ color: "var(--wiki-ink)", backgroundColor: "var(--wiki-bg)" }}
     >
       <WikiSearchDialog articles={articles} />
       <WikiNavBar
