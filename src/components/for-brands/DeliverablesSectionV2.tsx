@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Users, FileVideo, BarChart3, ShieldCheck, Zap, CheckCircle2 } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/common/SectionHeading"
+import { EASING } from "@/lib/easing"
 
 const TERMINAL_TABS = [
     {
@@ -73,12 +74,12 @@ export function DeliverablesSectionV2() {
                     />
 
                     {/* THE ASSET TERMINAL */}
-                    <div className="bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl border border-gray-200/50 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5 grid lg:grid-cols-12 min-h-[600px]">
+                    <div className="bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl border border-slate-200/50 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 grid lg:grid-cols-12 min-h-[600px]">
 
                         {/* Sidebar (Master) */}
-                        <div className="lg:col-span-4 bg-white/50 dark:bg-zinc-900/50 border-b lg:border-b-0 lg:border-r border-gray-200/50 dark:border-zinc-800 p-6 flex flex-col justify-between">
+                        <div className="lg:col-span-4 bg-white/50 dark:bg-zinc-900/50 border-b lg:border-b-0 lg:border-r border-slate-200/50 dark:border-zinc-800 p-6 flex flex-col justify-between">
                             <div>
-                                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6 px-4">
+                                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 px-4">
                                     Explorer les livrables
                                 </h3>
                                 <div className="space-y-2">
@@ -88,10 +89,10 @@ export function DeliverablesSectionV2() {
                                             onClick={() => setActiveTab(tab)}
                                             className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl text-left transition-all duration-300 group ${activeTab.id === tab.id
                                                     ? "bg-white dark:bg-zinc-800 shadow-lg text-orange-600 dark:text-orange-400 scale-[1.02]"
-                                                    : "hover:bg-white/50 dark:hover:bg-zinc-800/50 text-gray-600 dark:text-gray-400"
+                                                    : "hover:bg-white/50 dark:hover:bg-zinc-800/50 text-slate-600 dark:text-slate-400"
                                                 }`}
                                         >
-                                            <div className={`p-2 rounded-lg transition-colors ${activeTab.id === tab.id ? "bg-orange-100 dark:bg-orange-900/20" : "bg-gray-100 dark:bg-zinc-800 group-hover:bg-white"
+                                            <div className={`p-2 rounded-lg transition-colors ${activeTab.id === tab.id ? "bg-orange-100 dark:bg-orange-900/20" : "bg-slate-100 dark:bg-zinc-800 group-hover:bg-white"
                                                 }`}>
                                                 <tab.icon className="w-5 h-5" />
                                             </div>
@@ -120,18 +121,18 @@ export function DeliverablesSectionV2() {
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
-                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                    transition={{ duration: 0.4, ease: EASING.easeOut }}
                                     className="h-full flex flex-col justify-center"
                                 >
-                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-500 dark:text-gray-400 text-xs font-mono mb-8 w-fit">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-slate-400 text-xs font-mono mb-8 w-fit">
                                         <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                                         TERMINAL_VIEW : {activeTab.id.toUpperCase()}
                                     </div>
 
-                                    <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                                    <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-6">
                                         {activeTab.title}
                                     </h2>
-                                    <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-2xl">
+                                    <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-10 max-w-2xl">
                                         {activeTab.desc}
                                     </p>
 
@@ -139,19 +140,19 @@ export function DeliverablesSectionV2() {
                                         {activeTab.features.map((feature, i) => (
                                             <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-white/40 dark:bg-zinc-800/40 border border-white/50 dark:border-zinc-700/50">
                                                 <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
-                                                <span className="font-medium text-gray-800 dark:text-gray-200">{feature}</span>
+                                                <span className="font-medium text-slate-800 dark:text-slate-200">{feature}</span>
                                             </div>
                                         ))}
                                     </div>
 
                                     {/* Visual Representation (Abstract) */}
-                                    <div className="mt-auto pt-8 border-t border-gray-100 dark:border-zinc-800 flex justify-between items-center opacity-60">
+                                    <div className="mt-auto pt-8 border-t border-slate-100 dark:border-zinc-800 flex justify-between items-center opacity-60">
                                         <div className="flex -space-x-2">
                                             {[1, 2, 3].map(i => (
-                                                <div key={i} className="w-8 h-8 rounded-full bg-gray-200 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900" />
+                                                <div key={i} className="w-8 h-8 rounded-full bg-slate-200 dark:bg-zinc-700 border-2 border-white dark:border-zinc-900" />
                                             ))}
                                         </div>
-                                        <div className="text-xs font-mono text-gray-400">
+                                        <div className="text-xs font-mono text-slate-400">
                                             ID: {activeTab.terminalId}
                                         </div>
                                     </div>

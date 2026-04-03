@@ -6,21 +6,12 @@ import { Plus, Minus, Sparkles } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { TALENT_FAQ } from "@/constants"
 import { cn } from "@/lib/utils"
-
-import { LegalHubContent } from "@/components/legal/LegalHubContent"
-
-const LEGAL_ITEMS = [
-    {
-        q: "Mentions Légales & Confidentialité",
-        a: <LegalHubContent />
-    }
-]
+import { EASING } from "@/lib/easing"
 
 export function FaqSection() {
     const [openIndex, setOpenIndex] = useState<number | null>(0)
 
-    // Combine standard FAQ with Legal Items
-    const allItems = [...TALENT_FAQ, ...LEGAL_ITEMS]
+    const allItems = TALENT_FAQ
 
     return (
         <section id="faq" className="py-24 lg:py-32 px-4 relative overflow-hidden bg-transparent z-10">
@@ -71,6 +62,8 @@ export function FaqSection() {
 }
 
 function FaqItem({ item, isOpen, onClick, index }: { item: { q: string, a: React.ReactNode }, isOpen: boolean, onClick: () => void, index: number }) {
+    const panelId = `faq-talents-panel-${index}`
+    const triggerId = `faq-talents-trigger-${index}`
     return (
         <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -85,8 +78,12 @@ function FaqItem({ item, isOpen, onClick, index }: { item: { q: string, a: React
             )}
         >
             <button
+                id={triggerId}
+                type="button"
                 onClick={onClick}
-                className="w-full flex items-center justify-between p-6 md:p-8 text-left"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                className="w-full flex items-center justify-between p-6 md:p-8 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 rounded-2xl"
             >
                 <span className={cn(
                     "text-lg md:text-xl font-medium transition-colors pr-8",
@@ -107,10 +104,13 @@ function FaqItem({ item, isOpen, onClick, index }: { item: { q: string, a: React
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={triggerId}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ duration: 0.3, ease: EASING.easeInOut }}
                     >
                         <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0">
                             <div className="text-base leading-relaxed text-slate-600 dark:text-slate-400">

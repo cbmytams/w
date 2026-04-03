@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react"
 import { motion as m, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion"
+import { SPRING } from "@/lib/design-tokens"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
+import { EASING } from "@/lib/easing"
 import {
     getBackgroundRuntimeProfile,
     shouldAnimateAmbientPhase,
@@ -41,7 +43,7 @@ type BubblePreset = {
 const PALETTES: Record<BackgroundFlowVariant, BackgroundPalette> = {
     brands: {
         baseLight: "#fff7f1",
-        baseDark: "#07080c",
+        baseDark: "#0b111a",
         phaseLight:
             "linear-gradient(180deg, rgba(255, 252, 249, 0.98) 0%, rgba(255, 247, 241, 0.95) 22%, rgba(255, 241, 232, 0.90) 42%, rgba(252, 228, 211, 0.86) 58%, rgba(249, 115, 22, 0.12) 72%, rgba(236, 72, 153, 0.08) 84%, rgba(255, 248, 243, 0.94) 93%, rgba(255, 252, 249, 0.98) 100%)",
         phaseDark:
@@ -57,7 +59,7 @@ const PALETTES: Record<BackgroundFlowVariant, BackgroundPalette> = {
     },
     talents: {
         baseLight: "#f8f7ff",
-        baseDark: "#050508",
+        baseDark: "#0b111a",
         phaseLight:
             "linear-gradient(180deg, rgba(250, 249, 255, 0.98) 0%, rgba(245, 242, 255, 0.95) 22%, rgba(239, 234, 255, 0.90) 44%, rgba(226, 218, 255, 0.86) 58%, rgba(124, 58, 237, 0.14) 72%, rgba(79, 70, 229, 0.10) 84%, rgba(248, 246, 255, 0.96) 100%)",
         phaseDark:
@@ -295,9 +297,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
     }, [])
 
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 70,
-        damping: 24,
-        mass: 0.7,
+        ...SPRING.gentle,
     })
 
     const motion = FLOW_MOTION[variant]
@@ -395,7 +395,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
 
             <m.div
                 animate={phaseAnimation}
-                transition={allowAmbientAnimation ? { duration: motion.phaseDuration, repeat: Infinity, ease: "easeInOut" } : undefined}
+                transition={allowAmbientAnimation ? { duration: motion.phaseDuration, repeat: Infinity, ease: EASING.easeInOut } : undefined}
                 style={{
                     backgroundImage: palette.phaseLight,
                     backgroundSize: "100% 220%",
@@ -406,7 +406,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
             />
             <m.div
                 animate={phaseAnimation}
-                transition={allowAmbientAnimation ? { duration: motion.phaseDuration, repeat: Infinity, ease: "easeInOut" } : undefined}
+                transition={allowAmbientAnimation ? { duration: motion.phaseDuration, repeat: Infinity, ease: EASING.easeInOut } : undefined}
                 style={{
                     backgroundImage: palette.phaseDark,
                     backgroundSize: "100% 220%",
@@ -424,7 +424,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
                 transition={allowAmbientAnimation ? {
                     duration: motion.auroraADuration,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: EASING.easeInOut,
                 } : undefined}
                 style={{
                     backgroundImage: palette.auroraA,
@@ -442,7 +442,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
                 transition={allowAmbientAnimation ? {
                     duration: motion.auroraBDuration,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: EASING.easeInOut,
                     delay: 2,
                 } : undefined}
                 style={{
@@ -482,7 +482,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
                         transition={allowBubbleMotion ? {
                             duration: bubble.duration + (useMobileLiteMode ? 4 : 0),
                             repeat: Infinity,
-                            ease: "easeInOut",
+                            ease: EASING.easeInOut,
                             delay: bubble.delay,
                         } : undefined}
                         className="rounded-full gpu-accelerated mix-blend-multiply dark:mix-blend-screen"
@@ -510,7 +510,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
                         ? {
                             duration: variant === "brands" ? 34 : 26,
                             repeat: Infinity,
-                            ease: "easeInOut",
+                            ease: EASING.easeInOut,
                         }
                         : undefined}
                     style={{
@@ -533,7 +533,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
                 transition={allowGlowPulse ? {
                     duration: 12,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: EASING.easeInOut,
                 } : undefined}
                 className={glowLayerClasses.first}
             >
@@ -556,7 +556,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
                 transition={allowGlowPulse ? {
                     duration: 10,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: EASING.easeInOut,
                     delay: 1.5,
                 } : undefined}
                 className={glowLayerClasses.second}
@@ -580,7 +580,7 @@ export function BackgroundFlow({ variant = "brands", intensity = "base" }: Backg
                 transition={allowGlowPulse ? {
                     duration: 14,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: EASING.easeInOut,
                     delay: 3,
                 } : undefined}
                 className={glowLayerClasses.third}

@@ -25,32 +25,23 @@ function StaticBackground() {
     )
 }
 
-// The RefinedParticlesBackground is explicitly imported and SSR safe natively
-
-// V2 Premium Icon Mapping - Advanced Jobs/Ive conceptual approach:
-// We strip away literal utility (cliché human, palette, or megaphone) and replace it with pure essence.
 const ICONS: Record<string, LucideIcon> = {
-    Sparkles: Fingerprint, // Talents = Authenticity, individual DNA, unique personal branding.
-    Building2: Aperture,   // Studio = The lens, focus, light capture, surgical precision of craft.
-    Briefcase: Globe,      // Brands = Macro scale, global reach, infinite brand ecosystem and orbit.
+    Sparkles: Fingerprint,
+    Building2: Aperture,
+    Briefcase: Globe,
 };
 
-/**
- * Homepage - Client Component logic
- * Separated from page.tsx to allow the route to be a Server Component
- */
 export function HomeClient() {
     const router = useRouter()
     const prefersReducedMotion = useReducedMotion()
     const [showParticles, setShowParticles] = React.useState(false)
     const [enableBackground, setEnableBackground] = React.useState(() => {
-        // Initialize synchronously on the client to prevent flash
         if (typeof window !== "undefined") {
             const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
             const saveData = connection?.saveData === true
             return !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !saveData
         }
-        return true // Default server value (replaced by next/dynamic loading state anyway)
+        return true
     })
 
     React.useEffect(() => {
@@ -98,11 +89,9 @@ export function HomeClient() {
     }, [router])
 
     return (
-        <div id="home-root" className="min-h-screen w-full bg-black flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
+        <div id="home-root" className="min-h-screen w-full bg-[#050510] flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
 
-            {/* ============================================
-                SPACE BACKGROUND
-               ============================================ */}
+            {/* SPACE BACKGROUND */}
             <StaticBackground />
             {enableBackground && showParticles && <DeferredParticlesBackground />}
 
@@ -112,11 +101,9 @@ export function HomeClient() {
                 style={{ backgroundImage: "url('/noise.svg')", backgroundRepeat: "repeat" }}
             />
 
-            {/* ============================================
-                MAIN STAGE
-               ============================================ */}
+            {/* MAIN STAGE */}
             <main id="main-content" className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-6 py-20">
-                <h1 className="sr-only">Agence d'influence marketing – Studio créatif</h1>
+                <h1 className="sr-only">Agence d&apos;influence marketing – Studio cr&eacute;atif</h1>
 
                 {/* LOGO - Medium with Glow Effect */}
                 <motion.div
@@ -125,7 +112,6 @@ export function HomeClient() {
                     animate={{ y: 0 }}
                     transition={{ duration: DURATION.cinematic, ease: EASING.premium }}
                 >
-                    {/* Pulsing Glow */}
                     {!prefersReducedMotion && (
                         <motion.div
                             className="absolute inset-0 -inset-x-8 -inset-y-4 bg-gradient-to-r from-orange-500/20 via-pink-500/20 to-purple-500/20 blur-2xl rounded-full"
@@ -160,26 +146,21 @@ export function HomeClient() {
                                     onTouchStart={() => prefetchRoute(option.route)}
                                     className="group relative flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.08] hover:border-white/25 hover:scale-105 active:scale-95 transition-all duration-300"
                                 >
-                                    {/* Icon */}
                                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center group-hover:from-orange-500/30 group-hover:to-pink-500/30 transition-all duration-500">
                                         <IconComponent className="w-4 h-4 text-white/60 group-hover:text-white transition-colors duration-300" />
                                     </div>
 
-                                    {/* Label */}
                                     <span
-                                        className="text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors duration-300"
-                                        style={{ fontFamily: "var(--font-heading)" }}
+                                        className="font-heading text-white/80 text-sm font-medium tracking-wide group-hover:text-white transition-colors duration-300"
                                     >
                                         {option.label}
                                     </span>
 
-                                    {/* Arrow on Hover */}
                                     <ArrowUpRight
                                         className="w-4 h-4 text-white/0 group-hover:text-white/60 -ml-1 group-hover:ml-0 transition-all duration-300"
                                         strokeWidth={2}
                                     />
 
-                                    {/* Glow Effect */}
                                     <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${option.gradient} opacity-0 group-hover:opacity-100 blur-xl -z-10 transition-opacity duration-500`} />
                                 </Link>
                             </motion.div>
@@ -187,16 +168,12 @@ export function HomeClient() {
                     })}
                 </div>
 
-                {/* ============================================
-                    WIKI CTA — Floating Glass Portal
-                   ============================================ */}
+                {/* WIKI CTA */}
                 <WikiPremiumCTA />
 
             </main>
 
-            {/* ============================================
-                FOOTER - Minimal Centered
-               ============================================ */}
+            {/* FOOTER */}
             <motion.footer
                 className="relative z-10 w-full flex justify-center items-center py-6"
                 initial={{ opacity: 0 }}
@@ -204,9 +181,9 @@ export function HomeClient() {
                 transition={{ delay: 1.5, duration: 1 }}
             >
                 <div className="text-white/25 text-[10px] font-mono tracking-[0.4em] uppercase">
-                    © 2026 Wafia
+                    &copy; 2026 Wafia
                 </div>
-            </motion.footer >
-        </div >
+            </motion.footer>
+        </div>
     )
 }

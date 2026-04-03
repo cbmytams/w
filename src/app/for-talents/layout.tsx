@@ -11,16 +11,16 @@ export const metadata: Metadata = {
         canonical: sitePaths.forTalents,
     },
     openGraph: {
-        title: "Wafia | Talent Management 2.0",
-        description: "Tu crées. Nous on t'aide à construire autour. Sans te cramer. Sans vendre ton âme.",
+        title: "Wafia | Talent Management & Accompagnement Créateurs",
+        description: "Management de talents, structure business et production studio pour créateurs, artistes et comédiens. Accompagnement 360° par Wafia.",
         url: sitePaths.forTalents,
         siteName: siteConfig.name,
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Wafia | Talent Management 2.0",
-        description: "Tu crées. Nous on t'aide à construire autour. Sans te cramer. Sans vendre ton âme."
+        title: "Wafia | Talent Management & Accompagnement Créateurs",
+        description: "Management de talents, structure business et production studio pour créateurs, artistes et comédiens. Accompagnement 360° par Wafia."
     }
 }
 

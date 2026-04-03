@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { EASING } from "@/lib/easing"
 
 interface FloatingMetricsProps {
     value: string
@@ -24,7 +25,7 @@ export function FloatingMetrics({ value, label, delay = 0 }: FloatingMetricsProp
                 transition={{
                     duration: 4,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: EASING.easeInOut,
                 }}
                 className="text-3xl font-bold bg-gradient-to-r from-pink-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent"
                 style={{ transformStyle: "preserve-3d" }}

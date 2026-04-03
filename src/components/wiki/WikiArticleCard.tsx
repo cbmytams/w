@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { SPRING } from "@/lib/design-tokens";
 import Link from "next/link";
 
 interface WikiArticleSummary {
@@ -20,7 +21,7 @@ export default function WikiArticleCard({ article, index }: WikiArticleCardProps
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30, delay: index * 0.05 }}
+            transition={{ type: "spring", ...SPRING.responsive, delay: index * 0.05 }}
             className="group border-b relative focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 rounded-sm"
             style={{ borderColor: 'var(--wiki-line)' }}
         >

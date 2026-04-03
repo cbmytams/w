@@ -3,8 +3,10 @@
 import { useState, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Check, ArrowRight, Zap, Target, Rocket } from "lucide-react"
+import { SPRING } from "@/lib/design-tokens"
 import { Container } from "@/components/ui/container"
 import { TALENT_TIMELINE } from "@/constants"
+import { EASING } from "@/lib/easing"
 
 /**
  * LevelsSection — Premium Horizontal Timeline
@@ -46,7 +48,7 @@ export function LevelsSection() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { type: "spring" as const, stiffness: 100, damping: 15 }
+            transition: { type: "spring" as const, ...SPRING.gentle }
         }
     }
 
@@ -56,7 +58,7 @@ export function LevelsSection() {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
-            transition: { type: "spring" as const, stiffness: 80, damping: 20 }
+            transition: { type: "spring" as const, ...SPRING.gentle }
         },
         exit: {
             opacity: 0,
@@ -77,7 +79,7 @@ export function LevelsSection() {
         animate: {
             opacity: 1,
             y: 0,
-            transition: { type: "spring" as const, stiffness: 120, damping: 15 }
+            transition: { type: "spring" as const, ...SPRING.gentle }
         }
     }
 
@@ -101,7 +103,7 @@ export function LevelsSection() {
                         <motion.span
                             initial={{ scale: 0, rotate: -180 }}
                             whileInView={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
+                            transition={{ type: "spring", ...SPRING.responsive, delay: 0.2 }}
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 text-sm font-medium mb-6"
                         >
                             <Rocket className="w-4 h-4" />
@@ -135,7 +137,7 @@ export function LevelsSection() {
                                 initial={{ scaleX: 0 }}
                                 animate={{
                                     scaleX: activePhaseIndex / (phases.length - 1),
-                                    transition: { type: "spring", stiffness: 100, damping: 20 }
+                                    transition: { type: "spring", ...SPRING.gentle }
                                 }}
                             />
                         </div>
@@ -186,7 +188,7 @@ export function LevelsSection() {
                                                     transition={{
                                                         duration: 2,
                                                         repeat: Infinity,
-                                                        ease: "easeOut"
+                                                        ease: EASING.easeOut
                                                     }}
                                                 />
                                             )}
@@ -258,7 +260,7 @@ export function LevelsSection() {
                                 initial="initial"
                                 animate="animate"
                                 exit="exit"
-                                className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 rounded-3xl p-8 md:p-10 overflow-hidden"
+                                className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 rounded-2xl p-8 md:p-10 overflow-hidden"
                             >
                                 {/* Gradient accent */}
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500" />
@@ -350,20 +352,25 @@ export function LevelsSection() {
                                 {/* Navigation */}
                                 <div className="flex items-center justify-between mt-8 pt-6 border-t border-slate-200/50 dark:border-white/5">
                                     <button
+                                        type="button"
                                         onClick={() => goToPhase(Math.max(0, activePhaseIndex - 1))}
                                         disabled={activePhaseIndex === 0}
-                                        className="flex items-center gap-2 px-4 py-2 rounded-xl text-slate-600 dark:text-white/60 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                                        className="flex items-center gap-2 px-4 py-2 rounded-xl text-slate-600 dark:text-white/60 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500"
                                     >
                                         <ArrowRight className="w-4 h-4 rotate-180" />
                                         Précédent
                                     </button>
 
-                                    <div className="flex gap-2">
-                                        {phases.map((_, i) => (
+                                    <div className="flex gap-2" role="tablist" aria-label="Navigation des phases">
+                                        {phases.map((phase, i) => (
                                             <button
                                                 key={i}
+                                                type="button"
+                                                role="tab"
+                                                aria-selected={i === activePhaseIndex}
+                                                aria-label={phase.name ?? `Phase ${i + 1}`}
                                                 onClick={() => goToPhase(i)}
-                                                className={`w-2 h-2 rounded-full transition-all ${i === activePhaseIndex
+                                                className={`w-2 h-2 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 ${i === activePhaseIndex
                                                     ? 'w-6 bg-violet-500'
                                                     : 'bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/40'
                                                     }`}
@@ -372,9 +379,10 @@ export function LevelsSection() {
                                     </div>
 
                                     <button
+                                        type="button"
                                         onClick={() => goToPhase(Math.min(phases.length - 1, activePhaseIndex + 1))}
                                         disabled={activePhaseIndex === phases.length - 1}
-                                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 text-white font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
+                                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 text-white font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500"
                                     >
                                         Suivant
                                         <ArrowRight className="w-4 h-4" />

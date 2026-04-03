@@ -58,8 +58,8 @@ export default function PrivacyPolicy() {
             </LegalSection>
 
             <LegalSection title="3. Vos droits & Contact">
-                <div className="relative bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] border border-violet-500/20 dark:border-violet-400/20 rounded-[2.5rem] p-8 md:p-10">
-                    <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-violet-500/10 to-transparent dark:from-violet-500/10 pointer-events-none" />
+                <div className="relative bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] border border-violet-500/20 dark:border-violet-400/20 rounded-2xl p-8 md:p-10">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-500/10 to-transparent dark:from-violet-500/10 pointer-events-none" />
                     <div className="relative z-10">
                         <p className="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
                             Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d&apos;un droit d&apos;accès, de rectification, de portabilité et de suppression de vos données personnelles.

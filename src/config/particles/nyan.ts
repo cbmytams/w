@@ -3,7 +3,7 @@ import type { ISourceOptions } from "@tsparticles/engine";
 export const nyanConfig: ISourceOptions = {
     background: {
         color: {
-            value: "#050510", // Matching Wafia dark background
+            value: "#0b111a", // Matching Wafia dark background
         },
         image: "url('/images/nyan-cat.gif')",
         position: "0 80%", // Pinned to the left edge so the rainbow tail makes sense, but lower down to avoid Wafia main UI

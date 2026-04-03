@@ -2,10 +2,8 @@
 
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { Users, Camera, BarChart3, ArrowRight, Check } from "lucide-react"
+import { Users, Camera, BarChart3, Check } from "lucide-react"
 import { Container } from "@/components/ui/container"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { EASING } from "@/lib/easing"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
@@ -80,7 +78,7 @@ function PillarCard({ pillar, index }: { pillar: typeof VALUE_PILLARS[number]; i
         >
             {/* Glow Effect - Brand Heat */}
             <motion.div
-                className="absolute -inset-1 rounded-3xl blur-2xl transition-all duration-500"
+                className="absolute -inset-1 rounded-2xl blur-2xl transition-all duration-500"
                 style={{
                     background: `radial-gradient(circle, ${pillar.glowColor} 0%, transparent 70%)`,
                     opacity: isHovered ? 0.6 : 0
@@ -89,9 +87,9 @@ function PillarCard({ pillar, index }: { pillar: typeof VALUE_PILLARS[number]; i
 
             {/* Card - Glassmorphism */}
             <div className={cn(
-                "relative h-full rounded-3xl overflow-hidden transition-all duration-500",
+                "relative h-full rounded-2xl overflow-hidden transition-all duration-500",
                 "bg-white/90 dark:bg-zinc-900/80 backdrop-blur-xl",
-                "border border-gray-200/50 dark:border-white/10",
+                "border border-slate-200/50 dark:border-white/10",
                 "hover:shadow-2xl hover:-translate-y-2"
             )}>
                 {/* Top Gradient Bar */}
@@ -132,24 +130,24 @@ function PillarCard({ pillar, index }: { pillar: typeof VALUE_PILLARS[number]; i
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-heading text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                    <h3 className="font-heading text-2xl font-bold text-slate-900 dark:text-white mb-3">
                         {pillar.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
                         {pillar.description}
                     </p>
 
                     {/* Stat Highlight */}
-                    <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-gray-100 dark:border-white/10">
+                    <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-slate-100 dark:border-white/10">
                         <span className={cn(
                             "text-4xl font-heading font-black bg-gradient-to-r bg-clip-text text-transparent",
                             pillar.gradient
                         )}>
                             {pillar.stat.value}
                         </span>
-                        <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
                             {pillar.stat.label}
                         </span>
                     </div>
@@ -171,7 +169,7 @@ function PillarCard({ pillar, index }: { pillar: typeof VALUE_PILLARS[number]; i
                                 )}>
                                     <Check className="w-3 h-3 text-white" strokeWidth={3} />
                                 </div>
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                                     {point}
                                 </span>
                             </motion.li>
@@ -216,7 +214,7 @@ export function ValuePropositionSection() {
                             whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
                             viewport={disableMotion ? undefined : viewport}
                             transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.1) }}
-                            className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-[1.1] mb-4"
+                            className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-4"
                         >
                             Trois piliers.{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500">
@@ -230,7 +228,7 @@ export function ValuePropositionSection() {
                             whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
                             viewport={disableMotion ? undefined : viewport}
                             transition={disableMotion ? undefined : { duration: transitionDuration, delay: clampDelay(0.18) }}
-                            className="text-lg text-gray-500 dark:text-gray-400 max-w-md mx-auto"
+                            className="text-lg text-slate-500 dark:text-slate-400 max-w-md mx-auto"
                         >
                             Ce qui nous sépare des autres agences.
                         </motion.p>
@@ -243,25 +241,6 @@ export function ValuePropositionSection() {
                         ))}
                     </div>
 
-                    {/* Bottom CTA - Brand Heat Button */}
-                    <motion.div
-                        initial={disableMotion ? false : { opacity: 0, y: 30 }}
-                        whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
-                        viewport={disableMotion ? undefined : viewport}
-                        transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.22) }}
-                        className="text-center"
-                    >
-                        <Button
-                            size="lg"
-                            asChild
-                            className="rounded-full bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 text-white font-semibold px-8 h-14 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300 hover:scale-105"
-                        >
-                            <Link href="#case-studies">
-                                Découvrir nos réalisations
-                                <ArrowRight className="w-5 h-5 ml-2" />
-                            </Link>
-                        </Button>
-                    </motion.div>
                 </div>
             </Container>
         </section>

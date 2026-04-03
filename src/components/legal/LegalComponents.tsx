@@ -96,9 +96,9 @@ export function LegalGrid({ children }: { children: ReactNode }) {
 
 export function LegalCard({ title, value, icon }: { title: string, value: ReactNode, icon?: ReactNode }) {
     return (
-        <div className="group relative bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] border border-black/[0.05] dark:border-white/[0.05] rounded-[2rem] p-8 hover:shadow-[0_24px_64px_rgba(0,0,0,0.08)] dark:shadow-none transition-all duration-500 hover:-translate-y-2 ease-[cubic-bezier(0.16,1,0.3,1)]">
-            <div className="absolute inset-0 rounded-[2rem] border border-white/20 dark:border-white/5 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/[0.03] group-hover:to-violet-500/[0.03] dark:group-hover:from-purple-500/[0.05] dark:group-hover:to-violet-500/[0.05] rounded-[2rem] transition-all duration-500 pointer-events-none" />
+        <div className="group relative bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] border border-black/[0.05] dark:border-white/[0.05] rounded-2xl p-8 hover:shadow-2xl dark:shadow-none transition-all duration-500 hover:-translate-y-2 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            <div className="absolute inset-0 rounded-2xl border border-white/20 dark:border-white/5 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/[0.03] group-hover:to-violet-500/[0.03] dark:group-hover:from-purple-500/[0.05] dark:group-hover:to-violet-500/[0.05] rounded-2xl transition-all duration-500 pointer-events-none" />
             <div className="relative z-10">
                 <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mb-4 uppercase tracking-widest flex justify-between items-start">
                     <span>{title}</span>

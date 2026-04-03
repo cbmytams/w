@@ -10,16 +10,16 @@ export function ComplianceSection() {
             <Container>
                 <div className="max-w-4xl mx-auto">
                     <RevealAnimation>
-                        <div className="bg-white dark:bg-zinc-900/70 rounded-3xl p-12 shadow-xl border-2 border-gray-200 dark:border-zinc-800">
+                        <div className="bg-white dark:bg-zinc-900/70 rounded-2xl p-12 shadow-xl border-2 border-slate-200 dark:border-zinc-800">
                             <div className="text-center mb-10">
                                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-semibold mb-4">
                                     <Shield className="w-4 h-4" />
                                     Enterprise-ready
                                 </div>
-                                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                                <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
                                     Pas de mauvaise surprise. Jamais.
                                 </h2>
-                                <p className="text-xl text-gray-600 dark:text-gray-400">
+                                <p className="text-xl text-slate-600 dark:text-slate-400">
                                     Même les détails juridiques sont pris en charge. Vous dormez tranquille.
                                 </p>
                             </div>
@@ -30,9 +30,9 @@ export function ComplianceSection() {
                                     { label: "RGPD & DSA", icon: Lock },
                                     { label: "Brand Safety", icon: Shield }
                                 ].map((badge, i) => (
-                                    <div key={i} className="px-6 py-3 bg-gray-50 dark:bg-zinc-800/60 rounded-full border-2 border-gray-200 dark:border-zinc-700 flex items-center gap-2">
+                                    <div key={i} className="px-6 py-3 bg-slate-50 dark:bg-zinc-800/60 rounded-full border-2 border-slate-200 dark:border-zinc-700 flex items-center gap-2">
                                         <badge.icon className="w-5 h-5 text-green-600" />
-                                        <span className="font-semibold text-gray-900 dark:text-gray-100">{badge.label}</span>
+                                        <span className="font-semibold text-slate-900 dark:text-slate-100">{badge.label}</span>
                                     </div>
                                 ))}
                             </div>
@@ -47,8 +47,8 @@ export function ComplianceSection() {
                                     <div key={i} className="flex gap-3">
                                         <Check className="w-5 h-5 text-green-600 shrink-0 mt-1" />
                                         <div>
-                                            <h4 className="font-bold text-gray-900 dark:text-gray-100 mb-1">{item.title}</h4>
-                                            <p className="text-sm text-gray-600 dark:text-gray-400">{item.desc}</p>
+                                            <h4 className="font-bold text-slate-900 dark:text-slate-100 mb-1">{item.title}</h4>
+                                            <p className="text-sm text-slate-600 dark:text-slate-400">{item.desc}</p>
                                         </div>
                                     </div>
                                 ))}

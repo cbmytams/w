@@ -104,8 +104,8 @@ export default function MentionsLegales() {
             </LegalSection>
 
             <LegalSection title="Propriété Intellectuelle">
-                <div className="relative bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] border border-black/[0.05] dark:border-white/[0.05] rounded-[2.5rem] p-8 md:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-none">
-                    <div className="absolute inset-0 rounded-[2.5rem] border border-white/20 dark:border-white/5 pointer-events-none" />
+                <div className="relative bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] border border-black/[0.05] dark:border-white/[0.05] rounded-2xl p-8 md:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-none">
+                    <div className="absolute inset-0 rounded-2xl border border-white/20 dark:border-white/5 pointer-events-none" />
                     <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 md:gap-8">
                         <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-violet-500/10 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400">
                             <ShieldCheck className="w-8 h-8" />

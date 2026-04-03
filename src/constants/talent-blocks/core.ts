@@ -5,7 +5,7 @@ export const TALENT_HERO = {
     subtitle: "On construit l'architecture autour de vous : image, production, deals, admin. L'objectif : une carrière qui tient.",
     ctaPrimary: "Se référencer",
     ctaSecondary: "Notre approche",
-    callsAvailable: 2,
+    callsAvailable: 0,
     proofPoints: [
         { label: "Positionnement & image", value: "Identité" },
         { label: "Studio & pipeline", value: "Production" },
@@ -15,7 +15,7 @@ export const TALENT_HERO = {
 
 export const TALENT_PROBLEM = {
     id: "problem",
-    title: "Le talent crée. La structure décide de la suite.",
+    title: "Le talent démarre tout. Le système décide de la suite.",
     description: "Chaque année, des milliers de créateurs émergent. Très peu restent. Ce qui fait la différence : une direction claire, une production régulière, et quelqu'un qui gère ce qui se passe en coulisses.",
     painTags: ["Direction floue", "Production instable", "Deals mal négociés", "Partenariats hors-sujet"],
     conclusion: "On ne vous ajoute pas à une liste. On construit quelque chose autour de vous."
@@ -23,7 +23,7 @@ export const TALENT_PROBLEM = {
 
 export const TALENT_CTA = {
     title: "Prêt à passer un cap ?",
-    description: "Soumettez votre profil. Si ça matche avec nos exigences, on revient vers vous.",
+    description: "",
     ctaText: "Se référencer"
 } as const;
 

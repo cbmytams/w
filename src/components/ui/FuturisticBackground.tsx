@@ -234,7 +234,7 @@ export default function FuturisticBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 bg-[#050510]">
+    <div className="fixed inset-0 z-0 bg-[#0b111a]">
       <canvas ref={canvasRef} className="block h-full w-full" aria-hidden="true" />
     </div>
   );

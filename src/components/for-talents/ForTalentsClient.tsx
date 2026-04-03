@@ -1,53 +1,44 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/for-talents/HeroSection"
-import { PositionnementSection } from "@/components/for-talents/PositionnementSection"
-import { DeliverablesSection } from "@/components/for-talents/DeliverablesSection"
-import { TalentJourneySection } from "@/components/for-talents/TalentJourneySection"
-import { TeamSectionTalents } from "@/components/for-talents/TeamSectionTalents"
-import { FaqSection } from "@/components/for-talents/FaqSection"
-import { ForWhoSection } from "@/components/for-talents/ForWhoSection"
-import { CtaSection } from "@/components/for-talents/CtaSection"
+import { ConstatSection } from "@/components/for-talents/ConstatSection"
 import { MotionConfig } from "framer-motion"
 
 import { PageShell } from "@/components/common/PageShell"
 
-export function ForTalentsClient() {
-    const scrollToJourney = () => {
-        const element = document.getElementById("journey")
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "start" })
-            window.history.replaceState(null, "", "#journey")
-        }
-    }
+// Below-fold sections — dynamically imported to reduce initial JS bundle
+const WhatWeBuildSection = dynamic(() =>
+    import("@/components/for-talents/WhatWeBuildSection").then((m) => m.WhatWeBuildSection)
+)
+const TalentJourneySection = dynamic(() =>
+    import("@/components/for-talents/TalentJourneySection").then((m) => m.TalentJourneySection)
+)
+const ForWhoSection = dynamic(() =>
+    import("@/components/for-talents/ForWhoSection").then((m) => m.ForWhoSection)
+)
+const TeamSectionTalents = dynamic(() =>
+    import("@/components/for-talents/TeamSectionTalents").then((m) => m.TeamSectionTalents)
+)
+const FaqSection = dynamic(() =>
+    import("@/components/for-talents/FaqSection").then((m) => m.FaqSection)
+)
+const CtaSection = dynamic(() =>
+    import("@/components/for-talents/CtaSection").then((m) => m.CtaSection)
+)
 
+export function ForTalentsClient() {
     return (
         <PageShell>
             <MotionConfig reducedMotion="user">
-                {/* Content Layer (above background) */}
                 <div className="relative z-10">
-                    {/* Hero + Scroll CTA */}
-                    <HeroSection onContentClick={scrollToJourney} />
-
-                    {/* Positionnement: Constat + Profil + Pour Qui */}
-                    <PositionnementSection />
-
-                    {/* Deliverables Bento Grid */}
-                    <DeliverablesSection />
-
-                    {/* Talent Journey — 8 steps, 4 phases */}
+                    <HeroSection />
+                    <ConstatSection />
+                    <WhatWeBuildSection />
                     <TalentJourneySection />
-
-                    {/* Direction Opérationnelle — Team */}
-                    <TeamSectionTalents />
-
-                    {/* Pour qui ? */}
                     <ForWhoSection />
-
-                    {/* FAQ */}
+                    <TeamSectionTalents />
                     <FaqSection />
-
-                    {/* Final CTA */}
                     <CtaSection />
                 </div>
             </MotionConfig>

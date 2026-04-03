@@ -133,18 +133,18 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
           aria-modal="true"
           aria-labelledby="service-drawer-title"
           tabIndex={-1}
-          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-[transform,opacity] duration-200 ease-out will-change-transform dark:border-white/[0.08] dark:bg-[#1C1C1E] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-3 opacity-0 sm:translate-x-full sm:translate-y-0"
+          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl transition-[transform,opacity] duration-200 ease-out will-change-transform dark:border-white/[0.08] dark:bg-[#1C1C1E] dark:shadow-2xl sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-3 opacity-0 sm:translate-x-full sm:translate-y-0"
             } pointer-events-auto`}
         >
           <div className="pointer-events-none absolute right-0 top-0 h-[200px] w-[200px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/[0.04] dark:bg-purple-500/[0.06]" />
 
           <button
             onClick={onClose}
-            className="group absolute right-5 top-5 z-50 cursor-pointer rounded-full border border-gray-200 bg-gray-100 p-2.5 transition-colors duration-300 dark:border-white/[0.1] dark:bg-white/[0.08]"
+            className="group absolute right-5 top-5 z-50 cursor-pointer rounded-full border border-slate-200 bg-slate-100 p-2.5 transition-colors duration-300 dark:border-white/[0.1] dark:bg-white/[0.08]"
             aria-label="Fermer"
             type="button"
           >
-            <X className="h-4 w-4 text-gray-500 transition-colors duration-200 group-hover:text-gray-900 dark:text-white/50 dark:group-hover:text-white" />
+            <X className="h-4 w-4 text-slate-500 transition-colors duration-200 group-hover:text-slate-900 dark:text-white/50 dark:group-hover:text-white" />
           </button>
 
           <div
@@ -156,12 +156,12 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                 <div className="mb-4 flex items-center gap-4">
                   <div className="text-5xl">{renderedService.icon}</div>
                   <div className="inline-flex items-center rounded-full border border-purple-200/50 bg-purple-100/60 px-3 py-1 dark:border-purple-500/[0.15] dark:bg-purple-500/[0.1]">
-                    <span className="text-[11px] font-bold tracking-wider text-purple-700 dark:text-purple-400">
+                    <span className="text-xs font-bold tracking-wider text-purple-700 dark:text-purple-400">
                       {renderedService.number}
                     </span>
                   </div>
                 </div>
-                <h2 id="service-drawer-title" className="mb-2.5 text-[28px] font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+                <h2 id="service-drawer-title" className="mb-2.5 text-3xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white">
                   {renderedService.headline}
                 </h2>
                 <div className="mt-3 h-[2px] w-20 rounded-full bg-gradient-to-r from-purple-500/50 via-violet-400/30 to-transparent" />
@@ -177,7 +177,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                 <>
                   {detail.intro && (
                     <div className="mb-10">
-                      <p className="border-l-2 border-purple-400/40 pl-4 text-[15px] leading-[1.7] text-gray-600 dark:text-gray-400">
+                      <p className="border-l-2 border-purple-400/40 pl-4 text-base leading-[1.7] text-slate-600 dark:text-slate-400">
                         {detail.intro}
                       </p>
                     </div>
@@ -186,7 +186,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   {detail.whatWeDo && detail.whatWeDo.length > 0 && (
                     <div className="mb-10">
                       <div className="mb-5 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                           Ce qu&apos;on fait
                         </span>
                       </div>
@@ -194,7 +194,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                         {detail.whatWeDo.map((task, i) => (
                           <li key={i} className="flex items-start gap-4">
                             <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.3)]" />
-                            <span className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">{task}</span>
+                            <span className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{task}</span>
                           </li>
                         ))}
                       </ul>
@@ -204,7 +204,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   {detail.deliverables && detail.deliverables.length > 0 && (
                     <div className="mb-10">
                       <div className="mb-5 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                           Livrables
                         </span>
                       </div>
@@ -215,7 +215,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                             className="flex items-start gap-3.5 rounded-2xl border border-black/[0.04] bg-black/[0.02] p-3.5 dark:border-white/[0.06] dark:bg-white/[0.03]"
                           >
                             <GlassCheck />
-                            <span className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
+                            <span className="text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">
                               {deliverable}
                             </span>
                           </li>
@@ -227,21 +227,21 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   {detail.howItWorks && detail.howItWorks.length > 0 && (
                     <div className="mb-10">
                       <div className="mb-6 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                           Comment ça marche
                         </span>
                       </div>
-                      <div className="relative space-y-5 before:absolute before:bottom-4 before:left-[15px] before:top-4 before:w-[1px] before:bg-gradient-to-b before:from-purple-400/30 before:via-gray-300/20 before:to-transparent dark:before:from-purple-500/20 dark:before:via-white/[0.06]">
+                      <div className="relative space-y-5 before:absolute before:bottom-4 before:left-[15px] before:top-4 before:w-[1px] before:bg-gradient-to-b before:from-purple-400/30 before:via-slate-300/20 before:to-transparent dark:before:from-purple-500/20 dark:before:via-white/[0.06]">
                         {detail.howItWorks.map((step, i) => (
                           <div key={i} className="relative flex gap-4">
                             <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/80 shadow-sm dark:border-white/[0.12] dark:bg-white/[0.08] dark:shadow-none">
-                              <span className="text-[11px] font-bold text-gray-500 dark:text-gray-400">{i + 1}</span>
+                              <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{i + 1}</span>
                             </div>
                             <div className="flex-1 pt-1">
-                              <div className="mb-0.5 text-sm font-semibold text-gray-900 dark:text-white/90">
+                              <div className="mb-0.5 text-sm font-semibold text-slate-900 dark:text-white/90">
                                 {step.step}
                               </div>
-                              <div className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+                              <div className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
                                 {step.description}
                               </div>
                             </div>
@@ -254,10 +254,10 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   {detail.forWho && (
                     <div className="mb-6">
                       <div className="rounded-2xl border border-l-2 border-l-purple-500/50 border-purple-200/50 bg-purple-50/60 p-5 dark:border-white/[0.06] dark:bg-purple-500/[0.06]">
-                        <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-500">
+                        <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500">
                           Cible
                         </span>
-                        <p className="text-sm font-medium italic leading-relaxed text-gray-700 dark:text-gray-300">
+                        <p className="text-sm font-medium italic leading-relaxed text-slate-700 dark:text-slate-300">
                           {detail.forWho}
                         </p>
                       </div>
@@ -269,7 +269,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   <div className="mt-10 pb-2">
                     <a
                       href={ctaHref}
-                      className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gray-900 px-6 py-4 text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)] active:scale-[0.98] dark:bg-white dark:text-gray-900 dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.15)]"
+                      className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] dark:bg-white dark:text-slate-900 dark:shadow-lg dark:hover:shadow-xl"
                     >
                       <div className="absolute inset-0 translate-x-[-200%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[200%] dark:via-black/10" />
                       <span className="relative z-10">Se référencer</span>

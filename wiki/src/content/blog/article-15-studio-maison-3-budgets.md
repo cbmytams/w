@@ -153,8 +153,7 @@ Commence simple, rends-le propre, puis upgrade uniquement quand tu sais exacteme
 
 ---
 
-## À relier sur Wafia
-- Personal branding : cohérence visuelle  
-- IRL streaming : audio, tests, setup mobile  
-- AI tools : montage, sous-titres, automatisation  
-- Recycling : repurposing multi-plateforme
+## Aller plus loin avec Wafia
+
+- [Studio créatif Wafia](/studio) — Production sociale professionnelle, UGC et assets premium pour marques
+- [Services Wafia](/services) — Vue complète des expertises Wafia : influence, UGC, talent management et studio créatif

@@ -18,11 +18,6 @@ export function GlobalBackground() {
         return null
     }
 
-    // Wiki has its own visual shell
-    if (pathname?.startsWith("/wiki")) {
-        return null
-    }
-
     const config = getGlobalBackgroundConfig(pathname, searchParams.get("context"))
     return <BackgroundFlow variant={config.variant} intensity={config.intensity} />
 }

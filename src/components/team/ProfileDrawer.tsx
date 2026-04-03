@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ExternalLink, Calendar, Award, Briefcase, GraduationCap, Quote, Linkedin, Instagram, Mail } from "lucide-react"
+import { SPRING } from "@/lib/design-tokens"
 import type { LucideIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -11,6 +12,7 @@ import { cn } from "@/lib/utils"
 import { TeamMember } from "@/constants/team"
 import { useFocusTrap } from "@/hooks/useFocusTrap"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
+import { EASING } from "@/lib/easing"
 
 // --- TYPES & DATA EXTENSIONS ---
 
@@ -77,9 +79,7 @@ const modalVariants = {
         y: 0,
         transition: {
             type: "spring" as const,
-            damping: 20,
-            stiffness: 300,
-            mass: 0.8
+            ...SPRING.responsive
         }
     },
     exit: { opacity: 0, scale: 0.95, y: 10, transition: { duration: 0.2 } }
@@ -93,8 +93,7 @@ const contentVariants = {
         transition: {
             delay: 0.1 + (i * 0.05),
             type: "spring" as const,
-            damping: 20,
-            stiffness: 200
+            ...SPRING.responsive
         }
     })
 }
@@ -183,7 +182,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 aria-labelledby="profile-drawer-title"
                                 tabIndex={-1}
                                 ref={modalRef}
-                                className="relative w-full max-w-[440px] max-h-[90vh] flex flex-col bg-white dark:bg-[#0A0A0A] shadow-2xl rounded-[36px] overflow-hidden sm:aspect-[9/16] md:aspect-auto"
+                                className="relative w-full max-w-[440px] max-h-[90vh] flex flex-col bg-white dark:bg-[#0b111a] shadow-2xl rounded-2xl overflow-hidden sm:aspect-[9/16] md:aspect-auto"
                             >
                                 {/* Noise Texture Overlay */}
                                 <div className="absolute inset-0 opacity-[0.03] z-[5] pointer-events-none"
@@ -209,7 +208,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                     </button>
 
                                     {/* Content Container */}
-                                    <div className="absolute inset-0 flex flex-col justify-end p-7 pb-6 z-10 bg-gradient-to-t from-white via-white/20 to-transparent dark:from-[#0A0A0A] dark:via-[#0A0A0A]/20">
+                                    <div className="absolute inset-0 flex flex-col justify-end p-7 pb-6 z-10 bg-gradient-to-t from-white via-white/20 to-transparent dark:from-[#0b111a] dark:via-[#0b111a]/20">
                                         <motion.div variants={contentVariants} custom={0} initial="hidden" animate="visible">
                                             <div className="flex items-center gap-2 mb-3">
                                                 <span
@@ -219,11 +218,11 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                     {brandData.geo === 'france' ? '🇫🇷 Paris' : '🇨🇦 Montréal'}
                                                 </span>
                                             </div>
-                                            <h2 id="profile-drawer-title" className="text-4xl font-black text-gray-900 dark:text-white leading-[0.9] mb-1 tracking-tight">
+                                            <h2 id="profile-drawer-title" className="text-4xl font-black text-slate-900 dark:text-white leading-[0.9] mb-1 tracking-tight">
                                                 {member.name.split(" ")[0]}
                                                 <span className="opacity-40 font-medium ml-2 text-2xl tracking-normal">{member.name.split(" ").slice(1).join(" ")}</span>
                                             </h2>
-                                            <p className="text-sm text-gray-600 dark:text-gray-300 font-bold uppercase tracking-wider opacity-80 mt-1">
+                                            <p className="text-sm text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider opacity-80 mt-1">
                                                 {member.role}
                                             </p>
                                         </motion.div>
@@ -238,8 +237,8 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                     >
                                         <motion.div
                                             animate={shouldReduceMotion ? undefined : { y: [0, -8, 0], rotate: [3, 5, 3] }}
-                                            transition={shouldReduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                                            className="w-full h-full rounded-[2rem] overflow-hidden shadow-2xl ring-4 ring-white/40 dark:ring-white/10"
+                                            transition={shouldReduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: EASING.easeInOut }}
+                                            className="w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/40 dark:ring-white/10"
                                         >
                                             <Image src={member.image} alt={member.name} fill sizes="128px" className="object-cover" />
                                         </motion.div>
@@ -247,8 +246,8 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 </div>
 
                                 {/* 2. Navigation Tabs (Segmented Control) */}
-                                <div className="px-6 py-2 bg-white dark:bg-[#0A0A0A] shrink-0 sticky top-0 z-10">
-                                    <div className="p-1 bg-gray-100 dark:bg-white/5 rounded-full flex relative">
+                                <div className="px-6 py-2 bg-white dark:bg-[#0b111a] shrink-0 sticky top-0 z-10">
+                                    <div className="p-1 bg-slate-100 dark:bg-white/5 rounded-full flex relative">
                                         {/* Active background pill */}
                                         <motion.div
                                             className="absolute top-1 bottom-1 bg-white dark:bg-white/10 rounded-full shadow-sm"
@@ -257,7 +256,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                 left: activeTab === "manifesto" ? "4px" : "50%",
                                                 width: "calc(50% - 4px)"
                                             }}
-                                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                                            transition={{ type: "spring", ...SPRING.responsive }}
                                         />
 
                                         {(["manifesto", "expertise"] as const).map((tab) => (
@@ -267,8 +266,8 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                 className={cn(
                                                     "flex-1 relative z-10 py-2 text-sm font-bold text-center capitalize transition-colors duration-200",
                                                     activeTab === tab
-                                                        ? "text-gray-900 dark:text-white"
-                                                        : "text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                                                        ? "text-slate-900 dark:text-white"
+                                                        : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
                                                 )}
                                             >
                                                 {tab}
@@ -278,7 +277,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 </div>
 
                                 {/* 3. Scrollable Content Area */}
-                                <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar bg-white dark:bg-[#0A0A0A]">
+                                <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar bg-white dark:bg-[#0b111a]">
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={activeTab}
@@ -295,21 +294,21 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                     <div className="flex items-center justify-center gap-3">
                                                         {member.links?.linkedin && (
                                                             <motion.div whileHover={{ scale: 1.1, rotate: -5 }} whileTap={{ scale: 0.9 }}>
-                                                                <Link href={member.links.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 rounded-2xl bg-gray-50 dark:bg-white/5 text-gray-400 hover:text-[#0077b5] hover:bg-[#0077b5]/10 transition-colors block border border-transparent hover:border-[#0077b5]/20">
+                                                                <Link href={member.links.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-[#0077b5] hover:bg-[#0077b5]/10 transition-colors block border border-transparent hover:border-[#0077b5]/20">
                                                                     <Linkedin className="w-5 h-5" />
                                                                 </Link>
                                                             </motion.div>
                                                         )}
                                                         {member.links?.instagram && (
                                                             <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-                                                                <Link href={member.links.instagram} target="_blank" rel="noopener noreferrer" className="p-3 rounded-2xl bg-gray-50 dark:bg-white/5 text-gray-400 hover:text-[#E4405F] hover:bg-[#E4405F]/10 transition-colors block border border-transparent hover:border-[#E4405F]/20">
+                                                                <Link href={member.links.instagram} target="_blank" rel="noopener noreferrer" className="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-[#E4405F] hover:bg-[#E4405F]/10 transition-colors block border border-transparent hover:border-[#E4405F]/20">
                                                                     <Instagram className="w-5 h-5" />
                                                                 </Link>
                                                             </motion.div>
                                                         )}
                                                         {member.links?.email && (
                                                             <motion.div whileHover={{ scale: 1.1, rotate: -5 }} whileTap={{ scale: 0.9 }}>
-                                                                <Link href={`mailto:${member.links.email}`} className="p-3 rounded-2xl bg-gray-50 dark:bg-white/5 text-gray-400 hover:text-orange-500 hover:bg-orange-500/10 transition-colors block border border-transparent hover:border-orange-500/20">
+                                                                <Link href={`mailto:${member.links.email}`} className="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 text-slate-400 hover:text-orange-500 hover:bg-orange-500/10 transition-colors block border border-transparent hover:border-orange-500/20">
                                                                     <Mail className="w-5 h-5" />
                                                                 </Link>
                                                             </motion.div>
@@ -318,7 +317,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
 
                                                     <div className="relative pt-2">
                                                         <Quote className="absolute -top-4 -left-3 w-10 h-10 opacity-5 dark:opacity-[0.03] text-current block" style={{ color: primaryColor }} />
-                                                        <p className="text-xl font-medium leading-relaxed text-gray-900 dark:text-white relative z-10">
+                                                        <p className="text-xl font-medium leading-relaxed text-slate-900 dark:text-white relative z-10">
                                                             {extendedData.manifesto}
                                                         </p>
                                                     </div>
@@ -327,11 +326,11 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                         {member.proof.slice(0, 3).map((proof, i) => {
                                                             const { number, text } = parseProof(proof);
                                                             return (
-                                                                <div key={i} className={cn("p-4 rounded-xl border border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-white/5 flex items-center gap-4", bgSoftClass)}>
+                                                                <div key={i} className={cn("p-4 rounded-xl border border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-white/5 flex items-center gap-4", bgSoftClass)}>
                                                                     <span className="text-2xl font-bold tracking-tight min-w-[60px] text-right" style={{ color: primaryColor }}>
                                                                         {number}
                                                                     </span>
-                                                                    <span className="text-sm text-gray-600 dark:text-gray-400 font-medium leading-snug">
+                                                                    <span className="text-sm text-slate-600 dark:text-slate-400 font-medium leading-snug">
                                                                         {text}
                                                                     </span>
                                                                 </div>
@@ -339,8 +338,8 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                         })}
                                                     </div>
 
-                                                    <div className="pt-6 border-t border-gray-100 dark:border-white/5 text-center">
-                                                        <p className="text-sm font-semibold italic text-gray-500 dark:text-gray-400">
+                                                    <div className="pt-6 border-t border-slate-100 dark:border-white/5 text-center">
+                                                        <p className="text-sm font-semibold italic text-slate-500 dark:text-slate-400">
                                                             &ldquo;{member.quote}&rdquo;
                                                         </p>
                                                     </div>
@@ -364,15 +363,15 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                                                 boxShadow: "0 20px 40px -10px rgba(0,0,0,0.1)",
                                                                 zIndex: 10
                                                             }}
-                                                            className="group p-5 rounded-3xl bg-gray-50/80 dark:bg-white/5 border border-transparent transition-all hover:bg-white dark:hover:bg-white/10 cursor-pointer transform-gpu"
+                                                            className="group p-5 rounded-2xl bg-slate-50/80 dark:bg-white/5 border border-transparent transition-all hover:bg-white dark:hover:bg-white/10 cursor-pointer transform-gpu"
                                                         >
                                                             <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 group-hover:rotate-[-5deg]", bgSoftClass)}>
                                                                 <item.icon className="w-6 h-6 stroke-[1.5]" style={{ color: primaryColor }} />
                                                             </div>
-                                                            <h3 className="text-sm font-black text-gray-900 dark:text-white mb-1.5 leading-tight">
+                                                            <h3 className="text-sm font-black text-slate-900 dark:text-white mb-1.5 leading-tight">
                                                                 {item.title}
                                                             </h3>
-                                                            <p className="text-[11px] font-medium text-gray-500 dark:text-gray-400 leading-snug uppercase tracking-wide">
+                                                            <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-snug uppercase tracking-wide">
                                                                 {item.desc}
                                                             </p>
                                                         </motion.div>
@@ -384,7 +383,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 </div>
 
                                 {/* 4. Footer CTA */}
-                                <div className="p-4 border-t border-gray-100 dark:border-white/10 bg-white dark:bg-[#0A0A0A] shrink-0 z-20">
+                                <div className="p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0b111a] shrink-0 z-20">
                                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                                         <Link
                                             href={`mailto:${member.links?.email || 'contact@wafia.fr'}?subject=Organiser un appel`}

@@ -3,7 +3,7 @@ import type { ISourceOptions } from "@tsparticles/engine";
 export const meshConfig: ISourceOptions = {
     background: {
         color: {
-            value: "#050510",
+            value: "#0b111a",
         },
     },
     fpsLimit: 120,

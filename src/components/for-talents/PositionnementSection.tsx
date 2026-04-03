@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
 import { TALENT_PROBLEM, TALENT_PERSONA, BRAND_GRADIENT } from "@/constants"
 import { EASING } from "@/lib/easing"
+import { SPRING } from "@/lib/design-tokens"
 import { ParallaxCard } from "./redesign/ParallaxCard"
 import { WafiaOSWidget } from "./redesign/WafiaOSWidget"
 import { SmartDistributionDashboard } from "./distribution/SmartDistributionDashboard"
@@ -46,12 +47,12 @@ function PersonaVisual({ type }: { type: PersonaType }) {
                 <motion.div
                     initial={{ y: 20, rotateX: 10, opacity: 0 }}
                     animate={{ y: 0, rotateX: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="relative w-64 aspect-[3/4] bg-white rounded-lg shadow-2xl overflow-hidden border border-gray-100"
+                    transition={{ duration: 0.8, ease: EASING.easeOut }}
+                    className="relative w-64 aspect-[3/4] bg-white rounded-lg shadow-2xl overflow-hidden border border-slate-100"
                 >
-                    <div className="p-6 font-mono text-xs text-gray-800 leading-relaxed opacity-80">
-                        <div className="w-full h-2 bg-gray-200 rounded mb-6 opacity-30" />
-                        <p className="mb-4 font-bold tracking-widest uppercase text-gray-400">SCENE 24A - INT. STUDIO</p>
+                    <div className="p-6 font-mono text-xs text-slate-800 leading-relaxed opacity-80">
+                        <div className="w-full h-2 bg-slate-200 rounded mb-6 opacity-30" />
+                        <p className="mb-4 font-bold tracking-widest uppercase text-slate-400">SCENE 24A - INT. STUDIO</p>
                         <p className="mb-2"><span className="font-bold">AGENT</span></p>
                         <p className="mb-4">C&apos;est le rôle de ta vie. Ils te veulent toi.</p>
                         <p className="mb-2"><span className="font-bold">TALENT</span></p>
@@ -72,14 +73,14 @@ function PersonaVisual({ type }: { type: PersonaType }) {
                 <motion.div
                     initial={{ y: 40, opacity: 0, scale: 0.9 }}
                     animate={{ y: 0, opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.5, type: "spring", stiffness: 200, damping: 20 }}
-                    className="absolute bottom-10 flex items-center gap-3 px-5 py-3 bg-gray-900/95 backdrop-blur-md text-white rounded-xl shadow-xl border border-white/10"
+                    transition={{ delay: 1.5, type: "spring", ...SPRING.responsive }}
+                    className="absolute bottom-10 flex items-center gap-3 px-5 py-3 bg-slate-900/95 backdrop-blur-md text-white rounded-xl shadow-xl border border-white/10"
                 >
                     <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
                         <Check className="w-4 h-4 text-green-400" />
                     </div>
                     <div>
-                        <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Casting Update</div>
+                        <div className="text-xs font-medium text-slate-400 uppercase tracking-wider">Casting Update</div>
                         <div className="text-sm font-bold">Rôle Confirmé — Long Métrage</div>
                     </div>
                 </motion.div>
@@ -185,7 +186,7 @@ export function PositionnementSection() {
                                 transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.44), delay: clampDelay(0.18) }}
                                 className="flex items-center"
                             >
-                                <div className="relative p-8 sm:p-10 rounded-3xl bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-xl shadow-purple-500/5 overflow-hidden w-full">
+                                <div className="relative p-8 sm:p-10 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-xl shadow-purple-500/5 overflow-hidden w-full">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-500/10 to-transparent rounded-bl-full" />
                                     <div className="flex items-start gap-5">
                                         <div className="hidden sm:flex flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/10 items-center justify-center border border-violet-500/20">
@@ -215,21 +216,24 @@ export function PositionnementSection() {
                             <span className="text-sm font-semibold text-pink-600 dark:text-pink-300 uppercase tracking-wider mb-4 block">
                                 Ton profil
                             </span>
-                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
+                            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">
                                 Chaque terrain a ses règles.
                             </h2>
                         </RevealAnimation>
 
                         {/* Tabs */}
                         <RevealAnimation delay={0.1} className="flex justify-center mb-10">
-                            <div className="inline-flex bg-white dark:bg-white/5 p-1.5 rounded-2xl shadow-xl border border-gray-200 dark:border-white/10 backdrop-blur-2xl">
+                            <div role="tablist" aria-label="Profil de positionnement" className="inline-flex bg-white dark:bg-white/5 p-1.5 rounded-2xl shadow-xl border border-slate-200 dark:border-white/10 backdrop-blur-2xl">
                                 {tabs.map((tab) => (
                                     <button
                                         key={tab.key}
+                                        type="button"
+                                        role="tab"
+                                        aria-selected={activeTab === tab.key}
                                         onClick={() => setActiveTab(tab.key)}
-                                        className={`relative px-3 py-2 md:px-6 md:py-3 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${activeTab === tab.key
+                                        className={`relative px-3 py-2 md:px-6 md:py-3 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary ${activeTab === tab.key
                                             ? "text-white"
-                                            : "text-gray-500 hover:text-gray-900 dark:text-white/70 dark:hover:text-white"
+                                            : "text-slate-500 hover:text-slate-900 dark:text-white/70 dark:hover:text-white"
                                             }`}
                                     >
                                         {activeTab === tab.key && (
@@ -247,7 +251,7 @@ export function PositionnementSection() {
 
                         {/* Persona Content — with interactive visual widgets */}
                         <RevealAnimation delay={0.2}>
-                            <div className="relative rounded-3xl p-8 md:p-12 border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_28px_70px_rgba(0,0,0,0.12)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
+                            <div className="relative rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-2xl overflow-hidden shadow-2xl dark:shadow-2xl">
                                 <div className={`absolute inset-0 bg-gradient-to-br ${content.color} opacity-45 dark:opacity-70`} />
                                 <div className="absolute inset-0 bg-[radial-gradient(600px_420px_at_10%_20%,rgba(236,72,153,0.12),transparent_60%)] dark:bg-[radial-gradient(600px_420px_at_10%_20%,rgba(236,72,153,0.18),transparent_60%)]" />
 
@@ -262,18 +266,18 @@ export function PositionnementSection() {
                                             transition={{ duration: 0.3 }}
                                             className="space-y-6"
                                         >
-                                            <div className="w-16 h-16 rounded-2xl bg-white/80 dark:bg-white/10 shadow-lg border border-gray-200/60 dark:border-white/15 flex items-center justify-center text-gray-900 dark:text-white">
+                                            <div className="w-16 h-16 rounded-2xl bg-white/80 dark:bg-white/10 shadow-lg border border-slate-200/60 dark:border-white/15 flex items-center justify-center text-slate-900 dark:text-white">
                                                 <IconComponent size={32} />
                                             </div>
                                             <div>
-                                                <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                                                <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
                                                     {content.title}
                                                 </h3>
                                                 <p className="text-lg font-medium text-pink-600 dark:text-pink-300">
                                                     {content.subtitle}
                                                 </p>
                                             </div>
-                                            <p className="text-gray-600 dark:text-white/70 text-lg leading-relaxed">
+                                            <p className="text-slate-600 dark:text-white/70 text-lg leading-relaxed">
                                                 {content.desc}
                                             </p>
 
@@ -283,7 +287,7 @@ export function PositionnementSection() {
                                                         <div className="w-6 h-6 rounded-full bg-pink-100 dark:bg-pink-500/20 flex items-center justify-center border border-pink-200 dark:border-pink-500/30">
                                                             <Check size={14} className="text-pink-600 dark:text-pink-300" />
                                                         </div>
-                                                        <span className="font-medium text-gray-700 dark:text-white/80">{point}</span>
+                                                        <span className="font-medium text-slate-700 dark:text-white/80">{point}</span>
                                                     </div>
                                                 ))}
                                             </div>
@@ -291,7 +295,7 @@ export function PositionnementSection() {
                                     </AnimatePresence>
 
                                     {/* Right: Dynamic Visual with ParallaxCard */}
-                                    <ParallaxCard className="h-[560px] lg:h-[600px] bg-white overflow-hidden border border-gray-200/60 dark:border-white/10 shadow-[0_30px_80px_rgba(15,23,42,0.25)] dark:shadow-[0_30px_80px_rgba(15,23,42,0.45)]">
+                                    <ParallaxCard className="h-[560px] lg:h-[600px] bg-white overflow-hidden border border-slate-200/60 dark:border-white/10 shadow-2xl dark:shadow-2xl">
                                         <AnimatePresence mode="wait">
                                             <motion.div
                                                 key={activeTab}

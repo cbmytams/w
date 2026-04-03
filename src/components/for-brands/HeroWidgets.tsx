@@ -13,7 +13,7 @@ export function MainPerformanceModule() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: DURATION.slower, delay: 0.2, ease: EASING.smooth }}
-            className="w-full h-full bg-zinc-950/80 backdrop-blur-2xl rounded-[32px] border border-white/10 shadow-2xl shadow-black/50 overflow-hidden relative group"
+            className="w-full h-full bg-zinc-950/80 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl shadow-black/50 overflow-hidden relative group"
         >
             {/* Scanline Overlay */}
             <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-50 bg-[length:100%_2px,3px_100%]" />
@@ -62,7 +62,7 @@ export function MainPerformanceModule() {
                         strokeLinejoin="round"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
-                        transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+                        transition={{ duration: 2, ease: EASING.easeOut, delay: 0.5 }}
                         filter="drop-shadow(0 0 4px rgba(249,115,22,0.5))"
                     />
 
@@ -98,7 +98,7 @@ export function FinancialCoreModule() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col justify-center p-6 bg-white dark:bg-zinc-100 rounded-[24px] shadow-xl shadow-white/5 relative overflow-hidden h-full border border-white/20 group"
+            className="flex flex-col justify-center p-6 bg-white dark:bg-zinc-100 rounded-2xl shadow-xl shadow-white/5 relative overflow-hidden h-full border border-white/20 group"
         >
             {/* Micro-texture Background */}
             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:8px_8px]" />
@@ -114,9 +114,9 @@ export function FinancialCoreModule() {
                     </div>
                 </div>
                 <div className="text-4xl font-bold tracking-tighter text-black tabular-nums">
-                    2.4M<span className="text-lg text-gray-400 font-medium ml-0.5">€</span>
+                    2.4M<span className="text-lg text-slate-400 font-medium ml-0.5">€</span>
                 </div>
-                <div className="text-[10px] font-medium text-gray-500 mt-1 flex items-center gap-1.5">
+                <div className="text-[10px] font-medium text-slate-500 mt-1 flex items-center gap-1.5">
                     <div className="bg-emerald-500/10 rounded px-1.5 py-0.5 text-emerald-600 flex items-center gap-1">
                         <ArrowUpRight className="w-3 h-3" />
                         <span className="font-bold">+24%</span>
@@ -142,7 +142,7 @@ export function TalentStreamModule() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="h-full bg-zinc-900/60 backdrop-blur-xl rounded-[24px] border border-white/10 p-2 flex flex-col items-center gap-3 overflow-hidden"
+            className="h-full bg-zinc-900/60 backdrop-blur-xl rounded-2xl border border-white/10 p-2 flex flex-col items-center gap-3 overflow-hidden"
         >
             <div className="text-[9px] font-mono font-bold text-white/40 rotate-180 uppercase tracking-widest py-2" style={{ writingMode: 'vertical-rl' }}>
                 Live Feed

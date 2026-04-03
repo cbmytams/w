@@ -131,11 +131,11 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
           aria-modal="true"
           aria-labelledby="drawer-title"
           tabIndex={-1}
-          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[2.5rem] border border-white/50 bg-white/40 backdrop-blur-[60px] saturate-[180%] shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform dark:border-white/10 dark:bg-[#1C1C1E]/40 dark:shadow-[0_24px_80px_rgba(0,0,0,0.5)] sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-8 opacity-0 sm:translate-x-full sm:translate-y-0"
+          className={`relative flex h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-2xl border border-white/50 bg-white/40 backdrop-blur-[60px] saturate-[180%] shadow-2xl transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform dark:border-white/10 dark:bg-[#1C1C1E]/40 dark:shadow-2xl sm:h-[calc(100dvh-2rem)] sm:w-[480px] ${isOpen ? "translate-y-0 opacity-100 sm:translate-x-0" : "translate-y-8 opacity-0 sm:translate-x-full sm:translate-y-0"
             } pointer-events-auto`}
         >
           {/* Subtle light leak for glass effect */}
-          <div className="pointer-events-none absolute -inset-px rounded-[2.5rem] border border-white/20 dark:border-white-[0.08]" />
+          <div className="pointer-events-none absolute -inset-px rounded-2xl border border-white/20 dark:border-white-[0.08]" />
           <div className="pointer-events-none absolute right-0 top-0 h-[300px] w-[300px] translate-x-1/3 -translate-y-1/3 rounded-full bg-purple-500/20 dark:bg-purple-500/30 blur-[70px]" />
 
           <button
@@ -144,7 +144,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
             aria-label="Fermer"
             type="button"
           >
-            <X className="h-4 w-4 text-gray-700 transition-colors duration-200 dark:text-gray-300" />
+            <X className="h-4 w-4 text-slate-700 transition-colors duration-200 dark:text-slate-300" />
           </button>
 
           <div
@@ -154,10 +154,10 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
             <div className="relative z-10 flex min-h-full flex-col">
               <div className="mb-10 pr-10">
                 <div className="mb-5 text-5xl">{renderedItem.icon}</div>
-                <h2 id="drawer-title" className="mb-2.5 text-[28px] font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+                <h2 id="drawer-title" className="mb-2.5 text-3xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white">
                   {renderedItem.title}
                 </h2>
-                <p className="text-base font-medium leading-relaxed text-gray-500 dark:text-gray-400">
+                <p className="text-base font-medium leading-relaxed text-slate-500 dark:text-slate-400">
                   {renderedItem.subtitle}
                 </p>
               </div>
@@ -171,14 +171,14 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
               ) : renderedItem.detail ? (
                 <div className="space-y-10">
                   <div>
-                    <p className="text-[15px] leading-[1.7] text-gray-600 dark:text-gray-400">
+                    <p className="text-base leading-[1.7] text-slate-600 dark:text-slate-400">
                       {renderedItem.detail.intro}
                     </p>
                   </div>
 
                   <div>
                     <div className="mb-5 inline-flex flex-col">
-                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                         Le Processus
                       </span>
                     </div>
@@ -186,7 +186,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                       {renderedItem.detail.whatWeDo?.map((task, i) => (
                         <li key={i} className="flex items-start gap-4">
                           <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.3)]" />
-                          <span className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">{task}</span>
+                          <span className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">{task}</span>
                         </li>
                       ))}
                     </ul>
@@ -194,7 +194,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
 
                   <div>
                     <div className="mb-5 inline-flex flex-col">
-                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                         Livrables Concrets
                       </span>
                     </div>
@@ -205,7 +205,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                           className="flex items-start gap-3.5 rounded-2xl bg-black/[0.03] backdrop-blur-md p-4 dark:bg-white/[0.04] border border-black/[0.02] dark:border-white/[0.05] shadow-sm"
                         >
                           <GlassCheck />
-                          <span className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
+                          <span className="text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">
                             {deliverable}
                           </span>
                         </li>
@@ -215,21 +215,21 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
 
                   <div>
                     <div className="mb-6 inline-flex flex-col">
-                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                         La Méthode
                       </span>
                     </div>
-                    <div className="relative space-y-5 before:absolute before:bottom-4 before:left-[15px] before:top-4 before:w-[1px] before:bg-gradient-to-b before:from-purple-400/30 before:via-gray-300/20 before:to-transparent dark:before:from-purple-500/20 dark:before:via-white/[0.06]">
+                    <div className="relative space-y-5 before:absolute before:bottom-4 before:left-[15px] before:top-4 before:w-[1px] before:bg-gradient-to-b before:from-purple-400/30 before:via-slate-300/20 before:to-transparent dark:before:from-purple-500/20 dark:before:via-white/[0.06]">
                       {renderedItem.detail.howItWorks?.map((step, i) => (
                         <div key={i} className="relative flex gap-4">
-                          <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/60 backdrop-blur-md shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-none">
-                            <span className="text-[11px] font-bold text-gray-500 dark:text-gray-400">{i + 1}</span>
+                          <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/60 backdrop-blur-md shadow-sm dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-none">
+                            <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{i + 1}</span>
                           </div>
                           <div className="flex-1 pt-1">
-                            <div className="mb-0.5 text-sm font-semibold text-gray-900 dark:text-white/90">
+                            <div className="mb-0.5 text-sm font-semibold text-slate-900 dark:text-white/90">
                               {step.step}
                             </div>
-                            <div className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+                            <div className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
                               {step.description}
                             </div>
                           </div>
@@ -239,11 +239,11 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                   </div>
 
                   <div>
-                    <div className="rounded-3xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-[20px] dark:border-purple-400/20 dark:from-purple-500/10">
-                      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-purple-700 dark:text-purple-300">
+                    <div className="rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-[20px] dark:border-purple-400/20 dark:from-purple-500/10">
+                      <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-purple-700 dark:text-purple-300">
                         Cible
                       </span>
-                      <p className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
+                      <p className="text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">
                         {renderedItem.detail.forWho}
                       </p>
                     </div>
@@ -256,7 +256,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
               <div className="mt-10 pb-2">
                 <a
                   href={ctaHref}
-                  className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gray-900 px-6 py-4 text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)] active:scale-[0.98] dark:bg-white dark:text-gray-900 dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.15)]"
+                  className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] dark:bg-white dark:text-slate-900 dark:shadow-lg dark:hover:shadow-xl"
                 >
                   <div className="absolute inset-0 translate-x-[-200%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[200%] dark:via-black/10" />
                   <span className="relative z-10">Se référencer</span>

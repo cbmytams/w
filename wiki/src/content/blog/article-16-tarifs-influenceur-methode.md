@@ -213,8 +213,8 @@ Ton prix est lié à un périmètre. Si le périmètre baisse, le prix baisse. S
 
 ---
 
-## À relier sur Wafia
-- Contrats de marque : clauses, usage rights, exclusivité  
-- Monétisation : ordres de grandeur, priorités par plateforme  
-- Personal branding : positionnement, confiance, cohérence  
-- Guides plateformes : formats et usages
+## Aller plus loin avec Wafia
+
+- [Talent Management Wafia](/for-talents) — Accompagnement carrière, négociation de deals et structuration business pour créateurs
+- [Campagnes d'influence marketing](/for-brands) — Pour les marques qui cherchent à activer des créateurs avec des méthodes traçables
+- [Services Wafia](/services) — Vue complète de toutes les expertises : influence, UGC, talent management et studio créatif

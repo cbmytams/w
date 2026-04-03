@@ -33,7 +33,7 @@ const columns: ColumnDef<TalentListItem>[] = [
         cell: (item) => (
             <div className="w-full max-w-[120px]">
                 <div className="flex justify-between text-xs mb-1">
-                    <span className="text-gray-400">Progression</span>
+                    <span className="text-slate-400">Progression</span>
                     <span className="text-white">{item.completionPercent}%</span>
                 </div>
                 <div className="h-1.5 w-full bg-questionnaire-muted rounded-full overflow-hidden">
@@ -51,7 +51,7 @@ const columns: ColumnDef<TalentListItem>[] = [
             const isNew = new Date().getTime() - new Date(item.updatedAt).getTime() < 24 * 60 * 60 * 1000;
             return (
                 <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-400">
+                    <span className="text-xs text-slate-400">
                         il y a {formatDistanceToNow(new Date(item.updatedAt), { locale: fr })}
                     </span>
                     {isNew && (
@@ -83,7 +83,7 @@ const columns: ColumnDef<TalentListItem>[] = [
                     {item.missingFieldsCount}
                 </span>
             ) : (
-                <span className="text-gray-500 text-xs">—</span>
+                <span className="text-slate-500 text-xs">—</span>
             )
         )
     },

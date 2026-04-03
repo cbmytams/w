@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { EASING } from "@/lib/easing";
 import { useRouter } from "next/navigation";
 import WikiNavBar from "./WikiNavBar";
 import WikiArticleCard from "./WikiArticleCard";
@@ -28,14 +29,14 @@ export default function WikiCategoryView({ type, title, articles, allArticles }:
     const { isDark, toggle: toggleDark } = useWikiDarkMode();
 
     return (
-        <div id="wiki-root" className="min-h-screen font-sans flex flex-col" style={{ backgroundColor: 'var(--wiki-bg)', color: 'var(--wiki-ink)' }}>
+        <div id="wiki-root" className="min-h-screen font-sans flex flex-col" style={{ color: 'var(--wiki-ink)' }}>
             <WikiSearchDialog articles={allArticles} />
             <WikiNavBar isDeep isReading={false} parentLabel="Retour" onBack={() => router.push(`/wiki?tab=${type}`)} isDark={isDark} onToggleDark={toggleDark} />
 
             <main id="main-content" className="pt-32 px-6 md:px-12 max-w-4xl mx-auto pb-24 flex-1 w-full relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.6, ease: EASING.premium }}
                     className="mb-16 border-b pb-8"
                     style={{ borderColor: 'var(--wiki-line-dark)' }}
                 >

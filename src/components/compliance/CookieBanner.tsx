@@ -28,7 +28,8 @@ export function CookieBanner() {
         </div>
         <div className="flex items-center gap-3">
           <button
-            className="inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-transparent px-6 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:border-zinc-600 dark:text-zinc-200 dark:hover:bg-white/10"
+            type="button"
+            className="inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-transparent px-6 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:border-zinc-600 dark:text-zinc-200 dark:hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:focus-visible:outline-white"
             onClick={() => {
               setStoredConsent("declined");
               setConsent("declined");

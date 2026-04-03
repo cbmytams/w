@@ -14,14 +14,14 @@ export function TalentOSSection() {
             <Container>
                 <div className="max-w-6xl mx-auto">
                     <RevealAnimation className="max-w-3xl mb-14">
-                        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                        <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
                             {titleParts[0]}
                             <span className={`bg-gradient-to-r ${BRAND_GRADIENT} bg-clip-text text-transparent`}>
                                 {TALENT_OS_SYSTEM.highlightWord}
                             </span>
                             {titleParts[1]}
                         </h2>
-                        <p className="text-lg text-gray-600 dark:text-white/70">
+                        <p className="text-lg text-slate-600 dark:text-white/70">
                             {TALENT_OS_SYSTEM.subtitle}
                         </p>
                     </RevealAnimation>
@@ -37,19 +37,19 @@ export function TalentOSSection() {
                                     viewport={{ once: true, margin: "-120px" }}
                                     transition={{ duration: 0.5, delay: i * 0.05 }}
                                     className={cn(
-                                        "relative rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl p-6 shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)] overflow-hidden",
+                                        "relative rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl p-6 shadow-2xl dark:shadow-2xl overflow-hidden",
                                         isWide && "md:col-span-2"
                                     )}
                                 >
                                     <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gradient-to-br from-pink-500/10 via-violet-500/10 to-transparent" />
                                     <div className="flex items-center gap-3 mb-4">
                                         <span className="text-2xl">{item.icon}</span>
-                                        <div className="h-px flex-1 bg-gray-200 dark:bg-white/10" />
+                                        <div className="h-px flex-1 bg-slate-200 dark:bg-white/10" />
                                     </div>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                                         {item.title}
                                     </h3>
-                                    <p className="text-sm text-gray-600 dark:text-white/70 leading-relaxed">
+                                    <p className="text-sm text-slate-600 dark:text-white/70 leading-relaxed">
                                         {item.description}
                                     </p>
                                 </motion.div>
@@ -58,7 +58,7 @@ export function TalentOSSection() {
                     </div>
 
                     <RevealAnimation delay={0.2} className="mt-12">
-                        <div className="rounded-2xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 px-6 py-5 text-sm text-gray-600 dark:text-white/70 backdrop-blur-xl shadow-[0_18px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_18px_40px_rgba(0,0,0,0.3)]">
+                        <div className="rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-5 text-sm text-slate-600 dark:text-white/70 backdrop-blur-xl shadow-2xl dark:shadow-2xl">
                             {TALENT_OS_SYSTEM.footer}
                         </div>
                     </RevealAnimation>

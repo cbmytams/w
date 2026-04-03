@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Category } from "./types";
+import { SPRING } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 
 interface CategoryTabsProps {
@@ -20,10 +21,10 @@ export function CategoryTabs({ categories, activeCategoryId, onChange }: Categor
                         key={category.id}
                         onClick={() => onChange(category.id)}
                         className={cn(
-                            "relative py-6 text-[12px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 whitespace-nowrap",
+                            "relative py-6 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-300 whitespace-nowrap",
                             isActive
                                 ? "text-black dark:text-white"
-                                : "text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                                : "text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-slate-300"
                         )}
                     >
                         {category.label}
@@ -31,7 +32,7 @@ export function CategoryTabs({ categories, activeCategoryId, onChange }: Categor
                             <motion.div
                                 layoutId="activeCategoryTab"
                                 className="absolute bottom-0 left-0 right-0 h-[2px] bg-black dark:bg-white"
-                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                transition={{ type: "spring", ...SPRING.responsive }}
                             />
                         )}
                     </button>

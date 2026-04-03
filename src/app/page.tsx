@@ -7,20 +7,20 @@ export const metadata: Metadata = {
         absolute: "Wafia | Influence & Creative Studio",
     },
     description:
-        "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management pour marques et agences.",
+        "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management.",
     alternates: {
         canonical: sitePaths.home,
     },
     openGraph: {
         title: "Wafia | Influence & Creative Studio",
         description:
-            "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management pour marques et agences."
+            "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management."
     },
     twitter: {
         card: "summary_large_image",
         title: "Wafia | Influence & Creative Studio",
         description:
-            "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management pour marques et agences."
+            "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management."
     }
 };
 

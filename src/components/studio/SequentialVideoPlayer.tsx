@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Volume2, VolumeX, ChevronRight, ChevronLeft, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { EASING } from "@/lib/easing"
 
 interface SequentialVideoPlayerProps {
     videos: string[]
@@ -205,7 +206,7 @@ export function SequentialVideoPlayer({ videos, branding, className }: Sequentia
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+                        transition={{ duration: 0.4, ease: EASING.smooth, delay: 0.3 }}
                         className="absolute bottom-6 left-6 z-30 pointer-events-none"
                     >
                         <div className="flex flex-col gap-1 px-5 py-3 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">

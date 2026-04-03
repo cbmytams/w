@@ -17,7 +17,7 @@ function buildOptionsPool(): ISourceOptions[] {
     const presetOptions: ISourceOptions[] = availablePresets.map((p) => ({
         preset: p.name,
         background: {
-            color: { value: "#050510" },
+            color: { value: "#0b111a" },
         },
         fullScreen: {
             enable: false,

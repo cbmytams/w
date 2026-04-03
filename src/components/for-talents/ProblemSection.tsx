@@ -118,7 +118,7 @@ export function ProblemSection() {
                         className="relative"
                     >
                         {/* Glassmorphic card matching site aesthetic */}
-                        <div className="relative p-8 sm:p-10 rounded-3xl bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-xl shadow-purple-500/5 overflow-hidden">
+                        <div className="relative p-8 sm:p-10 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-xl shadow-purple-500/5 overflow-hidden">
                             {/* Corner accent */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-500/10 to-transparent rounded-bl-full" />
 

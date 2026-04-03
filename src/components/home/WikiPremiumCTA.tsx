@@ -70,7 +70,7 @@ export function WikiPremiumCTA() {
                 transition={{ delay: 1.2, duration: 1.2, ease: EASING.premium }}
             >
                 {/* Ambient Aura */}
-                <div className="wiki-cta-aura absolute inset-0 -inset-x-12 -inset-y-8 bg-gradient-to-br from-slate-400/10 via-purple-300/10 to-transparent blur-3xl opacity-0 group-hover:opacity-100 rounded-[100%]" />
+                <div className="wiki-cta-aura absolute inset-0 -inset-x-12 -inset-y-8 bg-gradient-to-br from-slate-400/10 via-purple-300/10 to-transparent blur-3xl opacity-0 group-hover:opacity-100 rounded-full" />
 
                 {/* The Badge Container — CSS float animation */}
                 <div className="wiki-cta-float relative z-10">

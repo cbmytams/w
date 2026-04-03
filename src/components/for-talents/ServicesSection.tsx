@@ -17,6 +17,7 @@ import { SeriesFormatsWidget } from "./widgets/SeriesFormatsWidget"
 import { PricingOffersWidget } from "./widgets/PricingOffersWidget"
 import { ServiceDetailDrawer } from "./ServiceDetailDrawer"
 import { ArrowRight } from "lucide-react"
+import { EASING } from "@/lib/easing"
 
 const widgetMap = {
     "IdentityLens": IdentityLensWidget,
@@ -37,7 +38,7 @@ export function ServicesSection() {
     const renderDetailButton = (service: TalentService, isServiceOpen: boolean) => (
         <motion.button
             onClick={() => setSelectedService(service)}
-            whileTap={{ scale: 0.96, transition: { duration: 0.1, ease: "easeOut" } }}
+            whileTap={{ scale: 0.96, transition: { duration: 0.1, ease: EASING.easeOut } }}
             aria-expanded={isServiceOpen}
             className={detailButtonClassName}
         >
@@ -46,7 +47,7 @@ export function ServicesSection() {
                 aria-hidden="true"
                 className="inline-flex"
                 animate={{ rotate: isServiceOpen ? 90 : 0, x: isServiceOpen ? 2 : 0 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
+                transition={{ duration: 0.2, ease: EASING.easeInOut }}
             >
                 <ArrowRight className="h-4 w-4" />
             </motion.span>
@@ -118,7 +119,7 @@ export function ServicesSection() {
 
                                             {/* Widget */}
                                             <div className={isEven ? "lg:order-2" : "lg:order-1"}>
-                                                <div className="group relative h-[500px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-purple-500/20 hover:shadow-2xl">
+                                                <div className="group relative h-[500px] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-purple-500/20 hover:shadow-2xl">
                                                     {/* Hover gradient overlay */}
                                                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/5 group-hover:to-violet-500/5 transition-all duration-300 pointer-events-none z-10" />
 
@@ -198,7 +199,7 @@ export function ServicesSection() {
 
                                             {/* Widget */}
                                             <div className={isEven ? "lg:order-2" : "lg:order-1"}>
-                                                <div className="group relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-purple-500/20 hover:shadow-2xl">
+                                                <div className="group relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-purple-500/20 hover:shadow-2xl">
                                                     {/* Hover gradient overlay */}
                                                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/5 group-hover:to-violet-500/5 transition-all duration-300 pointer-events-none z-10" />
 
@@ -278,7 +279,7 @@ export function ServicesSection() {
 
                                             {/* Widget */}
                                             <div className={isEven ? "lg:order-2" : "lg:order-1"}>
-                                                <div className="group relative h-[500px] rounded-3xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-purple-500/20 hover:shadow-2xl">
+                                                <div className="group relative h-[500px] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-purple-500/20 hover:shadow-2xl">
                                                     {/* Hover gradient overlay */}
                                                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/5 group-hover:to-violet-500/5 transition-all duration-300 pointer-events-none z-10" />
 

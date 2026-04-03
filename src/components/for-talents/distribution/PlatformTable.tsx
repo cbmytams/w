@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { SPRING } from "@/lib/design-tokens";
 import {
     ArrowRight,
     Globe,
@@ -72,23 +73,23 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
         <div ref={containerRef} className="flex-1 overflow-x-hidden overflow-y-auto custom-scrollbar pb-8 relative">
             {/* Table Header */}
             <div className="grid grid-cols-12 gap-5 px-8 py-3 border-b border-black/5 dark:border-white/5 sticky top-0 z-10 bg-white/80 dark:bg-[#080808]/80 backdrop-blur-xl">
-                <div className={cn("text-[10px] font-bold text-gray-400 uppercase tracking-[0.15em]", nameCol)}>
+                <div className={cn("text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]", nameCol)}>
                     Plateforme
                 </div>
                 {showDesktopCols && (
                     <>
-                        <div className="hidden lg:block lg:col-span-2 text-[10px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                        <div className="hidden lg:block lg:col-span-2 text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]">
                             Accès / Deal
                         </div>
-                        <div className="hidden lg:block lg:col-span-2 text-[10px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                        <div className="hidden lg:block lg:col-span-2 text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]">
                             Statut
                         </div>
                         {showSpeedColumn && (
-                            <div className="hidden lg:block lg:col-span-1 text-[10px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                            <div className="hidden lg:block lg:col-span-1 text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em]">
                                 Délai
                             </div>
                         )}
-                        <div className="hidden lg:block lg:col-span-2 text-[10px] font-bold text-gray-400 uppercase tracking-[0.15em] text-right">
+                        <div className="hidden lg:block lg:col-span-2 text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] text-right">
                             Action
                         </div>
                     </>
@@ -111,7 +112,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                             transition={{ delay: index * 0.04 }}
                             onClick={() => setSelection({ id: platform.id, subCategoryId })}
                             className={cn(
-                                "group relative w-full text-left rounded-[20px] transition-all duration-300 overflow-hidden",
+                                "group relative w-full text-left rounded-xl transition-all duration-300 overflow-hidden",
                                 "border border-transparent hover:border-black/5 dark:hover:border-white/10",
                                 "hover:bg-black/[0.02] dark:hover:bg-white/[0.04]",
                                 isSelected && "bg-black/[0.03] dark:bg-white/[0.05] border-black/10 dark:border-white/10"
@@ -127,25 +128,26 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                                 alt={platform.name}
                                                 width={28}
                                                 height={28}
+                                                sizes="28px"
                                                 className="w-full h-full max-w-[28px] max-h-[28px] object-contain transition-transform duration-300 group-hover:scale-110"
                                             />
                                         ) : (
-                                            <Music className="w-5 h-5 text-gray-400" />
+                                            <Music className="w-5 h-5 text-slate-400" />
                                         )}
                                     </div>
                                     <div className="flex flex-col">
-                                        <h3 className="text-[15px] font-bold text-black dark:text-white leading-none">
+                                        <h3 className="text-base font-bold text-black dark:text-white leading-none">
                                             {platform.name}
                                         </h3>
                                         {reachValue && (
-                                            <p className="text-[12px] font-medium text-gray-500 dark:text-gray-400 mt-1">
+                                            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">
                                                 {reachValue}
                                             </p>
                                         )}
                                         {/* Mobile view pills */}
                                         {!showDesktopCols && (
                                             <div className="mt-3 flex flex-wrap items-center gap-2">
-                                                <span className="inline-flex items-center gap-1.5 px-2 py-1.5 rounded-md text-[10px] font-bold text-gray-700 bg-black/5 dark:text-gray-200 dark:bg-white/10">
+                                                <span className="inline-flex items-center gap-1.5 px-2 py-1.5 rounded-md text-[10px] font-bold text-slate-700 bg-black/5 dark:text-slate-200 dark:bg-white/10">
                                                     {getAccessIcon(platform.accessType ?? "")}
                                                     {platform.accessType ?? "—"}
                                                 </span>
@@ -167,7 +169,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                     <>
                                         {/* Access Type */}
                                         <div className="hidden lg:flex lg:col-span-2">
-                                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-gray-700 bg-black/5 dark:text-gray-300 dark:bg-white/10">
+                                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-black/5 dark:text-slate-300 dark:bg-white/10">
                                                 {getAccessIcon(platform.accessType ?? "")}
                                                 {platform.accessType ?? "—"}
                                             </span>
@@ -176,7 +178,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                         {/* Status */}
                                         <div className="hidden lg:flex lg:col-span-2 items-center">
                                             <span className={cn(
-                                                "inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[11px] font-bold",
+                                                "inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-bold",
                                                 platform.isLive
                                                     ? "text-emerald-700 bg-emerald-50 dark:text-emerald-300 dark:bg-emerald-500/10"
                                                     : "text-amber-700 bg-amber-50 dark:text-amber-300 dark:bg-amber-500/10"
@@ -189,7 +191,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                         {/* Speed */}
                                         {showSpeedColumn && (
                                             <div className="hidden lg:flex lg:col-span-1 items-center">
-                                                <span className="text-[12px] font-bold text-gray-600 dark:text-gray-400">
+                                                <span className="text-xs font-bold text-slate-600 dark:text-slate-400">
                                                     {speedValue || "—"}
                                                 </span>
                                             </div>
@@ -228,28 +230,28 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                             initial={{ x: "100%", opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: "100%", opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 35 }}
-                            className="absolute right-0 top-0 h-full w-full sm:w-[460px] bg-white dark:bg-[#0A0A0A] border-l border-black/5 dark:border-white/10 shadow-2xl flex flex-col"
+                            transition={{ type: "spring", ...SPRING.responsive }}
+                            className="absolute right-0 top-0 h-full w-full sm:w-[460px] bg-white dark:bg-[#0b111a] border-l border-black/5 dark:border-white/10 shadow-2xl flex flex-col"
                         >
                             <div className="flex items-center justify-between p-6 sm:p-8 border-b border-black/5 dark:border-white/5">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-14 h-14 rounded-[14px] bg-gray-50 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center justify-center">
+                                    <div className="w-14 h-14 rounded-[14px] bg-slate-50 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center justify-center">
                                         {selectedPlatform.logo ? (
-                                            <Image src={selectedPlatform.logo} alt={selectedPlatform.name} width={32} height={32} className="object-contain" />
+                                            <Image src={selectedPlatform.logo} alt={selectedPlatform.name} width={32} height={32} sizes="32px" className="object-contain" />
                                         ) : (
-                                            <Music className="w-6 h-6 text-gray-400" />
+                                            <Music className="w-6 h-6 text-slate-400" />
                                         )}
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold text-black dark:text-white leading-none font-syne tracking-tight">
+                                        <h3 className="text-2xl font-bold text-black dark:text-white leading-none font-heading tracking-tight">
                                             {selectedPlatform.name}
                                         </h3>
                                         <div className="flex items-center gap-2 mt-2">
-                                            <span className="flex items-center gap-1.5 text-[11px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">
+                                            <span className="flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                                                 {getAccessIcon(selectedPlatform.accessType ?? "")}
                                                 {selectedPlatform.accessType}
                                             </span>
-                                            <span className="text-gray-300 dark:text-gray-600">•</span>
+                                            <span className="text-slate-300 dark:text-slate-600">•</span>
                                             <span className={cn(
                                                 "text-[10px] font-bold uppercase tracking-widest",
                                                 selectedPlatform.isLive ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400"
@@ -262,7 +264,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                 <button
                                     type="button"
                                     onClick={() => setSelection(null)}
-                                    className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-600 dark:bg-white/5 dark:hover:bg-white/10 dark:text-gray-300 transition-colors"
+                                    className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-600 dark:bg-white/5 dark:hover:bg-white/10 dark:text-slate-300 transition-colors"
                                 >
                                     <X size={16} />
                                 </button>
@@ -270,10 +272,10 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
 
                             <div className="p-6 sm:p-8 flex-1 overflow-y-auto">
                                 <div>
-                                    <h4 className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em] mb-4">
+                                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-4">
                                         À propos
                                     </h4>
-                                    <p className="text-[15px] text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
+                                    <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
                                         {selectedPlatform.description || "Information détaillée indisponible."}
                                     </p>
                                 </div>
@@ -286,11 +288,11 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                             { label: "Support", value: selectedPlatform.metrics.support },
                                             { label: "Territoires", value: selectedPlatform.metrics.geo }
                                         ].map((item) => (
-                                            <div key={item.label} className="bg-gray-50 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 rounded-[20px] p-5">
-                                                <div className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-[0.1em]">
+                                            <div key={item.label} className="bg-slate-50 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 rounded-xl p-5">
+                                                <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.1em]">
                                                     {item.label}
                                                 </div>
-                                                <div className="text-[16px] font-bold text-black dark:text-white mt-1.5">
+                                                <div className="text-base font-bold text-black dark:text-white mt-1.5">
                                                     {item.value}
                                                 </div>
                                             </div>

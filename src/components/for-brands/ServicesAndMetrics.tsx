@@ -12,6 +12,7 @@ import { Container } from "@/components/ui/container"
 import { Marquee } from "@/components/ui/marquee"
 import { cn } from "@/lib/utils"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
+import { EASING } from "@/lib/easing"
 
 // --- Constants ---
 
@@ -141,21 +142,21 @@ function ServiceCard({ service }: { service: typeof SERVICES[number] }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-20px" }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: EASING.easeOut }}
             className={cn(
                 "group relative h-full min-h-[220px] md:min-h-[280px] p-6 md:p-8 flex flex-col justify-between",
-                "bg-white border-2 border-black rounded-[20px]",
+                "bg-white border-2 border-black rounded-xl",
                 "dark:bg-zinc-900 dark:border-white", // Dark mode
-                "shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
-                "dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]", // Dark shadow
-                "hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]",
+                /* removed neo-brutalist shadow */
+                /* removed dark neo-brutalist shadow */
+                /* removed hover neo-brutalist shadow */
                 "hover:-translate-y-1 hover:rotate-0 transition-all duration-300",
                 service.rotation // Default tilt
             )}
         >
             {/* Title - Massive & Condensed */}
             <div>
-                <h3 className="font-syne font-extrabold text-2xl md:text-3xl uppercase leading-[0.9] tracking-tighter text-black dark:text-white mb-6 break-words">
+                <h3 className="font-heading font-extrabold text-2xl md:text-3xl uppercase leading-[0.9] tracking-tighter text-black dark:text-white mb-6 break-words">
                     {service.title}
                 </h3>
             </div>
@@ -166,7 +167,7 @@ function ServiceCard({ service }: { service: typeof SERVICES[number] }) {
                     <service.icon className="w-8 h-8 md:w-10 md:h-10 text-black dark:text-white stroke-[1.5]" />
                 </div>
 
-                <p className="text-sm md:text-base font-medium text-gray-600 dark:text-zinc-400 leading-snug group-hover:text-black dark:group-hover:text-white transition-colors">
+                <p className="text-sm md:text-base font-medium text-slate-600 dark:text-zinc-400 leading-snug group-hover:text-black dark:group-hover:text-white transition-colors">
                     {service.description}
                 </p>
             </div>
@@ -187,10 +188,10 @@ function CTAWidget() {
             transition={{ duration: 0.5, delay: 0.24 }}
             className={cn(
                 "group relative h-full min-h-[220px] md:min-h-[280px] p-6 md:p-8 flex flex-col justify-center items-center text-center",
-                "bg-black border-2 border-black rounded-[20px]",
+                "bg-black border-2 border-black rounded-xl",
                 "dark:bg-white dark:border-white", // Invert for dark mode (White card on black bg)
-                "shadow-[8px_8px_0px_0px_rgba(255,100,0,1)]", // Orange Shadow for pop
-                "hover:shadow-[12px_12px_0px_0px_rgba(255,100,0,1)] hover:-translate-y-1 hover:rotate-1 transition-all duration-300",
+                /* removed orange neo-brutalist shadow */
+                "hover:-translate-y-1 hover:rotate-1 transition-all duration-300",
                 "cursor-pointer rotate-1"
             )}
         >
@@ -200,7 +201,7 @@ function CTAWidget() {
                 <ArrowRight className="w-8 h-8" />
             </div>
 
-            <h3 className="font-syne font-extrabold text-2xl md:text-3xl uppercase leading-[0.9] tracking-tighter text-white dark:text-black mb-4">
+            <h3 className="font-heading font-extrabold text-2xl md:text-3xl uppercase leading-[0.9] tracking-tighter text-white dark:text-black mb-4">
                 Votre Projet ?
             </h3>
 
@@ -229,10 +230,10 @@ export function ServicesAndMetrics() {
                         transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42) }}
                         className="max-w-3xl"
                     >
-                        <h2 className="font-syne font-black text-3xl sm:text-5xl md:text-7xl lg:text-[8rem] leading-[0.85] text-black dark:text-white uppercase tracking-tighter mb-6 md:mb-8 scale-y-110 origin-left">
+                        <h2 className="font-heading font-black text-3xl sm:text-5xl md:text-7xl lg:text-[8rem] leading-[0.85] text-black dark:text-white uppercase tracking-tighter mb-6 md:mb-8 scale-y-110 origin-left">
                             NOS SERVICES
                         </h2>
-                        <p className="text-lg text-gray-600 dark:text-zinc-400 font-bold uppercase tracking-wide max-w-xl">
+                        <p className="text-lg text-slate-600 dark:text-zinc-400 font-bold uppercase tracking-wide max-w-xl">
                             Une architecture complète pour transformer votre marque.
                         </p>
                     </motion.div>
@@ -246,7 +247,7 @@ export function ServicesAndMetrics() {
                         whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
                         viewport={disableMotion ? undefined : viewport}
                         transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.1) }}
-                        className="p-6 md:p-8 rounded-[20px] bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-zinc-900 dark:border-white dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex flex-col justify-between h-auto min-h-[160px] md:h-[240px]"
+                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black dark:bg-zinc-900 dark:border-white flex flex-col justify-between h-auto min-h-[160px] md:h-[240px]"
                     >
                         <div className="flex justify-between items-start">
                             <div className="p-2 border-2 border-black rounded-lg bg-[#FFDE59]"> {/* Yellow accent - Keep color but ensure icon visibility */}
@@ -262,7 +263,7 @@ export function ServicesAndMetrics() {
                                     viewport={viewport}
                                 />
                             </div>
-                            <p className="text-gray-600 dark:text-zinc-400 font-bold uppercase text-xs tracking-wider">
+                            <p className="text-slate-600 dark:text-zinc-400 font-bold uppercase text-xs tracking-wider">
                                 Campagnes orchestrées
                             </p>
                         </div>
@@ -274,7 +275,7 @@ export function ServicesAndMetrics() {
                         whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
                         viewport={disableMotion ? undefined : viewport}
                         transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.16) }}
-                        className="p-6 md:p-8 rounded-[20px] bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-zinc-900 dark:border-white dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex flex-col justify-between h-auto min-h-[160px] md:h-[240px]"
+                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black dark:bg-zinc-900 dark:border-white flex flex-col justify-between h-auto min-h-[160px] md:h-[240px]"
                     >
                         <div className="flex justify-between items-start">
                             <div className="p-2 border-2 border-black rounded-lg bg-[#FF914D]"> {/* Orange accent */}
@@ -290,7 +291,7 @@ export function ServicesAndMetrics() {
                                     viewport={viewport}
                                 />
                             </div>
-                            <p className="text-gray-600 dark:text-zinc-400 font-bold uppercase text-xs tracking-wider">
+                            <p className="text-slate-600 dark:text-zinc-400 font-bold uppercase text-xs tracking-wider">
                                 Années d'expertise
                             </p>
                         </div>
@@ -302,7 +303,7 @@ export function ServicesAndMetrics() {
                         whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
                         viewport={disableMotion ? undefined : viewport}
                         transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.22) }}
-                        className="p-6 md:p-8 rounded-[20px] bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-zinc-900 dark:border-white dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex flex-col h-auto min-h-[160px] md:h-[240px]"
+                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black dark:bg-zinc-900 dark:border-white flex flex-col h-auto min-h-[160px] md:h-[240px]"
                     >
                         <div className="flex items-center gap-3 mb-4 md:mb-6">
                             <Database className="w-5 h-5 md:w-6 md:h-6 text-black dark:text-white" />
@@ -315,7 +316,7 @@ export function ServicesAndMetrics() {
 
                         <div className="grid grid-cols-2 gap-2 md:gap-3 overflow-y-auto custom-scrollbar pr-2">
                             {TOOLS.map((tool, i) => (
-                                <div key={i} className="flex items-center gap-2 px-2 py-1.5 border border-black rounded-md bg-gray-50 hover:bg-[#FFDE59] transition-colors cursor-default dark:bg-zinc-800 dark:border-white dark:text-white dark:hover:bg-[#FFDE59] dark:hover:text-black">
+                                <div key={i} className="flex items-center gap-2 px-2 py-1.5 border border-black rounded-md bg-slate-50 hover:bg-[#FFDE59] transition-colors cursor-default dark:bg-zinc-800 dark:border-white dark:text-white dark:hover:bg-[#FFDE59] dark:hover:text-black">
                                     <span className="text-[10px] font-bold text-black dark:text-inherit uppercase truncate">
                                         {tool.name}
                                     </span>

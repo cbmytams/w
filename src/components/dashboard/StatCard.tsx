@@ -27,11 +27,11 @@ export function StatCard({
             </div>
 
             <div className="flex justify-between items-start mb-4 relative z-10">
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest">{title}</h3>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest">{title}</h3>
             </div>
 
             <div className="flex items-baseline gap-3 relative z-10">
-                <div className="text-4xl font-display font-bold text-white tracking-tight">{value}</div>
+                <div className="text-4xl font-heading font-bold text-white tracking-tight">{value}</div>
                 {trend && (
                     <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${trendPositive ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'}`}>
                         {trend}
@@ -40,7 +40,7 @@ export function StatCard({
             </div>
 
             {description && (
-                <p className="mt-3 text-xs text-gray-500 relative z-10 font-medium">{description}</p>
+                <p className="mt-3 text-xs text-slate-500 relative z-10 font-medium">{description}</p>
             )}
         </div>
     );

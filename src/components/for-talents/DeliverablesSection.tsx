@@ -8,6 +8,7 @@ import { TALENT_DELIVERABLES } from "@/constants"
 import { DeliverableDetailDrawer } from "./DeliverableDetailDrawer"
 import { ArrowRight } from "lucide-react"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
+import { EASING } from "@/lib/easing"
 
 type DeliverableItem = typeof TALENT_DELIVERABLES.items[number]
 
@@ -39,16 +40,16 @@ export function DeliverablesSection() {
                                 transition={disableMotion ? undefined : { duration: transitionDuration, delay: clampDelay(index * 0.07) }}
                                 whileTap={disableMotion ? undefined : {
                                     scale: 0.96,
-                                    transition: { duration: 0.1, ease: "easeOut" }
+                                    transition: { duration: 0.1, ease: EASING.easeOut }
                                 }}
                                 onClick={() => setSelectedItem(item)}
-                                className="group relative p-8 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] rounded-[2.5rem] border border-black/[0.05] dark:border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_64px_rgba(0,0,0,0.08)] dark:shadow-none hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 text-left cursor-pointer focus-visible:outline-none flex flex-col min-h-[240px] active:scale-[0.98]"
+                                className="group relative p-8 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] rounded-2xl border border-black/[0.05] dark:border-white/[0.05] shadow-lg hover:shadow-2xl dark:shadow-none hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 text-left cursor-pointer focus-visible:outline-none flex flex-col min-h-[240px] active:scale-[0.98]"
                                 aria-label={`Voir le détail: ${item.title}`}
                             >
                                 <div className="flex flex-col h-full relative z-10">
                                     {/* Top Row: Huge Icon + Minimal Arrow */}
                                     <div className="flex justify-between items-start mb-auto w-full">
-                                        <div className="text-[42px] leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left">
+                                        <div className="text-4xl leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left">
                                             {item.icon}
                                         </div>
                                         {/* Always-visible subtle affordance (fixes mobile non-clickability issue), highlights on hover */}
@@ -59,20 +60,20 @@ export function DeliverablesSection() {
 
                                     {/* Bottom Content: Ultra Clean Typography */}
                                     <div className="mt-12">
-                                        <h3 className="text-[22px] font-bold tracking-tight text-slate-900 dark:text-white mb-2 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
+                                        <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white mb-2 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
                                             {item.title}
                                         </h3>
-                                        <p className="text-[14px] font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
+                                        <p className="text-sm font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
                                             {item.subtitle}
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Subtle Light Leak for Glass Edge */}
-                                <div className="absolute inset-0 rounded-[2.5rem] border border-white/20 dark:border-white/5 pointer-events-none" />
+                                <div className="absolute inset-0 rounded-2xl border border-white/20 dark:border-white/5 pointer-events-none" />
 
                                 {/* Organic Hover Glow */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/[0.03] group-hover:to-violet-500/[0.03] dark:group-hover:from-purple-500/[0.05] dark:group-hover:to-violet-500/[0.05] rounded-[2.5rem] transition-all duration-500 pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/[0.03] group-hover:to-violet-500/[0.03] dark:group-hover:from-purple-500/[0.05] dark:group-hover:to-violet-500/[0.05] rounded-2xl transition-all duration-500 pointer-events-none" />
                             </motion.button>
                         ))}
                     </div>

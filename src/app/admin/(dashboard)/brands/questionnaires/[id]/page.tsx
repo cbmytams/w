@@ -39,7 +39,7 @@ export default async function BrandDetail({ params }: BrandQuestionnaireDetailPr
             headerSlot={
                 <div className="flex flex-col items-end gap-1">
                     <span className="text-3xl font-display font-bold text-questionnaire-primary">{globalCompletion.percent}%</span>
-                    <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">de complétion</span>
+                    <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">de complétion</span>
                 </div>
             }
             sidebarSlot={
@@ -54,7 +54,7 @@ export default async function BrandDetail({ params }: BrandQuestionnaireDetailPr
                             return (
                                 <li key={section.id}>
                                     <a href={`#${section.id}`} className="flex items-center justify-between group">
-                                        <span className="text-sm text-gray-400 group-hover:text-white transition-colors truncate max-w-[180px]" title={section.label}>{section.label}</span>
+                                        <span className="text-sm text-slate-400 group-hover:text-white transition-colors truncate max-w-[180px]" title={section.label}>{section.label}</span>
                                         <span className={`text-xs font-medium ml-2 ${secComp.percent === 100 ? 'text-green-500' : 'text-questionnaire-primary'}`}>
                                             {secComp.percent}%
                                         </span>

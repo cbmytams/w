@@ -40,7 +40,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main id="main-content" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black text-white">
+    <main id="main-content" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0b111a] text-white">
       {/* Premium Apple / VisionOS Background Gradients */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] mix-blend-screen" />
@@ -60,7 +60,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit} className="relative z-10 admin-glass-panel p-10 sm:p-12 w-full max-w-md mx-4 overflow-hidden group">
 
         {/* Subtle inner highlight */}
-        <div className="absolute inset-0 rounded-3xl border border-white/10 pointer-events-none mix-blend-overlay" />
+        <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none mix-blend-overlay" />
 
         <div className="relative z-20">
           <div className="flex justify-center mb-8">
