@@ -20,8 +20,8 @@ const STAT_ICONS = {
 
 export function BrandHeroV2() {
     return (
-        <section className="relative pt-24 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
-            <div className="container mx-auto px-6 max-w-7xl">
+        <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-24 overflow-hidden">
+            <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
 
                     {/* LEFT COLUMN: Content */}
@@ -38,7 +38,7 @@ export function BrandHeroV2() {
                         </div>
 
                         {/* Headline */}
-                        <h1 className="font-heading text-4xl sm:text-5xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight">
+                        <h1 className="font-heading text-3xl sm:text-5xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight">
                             {BRAND_HERO_CONTENT.title.line1} <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-600">
                                 {BRAND_HERO_CONTENT.title.highlight}
@@ -46,7 +46,7 @@ export function BrandHeroV2() {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed font-medium">
+                        <p className="text-base sm:text-xl text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 leading-relaxed font-medium">
                             {BRAND_HERO_CONTENT.subtitle}
                         </p>
 
@@ -78,7 +78,7 @@ export function BrandHeroV2() {
                         </div>
 
                         {/* CTAs */}
-                        <div className="flex flex-row gap-3">
+                        <div className="flex flex-col sm:flex-row gap-3">
                             <Button
                                 asChild
                                 className="rounded-full bg-gradient-to-r from-orange-500 to-rose-600 hover:from-orange-600 hover:to-rose-700 text-white font-semibold px-5 sm:px-8 h-11 sm:h-14 shadow-lg shadow-orange-500/20 text-sm sm:text-base transition-all hover:scale-105"
