@@ -32,6 +32,8 @@ The goal is to unify the design system under a single "dark premium editorial" d
 
 Exports typed constants that components import directly. This is the single source of truth for visual rules.
 
+**Relationship with easing.ts:** The existing `src/lib/easing.ts` remains the canonical source for `EASING` curves and `DURATION` constants. `design-tokens.ts` re-exports them for convenience, so components can import everything from one place. No duplication — just re-export.
+
 ### 3.1 Colors
 
 ```ts
@@ -117,8 +119,8 @@ export const HEADER_MARGIN = {
 
 ```ts
 export const CARD = {
-  dark: "bg-slate-900/80 backdrop-blur-xl border border-white/10",
-  light: "bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10",
+  dark: "rounded-xl bg-slate-900/80 backdrop-blur-xl border border-white/10",
+  light: "rounded-xl bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10",
 } as const
 ```
 
@@ -126,9 +128,9 @@ export const CARD = {
 
 ### P0-1. Unified gray palette (slate-*)
 
-**Action:** Find-and-replace `gray-` → `slate-` in all component files under `src/components/for-brands/`.
+**Action:** Find-and-replace `gray-` → `slate-` in ALL component files site-wide. This is not scoped to brands only — the entire site must use a single neutral palette.
 
-**Files:**
+**Files (brands — 10 files, ~163 occurrences):**
 - `ValuePropositionSection.tsx`
 - `CaseStudiesSection.tsx`
 - `ProcessSection.tsx`
@@ -140,9 +142,22 @@ export const CARD = {
 - `BrandHeroV2.tsx`
 - `ClientsSection.tsx`
 
+**Files (talents — ~22 files, ~226 occurrences):**
+- All files in `src/components/for-talents/` that use `gray-`
+
+**Files (common/other — ~17 files):**
+- `src/components/common/`
+- `src/components/team/`
+- `src/components/legal/`
+- `src/components/questionnaire/`
+- `src/components/layout/`
+- `src/components/wiki/`
+
+**Total scope:** ~49 files site-wide.
+
 **Exceptions:** CSS gradient class names like `from-gray-900` that are part of text gradients need manual review — some may need to become `from-slate-900`.
 
-**Verification:** Visual diff on /for-brands — no visible color shift expected since gray and slate are perceptually close. Check dark mode contrast.
+**Verification:** Visual diff on all pages — no visible color shift expected since gray and slate are perceptually close. Check dark mode contrast.
 
 ### P0-2. Unified dark background (#0b111a)
 
@@ -166,8 +181,13 @@ export const CARD = {
 **Side effects:**
 - The `/for-brands` page loses the 11-service showcase and the neo-brutalist section
 - Page length drops by ~2000px
-- The "NOS SERVICES" anchor in the floating nav needs to be removed or repointed
 - The Syne font is no longer rendered anywhere on the site
+
+**FloatingNavigation fix (mandatory):**
+The `BRAND_NAVIGATION` in `src/constants/brand-additions.ts` has `{ href: "#services", label: "Services" }` pointing to the `id="services"` on ServicesAndMetrics. After removal:
+1. Remove the "Services" entry from `BRAND_NAVIGATION`
+2. Update the nav to: `[{ href: "#case-studies", label: "Realisations" }, { href: "#process", label: "Methode" }, { href: "#faq", label: "FAQ" }]`
+3. Alternatively, add `id="services"` to ValuePropositionSection to preserve the anchor
 
 **Verification:** /for-brands loads without the section. FloatingNavigation anchors still work for remaining sections.
 
@@ -203,8 +223,12 @@ export const CARD = {
 **Action:**
 1. In `globals.css`: remove `--font-syne` variable definition and the `@font-face` or import for Syne
 2. In `tailwind.config.ts`: remove `fontFamily.display` or `fontFamily.syne` if defined
-3. Grep for `font-syne` / `font-display` — replace any remaining occurrences with `font-heading`
-4. Since ServicesAndMetrics (the only consumer) is removed from render (P0-3), this should have zero visible impact
+3. Grep for `font-syne` / `font-display` — replace ALL occurrences with `font-heading`
+4. Known files beyond ServicesAndMetrics that use `font-syne`:
+   - `src/components/for-talents/distribution/SmartDistributionDashboard.tsx` (line 45)
+   - `src/components/for-talents/distribution/PlatformTable.tsx` (line 244)
+   These files are not currently rendered (removed in earlier refonte) but must be migrated to prevent silent font fallback if ever re-enabled.
+5. Check `src/app/layout.tsx` for Syne font import — remove it
 
 **Verification:** `npm run build` passes. No font loading errors in console.
 
@@ -214,15 +238,27 @@ export const CARD = {
 
 **Mapping:**
 
-| Current | New | Rationale |
-|---------|-----|-----------|
-| `rounded-[20px]` | `rounded-xl` | 20px ≈ 0.75rem = xl |
-| `rounded-[28px]` | `rounded-2xl` | 28px ≈ 1rem = 2xl |
-| `rounded-[2rem]` | `rounded-2xl` | 2rem = 32px ≈ 2xl |
-| `rounded-[2.5rem]` | `rounded-2xl` | Closest standard |
-| `rounded-[3rem]` | `rounded-2xl` | Demote to 2xl (no jumbo radius) |
-| `rounded-[36px]` | `rounded-2xl` | Closest standard |
-| `rounded-3xl` | `rounded-2xl` | Consolidate to 2 tiers |
+**Note:** Tailwind v4 default values are `rounded-xl` = 12px, `rounded-2xl` = 16px. To maintain the site's current visual feel (which uses 20-28px radii extensively), we extend the Tailwind theme:
+
+```ts
+// In tailwind.config.ts theme.extend
+borderRadius: {
+  'xl': '1.25rem',  // 20px — standard cards
+  '2xl': '1.75rem', // 28px — prominent cards, sections
+}
+```
+
+**Mapping with extended values:**
+
+| Current | New | Pixel result |
+|---------|-----|-------------|
+| `rounded-[20px]` | `rounded-xl` | 20px |
+| `rounded-[28px]` | `rounded-2xl` | 28px |
+| `rounded-[2rem]` | `rounded-2xl` | 28px (was 32px, minor reduction) |
+| `rounded-[2.5rem]` | `rounded-2xl` | 28px (was 40px, notable reduction) |
+| `rounded-[3rem]` | `rounded-2xl` | 28px (was 48px, notable reduction) |
+| `rounded-[36px]` | `rounded-2xl` | 28px (was 36px, minor reduction) |
+| `rounded-3xl` | `rounded-2xl` | 28px (consolidate to 2 tiers) |
 
 **Files:** CaseStudiesSection, ComparisonSectionV2, AuthenticitySection, ComplianceSection, FloatingNavigation, Studio components (ProductionsGrid, SequentialVideoPlayer).
 
