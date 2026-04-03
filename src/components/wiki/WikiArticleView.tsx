@@ -123,7 +123,7 @@ export default function WikiArticleView({
     const progress = article.chapters?.length ? ((chapter + 1) / article.chapters.length) * 100 : 0;
 
     return (
-        <div id="wiki-root" className="min-h-screen font-sans flex flex-col" style={{ color: 'var(--wiki-ink)' }}>
+        <div id="wiki-root" className="min-h-screen font-sans flex flex-col" style={{ color: 'var(--wiki-ink)', backgroundColor: 'var(--wiki-bg)' }}>
             <WikiSearchDialog articles={allArticles} />
             <WikiNavBar isDeep isReading parentLabel={article.category}
                 currentTitle={article.title} onBack={() => {
