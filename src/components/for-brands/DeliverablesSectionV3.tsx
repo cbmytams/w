@@ -42,7 +42,7 @@ export function DeliverablesSectionV3() {
                                 transition={springTransition}
                                 className={cn(
                                     widget.colSpan,
-                                    "relative cursor-pointer group rounded-[32px] overflow-hidden backdrop-blur-xl",
+                                    "relative cursor-pointer group rounded-2xl overflow-hidden backdrop-blur-xl",
                                     "bg-white/80 border border-slate-200/60 shadow-xl",
                                     "dark:bg-white/5 dark:border-white/10 dark:shadow-2xl",
                                     "hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"

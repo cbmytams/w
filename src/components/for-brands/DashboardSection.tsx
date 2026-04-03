@@ -59,7 +59,7 @@ export function DashboardSection() {
                         <RevealAnimation delay={0.2} className="lg:col-span-7">
                             <div className="relative">
                                 {/* Glass Container */}
-                                <div className="bg-[#FDFBF7] dark:bg-zinc-900 rounded-[32px] shadow-2xl shadow-orange-500/5 border border-slate-100 dark:border-white/5 overflow-hidden p-6 sm:p-8">
+                                <div className="bg-[#FDFBF7] dark:bg-zinc-900 rounded-2xl shadow-2xl shadow-orange-500/5 border border-slate-100 dark:border-white/5 overflow-hidden p-6 sm:p-8">
 
                                     {/* 1. SaaS Header: Timeline & Status */}
                                     <div className="mb-8 p-4 bg-white dark:bg-zinc-800 rounded-2xl border border-slate-100 dark:border-zinc-700 shadow-sm">

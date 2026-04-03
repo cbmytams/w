@@ -31,7 +31,7 @@ export function GlobalPresentationSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="md:col-span-4 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-start hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 group"
+                        className="md:col-span-4 bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-start hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 group"
                     >
                         <div className="flex items-start gap-1 mb-4">
                             <span className="text-7xl font-bold tracking-tighter text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors duration-300">
@@ -50,7 +50,7 @@ export function GlobalPresentationSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="md:col-span-3 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-start hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300 group"
+                        className="md:col-span-3 bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-start hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300 group"
                     >
                         <div className="flex items-start gap-1 mb-4">
                             <span className="text-7xl font-bold tracking-tighter text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors duration-300">
@@ -69,7 +69,7 @@ export function GlobalPresentationSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="md:col-span-5 md:row-span-2 relative rounded-[32px] overflow-hidden group min-h-[400px]"
+                        className="md:col-span-5 md:row-span-2 relative rounded-2xl overflow-hidden group min-h-[400px]"
                     >
                         <Image
                             src="/wafia_abstract_expertise.png"
@@ -108,7 +108,7 @@ export function GlobalPresentationSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        className="md:col-span-7 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-between hover:border-slate-200 dark:hover:border-zinc-700 transition-colors"
+                        className="md:col-span-7 bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-between hover:border-slate-200 dark:hover:border-zinc-700 transition-colors"
                     >
                         <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
                             Powered by Data.
