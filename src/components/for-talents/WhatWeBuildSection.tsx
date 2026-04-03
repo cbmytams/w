@@ -3,8 +3,7 @@
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
-import { WHAT_WE_BUILD_HEADER, TALENT_PILLARS } from "@/constants/talent-blocks/pillars"
-import { cn } from "@/lib/utils"
+import { TALENT_PILLARS } from "@/constants/talent-blocks/pillars"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
 import { EASING } from "@/lib/easing"
 
@@ -12,42 +11,23 @@ export function WhatWeBuildSection() {
     const { disableMotion, viewport, transitionDuration, clampDelay } = useRevealViewport()
 
     return (
-        <section id={WHAT_WE_BUILD_HEADER.id} className="section-spacing px-4 relative z-10">
+        <section id="what-we-build" className="section-spacing px-4 relative z-10">
             <Container>
-                <div className="max-w-5xl mx-auto">
+                <div className="max-w-6xl mx-auto">
 
-                    {/* Problem Statement */}
-                    <RevealAnimation className="text-center mb-8">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight">
-                            {WHAT_WE_BUILD_HEADER.problemTitle}
-                            <br />
-                            <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-500 bg-clip-text text-transparent">
-                                {WHAT_WE_BUILD_HEADER.problemHighlight}
-                            </span>
+                    {/* Header */}
+                    <RevealAnimation className="text-center mb-16">
+                        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4">
+                            Ce qu&apos;on prend en charge
                         </h2>
-                    </RevealAnimation>
-
-                    <RevealAnimation delay={0.1} className="max-w-2xl mx-auto text-center mb-6">
-                        <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
-                            {WHAT_WE_BUILD_HEADER.problemDescription}
+                        <p className="text-xl text-slate-600 dark:text-white/70">
+                            Tu repars avec un syst&egrave;me qui tourne.
                         </p>
                     </RevealAnimation>
 
-                    {/* Pain Tags */}
-                    <RevealAnimation delay={0.12} className="flex flex-wrap justify-center gap-2 mb-16">
-                        {WHAT_WE_BUILD_HEADER.painTags.map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-3 py-1.5 rounded-full text-xs font-medium bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-500/20"
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                    </RevealAnimation>
-
-                    {/* 6 Pillars Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {TALENT_PILLARS.map((pillar, i) => (
+                    {/* Bento Grid — 6 pillars */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {TALENT_PILLARS.map((pillar, index) => (
                             <motion.div
                                 key={pillar.id}
                                 initial={disableMotion ? false : { opacity: 0, y: 20 }}
@@ -55,26 +35,33 @@ export function WhatWeBuildSection() {
                                 viewport={disableMotion ? undefined : viewport}
                                 transition={disableMotion ? undefined : {
                                     duration: transitionDuration,
-                                    delay: clampDelay(i * 0.06),
+                                    delay: clampDelay(index * 0.07),
                                     ease: EASING.subtle
                                 }}
-                                className={cn(
-                                    "p-6 rounded-2xl",
-                                    "bg-slate-900/80 dark:bg-slate-900/80 backdrop-blur-xl",
-                                    "border border-slate-800 dark:border-white/10",
-                                    "hover:bg-slate-900/90 dark:hover:bg-slate-800/80",
-                                    "transition-colors duration-300"
-                                )}
+                                className="group relative p-8 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] rounded-2xl border border-black/[0.05] dark:border-white/[0.05] shadow-lg hover:shadow-2xl dark:shadow-none hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 flex flex-col min-h-[260px]"
                             >
-                                <span className="text-2xl mb-4 block" role="img" aria-label={pillar.title}>
-                                    {pillar.icon}
-                                </span>
-                                <h4 className="text-lg font-bold text-white mb-2">
-                                    {pillar.title}
-                                </h4>
-                                <p className="text-sm text-slate-400 leading-relaxed">
-                                    {pillar.description}
-                                </p>
+                                <div className="flex flex-col h-full relative z-10">
+                                    {/* Large Icon */}
+                                    <div className="text-[42px] leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left mb-auto">
+                                        {pillar.icon}
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="mt-12">
+                                        <h3 className="text-[22px] font-bold tracking-tight text-slate-900 dark:text-white mb-3 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
+                                            {pillar.title}
+                                        </h3>
+                                        <p className="text-[14px] font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
+                                            {pillar.description}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Glass Edge */}
+                                <div className="absolute inset-0 rounded-2xl border border-white/20 dark:border-white/5 pointer-events-none" />
+
+                                {/* Organic Hover Glow */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/[0.03] group-hover:to-violet-500/[0.03] dark:group-hover:from-purple-500/[0.05] dark:group-hover:to-violet-500/[0.05] rounded-2xl transition-all duration-500 pointer-events-none" />
                             </motion.div>
                         ))}
                     </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { HeroSection } from "@/components/for-talents/HeroSection"
+import { ConstatSection } from "@/components/for-talents/ConstatSection"
 import { ForWhoSection } from "@/components/for-talents/ForWhoSection"
 import { WhatWeBuildSection } from "@/components/for-talents/WhatWeBuildSection"
 import { TalentJourneySection } from "@/components/for-talents/TalentJourneySection"
@@ -17,6 +18,7 @@ export function ForTalentsClient() {
             <MotionConfig reducedMotion="user">
                 <div className="relative z-10">
                     <HeroSection />
+                    <ConstatSection />
                     <ForWhoSection />
                     <WhatWeBuildSection />
                     <TalentJourneySection />
