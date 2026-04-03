@@ -49,6 +49,7 @@ export function IdentityPhoneWidget() {
                                         alt={platform.name}
                                         width={20}
                                         height={20}
+                                        sizes="20px"
                                         className="object-contain"
                                     />
                                 </div>
@@ -91,6 +92,7 @@ export function IdentityPhoneWidget() {
                                         alt={partner.name}
                                         width={18}
                                         height={18}
+                                        sizes="18px"
                                         className="object-contain brightness-0 invert"
                                     />
                                 </div>

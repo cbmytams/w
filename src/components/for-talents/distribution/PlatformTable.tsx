@@ -136,7 +136,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                         )}
                                     </div>
                                     <div className="flex flex-col">
-                                        <h3 className="text-[15px] font-bold text-black dark:text-white leading-none">
+                                        <h3 className="text-base font-bold text-black dark:text-white leading-none">
                                             {platform.name}
                                         </h3>
                                         {reachValue && (
@@ -275,7 +275,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                     <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-4">
                                         À propos
                                     </h4>
-                                    <p className="text-[15px] text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                                    <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
                                         {selectedPlatform.description || "Information détaillée indisponible."}
                                     </p>
                                 </div>
@@ -292,7 +292,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                                 <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.1em]">
                                                     {item.label}
                                                 </div>
-                                                <div className="text-[16px] font-bold text-black dark:text-white mt-1.5">
+                                                <div className="text-base font-bold text-black dark:text-white mt-1.5">
                                                     {item.value}
                                                 </div>
                                             </div>
