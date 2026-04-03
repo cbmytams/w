@@ -138,7 +138,7 @@ export function ProductionsGrid() {
                             <motion.div
                                 layoutId={`card-${prod.id}`}
                                 key={prod.id}
-                                className="relative w-full max-w-[100vw] sm:max-w-6xl h-[95vh] md:h-[85vh] bg-[#0A0A0A] rounded-t-[2.5rem] sm:rounded-[3rem] overflow-hidden shadow-2xl flex flex-col ring-1 ring-white/10"
+                                className="relative w-full max-w-[100vw] sm:max-w-6xl h-[95vh] md:h-[85vh] bg-[#0b111a] rounded-t-[2.5rem] sm:rounded-[3rem] overflow-hidden shadow-2xl flex flex-col ring-1 ring-white/10"
                                 transition={springTransition}
                             >
                                 {/* HEADER - Clean, Apple-style */}

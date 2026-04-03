@@ -183,7 +183,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 aria-labelledby="profile-drawer-title"
                                 tabIndex={-1}
                                 ref={modalRef}
-                                className="relative w-full max-w-[440px] max-h-[90vh] flex flex-col bg-white dark:bg-[#0A0A0A] shadow-2xl rounded-[36px] overflow-hidden sm:aspect-[9/16] md:aspect-auto"
+                                className="relative w-full max-w-[440px] max-h-[90vh] flex flex-col bg-white dark:bg-[#0b111a] shadow-2xl rounded-[36px] overflow-hidden sm:aspect-[9/16] md:aspect-auto"
                             >
                                 {/* Noise Texture Overlay */}
                                 <div className="absolute inset-0 opacity-[0.03] z-[5] pointer-events-none"
@@ -209,7 +209,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                     </button>
 
                                     {/* Content Container */}
-                                    <div className="absolute inset-0 flex flex-col justify-end p-7 pb-6 z-10 bg-gradient-to-t from-white via-white/20 to-transparent dark:from-[#0A0A0A] dark:via-[#0A0A0A]/20">
+                                    <div className="absolute inset-0 flex flex-col justify-end p-7 pb-6 z-10 bg-gradient-to-t from-white via-white/20 to-transparent dark:from-[#0b111a] dark:via-[#0b111a]/20">
                                         <motion.div variants={contentVariants} custom={0} initial="hidden" animate="visible">
                                             <div className="flex items-center gap-2 mb-3">
                                                 <span
@@ -247,7 +247,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 </div>
 
                                 {/* 2. Navigation Tabs (Segmented Control) */}
-                                <div className="px-6 py-2 bg-white dark:bg-[#0A0A0A] shrink-0 sticky top-0 z-10">
+                                <div className="px-6 py-2 bg-white dark:bg-[#0b111a] shrink-0 sticky top-0 z-10">
                                     <div className="p-1 bg-slate-100 dark:bg-white/5 rounded-full flex relative">
                                         {/* Active background pill */}
                                         <motion.div
@@ -278,7 +278,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 </div>
 
                                 {/* 3. Scrollable Content Area */}
-                                <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar bg-white dark:bg-[#0A0A0A]">
+                                <div className="flex-1 overflow-y-auto px-6 py-4 custom-scrollbar bg-white dark:bg-[#0b111a]">
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={activeTab}
@@ -384,7 +384,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                 </div>
 
                                 {/* 4. Footer CTA */}
-                                <div className="p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0A0A0A] shrink-0 z-20">
+                                <div className="p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0b111a] shrink-0 z-20">
                                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                                         <Link
                                             href={`mailto:${member.links?.email || 'contact@wafia.fr'}?subject=Organiser un appel`}

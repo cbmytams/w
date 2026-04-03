@@ -41,7 +41,7 @@ type BubblePreset = {
 const PALETTES: Record<BackgroundFlowVariant, BackgroundPalette> = {
     brands: {
         baseLight: "#fff7f1",
-        baseDark: "#07080c",
+        baseDark: "#0b111a",
         phaseLight:
             "linear-gradient(180deg, rgba(255, 252, 249, 0.98) 0%, rgba(255, 247, 241, 0.95) 22%, rgba(255, 241, 232, 0.90) 42%, rgba(252, 228, 211, 0.86) 58%, rgba(249, 115, 22, 0.12) 72%, rgba(236, 72, 153, 0.08) 84%, rgba(255, 248, 243, 0.94) 93%, rgba(255, 252, 249, 0.98) 100%)",
         phaseDark:
@@ -57,7 +57,7 @@ const PALETTES: Record<BackgroundFlowVariant, BackgroundPalette> = {
     },
     talents: {
         baseLight: "#f8f7ff",
-        baseDark: "#050508",
+        baseDark: "#0b111a",
         phaseLight:
             "linear-gradient(180deg, rgba(250, 249, 255, 0.98) 0%, rgba(245, 242, 255, 0.95) 22%, rgba(239, 234, 255, 0.90) 44%, rgba(226, 218, 255, 0.86) 58%, rgba(124, 58, 237, 0.14) 72%, rgba(79, 70, 229, 0.10) 84%, rgba(248, 246, 255, 0.96) 100%)",
         phaseDark:

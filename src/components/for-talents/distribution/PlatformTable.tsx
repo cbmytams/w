@@ -229,7 +229,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: "100%", opacity: 0 }}
                             transition={{ type: "spring", stiffness: 300, damping: 35 }}
-                            className="absolute right-0 top-0 h-full w-full sm:w-[460px] bg-white dark:bg-[#0A0A0A] border-l border-black/5 dark:border-white/10 shadow-2xl flex flex-col"
+                            className="absolute right-0 top-0 h-full w-full sm:w-[460px] bg-white dark:bg-[#0b111a] border-l border-black/5 dark:border-white/10 shadow-2xl flex flex-col"
                         >
                             <div className="flex items-center justify-between p-6 sm:p-8 border-b border-black/5 dark:border-white/5">
                                 <div className="flex items-center gap-4">

@@ -23,7 +23,7 @@ export default async function PlatformUnavailablePage({
   const target = typeof params.target === "string" ? params.target : "/platform/login";
 
   return (
-    <main id="main-content" className="min-h-screen bg-black text-white flex items-center justify-center px-6">
+    <main id="main-content" className="min-h-screen bg-[#0b111a] text-white flex items-center justify-center px-6">
       <div className="max-w-xl w-full border border-white/10 rounded-2xl p-8 bg-white/[0.03]">
         <p className="text-xs uppercase tracking-[0.25em] text-white/60">Plateforme Admin</p>
         <h1 className="mt-3 text-2xl font-semibold">Plateforme momentanément indisponible</h1>

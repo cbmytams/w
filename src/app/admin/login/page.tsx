@@ -40,7 +40,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main id="main-content" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black text-white">
+    <main id="main-content" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0b111a] text-white">
       {/* Premium Apple / VisionOS Background Gradients */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] mix-blend-screen" />

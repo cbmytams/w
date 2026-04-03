@@ -32,7 +32,7 @@ export function SmartDistributionDashboard() {
     };
 
     return (
-        <div className="w-full relative overflow-hidden rounded-[24px] border border-black/5 dark:border-white/10 bg-white/70 dark:bg-[#0A0A0A]/70 backdrop-blur-3xl shadow-2xl">
+        <div className="w-full relative overflow-hidden rounded-[24px] border border-black/5 dark:border-white/10 bg-white/70 dark:bg-[#0b111a]/70 backdrop-blur-3xl shadow-2xl">
             <div className="relative z-10 flex flex-col">
                 {/* Dashboard Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between px-8 py-8 gap-4">

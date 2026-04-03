@@ -8,7 +8,7 @@ import { ArrowLeft } from "lucide-react"
 
 export default function StudioPage() {
     return (
-        <main id="main-content" className="fixed inset-0 z-50 bg-black text-white selection:bg-white selection:text-black flex flex-col overflow-hidden">
+        <main id="main-content" className="fixed inset-0 z-50 bg-[#0b111a] text-white selection:bg-white selection:text-black flex flex-col overflow-hidden">
             {/* Ambient Background Light */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-[-20%] left-[20%] w-[1000px] h-[1000px] bg-blue-900/10 rounded-full blur-[120px]" />

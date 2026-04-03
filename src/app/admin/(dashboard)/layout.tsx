@@ -25,7 +25,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   }
 
   return (
-    <div className="relative min-h-screen text-white bg-black selection:bg-orange-500/30 selection:text-white flex overflow-hidden">
+    <div className="relative min-h-screen text-white bg-[#0b111a] selection:bg-orange-500/30 selection:text-white flex overflow-hidden">
       {/* Background Ambience */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-orange-500/5 rounded-full blur-[120px] mix-blend-screen" />
