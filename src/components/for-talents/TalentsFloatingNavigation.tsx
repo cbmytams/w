@@ -297,7 +297,7 @@ export function TalentsFloatingNavigation() {
                                                 {isActive && (
                                                     <motion.div
                                                         layoutId="activeBubbleMobileTalent"
-                                                        className="absolute inset-0 bg-white/70 dark:bg-white/20 backdrop-blur-md rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 -z-10"
+                                                        className="absolute inset-0 bg-white/70 dark:bg-white/20 backdrop-blur-md rounded-full shadow-md border border-white/50 dark:border-white/10 -z-10"
                                                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                                     />
                                                 )}
@@ -326,7 +326,7 @@ export function TalentsFloatingNavigation() {
                                     <a
                                         href={mobileCtaHref}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className={`h-14 w-full flex items-center justify-center rounded-full bg-gradient-to-r ${BRAND_GRADIENT} text-white font-bold text-lg shadow-[0_8px_20px_rgba(236,72,153,0.3)] hover:shadow-[0_8px_30px_rgba(236,72,153,0.5)] hover:scale-105 active:scale-95 transition-all duration-300`}
+                                        className={`h-14 w-full flex items-center justify-center rounded-full bg-gradient-to-r ${BRAND_GRADIENT} text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300`}
                                     >
                                         Se référencer
                                     </a>

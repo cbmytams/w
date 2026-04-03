@@ -258,7 +258,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                                 {isActive && (
                                                     <motion.div
                                                         layoutId="activeBubbleMobileBrand"
-                                                        className="absolute inset-0 bg-white/70 dark:bg-white/20 backdrop-blur-md rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 -z-10"
+                                                        className="absolute inset-0 bg-white/70 dark:bg-white/20 backdrop-blur-md rounded-full shadow-md border border-white/50 dark:border-white/10 -z-10"
                                                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                                     />
                                                 )}

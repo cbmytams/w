@@ -222,7 +222,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                     <div className="relative space-y-5 before:absolute before:bottom-4 before:left-[15px] before:top-4 before:w-[1px] before:bg-gradient-to-b before:from-purple-400/30 before:via-slate-300/20 before:to-transparent dark:before:from-purple-500/20 dark:before:via-white/[0.06]">
                       {renderedItem.detail.howItWorks?.map((step, i) => (
                         <div key={i} className="relative flex gap-4">
-                          <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/60 backdrop-blur-md shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-none">
+                          <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/60 backdrop-blur-md shadow-sm dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-none">
                             <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">{i + 1}</span>
                           </div>
                           <div className="flex-1 pt-1">
@@ -256,7 +256,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
               <div className="mt-10 pb-2">
                 <a
                   href={ctaHref}
-                  className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] dark:bg-white dark:text-slate-900 dark:shadow-[0_8px_24px_rgba(255,255,255,0.08)] dark:hover:shadow-[0_12px_32px_rgba(255,255,255,0.15)]"
+                  className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] dark:bg-white dark:text-slate-900 dark:shadow-lg dark:hover:shadow-xl"
                 >
                   <div className="absolute inset-0 translate-x-[-200%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[200%] dark:via-black/10" />
                   <span className="relative z-10">Se référencer</span>

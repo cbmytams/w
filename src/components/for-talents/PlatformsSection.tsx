@@ -39,7 +39,7 @@ export function PlatformsSection() {
                             const Icon = iconMap[card.icon]
                             return (
                                 <RevealAnimation key={i} delay={i * 0.1}>
-                                    <div className="bg-white dark:bg-white/5 backdrop-blur-xl rounded-2xl p-10 h-full transition-all duration-300 border border-slate-200 dark:border-white/10 group hover:border-pink-500/40 hover:shadow-[0_24px_60px_rgba(236,72,153,0.2)]">
+                                    <div className="bg-white dark:bg-white/5 backdrop-blur-xl rounded-2xl p-10 h-full transition-all duration-300 border border-slate-200 dark:border-white/10 group hover:border-pink-500/40 hover:shadow-2xl">
                                         <div className={`w-16 h-16 bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 ${card.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300`}>
                                             {Icon && <Icon size={28} strokeWidth={2} />}
                                         </div>

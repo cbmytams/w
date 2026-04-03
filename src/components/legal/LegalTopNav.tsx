@@ -211,7 +211,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                                     <a
                                         href={cta.href}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="h-14 w-full flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF4C00] to-[#FF8C00] text-white font-bold text-lg shadow-[0_8px_20px_rgba(249,115,22,0.3)] hover:shadow-[0_8px_30px_rgba(249,115,22,0.5)] hover:scale-105 active:scale-95 transition-all duration-300"
+                                        className="h-14 w-full flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF4C00] to-[#FF8C00] text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
                                     >
                                         {cta.label}
                                     </a>

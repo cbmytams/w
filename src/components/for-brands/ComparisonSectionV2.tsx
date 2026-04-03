@@ -69,7 +69,7 @@ export function ComparisonSectionV2() {
                                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: DURATION.slower, delay: index * 0.1, ease: EASING.smooth }}
-                                    className="group relative flex flex-col md:flex-row items-center justify-between p-6 md:p-8 rounded-2xl bg-white dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 hover:border-orange-500/30 transition-all duration-700 hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.1)] dark:hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.05)] overflow-hidden cursor-default"
+                                    className="group relative flex flex-col md:flex-row items-center justify-between p-6 md:p-8 rounded-2xl bg-white dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 hover:border-orange-500/30 transition-all duration-700 hover:shadow-2xl overflow-hidden cursor-default"
                                 >
                                     {/* Subtle Sweep Background on Hover */}
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/[0.03] dark:via-orange-500/[0.05] to-orange-500/[0.08] dark:to-orange-500/[0.1] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 ease-out pointer-events-none" />
