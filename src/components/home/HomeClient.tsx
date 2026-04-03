@@ -11,6 +11,7 @@ import { ArrowUpRight, Fingerprint, Aperture, Globe, type LucideIcon } from "luc
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 import { EASING, DURATION } from "@/lib/easing"
 import { WikiPremiumCTA } from "@/components/home/WikiPremiumCTA"
+import { CLIENTS } from "@/constants/clients"
 
 const DeferredParticlesBackground = dynamic(
     () => import("@/components/ui/RefinedParticlesBackground"),
@@ -19,7 +20,7 @@ const DeferredParticlesBackground = dynamic(
 
 function StaticBackground() {
     return (
-        <div className="absolute inset-0 z-0 bg-[#050510]">
+        <div className="absolute inset-0 z-0 bg-[#0b111a]">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.08)_0%,rgba(236,72,153,0.06)_35%,rgba(5,5,16,1)_70%)]" />
         </div>
     )
@@ -98,7 +99,7 @@ export function HomeClient() {
     }, [router])
 
     return (
-        <div id="home-root" className="min-h-screen w-full bg-black flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
+        <div id="home-root" className="min-h-screen w-full bg-[#0b111a] flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
 
             {/* ============================================
                 SPACE BACKGROUND
@@ -116,11 +117,10 @@ export function HomeClient() {
                 MAIN STAGE
                ============================================ */}
             <main id="main-content" className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-6 py-20">
-                <h1 className="sr-only">Agence d'influence marketing – Studio créatif</h1>
 
                 {/* LOGO - Medium with Glow Effect */}
                 <motion.div
-                    className="mb-16 md:mb-20 relative"
+                    className="mb-10 md:mb-12 relative"
                     initial={{ y: -20 }}
                     animate={{ y: 0 }}
                     transition={{ duration: DURATION.cinematic, ease: EASING.premium }}
@@ -134,6 +134,68 @@ export function HomeClient() {
                         />
                     )}
                     <WafiaLogo className="h-14 md:h-[4.5rem] lg:h-24 w-auto text-white relative z-10 drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]" />
+                </motion.div>
+
+                {/* H1 - Visible Heading */}
+                <motion.h1
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center max-w-3xl leading-tight mb-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: DURATION.slower, delay: 0.2, ease: EASING.entrance }}
+                    style={{ fontFamily: "var(--font-heading)" }}
+                >
+                    Influence marketing{" "}
+                    <span className="bg-gradient-to-r from-orange-400 via-pink-400 to-violet-400 bg-clip-text text-transparent">
+                        &amp; studio créatif
+                    </span>
+                </motion.h1>
+
+                {/* TAGLINE */}
+                <motion.p
+                    className="text-base sm:text-lg text-white/50 text-center max-w-xl mb-12 leading-relaxed"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: DURATION.slower, delay: 0.35, ease: EASING.entrance }}
+                >
+                    Campagnes data-driven, créateurs vérifiés, production social-first et talent management pour marques et agences.
+                </motion.p>
+
+                {/* CLIENT LOGOS GRID */}
+                <motion.div
+                    className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 max-w-2xl mb-14"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: DURATION.slow, delay: 0.5 }}
+                >
+                    {CLIENTS.slice(0, 9).map((client) => (
+                        <img
+                            key={client.name}
+                            src={client.logoLight}
+                            alt={client.name}
+                            className="h-5 w-auto object-contain opacity-30 grayscale"
+                        />
+                    ))}
+                </motion.div>
+
+                {/* DOUBLE CTA BUTTONS */}
+                <motion.div
+                    className="flex flex-col sm:flex-row items-center gap-3 mb-16"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: DURATION.slower, delay: 0.6, ease: EASING.entrance }}
+                >
+                    <Link
+                        href="/questionnaire/brands"
+                        className="px-6 py-3 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-semibold hover:from-orange-600 hover:to-red-600 hover:scale-105 transition-all duration-300 shadow-lg shadow-orange-500/25"
+                    >
+                        Je suis une Marque
+                    </Link>
+                    <Link
+                        href="/questionnaire/talents"
+                        className="px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-500 text-white text-sm font-semibold hover:from-violet-700 hover:to-fuchsia-600 hover:scale-105 transition-all duration-300 shadow-lg shadow-violet-500/25"
+                    >
+                        Je suis un Talent
+                    </Link>
                 </motion.div>
 
                 {/* NAVIGATION - Minimalist Horizontal Pills */}
