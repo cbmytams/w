@@ -52,33 +52,4 @@ export const TALENT_FOR_WHO = {
 
 export const BRAND_GRADIENT = "from-pink-500 to-pink-600";
 
-export const TALENT_BUSINESS = {
-    label: "Business & Revenus",
-    title: "Faites de votre audience",
-    titleLine2: "un revenu stable.",
-    description: "On structure votre activité pour que chaque contenu compte financièrement. Grille tarifaire, négociation, facturation, protection juridique. Tout est cadmé.",
-    quote: "Un créateur sans modèle économique, c'est un passionné. Avec une structure, c'est une entreprise.",
-    steps: [
-        "Audit de la monétisation actuelle",
-        "Création d'une grille tarifaire sur mesure",
-        "Mise en place des process de négociation",
-        "Sécurisation juridique des partenariats"
-    ],
-    conclusion: "De l'audience à un revenu pérenne."
-} as const;
-
-export const TALENT_IDENTITY = {
-    label: "Identité & Image",
-    title: "Construisez une image",
-    titleLine2: "qu'on ne peut pas ignorer.",
-    subtitle: "Votre identité est votre actif le plus durable.",
-    description: "On travaille votre positionnement, votre univers visuel et votre ligne éditoriale. Un tout cohérent, reconnaissable, qui attire les bons partenaires.",
-    quote: "L'image la plus forte est celle qui ne force rien.",
-    services: [
-        { title: "Positionnement", description: "Définition de votre niche, de votre ton et de votre direction artistique." },
-        { title: "Identité visuelle", description: "Palette, typographie, templates et charte graphique cohérente." },
-        { title: "Ligne éditoriale", description: "Stratégie de contenu alignée avec votre audience cible." },
-        { title: "Personal Branding", description: "Une marque propre à vous. Singulière et mémorable." }
-    ]
-} as const;
 

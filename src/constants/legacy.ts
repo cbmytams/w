@@ -11,34 +11,14 @@ export { CLIENTS } from "./clients"
 // Process steps
 export { PROCESS_STEPS } from "./process-steps"
 
-// Talent blocks (still used by existing section components)
-export {
-    TALENT_TIMELINE,
-    TALENT_METHOD,
-    TALENT_SERVICES,
-    TALENT_PLATFORMS
-} from "./talent-blocks"
-
-// Brand additions (only AUTHENTICITY_CARDS and BRAND_HERO_CONTENT still consumed)
-export {
-    AUTHENTICITY_CARDS,
-    BRAND_HERO_CONTENT
-} from "./brand-additions"
+// Brand additions (BRAND_HERO_CONTENT still consumed by BrandHeroV2)
+export { BRAND_HERO_CONTENT } from "./brand-additions"
 
 // Navigation
-export { MAIN_NAVIGATION, FOOTER_NAVIGATION, SOCIAL_LINKS } from "./navigation"
-export type { SocialLink } from "./navigation"
+export { MAIN_NAVIGATION } from "./navigation"
 
-// Deliverables Widgets (Wafia OS section)
-export { WIDGETS } from "./deliverables-widgets"
-export type { WidgetId, WidgetData } from "./deliverables-widgets"
-
-// Talent Journey (3-year process)
+// Talent Journey (used by TalentJourneySection)
 export {
     TALENT_JOURNEY_HEADER,
     TALENT_JOURNEY_PHASES,
-    TALENT_JOURNEY_STEPS,
-    getStepsByPhase,
-    getPhaseConfig
 } from "./talent-journey-steps"
-export type { JourneyPhase, JourneyStep, PhaseConfig } from "./talent-journey-steps"
