@@ -21,10 +21,10 @@ export function ComparisonSection() {
                     />
 
                     <RevealAnimation delay={0.2}>
-                        <div className="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
+                        <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
                             <div className="grid md:grid-cols-2">
-                                <div className="p-8 bg-gray-50">
-                                    <h3 className="text-xl font-bold text-gray-500 mb-6 uppercase tracking-wide text-center">Agences classiques</h3>
+                                <div className="p-8 bg-slate-50">
+                                    <h3 className="text-xl font-bold text-slate-500 mb-6 uppercase tracking-wide text-center">Agences classiques</h3>
                                     <ul className="space-y-4">
                                         {[
                                             "Casting \"au feeling\"",
@@ -33,7 +33,7 @@ export function ComparisonSection() {
                                             "One-shot sans suite",
                                             "Vous ne savez pas pourquoi ça marche"
                                         ].map((item, i) => (
-                                            <li key={i} className="flex gap-3 text-gray-600">
+                                            <li key={i} className="flex gap-3 text-slate-600">
                                                 <X className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                                                 <span>{item}</span>
                                             </li>
@@ -50,7 +50,7 @@ export function ComparisonSection() {
                                             "Capitalisation long terme",
                                             "Vous comprenez et vous reproduisez"
                                         ].map((item, i) => (
-                                            <li key={i} className="flex gap-3 text-gray-900">
+                                            <li key={i} className="flex gap-3 text-slate-900">
                                                 <Check className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
                                                 <span className="font-medium">{item}</span>
                                             </li>

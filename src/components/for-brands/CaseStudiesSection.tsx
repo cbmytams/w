@@ -101,7 +101,7 @@ export function CaseStudiesSection() {
                                 transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(i * 0.12) }}
                                 className="group cursor-pointer w-full"
                             >
-                                <div className="h-full bg-white dark:bg-zinc-900 rounded-[28px] overflow-hidden border border-gray-100 dark:border-zinc-800 shadow-sm hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                                <div className="h-full bg-white dark:bg-zinc-900 rounded-[28px] overflow-hidden border border-slate-100 dark:border-zinc-800 shadow-sm hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-500 hover:-translate-y-2 flex flex-col">
                                     {/* Image Container */}
                                     <div className="relative h-48 sm:h-64 overflow-hidden shrink-0">
                                         <Image
@@ -142,7 +142,7 @@ export function CaseStudiesSection() {
                                             {study.tags.map(tag => (
                                                 <span
                                                     key={tag}
-                                                    className="px-2.5 py-1 bg-gray-50 dark:bg-zinc-800/50 rounded-md text-[10px] uppercase font-bold tracking-wide text-gray-500 dark:text-gray-400 border border-gray-100 dark:border-zinc-700/50"
+                                                    className="px-2.5 py-1 bg-slate-50 dark:bg-zinc-800/50 rounded-md text-[10px] uppercase font-bold tracking-wide text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-zinc-700/50"
                                                 >
                                                     {tag}
                                                 </span>
@@ -150,13 +150,13 @@ export function CaseStudiesSection() {
                                         </div>
 
                                         {/* Title & Description */}
-                                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
                                             {study.title}
                                         </h3>
                                         <p className="text-xs font-bold text-orange-600 dark:text-orange-400 mb-4 uppercase tracking-wide">
                                             {study.subtitle}
                                         </p>
-                                        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-6 line-clamp-3">
+                                        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 line-clamp-3">
                                             {study.description}
                                         </p>
 
@@ -183,13 +183,13 @@ export function CaseStudiesSection() {
                                             )}
 
                                             {/* Results */}
-                                            <div className="grid grid-cols-3 gap-2 pt-6 border-t border-gray-100 dark:border-zinc-800">
+                                            <div className="grid grid-cols-3 gap-2 pt-6 border-t border-slate-100 dark:border-zinc-800">
                                                 {study.results.map((result, j) => (
                                                     <div key={j} className="text-center">
                                                         <div className="text-lg font-bold text-orange-500 dark:text-orange-400 mb-1">
                                                             {result.value}
                                                         </div>
-                                                        <div className="text-[9px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider truncate">
+                                                        <div className="text-[9px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider truncate">
                                                             {result.label}
                                                         </div>
                                                     </div>

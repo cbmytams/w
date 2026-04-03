@@ -37,7 +37,7 @@ export function EntityDetailLayout({
 
                         <div className="relative z-10">
                             <h1 className="text-3xl md:text-5xl font-bold font-display text-white tracking-tight leading-tight">{title}</h1>
-                            <div className="text-sm text-gray-300 mt-2 font-medium">{subtitle}</div>
+                            <div className="text-sm text-slate-300 mt-2 font-medium">{subtitle}</div>
                         </div>
                         {headerSlot && <div className="relative z-10">{headerSlot}</div>}
                     </div>

@@ -26,7 +26,7 @@ export function FieldDisplay({ label, value, type, required, questionType, field
 
     const renderValue = () => {
         if (isMissing || isPresentWithEmpty) {
-            return <span className="text-gray-500 italic">Non renseigné</span>;
+            return <span className="text-slate-500 italic">Non renseigné</span>;
         }
 
         if (type === 'scale') {
@@ -49,7 +49,7 @@ export function FieldDisplay({ label, value, type, required, questionType, field
                     {value.map((v, i) => {
                         const formatted = (questionType && fieldKey) ? getOptionLabel(questionType, fieldKey, v) : v;
                         return (
-                            <span key={i} className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-xs text-gray-200">
+                            <span key={i} className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-xs text-slate-200">
                                 {formatted}
                             </span>
                         );
@@ -83,7 +83,7 @@ export function FieldDisplay({ label, value, type, required, questionType, field
 
     return (
         <div className={`p-4 rounded-xl bg-white/[0.015] border ${isMissing ? 'border-red-500/20 bg-red-500/[0.02]' : 'border-white/5'} flex flex-col gap-1.5 transition-colors hover:bg-white/[0.03]`}>
-            <label className="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mb-0.5">
+            <label className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold mb-0.5">
                 {label} {required && <span className="text-red-500">*</span>}
             </label>
             <div className="text-sm">

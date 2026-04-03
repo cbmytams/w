@@ -50,7 +50,7 @@ export function SmartDistributionDashboard() {
                                     Operational
                                 </span>
                             </div>
-                            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400 mt-2">
+                            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mt-2">
                                 Distribution & Access Control
                             </p>
                         </div>
@@ -62,7 +62,7 @@ export function SmartDistributionDashboard() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
-                        <span className="text-[11px] font-semibold text-gray-600 dark:text-gray-300">System Normal</span>
+                        <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">System Normal</span>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@ export function SmartDistributionDashboard() {
                 </div>
 
                 {/* Level 2 Navigation: Sub-Filters */}
-                <div className="bg-gray-50/50 dark:bg-white/[0.01]">
+                <div className="bg-slate-50/50 dark:bg-white/[0.01]">
                     <SubFilterPills
                         subCategories={currentSubCategories}
                         activeSubCategoryId={activeSubCategoryId}
@@ -94,7 +94,7 @@ export function SmartDistributionDashboard() {
 
                 {/* Empty State */}
                 {currentPlatforms.length === 0 && (
-                    <div className="flex-1 flex flex-col items-center justify-center text-gray-400 p-16">
+                    <div className="flex-1 flex flex-col items-center justify-center text-slate-400 p-16">
                         <ShieldCheck strokeWidth={1} className="w-12 h-12 mb-4 opacity-50" />
                         <p className="text-sm font-medium">Aucune plateforme listée.</p>
                     </div>

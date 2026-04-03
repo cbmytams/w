@@ -157,11 +157,11 @@ export function TalentsFloatingNavigation() {
                     }}
                     className="h-12 group flex items-center px-5 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
                 >
-                    <WafiaLogo className="h-4 w-auto text-gray-900 dark:text-white" />
+                    <WafiaLogo className="h-4 w-auto text-slate-900 dark:text-white" />
                     <div className="flex items-center justify-center w-6 z-10 mx-1">
                         <div className="w-[5px] h-[5px] rounded-full bg-purple-500 animate-pulse shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
                     </div>
-                    <span className="text-[12px] font-bold text-gray-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">TALENTS</span>
+                    <span className="text-[12px] font-bold text-slate-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">TALENTS</span>
                 </Link>
             </motion.div>
 
@@ -184,7 +184,7 @@ export function TalentsFloatingNavigation() {
                                         e.preventDefault()
                                         scrollToSection(item.href)
                                     }}
-                                    className={`relative h-9 px-5 rounded-full transition-all duration-300 text-[13px] font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-gray-900 dark:text-white" : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
+                                    className={`relative h-9 px-5 rounded-full transition-all duration-300 text-[13px] font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-slate-900 dark:text-white" : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
                                         }`}
                                     aria-current={isActive ? "page" : undefined}
                                 >
@@ -221,7 +221,7 @@ export function TalentsFloatingNavigation() {
                 {/* Home - Desktop only */}
                 <Link
                     href="/"
-                    className="h-12 hidden lg:!flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                    className="h-12 hidden lg:!flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
                 >
                     <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                     <span>Menu principal</span>
@@ -235,7 +235,7 @@ export function TalentsFloatingNavigation() {
                     className="h-12 w-12 flex lg:!hidden items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
                     aria-label="Ouvrir le menu"
                 >
-                    <Menu className="h-5 w-5 text-gray-900 dark:text-white" />
+                    <Menu className="h-5 w-5 text-slate-900 dark:text-white" />
                 </button>
             </motion.div>
 
@@ -269,11 +269,11 @@ export function TalentsFloatingNavigation() {
 
                                 {/* Header with Pulsing Dot & Context */}
                                 <div className="flex items-center justify-center mb-6 relative z-10">
-                                    <WafiaLogo className="h-6 w-auto text-gray-900 dark:text-white" />
+                                    <WafiaLogo className="h-6 w-auto text-slate-900 dark:text-white" />
                                     <div className="flex items-center justify-center w-6 z-10 mx-3">
                                         <div className="w-[6px] h-[6px] rounded-full bg-purple-500 animate-pulse shadow-[0_0_10px_rgba(168,85,247,0.8)]"></div>
                                     </div>
-                                    <span className="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">TALENTS</span>
+                                    <span className="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">TALENTS</span>
                                 </div>
 
                                 {/* Monumental Navigation Links (Cascading) */}
@@ -290,7 +290,7 @@ export function TalentsFloatingNavigation() {
                                                     setMobileMenuOpen(false)
                                                     scrollToSection(item.href)
                                                 }}
-                                                className={`relative px-6 py-2.5 text-2xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 group ${isActive ? "text-gray-900 dark:text-white" : "text-gray-500/80 dark:text-gray-400/80 hover:text-gray-900 dark:hover:text-white"
+                                                className={`relative px-6 py-2.5 text-2xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 group ${isActive ? "text-slate-900 dark:text-white" : "text-slate-500/80 dark:text-slate-400/80 hover:text-slate-900 dark:hover:text-white"
                                                     }`}
                                             >
                                                 {isActive && (
@@ -313,7 +313,7 @@ export function TalentsFloatingNavigation() {
                                         <Link
                                             href="/"
                                             onClick={() => setMobileMenuOpen(false)}
-                                            className="h-12 w-full flex items-center justify-center gap-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300 text-[15px] font-semibold text-gray-700 dark:text-gray-300 group"
+                                            className="h-12 w-full flex items-center justify-center gap-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300 text-[15px] font-semibold text-slate-700 dark:text-slate-300 group"
                                         >
                                             <Home className="h-[18px] w-[18px] group-hover:scale-110 transition-transform" />
                                             Menu principal
@@ -344,7 +344,7 @@ export function TalentsFloatingNavigation() {
                             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[250] h-14 w-14 flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:scale-110 active:scale-95 transition-all"
                             aria-label="Fermer le menu"
                         >
-                            <X className="h-6 w-6 text-gray-900 dark:text-white" />
+                            <X className="h-6 w-6 text-slate-900 dark:text-white" />
                         </motion.button>
                     </>
                 )}

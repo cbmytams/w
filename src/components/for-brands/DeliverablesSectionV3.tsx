@@ -44,7 +44,7 @@ export function DeliverablesSectionV3() {
                                 className={cn(
                                     widget.colSpan,
                                     "relative cursor-pointer group rounded-[32px] overflow-hidden backdrop-blur-xl",
-                                    "bg-white/80 border border-gray-200/60 shadow-xl",
+                                    "bg-white/80 border border-slate-200/60 shadow-xl",
                                     "dark:bg-white/5 dark:border-white/10 dark:shadow-[0_20px_80px_rgba(0,0,0,0.45)]",
                                     "hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
                                 )}
@@ -65,8 +65,8 @@ export function DeliverablesSectionV3() {
                                 </div>
 
                                 <div className="absolute bottom-6 left-6 right-6">
-                                    <h3 className="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-1">{widget.title}</h3>
-                                    <p className="text-sm font-medium text-gray-500 dark:text-slate-400">{widget.subtitle}</p>
+                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-1">{widget.title}</h3>
+                                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{widget.subtitle}</p>
                                 </div>
 
                                 {/* Decorational Elements specific to widgets */}
@@ -137,7 +137,7 @@ export function DeliverablesSectionV3() {
                                             transition={{ delay: 0.15, duration: 0.4 }}
                                             className="p-10 bg-white dark:bg-[#0b111a] flex-1 overflow-y-auto"
                                         >
-                                            <p className="text-xl text-gray-600 dark:text-slate-300 font-medium mb-8 leading-relaxed">
+                                            <p className="text-xl text-slate-600 dark:text-slate-300 font-medium mb-8 leading-relaxed">
                                                 {widget.content}
                                             </p>
 
@@ -148,10 +148,10 @@ export function DeliverablesSectionV3() {
                                                         initial={{ opacity: 0, x: -10 }}
                                                         animate={{ opacity: 1, x: 0 }}
                                                         transition={{ delay: 0.3 + (i * 0.05) }}
-                                                        className="flex items-center gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10"
+                                                        className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10"
                                                     >
                                                         <div className={cn("w-2 h-2 rounded-full", widget.color)} />
-                                                        <span className="font-semibold text-gray-800 dark:text-slate-100">{detail}</span>
+                                                        <span className="font-semibold text-slate-800 dark:text-slate-100">{detail}</span>
                                                     </motion.div>
                                                 ))}
                                             </div>

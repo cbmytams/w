@@ -47,7 +47,7 @@ export function ComparisonSectionV2() {
                         {/* Headers (Desktop only) */}
                         <div className="hidden md:flex items-center justify-between px-8 mb-6">
                             <div className="flex-1">
-                                <span className="text-xs font-bold tracking-[0.2em] text-gray-400 dark:text-gray-500 uppercase">
+                                <span className="text-xs font-bold tracking-[0.2em] text-slate-400 dark:text-slate-500 uppercase">
                                     L'approche artisanale
                                 </span>
                             </div>
@@ -68,14 +68,14 @@ export function ComparisonSectionV2() {
                                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.7, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-                                    className="group relative flex flex-col md:flex-row items-center justify-between p-6 md:p-8 rounded-[2rem] bg-white dark:bg-white/[0.02] border border-gray-200/60 dark:border-white/5 hover:border-orange-500/30 transition-all duration-700 hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.1)] dark:hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.05)] overflow-hidden cursor-default"
+                                    className="group relative flex flex-col md:flex-row items-center justify-between p-6 md:p-8 rounded-[2rem] bg-white dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 hover:border-orange-500/30 transition-all duration-700 hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.1)] dark:hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.05)] overflow-hidden cursor-default"
                                 >
                                     {/* Subtle Sweep Background on Hover */}
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/[0.03] dark:via-orange-500/[0.05] to-orange-500/[0.08] dark:to-orange-500/[0.1] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 ease-out pointer-events-none" />
 
                                     {/* LEFT: Old Way */}
-                                    <div className="flex-1 w-full flex flex-row-reverse md:flex-row items-center justify-between md:justify-start gap-4 text-gray-400 dark:text-gray-500 opacity-40 md:opacity-100 md:group-hover:opacity-40 transition-opacity duration-500 relative z-10">
-                                        <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center shrink-0 relative">
+                                    <div className="flex-1 w-full flex flex-row-reverse md:flex-row items-center justify-between md:justify-start gap-4 text-slate-400 dark:text-slate-500 opacity-40 md:opacity-100 md:group-hover:opacity-40 transition-opacity duration-500 relative z-10">
+                                        <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center shrink-0 relative">
                                             <X className="w-4 h-4" />
                                         </div>
                                         <span className="text-lg md:text-xl font-medium tracking-tight">
@@ -86,16 +86,16 @@ export function ComparisonSectionV2() {
                                     {/* CENTER: The Bridge */}
                                     <div className="w-full md:w-24 h-12 md:h-16 shrink-0 flex items-center justify-center relative my-4 md:my-0 z-10">
                                         {/* Connecting Line */}
-                                        <div className="absolute w-[2px] h-full md:w-full md:h-[2px] bg-orange-500/20 md:bg-gray-100 dark:md:bg-white/5 md:group-hover:bg-orange-500/20 transition-colors duration-700" />
+                                        <div className="absolute w-[2px] h-full md:w-full md:h-[2px] bg-orange-500/20 md:bg-slate-100 dark:md:bg-white/5 md:group-hover:bg-orange-500/20 transition-colors duration-700" />
 
                                         {/* Morphing Connector Button */}
-                                        <div className="relative w-10 h-10 flex items-center justify-center transition-all duration-500 ease-[0.19,1,0.22,1] rounded-full border border-orange-500/50 scale-110 bg-white dark:bg-[#1a1a1a] shadow-[0_0_20px_rgba(249,115,22,0.2)] md:border-gray-200 dark:md:border-white/10 md:scale-100 md:bg-gray-50 dark:md:bg-[#111] md:shadow-sm md:group-hover:border-orange-500/50 md:group-hover:scale-110 md:group-hover:bg-white dark:md:group-hover:bg-[#1a1a1a] md:group-hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]">
-                                            <ArrowRight className="w-4 h-4 text-orange-500 rotate-90 md:text-gray-400 dark:md:text-gray-600 md:rotate-0 md:group-hover:text-orange-500 transition-colors duration-500" />
+                                        <div className="relative w-10 h-10 flex items-center justify-center transition-all duration-500 ease-[0.19,1,0.22,1] rounded-full border border-orange-500/50 scale-110 bg-white dark:bg-[#1a1a1a] shadow-[0_0_20px_rgba(249,115,22,0.2)] md:border-slate-200 dark:md:border-white/10 md:scale-100 md:bg-slate-50 dark:md:bg-[#111] md:shadow-sm md:group-hover:border-orange-500/50 md:group-hover:scale-110 md:group-hover:bg-white dark:md:group-hover:bg-[#1a1a1a] md:group-hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]">
+                                            <ArrowRight className="w-4 h-4 text-orange-500 rotate-90 md:text-slate-400 dark:md:text-slate-600 md:rotate-0 md:group-hover:text-orange-500 transition-colors duration-500" />
                                         </div>
                                     </div>
 
                                     {/* RIGHT: New Way (Wafia) */}
-                                    <div className="flex-1 w-full flex items-center justify-end gap-5 text-gray-900 dark:text-white transition-transform duration-700 ease-[0.19,1,0.22,1] md:group-hover:-translate-x-2 relative z-10">
+                                    <div className="flex-1 w-full flex items-center justify-end gap-5 text-slate-900 dark:text-white transition-transform duration-700 ease-[0.19,1,0.22,1] md:group-hover:-translate-x-2 relative z-10">
                                         <span className="text-xl md:text-2xl font-bold tracking-tight text-right drop-shadow-sm">
                                             {item.new}
                                         </span>

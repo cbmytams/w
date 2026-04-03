@@ -47,7 +47,7 @@ export function MagneticButton({ children, href, onClick, className = "" }: Magn
             style={prefersReducedMotion ? undefined : { translateX, translateY }}
             whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
-            className={`px-12 py-6 text-xl font-bold rounded-full bg-white hover:bg-gray-50 text-violet-600 shadow-2xl shadow-violet-900/20 hover:shadow-violet-900/30 transition-all cursor-pointer inline-flex items-center gap-3 relative overflow-hidden ${className}`}
+            className={`px-12 py-6 text-xl font-bold rounded-full bg-white hover:bg-slate-50 text-violet-600 shadow-2xl shadow-violet-900/20 hover:shadow-violet-900/30 transition-all cursor-pointer inline-flex items-center gap-3 relative overflow-hidden ${className}`}
         >
             {/* Animated shine effect */}
             <motion.div

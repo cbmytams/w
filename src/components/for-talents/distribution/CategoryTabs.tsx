@@ -23,7 +23,7 @@ export function CategoryTabs({ categories, activeCategoryId, onChange }: Categor
                             "relative py-6 text-[12px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 whitespace-nowrap",
                             isActive
                                 ? "text-black dark:text-white"
-                                : "text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                                : "text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-slate-300"
                         )}
                     >
                         {category.label}

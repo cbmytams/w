@@ -114,9 +114,9 @@ export function FinancialCoreModule() {
                     </div>
                 </div>
                 <div className="text-4xl font-bold tracking-tighter text-black tabular-nums">
-                    2.4M<span className="text-lg text-gray-400 font-medium ml-0.5">€</span>
+                    2.4M<span className="text-lg text-slate-400 font-medium ml-0.5">€</span>
                 </div>
-                <div className="text-[10px] font-medium text-gray-500 mt-1 flex items-center gap-1.5">
+                <div className="text-[10px] font-medium text-slate-500 mt-1 flex items-center gap-1.5">
                     <div className="bg-emerald-500/10 rounded px-1.5 py-0.5 text-emerald-600 flex items-center gap-1">
                         <ArrowUpRight className="w-3 h-3" />
                         <span className="font-bold">+24%</span>

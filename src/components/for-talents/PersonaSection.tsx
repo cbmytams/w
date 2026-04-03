@@ -46,12 +46,12 @@ function PersonaVisual({ type }: { type: PersonaType }) {
                     initial={{ y: 20, rotateX: 10, opacity: 0 }}
                     animate={{ y: 0, rotateX: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="relative w-64 aspect-[3/4] bg-white rounded-lg shadow-2xl overflow-hidden border border-gray-100"
+                    className="relative w-64 aspect-[3/4] bg-white rounded-lg shadow-2xl overflow-hidden border border-slate-100"
                 >
                     {/* Script Content */}
-                    <div className="p-6 font-mono text-xs text-gray-800 leading-relaxed opacity-80">
-                        <div className="w-full h-2 bg-gray-200 rounded mb-6 opacity-30" />
-                        <p className="mb-4 font-bold tracking-widest uppercase text-gray-400">SCENE 24A - INT. STUDIO</p>
+                    <div className="p-6 font-mono text-xs text-slate-800 leading-relaxed opacity-80">
+                        <div className="w-full h-2 bg-slate-200 rounded mb-6 opacity-30" />
+                        <p className="mb-4 font-bold tracking-widest uppercase text-slate-400">SCENE 24A - INT. STUDIO</p>
 
                         <p className="mb-2"><span className="font-bold">AGENT</span></p>
                         <p className="mb-4">C&apos;est le rôle de ta vie. Ils te veulent toi.</p>
@@ -77,13 +77,13 @@ function PersonaVisual({ type }: { type: PersonaType }) {
                     initial={{ y: 40, opacity: 0, scale: 0.9 }}
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     transition={{ delay: 1.5, type: "spring", stiffness: 200, damping: 20 }}
-                    className="absolute bottom-10 flex items-center gap-3 px-5 py-3 bg-gray-900/95 backdrop-blur-md text-white rounded-xl shadow-xl border border-white/10"
+                    className="absolute bottom-10 flex items-center gap-3 px-5 py-3 bg-slate-900/95 backdrop-blur-md text-white rounded-xl shadow-xl border border-white/10"
                 >
                     <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
                         <Check className="w-4 h-4 text-green-400" />
                     </div>
                     <div>
-                        <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Casting Update</div>
+                        <div className="text-xs font-medium text-slate-400 uppercase tracking-wider">Casting Update</div>
                         <div className="text-sm font-bold">Rôle Confirmé — Long Métrage</div>
                     </div>
                 </motion.div>
@@ -109,21 +109,21 @@ export function PersonaSection() {
                         <span className="text-sm font-semibold text-pink-600 dark:text-pink-300 uppercase tracking-wider mb-4 block">
                             Ton profil
                         </span>
-                        <h2 className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white">
+                        <h2 className="text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white">
                             Chaque terrain a ses règles.
                         </h2>
                     </RevealAnimation>
 
                     {/* Tabs */}
                     <RevealAnimation delay={0.1} className="flex justify-center mb-12">
-                        <div className="inline-flex bg-white dark:bg-white/5 p-1.5 rounded-2xl shadow-xl border border-gray-200 dark:border-white/10 backdrop-blur-2xl">
+                        <div className="inline-flex bg-white dark:bg-white/5 p-1.5 rounded-2xl shadow-xl border border-slate-200 dark:border-white/10 backdrop-blur-2xl">
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.key}
                                     onClick={() => setActiveTab(tab.key)}
                                     className={`relative px-3 py-2 md:px-6 md:py-3 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${activeTab === tab.key
                                         ? "text-white"
-                                        : "text-gray-500 hover:text-gray-900 dark:text-white/70 dark:hover:text-white"
+                                        : "text-slate-500 hover:text-slate-900 dark:text-white/70 dark:hover:text-white"
                                         }`}
                                 >
                                     {activeTab === tab.key && (
@@ -141,7 +141,7 @@ export function PersonaSection() {
 
                     {/* Content */}
                     <RevealAnimation delay={0.2}>
-                        <div className="relative rounded-3xl p-8 md:p-12 border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_28px_70px_rgba(0,0,0,0.2)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
+                        <div className="relative rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_28px_70px_rgba(0,0,0,0.2)] dark:shadow-[0_28px_70px_rgba(0,0,0,0.45)]">
                             <div className={`absolute inset-0 bg-gradient-to-br ${content.color} opacity-45 dark:opacity-70`} />
                             <div className="absolute inset-0 bg-[radial-gradient(600px_420px_at_10%_20%,rgba(236,72,153,0.12),transparent_60%)] dark:bg-[radial-gradient(600px_420px_at_10%_20%,rgba(236,72,153,0.18),transparent_60%)]" />
                             <div className="relative grid md:grid-cols-2 gap-12 items-center">
@@ -155,18 +155,18 @@ export function PersonaSection() {
                                         transition={{ duration: 0.3 }}
                                         className="space-y-6"
                                     >
-                                        <div className="w-16 h-16 rounded-2xl bg-white/80 dark:bg-white/10 shadow-lg border border-gray-200/60 dark:border-white/15 flex items-center justify-center text-gray-900 dark:text-white">
+                                        <div className="w-16 h-16 rounded-2xl bg-white/80 dark:bg-white/10 shadow-lg border border-slate-200/60 dark:border-white/15 flex items-center justify-center text-slate-900 dark:text-white">
                                             <IconComponent size={32} />
                                         </div>
                                         <div>
-                                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                                            <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
                                                 {content.title}
                                             </h3>
                                             <p className="text-lg font-medium text-pink-600 dark:text-pink-300">
                                                 {content.subtitle}
                                             </p>
                                         </div>
-                                        <p className="text-gray-600 dark:text-white/70 text-lg leading-relaxed">
+                                        <p className="text-slate-600 dark:text-white/70 text-lg leading-relaxed">
                                             {content.desc}
                                         </p>
 
@@ -176,7 +176,7 @@ export function PersonaSection() {
                                                     <div className="w-6 h-6 rounded-full bg-pink-100 dark:bg-pink-500/20 flex items-center justify-center border border-pink-200 dark:border-pink-500/30">
                                                         <Check size={14} className="text-pink-600 dark:text-pink-300" />
                                                     </div>
-                                                    <span className="font-medium text-gray-700 dark:text-white/80">{point}</span>
+                                                    <span className="font-medium text-slate-700 dark:text-white/80">{point}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -184,7 +184,7 @@ export function PersonaSection() {
                                 </AnimatePresence>
 
                                 {/* Right: Dynamic Visual with ParallaxCard */}
-                                <ParallaxCard className="h-[560px] lg:h-[600px] bg-white overflow-hidden border border-gray-200/60 dark:border-white/10 shadow-[0_30px_80px_rgba(15,23,42,0.25)] dark:shadow-[0_30px_80px_rgba(15,23,42,0.45)]">
+                                <ParallaxCard className="h-[560px] lg:h-[600px] bg-white overflow-hidden border border-slate-200/60 dark:border-white/10 shadow-[0_30px_80px_rgba(15,23,42,0.25)] dark:shadow-[0_30px_80px_rgba(15,23,42,0.45)]">
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={activeTab}

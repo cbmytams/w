@@ -31,15 +31,15 @@ export function GlobalPresentationSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="md:col-span-4 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-gray-100 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-start hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 group"
+                        className="md:col-span-4 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-start hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 group"
                     >
                         <div className="flex items-start gap-1 mb-4">
-                            <span className="text-7xl font-bold tracking-tighter text-gray-900 dark:text-white group-hover:text-orange-600 transition-colors duration-300">
+                            <span className="text-7xl font-bold tracking-tighter text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors duration-300">
                                 100
                             </span>
                             <span className="text-4xl font-light text-orange-500 mt-2">+</span>
                         </div>
-                        <p className="text-lg font-medium text-gray-500 dark:text-gray-400">
+                        <p className="text-lg font-medium text-slate-500 dark:text-slate-400">
                             Projets et campagnes d&apos;influence orchestrés depuis 2020.
                         </p>
                     </motion.div>
@@ -50,15 +50,15 @@ export function GlobalPresentationSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="md:col-span-3 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-gray-100 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-start hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300 group"
+                        className="md:col-span-3 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-start hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300 group"
                     >
                         <div className="flex items-start gap-1 mb-4">
-                            <span className="text-7xl font-bold tracking-tighter text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors duration-300">
+                            <span className="text-7xl font-bold tracking-tighter text-slate-900 dark:text-white group-hover:text-purple-600 transition-colors duration-300">
                                 4
                             </span>
                             <span className="text-4xl font-light text-purple-500 mt-2">+</span>
                         </div>
-                        <p className="text-lg font-medium text-gray-500 dark:text-gray-400">
+                        <p className="text-lg font-medium text-slate-500 dark:text-slate-400">
                             Années d&apos;expertise data-driven.
                         </p>
                     </motion.div>
@@ -108,21 +108,21 @@ export function GlobalPresentationSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        className="md:col-span-7 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-gray-100 dark:border-zinc-800 shadow-sm flex flex-col justify-between hover:border-gray-200 dark:hover:border-zinc-700 transition-colors"
+                        className="md:col-span-7 bg-white dark:bg-zinc-900 rounded-[32px] p-8 border border-slate-100 dark:border-zinc-800 shadow-sm flex flex-col justify-between hover:border-slate-200 dark:hover:border-zinc-700 transition-colors"
                     >
-                        <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                        <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
                             Powered by Data.
                         </h4>
 
                         <div className="flex flex-wrap gap-4 items-center justify-start opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
                             {TOOLS.map((tool, i) => (
-                                <div key={i} className="flex items-center gap-2 px-4 py-2 bg-gray-50 dark:bg-zinc-800 rounded-full border border-gray-100 dark:border-zinc-700">
+                                <div key={i} className="flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-zinc-800 rounded-full border border-slate-100 dark:border-zinc-700">
                                     {typeof tool.icon === 'string' ? (
                                         <Image src={tool.icon} alt={tool.name} width={16} height={16} className="w-4 h-4" />
                                     ) : (
-                                        <tool.icon className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                                        <tool.icon className="w-4 h-4 text-slate-600 dark:text-slate-300" />
                                     )}
-                                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">{tool.name}</span>
+                                    <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">{tool.name}</span>
                                 </div>
                             ))}
                         </div>

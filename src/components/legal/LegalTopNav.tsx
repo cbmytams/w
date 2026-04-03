@@ -88,7 +88,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                 <Link
                     href={BACK_ROUTE[context]}
                     aria-label="Retour"
-                    className="h-12 group flex items-center justify-center gap-2.5 px-4 sm:px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                    className="h-12 group flex items-center justify-center gap-2.5 px-4 sm:px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
                 >
                     <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
                     <span className="hidden sm:inline">Retour</span>
@@ -112,7 +112,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                                     key={item.href}
                                     href={hrefWithContext}
                                     aria-current={isActive ? "page" : undefined}
-                                    className={`relative h-9 px-5 rounded-full transition-all duration-300 text-[13px] font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-gray-900 dark:text-white" : "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
+                                    className={`relative h-9 px-5 rounded-full transition-all duration-300 text-[13px] font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-slate-900 dark:text-white" : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
                                         }`}
                                 >
                                     {isActive && (
@@ -148,7 +148,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                     className="h-12 w-12 flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
                     aria-label="Ouvrir le menu"
                 >
-                    <Menu className="h-5 w-5 text-gray-900 dark:text-white" />
+                    <Menu className="h-5 w-5 text-slate-900 dark:text-white" />
                 </button>
             </motion.div>
 
@@ -178,11 +178,11 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                                 <div className="absolute inset-x-0 -bottom-24 h-48 bg-gradient-to-t from-pink-500/20 dark:from-pink-500/10 to-transparent blur-[40px] pointer-events-none rounded-full" />
 
                                 <div className="flex items-center justify-center mb-8 relative z-10">
-                                    <WafiaLogo className="h-6 w-auto text-gray-900 dark:text-white" />
+                                    <WafiaLogo className="h-6 w-auto text-slate-900 dark:text-white" />
                                     <div className="flex items-center justify-center w-6 z-10 mx-3">
                                         <div className="w-[6px] h-[6px] rounded-full bg-orange-500 animate-pulse shadow-[0_0_10px_rgba(249,115,22,0.8)]"></div>
                                     </div>
-                                    <span className="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">LEGAL</span>
+                                    <span className="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">LEGAL</span>
                                 </div>
 
                                 <motion.nav className="flex-1 flex flex-col items-center justify-center space-y-6 relative z-10 w-full">
@@ -193,7 +193,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                                                 <Link
                                                     href={hrefWithContext}
                                                     onClick={() => setMobileMenuOpen(false)}
-                                                    className={`text-3xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 ${pathname === item.href ? "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]" : "text-gray-900 dark:text-gray-100"}`}
+                                                    className={`text-3xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 ${pathname === item.href ? "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]" : "text-slate-900 dark:text-slate-100"}`}
                                                 >
                                                     {item.label}
                                                 </Link>
@@ -226,7 +226,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                             className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[250] h-14 w-14 flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:scale-110 active:scale-95 transition-all"
                             aria-label="Fermer le menu"
                         >
-                            <X className="h-6 w-6 text-gray-900 dark:text-white" />
+                            <X className="h-6 w-6 text-slate-900 dark:text-white" />
                         </motion.button>
                     </>
                 )}

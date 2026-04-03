@@ -14,7 +14,7 @@ export function SectionCard({ id, title, percent, children }: SectionCardProps) 
             <div className="p-5 md:p-6 border-b border-questionnaire-muted flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/[0.01]">
                 <h3 className="text-lg font-semibold text-white font-display tracking-tight">{title}</h3>
                 <div className="w-full md:max-w-[200px] flex items-center gap-3">
-                    <span className="text-xs text-gray-400 font-medium whitespace-nowrap">{percent}% de complétion</span>
+                    <span className="text-xs text-slate-400 font-medium whitespace-nowrap">{percent}% de complétion</span>
                     <CompletionBar percent={percent} />
                 </div>
             </div>

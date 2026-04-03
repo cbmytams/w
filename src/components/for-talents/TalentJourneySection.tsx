@@ -174,7 +174,7 @@ export function TalentJourneySection() {
 
                     {/* Signature */}
                     <RevealAnimation delay={0.15} className="text-center mt-8">
-                        <p className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-br from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 bg-clip-text text-transparent max-w-3xl mx-auto leading-tight">
+                        <p className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-br from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent max-w-3xl mx-auto leading-tight">
                             {METHOD_SECTION_HEADER.signature}
                         </p>
                     </RevealAnimation>

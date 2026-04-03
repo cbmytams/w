@@ -69,13 +69,13 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                         <div className="p-8">
                             <div className="flex justify-between items-start mb-8">
                                 <div>
-                                    <h3 id="estimator-modal-title" className="text-3xl font-bold text-gray-900 mb-2">Estimez votre plan</h3>
-                                    <p className="text-gray-600">En 30 secondes, sans engagement</p>
+                                    <h3 id="estimator-modal-title" className="text-3xl font-bold text-slate-900 mb-2">Estimez votre plan</h3>
+                                    <p className="text-slate-600">En 30 secondes, sans engagement</p>
                                 </div>
                                 <button
                                     onClick={onClose}
                                     type="button"
-                                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+                                    className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors"
                                     aria-label="Fermer"
                                 >
                                     <X className="w-5 h-5" />
@@ -84,7 +84,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
 
                             <div className="space-y-6">
                                 <div>
-                                    <p className="block text-sm font-semibold text-gray-700 mb-3">
+                                    <p className="block text-sm font-semibold text-slate-700 mb-3">
                                         1. Votre objectif principal ?
                                     </p>
                                     <div className="grid grid-cols-2 gap-3">
@@ -95,7 +95,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                                 onClick={() => setEstimatorData({ ...estimatorData, objective: obj })}
                                                 className={`p-4 rounded-xl border-2 font-medium transition-all ${estimatorData.objective === obj
                                                     ? "border-orange-500 bg-orange-50 text-orange-700"
-                                                    : "border-gray-200 hover:border-gray-300"
+                                                    : "border-slate-200 hover:border-slate-300"
                                                     }`}
                                             >
                                                 {obj}
@@ -105,7 +105,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                 </div>
 
                                 <div>
-                                    <p className="block text-sm font-semibold text-gray-700 mb-3">
+                                    <p className="block text-sm font-semibold text-slate-700 mb-3">
                                         2. Budget range ?
                                     </p>
                                     <div className="grid grid-cols-3 gap-3">
@@ -116,7 +116,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                                 onClick={() => setEstimatorData({ ...estimatorData, budget })}
                                                 className={`p-4 rounded-xl border-2 font-medium transition-all ${estimatorData.budget === budget
                                                     ? "border-orange-500 bg-orange-50 text-orange-700"
-                                                    : "border-gray-200 hover:border-gray-300"
+                                                    : "border-slate-200 hover:border-slate-300"
                                                     }`}
                                             >
                                                 {budget}
@@ -126,7 +126,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                 </div>
 
                                 <div>
-                                    <p className="block text-sm font-semibold text-gray-700 mb-3">
+                                    <p className="block text-sm font-semibold text-slate-700 mb-3">
                                         3. Timing souhaité ?
                                     </p>
                                     <div className="grid grid-cols-3 gap-3">
@@ -137,7 +137,7 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                                 onClick={() => setEstimatorData({ ...estimatorData, timing })}
                                                 className={`p-4 rounded-xl border-2 font-medium transition-all text-sm ${estimatorData.timing === timing
                                                     ? "border-orange-500 bg-orange-50 text-orange-700"
-                                                    : "border-gray-200 hover:border-gray-300"
+                                                    : "border-slate-200 hover:border-slate-300"
                                                     }`}
                                             >
                                                 {timing}
@@ -152,8 +152,8 @@ export function EstimatorModal({ isOpen, onClose }: EstimatorModalProps) {
                                         animate={{ opacity: 1, y: 0 }}
                                         className="mt-8 p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl border-2 border-orange-200"
                                     >
-                                        <h4 className="font-bold text-lg text-gray-900 mb-3">📋 Plan recommandé :</h4>
-                                        <ul className="space-y-2 text-gray-700 mb-6">
+                                        <h4 className="font-bold text-lg text-slate-900 mb-3">📋 Plan recommandé :</h4>
+                                        <ul className="space-y-2 text-slate-700 mb-6">
                                             <li className="flex gap-2"><Check className="w-5 h-5 text-green-600 shrink-0" /> Audit complet + définition KPIs</li>
                                             <li className="flex gap-2"><Check className="w-5 h-5 text-green-600 shrink-0" /> Casting documenté (5-15 créateurs selon budget)</li>
                                             <li className="flex gap-2"><Check className="w-5 h-5 text-green-600 shrink-0" /> Production + coordination ops</li>

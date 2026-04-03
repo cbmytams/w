@@ -14,7 +14,7 @@ export function CtaSection({ estimateHref = "/questionnaire/brands" }: CtaSectio
             <Container>
                 <div className="max-w-4xl mx-auto text-center">
                     <RevealAnimation>
-                        <h2 className="text-5xl sm:text-7xl font-bold text-gray-900 dark:text-white mb-8">
+                        <h2 className="text-5xl sm:text-7xl font-bold text-slate-900 dark:text-white mb-8">
                             Votre prochaine campagne{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">
                                 mérite mieux.
@@ -23,7 +23,7 @@ export function CtaSection({ estimateHref = "/questionnaire/brands" }: CtaSectio
                     </RevealAnimation>
 
                     <RevealAnimation delay={0.2}>
-                        <p className="text-2xl text-gray-600 dark:text-gray-400 mb-12">
+                        <p className="text-2xl text-slate-600 dark:text-slate-400 mb-12">
                             Parlons de vos objectifs. On vous montre exactement comment on les atteint.
                         </p>
                     </RevealAnimation>

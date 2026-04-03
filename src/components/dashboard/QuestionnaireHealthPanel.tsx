@@ -65,7 +65,7 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
         return (
             <div className="rounded-2xl bg-questionnaire-surface border border-questionnaire-muted p-12 flex flex-col items-center justify-center min-h-[300px] glass-panel">
                 <Activity className="w-8 h-8 text-questionnaire-primary animate-pulse mb-4" />
-                <div className="text-sm text-gray-400 font-medium animate-pulse tracking-wide uppercase">Exécution des diagnostics d'intégrité...</div>
+                <div className="text-sm text-slate-400 font-medium animate-pulse tracking-wide uppercase">Exécution des diagnostics d'intégrité...</div>
             </div>
         );
     }
@@ -85,11 +85,11 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
                         <StatusIcon className={`w-6 h-6 ${statusColor}`} />
                         <h2 className="text-2xl font-bold font-display text-white tracking-tight">Status d'Intégrité</h2>
                     </div>
-                    <p className="text-sm text-gray-400">Scan complet de la base de données et des correspondances avec le schéma.</p>
+                    <p className="text-sm text-slate-400">Scan complet de la base de données et des correspondances avec le schéma.</p>
                 </div>
                 <div className="relative z-10 flex items-center gap-4">
                     <div className="text-right mr-4">
-                        <div className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 font-semibold">Version Schéma</div>
+                        <div className="text-[10px] uppercase tracking-widest text-slate-500 mb-1 font-semibold">Version Schéma</div>
                         <div className="font-mono text-sm bg-white/5 border border-white/10 px-2 py-1 rounded text-questionnaire-primary">{data.version}</div>
                     </div>
                     <button
@@ -116,7 +116,7 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
                     icon={AlertTriangle}
                     trend={data.issues.length === 0 ? 'Optimal' : `${data.issues.length} Fixes requis`}
                     trendPositive={data.issues.length === 0}
-                    colorClass={data.issues.length > 0 ? "text-red-500" : "text-gray-500"}
+                    colorClass={data.issues.length > 0 ? "text-red-500" : "text-slate-500"}
                     description="Problèmes de parsing ou respondents fantômes"
                 />
             </div>
@@ -142,7 +142,7 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
                                     <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
                                     <div>
                                         <strong className="block text-xs uppercase tracking-wider text-red-400 mb-1 font-semibold">{issue.type}</strong>
-                                        <p className="text-sm text-gray-300">{issue.message}</p>
+                                        <p className="text-sm text-slate-300">{issue.message}</p>
                                     </div>
                                 </li>
                             ))}

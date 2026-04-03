@@ -94,7 +94,7 @@ function TeamCardTalents({
                 className={cn(
                     "block relative h-full rounded-3xl overflow-hidden transition-all duration-300",
                     "bg-white/90 dark:bg-zinc-900/80 backdrop-blur-xl",
-                    "border border-gray-200/50 dark:border-white/10",
+                    "border border-slate-200/50 dark:border-white/10",
                     "hover:shadow-2xl hover:-translate-y-2"
                 )}
                 style={{
@@ -150,33 +150,33 @@ function TeamCardTalents({
                                 {displayRole}
                             </span>
 
-                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white tracking-tight mb-1 transition-colors"
+                            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-1 transition-colors"
                                 style={{ color: isHovered ? geoConfig.shadowColor.replace("0.15", "1") : undefined }}
                             >
                                 {member.name}
                             </h3>
 
-                            <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                            <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
                                 {member.role}
                             </p>
                         </div>
                     </div>
 
                     {/* Bio Quote */}
-                    <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                    <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
                         &ldquo;{member.shortBio}&rdquo;
                     </p>
 
                     {/* Proof Chips */}
-                    <div className="flex flex-wrap gap-2 mb-6 pb-6 border-b border-gray-100 dark:border-white/10">
+                    <div className="flex flex-wrap gap-2 mb-6 pb-6 border-b border-slate-100 dark:border-white/10">
                         {displayProof.map((item, i) => (
                             <span
                                 key={i}
                                 className={cn(
                                     "inline-flex px-3.5 py-1.5 rounded-full text-sm font-medium",
-                                    "bg-gray-50 dark:bg-white/5",
-                                    "text-gray-600 dark:text-gray-300",
-                                    "border border-gray-100 dark:border-white/5"
+                                    "bg-slate-50 dark:bg-white/5",
+                                    "text-slate-600 dark:text-slate-300",
+                                    "border border-slate-100 dark:border-white/5"
                                 )}
                             >
                                 {item}
@@ -218,7 +218,7 @@ export function TeamSectionTalents() {
                 <div className="max-w-5xl mx-auto">
 
                     <RevealAnimation className="text-center mb-16 lg:mb-20">
-                        <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-[1.1]">
+                        <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-[1.1]">
                             Direction Op&eacute;rationnelle
                         </h2>
                     </RevealAnimation>

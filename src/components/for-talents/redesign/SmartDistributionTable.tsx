@@ -32,14 +32,14 @@ export function SmartDistributionTable() {
     return (
         <div className="w-full h-full flex flex-col bg-white dark:bg-zinc-900 overflow-hidden relative">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-white/5">
+            <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-white/5">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-orange-50 dark:bg-orange-500/10 flex items-center justify-center border border-orange-100 dark:border-orange-500/20">
                         <Globe size={20} className="text-orange-500" />
                     </div>
                     <div>
-                        <div className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-0.5">Network Status</div>
-                        <div className="text-sm font-bold text-gray-900 dark:text-white">Distribution & Access</div>
+                        <div className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5">Network Status</div>
+                        <div className="text-sm font-bold text-slate-900 dark:text-white">Distribution & Access</div>
                     </div>
                 </div>
                 
@@ -53,7 +53,7 @@ export function SmartDistributionTable() {
             </div>
 
             {/* Table Header */}
-            <div className="grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50/50 dark:bg-white/5 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 dark:border-white/5">
+            <div className="grid grid-cols-12 gap-4 px-6 py-3 bg-slate-50/50 dark:bg-white/5 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 dark:border-white/5">
                 <div className="col-span-5">Partner</div>
                 <div className="col-span-3">Type</div>
                 <div className="col-span-2">Status</div>
@@ -71,13 +71,13 @@ export function SmartDistributionTable() {
                         onMouseEnter={() => setHoveredRow(partner.id)}
                         onMouseLeave={() => setHoveredRow(null)}
                         className={`
-                            grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-gray-50 dark:border-white/5 cursor-default transition-colors duration-200
-                            ${hoveredRow === partner.id ? "bg-gray-50 dark:bg-white/5" : "bg-transparent"}
+                            grid grid-cols-12 gap-4 px-6 py-4 items-center border-b border-slate-50 dark:border-white/5 cursor-default transition-colors duration-200
+                            ${hoveredRow === partner.id ? "bg-slate-50 dark:bg-white/5" : "bg-transparent"}
                         `}
                     >
                         {/* Name & Icon */}
                         <div className="col-span-5 flex items-center gap-3">
-                            <div className="w-8 h-8 relative rounded bg-white dark:bg-white/10 p-1 flex items-center justify-center border border-gray-100 dark:border-white/5">
+                            <div className="w-8 h-8 relative rounded bg-white dark:bg-white/10 p-1 flex items-center justify-center border border-slate-100 dark:border-white/5">
                                 <Image
                                     src={partner.icon}
                                     alt={partner.name}
@@ -86,7 +86,7 @@ export function SmartDistributionTable() {
                                     className="w-full h-full object-contain brightness-0 dark:brightness-200 opacity-80"
                                 />
                             </div>
-                            <span className="text-sm font-bold text-gray-900 dark:text-white">{partner.name}</span>
+                            <span className="text-sm font-bold text-slate-900 dark:text-white">{partner.name}</span>
                         </div>
 
                         {/* Category */}
@@ -95,7 +95,7 @@ export function SmartDistributionTable() {
                                 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider
                                 ${partner.category === 'Label' ? 'bg-purple-50 text-purple-600 dark:bg-purple-500/10 dark:text-purple-300' : 
                                   partner.category === 'DSP' ? 'bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-300' :
-                                  'bg-gray-100 text-gray-600 dark:bg-white/10 dark:text-gray-300'}
+                                  'bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-300'}
                             `}>
                                 {partner.category}
                             </span>
@@ -107,13 +107,13 @@ export function SmartDistributionTable() {
                                 {partner.status === 'Premium' && <Zap size={12} className="text-amber-500" />}
                                 {partner.status === 'Direct' && <Shield size={12} className="text-emerald-500" />}
                                 {partner.status === 'Live' && <Check size={12} className="text-blue-500" />}
-                                <span className="text-xs font-semibold text-gray-700 dark:text-gray-200">{partner.status}</span>
+                                <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">{partner.status}</span>
                              </div>
                         </div>
 
                         {/* Reach */}
                         <div className="col-span-2 text-right">
-                             <span className="text-xs font-mono text-gray-500 dark:text-gray-400">{partner.reach}</span>
+                             <span className="text-xs font-mono text-slate-500 dark:text-slate-400">{partner.reach}</span>
                         </div>
                     </motion.div>
                 ))}

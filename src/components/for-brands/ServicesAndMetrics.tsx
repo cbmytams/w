@@ -166,7 +166,7 @@ function ServiceCard({ service }: { service: typeof SERVICES[number] }) {
                     <service.icon className="w-8 h-8 md:w-10 md:h-10 text-black dark:text-white stroke-[1.5]" />
                 </div>
 
-                <p className="text-sm md:text-base font-medium text-gray-600 dark:text-zinc-400 leading-snug group-hover:text-black dark:group-hover:text-white transition-colors">
+                <p className="text-sm md:text-base font-medium text-slate-600 dark:text-zinc-400 leading-snug group-hover:text-black dark:group-hover:text-white transition-colors">
                     {service.description}
                 </p>
             </div>
@@ -232,7 +232,7 @@ export function ServicesAndMetrics() {
                         <h2 className="font-heading font-black text-3xl sm:text-5xl md:text-7xl lg:text-[8rem] leading-[0.85] text-black dark:text-white uppercase tracking-tighter mb-6 md:mb-8 scale-y-110 origin-left">
                             NOS SERVICES
                         </h2>
-                        <p className="text-lg text-gray-600 dark:text-zinc-400 font-bold uppercase tracking-wide max-w-xl">
+                        <p className="text-lg text-slate-600 dark:text-zinc-400 font-bold uppercase tracking-wide max-w-xl">
                             Une architecture complète pour transformer votre marque.
                         </p>
                     </motion.div>
@@ -262,7 +262,7 @@ export function ServicesAndMetrics() {
                                     viewport={viewport}
                                 />
                             </div>
-                            <p className="text-gray-600 dark:text-zinc-400 font-bold uppercase text-xs tracking-wider">
+                            <p className="text-slate-600 dark:text-zinc-400 font-bold uppercase text-xs tracking-wider">
                                 Campagnes orchestrées
                             </p>
                         </div>
@@ -290,7 +290,7 @@ export function ServicesAndMetrics() {
                                     viewport={viewport}
                                 />
                             </div>
-                            <p className="text-gray-600 dark:text-zinc-400 font-bold uppercase text-xs tracking-wider">
+                            <p className="text-slate-600 dark:text-zinc-400 font-bold uppercase text-xs tracking-wider">
                                 Années d'expertise
                             </p>
                         </div>
@@ -315,7 +315,7 @@ export function ServicesAndMetrics() {
 
                         <div className="grid grid-cols-2 gap-2 md:gap-3 overflow-y-auto custom-scrollbar pr-2">
                             {TOOLS.map((tool, i) => (
-                                <div key={i} className="flex items-center gap-2 px-2 py-1.5 border border-black rounded-md bg-gray-50 hover:bg-[#FFDE59] transition-colors cursor-default dark:bg-zinc-800 dark:border-white dark:text-white dark:hover:bg-[#FFDE59] dark:hover:text-black">
+                                <div key={i} className="flex items-center gap-2 px-2 py-1.5 border border-black rounded-md bg-slate-50 hover:bg-[#FFDE59] transition-colors cursor-default dark:bg-zinc-800 dark:border-white dark:text-white dark:hover:bg-[#FFDE59] dark:hover:text-black">
                                     <span className="text-[10px] font-bold text-black dark:text-inherit uppercase truncate">
                                         {tool.name}
                                     </span>

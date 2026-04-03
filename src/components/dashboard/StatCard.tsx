@@ -27,7 +27,7 @@ export function StatCard({
             </div>
 
             <div className="flex justify-between items-start mb-4 relative z-10">
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest">{title}</h3>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest">{title}</h3>
             </div>
 
             <div className="flex items-baseline gap-3 relative z-10">
@@ -40,7 +40,7 @@ export function StatCard({
             </div>
 
             {description && (
-                <p className="mt-3 text-xs text-gray-500 relative z-10 font-medium">{description}</p>
+                <p className="mt-3 text-xs text-slate-500 relative z-10 font-medium">{description}</p>
             )}
         </div>
     );

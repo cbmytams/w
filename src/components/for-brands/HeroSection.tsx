@@ -22,7 +22,7 @@ export function HeroSection({ onDashboardClick }: HeroSectionProps) {
                         transition={{ duration: 0.8 }}
                         className="mb-6"
                     >
-                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 uppercase tracking-wider px-4 py-2 bg-gray-50 rounded-full">
+                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 uppercase tracking-wider px-4 py-2 bg-slate-50 rounded-full">
                             <Sparkles className="w-4 h-4" />
                             {BRAND_HERO_CONTENT.badge}
                         </span>
@@ -32,7 +32,7 @@ export function HeroSection({ onDashboardClick }: HeroSectionProps) {
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.1 }}
-                        className="text-6xl sm:text-7xl lg:text-8xl font-bold text-gray-900 leading-[1.05] mb-8"
+                        className="text-6xl sm:text-7xl lg:text-8xl font-bold text-slate-900 leading-[1.05] mb-8"
                     >
                         {BRAND_HERO_CONTENT.title.line1}{" "}
                         <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
@@ -49,7 +49,7 @@ export function HeroSection({ onDashboardClick }: HeroSectionProps) {
                     >
                         <div className="space-y-3 text-xl sm:text-2xl font-medium">
                             {BRAND_HERO_CONTENT.antiMarket.map((item, i) => (
-                                <p key={i} className={`${item.type === 'check' ? 'text-green-600 font-semibold' : 'text-gray-700'} flex items-center justify-center gap-3`}>
+                                <p key={i} className={`${item.type === 'check' ? 'text-green-600 font-semibold' : 'text-slate-700'} flex items-center justify-center gap-3`}>
                                     {item.type === 'check' ? (
                                         <Check className="w-6 h-6 shrink-0" />
                                     ) : (
@@ -61,7 +61,7 @@ export function HeroSection({ onDashboardClick }: HeroSectionProps) {
                         </div>
 
                         {/* Timing line */}
-                        <p className="text-sm text-gray-500 mt-6 flex items-center justify-center gap-2">
+                        <p className="text-sm text-slate-500 mt-6 flex items-center justify-center gap-2">
                             {BRAND_HERO_CONTENT.timing}
                         </p>
                     </motion.div>
@@ -77,7 +77,7 @@ export function HeroSection({ onDashboardClick }: HeroSectionProps) {
                                 Lancer une campagne <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>
-                        <Button size="lg" variant="outline" onClick={onDashboardClick} className="h-14 px-10 rounded-full border-2 border-gray-300 hover:border-gray-400 text-lg font-semibold">
+                        <Button size="lg" variant="outline" onClick={onDashboardClick} className="h-14 px-10 rounded-full border-2 border-slate-300 hover:border-slate-400 text-lg font-semibold">
                             <Eye className="mr-2 h-5 w-5" />
                             Voir le dashboard
                         </Button>
