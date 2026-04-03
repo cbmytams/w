@@ -7,6 +7,7 @@ import { Instagram, Linkedin, Music, type LucideIcon } from "lucide-react"
  */
 export const MAIN_NAVIGATION: NavItem[] = [
     { name: "Services", href: "/services" },
+    { name: "Studio", href: "/studio" },
     { name: "Réalisations", href: "/for-brands#case-studies" },
 ]
 

@@ -105,11 +105,6 @@ const nextConfig: NextConfig = {
         destination: "/wiki/:slug",
         statusCode: 301,
       },
-      {
-        source: "/studio",
-        destination: "/for-brands#case-studies",
-        statusCode: 301,
-      },
     ];
   },
   async rewrites() {
