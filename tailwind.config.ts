@@ -7,6 +7,10 @@ const config = {
         serif: ["var(--font-serif)", "Georgia", "serif"],
         ui: ["var(--font-ui)", "-apple-system", "sans-serif"],
       },
+      borderRadius: {
+        'xl': '1.25rem',
+        '2xl': '1.75rem',
+      },
     },
   },
 };
