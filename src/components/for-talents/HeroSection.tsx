@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Clock } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { TALENT_HERO } from "@/constants"
 import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire"
@@ -48,24 +47,7 @@ export function HeroSection() {
                         {TALENT_HERO.subtitle}
                     </motion.p>
 
-                    {/* Calls Available Indicator */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        className="flex items-center gap-2 mb-10"
-                    >
-                        <span className="relative flex h-2.5 w-2.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-                        </span>
-                        <span className="text-sm text-slate-600 dark:text-white/60">
-                            {TALENT_HERO.callsAvailable} calls disponibles aujourd&apos;hui
-                        </span>
-                        <Clock className="w-3.5 h-3.5 text-slate-400 dark:text-white/40" />
-                    </motion.div>
-
-                    {/* CTAs - SocialCut style */}
+                    {/* CTAs */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}

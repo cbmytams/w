@@ -31,9 +31,11 @@ export function CtaSection() {
                                 {TALENT_CTA.title}
                             </h2>
 
-                            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
-                                {TALENT_CTA.description}
-                            </p>
+                            {TALENT_CTA.description && (
+                                <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+                                    {TALENT_CTA.description}
+                                </p>
+                            )}
 
                             <MagneticButton href={ctaHref}>
                                 {TALENT_CTA.ctaText} <ArrowRight className="h-5 w-5" />

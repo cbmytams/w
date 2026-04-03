@@ -5,7 +5,7 @@ export const TALENT_HERO = {
     subtitle: "On construit l'architecture autour de vous : image, production, deals, admin. L'objectif : une carrière qui tient.",
     ctaPrimary: "Se référencer",
     ctaSecondary: "Notre approche",
-    callsAvailable: 2,
+    callsAvailable: 0,
     proofPoints: [
         { label: "Positionnement & image", value: "Identité" },
         { label: "Studio & pipeline", value: "Production" },
@@ -23,7 +23,7 @@ export const TALENT_PROBLEM = {
 
 export const TALENT_CTA = {
     title: "Prêt à passer un cap ?",
-    description: "Soumettez votre profil. Si ça matche avec nos exigences, on revient vers vous.",
+    description: "",
     ctaText: "Se référencer"
 } as const;
 
