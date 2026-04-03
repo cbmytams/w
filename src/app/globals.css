@@ -357,6 +357,23 @@ body {
 }
 
 /* ============================================
+   ACCESSIBILITY - Focus Visible Baseline
+   ============================================ */
+
+/* Ensure keyboard focus is always visible on interactive elements
+   that don't have their own focus-visible styles */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Remove the default outline only when not focus-visible
+   (mouse/touch users won't see outlines, keyboard users will) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
    ACCESSIBILITY - Reduced Motion
    ============================================ */
 

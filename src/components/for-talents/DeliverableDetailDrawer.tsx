@@ -154,7 +154,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
             <div className="relative z-10 flex min-h-full flex-col">
               <div className="mb-10 pr-10">
                 <div className="mb-5 text-5xl">{renderedItem.icon}</div>
-                <h2 id="drawer-title" className="mb-2.5 text-[28px] font-bold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-3xl">
+                <h2 id="drawer-title" className="mb-2.5 text-3xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white">
                   {renderedItem.title}
                 </h2>
                 <p className="text-base font-medium leading-relaxed text-slate-500 dark:text-slate-400">
@@ -171,14 +171,14 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
               ) : renderedItem.detail ? (
                 <div className="space-y-10">
                   <div>
-                    <p className="text-[15px] leading-[1.7] text-slate-600 dark:text-slate-400">
+                    <p className="text-base leading-[1.7] text-slate-600 dark:text-slate-400">
                       {renderedItem.detail.intro}
                     </p>
                   </div>
 
                   <div>
                     <div className="mb-5 inline-flex flex-col">
-                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                         Le Processus
                       </span>
                     </div>
@@ -194,7 +194,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
 
                   <div>
                     <div className="mb-5 inline-flex flex-col">
-                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                         Livrables Concrets
                       </span>
                     </div>
@@ -215,7 +215,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
 
                   <div>
                     <div className="mb-6 inline-flex flex-col">
-                      <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                         La Méthode
                       </span>
                     </div>
@@ -223,7 +223,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
                       {renderedItem.detail.howItWorks?.map((step, i) => (
                         <div key={i} className="relative flex gap-4">
                           <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/60 backdrop-blur-md shadow-sm dark:border-white/[0.1] dark:bg-white/[0.05] dark:shadow-none">
-                            <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">{i + 1}</span>
+                            <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{i + 1}</span>
                           </div>
                           <div className="flex-1 pt-1">
                             <div className="mb-0.5 text-sm font-semibold text-slate-900 dark:text-white/90">
@@ -240,7 +240,7 @@ export function DeliverableDetailDrawer({ item, onClose }: DeliverableDetailDraw
 
                   <div>
                     <div className="rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-[20px] dark:border-purple-400/20 dark:from-purple-500/10">
-                      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-purple-700 dark:text-purple-300">
+                      <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-purple-700 dark:text-purple-300">
                         Cible
                       </span>
                       <p className="text-sm font-medium leading-relaxed text-slate-800 dark:text-slate-200">

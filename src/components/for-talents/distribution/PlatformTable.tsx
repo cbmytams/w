@@ -140,7 +140,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                             {platform.name}
                                         </h3>
                                         {reachValue && (
-                                            <p className="text-[12px] font-medium text-slate-500 dark:text-slate-400 mt-1">
+                                            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">
                                                 {reachValue}
                                             </p>
                                         )}
@@ -169,7 +169,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                     <>
                                         {/* Access Type */}
                                         <div className="hidden lg:flex lg:col-span-2">
-                                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-slate-700 bg-black/5 dark:text-slate-300 dark:bg-white/10">
+                                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-700 bg-black/5 dark:text-slate-300 dark:bg-white/10">
                                                 {getAccessIcon(platform.accessType ?? "")}
                                                 {platform.accessType ?? "—"}
                                             </span>
@@ -178,7 +178,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                         {/* Status */}
                                         <div className="hidden lg:flex lg:col-span-2 items-center">
                                             <span className={cn(
-                                                "inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[11px] font-bold",
+                                                "inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-bold",
                                                 platform.isLive
                                                     ? "text-emerald-700 bg-emerald-50 dark:text-emerald-300 dark:bg-emerald-500/10"
                                                     : "text-amber-700 bg-amber-50 dark:text-amber-300 dark:bg-amber-500/10"
@@ -191,7 +191,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                         {/* Speed */}
                                         {showSpeedColumn && (
                                             <div className="hidden lg:flex lg:col-span-1 items-center">
-                                                <span className="text-[12px] font-bold text-slate-600 dark:text-slate-400">
+                                                <span className="text-xs font-bold text-slate-600 dark:text-slate-400">
                                                     {speedValue || "—"}
                                                 </span>
                                             </div>
@@ -247,7 +247,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                             {selectedPlatform.name}
                                         </h3>
                                         <div className="flex items-center gap-2 mt-2">
-                                            <span className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                            <span className="flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                                                 {getAccessIcon(selectedPlatform.accessType ?? "")}
                                                 {selectedPlatform.accessType}
                                             </span>
@@ -272,7 +272,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
 
                             <div className="p-6 sm:p-8 flex-1 overflow-y-auto">
                                 <div>
-                                    <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-4">
+                                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] mb-4">
                                         À propos
                                     </h4>
                                     <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed font-medium">

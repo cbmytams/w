@@ -90,7 +90,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                 <Link
                     href={BACK_ROUTE[context]}
                     aria-label="Retour"
-                    className="h-12 group flex items-center justify-center gap-2.5 px-4 sm:px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
+                    className="h-12 group flex items-center justify-center gap-2.5 px-4 sm:px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
                 >
                     <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
                     <span className="hidden sm:inline">Retour</span>
@@ -114,7 +114,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                                     key={item.href}
                                     href={hrefWithContext}
                                     aria-current={isActive ? "page" : undefined}
-                                    className={`relative h-9 px-5 rounded-full transition-all duration-300 text-[13px] font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-slate-900 dark:text-white" : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
+                                    className={`relative h-9 px-5 rounded-full transition-all duration-300 text-sm font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-slate-900 dark:text-white" : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
                                         }`}
                                 >
                                     {isActive && (
@@ -131,7 +131,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                     </div>
                     <div className="w-1"></div>
                     <a href={cta.href}>
-                        <div className="flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF4C00] to-[#FF8C00] hover:opacity-90 px-6 h-9 text-white text-[13px] font-bold tracking-wide shadow-md shadow-orange-500/25 hover:shadow-orange-500/40 transition-transform duration-300 hover:scale-105">
+                        <div className="flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF4C00] to-[#FF8C00] hover:opacity-90 px-6 h-9 text-white text-sm font-bold tracking-wide shadow-md shadow-orange-500/25 hover:shadow-orange-500/40 transition-transform duration-300 hover:scale-105">
                             {cta.label}
                         </div>
                     </a>
@@ -146,8 +146,9 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                 className="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] flex lg:hidden items-center gap-3"
             >
                 <button
+                    type="button"
                     onClick={() => setMobileMenuOpen(true)}
-                    className="h-12 w-12 flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
+                    className="h-12 w-12 flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:focus-visible:outline-white"
                     aria-label="Ouvrir le menu"
                 >
                     <Menu className="h-5 w-5 text-slate-900 dark:text-white" />

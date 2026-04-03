@@ -162,7 +162,7 @@ export function TalentsFloatingNavigation() {
                     <div className="flex items-center justify-center w-6 z-10 mx-1">
                         <div className="w-[5px] h-[5px] rounded-full bg-purple-500 animate-pulse shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
                     </div>
-                    <span className="text-[12px] font-bold text-slate-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">TALENTS</span>
+                    <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">TALENTS</span>
                 </Link>
             </motion.div>
 
@@ -185,7 +185,7 @@ export function TalentsFloatingNavigation() {
                                         e.preventDefault()
                                         scrollToSection(item.href)
                                     }}
-                                    className={`relative h-9 px-5 rounded-full transition-all duration-300 text-[13px] font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-slate-900 dark:text-white" : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
+                                    className={`relative h-9 px-5 rounded-full transition-all duration-300 text-sm font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${isActive ? "text-slate-900 dark:text-white" : "text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10"
                                         }`}
                                     aria-current={isActive ? "page" : undefined}
                                 >
@@ -204,7 +204,7 @@ export function TalentsFloatingNavigation() {
                     <div className="w-1"></div>
                     <a href={desktopCtaHref}>
                         <Button
-                            className={`rounded-full bg-gradient-to-r ${BRAND_GRADIENT} hover:opacity-90 px-6 h-9 text-white text-[13px] font-bold tracking-wide shadow-md shadow-pink-500/25 hover:shadow-pink-500/40 transition-transform duration-300 hover:scale-105`}
+                            className={`rounded-full bg-gradient-to-r ${BRAND_GRADIENT} hover:opacity-90 px-6 h-9 text-white text-sm font-bold tracking-wide shadow-md shadow-pink-500/25 hover:shadow-pink-500/40 transition-transform duration-300 hover:scale-105`}
                         >
                             Se référencer
                         </Button>
@@ -222,7 +222,7 @@ export function TalentsFloatingNavigation() {
                 {/* Home - Desktop only */}
                 <Link
                     href="/"
-                    className="h-12 hidden lg:!flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
+                    className="h-12 hidden lg:!flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
                 >
                     <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                     <span>Menu principal</span>
@@ -232,8 +232,9 @@ export function TalentsFloatingNavigation() {
 
                 {/* Hamburger - Mobile only */}
                 <button
+                    type="button"
                     onClick={() => setMobileMenuOpen(true)}
-                    className="h-12 w-12 flex lg:!hidden items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
+                    className="h-12 w-12 flex lg:!hidden items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:focus-visible:outline-white"
                     aria-label="Ouvrir le menu"
                 >
                     <Menu className="h-5 w-5 text-slate-900 dark:text-white" />
@@ -314,7 +315,7 @@ export function TalentsFloatingNavigation() {
                                         <Link
                                             href="/"
                                             onClick={() => setMobileMenuOpen(false)}
-                                            className="h-12 w-full flex items-center justify-center gap-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300 text-[15px] font-semibold text-slate-700 dark:text-slate-300 group"
+                                            className="h-12 w-full flex items-center justify-center gap-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300 text-base font-semibold text-slate-700 dark:text-slate-300 group"
                                         >
                                             <Home className="h-[18px] w-[18px] group-hover:scale-110 transition-transform" />
                                             Menu principal

@@ -223,12 +223,15 @@ export function PositionnementSection() {
 
                         {/* Tabs */}
                         <RevealAnimation delay={0.1} className="flex justify-center mb-10">
-                            <div className="inline-flex bg-white dark:bg-white/5 p-1.5 rounded-2xl shadow-xl border border-slate-200 dark:border-white/10 backdrop-blur-2xl">
+                            <div role="tablist" aria-label="Profil de positionnement" className="inline-flex bg-white dark:bg-white/5 p-1.5 rounded-2xl shadow-xl border border-slate-200 dark:border-white/10 backdrop-blur-2xl">
                                 {tabs.map((tab) => (
                                     <button
                                         key={tab.key}
+                                        type="button"
+                                        role="tab"
+                                        aria-selected={activeTab === tab.key}
                                         onClick={() => setActiveTab(tab.key)}
-                                        className={`relative px-3 py-2 md:px-6 md:py-3 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${activeTab === tab.key
+                                        className={`relative px-3 py-2 md:px-6 md:py-3 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary ${activeTab === tab.key
                                             ? "text-white"
                                             : "text-slate-500 hover:text-slate-900 dark:text-white/70 dark:hover:text-white"
                                             }`}

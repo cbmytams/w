@@ -63,7 +63,7 @@ export function DeliverablesSection() {
                                         <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white mb-2 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
                                             {item.title}
                                         </h3>
-                                        <p className="text-[14px] font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
+                                        <p className="text-sm font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
                                             {item.subtitle}
                                         </p>
                                     </div>

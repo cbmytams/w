@@ -93,9 +93,10 @@ export function QuestionnaireHealthPanel({ type }: { type: "TALENTS" | "BRANDS" 
                         <div className="font-mono text-sm bg-white/5 border border-white/10 px-2 py-1 rounded text-questionnaire-primary">{data.version}</div>
                     </div>
                     <button
+                        type="button"
                         onClick={handleExport}
                         disabled={exporting}
-                        className="px-4 py-2.5 bg-gradient-to-r from-questionnaire-primary to-questionnaire-secondary text-white text-sm font-semibold rounded-lg shadow-lg hover:shadow-questionnaire-primary/25 transition-all flex items-center gap-2 disabled:opacity-50"
+                        className="px-4 py-2.5 bg-gradient-to-r from-questionnaire-primary to-questionnaire-secondary text-white text-sm font-semibold rounded-lg shadow-lg hover:shadow-questionnaire-primary/25 transition-all flex items-center gap-2 disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-questionnaire-primary"
                     >
                         <Save className="w-4 h-4" />
                         {exporting ? 'Exportation...' : 'Exporter CSV'}

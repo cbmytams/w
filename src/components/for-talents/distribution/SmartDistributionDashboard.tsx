@@ -50,7 +50,7 @@ export function SmartDistributionDashboard() {
                                     Operational
                                 </span>
                             </div>
-                            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mt-2">
+                            <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400 mt-2">
                                 Distribution & Access Control
                             </p>
                         </div>
@@ -62,7 +62,7 @@ export function SmartDistributionDashboard() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
-                        <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">System Normal</span>
+                        <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">System Normal</span>
                     </div>
                 </div>
 

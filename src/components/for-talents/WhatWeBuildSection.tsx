@@ -42,16 +42,16 @@ export function WhatWeBuildSection() {
                             >
                                 <div className="flex flex-col h-full relative z-10">
                                     {/* Large Icon */}
-                                    <div className="text-[42px] leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left mb-auto">
+                                    <div className="text-4xl leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left mb-auto">
                                         {pillar.icon}
                                     </div>
 
                                     {/* Content */}
                                     <div className="mt-12">
-                                        <h3 className="text-[22px] font-bold tracking-tight text-slate-900 dark:text-white mb-3 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
+                                        <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white mb-3 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
                                             {pillar.title}
                                         </h3>
-                                        <p className="text-[14px] font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
+                                        <p className="text-sm font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
                                             {pillar.description}
                                         </p>
                                     </div>

@@ -156,12 +156,12 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                 <div className="mb-4 flex items-center gap-4">
                   <div className="text-5xl">{renderedService.icon}</div>
                   <div className="inline-flex items-center rounded-full border border-purple-200/50 bg-purple-100/60 px-3 py-1 dark:border-purple-500/[0.15] dark:bg-purple-500/[0.1]">
-                    <span className="text-[11px] font-bold tracking-wider text-purple-700 dark:text-purple-400">
+                    <span className="text-xs font-bold tracking-wider text-purple-700 dark:text-purple-400">
                       {renderedService.number}
                     </span>
                   </div>
                 </div>
-                <h2 id="service-drawer-title" className="mb-2.5 text-[28px] font-bold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-3xl">
+                <h2 id="service-drawer-title" className="mb-2.5 text-3xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white">
                   {renderedService.headline}
                 </h2>
                 <div className="mt-3 h-[2px] w-20 rounded-full bg-gradient-to-r from-purple-500/50 via-violet-400/30 to-transparent" />
@@ -177,7 +177,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                 <>
                   {detail.intro && (
                     <div className="mb-10">
-                      <p className="border-l-2 border-purple-400/40 pl-4 text-[15px] leading-[1.7] text-slate-600 dark:text-slate-400">
+                      <p className="border-l-2 border-purple-400/40 pl-4 text-base leading-[1.7] text-slate-600 dark:text-slate-400">
                         {detail.intro}
                       </p>
                     </div>
@@ -186,7 +186,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   {detail.whatWeDo && detail.whatWeDo.length > 0 && (
                     <div className="mb-10">
                       <div className="mb-5 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                           Ce qu&apos;on fait
                         </span>
                       </div>
@@ -204,7 +204,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   {detail.deliverables && detail.deliverables.length > 0 && (
                     <div className="mb-10">
                       <div className="mb-5 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                           Livrables
                         </span>
                       </div>
@@ -227,7 +227,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   {detail.howItWorks && detail.howItWorks.length > 0 && (
                     <div className="mb-10">
                       <div className="mb-6 inline-flex items-center rounded-full border border-black/[0.05] bg-black/[0.03] px-3.5 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                           Comment ça marche
                         </span>
                       </div>
@@ -235,7 +235,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                         {detail.howItWorks.map((step, i) => (
                           <div key={i} className="relative flex gap-4">
                             <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/[0.06] bg-white/80 shadow-sm dark:border-white/[0.12] dark:bg-white/[0.08] dark:shadow-none">
-                              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">{i + 1}</span>
+                              <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{i + 1}</span>
                             </div>
                             <div className="flex-1 pt-1">
                               <div className="mb-0.5 text-sm font-semibold text-slate-900 dark:text-white/90">
@@ -254,7 +254,7 @@ export function ServiceDetailDrawer({ service, onClose }: ServiceDetailDrawerPro
                   {detail.forWho && (
                     <div className="mb-6">
                       <div className="rounded-2xl border border-l-2 border-l-purple-500/50 border-purple-200/50 bg-purple-50/60 p-5 dark:border-white/[0.06] dark:bg-purple-500/[0.06]">
-                        <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500">
+                        <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500">
                           Cible
                         </span>
                         <p className="text-sm font-medium italic leading-relaxed text-slate-700 dark:text-slate-300">

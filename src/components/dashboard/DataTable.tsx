@@ -63,7 +63,11 @@ export function DataTable<T>({
                                         <div className="flex items-center gap-2">
                                             {col.header}
                                             {col.sortable && (
-                                                <button className="hover:text-white/60 transition-colors text-white/20">
+                                                <button
+                                                    type="button"
+                                                    aria-label={`Trier par ${col.header}`}
+                                                    className="hover:text-white/60 transition-colors text-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 rounded"
+                                                >
                                                     <ArrowUpDown className="w-3 h-3" />
                                                 </button>
                                             )}

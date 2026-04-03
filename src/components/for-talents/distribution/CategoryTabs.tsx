@@ -21,7 +21,7 @@ export function CategoryTabs({ categories, activeCategoryId, onChange }: Categor
                         key={category.id}
                         onClick={() => onChange(category.id)}
                         className={cn(
-                            "relative py-6 text-[12px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 whitespace-nowrap",
+                            "relative py-6 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-300 whitespace-nowrap",
                             isActive
                                 ? "text-black dark:text-white"
                                 : "text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-slate-300"

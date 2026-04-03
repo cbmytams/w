@@ -38,8 +38,9 @@ export function TopBar() {
       <div className="flex items-center gap-2 flex-shrink-0">
         {/* Notification bell (placeholder, future-ready) */}
         <button
-          className="w-9 h-9 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 transition flex items-center justify-center text-white/40 hover:text-white/70"
-          title="Notifications"
+          type="button"
+          className="w-9 h-9 rounded-xl bg-white/5 border border-white/8 hover:bg-white/10 transition flex items-center justify-center text-white/40 hover:text-white/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+          aria-label="Notifications"
         >
           <Bell className="w-4 h-4" />
         </button>
@@ -56,9 +57,10 @@ export function TopBar() {
 
         {/* Sign out */}
         <button
+          type="button"
           onClick={() => signOut({ callbackUrl: "/admin/login" })}
-          className="w-9 h-9 rounded-xl bg-white/5 border border-white/8 hover:bg-red-500/10 hover:border-red-500/20 transition flex items-center justify-center text-white/40 hover:text-red-400"
-          title="Se déconnecter"
+          className="w-9 h-9 rounded-xl bg-white/5 border border-white/8 hover:bg-red-500/10 hover:border-red-500/20 transition flex items-center justify-center text-white/40 hover:text-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+          aria-label="Se déconnecter"
         >
           <LogOut className="w-4 h-4" />
         </button>

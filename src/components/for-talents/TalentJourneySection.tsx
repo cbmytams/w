@@ -123,7 +123,7 @@ export function TalentJourneySection() {
                                                     {phase.label}
                                                 </span>
                                             </div>
-                                            <p className="text-[15px] text-slate-500 dark:text-white/40 leading-relaxed">
+                                            <p className="text-base text-slate-500 dark:text-white/40 leading-relaxed">
                                                 {PHASE_BENEFITS[i]}
                                             </p>
                                         </div>
