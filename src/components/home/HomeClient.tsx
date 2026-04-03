@@ -89,7 +89,7 @@ export function HomeClient() {
     }, [router])
 
     return (
-        <div id="home-root" className="min-h-screen w-full bg-[#0b111a] flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
+        <div id="home-root" className="min-h-screen w-full bg-[#050510] flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
 
             {/* SPACE BACKGROUND */}
             <StaticBackground />
