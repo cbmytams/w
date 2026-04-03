@@ -273,3 +273,11 @@ Tu as le droit de parler de ta vie professionnelle publiquement. Full NDA = roug
 
 **Année = ~45 000 € juste en marques.**
 
+---
+
+## Aller plus loin avec Wafia
+
+Tu veux un accompagnement pour négocier tes contrats et sécuriser tes deals ? Le [Talent Management Wafia](/for-talents) couvre la structuration contractuelle, la négociation et la roadmap carrière.
+
+Tu es une marque et tu cherches à structurer tes partenariats créateurs ? Découvrez notre approche [campagnes d'influence marketing](/for-brands).
+

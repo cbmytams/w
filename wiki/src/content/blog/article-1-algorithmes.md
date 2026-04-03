@@ -135,3 +135,9 @@ Comme le résume YouTube : "Ne cherchez pas à rendre l'algorithme heureux. Cré
 
 Les algorithmes optimisent pour la satisfaction humaine. Concentrez-vous sur des accroches percutantes, du contenu de valeur, une fin qui donne envie d'en voir plus — et les métriques suivront naturellement.
 
+---
+
+## Aller plus loin avec Wafia
+
+Vous souhaitez activer des créateurs alignés avec votre cible en exploitant les algorithmes ? Découvrez les [campagnes d'influence marketing Wafia](/for-brands) ou consultez nos [services](/services).
+

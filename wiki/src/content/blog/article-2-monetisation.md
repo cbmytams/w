@@ -203,3 +203,11 @@ Pour cadrer les ambitions de manière réaliste :
 
 Ces chiffres supposent une stratégie active de monétisation multi-sources. Un talent qui se concentre uniquement sur les revenus publicitaires de sa plateforme principale restera largement en dessous de son potentiel réel.
 
+---
+
+## Aller plus loin avec Wafia
+
+Si tu es créateur et que tu cherches à structurer ta monétisation avec un accompagnement pro, découvre le [Talent Management Wafia](/for-talents) — gestion de carrière, négociation de deals et production.
+
+Si tu es une marque et que tu veux activer des créateurs sur une campagne, consulte nos [services d'influence marketing](/services).
+
