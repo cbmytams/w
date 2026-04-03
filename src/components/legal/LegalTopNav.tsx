@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react"
 
 import { WafiaLogo } from "@/components/ui/WafiaLogo"
 import { SPRING } from "@/lib/design-tokens"
+import { EASING } from "@/lib/easing"
 
 export type LegalNavContext = "brands" | "talents" | "default"
 
@@ -83,7 +84,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.5, ease: EASING.smooth }}
                 className="fixed top-4 left-4 sm:top-8 sm:left-8 z-[100]"
             >
                 <Link
@@ -100,7 +101,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
             <motion.nav
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.6, ease: EASING.smooth }}
                 className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] hidden lg:block"
             >
                 <div className="h-12 bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] rounded-full p-1.5 shadow-lg border border-white/50 dark:border-white/10 flex items-center justify-center gap-1 relative">
@@ -141,7 +142,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.5, ease: EASING.smooth }}
                 className="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] flex lg:hidden items-center gap-3"
             >
                 <button
@@ -161,7 +162,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                             initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
                             animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
                             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                            transition={{ duration: 0.4, ease: EASING.premium }}
                             className="fixed inset-0 z-[150] bg-black/40 dark:bg-black/60"
                             onClick={() => setMobileMenuOpen(false)}
                         />

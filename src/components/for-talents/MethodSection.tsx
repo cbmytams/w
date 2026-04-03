@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container"
 import { SPRING } from "@/lib/design-tokens"
 import { TALENT_METHOD } from "@/constants"
 import { ArrowRight, Check, Sparkles } from "lucide-react"
+import { EASING } from "@/lib/easing"
 
 /**
  * MethodSection — Premium Motion Design Stepper
@@ -125,7 +126,7 @@ export function MethodSection() {
                     transition={{
                         duration: 20,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: EASING.easeInOut
                     }}
                     style={{ left: "10%", top: "20%" }}
                 />
@@ -139,7 +140,7 @@ export function MethodSection() {
                     transition={{
                         duration: 15,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: EASING.easeInOut
                     }}
                     style={{ right: "10%", bottom: "20%" }}
                 />

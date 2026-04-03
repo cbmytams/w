@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Plus, Minus } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { EASING } from "@/lib/easing"
 
 type FaqItem = { q: string; a: string }
 
@@ -54,7 +55,7 @@ export function ServicesFaqAccordion({ items }: { items: FaqItem[] }) {
                                     initial={{ height: 0, opacity: 0 }}
                                     animate={{ height: "auto", opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    transition={{ duration: 0.3, ease: EASING.easeInOut }}
                                 >
                                     <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0">
                                         <p className="text-base leading-relaxed text-slate-600">

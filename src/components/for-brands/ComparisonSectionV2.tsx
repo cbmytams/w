@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { EASING, DURATION } from "@/lib/easing";
 import { ArrowRight, X, Check } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/common/SectionHeading"
@@ -67,7 +68,7 @@ export function ComparisonSectionV2() {
                                     initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
                                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                                     viewport={{ once: true, margin: "-100px" }}
-                                    transition={{ duration: 0.7, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                                    transition={{ duration: DURATION.slower, delay: index * 0.1, ease: EASING.smooth }}
                                     className="group relative flex flex-col md:flex-row items-center justify-between p-6 md:p-8 rounded-2xl bg-white dark:bg-white/[0.02] border border-slate-200/60 dark:border-white/5 hover:border-orange-500/30 transition-all duration-700 hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.1)] dark:hover:shadow-[0_20px_40px_-15px_rgba(249,115,22,0.05)] overflow-hidden cursor-default"
                                 >
                                     {/* Subtle Sweep Background on Hover */}

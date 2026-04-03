@@ -8,6 +8,7 @@ import { TALENT_DELIVERABLES } from "@/constants"
 import { DeliverableDetailDrawer } from "./DeliverableDetailDrawer"
 import { ArrowRight } from "lucide-react"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
+import { EASING } from "@/lib/easing"
 
 type DeliverableItem = typeof TALENT_DELIVERABLES.items[number]
 
@@ -39,7 +40,7 @@ export function DeliverablesSection() {
                                 transition={disableMotion ? undefined : { duration: transitionDuration, delay: clampDelay(index * 0.07) }}
                                 whileTap={disableMotion ? undefined : {
                                     scale: 0.96,
-                                    transition: { duration: 0.1, ease: "easeOut" }
+                                    transition: { duration: 0.1, ease: EASING.easeOut }
                                 }}
                                 onClick={() => setSelectedItem(item)}
                                 className="group relative p-8 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] rounded-2xl border border-black/[0.05] dark:border-white/[0.05] shadow-lg hover:shadow-2xl dark:shadow-none hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 text-left cursor-pointer focus-visible:outline-none flex flex-col min-h-[240px] active:scale-[0.98]"

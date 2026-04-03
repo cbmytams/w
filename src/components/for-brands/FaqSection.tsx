@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 
 
 import { LegalHubContent } from "@/components/legal/LegalHubContent"
+import { EASING } from "@/lib/easing"
 
 const LEGAL_ITEMS = [
     {
@@ -111,7 +112,7 @@ function FaqItem({ item, isOpen, onClick, index }: { item: { q: string, a: React
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ duration: 0.3, ease: EASING.easeInOut }}
                     >
                         <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0">
                             <div className="text-base leading-relaxed text-slate-600 dark:text-slate-400">

@@ -12,6 +12,7 @@ import { Container } from "@/components/ui/container"
 import { Marquee } from "@/components/ui/marquee"
 import { cn } from "@/lib/utils"
 import { useRevealViewport } from "@/hooks/useRevealViewport"
+import { EASING } from "@/lib/easing"
 
 // --- Constants ---
 
@@ -141,7 +142,7 @@ function ServiceCard({ service }: { service: typeof SERVICES[number] }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-20px" }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: EASING.easeOut }}
             className={cn(
                 "group relative h-full min-h-[220px] md:min-h-[280px] p-6 md:p-8 flex flex-col justify-between",
                 "bg-white border-2 border-black rounded-xl",

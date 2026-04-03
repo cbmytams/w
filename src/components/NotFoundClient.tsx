@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { EASING } from "@/lib/easing";
 import { ArrowRight, Home } from "lucide-react";
 
 export default function NotFoundClient() {
@@ -20,7 +21,7 @@ export default function NotFoundClient() {
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: EASING.easeInOut,
           }}
           className="absolute h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-orange-500/20 to-rose-500/20 blur-[120px]"
         />
@@ -31,7 +32,7 @@ export default function NotFoundClient() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: EASING.premium }}
           className="relative flex items-center justify-center"
         >
           <h1 className="text-[120px] sm:text-[200px] md:text-[250px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/5 select-none drop-shadow-2xl">
@@ -40,7 +41,7 @@ export default function NotFoundClient() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.3, duration: 0.8, ease: EASING.premium }}
             className="absolute whitespace-nowrap bg-black/60 px-6 py-2.5 backdrop-blur-md rounded-full border border-white/10 text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-white/90 shadow-2xl"
           >
             Page introuvable
@@ -51,7 +52,7 @@ export default function NotFoundClient() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.4, duration: 0.8, ease: EASING.premium }}
           className="mt-8 max-w-md text-base sm:text-lg text-white/50"
         >
           L'URL que vous recherchez semble incorrecte ou la page a été déplacée. Reprenons une connexion plus stable.
@@ -61,7 +62,7 @@ export default function NotFoundClient() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.5, duration: 0.8, ease: EASING.premium }}
           className="mt-12 flex flex-col w-full sm:w-auto sm:flex-row items-center gap-4"
         >
           <Link

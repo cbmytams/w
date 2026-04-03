@@ -62,7 +62,7 @@ export function MainPerformanceModule() {
                         strokeLinejoin="round"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
-                        transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+                        transition={{ duration: 2, ease: EASING.easeOut, delay: 0.5 }}
                         filter="drop-shadow(0 0 4px rgba(249,115,22,0.5))"
                     />
 

@@ -9,6 +9,7 @@ import { SPRING } from "@/lib/design-tokens"
 import { STUDIO_PRODUCTIONS } from "@/constants/studio"
 import { SequentialVideoPlayer } from "@/components/studio/SequentialVideoPlayer"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
+import { EASING } from "@/lib/easing"
 
 export function ProductionsGrid() {
     const router = useRouter()
@@ -34,7 +35,7 @@ export function ProductionsGrid() {
             <motion.div
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
                 animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-                transition={prefersReducedMotion ? undefined : { duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                transition={prefersReducedMotion ? undefined : { duration: 0.38, ease: EASING.smooth }}
                 className="flex flex-col md:grid md:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl px-4"
             >
                 {/* 1. KRH Hero Card (Spans 2 columns) */}

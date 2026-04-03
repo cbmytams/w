@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { EASING } from "@/lib/easing";
 import Link from "next/link";
 import WikiNavBar from "./WikiNavBar";
 import WikiTabSwitcher from "./WikiTabSwitcher";
@@ -53,7 +54,7 @@ export default function WikiIndexView({ articles }: { articles: WikiArticleSumma
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: EASING.premium }}
           className="mb-12"
         >
           <h1 className="font-serif text-5xl sm:text-6xl md:text-8xl font-medium leading-[0.9] tracking-tight">

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import Image from "next/image"
+import { EASING } from "@/lib/easing"
 
 export function JulienHero() {
     return (
@@ -26,13 +27,13 @@ export function JulienHero() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 0.25, scale: 1 }}
-                    transition={{ duration: 2, ease: "easeOut" }}
+                    transition={{ duration: 2, ease: EASING.easeOut }}
                     className="absolute top-1/4 left-1/4 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-purple-600 rounded-full blur-[150px] mix-blend-screen"
                 />
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 0.2, scale: 1 }}
-                    transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
+                    transition={{ duration: 2, delay: 0.5, ease: EASING.easeOut }}
                     className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-pink-500 rounded-full blur-[120px] mix-blend-screen"
                 />
             </div>
@@ -41,7 +42,7 @@ export function JulienHero() {
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1, ease: EASING.premium }}
                     className="inline-flex flex-col items-center gap-6"
                 >
                     <div className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-bold uppercase tracking-[0.3em] text-white/60 mb-8">
@@ -59,7 +60,7 @@ export function JulienHero() {
                                     animate={{ y: 0 }}
                                     transition={{
                                         duration: 1.2,
-                                        ease: [0.16, 1, 0.3, 1],
+                                        ease: EASING.premium,
                                         delay: (wordIndex * 0.2) + (letterIndex * 0.05)
                                     }}
                                     className="block font-black text-[15vw] md:text-[12vw] lg:text-[160px] leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40"

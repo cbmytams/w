@@ -17,6 +17,7 @@ import { SeriesFormatsWidget } from "./widgets/SeriesFormatsWidget"
 import { PricingOffersWidget } from "./widgets/PricingOffersWidget"
 import { ServiceDetailDrawer } from "./ServiceDetailDrawer"
 import { ArrowRight } from "lucide-react"
+import { EASING } from "@/lib/easing"
 
 const widgetMap = {
     "IdentityLens": IdentityLensWidget,
@@ -37,7 +38,7 @@ export function ServicesSection() {
     const renderDetailButton = (service: TalentService, isServiceOpen: boolean) => (
         <motion.button
             onClick={() => setSelectedService(service)}
-            whileTap={{ scale: 0.96, transition: { duration: 0.1, ease: "easeOut" } }}
+            whileTap={{ scale: 0.96, transition: { duration: 0.1, ease: EASING.easeOut } }}
             aria-expanded={isServiceOpen}
             className={detailButtonClassName}
         >
@@ -46,7 +47,7 @@ export function ServicesSection() {
                 aria-hidden="true"
                 className="inline-flex"
                 animate={{ rotate: isServiceOpen ? 90 : 0, x: isServiceOpen ? 2 : 0 }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
+                transition={{ duration: 0.2, ease: EASING.easeInOut }}
             >
                 <ArrowRight className="h-4 w-4" />
             </motion.span>

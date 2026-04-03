@@ -6,6 +6,7 @@ import { Check, ArrowRight, Zap, Target, Rocket } from "lucide-react"
 import { SPRING } from "@/lib/design-tokens"
 import { Container } from "@/components/ui/container"
 import { TALENT_TIMELINE } from "@/constants"
+import { EASING } from "@/lib/easing"
 
 /**
  * LevelsSection — Premium Horizontal Timeline
@@ -187,7 +188,7 @@ export function LevelsSection() {
                                                     transition={{
                                                         duration: 2,
                                                         repeat: Infinity,
-                                                        ease: "easeOut"
+                                                        ease: EASING.easeOut
                                                     }}
                                                 />
                                             )}

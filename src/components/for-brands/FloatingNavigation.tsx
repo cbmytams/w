@@ -213,7 +213,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                             initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
                             animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
                             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                            transition={{ duration: 0.4, ease: EASING.premium }}
                             className="fixed inset-0 z-[150] bg-black/40 dark:bg-black/60"
                             onClick={() => setMobileMenuOpen(false)}
                         />

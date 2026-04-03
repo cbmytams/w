@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Clock, TrendingUp, DollarSign, PenTool, ShieldCheck } from "lucide-react"
+import { EASING } from "@/lib/easing"
 
 export function DealFlowWidget() {
     return (
@@ -59,7 +60,7 @@ export function DealFlowWidget() {
                                 className="h-full bg-gradient-to-r from-green-400 to-emerald-500"
                                 initial={{ width: 0 }}
                                 whileInView={{ width: "100%" }}
-                                transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                                transition={{ duration: 1.5, ease: EASING.easeOut, delay: 0.2 }}
                             />
                         </div>
                     </div>

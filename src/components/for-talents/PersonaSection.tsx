@@ -10,6 +10,7 @@ import { TALENT_PERSONA, BRAND_GRADIENT } from "@/constants"
 import { ParallaxCard } from "./redesign/ParallaxCard"
 import { WafiaOSWidget } from "./redesign/WafiaOSWidget"
 import { SmartDistributionDashboard } from "./distribution/SmartDistributionDashboard"
+import { EASING } from "@/lib/easing"
 
 type PersonaType = keyof typeof TALENT_PERSONA
 
@@ -46,7 +47,7 @@ function PersonaVisual({ type }: { type: PersonaType }) {
                 <motion.div
                     initial={{ y: 20, rotateX: 10, opacity: 0 }}
                     animate={{ y: 0, rotateX: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ duration: 0.8, ease: EASING.easeOut }}
                     className="relative w-64 aspect-[3/4] bg-white rounded-lg shadow-2xl overflow-hidden border border-slate-100"
                 >
                     {/* Script Content */}

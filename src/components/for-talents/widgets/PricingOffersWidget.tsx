@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Zap, Gem } from "lucide-react"
+import { EASING } from "@/lib/easing"
 
 /**
  * Pricing & Offers Widget (Premium Commercial Redesign)
@@ -45,7 +46,7 @@ export function PricingOffersWidget() {
                                 <motion.div
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "98%" }}
-                                    transition={{ duration: 1.5, ease: "easeOut" }}
+                                    transition={{ duration: 1.5, ease: EASING.easeOut }}
                                     className="h-full bg-violet-500"
                                 />
                             </div>
@@ -63,7 +64,7 @@ export function PricingOffersWidget() {
                                 <motion.div
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "85%" }}
-                                    transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
+                                    transition={{ duration: 1.5, delay: 0.2, ease: EASING.easeOut }}
                                     className="h-full bg-amber-500"
                                 />
                             </div>

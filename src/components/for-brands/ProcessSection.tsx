@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/common/SectionHeading"
 import { PROCESS_STEPS } from "@/constants/process-steps"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 import { cn } from "@/lib/utils"
-import { EASING } from "@/lib/easing"
+import { EASING, DURATION } from "@/lib/easing"
 import { SPRING } from "@/lib/design-tokens"
 
 export function ProcessSection() {
@@ -77,7 +77,7 @@ export function ProcessSection() {
                                                 prefersReducedMotion
                                                     ? undefined
                                                     : {
-                                                        duration: 0.52,
+                                                        duration: DURATION.slow,
                                                         delay: Math.min(i * 0.06, 0.2),
                                                         ease: EASING.smooth
                                                     }

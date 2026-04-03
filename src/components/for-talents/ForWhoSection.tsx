@@ -7,6 +7,7 @@ import { SPRING } from "@/lib/design-tokens"
 import { RevealAnimation } from "@/components/common/RevealAnimation"
 import { TALENT_FOR_WHO } from "@/constants"
 import { cn } from "@/lib/utils"
+import { EASING } from "@/lib/easing"
 
 // Custom Animated Check Icon
 const AnimatedCheck = ({ isActive }: { isActive: boolean }) => (
@@ -25,7 +26,7 @@ const AnimatedCheck = ({ isActive }: { isActive: boolean }) => (
             d="M20 6L9 17l-5-5"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={isActive ? { pathLength: 1, opacity: 1 } : { pathLength: 1, opacity: 0.8 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: isActive ? 0.2 : 0 }}
+            transition={{ duration: 0.6, ease: EASING.easeOut, delay: isActive ? 0.2 : 0 }}
         />
     </motion.svg>
 )
@@ -47,7 +48,7 @@ const AnimatedCross = ({ isActive }: { isActive: boolean }) => (
             d="M18 6L6 18M6 6l12 12"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={isActive ? { pathLength: 1, opacity: 1 } : { pathLength: 1, opacity: 0.8 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: isActive ? 0.2 : 0 }}
+            transition={{ duration: 0.6, ease: EASING.easeOut, delay: isActive ? 0.2 : 0 }}
         />
     </motion.svg>
 )

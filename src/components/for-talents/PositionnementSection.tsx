@@ -47,7 +47,7 @@ function PersonaVisual({ type }: { type: PersonaType }) {
                 <motion.div
                     initial={{ y: 20, rotateX: 10, opacity: 0 }}
                     animate={{ y: 0, rotateX: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ duration: 0.8, ease: EASING.easeOut }}
                     className="relative w-64 aspect-[3/4] bg-white rounded-lg shadow-2xl overflow-hidden border border-slate-100"
                 >
                     <div className="p-6 font-mono text-xs text-slate-800 leading-relaxed opacity-80">

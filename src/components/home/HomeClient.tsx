@@ -130,7 +130,7 @@ export function HomeClient() {
                         <motion.div
                             className="absolute inset-0 -inset-x-8 -inset-y-4 bg-gradient-to-r from-orange-500/20 via-pink-500/20 to-purple-500/20 blur-2xl rounded-full"
                             animate={{ opacity: [0.3, 0.6, 0.3], scale: [0.95, 1.05, 0.95] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            transition={{ duration: 4, repeat: Infinity, ease: EASING.easeInOut }}
                         />
                     )}
                     <WafiaLogo className="h-14 md:h-[4.5rem] lg:h-24 w-auto text-white relative z-10 drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]" />

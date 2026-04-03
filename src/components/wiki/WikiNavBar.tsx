@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { EASING } from "@/lib/easing";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowUp, Search, Moon, Sun } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -56,7 +57,7 @@ export default function WikiNavBar({ isDeep, isReading, parentLabel, currentTitl
         <motion.nav
             initial={false}
             animate={{ y: showUI ? 0 : "-100%" }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            transition={{ duration: 0.4, ease: EASING.easeInOut }}
             aria-label="Main Navigation"
             className="fixed top-0 inset-x-0 z-50 h-20 flex items-end pb-4 px-6"
             style={{ backgroundColor: 'var(--wiki-nav-bg)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid var(--wiki-line)' }}

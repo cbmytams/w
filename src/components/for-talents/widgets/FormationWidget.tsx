@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { GraduationCap, BookOpen, Lock, PlayCircle } from "lucide-react"
+import { EASING } from "@/lib/easing"
 
 /**
  * Formation Widget (Premium Commercial Redesign)
@@ -66,7 +67,7 @@ export function FormationWidget() {
                             <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: "75%" }}
-                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                transition={{ duration: 1.5, ease: EASING.easeOut }}
                                 className="h-full bg-green-500 shadow-[0_0_8px_#22c55e]"
                             />
                         </div>

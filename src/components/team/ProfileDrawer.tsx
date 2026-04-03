@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils"
 import { TeamMember } from "@/constants/team"
 import { useFocusTrap } from "@/hooks/useFocusTrap"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
+import { EASING } from "@/lib/easing"
 
 // --- TYPES & DATA EXTENSIONS ---
 
@@ -236,7 +237,7 @@ export function ProfileDrawer({ isOpen, onClose, member, brandData }: ProfileDra
                                     >
                                         <motion.div
                                             animate={shouldReduceMotion ? undefined : { y: [0, -8, 0], rotate: [3, 5, 3] }}
-                                            transition={shouldReduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                                            transition={shouldReduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: EASING.easeInOut }}
                                             className="w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/40 dark:ring-white/10"
                                         >
                                             <Image src={member.image} alt={member.name} fill sizes="128px" className="object-cover" />

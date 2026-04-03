@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Users, FileVideo, BarChart3, ShieldCheck, Zap, CheckCircle2 } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { SectionHeading } from "@/components/common/SectionHeading"
+import { EASING } from "@/lib/easing"
 
 const TERMINAL_TABS = [
     {
@@ -120,7 +121,7 @@ export function DeliverablesSectionV2() {
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
-                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                    transition={{ duration: 0.4, ease: EASING.easeOut }}
                                     className="h-full flex flex-col justify-center"
                                 >
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-slate-400 text-xs font-mono mb-8 w-fit">

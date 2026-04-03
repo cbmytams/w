@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { ReactNode } from "react"
+import { EASING } from "@/lib/easing"
 
 interface GradientRevealTextProps {
     children: ReactNode
@@ -23,7 +24,7 @@ export function GradientRevealText({ children, className = "", delay = 0 }: Grad
                 initial={{ backgroundPosition: "0% 100%" }}
                 whileInView={{ backgroundPosition: "0% 0%" }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.5, delay: delay + 0.2, ease: "easeOut" }}
+                transition={{ duration: 1.5, delay: delay + 0.2, ease: EASING.easeOut }}
                 className="bg-gradient-to-b from-slate-900 via-slate-600 to-pink-600 dark:from-white dark:via-pink-200 dark:to-cyan-300 bg-clip-text text-transparent"
                 style={{ backgroundSize: "100% 200%" }}
             >

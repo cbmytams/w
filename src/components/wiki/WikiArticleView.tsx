@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
+import { EASING, DURATION } from "@/lib/easing";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import WikiNavBar from "./WikiNavBar";
@@ -139,7 +140,7 @@ export default function WikiArticleView({
             {/* Progress Bar */}
             <motion.div
                 animate={{ y: showUI ? 0 : -80 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: EASING.easeInOut }}
                 className="fixed top-20 left-0 right-0 h-[2px] z-40"
                 style={{ backgroundColor: 'var(--wiki-line)' }}
             >
@@ -147,7 +148,7 @@ export default function WikiArticleView({
                     className="h-full"
                     style={{ backgroundColor: 'var(--wiki-ink)' }}
                     animate={{ width: `${progress}%` }}
-                    transition={{ ease: "easeInOut", duration: 0.3 }}
+                    transition={{ ease: EASING.easeInOut, duration: 0.3 }}
                 />
             </motion.div>
 
@@ -172,8 +173,8 @@ export default function WikiArticleView({
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{
-                                    duration: 0.7,
-                                    ease: [0.16, 1, 0.3, 1],
+                                    duration: DURATION.slower,
+                                    ease: EASING.premium,
                                     delay: i * 0.03
                                 }}
                             >
@@ -289,7 +290,7 @@ export default function WikiArticleView({
             {article.chapters?.length > 1 && (
                 <motion.aside
                     animate={{ opacity: showUI ? 1 : 0.15 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.5, ease: EASING.easeInOut }}
                     className="hidden xl:block fixed top-40 right-12 w-64 2xl:right-auto 2xl:left-[calc(50%+26rem)] max-h-[calc(100vh-12rem)] overflow-y-auto scrollbar-hide"
                 >
                     <nav aria-label="Sommaire de l'article">
@@ -301,7 +302,7 @@ export default function WikiArticleView({
                                 style={{ backgroundColor: 'var(--wiki-ink)' }}
                                 initial={false}
                                 animate={{ top: `${chapter * 48}px`, height: '24px' }}
-                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                transition={{ duration: 0.3, ease: EASING.easeOut }}
                             />
 
                             {article.chapters.map((c, i) => {
@@ -314,7 +315,7 @@ export default function WikiArticleView({
                                         key={i}
                                         initial={false}
                                         animate={{ opacity: itemOpacity }}
-                                        transition={{ duration: 0.4, ease: "easeOut" }}
+                                        transition={{ duration: 0.4, ease: EASING.easeOut }}
                                         className="pl-5 relative flex items-center min-h-[24px]"
                                     >
                                         <button
