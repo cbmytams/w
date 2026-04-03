@@ -11,9 +11,9 @@ export * from "./talent-blocks/pillars";
 export * from "./talent-blocks/method-compressed";
 
 export const TALENT_NAVIGATION = [
-    { href: "#who", label: "Pour qui" },
     { href: "#what-we-build", label: "Services" },
     { href: "#method", label: "Méthode" },
+    { href: "#who", label: "Pour qui" },
     { href: "#faq", label: "FAQ" }
 ] as const;
 

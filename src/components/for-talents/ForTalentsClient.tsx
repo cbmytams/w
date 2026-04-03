@@ -19,9 +19,9 @@ export function ForTalentsClient() {
                 <div className="relative z-10">
                     <HeroSection />
                     <ConstatSection />
-                    <ForWhoSection />
                     <WhatWeBuildSection />
                     <TalentJourneySection />
+                    <ForWhoSection />
                     <TeamSectionTalents />
                     <FaqSection />
                     <CtaSection />
