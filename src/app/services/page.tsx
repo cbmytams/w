@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Check, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
+import { PageShell } from "@/components/common/PageShell"
 import { siteConfig, sitePaths } from "@/lib/site"
 import { serviceSchema, breadcrumbSchema, faqSchema } from "@/lib/structured-data"
 import { ServicesFaqAccordion } from "@/components/services/ServicesFaqAccordion"
@@ -202,7 +203,7 @@ const servicesFaqJsonLd = faqSchema(SERVICE_FAQ_ITEMS)
 
 export default function ServicesPage() {
     return (
-        <main id="main-content">
+        <PageShell>
             {/* JSON-LD */}
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesBreadcrumbs) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(influenceServiceJsonLd) }} />
@@ -212,13 +213,13 @@ export default function ServicesPage() {
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesFaqJsonLd) }} />
 
             {/* ── HERO ── */}
-            <section className="py-24 md:py-32 bg-white">
+            <section className="py-24 md:py-32">
                 <Container>
                     <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6">
+                        <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
                             Agence d&apos;Influence Marketing, UGC &amp; Talent Management
                         </h1>
-                        <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
+                        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto">
                             Wafia est une agence d&apos;influence marketing basée en France. Nous concevons des campagnes data-driven avec des créateurs vérifiés, un studio créatif intégré et un talent management structuré.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -236,7 +237,7 @@ export default function ServicesPage() {
             </section>
 
             {/* ── STATS BAR ── */}
-            <section className="bg-slate-900 text-white py-16">
+            <section className="bg-slate-900/90 backdrop-blur-sm text-white py-16">
                 <Container>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
                         {STATS.map((stat, i) => (
@@ -254,19 +255,19 @@ export default function ServicesPage() {
                 <section
                     key={service.id}
                     id={i === 0 ? "services" : service.id}
-                    className="scroll-mt-28 py-16 md:py-20 border-t border-slate-100 bg-white"
+                    className="scroll-mt-28 py-16 md:py-20 border-t border-slate-200/60 dark:border-slate-700/40"
                 >
                     <Container>
                         <div className="max-w-4xl">
-                            <h2 className="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                            <h2 className="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
                                 {service.title}
                             </h2>
-                            <p className="text-lg text-slate-600 mb-8 max-w-3xl">
+                            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-3xl">
                                 {service.description}
                                 {service.descriptionLinkHref && (
                                     <>
                                         {" "}
-                                        <Link href={service.descriptionLinkHref} className="text-slate-900 font-semibold underline underline-offset-4 hover:text-orange-600 transition-colors">
+                                        <Link href={service.descriptionLinkHref} className="text-slate-900 dark:text-white font-semibold underline underline-offset-4 hover:text-orange-600 transition-colors">
                                             {service.descriptionLinkText}
                                         </Link>
                                     </>
@@ -275,23 +276,23 @@ export default function ServicesPage() {
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                                <div className="bg-slate-50 p-6 rounded-xl">
-                                    <h3 className="font-semibold text-slate-900 mb-4">Ce que nous faisons</h3>
+                                <div className="bg-white/70 dark:bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-slate-200/60 dark:border-white/10">
+                                    <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Ce que nous faisons</h3>
                                     <ul className="space-y-3">
                                         {service.points.map((point, j) => (
-                                            <li key={j} className="flex items-start text-sm text-slate-700">
-                                                <Check className="h-4 w-4 text-slate-900 mr-2 mt-0.5 shrink-0" />
+                                            <li key={j} className="flex items-start text-sm text-slate-700 dark:text-slate-300">
+                                                <Check className="h-4 w-4 text-slate-900 dark:text-white mr-2 mt-0.5 shrink-0" />
                                                 {point}
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-                                <div className="bg-slate-50 p-6 rounded-xl border border-slate-100">
-                                    <h3 className="font-semibold text-slate-900 mb-4">Livrables</h3>
+                                <div className="bg-white/70 dark:bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-slate-200/60 dark:border-white/10">
+                                    <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Livrables</h3>
                                     <ul className="space-y-3">
                                         {service.deliverables.map((item, j) => (
-                                            <li key={j} className="flex items-center text-sm text-slate-500">
-                                                <span className="h-1.5 w-1.5 rounded-full bg-slate-300 mr-2" />
+                                            <li key={j} className="flex items-center text-sm text-slate-500 dark:text-slate-400">
+                                                <span className="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-slate-600 mr-2" />
                                                 {item}
                                             </li>
                                         ))}
@@ -312,11 +313,11 @@ export default function ServicesPage() {
             ))}
 
             {/* ── FAQ ── */}
-            <section className="py-20 md:py-28 bg-slate-50">
+            <section className="py-20 md:py-28">
                 <Container>
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
                                 Questions fréquentes sur l&apos;influence marketing
                             </h2>
                         </div>
@@ -326,7 +327,7 @@ export default function ServicesPage() {
             </section>
 
             {/* ── FINAL CTA ── */}
-            <section className="py-20 md:py-28 bg-slate-900 text-white">
+            <section className="py-20 md:py-28 bg-slate-900/90 backdrop-blur-sm text-white">
                 <Container>
                     <div className="max-w-3xl mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
@@ -354,6 +355,6 @@ export default function ServicesPage() {
                     </div>
                 </Container>
             </section>
-        </main>
+        </PageShell>
     )
 }

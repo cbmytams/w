@@ -20,6 +20,14 @@ export function getGlobalBackgroundConfig(
         return { variant: "talents", intensity: "showcase" }
     }
 
+    if (pathname?.startsWith("/services")) {
+        return { variant: "brands", intensity: "base" }
+    }
+
+    if (pathname?.startsWith("/wiki")) {
+        return { variant: "brands", intensity: "base" }
+    }
+
     if (pathname?.startsWith("/legal")) {
         return {
             variant: legalContext === "brands" ? "brands" : "talents",

@@ -29,7 +29,7 @@ export default function WikiCategoryView({ type, title, articles, allArticles }:
     const { isDark, toggle: toggleDark } = useWikiDarkMode();
 
     return (
-        <div id="wiki-root" className="min-h-screen font-sans flex flex-col" style={{ backgroundColor: 'var(--wiki-bg)', color: 'var(--wiki-ink)' }}>
+        <div id="wiki-root" className="min-h-screen font-sans flex flex-col" style={{ color: 'var(--wiki-ink)' }}>
             <WikiSearchDialog articles={allArticles} />
             <WikiNavBar isDeep isReading={false} parentLabel="Retour" onBack={() => router.push(`/wiki?tab=${type}`)} isDark={isDark} onToggleDark={toggleDark} />
 
