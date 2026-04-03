@@ -68,7 +68,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-plus-jakarta);
   --font-heading: var(--font-outfit);
-  --font-display: var(--font-syne);
+  --font-display: var(--font-outfit);
 
   /* Expose brand colors to Tailwind */
   --color-brand-primary: var(--brand-primary);

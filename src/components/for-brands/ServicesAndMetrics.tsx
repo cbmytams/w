@@ -155,7 +155,7 @@ function ServiceCard({ service }: { service: typeof SERVICES[number] }) {
         >
             {/* Title - Massive & Condensed */}
             <div>
-                <h3 className="font-syne font-extrabold text-2xl md:text-3xl uppercase leading-[0.9] tracking-tighter text-black dark:text-white mb-6 break-words">
+                <h3 className="font-heading font-extrabold text-2xl md:text-3xl uppercase leading-[0.9] tracking-tighter text-black dark:text-white mb-6 break-words">
                     {service.title}
                 </h3>
             </div>
@@ -200,7 +200,7 @@ function CTAWidget() {
                 <ArrowRight className="w-8 h-8" />
             </div>
 
-            <h3 className="font-syne font-extrabold text-2xl md:text-3xl uppercase leading-[0.9] tracking-tighter text-white dark:text-black mb-4">
+            <h3 className="font-heading font-extrabold text-2xl md:text-3xl uppercase leading-[0.9] tracking-tighter text-white dark:text-black mb-4">
                 Votre Projet ?
             </h3>
 
@@ -229,7 +229,7 @@ export function ServicesAndMetrics() {
                         transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42) }}
                         className="max-w-3xl"
                     >
-                        <h2 className="font-syne font-black text-3xl sm:text-5xl md:text-7xl lg:text-[8rem] leading-[0.85] text-black dark:text-white uppercase tracking-tighter mb-6 md:mb-8 scale-y-110 origin-left">
+                        <h2 className="font-heading font-black text-3xl sm:text-5xl md:text-7xl lg:text-[8rem] leading-[0.85] text-black dark:text-white uppercase tracking-tighter mb-6 md:mb-8 scale-y-110 origin-left">
                             NOS SERVICES
                         </h2>
                         <p className="text-lg text-gray-600 dark:text-zinc-400 font-bold uppercase tracking-wide max-w-xl">

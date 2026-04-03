@@ -42,7 +42,7 @@ export function SmartDistributionDashboard() {
                         </div>
                         <div>
                             <div className="flex items-center gap-3">
-                                <h2 className="text-2xl font-bold tracking-tight text-black dark:text-white leading-none font-syne">
+                                <h2 className="text-2xl font-bold tracking-tight text-black dark:text-white leading-none font-heading">
                                     Network Status
                                 </h2>
                                 <span className="hidden md:inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-emerald-100/50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-500/20">

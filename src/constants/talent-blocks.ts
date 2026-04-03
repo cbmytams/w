@@ -7,11 +7,13 @@ export * from "./talent-blocks/timeline";
 export * from "./talent-blocks/method";
 export * from "./talent-blocks/proof";
 export * from "./talent-blocks/os";
+export * from "./talent-blocks/pillars";
+export * from "./talent-blocks/method-compressed";
 
-// Not exporting everything from old talent-blocks.ts to keep the barrel clean
 export const TALENT_NAVIGATION = [
-    { href: "#deliverables", label: "Services" },
-    { href: "#journey", label: "Méthode" },
+    { href: "#who", label: "Pour qui" },
+    { href: "#what-we-build", label: "Services" },
+    { href: "#method", label: "Méthode" },
     { href: "#faq", label: "FAQ" }
 ] as const;
 

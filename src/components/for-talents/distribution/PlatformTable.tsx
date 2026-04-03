@@ -241,7 +241,7 @@ export function PlatformTable({ platforms, subCategoryId }: PlatformTableProps) 
                                         )}
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold text-black dark:text-white leading-none font-syne tracking-tight">
+                                        <h3 className="text-2xl font-bold text-black dark:text-white leading-none font-heading tracking-tight">
                                             {selectedPlatform.name}
                                         </h3>
                                         <div className="flex items-center gap-2 mt-2">

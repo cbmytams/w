@@ -7,31 +7,16 @@ import { TALENT_HERO } from "@/constants"
 import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire"
 import { EASING, DURATION } from "@/lib/easing"
 
-interface HeroSectionProps {
-    onContentClick?: () => void
-}
-
 /**
- * HeroSection — SocialCut Style
- * 
- * Clean editorial layout with:
- * - Large two-line title
- * - Smaller descriptive subtitle
- * - Calls available indicator
- * - Two CTAs: primary (filled) + secondary (outline)
+ * HeroSection — Clean editorial layout
  */
-export function HeroSection({ onContentClick }: HeroSectionProps) {
+export function HeroSection() {
     const talentHeroCtaHref = buildTalentQuestionnaireHref("for-talents-hero")
     const handleSecondaryCtaClick = () => {
-        if (onContentClick) {
-            onContentClick()
-            return
-        }
-
-        const journeySection = document.getElementById("journey")
-        if (!journeySection) return
-        journeySection.scrollIntoView({ behavior: "smooth", block: "start" })
-        window.history.replaceState(null, "", "#journey")
+        const methodSection = document.getElementById("method")
+        if (!methodSection) return
+        methodSection.scrollIntoView({ behavior: "smooth", block: "start" })
+        window.history.replaceState(null, "", "#method")
     }
 
     return (

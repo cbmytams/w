@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
-import { Plus_Jakarta_Sans, Outfit, Syne } from "next/font/google";
+import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { GlobalNav } from "@/components/layout/GlobalNav";
@@ -24,13 +24,6 @@ const outfit = Outfit({
   display: "swap",
 });
 
-// Syne: Bold, geometric display font for distinctive headings
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -107,7 +100,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body
-        className={`${plusJakarta.variable} ${outfit.variable} ${syne.variable} antialiased font-sans`}
+        className={`${plusJakarta.variable} ${outfit.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
         <GoogleAnalytics />

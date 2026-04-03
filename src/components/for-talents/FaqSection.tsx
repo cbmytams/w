@@ -7,20 +7,10 @@ import { Container } from "@/components/ui/container"
 import { TALENT_FAQ } from "@/constants"
 import { cn } from "@/lib/utils"
 
-import { LegalHubContent } from "@/components/legal/LegalHubContent"
-
-const LEGAL_ITEMS = [
-    {
-        q: "Mentions Légales & Confidentialité",
-        a: <LegalHubContent />
-    }
-]
-
 export function FaqSection() {
     const [openIndex, setOpenIndex] = useState<number | null>(0)
 
-    // Combine standard FAQ with Legal Items
-    const allItems = [...TALENT_FAQ, ...LEGAL_ITEMS]
+    const allItems = TALENT_FAQ
 
     return (
         <section id="faq" className="py-24 lg:py-32 px-4 relative overflow-hidden bg-transparent z-10">
