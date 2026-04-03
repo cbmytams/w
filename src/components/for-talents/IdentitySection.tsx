@@ -26,7 +26,7 @@ export function IdentitySection() {
                     <div className="grid md:grid-cols-12 gap-8">
                         {/* Main Text Card */}
                         <RevealAnimation delay={0.1} className="md:col-span-7">
-                            <div className="bg-slate-50 dark:bg-white/5 backdrop-blur-xl rounded-2xl p-10 md:p-12 h-full border border-slate-200 dark:border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
+                            <div className="bg-slate-50 dark:bg-white/5 backdrop-blur-xl rounded-2xl p-10 md:p-12 h-full border border-slate-200 dark:border-white/10 shadow-2xl dark:shadow-2xl">
                                 <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-5">
                                     {TALENT_IDENTITY.subtitle}
                                 </h3>

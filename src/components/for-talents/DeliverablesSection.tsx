@@ -42,7 +42,7 @@ export function DeliverablesSection() {
                                     transition: { duration: 0.1, ease: "easeOut" }
                                 }}
                                 onClick={() => setSelectedItem(item)}
-                                className="group relative p-8 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] rounded-2xl border border-black/[0.05] dark:border-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_64px_rgba(0,0,0,0.08)] dark:shadow-none hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 text-left cursor-pointer focus-visible:outline-none flex flex-col min-h-[240px] active:scale-[0.98]"
+                                className="group relative p-8 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] rounded-2xl border border-black/[0.05] dark:border-white/[0.05] shadow-lg hover:shadow-2xl dark:shadow-none hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 text-left cursor-pointer focus-visible:outline-none flex flex-col min-h-[240px] active:scale-[0.98]"
                                 aria-label={`Voir le détail: ${item.title}`}
                             >
                                 <div className="flex flex-col h-full relative z-10">

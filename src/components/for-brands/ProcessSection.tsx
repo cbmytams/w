@@ -48,7 +48,7 @@ export function ProcessSection() {
                                     scaleY: prefersReducedMotion ? 1 : lineScale,
                                     transformOrigin: "top center"
                                 }}
-                                className="h-full w-full origin-top gpu-accelerated bg-gradient-to-b from-orange-500 via-red-500 to-purple-600 shadow-[0_0_14px_rgba(249,115,22,0.38)]"
+                                className="h-full w-full origin-top gpu-accelerated bg-gradient-to-b from-orange-500 via-red-500 to-purple-600 shadow-lg shadow-orange-500/30"
                             />
                         </div>
 

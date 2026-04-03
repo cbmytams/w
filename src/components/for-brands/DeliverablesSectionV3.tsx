@@ -45,7 +45,7 @@ export function DeliverablesSectionV3() {
                                     widget.colSpan,
                                     "relative cursor-pointer group rounded-[32px] overflow-hidden backdrop-blur-xl",
                                     "bg-white/80 border border-slate-200/60 shadow-xl",
-                                    "dark:bg-white/5 dark:border-white/10 dark:shadow-[0_20px_80px_rgba(0,0,0,0.45)]",
+                                    "dark:bg-white/5 dark:border-white/10 dark:shadow-2xl",
                                     "hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
                                 )}
                             >

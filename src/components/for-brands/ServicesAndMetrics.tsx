@@ -146,9 +146,9 @@ function ServiceCard({ service }: { service: typeof SERVICES[number] }) {
                 "group relative h-full min-h-[220px] md:min-h-[280px] p-6 md:p-8 flex flex-col justify-between",
                 "bg-white border-2 border-black rounded-xl",
                 "dark:bg-zinc-900 dark:border-white", // Dark mode
-                "shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
-                "dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]", // Dark shadow
-                "hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]",
+                /* removed neo-brutalist shadow */
+                /* removed dark neo-brutalist shadow */
+                /* removed hover neo-brutalist shadow */
                 "hover:-translate-y-1 hover:rotate-0 transition-all duration-300",
                 service.rotation // Default tilt
             )}
@@ -189,8 +189,8 @@ function CTAWidget() {
                 "group relative h-full min-h-[220px] md:min-h-[280px] p-6 md:p-8 flex flex-col justify-center items-center text-center",
                 "bg-black border-2 border-black rounded-xl",
                 "dark:bg-white dark:border-white", // Invert for dark mode (White card on black bg)
-                "shadow-[8px_8px_0px_0px_rgba(255,100,0,1)]", // Orange Shadow for pop
-                "hover:shadow-[12px_12px_0px_0px_rgba(255,100,0,1)] hover:-translate-y-1 hover:rotate-1 transition-all duration-300",
+                /* removed orange neo-brutalist shadow */
+                "hover:-translate-y-1 hover:rotate-1 transition-all duration-300",
                 "cursor-pointer rotate-1"
             )}
         >
@@ -246,7 +246,7 @@ export function ServicesAndMetrics() {
                         whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
                         viewport={disableMotion ? undefined : viewport}
                         transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.1) }}
-                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-zinc-900 dark:border-white dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex flex-col justify-between h-auto min-h-[160px] md:h-[240px]"
+                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black dark:bg-zinc-900 dark:border-white flex flex-col justify-between h-auto min-h-[160px] md:h-[240px]"
                     >
                         <div className="flex justify-between items-start">
                             <div className="p-2 border-2 border-black rounded-lg bg-[#FFDE59]"> {/* Yellow accent - Keep color but ensure icon visibility */}
@@ -274,7 +274,7 @@ export function ServicesAndMetrics() {
                         whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
                         viewport={disableMotion ? undefined : viewport}
                         transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.16) }}
-                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-zinc-900 dark:border-white dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex flex-col justify-between h-auto min-h-[160px] md:h-[240px]"
+                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black dark:bg-zinc-900 dark:border-white flex flex-col justify-between h-auto min-h-[160px] md:h-[240px]"
                     >
                         <div className="flex justify-between items-start">
                             <div className="p-2 border-2 border-black rounded-lg bg-[#FF914D]"> {/* Orange accent */}
@@ -302,7 +302,7 @@ export function ServicesAndMetrics() {
                         whileInView={disableMotion ? undefined : { opacity: 1, y: 0 }}
                         viewport={disableMotion ? undefined : viewport}
                         transition={disableMotion ? undefined : { duration: Math.max(transitionDuration, 0.42), delay: clampDelay(0.22) }}
-                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-zinc-900 dark:border-white dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] flex flex-col h-auto min-h-[160px] md:h-[240px]"
+                        className="p-6 md:p-8 rounded-xl bg-white border-2 border-black dark:bg-zinc-900 dark:border-white flex flex-col h-auto min-h-[160px] md:h-[240px]"
                     >
                         <div className="flex items-center gap-3 mb-4 md:mb-6">
                             <Database className="w-5 h-5 md:w-6 md:h-6 text-black dark:text-white" />

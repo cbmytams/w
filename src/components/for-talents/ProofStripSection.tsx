@@ -36,7 +36,7 @@ export function ProofStripSection() {
                     </RevealAnimation>
 
                     <RevealAnimation delay={0.15}>
-                        <div className="rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-xl p-8 shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
+                        <div className="rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-xl p-8 shadow-2xl dark:shadow-2xl">
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="h-1.5 w-1.5 rounded-full bg-pink-500" />
                                 <span className="text-xs font-mono text-slate-500 dark:text-white/60 tracking-[0.3em]">

@@ -120,7 +120,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                             window.scrollTo({ top: 0, behavior: "smooth" })
                         }
                     }}
-                    className="h-12 group flex items-center px-5 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
+                    className="h-12 group flex items-center px-5 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
                 >
                     <WafiaLogo className="h-4 w-auto text-black dark:text-white" />
                     <div className="flex items-center justify-center w-6 z-10 mx-1">
@@ -137,7 +137,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                 transition={{ duration: DURATION.slower, ease: EASING.entrance }}
                 className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] hidden lg:block"
             >
-                <div className="h-12 bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] rounded-full p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 flex items-center justify-center gap-1 relative">
+                <div className="h-12 bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] rounded-full p-1.5 shadow-lg border border-white/50 dark:border-white/10 flex items-center justify-center gap-1 relative">
                     <div className="flex items-center gap-0.5 relative z-10 h-9">
                         {BRAND_NAVIGATION.map((item) => {
                             const isActive = activeSection === item.href;
@@ -187,7 +187,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                 {/* Home - Desktop only */}
                 <Link
                     href="/"
-                    className="h-12 hidden lg:flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
+                    className="h-12 hidden lg:flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-[13px] font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
                 >
                     <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
                     <span>Menu principal</span>
@@ -196,7 +196,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                 {/* Hamburger - Mobile only */}
                 <button
                     onClick={() => setMobileMenuOpen(true)}
-                    className="h-12 w-12 lg:hidden flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
+                    className="h-12 w-12 lg:hidden flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
                     aria-label="Ouvrir le menu"
                 >
                     <Menu className="h-5 w-5 text-slate-900 dark:text-white" />
@@ -225,7 +225,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                             exit="exit"
                             className="fixed inset-x-4 top-[10%] bottom-[15%] z-[200] flex flex-col items-center justify-center pointer-events-none"
                         >
-                            <div className="w-full h-full max-h-[520px] max-w-sm bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] p-6 sm:p-8 flex flex-col justify-between pointer-events-auto relative overflow-hidden">
+                            <div className="w-full h-full max-h-[520px] max-w-sm bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 rounded-2xl shadow-2xl p-6 sm:p-8 flex flex-col justify-between pointer-events-auto relative overflow-hidden">
 
                                 {/* The Living Glass Aura (Ambient Orange Glow) */}
                                 <div className="absolute inset-x-0 -top-24 h-48 bg-gradient-to-b from-orange-500/20 dark:from-orange-500/10 to-transparent blur-[40px] pointer-events-none rounded-full" />
@@ -287,7 +287,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                         <a
                                             href={estimateHref}
                                             onClick={() => setMobileMenuOpen(false)}
-                                            className="flex h-14 w-full items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
+                                            className="flex h-14 w-full items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-lg hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
                                         >
                                             Cadrer ma campagne
                                         </a>
@@ -297,7 +297,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                                                 setMobileMenuOpen(false)
                                                 handleEstimateClick()
                                             }}
-                                            className="h-14 w-full rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
+                                            className="h-14 w-full rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-lg hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
                                         >
                                             Cadrer ma campagne
                                         </button>
@@ -314,7 +314,7 @@ export function FloatingNavigation({ onEstimateClick, estimateHref }: FloatingNa
                             exit={{ opacity: 0, scale: 0.5, y: 50 }}
                             transition={{ type: "spring", damping: 20, stiffness: 400, delay: 0.3 }}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[250] h-14 w-14 flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:scale-110 active:scale-95 transition-all"
+                            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[250] h-14 w-14 flex items-center justify-center rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[60px] saturate-[180%] border border-white/50 dark:border-white/10 shadow-lg hover:scale-110 active:scale-95 transition-all"
                             aria-label="Fermer le menu"
                         >
                             <X className="h-6 w-6 text-slate-900 dark:text-white" />

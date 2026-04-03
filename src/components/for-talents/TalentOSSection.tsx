@@ -37,7 +37,7 @@ export function TalentOSSection() {
                                     viewport={{ once: true, margin: "-120px" }}
                                     transition={{ duration: 0.5, delay: i * 0.05 }}
                                     className={cn(
-                                        "relative rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl p-6 shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)] overflow-hidden",
+                                        "relative rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-xl p-6 shadow-2xl dark:shadow-2xl overflow-hidden",
                                         isWide && "md:col-span-2"
                                     )}
                                 >
@@ -58,7 +58,7 @@ export function TalentOSSection() {
                     </div>
 
                     <RevealAnimation delay={0.2} className="mt-12">
-                        <div className="rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-5 text-sm text-slate-600 dark:text-white/70 backdrop-blur-xl shadow-[0_18px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_18px_40px_rgba(0,0,0,0.3)]">
+                        <div className="rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-5 text-sm text-slate-600 dark:text-white/70 backdrop-blur-xl shadow-2xl dark:shadow-2xl">
                             {TALENT_OS_SYSTEM.footer}
                         </div>
                     </RevealAnimation>

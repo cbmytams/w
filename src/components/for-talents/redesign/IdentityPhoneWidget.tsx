@@ -22,7 +22,7 @@ export function IdentityPhoneWidget() {
             <div className="absolute -bottom-10 -right-8 w-28 h-28 rounded-full bg-orange-400/20 blur-3xl" />
 
             <div className="relative w-full max-w-[280px] sm:max-w-[300px] aspect-[9/19]">
-                <div className="absolute inset-0 rounded-[34px] bg-white/95 dark:bg-slate-950/90 border border-slate-200/70 dark:border-white/10 shadow-[0_30px_70px_rgba(15,23,42,0.22)]" />
+                <div className="absolute inset-0 rounded-[34px] bg-white/95 dark:bg-slate-950/90 border border-slate-200/70 dark:border-white/10 shadow-2xl" />
                 <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full bg-slate-100 dark:bg-white/10 border border-slate-200/70 dark:border-white/10" />
 
                 <div className="relative z-10 h-full p-4 pt-7 flex flex-col gap-3">
