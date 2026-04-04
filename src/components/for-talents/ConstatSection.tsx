@@ -28,10 +28,9 @@ export function ConstatSection() {
             id="constat"
             className="relative z-10 py-32 md:py-44 lg:py-52 px-4 overflow-hidden"
         >
-            {/* Atmospheric layers */}
+            {/* Atmospheric layers (Monochrome / silver) */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-500/[0.06] rounded-full blur-[150px]" />
-                <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-fuchsia-500/[0.04] rounded-full blur-[120px]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.02] dark:bg-white/[0.015] rounded-full blur-[150px]" />
             </div>
 
             <Container>
@@ -53,7 +52,7 @@ export function ConstatSection() {
                                     Le talent d&eacute;marre tout.
                                 </span>
                                 <br />
-                                <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent">
+                                <span className="text-slate-500 dark:text-slate-400">
                                     Le syst&egrave;me d&eacute;cide de la suite.
                                 </span>
                             </h2>
