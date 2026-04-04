@@ -48,7 +48,7 @@ export function WhatWeBuildSection() {
 
                                     {/* Content */}
                                     <div className="mt-12">
-                                        <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white mb-3 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-300">
+                                        <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white mb-3 transition-colors duration-300 group-hover:text-black dark:group-hover:text-white">
                                             {pillar.title}
                                         </h3>
                                         <p className="text-sm font-medium text-slate-500 dark:text-white/50 leading-relaxed tracking-wide">
@@ -60,8 +60,8 @@ export function WhatWeBuildSection() {
                                 {/* Glass Edge */}
                                 <div className="absolute inset-0 rounded-2xl border border-white/20 dark:border-white/5 pointer-events-none" />
 
-                                {/* Organic Hover Glow */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-violet-500/0 group-hover:from-purple-500/[0.03] group-hover:to-violet-500/[0.03] dark:group-hover:from-purple-500/[0.05] dark:group-hover:to-violet-500/[0.05] rounded-2xl transition-all duration-500 pointer-events-none" />
+                                {/* Organic Hover Glow (Monochrome) */}
+                                <div className="absolute inset-0 bg-white/0 group-hover:bg-black/[0.02] dark:group-hover:bg-white/[0.02] rounded-2xl transition-all duration-500 pointer-events-none" />
                             </motion.div>
                         ))}
                     </div>
