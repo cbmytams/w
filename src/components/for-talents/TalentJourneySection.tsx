@@ -70,8 +70,12 @@ export function TalentJourneySection() {
                         </p>
                     </RevealAnimation>
 
-                    {/* 4 Phases — large cards with parallax float */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-32">
+                    {/* 4 Phases — Fluid Trajectory */}
+                    <div className="relative flex flex-col gap-12 lg:gap-16 mb-32 max-w-3xl mx-auto">
+                        
+                        {/* Continuous Vertical Thread */}
+                        <div className="absolute left-[39px] md:left-[55px] top-12 bottom-12 w-[1px] bg-gradient-to-b from-transparent via-slate-300 dark:via-white/10 to-transparent" />
+
                         {TALENT_JOURNEY_PHASES.map((phase, i) => {
                             const Icon = phaseIconMap[phase.icon]
                             return (
@@ -86,57 +90,52 @@ export function TalentJourneySection() {
                                         delay: i * 0.1,
                                         ease: EASING.entrance
                                     }}
-                                    className="group relative"
+                                    className="group relative flex items-start gap-6 lg:gap-10"
                                 >
-                                    {/* Glass card */}
+                                    {/* Phase Icon & Thread Node */}
+                                    <div className="relative z-10 shrink-0 mt-1">
+                                        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center bg-white dark:bg-[#0b111a] border border-slate-200 dark:border-white/10 shadow-xl shadow-black/5 dark:shadow-white/5 transition-transform duration-500 group-hover:scale-110">
+                                            {Icon && <Icon className="w-5 h-5 md:w-6 md:h-6 text-slate-800 dark:text-white/80" />}
+                                        </div>
+                                    </div>
+
+                                    {/* Content Card - Minimal Glass */}
                                     <div className={cn(
-                                        "relative p-8 lg:p-10 rounded-2xl overflow-hidden",
-                                        "bg-black/[0.02] dark:bg-white/[0.02]",
-                                        "backdrop-blur-[40px]",
+                                        "flex-1 p-8 lg:p-10 rounded-2xl overflow-hidden",
+                                        "bg-black/[0.02] dark:bg-white/[0.015]",
+                                        "backdrop-blur-3xl",
                                         "border border-black/[0.05] dark:border-white/[0.05]",
-                                        "hover:bg-black/[0.04] dark:hover:bg-white/[0.04]",
-                                        "hover:-translate-y-1 hover:shadow-2xl",
+                                        "hover:bg-black/[0.03] dark:hover:bg-white/[0.03]",
                                         "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                                        "min-h-[280px] flex flex-col"
+                                        "flex flex-col relative"
                                     )}>
-                                        {/* Phase number — large, subtle */}
-                                        <div className="flex items-start justify-between mb-auto">
-                                            <div className={cn(
-                                                "w-12 h-12 rounded-xl flex items-center justify-center",
-                                                `bg-gradient-to-br ${phase.gradient}`,
-                                                "shadow-lg"
-                                            )}>
-                                                {Icon && <Icon className="w-5 h-5 text-white" />}
-                                            </div>
-                                            <span className="text-6xl lg:text-7xl font-bold text-slate-100 dark:text-white/[0.04] select-none leading-none">
+                                        <div className="flex items-center justify-between mb-6">
+                                            {/* Minimal Phase Number */}
+                                            <span className="text-xl md:text-2xl font-light text-slate-400 dark:text-white/20 select-none">
                                                 {String(i + 1).padStart(2, "0")}
                                             </span>
                                         </div>
 
                                         {/* Content */}
-                                        <div className="mt-10">
-                                            <div className="flex items-baseline gap-3 mb-2">
-                                                <h3 className="text-2xl lg:text-[1.7rem] font-bold text-slate-900 dark:text-white tracking-tight">
+                                        <div>
+                                            <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-3 mb-3">
+                                                <h3 className="text-2xl lg:text-3xl font-medium text-slate-900 dark:text-white tracking-tight">
                                                     {phase.name}
                                                 </h3>
-                                                <span className="text-sm text-slate-400 dark:text-slate-500 font-medium">
+                                                <span className="text-sm text-slate-500 dark:text-slate-400 font-normal">
                                                     {phase.label}
                                                 </span>
                                             </div>
-                                            <p className="text-base text-slate-500 dark:text-white/40 leading-relaxed">
+                                            <p className="text-base lg:text-lg text-slate-600 dark:text-white/50 leading-relaxed font-light">
                                                 {PHASE_BENEFITS[i]}
                                             </p>
                                         </div>
 
-                                        {/* Glass edge */}
-                                        <div className="absolute inset-0 rounded-2xl border border-white/20 dark:border-white/5 pointer-events-none" />
+                                        {/* Glass Edge */}
+                                        <div className="absolute inset-0 rounded-2xl border border-white/40 dark:border-white/5 pointer-events-none" />
 
-                                        {/* Hover glow */}
-                                        <div className={cn(
-                                            "absolute inset-0 rounded-2xl transition-opacity duration-500 pointer-events-none opacity-0 group-hover:opacity-100",
-                                            `bg-gradient-to-br ${phase.gradient}`,
-                                            "mix-blend-overlay dark:mix-blend-soft-light"
-                                        )} style={{ opacity: 0 }} />
+                                        {/* Monochrome Hover Glow */}
+                                        <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-white/10 to-transparent dark:from-white/[0.02] dark:to-transparent" />
                                     </div>
                                 </motion.div>
                             )
