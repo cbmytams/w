@@ -17,7 +17,7 @@ const AnimatedCheck = ({ isActive }: { isActive: boolean }) => (
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         className={cn("text-emerald-400", isActive ? "opacity-100" : "opacity-80")}
@@ -39,7 +39,7 @@ const AnimatedCross = ({ isActive }: { isActive: boolean }) => (
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         className={cn("text-rose-500", isActive ? "opacity-100" : "opacity-80")}
@@ -58,20 +58,9 @@ export function ForWhoSection() {
 
     return (
         <section id={TALENT_FOR_WHO.id} className="section-spacing px-4 bg-transparent relative z-10 overflow-hidden">
-            {/* Ambient Background Sphere tracking the hover state */}
+            {/* Ambient Background Sphere (Monochrome) */}
             <div className="absolute inset-0 pointer-events-none flex justify-center items-center z-0">
-                <motion.div
-                    className="w-[600px] h-[600px] rounded-full blur-[120px] opacity-20 dark:opacity-30 transition-colors duration-700 ease-in-out"
-                    animate={{
-                        background: hoveredCard === "yes"
-                            ? "radial-gradient(circle, rgba(16,185,129,0.4) 0%, rgba(0,0,0,0) 70%)" // Emerald glow
-                            : hoveredCard === "no"
-                                ? "radial-gradient(circle, rgba(244,63,94,0.4) 0%, rgba(0,0,0,0) 70%)" // Rose glow
-                                : "radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(0,0,0,0) 70%)", // Neutral Violet Default
-                        x: hoveredCard === "yes" ? -200 : hoveredCard === "no" ? 200 : 0
-                    }}
-                    transition={{ type: "spring", ...SPRING.gentle }}
-                />
+                <div className="w-[600px] h-[600px] rounded-full blur-[120px] bg-slate-500/5 dark:bg-white/5" />
             </div>
 
             <Container>
@@ -91,21 +80,17 @@ export function ForWhoSection() {
                             onHoverStart={() => setHoveredCard("yes")}
                             onHoverEnd={() => setHoveredCard(null)}
                             className="relative"
-                            animate={{
-                                scale: hoveredCard === "yes" ? 1.02 : hoveredCard === "no" ? 0.96 : 1,
-                                opacity: hoveredCard === "no" ? 0.4 : 1,
-                                filter: hoveredCard === "no" ? "blur(4px)" : "blur(0px)"
-                            }}
+                            whileHover={{ scale: 1.01 }}
                             transition={{ type: "spring", ...SPRING.responsive }}
                         >
                             {/* Card Container */}
                             <div className="h-full p-8 md:p-10 rounded-2xl bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl relative overflow-hidden flex flex-col group/yes cursor-default">
 
-                                {/* Top Emerald Glow Border effect */}
-                                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent opacity-0 group-hover/yes:opacity-100 transition-opacity duration-500" />
+                                {/* Top Glow Border effect */}
+                                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover/yes:opacity-100 transition-opacity duration-500" />
 
                                 {/* Inner subtle radial glow follow */}
-                                <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 to-transparent opacity-0 group-hover/yes:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover/yes:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                                 {/* Header */}
                                 <div className="flex items-center gap-4 mb-10 relative z-10">
@@ -147,21 +132,17 @@ export function ForWhoSection() {
                             onHoverStart={() => setHoveredCard("no")}
                             onHoverEnd={() => setHoveredCard(null)}
                             className="relative"
-                            animate={{
-                                scale: hoveredCard === "no" ? 1.02 : hoveredCard === "yes" ? 0.96 : 1,
-                                opacity: hoveredCard === "yes" ? 0.4 : 1,
-                                filter: hoveredCard === "yes" ? "blur(4px)" : "blur(0px)"
-                            }}
+                            whileHover={{ scale: 1.01 }}
                             transition={{ type: "spring", ...SPRING.responsive }}
                         >
                             {/* Card Container */}
                             <div className="h-full p-8 md:p-10 rounded-2xl bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-2xl border border-white/10 shadow-2xl relative overflow-hidden flex flex-col group/no cursor-default">
 
-                                {/* Top Rose Glow Border effect */}
-                                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-rose-500/50 to-transparent opacity-0 group-hover/no:opacity-100 transition-opacity duration-500" />
+                                {/* Top Glow Border effect */}
+                                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover/no:opacity-100 transition-opacity duration-500" />
 
                                 {/* Inner subtle radial glow follow */}
-                                <div className="absolute inset-0 bg-gradient-to-b from-rose-500/5 to-transparent opacity-0 group-hover/no:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover/no:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                                 {/* Header */}
                                 <div className="flex items-center gap-4 mb-10 relative z-10">
