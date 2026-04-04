@@ -6,10 +6,11 @@ import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestionList } from "@/lib/questionnaireValidation";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { TALENTS_QUESTIONS } from "@/lib/questionnaireData";
+import { resolveType } from "@/lib/questionnaireType";
 
-async function getOrCreateCurrentQuestionnaire() {
+async function getOrCreateCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
   const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true },
+    where: { isActive: true, type },
     orderBy: { createdAt: "desc" }
   });
 
@@ -18,7 +19,7 @@ async function getOrCreateCurrentQuestionnaire() {
   return prisma.questionnaire.create({
     data: {
       version: "v1",
-      type: "TALENTS",
+      type,
       sectionsJson: [],
       isActive: true
     }
@@ -33,9 +34,10 @@ async function ensureTenantId() {
   return tenant?.id || null;
 }
 
-export async function GET(_request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const questionnaire = await getOrCreateCurrentQuestionnaire();
+    const type = resolveType(request.nextUrl.searchParams);
+    const questionnaire = await getOrCreateCurrentQuestionnaire(type);
     const questions = Array.isArray(questionnaire.sectionsJson) ? questionnaire.sectionsJson : [];
 
     return Response.json({
@@ -77,7 +79,8 @@ export async function PUT(request: NextRequest) {
     return Response.json({ error: "Invalid payload: questions[] is required." }, { status: 400 });
   }
 
-  const current = await getOrCreateCurrentQuestionnaire();
+  const type = resolveType(request.nextUrl.searchParams);
+  const current = await getOrCreateCurrentQuestionnaire(type);
   const version = body?.version || current.version;
   const updated = await prisma.questionnaire.update({
     where: { id: current.id },

@@ -16,3 +16,8 @@ wiki/vite_debug_log.txt
 wiki/test-parse.mjs
 public/studio/
 .claude/worktrees/reverent-wilbur
+dist/
+build/
+coverage/
+.turbo/
+*.log

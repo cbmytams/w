@@ -1,6 +1,8 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { FieldType } from '@/lib/questionnaireMap';
-import { BRANDS_QUESTIONS, TALENTS_QUESTIONS } from '@/lib/questionnaireData'; import { type QuestionValue } from '@/lib/questionnaireIntegrity';
+import { type QuestionValue } from '@/lib/questionnaireIntegrity';
 
 interface FieldDisplayProps {
     label: string;
@@ -11,16 +13,106 @@ interface FieldDisplayProps {
     fieldKey?: string;
 }
 
-const getOptionLabel = (questionType: 'BRANDS' | 'TALENTS', key: string, val: string) => {
-    const list = questionType === 'BRANDS' ? BRANDS_QUESTIONS : TALENTS_QUESTIONS;
-    const q = list.find(q => q.id === key);
-    if (!q || !q.options) return val;
-    const opt = q.options.find(o => o.id === val);
-    if (!opt) return val;
-    return opt.emoji ? `${opt.label} ${opt.emoji}` : opt.label;
+type QuestionnaireType = 'BRANDS' | 'TALENTS';
+type OptionLookup = Record<string, Record<string, string>>;
+type QuestionLike = {
+    id?: unknown;
+    questions?: unknown;
+    options?: unknown;
+};
+
+const optionLookupPromiseCache = new Map<QuestionnaireType, Promise<OptionLookup>>();
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+    typeof value === 'object' && value !== null && !Array.isArray(value);
+
+const flattenQuestions = (questions: unknown): QuestionLike[] => {
+    if (!Array.isArray(questions)) return [];
+
+    const hasSections = questions.some((entry) =>
+        isRecord(entry) && Array.isArray((entry as { questions?: unknown }).questions)
+    );
+
+    if (!hasSections) {
+        return questions.filter((entry): entry is QuestionLike => isRecord(entry));
+    }
+
+    return questions.flatMap((section) => {
+        if (!isRecord(section) || !Array.isArray(section.questions)) return [];
+        return section.questions.filter((entry): entry is QuestionLike => isRecord(entry));
+    });
+};
+
+const buildOptionLookup = (questions: unknown): OptionLookup => {
+    const lookup: OptionLookup = {};
+    for (const question of flattenQuestions(questions)) {
+        if (typeof question.id !== 'string' || !Array.isArray(question.options)) continue;
+
+        const optionMap: Record<string, string> = {};
+        for (const option of question.options) {
+            if (!isRecord(option)) continue;
+
+            const optionId = typeof option.id === 'string' ? option.id : null;
+            const optionLabel = typeof option.label === 'string' ? option.label : null;
+            if (!optionId || !optionLabel) continue;
+
+            optionMap[optionId] =
+                typeof option.emoji === 'string' && option.emoji.trim().length > 0
+                    ? `${optionLabel} ${option.emoji}`
+                    : optionLabel;
+        }
+
+        if (Object.keys(optionMap).length > 0) {
+            lookup[question.id] = optionMap;
+        }
+    }
+    return lookup;
+};
+
+const loadOptionLookup = async (questionType: QuestionnaireType): Promise<OptionLookup> => {
+    const response = await fetch(`/api/v1/questionnaires/current?type=${questionType}`, {
+        method: 'GET',
+        headers: { accept: 'application/json' },
+        cache: 'no-store',
+    }).catch(() => null);
+
+    if (!response || !response.ok) return {};
+
+    const payload = await response.json().catch(() => null) as { questions?: unknown } | null;
+    return buildOptionLookup(payload?.questions);
+};
+
+const getOptionLookup = (questionType: QuestionnaireType) => {
+    const cached = optionLookupPromiseCache.get(questionType);
+    if (cached) return cached;
+
+    const request = loadOptionLookup(questionType).catch(() => ({}));
+    optionLookupPromiseCache.set(questionType, request);
+    return request;
 }
 
 export function FieldDisplay({ label, value, type, required, questionType, fieldKey }: FieldDisplayProps) {
+    const [optionLookup, setOptionLookup] = useState<OptionLookup>({});
+
+    useEffect(() => {
+        if (!questionType) return;
+
+        let active = true;
+        void getOptionLookup(questionType).then((lookup) => {
+            if (!active) return;
+            setOptionLookup(lookup);
+        });
+
+        return () => {
+            active = false;
+        };
+    }, [questionType]);
+
+    const getOptionLabel = (key: string, val: string) => {
+        const optionMap = optionLookup[key];
+        return optionMap?.[val] ?? val;
+    };
+
     const isMissing = required && (value === undefined || value === null || value === '');
     const isPresentWithEmpty = !required && (value === undefined || value === null || value === '');
 
@@ -47,7 +139,7 @@ export function FieldDisplay({ label, value, type, required, questionType, field
             return (
                 <div className="flex flex-wrap gap-2 mt-1">
                     {value.map((v, i) => {
-                        const formatted = (questionType && fieldKey) ? getOptionLabel(questionType, fieldKey, v) : v;
+                        const formatted = (questionType && fieldKey) ? getOptionLabel(fieldKey, v) : v;
                         return (
                             <span key={i} className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-xs text-slate-200">
                                 {formatted}
@@ -75,7 +167,7 @@ export function FieldDisplay({ label, value, type, required, questionType, field
         }
 
         const formattedValue = (type === 'single' && questionType && fieldKey && typeof value === 'string')
-            ? getOptionLabel(questionType, fieldKey, value)
+            ? getOptionLabel(fieldKey, value)
             : String(value);
 
         return <span className="text-white">{formattedValue}</span>;

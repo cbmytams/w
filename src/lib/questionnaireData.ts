@@ -9,8 +9,8 @@ export type Option = {
 
 export type Condition = {
     questionId: string;
-    operator: 'equals' | 'not_equals' | 'contains';
-    value: string;
+    operator: 'equals' | 'not_equals' | 'one_of' | 'contains' | 'greater_than' | 'less_than';
+    value: string | string[] | number;
 };
 
 export type QuestionData = {
@@ -378,14 +378,17 @@ export const TALENTS_QUESTIONS: QuestionData[] = [
     },
     {
         id: 'biz_02', category: 'BUSINESS', type: 'multiple', question: "Quelles sont tes sources de revenus ?", required: true,
+        conditions: [{ questionId: 'biz_01', operator: 'one_of', value: ['yes_living', 'yes_complement', 'starting'] }],
         options: [{ id: 'sponso', label: 'Sponsoring / Placements' }, { id: 'ads', label: 'Monétisation Plateforme (YouTube Ads, etc.)' }, { id: 'products', label: 'Vente de produits / Affiliation' }]
     },
     {
         id: 'biz_03', category: 'BUSINESS', type: 'single', question: "As-tu une rate card (grille tarifaire) ?", required: true,
+        conditions: [{ questionId: 'q0_level', operator: 'one_of', value: ['intermediaire', 'star'] }],
         options: [{ id: 'yes', label: 'Oui' }, { id: 'no', label: 'Non' }]
     },
     {
         id: 'biz_04', category: 'BUSINESS', type: 'single', question: "Combien de collaborations marques as-tu fait cette année ?", required: true,
+        conditions: [{ questionId: 'q0_level', operator: 'one_of', value: ['intermediaire', 'star'] }],
         options: [{ id: 'none', label: '0' }, { id: 'few', label: '1 - 5' }, { id: 'many', label: '5+' }]
     },
     // REACH
@@ -419,10 +422,15 @@ export const TALENTS_QUESTIONS: QuestionData[] = [
     },
     {
         id: 'health_04', category: 'HEALTH', type: 'single', question: "As-tu un statut juridique pour ton activité ?", required: true,
+        conditions: [{ questionId: 'biz_01', operator: 'one_of', value: ['yes_living', 'yes_complement', 'starting'] }],
         options: [{ id: 'yes', label: 'Oui (Auto, SAS, etc.)' }, { id: 'no', label: 'Non' }]
     },
     {
         id: 'health_05', category: 'HEALTH', type: 'single', question: "Fais-tu relire tes contrats de partenariat ?", required: true,
+        conditions: [
+            { questionId: 'q0_level', operator: 'one_of', value: ['intermediaire', 'star'] },
+            { questionId: 'biz_01', operator: 'one_of', value: ['yes_living', 'yes_complement'] }
+        ],
         options: [{ id: 'yes', label: 'Oui, par un pro' }, { id: 'sometimes', label: 'Parfois' }, { id: 'no', label: 'Non, je gère seul·e' }]
     }
 ];

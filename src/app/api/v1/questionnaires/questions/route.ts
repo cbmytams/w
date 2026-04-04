@@ -5,17 +5,18 @@ import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestion } from "@/lib/questionnaireValidation";
+import { resolveType } from "@/lib/questionnaireType";
 
-async function getCurrentQuestionnaire() {
+async function getCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
   const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true },
+    where: { isActive: true, type },
     orderBy: { createdAt: "desc" }
   });
   if (current) return current;
   return prisma.questionnaire.create({
     data: {
       version: "v1",
-      type: "TALENTS",
+      type,
       sectionsJson: [],
       isActive: true
     }
@@ -53,7 +54,8 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Invalid payload: question is required." }, { status: 400 });
   }
 
-  const current = await getCurrentQuestionnaire();
+  const type = resolveType(request.nextUrl.searchParams);
+  const current = await getCurrentQuestionnaire(type);
   const existing: Prisma.JsonValue[] = Array.isArray(current.sectionsJson) ? [...current.sectionsJson] : [];
   existing.push(question as Prisma.JsonValue);
 

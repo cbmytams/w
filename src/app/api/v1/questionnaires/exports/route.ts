@@ -20,6 +20,11 @@ type QuestionnaireSection = {
     questions: Array<{ id: string; title?: string }>
 }
 
+type QuestionnaireQuestion = {
+    id: string
+    label: string
+}
+
 function serializeCsvCell(value: unknown) {
     const raw = value == null ? "" : String(value);
     const neutralized = /^[=+\-@]/.test(raw) ? `'${raw}` : raw;
@@ -30,15 +35,51 @@ function serializeCsvRow(values: unknown[]) {
     return `${values.map((value) => serializeCsvCell(value)).join(",")}\n`;
 }
 
+function toQuestionDefinition(value: unknown): QuestionnaireQuestion | null {
+    if (!value || typeof value !== "object") return null;
+
+    const entry = value as { id?: unknown; title?: unknown; question?: unknown };
+    if (typeof entry.id !== "string" || !entry.id.trim()) return null;
+
+    if (typeof entry.title === "string" && entry.title.trim()) {
+        return { id: entry.id, label: entry.title };
+    }
+
+    if (typeof entry.question === "string" && entry.question.trim()) {
+        return { id: entry.id, label: entry.question };
+    }
+
+    return { id: entry.id, label: entry.id };
+}
+
 function getQuestionHeaders(sectionsJson: unknown) {
-    const sections = sectionsJson as QuestionnaireSection[];
-    const questionHeaders: string[] = [];
-    for (const section of sections || []) {
-        for (const question of section.questions || []) {
-            questionHeaders.push(question.title || question.id);
+    const orderedQuestions: QuestionnaireQuestion[] = [];
+    if (!Array.isArray(sectionsJson)) {
+        return { orderedQuestions, questionHeaders: [] as string[] };
+    }
+
+    const hasSectionShape = sectionsJson.some((entry) =>
+        entry && typeof entry === "object" && Array.isArray((entry as { questions?: unknown }).questions)
+    );
+
+    if (hasSectionShape) {
+        for (const section of sectionsJson as QuestionnaireSection[]) {
+            for (const question of section.questions || []) {
+                const normalized = toQuestionDefinition(question);
+                if (normalized) orderedQuestions.push(normalized);
+            }
+        }
+    } else {
+        for (const question of sectionsJson) {
+            const normalized = toQuestionDefinition(question);
+            if (normalized) orderedQuestions.push(normalized);
         }
     }
-    return { sections, questionHeaders };
+
+    return {
+        orderedQuestions,
+        questionHeaders: orderedQuestions.map((question) => question.label)
+    };
 }
 
 async function resolveAuditTenantId() {
@@ -51,7 +92,7 @@ async function resolveAuditTenantId() {
 
 function createCSVStream(questionnaire: QuestionnaireForExport) {
     const encoder = new TextEncoder();
-    const { sections, questionHeaders } = getQuestionHeaders(questionnaire.sectionsJson);
+    const { orderedQuestions, questionHeaders } = getQuestionHeaders(questionnaire.sectionsJson);
 
     const stream = new ReadableStream({
         async start(controller) {
@@ -92,11 +133,9 @@ function createCSVStream(questionnaire: QuestionnaireForExport) {
                         ];
 
                         // Map answers to the exact order of questions
-                        for (const section of sections || []) {
-                            for (const q of section.questions || []) {
-                                const answer = answers[q.id];
-                                row.push(answer);
-                            }
+                        for (const question of orderedQuestions) {
+                            const answer = answers[question.id];
+                            row.push(answer);
                         }
 
                         chunk += serializeCsvRow(row);

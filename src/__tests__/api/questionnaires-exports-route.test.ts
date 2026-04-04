@@ -101,4 +101,46 @@ describe("questionnaires exports route", () => {
     expect(csv).toContain('"\'@cmd"');
     expect(csv).toContain('"A, ""B"""');
   });
+
+  it("supports legacy flat question arrays for CSV export", async () => {
+    prismaMock.questionnaire.findFirst.mockResolvedValue({
+      id: "questionnaire-legacy-flat",
+      version: "v1",
+      type: "TALENTS",
+      sectionsJson: [
+        { id: "q_flat_1", question: "Question plate 1" },
+        { id: "q_flat_2", question: "Question plate 2" },
+      ],
+    });
+
+    prismaMock.questionnaireResponse.findMany
+      .mockResolvedValueOnce([
+        {
+          id: "resp-flat-1",
+          talentId: "talent-flat-1",
+          type: "TALENTS",
+          score: 80,
+          completionRate: 100,
+          submittedAt: new Date("2025-01-01T00:00:00.000Z"),
+          answersJson: {
+            q_flat_1: "A1",
+            q_flat_2: "A2",
+          },
+        },
+      ])
+      .mockResolvedValueOnce([]);
+
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/exports?type=TALENTS&format=csv&version=v1"
+    );
+
+    const response = await GET(request);
+    const csv = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(csv).toContain('"Question plate 1"');
+    expect(csv).toContain('"Question plate 2"');
+    expect(csv).toContain('"A1"');
+    expect(csv).toContain('"A2"');
+  });
 });

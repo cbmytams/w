@@ -1,5 +1,5 @@
 import { computeCompletion } from "../../lib/completion";
-import { type QuestionnaireMap } from "../../lib/questionnaireMap";
+import { TALENTS_QUESTIONNAIRE_MAP, type QuestionnaireMap } from "../../lib/questionnaireMap";
 
 describe("completion", () => {
     describe("computeCompletion", () => {
@@ -115,6 +115,78 @@ describe("completion", () => {
                 answered: 0,
                 percent: 0,
                 missingFields: ["Field 1", "Field 2"]
+            });
+        });
+
+        it("should exclude hidden conditional required fields from denominator", () => {
+            const map: QuestionnaireMap = {
+                type: "TALENTS",
+                sections: [
+                    {
+                        id: "CALIBRATION",
+                        label: "Calibration",
+                        fields: TALENTS_QUESTIONNAIRE_MAP.sections
+                            .find((section) => section.id === "CALIBRATION")!
+                            .fields
+                            .filter((field) => field.key === "q0_level")
+                    },
+                    {
+                        id: "BUSINESS",
+                        label: "Business",
+                        fields: TALENTS_QUESTIONNAIRE_MAP.sections
+                            .find((section) => section.id === "BUSINESS")!
+                            .fields
+                            .filter((field) => field.key === "biz_01" || field.key === "biz_03")
+                    }
+                ]
+            };
+
+            const responses = {
+                q0_level: "beginner",
+                biz_01: "no"
+            };
+
+            expect(computeCompletion(responses, map)).toEqual({
+                total: 2,
+                answered: 2,
+                percent: 100,
+                missingFields: []
+            });
+        });
+
+        it("should keep conditional required fields when visibility conditions are satisfied", () => {
+            const map: QuestionnaireMap = {
+                type: "TALENTS",
+                sections: [
+                    {
+                        id: "CALIBRATION",
+                        label: "Calibration",
+                        fields: TALENTS_QUESTIONNAIRE_MAP.sections
+                            .find((section) => section.id === "CALIBRATION")!
+                            .fields
+                            .filter((field) => field.key === "q0_level")
+                    },
+                    {
+                        id: "BUSINESS",
+                        label: "Business",
+                        fields: TALENTS_QUESTIONNAIRE_MAP.sections
+                            .find((section) => section.id === "BUSINESS")!
+                            .fields
+                            .filter((field) => field.key === "biz_01" || field.key === "biz_03")
+                    }
+                ]
+            };
+
+            const responses = {
+                q0_level: "intermediaire",
+                biz_01: "yes_living"
+            };
+
+            expect(computeCompletion(responses, map)).toEqual({
+                total: 3,
+                answered: 2,
+                percent: 67,
+                missingFields: ["As-tu une rate card (grille tarifaire) ?"]
             });
         });
     });

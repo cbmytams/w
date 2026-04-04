@@ -82,4 +82,17 @@ describe("Questionnaire Integrity Monitor", () => {
         const { issues } = validateQuestionnaireIntegrity(sections);
         expect(issues.some(i => i.type === "infinite_loop")).toBe(true);
     });
+
+    it("should accept legacy flat question arrays", () => {
+        const flatQuestions = [
+            { id: "q1", question: "Question 1", logic: [{ jumpTo: "q2" }] },
+            { id: "q2", question: "Question 2", logic: [{ jumpTo: "END" }] }
+        ];
+
+        const { issues, questionIds } = validateQuestionnaireIntegrity(flatQuestions as never);
+
+        expect(issues).toEqual([]);
+        expect(questionIds.has("q1")).toBe(true);
+        expect(questionIds.has("q2")).toBe(true);
+    });
 });

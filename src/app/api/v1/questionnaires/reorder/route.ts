@@ -6,17 +6,18 @@ import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { ReorderSchema } from "@/lib/validations";
 import { validateBody, apiError } from "@/lib/api-response";
+import { resolveType } from "@/lib/questionnaireType";
 
-async function getCurrentQuestionnaire() {
+async function getCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
   const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true },
+    where: { isActive: true, type },
     orderBy: { createdAt: "desc" }
   });
   if (current) return current;
   return prisma.questionnaire.create({
     data: {
       version: "v1",
-      type: "TALENTS",
+      type,
       sectionsJson: [],
       isActive: true
     }
@@ -53,7 +54,8 @@ export async function POST(request: NextRequest) {
 
   const { startIndex, endIndex } = validation.data;
 
-  const current = await getCurrentQuestionnaire();
+  const type = resolveType(request.nextUrl.searchParams);
+  const current = await getCurrentQuestionnaire(type);
   const questions = Array.isArray(current.sectionsJson) ? [...current.sectionsJson] : [];
 
   if (

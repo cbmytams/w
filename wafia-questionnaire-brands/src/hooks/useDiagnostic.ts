@@ -4,7 +4,7 @@
  * Flow: landing → quick_lead → deep_qualification → results
  */
 
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import type {
     DiagnosticState,
     AnswerValue,
@@ -110,6 +110,56 @@ const deriveCalibrationFromAnswers = (answers: Answers): CalibrationData => ({
     urgency: (answers['ql_urgency'] as string) || null,
 });
 
+export const hasLeadIdentity = (answers: Answers) =>
+    typeof answers.ql_name === 'string' ||
+    typeof answers.ql_company === 'string' ||
+    typeof answers.ql_email === 'string';
+
+type SubmitResult = {
+    ok: boolean;
+    status: number | null;
+    responseId: string | null;
+    payload: unknown;
+};
+
+export async function submitBrandQuestionnaire(answers: Answers, signal?: AbortSignal): Promise<SubmitResult> {
+    try {
+        const response = await fetch('/api/v1/questionnaires/submit', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                type: 'BRANDS',
+                responses: answers,
+            }),
+            signal,
+        });
+
+        const payload = await response.json().catch(() => null);
+        if (!response.ok) {
+            return {
+                ok: false,
+                status: response.status,
+                responseId: null,
+                payload,
+            };
+        }
+
+        return {
+            ok: true,
+            status: response.status,
+            responseId: ((payload as { data?: { id?: string } } | null)?.data?.id) ?? null,
+            payload,
+        };
+    } catch (error) {
+        return {
+            ok: false,
+            status: null,
+            responseId: null,
+            payload: error,
+        };
+    }
+}
+
 const getSessionId = () => {
     const storage = safeLocalStorage();
     if (!storage) return 'server-side';
@@ -126,6 +176,7 @@ const getSessionId = () => {
  */
 export function useDiagnostic() {
     const [sessionId] = useState(getSessionId());
+    const submissionAttemptedRef = useRef(false);
 
     const [state, setState] = useState<DiagnosticState>(() => {
         // 1. Rehydrate answers from localStorage
@@ -441,6 +492,56 @@ export function useDiagnostic() {
             }
         }
     }, [state.phase, result, sessionId]);
+
+    // Submit final answers to Next API once per session when results are reached.
+    useEffect(() => {
+        if (state.phase !== 'results' || submissionAttemptedRef.current) return;
+
+        const storage = safeLocalStorage();
+        const submissionStorageKey = `wafia_brand_submission_${sessionId}`;
+        if (storage?.getItem(submissionStorageKey)) {
+            submissionAttemptedRef.current = true;
+            return;
+        }
+
+        if (!hasLeadIdentity(state.answers)) {
+            if (import.meta.env.DEV) {
+                console.warn('[Brand Diagnostic] Submit skipped: missing ql_name/ql_company/ql_email.');
+            }
+            return;
+        }
+
+        submissionAttemptedRef.current = true;
+        const controller = new AbortController();
+
+        void (async () => {
+            const submitResult = await submitBrandQuestionnaire(state.answers, controller.signal);
+            if (!submitResult.ok) {
+                if (!controller.signal.aborted && import.meta.env.DEV) {
+                    console.warn('[Brand Diagnostic] Submit failed', submitResult.status, submitResult.payload);
+                }
+                return;
+            }
+
+            try {
+                storage?.setItem(
+                    submissionStorageKey,
+                    JSON.stringify({
+                        submittedAt: new Date().toISOString(),
+                        responseId: submitResult.responseId,
+                    })
+                );
+            } catch (error) {
+                if (import.meta.env.DEV) {
+                    console.warn('[Brand Diagnostic] Failed to persist submission marker', error);
+                }
+            }
+        })();
+
+        return () => {
+            controller.abort();
+        };
+    }, [state.phase, state.answers, sessionId]);
 
     return {
         // State

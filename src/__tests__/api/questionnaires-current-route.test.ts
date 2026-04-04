@@ -66,4 +66,28 @@ describe("questionnaires current GET route", () => {
       questions: TALENTS_QUESTIONS,
     });
   });
+
+  it("resolves questionnaire type from query params for BRANDS", async () => {
+    prismaMock.questionnaire.findFirst.mockResolvedValue({
+      id: "questionnaire-brand-1",
+      version: "v2",
+      sectionsJson: [{ id: "brand-question-1" }],
+    });
+
+    const request = new NextRequest("https://wafia.test/api/v1/questionnaires/current?type=BRANDS");
+
+    const response = await GET(request);
+    const body = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(body).toEqual({
+      questionnaireId: "questionnaire-brand-1",
+      version: "v2",
+      questions: [{ id: "brand-question-1" }],
+    });
+    expect(prismaMock.questionnaire.findFirst).toHaveBeenCalledWith({
+      where: { isActive: true, type: "BRANDS" },
+      orderBy: { createdAt: "desc" },
+    });
+  });
 });

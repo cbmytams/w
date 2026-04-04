@@ -21,12 +21,51 @@ export interface IntegritySection {
     questions?: IntegrityQuestion[];
 }
 
-export function validateQuestionnaireIntegrity(sectionsJson: IntegritySection[]) {
+function normalizeIntegritySections(raw: unknown): IntegritySection[] {
+    if (!Array.isArray(raw)) return [];
+
+    const normalizedSections: IntegritySection[] = [];
+    const legacyFlatQuestions: IntegrityQuestion[] = [];
+
+    for (const entry of raw) {
+        if (!entry || typeof entry !== "object") continue;
+
+        const candidate = entry as {
+            id?: unknown;
+            title?: unknown;
+            questions?: unknown;
+        };
+
+        if (Array.isArray(candidate.questions)) {
+            normalizedSections.push({
+                id: typeof candidate.id === "string" ? candidate.id : "",
+                title: typeof candidate.title === "string" ? candidate.title : "",
+                questions: candidate.questions as IntegrityQuestion[],
+            });
+            continue;
+        }
+
+        legacyFlatQuestions.push(entry as IntegrityQuestion);
+    }
+
+    if (legacyFlatQuestions.length > 0) {
+        normalizedSections.push({
+            id: "legacy_flat",
+            title: "Legacy Flat",
+            questions: legacyFlatQuestions,
+        });
+    }
+
+    return normalizedSections;
+}
+
+export function validateQuestionnaireIntegrity(sectionsJson: unknown) {
+    const normalizedSections = normalizeIntegritySections(sectionsJson);
     const issues: { type: string; message: string }[] = [];
     const questionIds = new Set<string>();
 
     // 1. Check for duplicate IDs and missing fields
-    for (const section of sectionsJson || []) {
+    for (const section of normalizedSections || []) {
         if (!section.id || !section.title) {
             issues.push({ type: "invalid_section", message: `Section missing ID or title: ${JSON.stringify(section)}` });
         }
@@ -44,7 +83,7 @@ export function validateQuestionnaireIntegrity(sectionsJson: IntegritySection[])
 
     // 2. Logic & Jump conditions checks
     const adj = new Map<string, string[]>();
-    const allQuestions = (sectionsJson || []).flatMap(s => s.questions || []);
+    const allQuestions = (normalizedSections || []).flatMap(s => s.questions || []);
 
     for (let i = 0; i < allQuestions.length; i++) {
         const q = allQuestions[i];

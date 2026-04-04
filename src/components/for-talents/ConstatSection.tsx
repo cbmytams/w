@@ -7,6 +7,7 @@ import { TALENT_PROBLEM } from "@/constants"
 import { useReducedMotion } from "@/hooks/useReducedMotion"
 import { EASING, DURATION } from "@/lib/easing"
 import { cn } from "@/lib/utils"
+import { SystemBentoWidget } from "@/components/for-talents/SystemBentoWidget"
 
 const PAIN_ICONS = ["\u{1F9ED}", "\u{26A1}", "\u{1F91D}", "\u{1F3AF}"]
 
@@ -75,39 +76,9 @@ export function ConstatSection() {
                         </motion.p>
                     </motion.div>
 
-                    {/* Pain points — glass cards */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-                        {TALENT_PROBLEM.painTags.map((tag, i) => (
-                            <motion.div
-                                key={tag}
-                                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{
-                                    duration: DURATION.slow,
-                                    delay: 0.2 + i * 0.08,
-                                    ease: EASING.entrance
-                                }}
-                                className={cn(
-                                    "group relative p-5 rounded-2xl text-center",
-                                    "bg-slate-100/80 dark:bg-white/[0.03]",
-                                    "backdrop-blur-[20px]",
-                                    "border border-slate-200/50 dark:border-white/[0.06]",
-                                    "hover:bg-slate-100 dark:hover:bg-white/[0.06]",
-                                    "hover:border-rose-300 dark:hover:border-rose-500/20",
-                                    "hover:-translate-y-1",
-                                    "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                                )}
-                            >
-                                <div className="text-2xl mb-3 transition-transform duration-500 group-hover:scale-110">
-                                    {PAIN_ICONS[i]}
-                                </div>
-                                <span className="text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors duration-300">
-                                    {tag}
-                                </span>
-                                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-rose-500/0 to-rose-500/0 group-hover:from-rose-500/[0.04] group-hover:to-transparent transition-all duration-500 pointer-events-none" />
-                            </motion.div>
-                        ))}
+                    {/* Bento Grid Widget (V2 Apple style) */}
+                    <div className="mt-8">
+                        <SystemBentoWidget />
                     </div>
                 </div>
             </Container>

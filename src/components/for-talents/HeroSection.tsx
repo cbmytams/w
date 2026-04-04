@@ -31,7 +31,7 @@ export function HeroSection() {
                     >
                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-slate-900 dark:text-white">
                             {TALENT_HERO.title}{" "}
-                            <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-500 bg-clip-text text-transparent">
+                            <span className="text-slate-600 dark:text-slate-300">
                                 {TALENT_HERO.titleHighlight}
                             </span>
                         </h1>
@@ -71,7 +71,7 @@ export function HeroSection() {
                             onClick={handleSecondaryCtaClick}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-6 md:px-8 py-4 rounded-full bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl border border-white/60 dark:border-white/10 text-slate-900 dark:text-white text-base font-bold shadow-xl shadow-purple-900/5 hover:bg-white dark:hover:bg-slate-800 dark:hover:border-white/20 hover:shadow-purple-900/10 transition-all"
+                            className="px-6 md:px-8 py-4 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-2xl border border-white/60 dark:border-white/10 text-slate-900 dark:text-white text-base font-bold shadow-xl shadow-black/5 dark:shadow-white/5 hover:bg-white dark:hover:bg-black/60 dark:hover:border-white/20 transition-all duration-300"
                         >
                             {TALENT_HERO.ctaSecondary}
                         </motion.button>

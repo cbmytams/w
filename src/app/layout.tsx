@@ -64,8 +64,9 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle || undefined,
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: "/wafia.svg",
+    shortcut: "/wafia.svg",
+    apple: "/wafia.svg",
   },
   manifest: "/manifest.webmanifest",
   robots: {
