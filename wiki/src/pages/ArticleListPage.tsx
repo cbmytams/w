@@ -136,7 +136,7 @@ export default function ArticleListPage() {
       >
         <div
           className="flex items-center justify-between"
-          style={{ color: "var(--ink-muted)" }}
+          style={{ color: "var(--ink-secondary)" }}
         >
           <p className="font-mono text-[10px] uppercase tracking-widest">
             Wiki de l'Influence
