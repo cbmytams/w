@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { GlobalNav } from "@/components/layout/GlobalNav";
@@ -92,11 +93,13 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get("x-nonce") || undefined;
+
   return (
     <html
       lang="fr"
@@ -104,6 +107,9 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        {nonce ? <meta property="csp-nonce" content={nonce} /> : null}
+      </head>
       <body
         className={`${plusJakarta.variable} ${outfit.variable} antialiased font-sans`}
         suppressHydrationWarning
@@ -111,12 +117,14 @@ export default function RootLayout({
         <GoogleAnalytics />
         <BfCacheScrollRecovery />
         <script
+          nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
           }}
         />
         <script
+          nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
