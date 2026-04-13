@@ -84,9 +84,8 @@ function extractAsset(html, pattern, label) {
 async function verifyRuntime() {
   const [
     homeHtml,
-    aboutHtml,
+    servicesHtml,
     wikiHtml,
-    blogHtml,
     wikiArticleHtml,
     brandsHtml,
     robotsTxt,
@@ -97,9 +96,8 @@ async function verifyRuntime() {
   ] =
     await Promise.all([
       fetchText(`${baseUrl}/`),
-      fetchText(`${baseUrl}/about`),
+      fetchText(`${baseUrl}/services`),
       fetchText(`${baseUrl}/wiki`),
-      fetchText(`${baseUrl}/blog/tiktok-fyp-decrypte`),
       fetchText(`${baseUrl}/wiki/guide-tiktok-2025-strategie-influenceur`),
       fetchText(`${baseUrl}/for-brands`),
       fetchText(`${baseUrl}/robots.txt`),
@@ -114,9 +112,8 @@ async function verifyRuntime() {
 
   [
     [homeHtml, "/"],
-    [aboutHtml, "/about"],
+    [servicesHtml, "/services"],
     [wikiHtml, "/wiki"],
-    [blogHtml, "/blog/[slug]"],
     [wikiArticleHtml, "/wiki/[slug]"],
     [robotsTxt, "/robots.txt"],
     [sitemapXml, "/sitemap.xml"],
@@ -128,9 +125,8 @@ async function verifyRuntime() {
   });
 
   assertCanonicalOrigin(homeHtml, "/");
-  assertCanonicalOrigin(aboutHtml, "/about");
+  assertCanonicalOrigin(servicesHtml, "/services");
   assertCanonicalOrigin(wikiHtml, "/wiki");
-  assertCanonicalOrigin(blogHtml, "/blog/[slug]");
   assertCanonicalOrigin(wikiArticleHtml, "/wiki/[slug]");
 
   if (!robotsTxt.includes(`${canonicalOrigin}/sitemap.xml`)) {
@@ -162,7 +158,7 @@ async function verifyRuntime() {
     fetchOk(`${baseUrl}${fontAsset}`),
     fetchOk(`${baseUrl}/logos/adidas-2.svg`),
     fetchOk(`${baseUrl}/llms.txt`),
-    fetchOk(`${baseUrl}/_next/image?url=%2Fcases%2Ffashion-ugc.png&w=828&q=75`),
+    fetchOk(`${baseUrl}/_next/image?url=%2Flogos%2Fofficial%2Fbasic-fit-light.png&w=828&q=75`),
   ]);
 }
 
