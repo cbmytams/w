@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -58,6 +59,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   compress: true,
   output: "standalone",
+  experimental: {
+    clientTraceMetadata: ["sentry-trace", "baggage"],
+  },
   typescript: {
     // ignoreBuildErrors: true, // Temporarily disabled to ensure type safety. Can be changed if needed later.
   },
@@ -129,4 +133,13 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(
+  nextConfig,
+  {
+    silent: true,
+    tunnelRoute: "/monitoring",
+    webpack: {
+      autoInstrumentServerFunctions: true,
+    },
+  }
+);
