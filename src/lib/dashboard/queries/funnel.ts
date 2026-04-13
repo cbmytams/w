@@ -16,20 +16,17 @@ export async function getFunnelSteps(filters: DashboardFilters, tenantId: string
 
     const [started, completed, qualified, interview] = await Promise.all([
         prisma.talent.count({ where: { tenantId, ...talentWhereQuery, createdAt: { gte: normalized.start, lte: normalized.end } } }),
-        prisma.questionnaireResponse.count({ where: {
+        prisma.questionnaireResponse.count({ where: { talent: { tenantId },
                 ...responseWhereQuery,
-                talent: { tenantId },
                 submittedAt: { gte: normalized.start, lte: normalized.end },
                 completionRate: { gte: 100 }
             } }),
-        prisma.talent.count({ where: {
-                tenantId,
+        prisma.talent.count({ where: { tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 updatedAt: { gte: normalized.start, lte: normalized.end }
             } }),
-        prisma.talent.count({ where: {
-                tenantId,
+        prisma.talent.count({ where: { tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 contacts: { some: {} },

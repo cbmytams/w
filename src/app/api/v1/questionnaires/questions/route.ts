@@ -6,30 +6,7 @@ import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestion } from "@/lib/questionnaireValidation";
 import { resolveType } from "@/lib/questionnaireType";
-
-async function getCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
-  const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true, type },
-    orderBy: { createdAt: "desc" }
-  });
-  if (current) return current;
-  return prisma.questionnaire.create({
-    data: {
-      version: "v1",
-      type,
-      sectionsJson: [],
-      isActive: true
-    }
-  });
-}
-
-async function ensureTenantId() {
-  const tenant = await prisma.tenant.findFirst({
-    orderBy: { createdAt: "asc" },
-    select: { id: true }
-  });
-  return tenant?.id || null;
-}
+import { appendQuestionForTenant } from "@/lib/questionnaireTenant";
 
 export async function POST(request: NextRequest) {
   const originError = enforceSameOrigin(request);
@@ -55,35 +32,20 @@ export async function POST(request: NextRequest) {
   }
 
   const type = resolveType(request.nextUrl.searchParams);
-  const current = await getCurrentQuestionnaire(type);
-  const existing: Prisma.JsonValue[] = Array.isArray(current.sectionsJson) ? [...current.sectionsJson] : [];
-  existing.push(question as Prisma.JsonValue);
+  const { updated, questions } = await appendQuestionForTenant(auth.session.tenantId, type, question as Prisma.JsonValue);
 
-  const updated = await prisma.questionnaire.update({
-    where: { id: current.id },
-    data: {
-      sectionsJson: existing as Prisma.InputJsonValue
-    }
-  });
-
-  const tenantId = await ensureTenantId();
-  if (tenantId) {
-    await prisma.auditLog.create({
-      data: {
-        tenantId,
-        actorId: auth.session.id,
-        action: "QUESTION_ADDED",
-        entity: "Questionnaire",
-        entityId: updated.id,
-        diffJson: {
-          questionId: question.id
-        } as Prisma.InputJsonValue
-      }
-    }).catch(() => null);
-  }
+  await prisma.auditLog.create({ data: { tenantId: auth.session.tenantId,
+    actorId: auth.session.id,
+    action: "QUESTION_ADDED",
+    entity: "Questionnaire",
+    entityId: updated.id,
+    diffJson: {
+      questionId: question.id
+    } as Prisma.InputJsonValue
+  } }).catch(() => null);
 
   return Response.json({
     questionnaireId: updated.id,
-    questions: existing
+    questions
   });
 }

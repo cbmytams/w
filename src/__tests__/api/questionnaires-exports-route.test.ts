@@ -3,11 +3,10 @@ import { NextRequest } from "next/server";
 const requireDashboardRoleMock = jest.fn();
 const enforceSameOriginMock = jest.fn();
 const enforceRateLimitMock = jest.fn();
+const getQuestionnaireVersionForTenantMock = jest.fn();
 
 const prismaMock = {
-  questionnaire: { findFirst: jest.fn() },
   questionnaireResponse: { findMany: jest.fn() },
-  tenant: { findFirst: jest.fn() },
   auditLog: { create: jest.fn() },
 };
 
@@ -18,6 +17,10 @@ jest.mock("@/lib/apiAuth", () => ({
 jest.mock("@/lib/requestSecurity", () => ({
   enforceSameOrigin: (...args: unknown[]) => enforceSameOriginMock(...args),
   enforceRateLimit: (...args: unknown[]) => enforceRateLimitMock(...args),
+}));
+
+jest.mock("@/lib/questionnaireTenant", () => ({
+  getQuestionnaireVersionForTenant: (...args: unknown[]) => getQuestionnaireVersionForTenantMock(...args),
 }));
 
 jest.mock("@/lib/db", () => ({ prisma: prismaMock }));
@@ -31,14 +34,13 @@ describe("questionnaires exports route", () => {
     enforceRateLimitMock.mockReturnValue(null);
     requireDashboardRoleMock.mockResolvedValue({
       response: null,
-      session: { id: "admin-user" },
+      session: { id: "admin-user", tenantId: "tenant-admin" },
     });
-    prismaMock.tenant.findFirst.mockResolvedValue(null);
     prismaMock.auditLog.create.mockResolvedValue(null);
   });
 
   it("returns 404 when questionnaire version is missing", async () => {
-    prismaMock.questionnaire.findFirst.mockResolvedValue(null);
+    getQuestionnaireVersionForTenantMock.mockResolvedValue(null);
 
     const request = new NextRequest(
       "https://wafia.test/api/v1/questionnaires/exports?type=TALENTS&format=csv&version=v42"
@@ -50,10 +52,11 @@ describe("questionnaires exports route", () => {
     expect(response.status).toBe(404);
     expect(body).toEqual({ error: "Questionnaire version not found" });
     expect(prismaMock.questionnaireResponse.findMany).not.toHaveBeenCalled();
+    expect(getQuestionnaireVersionForTenantMock).toHaveBeenCalledWith("tenant-admin", "TALENTS", "v42");
   });
 
   it("serializes headers and all CSV cells", async () => {
-    prismaMock.questionnaire.findFirst.mockResolvedValue({
+    getQuestionnaireVersionForTenantMock.mockResolvedValue({
       id: "questionnaire-1",
       version: "v1",
       type: "TALENTS",
@@ -103,7 +106,7 @@ describe("questionnaires exports route", () => {
   });
 
   it("supports legacy flat question arrays for CSV export", async () => {
-    prismaMock.questionnaire.findFirst.mockResolvedValue({
+    getQuestionnaireVersionForTenantMock.mockResolvedValue({
       id: "questionnaire-legacy-flat",
       version: "v1",
       type: "TALENTS",
@@ -142,5 +145,24 @@ describe("questionnaires exports route", () => {
     expect(csv).toContain('"Question plate 2"');
     expect(csv).toContain('"A1"');
     expect(csv).toContain('"A2"');
+  });
+
+  it("scopes export lookup by tenantId", async () => {
+    getQuestionnaireVersionForTenantMock.mockResolvedValue({
+      id: "questionnaire-tenant",
+      version: "v3",
+      type: "BRANDS",
+      sectionsJson: [],
+    });
+    prismaMock.questionnaireResponse.findMany.mockResolvedValueOnce([]);
+
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/exports?type=BRANDS&format=json&version=v3"
+    );
+
+    const response = await GET(request);
+
+    expect(response.status).toBe(200);
+    expect(getQuestionnaireVersionForTenantMock).toHaveBeenCalledWith("tenant-admin", "BRANDS", "v3");
   });
 });

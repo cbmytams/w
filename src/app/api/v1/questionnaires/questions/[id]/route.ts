@@ -6,34 +6,11 @@ import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { isSafeRecordId, sanitizeQuestionUpdates } from "@/lib/questionnaireValidation";
 import { resolveType } from "@/lib/questionnaireType";
+import { deleteQuestionForTenant, updateQuestionForTenant } from "@/lib/questionnaireTenant";
 
 type RouteContext = {
   params: Promise<{ id: string }>;
 };
-
-async function getCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
-  const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true, type },
-    orderBy: { createdAt: "desc" }
-  });
-  if (current) return current;
-  return prisma.questionnaire.create({
-    data: {
-      version: "v1",
-      type,
-      sectionsJson: [],
-      isActive: true
-    }
-  });
-}
-
-async function ensureTenantId() {
-  const tenant = await prisma.tenant.findFirst({
-    orderBy: { createdAt: "asc" },
-    select: { id: true }
-  });
-  return tenant?.id || null;
-}
 
 export async function PATCH(request: NextRequest, context: RouteContext) {
   const originError = enforceSameOrigin(request);
@@ -64,42 +41,22 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
   }
 
   const type = resolveType(request.nextUrl.searchParams);
-  const current = await getCurrentQuestionnaire(type);
-  const questions = Array.isArray(current.sectionsJson) ? [...current.sectionsJson] : [];
-  const index = questions.findIndex((entry) => (entry as { id?: string })?.id === id);
-  if (index < 0) {
+  const result = await updateQuestionForTenant(auth.session.tenantId, type, id, updates as Prisma.JsonObject);
+  if (!result) {
     return Response.json({ error: "Question not found." }, { status: 404 });
   }
 
-  questions[index] = {
-    ...(questions[index] as Prisma.JsonObject),
-    ...(updates as Prisma.JsonObject)
-  } as Prisma.JsonValue;
-
-  const updated = await prisma.questionnaire.update({
-    where: { id: current.id },
-    data: {
-      sectionsJson: questions as Prisma.InputJsonValue
-    }
-  });
-
-  const tenantId = await ensureTenantId();
-  if (tenantId) {
-    await prisma.auditLog.create({
-      data: {
-        tenantId,
-        actorId: auth.session.id,
-        action: "QUESTION_UPDATED",
-        entity: "Questionnaire",
-        entityId: updated.id,
-        diffJson: { questionId: id, updates } as Prisma.InputJsonValue
-      }
-    }).catch(() => null);
-  }
+  await prisma.auditLog.create({ data: { tenantId: auth.session.tenantId,
+    actorId: auth.session.id,
+    action: "QUESTION_UPDATED",
+    entity: "Questionnaire",
+    entityId: result.updated.id,
+    diffJson: { questionId: id, updates } as Prisma.InputJsonValue
+  } }).catch(() => null);
 
   return Response.json({
-    questionnaireId: updated.id,
-    questions
+    questionnaireId: result.updated.id,
+    questions: result.questions
   });
 }
 
@@ -123,37 +80,21 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
   }
 
   const type = resolveType(request.nextUrl.searchParams);
-  const current = await getCurrentQuestionnaire(type);
-  const questions = Array.isArray(current.sectionsJson) ? [...current.sectionsJson] : [];
-  const filtered = questions.filter((entry) => (entry as { id?: string })?.id !== id);
-
-  if (filtered.length === questions.length) {
+  const result = await deleteQuestionForTenant(auth.session.tenantId, type, id);
+  if (!result) {
     return Response.json({ error: "Question not found." }, { status: 404 });
   }
 
-  const updated = await prisma.questionnaire.update({
-    where: { id: current.id },
-    data: {
-      sectionsJson: filtered as Prisma.InputJsonValue
-    }
-  });
-
-  const tenantId = await ensureTenantId();
-  if (tenantId) {
-    await prisma.auditLog.create({
-      data: {
-        tenantId,
-        actorId: auth.session.id,
-        action: "QUESTION_DELETED",
-        entity: "Questionnaire",
-        entityId: updated.id,
-        diffJson: { questionId: id } as Prisma.InputJsonValue
-      }
-    }).catch(() => null);
-  }
+  await prisma.auditLog.create({ data: { tenantId: auth.session.tenantId,
+    actorId: auth.session.id,
+    action: "QUESTION_DELETED",
+    entity: "Questionnaire",
+    entityId: result.updated.id,
+    diffJson: { questionId: id } as Prisma.InputJsonValue
+  } }).catch(() => null);
 
   return Response.json({
-    questionnaireId: updated.id,
-    questions: filtered
+    questionnaireId: result.updated.id,
+    questions: result.questions
   });
 }

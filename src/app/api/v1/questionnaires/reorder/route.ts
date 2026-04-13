@@ -7,30 +7,7 @@ import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { ReorderSchema } from "@/lib/validations";
 import { validateBody, apiError } from "@/lib/api-response";
 import { resolveType } from "@/lib/questionnaireType";
-
-async function getCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
-  const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true, type },
-    orderBy: { createdAt: "desc" }
-  });
-  if (current) return current;
-  return prisma.questionnaire.create({
-    data: {
-      version: "v1",
-      type,
-      sectionsJson: [],
-      isActive: true
-    }
-  });
-}
-
-async function ensureTenantId() {
-  const tenant = await prisma.tenant.findFirst({
-    orderBy: { createdAt: "asc" },
-    select: { id: true }
-  });
-  return tenant?.id || null;
-}
+import { reorderQuestionsForTenant } from "@/lib/questionnaireTenant";
 
 export async function POST(request: NextRequest) {
   const originError = enforceSameOrigin(request);
@@ -55,49 +32,21 @@ export async function POST(request: NextRequest) {
   const { startIndex, endIndex } = validation.data;
 
   const type = resolveType(request.nextUrl.searchParams);
-  const current = await getCurrentQuestionnaire(type);
-  const questions = Array.isArray(current.sectionsJson) ? [...current.sectionsJson] : [];
-
-  if (
-    startIndex < 0 ||
-    endIndex < 0 ||
-    startIndex >= questions.length ||
-    endIndex >= questions.length
-  ) {
-    return Response.json({ error: "Index out of range." }, { status: 400 });
+  const result = await reorderQuestionsForTenant(auth.session.tenantId, type, startIndex, endIndex);
+  if ("error" in result) {
+    return Response.json({ error: result.error }, { status: 400 });
   }
 
-  const [removed] = questions.splice(startIndex, 1);
-  questions.splice(endIndex, 0, removed);
-
-  const withOrderIndex = questions.map((entry, index) => ({
-    ...(entry as Record<string, unknown>),
-    order_index: index
-  }));
-
-  const updated = await prisma.questionnaire.update({
-    where: { id: current.id },
-    data: {
-      sectionsJson: withOrderIndex as Prisma.InputJsonValue
-    }
-  });
-
-  const tenantId = await ensureTenantId();
-  if (tenantId) {
-    await prisma.auditLog.create({
-      data: {
-        tenantId,
-        actorId: auth.session.id,
-        action: "QUESTION_REORDERED",
-        entity: "Questionnaire",
-        entityId: updated.id,
-        diffJson: { startIndex, endIndex } as Prisma.InputJsonValue
-      }
-    }).catch(() => null);
-  }
+  await prisma.auditLog.create({ data: { tenantId: auth.session.tenantId,
+    actorId: auth.session.id,
+    action: "QUESTION_REORDERED",
+    entity: "Questionnaire",
+    entityId: result.updated.id,
+    diffJson: { startIndex, endIndex } as Prisma.InputJsonValue
+  } }).catch(() => null);
 
   return Response.json({
-    questionnaireId: updated.id,
-    questions: withOrderIndex
+    questionnaireId: result.updated.id,
+    questions: result.questions
   });
 }

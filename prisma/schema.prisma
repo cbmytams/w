@@ -76,6 +76,7 @@ model Tenant {
 
   users   User[]
   talents Talent[]
+  questionnaires Questionnaire[]
   categories Category[]
   tags Tag[]
   auditLogs AuditLog[]
@@ -232,15 +233,18 @@ model RateCard {
 }
 
 model Questionnaire {
-  id          String   @id @default(cuid())
-  version     String
-  type        QuestionnaireType
+  id           String   @id @default(cuid())
+  tenantId     String
+  version      String
+  type         QuestionnaireType
   sectionsJson Json
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
 
+  tenant Tenant @relation(fields: [tenantId], references: [id])
   responses QuestionnaireResponse[]
 
+  @@index([tenantId])
   @@index([version])
   @@index([type])
 }

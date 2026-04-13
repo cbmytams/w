@@ -7,8 +7,7 @@ import { normalizeRange } from "./utils";
 export async function getAuditEvents(filters: DashboardFilters & { actor?: string; entity?: string; tenantId: string }): Promise<AuditEvent[]> {
     const normalized = normalizeRange(filters.from, filters.to);
 
-    const logs = await prisma.auditLog.findMany({ where: {
-            tenantId: filters.tenantId,
+    const logs = await prisma.auditLog.findMany({ where: { tenantId: filters.tenantId,
             createdAt: {
                 gte: normalized.start,
                 lte: normalized.end

@@ -6,6 +6,7 @@ import { BRANDS_QUESTIONNAIRE_MAP, TALENTS_QUESTIONNAIRE_MAP } from "@/lib/quest
 import { QuestionnaireSubmitSchema } from "@/lib/validations";
 import { validateBody, apiError } from "@/lib/api-response";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
+import { resolveConfiguredTenantId } from "@/lib/questionnaireTenant";
 
 export async function POST(request: NextRequest) {
     try {
@@ -39,31 +40,19 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const configuredTenantSlug = process.env.DEFAULT_TENANT_SLUG?.trim() || null;
-        if (!configuredTenantSlug) {
+        const tenantId = await resolveConfiguredTenantId();
+        if (!tenantId) {
             return NextResponse.json(
                 { error: "No tenant configured for questionnaire submissions." },
                 { status: 503 }
             );
         }
 
-        const tenant = await db.tenant.findUnique({ where: { slug: configuredTenantSlug } });
-
-        if (!tenant) {
-            return NextResponse.json(
-                { error: "No tenant configured for questionnaire submissions." },
-                { status: 503 }
-            );
-        }
-
-        // Ensure an active questionnaire exists for this type.
-        const questionnaire = await db.questionnaire.findFirst({
-            where: {
-                type: type === "BRANDS" ? "BRANDS" : "TALENTS",
-                isActive: true
-            },
-            orderBy: { createdAt: "desc" }
-        });
+        const questionnaire = await db.questionnaire.findFirst({ where: {
+            tenantId,
+            type: type === "BRANDS" ? "BRANDS" : "TALENTS",
+            isActive: true
+        }, orderBy: { createdAt: "desc" } });
 
         if (!questionnaire) {
             return NextResponse.json(
@@ -86,7 +75,7 @@ export async function POST(request: NextRequest) {
                 data: {
                     name: finalName,
                     slug,
-                    tenantId: tenant.id,
+                    tenantId,
                 }
             });
 

@@ -20,14 +20,12 @@ export async function fetchKpiRawData(filters: DashboardFilters, tenantId: strin
         prisma.talent.count({ where: { tenantId, ...talentWhereQuery, createdAt: { gte: normalized.start, lte: normalized.end } } }),
         prisma.talent.count({ where: { tenantId, ...talentWhereQuery, createdAt: { gte: previousStart, lte: previousEnd } } }),
         // [2-3] leadsQualified
-        prisma.talent.count({ where: {
-                tenantId,
+        prisma.talent.count({ where: { tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 updatedAt: { gte: normalized.start, lte: normalized.end }
             } }),
-        prisma.talent.count({ where: {
-                tenantId,
+        prisma.talent.count({ where: { tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 updatedAt: { gte: previousStart, lte: previousEnd }
@@ -36,21 +34,18 @@ export async function fetchKpiRawData(filters: DashboardFilters, tenantId: strin
         prisma.questionnaireResponse.count({ where: { ...responseWhereQuery, talent: { tenantId }, submittedAt: { gte: normalized.start, lte: normalized.end } } }),
         prisma.questionnaireResponse.count({ where: { ...responseWhereQuery, talent: { tenantId }, submittedAt: { gte: previousStart, lte: previousEnd } } }),
         // [6-7] completedResponses
-        prisma.questionnaireResponse.count({ where: {
+        prisma.questionnaireResponse.count({ where: { talent: { tenantId },
                 ...responseWhereQuery,
-                talent: { tenantId },
                 submittedAt: { gte: normalized.start, lte: normalized.end },
                 completionRate: { gte: 100 }
             } }),
-        prisma.questionnaireResponse.count({ where: {
+        prisma.questionnaireResponse.count({ where: { talent: { tenantId },
                 ...responseWhereQuery,
-                talent: { tenantId },
                 submittedAt: { gte: previousStart, lte: previousEnd },
                 completionRate: { gte: 100 }
             } }),
         // [8-9] processing times
-        prisma.talent.findMany({ where: {
-                tenantId,
+        prisma.talent.findMany({ where: { tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 updatedAt: { gte: normalized.start, lte: normalized.end }
@@ -58,8 +53,7 @@ export async function fetchKpiRawData(filters: DashboardFilters, tenantId: strin
             select: { createdAt: true, updatedAt: true },
             take: 5000
         }),
-        prisma.talent.findMany({ where: {
-                tenantId,
+        prisma.talent.findMany({ where: { tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 updatedAt: { gte: previousStart, lte: previousEnd }
@@ -68,15 +62,13 @@ export async function fetchKpiRawData(filters: DashboardFilters, tenantId: strin
             take: 5000
         }),
         // [10-11] interviews
-        prisma.talent.count({ where: {
-                tenantId,
+        prisma.talent.count({ where: { tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 contacts: { some: {} },
                 updatedAt: { gte: normalized.start, lte: normalized.end }
             } }),
-        prisma.talent.count({ where: {
-                tenantId,
+        prisma.talent.count({ where: { tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 contacts: { some: {} },

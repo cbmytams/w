@@ -6,29 +6,21 @@ import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestionList } from "@/lib/questionnaireValidation";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { resolveType } from "@/lib/questionnaireType";
-
-async function getOrCreateCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
-  const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true, type },
-    orderBy: { createdAt: "desc" }
-  });
-
-  if (current) return current;
-
-  return prisma.questionnaire.create({
-    data: {
-      version: "v1",
-      type,
-      sectionsJson: [],
-      isActive: true
-    }
-  });
-}
+import {
+  getOrCreateCurrentQuestionnaireForTenant,
+  replaceQuestionnaireSectionsForTenant,
+  resolveConfiguredTenantId
+} from "@/lib/questionnaireTenant";
 
 export async function GET(request: NextRequest) {
   try {
     const type = resolveType(request.nextUrl.searchParams);
-    const questionnaire = await getOrCreateCurrentQuestionnaire(type);
+    const tenantId = await resolveConfiguredTenantId();
+    if (!tenantId) {
+      return Response.json({ success: false, error: "questionnaire_unavailable" }, { status: 503 });
+    }
+
+    const questionnaire = await getOrCreateCurrentQuestionnaireForTenant(tenantId, type);
     const questions = Array.isArray(questionnaire.sectionsJson) ? questionnaire.sectionsJson : [];
 
     return Response.json({
@@ -65,31 +57,25 @@ export async function PUT(request: NextRequest) {
   }
 
   const type = resolveType(request.nextUrl.searchParams);
-  const current = await getOrCreateCurrentQuestionnaire(type);
+  const current = await getOrCreateCurrentQuestionnaireForTenant(auth.session.tenantId, type);
   const version = body?.version || current.version;
-  const updated = await prisma.questionnaire.update({
-    where: { id: current.id },
-    data: {
-      sectionsJson: questions as Prisma.InputJsonValue,
-      version
-    }
-  });
+  const updated = await replaceQuestionnaireSectionsForTenant(
+    auth.session.tenantId,
+    type,
+    questions as Prisma.InputJsonValue,
+    version
+  );
 
-  if (auth.session.tenantId) {
-    await prisma.auditLog.create({
-      data: {
-        tenantId: auth.session.tenantId,
-        actorId: auth.session.id,
-        action: "QUESTIONNAIRE_REPLACED",
-        entity: "Questionnaire",
-        entityId: updated.id,
-        diffJson: {
-          count: questions.length,
-          version
-        } as Prisma.InputJsonValue
-      }
-    }).catch(() => null);
-  }
+  await prisma.auditLog.create({ data: { tenantId: auth.session.tenantId,
+    actorId: auth.session.id,
+    action: "QUESTIONNAIRE_REPLACED",
+    entity: "Questionnaire",
+    entityId: updated.id,
+    diffJson: {
+      count: questions.length,
+      version
+    } as Prisma.InputJsonValue
+  } }).catch(() => null);
 
   return Response.json({
     questionnaireId: updated.id,

@@ -6,16 +6,11 @@ const enforceRateLimitMock = jest.fn();
 const sanitizeQuestionMock = jest.fn();
 const sanitizeQuestionUpdatesMock = jest.fn();
 const validateBodyMock = jest.fn();
+const appendQuestionForTenantMock = jest.fn();
+const updateQuestionForTenantMock = jest.fn();
+const reorderQuestionsForTenantMock = jest.fn();
 
 const prismaMock = {
-  questionnaire: {
-    findFirst: jest.fn(),
-    create: jest.fn(),
-    update: jest.fn(),
-  },
-  tenant: {
-    findFirst: jest.fn(),
-  },
   auditLog: {
     create: jest.fn(),
   },
@@ -41,6 +36,13 @@ jest.mock("@/lib/api-response", () => ({
   apiError: (message: string) => Response.json({ error: message }, { status: 400 }),
 }));
 
+jest.mock("@/lib/questionnaireTenant", () => ({
+  appendQuestionForTenant: (...args: unknown[]) => appendQuestionForTenantMock(...args),
+  updateQuestionForTenant: (...args: unknown[]) => updateQuestionForTenantMock(...args),
+  reorderQuestionsForTenant: (...args: unknown[]) => reorderQuestionsForTenantMock(...args),
+  deleteQuestionForTenant: jest.fn(),
+}));
+
 jest.mock("@/lib/db", () => ({ prisma: prismaMock }));
 
 import { POST as createQuestion } from "@/app/api/v1/questionnaires/questions/route";
@@ -54,26 +56,22 @@ describe("questionnaires admin routes type scoping", () => {
     enforceRateLimitMock.mockReturnValue(null);
     requireDashboardRoleMock.mockResolvedValue({
       response: null,
-      session: { id: "admin-user", role: "ADMIN" },
+      session: { id: "admin-user", role: "ADMIN", tenantId: "tenant-admin" },
     });
-    prismaMock.tenant.findFirst.mockResolvedValue(null);
     prismaMock.auditLog.create.mockResolvedValue(null);
   });
 
-  it("uses BRANDS type for questions POST lookup and creation", async () => {
+  it("uses BRANDS type and tenantId for questions POST", async () => {
     sanitizeQuestionMock.mockReturnValue({
       id: "brand_q_1",
       category: "QUICK_LEAD",
       type: "single",
       question: "Test question",
     });
-    prismaMock.questionnaire.findFirst.mockResolvedValue(null);
-    prismaMock.questionnaire.create.mockResolvedValue({
+    appendQuestionForTenantMock.mockResolvedValue({
       id: "questionnaire-brand-1",
-      sectionsJson: [],
-    });
-    prismaMock.questionnaire.update.mockResolvedValue({
-      id: "questionnaire-brand-1",
+      updated: { id: "questionnaire-brand-1" },
+      questions: [],
     });
 
     const request = new NextRequest("https://wafia.test/api/v1/questionnaires/questions?type=BRANDS", {
@@ -85,28 +83,18 @@ describe("questionnaires admin routes type scoping", () => {
     const response = await createQuestion(request);
 
     expect(response.status).toBe(200);
-    expect(prismaMock.questionnaire.findFirst).toHaveBeenCalledWith({
-      where: { isActive: true, type: "BRANDS" },
-      orderBy: { createdAt: "desc" },
-    });
-    expect(prismaMock.questionnaire.create).toHaveBeenCalledWith({
-      data: {
-        version: "v1",
-        type: "BRANDS",
-        sectionsJson: [],
-        isActive: true,
-      },
-    });
+    expect(appendQuestionForTenantMock).toHaveBeenCalledWith(
+      "tenant-admin",
+      "BRANDS",
+      expect.objectContaining({ id: "brand_q_1" }),
+    );
   });
 
-  it("uses BRANDS type for questions/[id] PATCH lookup", async () => {
+  it("uses BRANDS type and tenantId for questions/[id] PATCH", async () => {
     sanitizeQuestionUpdatesMock.mockReturnValue({ question: "Updated question" });
-    prismaMock.questionnaire.findFirst.mockResolvedValue({
-      id: "questionnaire-brand-2",
-      sectionsJson: [{ id: "brand_q_2", question: "Before" }],
-    });
-    prismaMock.questionnaire.update.mockResolvedValue({
-      id: "questionnaire-brand-2",
+    updateQuestionForTenantMock.mockResolvedValue({
+      updated: { id: "questionnaire-brand-2" },
+      questions: [{ id: "brand_q_2", question: "After" }],
     });
 
     const request = new NextRequest("https://wafia.test/api/v1/questionnaires/questions/brand_q_2?type=BRANDS", {
@@ -120,23 +108,22 @@ describe("questionnaires admin routes type scoping", () => {
     });
 
     expect(response.status).toBe(200);
-    expect(prismaMock.questionnaire.findFirst).toHaveBeenCalledWith({
-      where: { isActive: true, type: "BRANDS" },
-      orderBy: { createdAt: "desc" },
-    });
+    expect(updateQuestionForTenantMock).toHaveBeenCalledWith(
+      "tenant-admin",
+      "BRANDS",
+      "brand_q_2",
+      expect.objectContaining({ question: "Updated question" }),
+    );
   });
 
-  it("uses BRANDS type for reorder POST lookup", async () => {
+  it("uses BRANDS type and tenantId for reorder POST", async () => {
     validateBodyMock.mockReturnValue({
       success: true,
       data: { startIndex: 0, endIndex: 0 },
     });
-    prismaMock.questionnaire.findFirst.mockResolvedValue({
-      id: "questionnaire-brand-3",
-      sectionsJson: [{ id: "brand_q_3", order_index: 0 }],
-    });
-    prismaMock.questionnaire.update.mockResolvedValue({
-      id: "questionnaire-brand-3",
+    reorderQuestionsForTenantMock.mockResolvedValue({
+      updated: { id: "questionnaire-brand-3" },
+      questions: [{ id: "brand_q_3", order_index: 0 }],
     });
 
     const request = new NextRequest("https://wafia.test/api/v1/questionnaires/reorder?type=BRANDS", {
@@ -148,9 +135,6 @@ describe("questionnaires admin routes type scoping", () => {
     const response = await reorderQuestions(request);
 
     expect(response.status).toBe(200);
-    expect(prismaMock.questionnaire.findFirst).toHaveBeenCalledWith({
-      where: { isActive: true, type: "BRANDS" },
-      orderBy: { createdAt: "desc" },
-    });
+    expect(reorderQuestionsForTenantMock).toHaveBeenCalledWith("tenant-admin", "BRANDS", 0, 0);
   });
 });

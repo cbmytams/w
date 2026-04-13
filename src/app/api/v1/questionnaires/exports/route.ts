@@ -4,6 +4,7 @@ import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { prisma } from "@/lib/db";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { QuestionnaireType, type QuestionnaireResponse } from "@prisma/client";
+import { getQuestionnaireVersionForTenant } from "@/lib/questionnaireTenant";
 
 const BATCH_SIZE = 500;
 
@@ -82,15 +83,7 @@ function getQuestionHeaders(sectionsJson: unknown) {
     };
 }
 
-async function resolveAuditTenantId() {
-    const tenant = await prisma.tenant.findFirst({
-        orderBy: { createdAt: "asc" },
-        select: { id: true }
-    });
-    return tenant?.id ?? null;
-}
-
-function createCSVStream(questionnaire: QuestionnaireForExport) {
+function createCSVStream(questionnaire: QuestionnaireForExport, tenantId: string) {
     const encoder = new TextEncoder();
     const { orderedQuestions, questionHeaders } = getQuestionHeaders(questionnaire.sectionsJson);
 
@@ -107,8 +100,7 @@ function createCSVStream(questionnaire: QuestionnaireForExport) {
                 let hasMore = true;
 
                 while (hasMore) {
-                    const chunkResponses: Array<Record<string, unknown> & { id: string, talentId: string, type: string, score: number | null, completionRate: number, submittedAt: Date, answersJson: unknown }> = await prisma.questionnaireResponse.findMany({
-                        where: { questionnaireId: questionnaire.id, type: questionnaire.type },
+                    const chunkResponses: Array<Record<string, unknown> & { id: string, talentId: string, type: string, score: number | null, completionRate: number, submittedAt: Date, answersJson: unknown }> = await prisma.questionnaireResponse.findMany({ where: { questionnaireId: questionnaire.id, type: questionnaire.type, talent: { tenantId } },
                         take: BATCH_SIZE,
                         skip: cursor ? 1 : 0,
                         cursor: cursor ? { id: cursor } : undefined,
@@ -162,7 +154,7 @@ function createCSVStream(questionnaire: QuestionnaireForExport) {
     });
 }
 
-function createJSONStream(questionnaire: QuestionnaireForExport) {
+function createJSONStream(questionnaire: QuestionnaireForExport, tenantId: string) {
     const encoder = new TextEncoder();
 
     const stream = new ReadableStream({
@@ -175,8 +167,7 @@ function createJSONStream(questionnaire: QuestionnaireForExport) {
                 let isFirst = true;
 
                 while (hasMore) {
-                    const chunkResponses: QuestionnaireResponse[] = await prisma.questionnaireResponse.findMany({
-                        where: { questionnaireId: questionnaire.id, type: questionnaire.type },
+                    const chunkResponses: QuestionnaireResponse[] = await prisma.questionnaireResponse.findMany({ where: { questionnaireId: questionnaire.id, type: questionnaire.type, talent: { tenantId } },
                         take: BATCH_SIZE,
                         skip: cursor ? 1 : 0,
                         cursor: cursor ? { id: cursor } : undefined,
@@ -248,37 +239,23 @@ export async function GET(request: NextRequest) {
     }
 
     const type = typeParam as QuestionnaireType;
-    const questionnaire = await prisma.questionnaire.findFirst({
-        where: { version, type },
-        select: {
-            id: true,
-            version: true,
-            type: true,
-            sectionsJson: true
-        }
-    });
+    const questionnaire = await getQuestionnaireVersionForTenant(auth.session.tenantId, type, version);
 
     if (!questionnaire) {
         return Response.json({ error: "Questionnaire version not found" }, { status: 404 });
     }
 
-    const tenantId = await resolveAuditTenantId();
-    if (tenantId) {
-        await prisma.auditLog.create({
-            data: {
-                tenantId,
-                actorId: auth.session.id,
-                action: "EXPORT_DATA",
-                entity: "QuestionnaireResponse",
-                entityId: `${type}-${version}-${format}`,
-                diffJson: { format, type, version, ip: request.headers.get("x-forwarded-for") || "unknown" }
-            }
-        }).catch(() => null);
-    }
+    await prisma.auditLog.create({ data: { tenantId: auth.session.tenantId,
+        actorId: auth.session.id,
+        action: "EXPORT_DATA",
+        entity: "QuestionnaireResponse",
+        entityId: `${type}-${version}-${format}`,
+        diffJson: { format, type, version, ip: request.headers.get("x-forwarded-for") || "unknown" }
+    } }).catch(() => null);
 
     if (format === "json") {
-        return createJSONStream(questionnaire);
+        return createJSONStream(questionnaire, auth.session.tenantId);
     }
 
-    return createCSVStream(questionnaire);
+    return createCSVStream(questionnaire, auth.session.tenantId);
 }

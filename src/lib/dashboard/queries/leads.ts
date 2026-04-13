@@ -33,9 +33,7 @@ export async function getLeadsPage(params: {
         : {};
 
     while (records.length < limit) {
-        const talents = await prisma.talent.findMany({
-            where: {
-                tenantId: params.tenantId,
+        const talents = await prisma.talent.findMany({ where: { tenantId: params.tenantId,
                 ...talentWhereQuery,
                 createdAt: {
                     gte: normalized.start,
