@@ -4,11 +4,23 @@ import { getAllArticles, type Article } from "../lib/blog";
 export default function TestPage() {
   const [arts, setArts] = useState<Article[]>([]);
   useEffect(() => {
-    try {
-      setArts(getAllArticles());
-    } catch (error) {
-      void error;
-    }
+    let isCancelled = false;
+
+    const load = async () => {
+      try {
+        const all = await getAllArticles();
+        if (isCancelled) return;
+        setArts(all);
+      } catch (error) {
+        void error;
+      }
+    };
+
+    void load();
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
   return (
     <div style={{ padding: 40 }}>

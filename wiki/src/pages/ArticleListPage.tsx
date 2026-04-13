@@ -30,18 +30,26 @@ export default function ArticleListPage() {
   const { isDark, toggle: toggleDark } = useDarkMode();
 
   useEffect(() => {
-    const all = getAllArticles();
-    console.log(
-      "Articles:",
-      all.map((a) => ({ slug: a.slug, theme: a.theme, t: typeof a.theme }))
-    );
-    if (type === "theme") {
-      setArticles(all.filter((a) => a.theme === id));
-    } else if (type === "platform") {
-      setArticles(all.filter((a) => a.platform === id));
-    } else {
-      setArticles(all);
-    }
+    let isCancelled = false;
+
+    const load = async () => {
+      const all = await getAllArticles();
+      if (isCancelled) return;
+
+      if (type === "theme") {
+        setArticles(all.filter((a) => a.theme === id));
+      } else if (type === "platform") {
+        setArticles(all.filter((a) => a.platform === id));
+      } else {
+        setArticles(all);
+      }
+    };
+
+    void load();
+
+    return () => {
+      isCancelled = true;
+    };
   }, [type, id]);
 
   const title = id

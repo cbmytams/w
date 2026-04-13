@@ -86,11 +86,21 @@ export default function ArticleReaderPage() {
 
   // --- Load article ---
   useEffect(() => {
-    if (slug) {
-      const found = getArticleBySlug(slug);
+    let isCancelled = false;
+
+    const loadArticle = async () => {
+      if (!slug) return;
+      const found = await getArticleBySlug(slug);
+      if (isCancelled) return;
       setArticle(found);
       setChapter(0);
-    }
+    };
+
+    void loadArticle();
+
+    return () => {
+      isCancelled = true;
+    };
   }, [slug]);
 
   // --- SEO: dynamic page title ---

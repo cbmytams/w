@@ -41,28 +41,39 @@ export default function SearchDialog() {
 
   useEffect(() => {
     if (query.length > 1) {
-      const articles = getAllArticles();
-      const q = query.toLowerCase();
+      let isCancelled = false;
 
-      const scored = articles.map((a) => {
-        let score = 0;
-        if (a.title.toLowerCase().includes(q)) score += 10;
-        if (a.category.toLowerCase().includes(q)) score += 5;
-        if (a.platform?.toLowerCase().includes(q)) score += 8;
-        if (a.theme?.toLowerCase().includes(q)) score += 8;
-        if (a.chapters?.some((c) => c.title.toLowerCase().includes(q)))
-          score += 3;
-        if (a.chapters?.some((c) => c.content.toLowerCase().includes(q)))
-          score += 1;
-        return { article: a, score };
-      });
+      const search = async () => {
+        const articles = await getAllArticles();
+        if (isCancelled) return;
 
-      const filtered = scored
-        .filter((s) => s.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .map((s) => s.article);
+        const q = query.toLowerCase();
+        const scored = articles.map((a) => {
+          let score = 0;
+          if (a.title.toLowerCase().includes(q)) score += 10;
+          if (a.category.toLowerCase().includes(q)) score += 5;
+          if (a.platform?.toLowerCase().includes(q)) score += 8;
+          if (a.theme?.toLowerCase().includes(q)) score += 8;
+          if (a.chapters?.some((c) => c.title.toLowerCase().includes(q)))
+            score += 3;
+          if (a.chapters?.some((c) => c.content.toLowerCase().includes(q)))
+            score += 1;
+          return { article: a, score };
+        });
 
-      setResults(filtered);
+        const filtered = scored
+          .filter((s) => s.score > 0)
+          .sort((a, b) => b.score - a.score)
+          .map((s) => s.article);
+
+        setResults(filtered);
+      };
+
+      void search();
+
+      return () => {
+        isCancelled = true;
+      };
     } else {
       setResults([]);
     }

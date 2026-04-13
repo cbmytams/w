@@ -19,8 +19,12 @@ export interface Article {
 const mdxFiles = import.meta.glob("/src/content/blog/**/*.{md,mdx}", {
   query: "?raw",
   import: "default",
-  eager: true,
 });
+
+type MarkdownLoader = () => Promise<string>;
+
+let articleCache: Article[] | null = null;
+let articleLoadPromise: Promise<Article[]> | null = null;
 
 export function parseMarkdownToChapters(content: string): Chapter[] {
   const chapters: Chapter[] = [];
@@ -48,11 +52,11 @@ export function parseMarkdownToChapters(content: string): Chapter[] {
   return chapters;
 }
 
-export function getAllArticles(): Article[] {
+async function buildArticles(): Promise<Article[]> {
   const articles: Article[] = [];
   for (const path in mdxFiles) {
     try {
-      const rawContent = mdxFiles[path] as string;
+      const rawContent = await (mdxFiles[path] as MarkdownLoader)();
       if (typeof rawContent !== "string") {
         continue;
       }
@@ -128,7 +132,26 @@ export function getAllArticles(): Article[] {
   );
 }
 
-export function getArticleBySlug(slug: string): Article | null {
-  const articles = getAllArticles();
+export async function getAllArticles(): Promise<Article[]> {
+  if (articleCache) {
+    return articleCache;
+  }
+
+  if (!articleLoadPromise) {
+    articleLoadPromise = buildArticles()
+      .then((articles) => {
+        articleCache = articles;
+        return articles;
+      })
+      .finally(() => {
+        articleLoadPromise = null;
+      });
+  }
+
+  return articleLoadPromise;
+}
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  const articles = await getAllArticles();
   return articles.find((a) => a.slug === slug) || null;
 }
