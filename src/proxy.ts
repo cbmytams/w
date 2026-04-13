@@ -6,7 +6,7 @@ import {
   type DashboardRole,
 } from "@/lib/rbac";
 
-function buildCspHeader(nonce: string, allowSameOriginFrame: boolean) {
+function buildDefaultCspHeader(nonce: string, allowSameOriginFrame: boolean) {
   return [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
@@ -21,9 +21,31 @@ function buildCspHeader(nonce: string, allowSameOriginFrame: boolean) {
   ].join("; ");
 }
 
+function buildQuestionnaireStaticCspHeader() {
+  return [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "img-src 'self' data: https:",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    "connect-src 'self' https:",
+    "frame-ancestors 'self'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "object-src 'none'",
+  ].join("; ");
+}
+
 function allowSameOriginFrame(pathname: string) {
   return (
     pathname.startsWith("/questionnaire") ||
+    pathname.startsWith("/questionnaire-brands") ||
+    pathname.startsWith("/questionnaire-talents")
+  );
+}
+
+function isQuestionnaireStaticPath(pathname: string) {
+  return (
     pathname.startsWith("/questionnaire-brands") ||
     pathname.startsWith("/questionnaire-talents")
   );
@@ -35,9 +57,12 @@ function applySecurityHeaders(
   pathname: string
 ) {
   const allowFrame = allowSameOriginFrame(pathname);
+  const isQuestionnaireStatic = isQuestionnaireStaticPath(pathname);
   response.headers.set(
     "Content-Security-Policy",
-    buildCspHeader(nonce, allowFrame)
+    isQuestionnaireStatic
+      ? buildQuestionnaireStaticCspHeader()
+      : buildDefaultCspHeader(nonce, allowFrame)
   );
   response.headers.set(
     "Strict-Transport-Security",
