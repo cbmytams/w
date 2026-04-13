@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
   const originError = enforceSameOrigin(request);
   if (originError) return originError;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimit(request, {
     scope: "admin-session-login",
     limit: 8,
     windowMs: 15 * 60 * 1000,

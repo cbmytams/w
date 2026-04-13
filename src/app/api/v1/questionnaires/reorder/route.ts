@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
   const originError = enforceSameOrigin(request);
   if (originError) return originError;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimit(request, {
     scope: "questionnaire-reorder",
     limit: 30,
     windowMs: 60 * 1000,

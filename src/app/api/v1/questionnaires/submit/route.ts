@@ -8,7 +8,8 @@ import {
 } from "@/lib/questionnaireMap";
 import { QuestionnaireSubmitSchema } from "@/lib/validations";
 import { validateBody, apiError, apiSuccess } from "@/lib/api-response";
-import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
+import { enforceSameOrigin } from "@/lib/requestSecurity";
+import { enforceRateLimitWithUpstash } from "@/lib/rate-limit-middleware";
 import { resolveConfiguredTenantId } from "@/lib/questionnaireTenant";
 import { logError } from "@/lib/logger";
 
@@ -17,10 +18,9 @@ export async function POST(request: NextRequest) {
     const originError = enforceSameOrigin(request);
     if (originError) return originError;
 
-    const rateLimitError = enforceRateLimit(request, {
+    const rateLimitError = await enforceRateLimitWithUpstash(request, {
       scope: "questionnaire-submit",
-      limit: 20,
-      windowMs: 60 * 1000,
+      kind: "default",
     });
     if (rateLimitError) return rateLimitError;
 

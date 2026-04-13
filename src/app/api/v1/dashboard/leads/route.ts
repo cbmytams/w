@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
   const auth = await requireDashboardRole(request);
   if (auth.response) return auth.response;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimit(request, {
     scope: "dashboard-leads-get",
     limit: 120,
     windowMs: 60 * 1000,
@@ -49,7 +49,7 @@ export async function PATCH(request: NextRequest) {
   const originError = enforceSameOrigin(request);
   if (originError) return originError;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimit(request, {
     scope: "dashboard-leads-patch",
     limit: 60,
     windowMs: 60 * 1000,

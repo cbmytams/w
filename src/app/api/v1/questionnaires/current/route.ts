@@ -4,10 +4,11 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { apiError, apiSuccess, validateBody } from "@/lib/api-response";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
-import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
+import { enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestionList } from "@/lib/questionnaireValidation";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { resolveType } from "@/lib/questionnaireType";
+import { enforceRateLimitWithUpstash } from "@/lib/rate-limit-middleware";
 import {
   getOrCreateCurrentQuestionnaireForTenant,
   replaceQuestionnaireSectionsForTenant,
@@ -21,6 +22,12 @@ const QuestionnaireCurrentSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
+    const rateLimitError = await enforceRateLimitWithUpstash(request, {
+      scope: "questionnaire-current-get",
+      kind: "default",
+    });
+    if (rateLimitError) return rateLimitError;
+
     const type = resolveType(request.nextUrl.searchParams);
     const tenantId = await resolveConfiguredTenantId();
     if (!tenantId) {
@@ -49,10 +56,9 @@ export async function PUT(request: NextRequest) {
   const originError = enforceSameOrigin(request);
   if (originError) return originError;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimitWithUpstash(request, {
     scope: "questionnaire-current-put",
-    limit: 30,
-    windowMs: 60 * 1000,
+    kind: "default",
   });
   if (rateLimitError) return rateLimitError;
 

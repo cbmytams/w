@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   const auth = await requireDashboardRole(request, DASHBOARD_ROLES.MANAGER);
   if (auth.response) return auth.response;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimit(request, {
     scope: "platform-talents-list",
     limit: 120,
     windowMs: 60 * 1000,

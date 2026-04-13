@@ -2,13 +2,9 @@ import { NextRequest } from "next/server";
 import { ContactFormSchema } from "@/lib/validations";
 import { validateBody, apiError, apiSuccess } from "@/lib/api-response";
 import { logError } from "@/lib/logger";
+import { enforceRateLimitWithUpstash } from "@/lib/rate-limit-middleware";
 
 export const runtime = "nodejs";
-
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX_REQUESTS = 5;
-
-const requestBuckets = new Map<string, { count: number; resetAt: number }>();
 
 function getClientKey(request: NextRequest) {
   const forwardedFor = request.headers.get("x-forwarded-for");
@@ -16,27 +12,6 @@ function getClientKey(request: NextRequest) {
     return forwardedFor.split(",")[0]?.trim() || "unknown";
   }
   return request.headers.get("x-real-ip") || "unknown";
-}
-
-function checkRateLimit(clientKey: string) {
-  const now = Date.now();
-  const current = requestBuckets.get(clientKey);
-
-  if (!current || current.resetAt <= now) {
-    requestBuckets.set(clientKey, {
-      count: 1,
-      resetAt: now + RATE_LIMIT_WINDOW_MS,
-    });
-    return true;
-  }
-
-  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
-    return false;
-  }
-
-  current.count += 1;
-  requestBuckets.set(clientKey, current);
-  return true;
 }
 
 async function forwardToWebhook(payload: Record<string, unknown>) {
@@ -67,12 +42,11 @@ async function forwardToWebhook(payload: Record<string, unknown>) {
 
 export async function POST(request: NextRequest) {
   const clientKey = getClientKey(request);
-  if (!checkRateLimit(clientKey)) {
-    return apiError(
-      "Trop de tentatives. Merci de patienter une minute avant de recommencer.",
-      429
-    );
-  }
+  const rateLimitError = await enforceRateLimitWithUpstash(request, {
+    scope: "contact",
+    kind: "auth",
+  });
+  if (rateLimitError) return rateLimitError;
 
   const body = await request.json().catch(() => null);
   if (!body) return apiError("Payload invalide.");

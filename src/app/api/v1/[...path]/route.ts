@@ -136,7 +136,7 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
 
   const internalTokenAuthorized = hasValidInternalToken(request);
   if (!internalTokenAuthorized) {
-    const rateLimitError = enforceRateLimit(request, {
+    const rateLimitError = await enforceRateLimit(request, {
       scope: "api-v1-proxy",
       limit: 60,
       windowMs: 60 * 1000,

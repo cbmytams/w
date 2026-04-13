@@ -28,7 +28,7 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
   const originError = enforceSameOrigin(request);
   if (originError) return originError;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimit(request, {
     scope: "questionnaire-question-update",
     limit: 30,
     windowMs: 60 * 1000,
@@ -89,7 +89,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
   const originError = enforceSameOrigin(request);
   if (originError) return originError;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimit(request, {
     scope: "questionnaire-question-delete",
     limit: 30,
     windowMs: 60 * 1000,

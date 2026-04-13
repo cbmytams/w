@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const auth = await requireDashboardRole(request);
   if (auth.response) return auth.response;
 
-  const rateLimitError = enforceRateLimit(request, {
+  const rateLimitError = await enforceRateLimit(request, {
     scope: "dashboard-funnel-get",
     limit: 120,
     windowMs: 60 * 1000,
