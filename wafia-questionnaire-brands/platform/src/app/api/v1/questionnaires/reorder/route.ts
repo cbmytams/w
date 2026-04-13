@@ -1,32 +1,11 @@
 import type { NextRequest } from "next/server";
-import type { Prisma } from "@prisma/client";
+import { Prisma, QuestionnaireType } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
-
-async function getCurrentQuestionnaire() {
-  const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true },
-    orderBy: { createdAt: "desc" }
-  });
-  if (current) return current;
-  return prisma.questionnaire.create({
-    data: {
-      version: "v1",
-      sectionsJson: [],
-      isActive: true
-    }
-  });
-}
-
-async function ensureTenantId() {
-  const tenant = await prisma.tenant.findFirst({
-    orderBy: { createdAt: "asc" },
-    select: { id: true }
-  });
-  return tenant?.id || null;
-}
+import { getOrCreateCurrentQuestionnaireForTenant } from "@/lib/questionnaireTenant";
+import { requireTenantContext } from "@/lib/tenantContext";
 
 export async function POST(request: NextRequest) {
   const originError = enforceSameOrigin(request);
@@ -41,6 +20,9 @@ export async function POST(request: NextRequest) {
 
   const auth = requireDashboardRole(request, DASHBOARD_ROLES.ADMIN);
   if (auth.response) return auth.response;
+
+  const tenant = await requireTenantContext(auth.session);
+  if (tenant.response) return tenant.response;
 
   const body = await request.json().catch(() => null) as
     | { startIndex?: number; endIndex?: number }
@@ -57,7 +39,10 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Invalid payload: startIndex/endIndex required." }, { status: 400 });
   }
 
-  const current = await getCurrentQuestionnaire();
+  const current = await getOrCreateCurrentQuestionnaireForTenant(
+    tenant.tenantId,
+    QuestionnaireType.BRANDS
+  );
   const questions = Array.isArray(current.sectionsJson) ? [...current.sectionsJson] : [];
 
   if (
@@ -84,19 +69,16 @@ export async function POST(request: NextRequest) {
     }
   });
 
-  const tenantId = await ensureTenantId();
-  if (tenantId) {
-    await prisma.auditLog.create({
-      data: {
-        tenantId,
-        actorId: auth.session.sub,
-        action: "QUESTION_REORDERED",
-        entity: "Questionnaire",
-        entityId: updated.id,
-        diffJson: { startIndex, endIndex } as Prisma.InputJsonValue
-      }
-    }).catch(() => null);
-  }
+  await prisma.auditLog.create({
+    data: {
+      tenantId: tenant.tenantId,
+      actorId: auth.session.sub,
+      action: "QUESTION_REORDERED",
+      entity: "Questionnaire",
+      entityId: updated.id,
+      diffJson: { startIndex, endIndex } as Prisma.InputJsonValue
+    }
+  }).catch(() => null);
 
   return Response.json({
     questionnaireId: updated.id,

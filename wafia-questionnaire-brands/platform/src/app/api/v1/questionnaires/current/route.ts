@@ -1,41 +1,24 @@
 import type { NextRequest } from "next/server";
-import type { Prisma } from "@prisma/client";
-import { prisma } from "@/lib/db";
+import { Prisma, QuestionnaireType } from "@prisma/client";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestionList } from "@/lib/questionnaireValidation";
-
-async function getOrCreateCurrentQuestionnaire() {
-  const current = await prisma.questionnaire.findFirst({
-    where: { isActive: true },
-    orderBy: { createdAt: "desc" }
-  });
-
-  if (current) return current;
-
-  return prisma.questionnaire.create({
-    data: {
-      version: "v1",
-      sectionsJson: [],
-      isActive: true
-    }
-  });
-}
-
-async function ensureTenantId() {
-  const tenant = await prisma.tenant.findFirst({
-    orderBy: { createdAt: "asc" },
-    select: { id: true }
-  });
-  return tenant?.id || null;
-}
+import { prisma } from "@/lib/db";
+import { getOrCreateCurrentQuestionnaireForTenant } from "@/lib/questionnaireTenant";
+import { requireTenantContext } from "@/lib/tenantContext";
 
 export async function GET(request: NextRequest) {
   const auth = requireDashboardRole(request);
   if (auth.response) return auth.response;
 
-  const questionnaire = await getOrCreateCurrentQuestionnaire();
+  const tenant = await requireTenantContext(auth.session);
+  if (tenant.response) return tenant.response;
+
+  const questionnaire = await getOrCreateCurrentQuestionnaireForTenant(
+    tenant.tenantId,
+    QuestionnaireType.BRANDS
+  );
   const questions = Array.isArray(questionnaire.sectionsJson) ? questionnaire.sectionsJson : [];
 
   return Response.json({
@@ -59,6 +42,9 @@ export async function PUT(request: NextRequest) {
   const auth = requireDashboardRole(request, DASHBOARD_ROLES.ADMIN);
   if (auth.response) return auth.response;
 
+  const tenant = await requireTenantContext(auth.session);
+  if (tenant.response) return tenant.response;
+
   const body = await request.json().catch(() => null) as
     | { questions?: unknown; version?: string }
     | null;
@@ -68,7 +54,10 @@ export async function PUT(request: NextRequest) {
     return Response.json({ error: "Invalid payload: questions[] is required." }, { status: 400 });
   }
 
-  const current = await getOrCreateCurrentQuestionnaire();
+  const current = await getOrCreateCurrentQuestionnaireForTenant(
+    tenant.tenantId,
+    QuestionnaireType.BRANDS
+  );
   const version = body?.version || current.version;
   const updated = await prisma.questionnaire.update({
     where: { id: current.id },
@@ -78,22 +67,19 @@ export async function PUT(request: NextRequest) {
     }
   });
 
-  const tenantId = await ensureTenantId();
-  if (tenantId) {
-    await prisma.auditLog.create({
-      data: {
-        tenantId,
-        actorId: auth.session.sub,
-        action: "QUESTIONNAIRE_REPLACED",
-        entity: "Questionnaire",
-        entityId: updated.id,
-        diffJson: {
-          count: questions.length,
-          version
-        } as Prisma.InputJsonValue
-      }
-    }).catch(() => null);
-  }
+  await prisma.auditLog.create({
+    data: {
+      tenantId: tenant.tenantId,
+      actorId: auth.session.sub,
+      action: "QUESTIONNAIRE_REPLACED",
+      entity: "Questionnaire",
+      entityId: updated.id,
+      diffJson: {
+        count: questions.length,
+        version
+      } as Prisma.InputJsonValue
+    }
+  }).catch(() => null);
 
   return Response.json({
     questionnaireId: updated.id,

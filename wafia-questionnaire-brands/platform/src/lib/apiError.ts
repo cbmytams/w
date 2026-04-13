@@ -1,4 +1,13 @@
-import type { ApiErrorCode, ApiErrorDto } from "@/lib/contracts/types";
+type ApiErrorCode =
+  | "INTERNAL_ERROR"
+  | "INVALID_PAYLOAD"
+  | "SERVICE_UNAVAILABLE"
+  | "TENANT_MISCONFIGURED";
+
+type ApiErrorDto = {
+  code: ApiErrorCode;
+  error: string;
+};
 
 type ErrorOptions = {
   status: number;

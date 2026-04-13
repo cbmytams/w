@@ -1,27 +1,27 @@
+import { QuestionnaireType } from "@prisma/client";
 import { prisma } from "./db";
-import { QuestionnaireKind } from "@prisma/client";
 
 export async function getCurrentQuestionnaireForTenant(
   tenantId: string,
-  kind: QuestionnaireKind = QuestionnaireKind.BRAND
+  type: QuestionnaireType = QuestionnaireType.BRANDS
 ) {
   return prisma.questionnaire.findFirst({
-    where: { tenantId, kind, isActive: true },
+    where: { tenantId, type, isActive: true },
     orderBy: { createdAt: "desc" }
   });
 }
 
 export async function getOrCreateCurrentQuestionnaireForTenant(
   tenantId: string,
-  kind: QuestionnaireKind = QuestionnaireKind.BRAND
+  type: QuestionnaireType = QuestionnaireType.BRANDS
 ) {
-  const current = await getCurrentQuestionnaireForTenant(tenantId, kind);
+  const current = await getCurrentQuestionnaireForTenant(tenantId, type);
   if (current) return current;
 
   return prisma.questionnaire.create({
     data: {
       tenantId,
-      kind,
+      type,
       version: "v1",
       sectionsJson: [],
       isActive: true

@@ -1,10 +1,10 @@
 import type { NextRequest } from "next/server";
-import { QuestionnaireKind } from "@prisma/client";
+import { QuestionnaireType } from "@prisma/client";
 import { jsonApiError } from "@/lib/apiError";
 
 function parseKind(value: string | null | undefined) {
-  if (value === QuestionnaireKind.BRAND) return QuestionnaireKind.BRAND;
-  if (value === QuestionnaireKind.TALENT) return QuestionnaireKind.TALENT;
+  if (value === QuestionnaireType.BRANDS) return QuestionnaireType.BRANDS;
+  if (value === QuestionnaireType.TALENTS) return QuestionnaireType.TALENTS;
   return null;
 }
 
@@ -17,8 +17,8 @@ function inferKindFromReferrer(request: NextRequest) {
 
   try {
     const refPath = new URL(referer).pathname.toLowerCase();
-    if (refPath.includes("/questionnaire-brands")) return QuestionnaireKind.BRAND;
-    if (refPath.includes("/questionnaire")) return QuestionnaireKind.TALENT;
+    if (refPath.includes("/questionnaire-brands")) return QuestionnaireType.BRANDS;
+    if (refPath.includes("/questionnaire")) return QuestionnaireType.TALENTS;
   } catch {
     return null;
   }
@@ -28,7 +28,7 @@ function inferKindFromReferrer(request: NextRequest) {
 
 type ResolveKindOptions = {
   allowDefault?: boolean;
-  defaultKind?: QuestionnaireKind;
+  defaultKind?: QuestionnaireType;
 };
 
 export function resolveQuestionnaireKindFromRequest(
@@ -56,7 +56,7 @@ export function resolveQuestionnaireKindFromRequest(
 
   if (options.allowDefault) {
     return {
-      kind: options.defaultKind || QuestionnaireKind.BRAND,
+      kind: options.defaultKind || QuestionnaireType.BRANDS,
       response: null
     };
   }
