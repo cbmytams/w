@@ -7,7 +7,7 @@ export { getFunnelSteps } from "./queries/funnel";
 export { getLeadsPage } from "./queries/leads";
 export { getAuditEvents } from "./queries/audit";
 
-export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCard[]> {
+export async function getOverviewKpis(filters: DashboardFilters, tenantId: string): Promise<KpiCard[]> {
   const normalized = normalizeRange(filters.from, filters.to);
 
   const [
@@ -23,7 +23,7 @@ export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCar
     processingPrevious,
     interviewsCurrent,
     interviewsPrevious
-  ] = await fetchKpiRawData(filters);
+  ] = await fetchKpiRawData(filters, tenantId);
 
   const avgProcessingCurrent = average(
     processingCurrent.map((talent) => (talent.updatedAt.getTime() - talent.createdAt.getTime()) / (60 * 60 * 1000))

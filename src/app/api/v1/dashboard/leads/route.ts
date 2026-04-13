@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
   const page = await getLeadsPage({
     filters,
     role: auth.session.role as DashboardRole,
+    tenantId: auth.session.tenantId,
     cursor,
     limit,
     status,
@@ -86,9 +87,14 @@ export async function PATCH(request: NextRequest) {
   }
 
   try {
-    const updated = await prisma.talent.update({
-      where: { id },
+    const updatedCount = await prisma.talent.updateMany({ where: { id, tenantId: auth.session.tenantId },
       data: updates,
+    });
+    if (updatedCount.count === 0) {
+      return Response.json({ error: "Lead not found" }, { status: 404 });
+    }
+
+    const updated = await prisma.talent.findFirst({ where: { id, tenantId: auth.session.tenantId },
       select: {
         id: true,
         status: true,
@@ -97,13 +103,18 @@ export async function PATCH(request: NextRequest) {
       }
     });
 
+    if (!updated) {
+      return Response.json({ error: "Lead not found" }, { status: 404 });
+    }
+
     return Response.json({ ok: true, lead: updated });
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
       return Response.json({ error: "Lead not found" }, { status: 404 });
     }
 
-    console.error("Failed to update lead status", error);
+    void error;
+    // TODO(logging): replace with structured logger
     return Response.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

@@ -89,7 +89,8 @@ export async function DELETE(request: NextRequest) {
 
         return Response.json({ success: true, purgedCount: 0 });
     } catch (error) {
-        console.error("Purge error:", error);
+        void error;
+        // TODO(logging): replace with structured logger
         return Response.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }

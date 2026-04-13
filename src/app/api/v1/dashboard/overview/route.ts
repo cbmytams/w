@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   if (rateLimitError) return rateLimitError;
 
   const filters = parseDashboardFilters(request.nextUrl.searchParams);
-  const kpis = await getOverviewKpis(filters);
+  const kpis = await getOverviewKpis(filters, auth.session.tenantId);
 
   return Response.json({ kpis, filters });
 }

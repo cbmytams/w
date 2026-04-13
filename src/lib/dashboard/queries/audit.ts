@@ -4,11 +4,11 @@ import { DASHBOARD_ROLES, mapPlatformRoleToDashboardRole } from "../../rbac";
 import type { DashboardFilters, AuditEvent } from "../types";
 import { normalizeRange } from "./utils";
 
-export async function getAuditEvents(filters: DashboardFilters & { actor?: string; entity?: string }): Promise<AuditEvent[]> {
+export async function getAuditEvents(filters: DashboardFilters & { actor?: string; entity?: string; tenantId: string }): Promise<AuditEvent[]> {
     const normalized = normalizeRange(filters.from, filters.to);
 
-    const logs = await prisma.auditLog.findMany({
-        where: {
+    const logs = await prisma.auditLog.findMany({ where: {
+            tenantId: filters.tenantId,
             createdAt: {
                 gte: normalized.start,
                 lte: normalized.end
@@ -17,13 +17,11 @@ export async function getAuditEvents(filters: DashboardFilters & { actor?: strin
             ...(filters.entity ? { entity: filters.entity } : {})
         },
         orderBy: { createdAt: "desc" },
-        take: 200
-    });
+        take: 200 });
 
     const actorIds = Array.from(new Set(logs.map((log) => log.actorId)));
     const users = actorIds.length
-        ? await prisma.user.findMany({
-            where: { id: { in: actorIds } },
+        ? await prisma.user.findMany({ where: { id: { in: actorIds }, tenantId: filters.tenantId },
             select: { id: true, role: true }
         })
         : [];

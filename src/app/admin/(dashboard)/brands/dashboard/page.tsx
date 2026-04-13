@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Users, TrendingUp, FileCheck, Clock } from "lucide-react";
 import Link from "next/link";
 import { getDashboardOverviewData } from "@/server/dashboard/get-dashboard-overview";
+import { authOptions } from "@/lib/authOptions";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard | WAFIA Brands",
@@ -21,9 +24,14 @@ export default async function BrandsDashboardPage(
   props: { searchParams: Promise<Record<string, string | string[] | undefined>> }
 ) {
   const searchParams = await props.searchParams;
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.tenantId) {
+    redirect("/admin/login");
+  }
   const { kpis, recentResponses, totalEntries: totalBrands } = await getDashboardOverviewData(
     searchParams,
-    "BRANDS"
+    "BRANDS",
+    session.user.tenantId
   );
 
   return (

@@ -1,6 +1,4 @@
 import { NextRequest } from "next/server";
-import { TALENTS_QUESTIONS } from "@/lib/questionnaireData";
-
 const requireDashboardRoleMock = jest.fn();
 
 const prismaMock = {
@@ -49,7 +47,7 @@ describe("questionnaires current GET route", () => {
     expect(requireDashboardRoleMock).not.toHaveBeenCalled();
   });
 
-  it("falls back to built-in talents questions when the database is unavailable", async () => {
+  it("returns a 500 error when the database is unavailable", async () => {
     prismaMock.questionnaire.findFirst.mockRejectedValue(
       new Error("Environment variable not found: DATABASE_URL"),
     );
@@ -59,11 +57,10 @@ describe("questionnaires current GET route", () => {
     const response = await GET(request);
     const body = await response.json();
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(500);
     expect(body).toEqual({
-      questionnaireId: "local-fallback",
-      version: "v1",
-      questions: TALENTS_QUESTIONS,
+      success: false,
+      error: "database_unavailable",
     });
   });
 

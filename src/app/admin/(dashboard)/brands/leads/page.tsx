@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { getLeadsPage, parseDashboardFilters } from "@/lib/dashboard/queries";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
+import { authOptions } from "@/lib/authOptions";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Leads Brands | WAFIA OS",
@@ -28,7 +31,17 @@ export default async function BrandsLeadsPage(
   }
   sp.set("type", "BRANDS");
   const filters = parseDashboardFilters(sp);
-  const pageData = await getLeadsPage({ filters, role: DASHBOARD_ROLES.ADMIN, cursor: null, limit: 50 });
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.tenantId) {
+    redirect("/admin/login");
+  }
+  const pageData = await getLeadsPage({
+    filters,
+    role: DASHBOARD_ROLES.ADMIN,
+    tenantId: session.user.tenantId,
+    cursor: null,
+    limit: 50,
+  });
   const leads = pageData.items;
 
   return (

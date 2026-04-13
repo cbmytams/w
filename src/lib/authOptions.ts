@@ -1,6 +1,7 @@
 import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
+import { prisma } from "@/lib/db";
 import { timingSafeEqual } from "crypto";
 
 function optionalEnv(name: string) {
@@ -37,12 +38,6 @@ function getDashboardCredentials() {
       password: adminPassword,
       role: DASHBOARD_ROLES.ADMIN,
       name: "Admin",
-    });
-  } else if (process.env.NODE_ENV !== "production") {
-    credentials.set("admin", {
-      password: "admin",
-      role: DASHBOARD_ROLES.ADMIN,
-      name: "Admin (Dev)",
     });
   }
 
@@ -122,6 +117,7 @@ export const authOptions: AuthOptions = {
         const sessionUser = session.user as typeof session.user & {
           id?: string;
           role?: DashboardRole;
+          tenantId?: string;
         };
 
         if (token.sub) {
@@ -130,6 +126,21 @@ export const authOptions: AuthOptions = {
 
         if (typeof (token as { role?: string }).role === "string") {
           sessionUser.role = (token as { role: DashboardRole }).role;
+        }
+
+        if (token.sub) {
+          const user = await prisma.user.findFirst({
+            where: {
+              email: token.sub,
+              isActive: true,
+            },
+            select: {
+              tenantId: true,
+            },
+          });
+          if (user?.tenantId) {
+            sessionUser.tenantId = user.tenantId;
+          }
         }
       }
 

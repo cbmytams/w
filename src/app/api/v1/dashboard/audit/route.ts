@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   const baseFilters = parseDashboardFilters(request.nextUrl.searchParams);
   const actor = request.nextUrl.searchParams.get("actor") || undefined;
   const entity = request.nextUrl.searchParams.get("entity") || undefined;
-  const events = await getAuditEvents({ ...baseFilters, actor, entity });
+  const events = await getAuditEvents({ ...baseFilters, actor, entity, tenantId: auth.session.tenantId });
 
   return Response.json({ events, filters: { ...baseFilters, actor, entity } });
 }

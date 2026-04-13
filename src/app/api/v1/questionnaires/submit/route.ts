@@ -39,11 +39,15 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Resolve tenant from config or fallback to oldest tenant.
-        const defaultTenantSlug = process.env.DEFAULT_TENANT_SLUG?.trim() || null;
-        const tenant = defaultTenantSlug
-            ? await db.tenant.findUnique({ where: { slug: defaultTenantSlug } })
-            : await db.tenant.findFirst({ orderBy: { createdAt: "asc" } });
+        const configuredTenantSlug = process.env.DEFAULT_TENANT_SLUG?.trim() || null;
+        if (!configuredTenantSlug) {
+            return NextResponse.json(
+                { error: "No tenant configured for questionnaire submissions." },
+                { status: 503 }
+            );
+        }
+
+        const tenant = await db.tenant.findUnique({ where: { slug: configuredTenantSlug } });
 
         if (!tenant) {
             return NextResponse.json(
@@ -100,7 +104,8 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ success: true, data: newResponse }, { status: 201 });
 
     } catch (error) {
-        console.error("Error submitting questionnaire:", error);
+        void error;
+        // TODO(logging): replace with structured logger
         return NextResponse.json(
             { error: "Internal Server Error" },
             { status: 500 }

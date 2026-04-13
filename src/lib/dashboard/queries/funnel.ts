@@ -3,7 +3,7 @@ import { prisma } from "../../db";
 import type { DashboardFilters, FunnelStep } from "../types";
 import { normalizeRange } from "./utils";
 
-export async function getFunnelSteps(filters: DashboardFilters): Promise<FunnelStep[]> {
+export async function getFunnelSteps(filters: DashboardFilters, tenantId: string): Promise<FunnelStep[]> {
     const normalized = normalizeRange(filters.from, filters.to);
 
     const talentWhereQuery = filters.type
@@ -15,31 +15,26 @@ export async function getFunnelSteps(filters: DashboardFilters): Promise<FunnelS
         : {};
 
     const [started, completed, qualified, interview] = await Promise.all([
-        prisma.talent.count({
-            where: { ...talentWhereQuery, createdAt: { gte: normalized.start, lte: normalized.end } }
-        }),
-        prisma.questionnaireResponse.count({
-            where: {
+        prisma.talent.count({ where: { tenantId, ...talentWhereQuery, createdAt: { gte: normalized.start, lte: normalized.end } } }),
+        prisma.questionnaireResponse.count({ where: {
                 ...responseWhereQuery,
+                talent: { tenantId },
                 submittedAt: { gte: normalized.start, lte: normalized.end },
                 completionRate: { gte: 100 }
-            }
-        }),
-        prisma.talent.count({
-            where: {
+            } }),
+        prisma.talent.count({ where: {
+                tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 updatedAt: { gte: normalized.start, lte: normalized.end }
-            }
-        }),
-        prisma.talent.count({
-            where: {
+            } }),
+        prisma.talent.count({ where: {
+                tenantId,
                 ...talentWhereQuery,
                 approvalStatus: ApprovalStatus.APPROVED,
                 contacts: { some: {} },
                 updatedAt: { gte: normalized.start, lte: normalized.end }
-            }
-        })
+            } })
     ]);
 
     const raw = [

@@ -5,7 +5,6 @@ import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestionList } from "@/lib/questionnaireValidation";
 import { requireDashboardRole } from "@/lib/apiAuth";
-import { TALENTS_QUESTIONS } from "@/lib/questionnaireData";
 import { resolveType } from "@/lib/questionnaireType";
 
 async function getOrCreateCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
@@ -26,14 +25,6 @@ async function getOrCreateCurrentQuestionnaire(type: "TALENTS" | "BRANDS") {
   });
 }
 
-async function ensureTenantId() {
-  const tenant = await prisma.tenant.findFirst({
-    orderBy: { createdAt: "asc" },
-    select: { id: true }
-  });
-  return tenant?.id || null;
-}
-
 export async function GET(request: NextRequest) {
   try {
     const type = resolveType(request.nextUrl.searchParams);
@@ -45,14 +36,8 @@ export async function GET(request: NextRequest) {
       version: questionnaire.version,
       questions
     });
-  } catch (error) {
-    console.warn("Questionnaire current API fallback enabled.", error);
-
-    return Response.json({
-      questionnaireId: "local-fallback",
-      version: "v1",
-      questions: TALENTS_QUESTIONS
-    });
+  } catch {
+    return Response.json({ success: false, error: "database_unavailable" }, { status: 500 });
   }
 }
 
@@ -90,11 +75,10 @@ export async function PUT(request: NextRequest) {
     }
   });
 
-  const tenantId = await ensureTenantId();
-  if (tenantId) {
+  if (auth.session.tenantId) {
     await prisma.auditLog.create({
       data: {
-        tenantId,
+        tenantId: auth.session.tenantId,
         actorId: auth.session.id,
         action: "QUESTIONNAIRE_REPLACED",
         entity: "Questionnaire",

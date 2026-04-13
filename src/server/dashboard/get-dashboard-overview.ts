@@ -15,20 +15,19 @@ function toSearchParams(input: SearchParamsInput, type: QuestionnaireType) {
 
 export async function getDashboardOverviewData(
   searchParamsInput: SearchParamsInput,
-  type: QuestionnaireType
+  type: QuestionnaireType,
+  tenantId: string
 ) {
   const filters = parseDashboardFilters(toSearchParams(searchParamsInput, type));
-  const kpis = await getOverviewKpis(filters);
+  const kpis = await getOverviewKpis(filters, tenantId);
 
   const [recentResponses, totalEntries] = await Promise.all([
-    prisma.questionnaireResponse.findMany({
-      where: { type },
+    prisma.questionnaireResponse.findMany({ where: { type, talent: { tenantId } },
       orderBy: { submittedAt: "desc" },
       take: 6,
       include: { talent: { select: { name: true } } },
     }),
-    prisma.talent.count({
-      where: { questionnaireResponses: { some: { type } } },
+    prisma.talent.count({ where: { tenantId, questionnaireResponses: { some: { type } } },
     }),
   ]);
 

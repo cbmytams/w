@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   if (rateLimitError) return rateLimitError;
 
   const filters = parseDashboardFilters(request.nextUrl.searchParams);
-  const steps = await getFunnelSteps(filters);
+  const steps = await getFunnelSteps(filters, auth.session.tenantId);
 
   return Response.json({ steps, filters });
 }

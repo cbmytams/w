@@ -7,6 +7,7 @@ import { mapTalentStatus, derivePriority, deriveSlaState, allowsPii } from "./ma
 export async function getLeadsPage(params: {
     filters: DashboardFilters;
     role: DashboardRole;
+    tenantId: string;
     cursor: string | null;
     limit: number;
     status?: string | null;
@@ -34,6 +35,7 @@ export async function getLeadsPage(params: {
     while (records.length < limit) {
         const talents = await prisma.talent.findMany({
             where: {
+                tenantId: params.tenantId,
                 ...talentWhereQuery,
                 createdAt: {
                     gte: normalized.start,

@@ -92,7 +92,8 @@ export async function POST(request: NextRequest) {
     try {
         await forwardToWebhook(payload)
     } catch (error) {
-        console.error("[contact-api] forwarding failed", error)
+        void error
+        // TODO(logging): replace with structured logger
         return NextResponse.json(
             { error: "Le service de contact est temporairement indisponible. Merci de réessayer." },
             { status: 502 }

@@ -16,8 +16,7 @@ export async function GET(request: NextRequest) {
   if (rateLimitError) return rateLimitError;
 
   try {
-    const talents = await prisma.talent.findMany({
-      take: 10,
+    const talents = await prisma.talent.findMany({ where: { tenantId: auth.session.tenantId }, take: 10,
       orderBy: { createdAt: "desc" },
       select: {
         id: true,
@@ -27,8 +26,7 @@ export async function GET(request: NextRequest) {
         approvalStatus: true,
         createdAt: true,
         updatedAt: true
-      }
-    });
+      } });
 
     return Response.json({ talents });
   } catch {
