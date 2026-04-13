@@ -6,10 +6,7 @@ import { Container } from "@/components/ui/container";
 import { TALENT_PROBLEM } from "@/constants";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { EASING, DURATION } from "@/lib/easing";
-import { cn } from "@/lib/utils";
 import { SystemBentoWidget } from "@/components/for-talents/SystemBentoWidget";
-
-const PAIN_ICONS = ["\u{1F9ED}", "\u{26A1}", "\u{1F91D}", "\u{1F3AF}"];
 
 export function ConstatSection() {
   const prefersReducedMotion = useReducedMotion();

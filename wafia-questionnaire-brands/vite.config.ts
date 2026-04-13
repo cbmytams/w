@@ -24,6 +24,10 @@ export default defineConfig({
           if (id.includes("node_modules/recharts")) return "vendor-charts";
           if (id.includes("node_modules/framer-motion")) return "vendor-motion";
           if (id.includes("node_modules/@dnd-kit")) return "vendor-dnd";
+          if (id.includes("node_modules/@supabase/supabase-js")) {
+            return "vendor-supabase";
+          }
+          if (id.includes("node_modules/lucide-react")) return "vendor-icons";
           if (id.includes("node_modules")) return "vendor-core";
           return undefined;
         },

@@ -6,6 +6,7 @@ import { prisma } from "@/lib/db";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { QuestionnaireType, type QuestionnaireResponse } from "@prisma/client";
 import { getQuestionnaireVersionForTenant } from "@/lib/questionnaireTenant";
+import { logWarn } from "@/lib/logger";
 
 const BATCH_SIZE = 500;
 
@@ -305,7 +306,16 @@ export async function GET(request: NextRequest) {
         },
       },
     })
-    .catch(() => null);
+    .catch((error) => {
+      logWarn("questionnaires.exports.auditlog_failed", {
+        route: "/api/v1/questionnaires/exports",
+        tenantId: auth.session.tenantId,
+        type,
+        version,
+        format,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    });
 
   if (format === "json") {
     return createJSONStream(questionnaire, auth.session.tenantId);

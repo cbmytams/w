@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { ContactFormSchema } from "@/lib/validations";
 import { validateBody, apiError, apiSuccess } from "@/lib/api-response";
+import { logError } from "@/lib/logger";
 
 export const runtime = "nodejs";
 
@@ -95,8 +96,11 @@ export async function POST(request: NextRequest) {
   try {
     await forwardToWebhook(payload);
   } catch (error) {
-    void error;
-    // TODO(logging): replace with structured logger
+    logError("contact.webhook_failed", error, {
+      route: "/api/contact",
+      clientKey,
+      source: payload.source,
+    });
     return apiError(
       "Le service de contact est temporairement indisponible. Merci de réessayer.",
       502

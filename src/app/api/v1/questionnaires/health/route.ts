@@ -9,6 +9,7 @@ import {
   type IntegritySection,
 } from "@/lib/questionnaireIntegrity";
 import { QuestionnaireType } from "@prisma/client";
+import { logError } from "@/lib/logger";
 
 export async function GET(request: NextRequest) {
   const originError = enforceSameOrigin(request);
@@ -120,8 +121,11 @@ export async function DELETE(request: NextRequest) {
 
     return apiSuccess({ purgedCount: 0 });
   } catch (error) {
-    void error;
-    // TODO(logging): replace with structured logger
+    logError("questionnaires.health.purge_failed", error, {
+      route: "/api/v1/questionnaires/health",
+      tenantId: auth.session.tenantId,
+      type,
+    });
     return apiError("Internal Server Error", 500);
   }
 }

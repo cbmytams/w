@@ -1,18 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Wiki de l'Influence (Vite + React)
 
-# Run and deploy your AI Studio app
+Sous-projet wiki éditorial embarqué dans le monorepo Wafia.
 
-This contains everything you need to run your app locally.
+## Prérequis
 
-View your app in AI Studio: https://ai.studio/apps/74a2233e-f7e8-4232-974d-c1fc0becc1c9
+- Node.js 20+
+- npm 10+
 
-## Run Locally
+## Lancer en local
 
-**Prerequisites:** Node.js
+```bash
+npm ci
+npm run dev
+```
 
-1. Install dependencies:
-   `npm install`
-2. Run the app:
-   `npm run dev`
+Serveur local: `http://localhost:3000`
+
+## Vérifications
+
+```bash
+npm run lint
+npm run build
+npm audit --omit=dev
+```
+
+## Build production
+
+Le build génère les pages statiques + assets dans `dist/` et lance le post-traitement SEO:
+
+```bash
+npm run build
+```
+
+Script SEO exécuté automatiquement: `scripts/postbuild-seo.mjs`

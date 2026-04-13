@@ -8,6 +8,7 @@ import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
 import { prisma } from "@/lib/db";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { isSafeRecordId } from "@/lib/questionnaireValidation";
+import { logError } from "@/lib/logger";
 
 const DashboardLeadPatchSchema = z.object({
   id: z.string().min(1),
@@ -128,8 +129,12 @@ export async function PATCH(request: NextRequest) {
       return apiError("Lead not found", 404);
     }
 
-    void error;
-    // TODO(logging): replace with structured logger
+    logError("dashboard.leads.patch_failed", error, {
+      route: "/api/v1/dashboard/leads",
+      leadId: id,
+      tenantId: auth.session.tenantId,
+      status,
+    });
     return apiError("Internal Server Error", 500);
   }
 }

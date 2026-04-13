@@ -10,6 +10,7 @@ import { QuestionnaireSubmitSchema } from "@/lib/validations";
 import { validateBody, apiError, apiSuccess } from "@/lib/api-response";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { resolveConfiguredTenantId } from "@/lib/questionnaireTenant";
+import { logError } from "@/lib/logger";
 
 export async function POST(request: NextRequest) {
   try {
@@ -104,8 +105,9 @@ export async function POST(request: NextRequest) {
 
     return apiSuccess(newResponse, 201);
   } catch (error) {
-    void error;
-    // TODO(logging): replace with structured logger
+    logError("questionnaires.submit_failed", error, {
+      route: "/api/v1/questionnaires/submit",
+    });
     return apiError("Internal Server Error", 500);
   }
 }
