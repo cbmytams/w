@@ -1,5 +1,5 @@
-import { withAuth } from "next-auth/middleware";
-import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+import { NextRequest, NextResponse } from "next/server";
 import {
   canAccessDashboardRole,
   DASHBOARD_ROLES,
@@ -52,60 +52,50 @@ export function getRouteChecks(pathname: string) {
   return { isApiAdmin, isAdminRoute };
 }
 
-export default withAuth(
-  function middleware(req) {
-    const nonce = crypto.randomUUID();
-    const requestHeaders = new Headers(req.headers);
-    requestHeaders.set("x-nonce", nonce);
+export default async function proxy(req: NextRequest) {
+  const nonce = crypto.randomUUID();
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set("x-nonce", nonce);
 
-    const passThrough = applySecurityHeaders(
-      NextResponse.next({
-        request: {
-          headers: requestHeaders,
-        },
-      }),
-      nonce
-    );
+  const passThrough = applySecurityHeaders(
+    NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    }),
+    nonce
+  );
 
-    const { token } = req.nextauth;
-    const { isApiAdmin, isAdminRoute } = getRouteChecks(req.nextUrl.pathname);
-    const role = typeof token?.role === "string" ? token.role : null;
-    const hasDashboardAccess = role
-      ? canAccessDashboardRole(role as DashboardRole, DASHBOARD_ROLES.VIEWER)
-      : false;
+  const { isApiAdmin, isAdminRoute } = getRouteChecks(req.nextUrl.pathname);
+  if (!isApiAdmin && !isAdminRoute) {
+    return passThrough;
+  }
 
-    if ((isAdminRoute || isApiAdmin) && !hasDashboardAccess) {
-      if (req.nextUrl.pathname.startsWith("/api")) {
-        return applySecurityHeaders(
-          new NextResponse("Unauthorized", { status: 401 }),
-          nonce
-        );
-      }
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+  });
+
+  const role = typeof token?.role === "string" ? token.role : null;
+  const hasDashboardAccess = role
+    ? canAccessDashboardRole(role as DashboardRole, DASHBOARD_ROLES.VIEWER)
+    : false;
+
+  if (!hasDashboardAccess) {
+    if (req.nextUrl.pathname.startsWith("/api")) {
       return applySecurityHeaders(
-        NextResponse.redirect(new URL("/admin/login", req.url)),
+        new NextResponse("Unauthorized", { status: 401 }),
         nonce
       );
     }
-
-    return passThrough;
-  },
-  {
-    callbacks: {
-      authorized: ({ req, token }) => {
-        const { isApiAdmin, isAdminRoute } = getRouteChecks(
-          req.nextUrl.pathname
-        );
-        if (isAdminRoute || isApiAdmin) {
-          return !!token;
-        }
-        return true;
-      },
-    },
-    pages: {
-      signIn: "/admin/login",
-    },
+    return applySecurityHeaders(
+      NextResponse.redirect(new URL("/admin/login", req.url)),
+      nonce
+    );
   }
-);
+
+  return passThrough;
+}
 
 export const config = {
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],

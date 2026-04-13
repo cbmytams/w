@@ -72,6 +72,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/talents",
+        destination: "/for-talents",
+        permanent: true,
+      },
+      {
+        source: "/brands",
+        destination: "/for-brands",
+        permanent: true,
+      },
+      {
         source: "/wiki/blog",
         destination: "/wiki",
         statusCode: 301,
