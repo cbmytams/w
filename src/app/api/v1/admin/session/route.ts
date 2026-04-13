@@ -5,12 +5,12 @@ import {
   ADMIN_SESSION_COOKIE,
   createAdminSessionToken,
   getAdminSessionCookieMaxAge,
-  verifyAdminSessionToken
+  verifyAdminSessionToken,
 } from "@/lib/authSession";
+import { apiError, apiSuccess, validateBody } from "@/lib/api-response";
 import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { LoginSchema } from "@/lib/validations";
-import { validateBody } from "@/lib/api-response";
 
 function safeEqual(a: string, b: string) {
   const left = Buffer.from(a);
@@ -22,7 +22,7 @@ function safeEqual(a: string, b: string) {
 const noStoreHeaders = {
   "Cache-Control": "no-store, no-cache, must-revalidate",
   Pragma: "no-cache",
-  Expires: "0"
+  Expires: "0",
 };
 
 function getCredentialMap() {
@@ -37,7 +37,10 @@ function getCredentialMap() {
   const managerUser = process.env.MANAGER_USERNAME;
   const managerPass = process.env.MANAGER_PASSWORD;
   if (managerUser && managerPass) {
-    map.set(managerUser, { password: managerPass, role: DASHBOARD_ROLES.MANAGER });
+    map.set(managerUser, {
+      password: managerPass,
+      role: DASHBOARD_ROLES.MANAGER,
+    });
   }
 
   const viewerUser = process.env.VIEWER_USERNAME;
@@ -53,21 +56,25 @@ export async function GET() {
   const cookieStore = await cookies();
   const token = cookieStore.get(ADMIN_SESSION_COOKIE)?.value;
   if (!token) {
-    return Response.json({ error: "Unauthorized" }, { status: 401, headers: noStoreHeaders });
+    return apiError("Unauthorized", { status: 401 });
   }
 
   const session = verifyAdminSessionToken(token);
   if (!session) {
-    return Response.json({ error: "Unauthorized" }, { status: 401, headers: noStoreHeaders });
+    return apiError("Unauthorized", { status: 401 });
   }
 
-  return Response.json({
+  const response = apiSuccess({
     user: {
       username: session.sub,
       role: session.role,
-      tenantSlug: session.tenantSlug
-    }
-  }, { headers: noStoreHeaders });
+      tenantSlug: session.tenantSlug,
+    },
+  });
+  for (const [key, value] of Object.entries(noStoreHeaders)) {
+    response.headers.set(key, value);
+  }
+  return response;
 }
 
 export async function POST(request: NextRequest) {
@@ -77,13 +84,13 @@ export async function POST(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "admin-session-login",
     limit: 8,
-    windowMs: 15 * 60 * 1000
+    windowMs: 15 * 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 
   const body = await request.json().catch(() => null);
   if (!body) {
-    return Response.json({ error: "Invalid JSON body" }, { status: 400, headers: noStoreHeaders });
+    return apiError("Invalid JSON body", 400);
   }
 
   const validation = validateBody(LoginSchema, body);
@@ -93,24 +100,21 @@ export async function POST(request: NextRequest) {
 
   const credentials = getCredentialMap();
   if (credentials.size === 0) {
-    return Response.json(
-      {
-        error:
-          "Authentication is not configured. Set ADMIN_USERNAME/ADMIN_PASSWORD (and optional MANAGER/VIEWER credentials)."
-      },
-      { status: 503, headers: noStoreHeaders }
+    return apiError(
+      "Authentication is not configured. Set ADMIN_USERNAME/ADMIN_PASSWORD (and optional MANAGER/VIEWER credentials).",
+      503
     );
   }
 
   const user = credentials.get(username);
 
   if (!user || !safeEqual(user.password, password)) {
-    return Response.json({ error: "Invalid credentials" }, { status: 401, headers: noStoreHeaders });
+    return apiError("Invalid credentials", 401);
   }
 
   const token = createAdminSessionToken({
     sub: username,
-    role: user.role
+    role: user.role,
   });
 
   const cookieStore = await cookies();
@@ -119,15 +123,19 @@ export async function POST(request: NextRequest) {
     sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: getAdminSessionCookieMaxAge()
+    maxAge: getAdminSessionCookieMaxAge(),
   });
 
-  return Response.json({
+  const response = apiSuccess({
     user: {
       username,
-      role: user.role
-    }
-  }, { headers: noStoreHeaders });
+      role: user.role,
+    },
+  });
+  for (const [key, value] of Object.entries(noStoreHeaders)) {
+    response.headers.set(key, value);
+  }
+  return response;
 }
 
 export async function DELETE(request: NextRequest) {
@@ -140,7 +148,11 @@ export async function DELETE(request: NextRequest) {
     sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: 0
+    maxAge: 0,
   });
-  return Response.json({ ok: true }, { headers: noStoreHeaders });
+  const response = apiSuccess({ signedOut: true });
+  for (const [key, value] of Object.entries(noStoreHeaders)) {
+    response.headers.set(key, value);
+  }
+  return response;
 }

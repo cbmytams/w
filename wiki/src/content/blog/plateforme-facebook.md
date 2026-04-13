@@ -1,13 +1,13 @@
 ---
-title: 'Facebook : usages créateurs, distribution et monétisation'
+title: "Facebook : usages créateurs, distribution et monétisation"
 slug: guide-facebook-2025-createur-influenceur
-description: 'Repères Facebook 2025 : distribution organique, formats vidéo, groupes et monétisation.'
+description: "Repères Facebook 2025 : distribution organique, formats vidéo, groupes et monétisation."
 authorSlug: sasha-guettat
 platform: facebook
 category: Plateforme — Facebook
-publishedAt: '2025-08-12'
-updatedAt: '2025-08-12'
-lastReviewedAt: '2025-08-12'
+publishedAt: "2025-08-12"
+updatedAt: "2025-08-12"
+lastReviewedAt: "2025-08-12"
 sources: []
 ---
 
@@ -140,6 +140,7 @@ Testez des posts identiques à des horaires différents pour trouver le créneau
 C'est le levier de monétisation le plus puissant et le plus méconnu de Facebook. Si vous créez des vidéos de 3 minutes ou plus, vous pouvez insérer des publicités (pre-roll et mid-roll) et recevoir une part des revenus publicitaires — exactement comme YouTube.
 
 **Conditions d'éligibilité** :
+
 - 10 000 abonnés sur votre page
 - 600 000 minutes de vidéo vues sur les 60 derniers jours
 - Au moins 5 vidéos actives
@@ -185,10 +186,12 @@ Facebook a eu un programme de bonus Reels aux États-Unis en 2022 (payé par vue
 ### Projections de revenus sur Facebook
 
 **Page 10 000 abonnés avec In-Stream Ads activés** (vidéos régulières de 3+ min) :
+
 - 500 000 vues/mois : 750 à 1 000 €/mois
 - 2 millions de vues/mois : 3 000 à 4 000 €/mois
 
 **Page 100 000 abonnés avec contenu viral régulier** :
+
 - Potentiellement 5 000 à 15 000 €/mois si le contenu génère des dizaines de millions de vues
 
 Ces chiffres sont atteignables pour des créateurs qui misent sur du contenu vidéo partageable et optimisent pour Facebook natif.
@@ -214,4 +217,3 @@ Le positionnement optimal de Facebook dans un écosystème multi-plateformes :
 **Facebook = reach sur l'audience 30-60 ans.** Si votre contenu peut intéresser une audience adulte (cuisine, jardinage, bien-être, finance personnelle, DIY, parentalité), Facebook est le canal pour les toucher massivement — TikTok et Instagram n'y suffisent pas.
 
 **Facebook = groupes communautaires pour fidéliser.** Un groupe thématique actif autour de votre niche crée une communauté très engagée qui suit vos publications et vos Lives avec régularité.
-

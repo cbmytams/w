@@ -20,15 +20,23 @@ interface WikiArticleSummary {
   platform?: string;
 }
 
-const TABS = [{ id: "theme", label: "Thèmes" }, { id: "platform", label: "Plateformes" }];
+const TABS = [
+  { id: "theme", label: "Thèmes" },
+  { id: "platform", label: "Plateformes" },
+];
 
 /**
  * Wiki index view — Client Component that replicates the original BlogPage.
  * Receives articles from the Server Component parent for search indexing.
  */
-export default function WikiIndexView({ articles }: { articles: WikiArticleSummary[] }) {
+export default function WikiIndexView({
+  articles,
+}: {
+  articles: WikiArticleSummary[];
+}) {
   const searchParams = useSearchParams();
-  const initialTab = searchParams.get("tab") === "platform" ? "platform" : "theme";
+  const initialTab =
+    searchParams.get("tab") === "platform" ? "platform" : "theme";
   const [tab, setTab] = useState<"theme" | "platform">(initialTab);
   const { isDark, toggle: toggleDark } = useWikiDarkMode();
 
@@ -50,7 +58,10 @@ export default function WikiIndexView({ articles }: { articles: WikiArticleSumma
         onToggleDark={toggleDark}
       />
 
-      <main id="main-content" className="pt-32 px-6 md:px-12 max-w-5xl mx-auto pb-24 flex-1 w-full">
+      <main
+        id="main-content"
+        className="pt-32 px-6 md:px-12 max-w-5xl mx-auto pb-24 flex-1 w-full"
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,7 +70,10 @@ export default function WikiIndexView({ articles }: { articles: WikiArticleSumma
         >
           <h1 className="font-serif text-5xl sm:text-6xl md:text-8xl font-medium leading-[0.9] tracking-tight">
             Wiki de <br />
-            <span className="italic" style={{ color: "var(--wiki-ink-secondary)" }}>
+            <span
+              className="italic"
+              style={{ color: "var(--wiki-ink-secondary)" }}
+            >
               l&apos;Influence.
             </span>
           </h1>
@@ -85,7 +99,11 @@ export default function WikiIndexView({ articles }: { articles: WikiArticleSumma
               style={{ borderColor: "var(--wiki-line)" }}
             >
               {items.map((item) => (
-                <motion.div key={item.id} className="border-b" style={{ borderColor: "var(--wiki-line)" }}>
+                <motion.div
+                  key={item.id}
+                  className="border-b"
+                  style={{ borderColor: "var(--wiki-line)" }}
+                >
                   <Link
                     href={`${routePrefix}/${item.id}`}
                     className="group py-8 flex items-start justify-between rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8"
@@ -122,7 +140,10 @@ export default function WikiIndexView({ articles }: { articles: WikiArticleSumma
             </Link>
           ))}
           {WIKI_PLATFORM_ITEMS.map((item) => (
-            <Link key={`platform-${item.id}`} href={`/wiki/platform/${item.id}`}>
+            <Link
+              key={`platform-${item.id}`}
+              href={`/wiki/platform/${item.id}`}
+            >
               {item.label}
             </Link>
           ))}
@@ -133,9 +154,16 @@ export default function WikiIndexView({ articles }: { articles: WikiArticleSumma
         className="border-t py-12 px-6 md:px-12 max-w-5xl mx-auto w-full"
         style={{ borderColor: "var(--wiki-line)" }}
       >
-        <div className="flex items-center justify-between" style={{ color: "var(--wiki-ink-muted)" }}>
-          <p className="font-mono text-[10px] uppercase tracking-widest">Wiki de l&apos;Influence</p>
-          <p className="font-mono text-[10px] uppercase tracking-widest">© {new Date().getFullYear()}</p>
+        <div
+          className="flex items-center justify-between"
+          style={{ color: "var(--wiki-ink-muted)" }}
+        >
+          <p className="font-mono text-[10px] uppercase tracking-widest">
+            Wiki de l&apos;Influence
+          </p>
+          <p className="font-mono text-[10px] uppercase tracking-widest">
+            © {new Date().getFullYear()}
+          </p>
         </div>
       </footer>
     </div>

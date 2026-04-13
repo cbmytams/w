@@ -12,9 +12,12 @@ type LockoutStateOutput = {
   lockedUntil: Date | null;
 };
 
-export function computeLoginFailureState(input: LockoutStateInput): LockoutStateOutput {
+export function computeLoginFailureState(
+  input: LockoutStateInput
+): LockoutStateOutput {
   const insideWindow = Boolean(
-    input.lastFailedLoginAt && input.nowMs - input.lastFailedLoginAt.getTime() <= input.windowMs
+    input.lastFailedLoginAt &&
+    input.nowMs - input.lastFailedLoginAt.getTime() <= input.windowMs
   );
   const previousCount = insideWindow ? input.failedLoginCount : 0;
   const nextCount = previousCount + 1;
@@ -22,12 +25,12 @@ export function computeLoginFailureState(input: LockoutStateInput): LockoutState
   if (nextCount >= input.lockoutAttempts) {
     return {
       failedLoginCount: 0,
-      lockedUntil: new Date(input.nowMs + input.lockoutDurationMs)
+      lockedUntil: new Date(input.nowMs + input.lockoutDurationMs),
     };
   }
 
   return {
     failedLoginCount: nextCount,
-    lockedUntil: null
+    lockedUntil: null,
   };
 }

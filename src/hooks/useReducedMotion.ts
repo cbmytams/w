@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useReducedMotion as useFramerReducedMotion } from "framer-motion"
+import { useReducedMotion as useFramerReducedMotion } from "framer-motion";
 
 export function useReducedMotion() {
-    return useFramerReducedMotion() ?? false
+  return useFramerReducedMotion() ?? false;
 }

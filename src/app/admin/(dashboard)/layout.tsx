@@ -17,7 +17,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -35,7 +39,10 @@ export default async function DashboardLayout({ children }: { children: ReactNod
 
       <div className="relative z-10 flex w-full h-screen overflow-hidden">
         <Sidebar />
-        <main id="main-content" className="flex-1 overflow-y-auto custom-scrollbar relative">
+        <main
+          id="main-content"
+          className="flex-1 overflow-y-auto custom-scrollbar relative"
+        >
           <div className="px-6 lg:px-12 max-w-[1600px] mx-auto min-h-full flex flex-col pt-6 pb-20">
             <AdminProviders>
               <TopBar />

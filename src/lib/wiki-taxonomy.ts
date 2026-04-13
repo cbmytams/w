@@ -25,11 +25,11 @@ export const WIKI_PLATFORM_ITEMS: WikiTaxonomyItem[] = [
 ];
 
 export const WIKI_THEME_LABELS: Record<string, string> = Object.fromEntries(
-  WIKI_THEME_ITEMS.map((item) => [item.id, item.label]),
+  WIKI_THEME_ITEMS.map((item) => [item.id, item.label])
 );
 
 export const WIKI_PLATFORM_LABELS: Record<string, string> = Object.fromEntries(
-  WIKI_PLATFORM_ITEMS.map((item) => [item.id, item.label]),
+  WIKI_PLATFORM_ITEMS.map((item) => [item.id, item.label])
 );
 
 export const WIKI_THEME_ORDER = WIKI_THEME_ITEMS.map((item) => item.id);

@@ -1,13 +1,13 @@
 ---
-title: 'Instagram : distribution, formats et monétisation'
+title: "Instagram : distribution, formats et monétisation"
 slug: guide-instagram-2025-influenceur-strategie
-description: 'Repères Instagram 2025 : fonctionnement des surfaces, signaux de distribution et leviers de monétisation.'
+description: "Repères Instagram 2025 : fonctionnement des surfaces, signaux de distribution et leviers de monétisation."
 authorSlug: sasha-guettat
 platform: instagram
 category: Plateforme — Instagram
-publishedAt: '2025-07-08'
-updatedAt: '2025-07-08'
-lastReviewedAt: '2025-07-08'
+publishedAt: "2025-07-08"
+updatedAt: "2025-07-08"
+lastReviewedAt: "2025-07-08"
 sources: []
 ---
 
@@ -172,12 +172,14 @@ Pour les créateurs qui ont leurs propres produits (merch, prints, etc.), Instag
 ### Projections réalistes sur un an
 
 En partant de zéro et atteignant 50 000 abonnés engagés :
+
 - 2 à 4 partenariats/mois à 300 € en moyenne : 600 à 1 200 €/mois
 - Affiliation : 100 à 300 €/mois
 - Badges lives : 50 à 100 €/mois
 - **Total estimé : 750 à 1 600 €/mois**
 
 En atteignant 150 000 abonnés avec bon engagement :
+
 - Sponsoring (4 posts/mois à 1 000 €) : 4 000 €/mois
 - Affiliation : 300 à 800 €/mois
 - Subscriptions : 200 à 500 €/mois
@@ -202,4 +204,3 @@ Malgré l'attention portée à TikTok, les budgets Instagram continuent de croî
 Instagram en 2025 est la plateforme de la **consolidation et de la profondeur**. La croissance organique y est plus difficile que sur TikTok, mais une fois une communauté acquise, elle est plus stable, plus fidèle et plus monétisable. Instagram est votre carte de visite professionnelle en tant que créateur : soignez-la, même si votre croissance principale vient d'ailleurs.
 
 La stratégie la plus efficace : utilisez TikTok pour acquérir, Instagram pour convertir les fans passagers en abonnés fidèles via les Stories et la relation intime qu'elles permettent de construire. Ces deux plateformes se renforcent mutuellement.
-

@@ -3,7 +3,9 @@ import path from "node:path";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
-const { ensureStandaloneNextAuthSecret } = require("./standalone-auth-secret.cjs");
+const {
+  ensureStandaloneNextAuthSecret,
+} = require("./standalone-auth-secret.cjs");
 
 const root = process.cwd();
 const serverPath = path.join(root, ".next", "standalone", "server.js");
@@ -15,7 +17,7 @@ if (!process.env.NEXTAUTH_SECRET) {
 
   if (source !== "env") {
     process.stdout.write(
-      `NEXTAUTH_SECRET not set; using ${source === "generated" ? "generated" : "persisted"} standalone secret at ${filePath}.\n`,
+      `NEXTAUTH_SECRET not set; using ${source === "generated" ? "generated" : "persisted"} standalone secret at ${filePath}.\n`
     );
   }
 }

@@ -3,13 +3,13 @@
  * Utilitaires pour la manipulation de texte et templates
  */
 
-import type { CalibrationData } from '../types';
+import type { CalibrationData } from "../types";
 
 const NORTH_STAR_LABELS: Record<string, string> = {
-    awareness: 'Notoriété',
-    traffic: 'Trafic',
-    conversion: 'Conversion',
-    retention: 'Fidélisation',
+  awareness: "Notoriété",
+  traffic: "Trafic",
+  conversion: "Conversion",
+  retention: "Fidélisation",
 };
 
 /**
@@ -18,25 +18,25 @@ const NORTH_STAR_LABELS: Record<string, string> = {
  * Variables supportées : company, name, northStar, budget
  */
 export function replaceTemplateVariables(
-    text: string | undefined,
-    calibration: CalibrationData
+  text: string | undefined,
+  calibration: CalibrationData
 ): string {
-    if (!text) return '';
+  if (!text) return "";
 
-    return text.replace(/\{\{(\w+)\}\}/g, (match, variable) => {
-        switch (variable) {
-            case 'company':
-                return calibration.companyName || 'votre entreprise';
-            case 'name':
-                return calibration.contactName || '';
-            case 'northStar':
-                return calibration.northStar
-                    ? NORTH_STAR_LABELS[calibration.northStar] || calibration.northStar
-                    : 'vos objectifs';
-            case 'budget':
-                return calibration.budget || '';
-            default:
-                return match;
-        }
-    });
+  return text.replace(/\{\{(\w+)\}\}/g, (match, variable) => {
+    switch (variable) {
+      case "company":
+        return calibration.companyName || "votre entreprise";
+      case "name":
+        return calibration.contactName || "";
+      case "northStar":
+        return calibration.northStar
+          ? NORTH_STAR_LABELS[calibration.northStar] || calibration.northStar
+          : "vos objectifs";
+      case "budget":
+        return calibration.budget || "";
+      default:
+        return match;
+    }
+  });
 }

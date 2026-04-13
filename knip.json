@@ -1,16 +1,11 @@
 {
-    "entry": [
-        "src/app/**/page.tsx",
-        "src/app/**/layout.tsx",
-        "src/app/**/route.ts",
-        "src/proxy.ts",
-        "prisma/seed.ts"
-    ],
-    "project": [
-        "src/**/*.{ts,tsx}"
-    ],
-    "ignore": [
-        "wiki/**",
-        "wafia-questionnaire-brands/**"
-    ]
+  "entry": [
+    "src/app/**/page.tsx",
+    "src/app/**/layout.tsx",
+    "src/app/**/route.ts",
+    "src/proxy.ts",
+    "prisma/seed.ts"
+  ],
+  "project": ["src/**/*.{ts,tsx}"],
+  "ignore": ["wiki/**", "wafia-questionnaire-brands/**"]
 }

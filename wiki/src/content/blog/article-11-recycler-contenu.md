@@ -1,13 +1,13 @@
 ---
-title: 'Réutilisation multi-plateforme du contenu : méthode et cadence'
+title: "Réutilisation multi-plateforme du contenu : méthode et cadence"
 slug: recycler-repurposer-contenu-multi-plateforme-2025
-description: 'Méthode de réutilisation multi-plateforme d’un contenu source, avec cadence de diffusion et priorisation des formats.'
+description: "Méthode de réutilisation multi-plateforme d’un contenu source, avec cadence de diffusion et priorisation des formats."
 authorSlug: yaelle
 theme: production
 category: Stratégie — Production
-publishedAt: '2025-08-10'
-updatedAt: '2025-08-10'
-lastReviewedAt: '2025-08-10'
+publishedAt: "2025-08-10"
+updatedAt: "2025-08-10"
+lastReviewedAt: "2025-08-10"
 sources: []
 ---
 
@@ -35,6 +35,7 @@ Un créateur qui recycle bien génère 3-5x plus de vues et de revenus qu'un qui
 **Créateur B :** Fait 3 vidéos YouTube + recycle chacune en 15 versions différentes.
 
 Reach :
+
 - Créateur A : 300k total vues/mois (300k / 3 vidéos).
 - Créateur B : 900k-1.2M vues/mois (même effort, meilleur recycling).
 
@@ -57,11 +58,13 @@ Une audience YouTube 30+ ans ne va pas sur TikTok. Une audience TikTok 13-24 ans
 Chaque semaine, crée UN contenu long-form de haute qualité. Ce sera ta "source" pour la semaine.
 
 Options :
+
 - **Vidéo YouTube 8-15 min** (idéale car facilement fragmentable).
 - **Podcast 45-60 min** (super recyclable).
 - **Article blog long 2 000+ mots** (peut devenir 10 vidéos).
 
 **Critères du pillar content :**
+
 - Éducatif / instructif (pas juste "vlog de ma journée").
 - Contient plusieurs "moments" ou arguments (= chacun devient une vidéo courte).
 - Audio/visuals de qualité.
@@ -92,15 +95,18 @@ Regarde ton pillar content et identifie les "chunks" (segments).
 **Format 1 : TikTok / Reels / YouTube Shorts (15-60 sec)**
 
 **Process :**
+
 1. Extracte un segment de ta vidéo mère (ex : "Hack 1").
 2. Exporte cette portion avec du sous-titre (CRITICAL — beaucoup regardent sans son).
 3. Ajoute du texte overlay, du hook au début.
 4. Optimise pour chaque plateforme (aspect ratio, sous-titres, hook).
 
 **Timing :**
+
 - Hack 1 de 90 sec → Possible 2 versions : 60 sec TikTok + 30 sec super hook video pour YouTube shorts.
 
 **Outils :**
+
 - CapCut (free, puissant, idéal pour ce use case).
 - Adobe Premiere Rush (payant mais plus pro).
 
@@ -133,6 +139,7 @@ LinkedIn post : "I've found that the traditional 25-minute Pomodoro isn't optima
 Transforme ta vidéo YouTube en article blog (2 000-3 000 mots).
 
 **Structure :**
+
 - Intro = Hook de la vidéo.
 - Sections = Chaque "hack" devient un sous-titre + 200-300 mots d'explication.
 - Images / screenshots de la vidéo interpolés.
@@ -149,10 +156,12 @@ Transforme ta vidéo YouTube en article blog (2 000-3 000 mots).
 Les meilleures moments de ta vidéo mère deviennent des clips standalone.
 
 Outils :
+
 - Opus Clip (AI, find best moments automatiquement).
 - Runway ou Descript (manuel mais très fin).
 
 **Process :**
+
 1. Upload vidéo mère.
 2. AI identifie les best moments.
 3. Export like videos indépendantes.
@@ -167,23 +176,28 @@ Outils :
 **Lundi :** Publie ton pillar content (ex : YouTube video).
 
 **Mardi :**
+
 - Extracte 5 TikToks du pillar content.
 - Poste le 1er TikTok.
 
 **Wednesday:**
+
 - Poste le 2e TikTok.
 - Crée un thread Twitter (5-10 tweets).
 
 **Thursday:**
+
 - Poste le 3e TikTok.
 - Crée un article blog version du pillar content.
 - Poste le thread Twitter.
 
 **Friday:**
+
 - Poste les TikToks restants (2-3).
 - Reposte le meilleur clip sur YouTube Shorts.
 
 **Weekend:**
+
 - Reposte les meilleurs clips sur Instagram Reels.
 - Crée une newsletter issue basée sur le pillar content.
 
@@ -195,18 +209,21 @@ Outils :
 
 ### Auto-repurposing tools
 
-**Riverside.fm / Castmagic :** 
+**Riverside.fm / Castmagic :**
+
 - Upload ton pillar content (vidéo ou podcast).
 - Fait automatiquement les transcripts.
 - Génère les clips vidéo.
 - Crée des summaries pour newsletter.
 
 **Opus Clip :**
+
 - Upload vidéo.
 - AI trouve les best moments.
 - Export comme short-form videos.
 
 **Repurpose.io :**
+
 - Connecte tes channels (TikTok, Instagram, YouTube, etc.).
 - Upload 1 contenu.
 - Repurposing pour tous les channels automatiquement.
@@ -240,12 +257,14 @@ Tu juste fragmentes et postes random times.
 **Créatrice Productivité :**
 
 Semaine 1 :
+
 - **Monday :** Poste vidéo YouTube "5 Productivity Apps Je Recommande" (12 min).
 - **Tue-Fri :** Extracte 5 clips 45sec chacun = 5 TikToks différents.
 - **Thursday :** Crée thread Twitter "5 Apps that changed my productivity" (10 tweets).
 - **Friday :** Crée article blog "5 Apps for Productivity in 2025" (2k words), post sur sa website et Medium.
 
 **Reach totale semaine :**
+
 - YouTube : 5k views (pillar content).
 - TikTok : 50k views (5 videos × 10k each).
 - Twitter : 2k impressions + 100 likes.
@@ -253,4 +272,3 @@ Semaine 1 :
 - Newsletter : 2k opens + 300 clicks.
 
 **Total reach : ~60k en une semaine pour 1 pillar content original + recycling smart.**
-

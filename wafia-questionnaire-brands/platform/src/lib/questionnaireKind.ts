@@ -17,7 +17,8 @@ function inferKindFromReferrer(request: NextRequest) {
 
   try {
     const refPath = new URL(referer).pathname.toLowerCase();
-    if (refPath.includes("/questionnaire-brands")) return QuestionnaireType.BRANDS;
+    if (refPath.includes("/questionnaire-brands"))
+      return QuestionnaireType.BRANDS;
     if (refPath.includes("/questionnaire")) return QuestionnaireType.TALENTS;
   } catch {
     return null;
@@ -41,7 +42,9 @@ export function resolveQuestionnaireKindFromRequest(
   if (value !== null && !explicitKind) {
     return {
       kind: null,
-      response: jsonApiError("INVALID_PAYLOAD", "Invalid payload", { status: 400 })
+      response: jsonApiError("INVALID_PAYLOAD", "Invalid payload", {
+        status: 400,
+      }),
     };
   }
 
@@ -57,12 +60,14 @@ export function resolveQuestionnaireKindFromRequest(
   if (options.allowDefault) {
     return {
       kind: options.defaultKind || QuestionnaireType.BRANDS,
-      response: null
+      response: null,
     };
   }
 
   return {
     kind: null,
-    response: jsonApiError("INVALID_PAYLOAD", "Invalid payload", { status: 400 })
+    response: jsonApiError("INVALID_PAYLOAD", "Invalid payload", {
+      status: 400,
+    }),
   };
 }

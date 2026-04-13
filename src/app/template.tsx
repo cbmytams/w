@@ -1,9 +1,9 @@
-import type { ReactNode } from "react"
+import type { ReactNode } from "react";
 
 interface TemplateProps {
-    children: ReactNode
+  children: ReactNode;
 }
 
 export default function Template({ children }: TemplateProps) {
-    return <>{children}</>
+  return <>{children}</>;
 }

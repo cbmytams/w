@@ -727,4 +727,3 @@ Note: les migrations Prisma existent bien. Le problème BDD n'est pas l'absence 
 - réparation des builds/lints sous-projets: 6 à 10 h
 - refonte multi-tenant/auth/repositories: 8 à 14 h
 - CI/tests/coverage/doc: 8 à 16 h
-

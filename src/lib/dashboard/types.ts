@@ -14,11 +14,11 @@ export interface DashboardFilters {
 
 export interface KpiCard {
   id:
-  | "leads_incoming"
-  | "leads_qualified"
-  | "questionnaire_completion_rate"
-  | "avg_processing_time_hours"
-  | "conversion_to_interview_rate";
+    | "leads_incoming"
+    | "leads_qualified"
+    | "questionnaire_completion_rate"
+    | "avg_processing_time_hours"
+    | "conversion_to_interview_rate";
   label: string;
   value: number;
   unit?: "%" | "h" | "count";
@@ -79,4 +79,3 @@ export interface AuditEvent {
   createdAt: string;
   diffJson?: unknown;
 }
-

@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WAFIA BDD Talents",
     description: "Plateforme de gestion de talents et de performances.",
-    type: "website"
+    type: "website",
   },
   twitter: {
     card: "summary",
     title: "WAFIA BDD Talents",
-    description: "Plateforme de gestion de talents et de performances."
-  }
+    description: "Plateforme de gestion de talents et de performances.",
+  },
 };
 
 export default function RootLayout({

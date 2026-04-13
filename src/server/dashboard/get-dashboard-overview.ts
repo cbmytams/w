@@ -1,5 +1,8 @@
 import { prisma } from "@/lib/db";
-import { getOverviewKpis, parseDashboardFilters } from "@/lib/dashboard/queries";
+import {
+  getOverviewKpis,
+  parseDashboardFilters,
+} from "@/lib/dashboard/queries";
 import type { QuestionnaireType } from "@prisma/client";
 
 type SearchParamsInput = Record<string, string | string[] | undefined>;
@@ -18,16 +21,20 @@ export async function getDashboardOverviewData(
   type: QuestionnaireType,
   tenantId: string
 ) {
-  const filters = parseDashboardFilters(toSearchParams(searchParamsInput, type));
+  const filters = parseDashboardFilters(
+    toSearchParams(searchParamsInput, type)
+  );
   const kpis = await getOverviewKpis(filters, tenantId);
 
   const [recentResponses, totalEntries] = await Promise.all([
-    prisma.questionnaireResponse.findMany({ where: { type, talent: { tenantId } },
+    prisma.questionnaireResponse.findMany({
+      where: { type, talent: { tenantId } },
       orderBy: { submittedAt: "desc" },
       take: 6,
       include: { talent: { select: { name: true } } },
     }),
-    prisma.talent.count({ where: { tenantId, questionnaireResponses: { some: { type } } },
+    prisma.talent.count({
+      where: { tenantId, questionnaireResponses: { some: { type } } },
     }),
   ]);
 

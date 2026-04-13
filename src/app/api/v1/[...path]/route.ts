@@ -1,8 +1,13 @@
 import type { NextRequest } from "next/server";
+import { apiError } from "@/lib/api-response";
 import { getWebsiteEnv } from "@/lib/env.server";
 import { requireDashboardRole } from "@/lib/apiAuth";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
-import { enforceRateLimit, enforceSameOrigin, getAllowedOriginsForRequest } from "@/lib/requestSecurity";
+import {
+  enforceRateLimit,
+  enforceSameOrigin,
+  getAllowedOriginsForRequest,
+} from "@/lib/requestSecurity";
 
 type RouteContext = {
   params: Promise<{ path: string[] }>;
@@ -78,45 +83,41 @@ function copyRequestHeaders(request: NextRequest) {
 }
 
 function unavailableResponse() {
-  return Response.json(
-    {
-      error: "Platform service unavailable",
-      code: "SERVICE_UNAVAILABLE"
-    },
-    { status: 503 }
-  );
+  return apiError("Platform service unavailable", {
+    status: 503,
+    code: "SERVICE_UNAVAILABLE",
+  });
 }
 
 function payloadTooLargeResponse() {
-  return Response.json(
-    {
-      error: "Request body too large",
-      code: "PAYLOAD_TOO_LARGE"
-    },
-    { status: 413 }
-  );
+  return apiError("Request body too large", {
+    status: 413,
+    code: "PAYLOAD_TOO_LARGE",
+  });
 }
 
 function resolveProxyMaxBodyBytes() {
   const parsed = Number(process.env.PLATFORM_PROXY_MAX_BODY_BYTES);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_PROXY_MAX_BODY_BYTES;
+  return Number.isFinite(parsed) && parsed > 0
+    ? parsed
+    : DEFAULT_PROXY_MAX_BODY_BYTES;
 }
 
 async function handleProxy(request: NextRequest, context: RouteContext) {
   const { path } = await context.params;
   if (hasUnsafePathSegment(path || [])) {
-    return Response.json(
-      { error: "Invalid proxy path", code: "INVALID_PATH" },
-      { status: 400 }
-    );
+    return apiError("Invalid proxy path", {
+      status: 400,
+      code: "INVALID_PATH",
+    });
   }
 
   const joinedPath = (path || []).join("/");
   if (!isPathAllowed(joinedPath)) {
-    return Response.json(
-      { error: "Route not exposed by proxy", code: "ROUTE_NOT_ALLOWED" },
-      { status: 404 }
-    );
+    return apiError("Route not exposed by proxy", {
+      status: 404,
+      code: "ROUTE_NOT_ALLOWED",
+    });
   }
 
   let body: ArrayBuffer | undefined;
@@ -138,7 +139,7 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
     const rateLimitError = enforceRateLimit(request, {
       scope: "api-v1-proxy",
       limit: 60,
-      windowMs: 60 * 1000
+      windowMs: 60 * 1000,
     });
     if (rateLimitError) return rateLimitError;
 
@@ -162,7 +163,7 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
     method: request.method,
     headers: copyRequestHeaders(request),
     redirect: "manual",
-    signal: controller.signal
+    signal: controller.signal,
   };
 
   if (body) {
@@ -177,14 +178,14 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
 
     return new Response(upstream.body, {
       status: upstream.status,
-      headers
+      headers,
     });
   } catch {
     if (controller.signal.aborted) {
-      return Response.json(
-        { error: "Upstream timeout", code: "UPSTREAM_TIMEOUT" },
-        { status: 504 }
-      );
+      return apiError("Upstream timeout", {
+        status: 504,
+        code: "UPSTREAM_TIMEOUT",
+      });
     }
     return unavailableResponse();
   } finally {
@@ -215,27 +216,29 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
 export async function OPTIONS(request: NextRequest, context: RouteContext) {
   const { path } = await context.params;
   if (hasUnsafePathSegment(path || [])) {
-    return Response.json(
-      { error: "Invalid proxy path", code: "INVALID_PATH" },
-      { status: 400 }
-    );
+    return apiError("Invalid proxy path", {
+      status: 400,
+      code: "INVALID_PATH",
+    });
   }
 
   const joinedPath = (path || []).join("/");
   if (!isPathAllowed(joinedPath)) {
-    return Response.json(
-      { error: "Route not exposed by proxy", code: "ROUTE_NOT_ALLOWED" },
-      { status: 404 }
-    );
+    return apiError("Route not exposed by proxy", {
+      status: 404,
+      code: "ROUTE_NOT_ALLOWED",
+    });
   }
 
   const requestOrigin = request.headers.get("origin");
   const allowedOrigins = getAllowedOriginsForRequest(request);
   if (!requestOrigin || !allowedOrigins.includes(requestOrigin)) {
-    return Response.json({ error: "Invalid origin" }, { status: 403 });
+    return apiError("Invalid origin", 403);
   }
 
-  const requestedHeaders = request.headers.get("access-control-request-headers");
+  const requestedHeaders = request.headers.get(
+    "access-control-request-headers"
+  );
   const allowHeaders = requestedHeaders || "content-type,authorization";
   const allowMethods = "GET,POST,PUT,PATCH,DELETE,OPTIONS";
 
@@ -246,8 +249,8 @@ export async function OPTIONS(request: NextRequest, context: RouteContext) {
       "Access-Control-Allow-Methods": allowMethods,
       "Access-Control-Allow-Headers": allowHeaders,
       "Access-Control-Max-Age": "600",
-      "Vary": "Origin, Access-Control-Request-Headers",
-      "Allow": allowMethods
-    }
+      Vary: "Origin, Access-Control-Request-Headers",
+      Allow: allowMethods,
+    },
   });
 }

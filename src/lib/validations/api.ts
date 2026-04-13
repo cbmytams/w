@@ -9,8 +9,8 @@ import { z } from "zod";
 // ============================================
 
 export const PaginationSchema = z.object({
-    page: z.coerce.number().int().min(1).default(1),
-    limit: z.coerce.number().int().min(1).max(100).default(20),
+  page: z.coerce.number().int().min(1).default(1),
+  limit: z.coerce.number().int().min(1).max(100).default(20),
 });
 
 // ============================================
@@ -18,11 +18,15 @@ export const PaginationSchema = z.object({
 // ============================================
 
 export const SlugSchema = z.object({
-    slug: z.string().min(1).max(200).regex(/^[a-z0-9-]+$/, "Slug must be lowercase alphanumeric with hyphens"),
+  slug: z
+    .string()
+    .min(1)
+    .max(200)
+    .regex(/^[a-z0-9-]+$/, "Slug must be lowercase alphanumeric with hyphens"),
 });
 
 export const IdSchema = z.object({
-    id: z.string().min(1).max(64),
+  id: z.string().min(1).max(64),
 });
 
 // ============================================
@@ -30,12 +34,28 @@ export const IdSchema = z.object({
 // ============================================
 
 export const ContactFormSchema = z.object({
-    name: z.string().trim().min(2, "Le nom doit contenir au moins 2 caractères").max(80, "Le nom ne peut pas dépasser 80 caractères"),
-    email: z.string().trim().email("Adresse email invalide").max(160, "L'adresse email est trop longue"),
-    company: z.string().trim().min(1, "Le nom de société est requis").max(120, "Le nom de société est trop long"),
-    message: z.string().trim().min(20, "Le message doit contenir au moins 20 caractères").max(3000, "Le message ne peut pas dépasser 3000 caractères"),
-    type: z.enum(["agency", "brand"]).default("brand"),
-    objective: z.string().trim().nullable().optional(),
+  name: z
+    .string()
+    .trim()
+    .min(2, "Le nom doit contenir au moins 2 caractères")
+    .max(80, "Le nom ne peut pas dépasser 80 caractères"),
+  email: z
+    .string()
+    .trim()
+    .email("Adresse email invalide")
+    .max(160, "L'adresse email est trop longue"),
+  company: z
+    .string()
+    .trim()
+    .min(1, "Le nom de société est requis")
+    .max(120, "Le nom de société est trop long"),
+  message: z
+    .string()
+    .trim()
+    .min(20, "Le message doit contenir au moins 20 caractères")
+    .max(3000, "Le message ne peut pas dépasser 3000 caractères"),
+  type: z.enum(["agency", "brand"]).default("brand"),
+  objective: z.string().trim().nullable().optional(),
 });
 
 // ============================================
@@ -43,8 +63,8 @@ export const ContactFormSchema = z.object({
 // ============================================
 
 export const LoginSchema = z.object({
-    username: z.string().trim().min(1, "Username is required").max(100),
-    password: z.string().min(1, "Password is required").max(200),
+  username: z.string().trim().min(1, "Username is required").max(100),
+  password: z.string().min(1, "Password is required").max(200),
 });
 
 // ============================================
@@ -52,10 +72,12 @@ export const LoginSchema = z.object({
 // ============================================
 
 export const QuestionnaireSubmitSchema = z.object({
-    type: z.enum(["TALENTS", "BRANDS"]),
-    responses: z.record(z.string(), z.unknown()).refine(
-        (val) => Object.keys(val).length > 0,
-        "Responses object cannot be empty"
+  type: z.enum(["TALENTS", "BRANDS"]),
+  responses: z
+    .record(z.string(), z.unknown())
+    .refine(
+      (val) => Object.keys(val).length > 0,
+      "Responses object cannot be empty"
     ),
 });
 
@@ -64,6 +86,6 @@ export const QuestionnaireSubmitSchema = z.object({
 // ============================================
 
 export const ReorderSchema = z.object({
-    startIndex: z.number().int().min(0),
-    endIndex: z.number().int().min(0),
+  startIndex: z.number().int().min(0),
+  endIndex: z.number().int().min(0),
 });

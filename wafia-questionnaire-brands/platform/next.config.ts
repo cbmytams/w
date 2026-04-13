@@ -10,14 +10,14 @@ const securityHeaders = [
   {
     key: "Permissions-Policy",
     value:
-      "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+      "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()",
   },
   ...(isProd
     ? [
         {
           key: "Strict-Transport-Security",
-          value: "max-age=63072000; includeSubDomains; preload"
-        }
+          value: "max-age=63072000; includeSubDomains; preload",
+        },
       ]
     : []),
   {
@@ -31,33 +31,36 @@ const securityHeaders = [
       "connect-src 'self'",
       "frame-ancestors 'none'",
       "base-uri 'self'",
-      "form-action 'self'"
-    ].join("; ")
-  }
+      "form-action 'self'",
+    ].join("; "),
+  },
 ];
 
 const nextConfig: NextConfig = {
   compress: true,
   output: "standalone",
   turbopack: {
-    root: __dirname
+    root: __dirname,
   },
   async headers() {
     return [
       {
         source: "/:path*",
-        headers: securityHeaders
+        headers: securityHeaders,
       },
       {
         source: "/api/:path*",
         headers: [
-          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate" },
+          {
+            key: "Cache-Control",
+            value: "no-store, no-cache, must-revalidate",
+          },
           { key: "Pragma", value: "no-cache" },
-          { key: "Expires", value: "0" }
-        ]
-      }
+          { key: "Expires", value: "0" },
+        ],
+      },
     ];
-  }
+  },
 };
 
 export default nextConfig;

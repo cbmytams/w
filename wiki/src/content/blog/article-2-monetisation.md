@@ -1,5 +1,5 @@
 ---
-title: 'Monétisation des créateurs : modèles, ordres de grandeur et priorités'
+title: "Monétisation des créateurs : modèles, ordres de grandeur et priorités"
 slug: monetisation-influenceurs-2025
 description: >-
   Panorama des leviers de monétisation des créateurs en 2025, par plateforme, avec ordres de grandeur et priorités
@@ -7,9 +7,9 @@ description: >-
 authorSlug: sasha-guettat
 theme: monetisation
 category: Monétisation
-publishedAt: '2025-06-08'
-updatedAt: '2025-06-08'
-lastReviewedAt: '2025-06-08'
+publishedAt: "2025-06-08"
+updatedAt: "2025-06-08"
+lastReviewedAt: "2025-06-08"
 sources: []
 ---
 
@@ -138,6 +138,7 @@ Twitch propose des outils de monétisation directement ancrés dans la relation 
 Les viewers peuvent s'abonner pour 3,99 € (Tier 1), 7,99 € (Tier 2) ou 19,99 € (Tier 3). Le créateur touche environ 50 % du montant, soit ~1,50 € par sub Tier 1. Les partenaires top peuvent négocier jusqu'à 70 %.
 
 Quelques ordres de grandeur selon la taille du streamer :
+
 - **50 viewers en moyenne** : ~50 subs ≈ 75 €/mois
 - **100 viewers** : ~245 €/mois (subs + bits + pubs)
 - **500 viewers** : ~1 100 €/mois
@@ -210,4 +211,3 @@ Ces chiffres supposent une stratégie active de monétisation multi-sources. Un 
 Si tu es créateur et que tu cherches à structurer ta monétisation avec un accompagnement pro, découvre le [Talent Management Wafia](/for-talents) — gestion de carrière, négociation de deals et production.
 
 Si tu es une marque et que tu veux activer des créateurs sur une campagne, consulte nos [services d'influence marketing](/services).
-

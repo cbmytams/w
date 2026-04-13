@@ -3,15 +3,15 @@
  * Centralise toutes les interfaces et types réutilisables
  */
 
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 
 // ============================================
 // Navigation Types
 // ============================================
 
 export interface NavItem {
-    name: string
-    href: string
+  name: string;
+  href: string;
 }
 
 // ============================================
@@ -19,8 +19,8 @@ export interface NavItem {
 // ============================================
 
 export interface Client {
-    name: string
-    width: string
+  name: string;
+  width: string;
 }
 
 // ============================================
@@ -28,8 +28,8 @@ export interface Client {
 // ============================================
 
 export interface FaqItem {
-    q: string
-    a: string
+  q: string;
+  a: string;
 }
 
 // ============================================
@@ -37,8 +37,8 @@ export interface FaqItem {
 // ============================================
 
 export interface SectionHeadingProps {
-    title: ReactNode
-    subtitle?: string
-    align?: "left" | "center"
-    className?: string
+  title: ReactNode;
+  subtitle?: string;
+  align?: "left" | "center";
+  className?: string;
 }

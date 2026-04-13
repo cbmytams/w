@@ -17,7 +17,8 @@ const prismaMock = {
 };
 
 jest.mock("@/lib/apiAuth", () => ({
-  requireDashboardRole: (...args: unknown[]) => requireDashboardRoleMock(...args),
+  requireDashboardRole: (...args: unknown[]) =>
+    requireDashboardRoleMock(...args),
 }));
 
 jest.mock("@/lib/requestSecurity", () => ({
@@ -27,19 +28,25 @@ jest.mock("@/lib/requestSecurity", () => ({
 
 jest.mock("@/lib/questionnaireValidation", () => ({
   sanitizeQuestion: (...args: unknown[]) => sanitizeQuestionMock(...args),
-  sanitizeQuestionUpdates: (...args: unknown[]) => sanitizeQuestionUpdatesMock(...args),
+  sanitizeQuestionUpdates: (...args: unknown[]) =>
+    sanitizeQuestionUpdatesMock(...args),
   isSafeRecordId: () => true,
 }));
 
 jest.mock("@/lib/api-response", () => ({
   validateBody: (...args: unknown[]) => validateBodyMock(...args),
-  apiError: (message: string) => Response.json({ error: message }, { status: 400 }),
+  apiError: (message: string) =>
+    Response.json({ success: false, error: message }, { status: 400 }),
+  apiSuccess: (data: unknown) => Response.json({ success: true, data }),
 }));
 
 jest.mock("@/lib/questionnaireTenant", () => ({
-  appendQuestionForTenant: (...args: unknown[]) => appendQuestionForTenantMock(...args),
-  updateQuestionForTenant: (...args: unknown[]) => updateQuestionForTenantMock(...args),
-  reorderQuestionsForTenant: (...args: unknown[]) => reorderQuestionsForTenantMock(...args),
+  appendQuestionForTenant: (...args: unknown[]) =>
+    appendQuestionForTenantMock(...args),
+  updateQuestionForTenant: (...args: unknown[]) =>
+    updateQuestionForTenantMock(...args),
+  reorderQuestionsForTenant: (...args: unknown[]) =>
+    reorderQuestionsForTenantMock(...args),
   deleteQuestionForTenant: jest.fn(),
 }));
 
@@ -52,6 +59,10 @@ import { POST as reorderQuestions } from "@/app/api/v1/questionnaires/reorder/ro
 describe("questionnaires admin routes type scoping", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    validateBodyMock.mockImplementation((_schema: unknown, data: unknown) => ({
+      success: true,
+      data,
+    }));
     enforceSameOriginMock.mockReturnValue(null);
     enforceRateLimitMock.mockReturnValue(null);
     requireDashboardRoleMock.mockResolvedValue({
@@ -74,11 +85,17 @@ describe("questionnaires admin routes type scoping", () => {
       questions: [],
     });
 
-    const request = new NextRequest("https://wafia.test/api/v1/questionnaires/questions?type=BRANDS", {
-      method: "POST",
-      headers: { "content-type": "application/json", origin: "https://wafia.test" },
-      body: JSON.stringify({ question: { id: "ignored" } }),
-    });
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/questions?type=BRANDS",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          origin: "https://wafia.test",
+        },
+        body: JSON.stringify({ question: { id: "ignored" } }),
+      }
+    );
 
     const response = await createQuestion(request);
 
@@ -86,22 +103,30 @@ describe("questionnaires admin routes type scoping", () => {
     expect(appendQuestionForTenantMock).toHaveBeenCalledWith(
       "tenant-admin",
       "BRANDS",
-      expect.objectContaining({ id: "brand_q_1" }),
+      expect.objectContaining({ id: "brand_q_1" })
     );
   });
 
   it("uses BRANDS type and tenantId for questions/[id] PATCH", async () => {
-    sanitizeQuestionUpdatesMock.mockReturnValue({ question: "Updated question" });
+    sanitizeQuestionUpdatesMock.mockReturnValue({
+      question: "Updated question",
+    });
     updateQuestionForTenantMock.mockResolvedValue({
       updated: { id: "questionnaire-brand-2" },
       questions: [{ id: "brand_q_2", question: "After" }],
     });
 
-    const request = new NextRequest("https://wafia.test/api/v1/questionnaires/questions/brand_q_2?type=BRANDS", {
-      method: "PATCH",
-      headers: { "content-type": "application/json", origin: "https://wafia.test" },
-      body: JSON.stringify({ updates: { question: "After" } }),
-    });
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/questions/brand_q_2?type=BRANDS",
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          origin: "https://wafia.test",
+        },
+        body: JSON.stringify({ updates: { question: "After" } }),
+      }
+    );
 
     const response = await updateQuestion(request, {
       params: Promise.resolve({ id: "brand_q_2" }),
@@ -112,7 +137,7 @@ describe("questionnaires admin routes type scoping", () => {
       "tenant-admin",
       "BRANDS",
       "brand_q_2",
-      expect.objectContaining({ question: "Updated question" }),
+      expect.objectContaining({ question: "Updated question" })
     );
   });
 
@@ -126,15 +151,26 @@ describe("questionnaires admin routes type scoping", () => {
       questions: [{ id: "brand_q_3", order_index: 0 }],
     });
 
-    const request = new NextRequest("https://wafia.test/api/v1/questionnaires/reorder?type=BRANDS", {
-      method: "POST",
-      headers: { "content-type": "application/json", origin: "https://wafia.test" },
-      body: JSON.stringify({ startIndex: 0, endIndex: 0 }),
-    });
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/reorder?type=BRANDS",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          origin: "https://wafia.test",
+        },
+        body: JSON.stringify({ startIndex: 0, endIndex: 0 }),
+      }
+    );
 
     const response = await reorderQuestions(request);
 
     expect(response.status).toBe(200);
-    expect(reorderQuestionsForTenantMock).toHaveBeenCalledWith("tenant-admin", "BRANDS", 0, 0);
+    expect(reorderQuestionsForTenantMock).toHaveBeenCalledWith(
+      "tenant-admin",
+      "BRANDS",
+      0,
+      0
+    );
   });
 });

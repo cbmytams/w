@@ -21,7 +21,7 @@ describe("requireDashboardRole", () => {
     });
 
     const response = await requireDashboardRole(
-      new Request("https://wafia.test/api/v1/dashboard/leads") as never,
+      new Request("https://wafia.test/api/v1/dashboard/leads") as never
     );
 
     expect(response.session).toBeNull();
@@ -39,7 +39,7 @@ describe("requireDashboardRole", () => {
     });
 
     const response = await requireDashboardRole(
-      new Request("https://wafia.test/api/v1/dashboard/leads") as never,
+      new Request("https://wafia.test/api/v1/dashboard/leads") as never
     );
 
     expect(response.response).toBeNull();

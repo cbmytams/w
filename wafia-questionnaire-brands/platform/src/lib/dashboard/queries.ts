@@ -1,6 +1,10 @@
 import { ApprovalStatus, TalentStatus } from "@prisma/client";
 import { prisma } from "../db";
-import { DASHBOARD_ROLES, mapPlatformRoleToDashboardRole, type DashboardRole } from "../rbac";
+import {
+  DASHBOARD_ROLES,
+  mapPlatformRoleToDashboardRole,
+  type DashboardRole,
+} from "../rbac";
 import type {
   AuditEvent,
   DashboardFilters,
@@ -10,7 +14,7 @@ import type {
   LeadPriority,
   LeadRecord,
   LeadSlaState,
-  LeadWorkflowStatus
+  LeadWorkflowStatus,
 } from "./types";
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
@@ -38,7 +42,7 @@ function normalizeRange(from: string | null, to: string | null) {
       start: end,
       end: start,
       from: asIsoDate(end),
-      to: asIsoDate(start)
+      to: asIsoDate(start),
     };
   }
 
@@ -46,7 +50,7 @@ function normalizeRange(from: string | null, to: string | null) {
     start,
     end,
     from: asIsoDate(start),
-    to: asIsoDate(end)
+    to: asIsoDate(end),
   };
 }
 
@@ -71,7 +75,11 @@ function ratioPercent(part: number, total: number) {
 
 function average(values: number[]) {
   if (values.length === 0) return 0;
-  return Math.round((values.reduce((sum, value) => sum + value, 0) / values.length) * 100) / 100;
+  return (
+    Math.round(
+      (values.reduce((sum, value) => sum + value, 0) / values.length) * 100
+    ) / 100
+  );
 }
 
 function maskEmail(email?: string | null) {
@@ -107,7 +115,10 @@ function mapTalentStatus(input: {
   return "NEW";
 }
 
-function derivePriority(createdAt: Date, status: LeadWorkflowStatus): LeadPriority {
+function derivePriority(
+  createdAt: Date,
+  status: LeadWorkflowStatus
+): LeadPriority {
   if (!["NEW", "IN_PROGRESS"].includes(status)) return "P3";
   const ageDays = (Date.now() - createdAt.getTime()) / ONE_DAY_MS;
   if (ageDays >= 14) return "P1";
@@ -115,7 +126,10 @@ function derivePriority(createdAt: Date, status: LeadWorkflowStatus): LeadPriori
   return "P3";
 }
 
-function deriveSlaState(createdAt: Date, status: LeadWorkflowStatus): LeadSlaState {
+function deriveSlaState(
+  createdAt: Date,
+  status: LeadWorkflowStatus
+): LeadSlaState {
   if (!["NEW", "IN_PROGRESS"].includes(status)) return "ON_TIME";
   const ageDays = (Date.now() - createdAt.getTime()) / ONE_DAY_MS;
   if (ageDays >= 14) return "LATE";
@@ -127,21 +141,32 @@ function allowsPii(role: DashboardRole) {
   return role !== DASHBOARD_ROLES.VIEWER;
 }
 
-export function parseDashboardFilters(searchParams: URLSearchParams): DashboardFilters {
-  const normalized = normalizeRange(searchParams.get("from"), searchParams.get("to"));
+export function parseDashboardFilters(
+  searchParams: URLSearchParams
+): DashboardFilters {
+  const normalized = normalizeRange(
+    searchParams.get("from"),
+    searchParams.get("to")
+  );
   return {
     from: normalized.from,
     to: normalized.to,
-    source: (searchParams.get("source") as DashboardFilters["source"]) || undefined,
+    source:
+      (searchParams.get("source") as DashboardFilters["source"]) || undefined,
     segment: searchParams.get("segment") || undefined,
     owner: searchParams.get("owner") || undefined,
-    status: searchParams.get("status") || undefined
+    status: searchParams.get("status") || undefined,
   };
 }
 
-export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCard[]> {
+export async function getOverviewKpis(
+  filters: DashboardFilters
+): Promise<KpiCard[]> {
   const normalized = normalizeRange(filters.from, filters.to);
-  const { previousStart, previousEnd } = previousRange(normalized.start, normalized.end);
+  const { previousStart, previousEnd } = previousRange(
+    normalized.start,
+    normalized.end
+  );
 
   const [
     leadsIncomingCurrent,
@@ -155,88 +180,108 @@ export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCar
     processingCurrent,
     processingPrevious,
     interviewsCurrent,
-    interviewsPrevious
+    interviewsPrevious,
   ] = await Promise.all([
     prisma.talent.count({
-      where: { createdAt: { gte: normalized.start, lte: normalized.end } }
+      where: { createdAt: { gte: normalized.start, lte: normalized.end } },
     }),
     prisma.talent.count({
-      where: { createdAt: { gte: previousStart, lte: previousEnd } }
-    }),
-    prisma.talent.count({
-      where: {
-        approvalStatus: ApprovalStatus.APPROVED,
-        updatedAt: { gte: normalized.start, lte: normalized.end }
-      }
+      where: { createdAt: { gte: previousStart, lte: previousEnd } },
     }),
     prisma.talent.count({
       where: {
         approvalStatus: ApprovalStatus.APPROVED,
-        updatedAt: { gte: previousStart, lte: previousEnd }
-      }
+        updatedAt: { gte: normalized.start, lte: normalized.end },
+      },
+    }),
+    prisma.talent.count({
+      where: {
+        approvalStatus: ApprovalStatus.APPROVED,
+        updatedAt: { gte: previousStart, lte: previousEnd },
+      },
     }),
     prisma.questionnaireResponse.count({
-      where: { submittedAt: { gte: normalized.start, lte: normalized.end } }
+      where: { submittedAt: { gte: normalized.start, lte: normalized.end } },
     }),
     prisma.questionnaireResponse.count({
-      where: { submittedAt: { gte: previousStart, lte: previousEnd } }
+      where: { submittedAt: { gte: previousStart, lte: previousEnd } },
     }),
     prisma.questionnaireResponse.count({
       where: {
         submittedAt: { gte: normalized.start, lte: normalized.end },
-        completionRate: { gte: 100 }
-      }
+        completionRate: { gte: 100 },
+      },
     }),
     prisma.questionnaireResponse.count({
       where: {
         submittedAt: { gte: previousStart, lte: previousEnd },
-        completionRate: { gte: 100 }
-      }
+        completionRate: { gte: 100 },
+      },
     }),
     prisma.talent.findMany({
       where: {
         approvalStatus: ApprovalStatus.APPROVED,
-        updatedAt: { gte: normalized.start, lte: normalized.end }
+        updatedAt: { gte: normalized.start, lte: normalized.end },
       },
       select: { createdAt: true, updatedAt: true },
-      take: 5000
+      take: 5000,
     }),
     prisma.talent.findMany({
       where: {
         approvalStatus: ApprovalStatus.APPROVED,
-        updatedAt: { gte: previousStart, lte: previousEnd }
+        updatedAt: { gte: previousStart, lte: previousEnd },
       },
       select: { createdAt: true, updatedAt: true },
-      take: 5000
+      take: 5000,
     }),
     prisma.talent.count({
       where: {
         approvalStatus: ApprovalStatus.APPROVED,
         contacts: { some: {} },
-        updatedAt: { gte: normalized.start, lte: normalized.end }
-      }
+        updatedAt: { gte: normalized.start, lte: normalized.end },
+      },
     }),
     prisma.talent.count({
       where: {
         approvalStatus: ApprovalStatus.APPROVED,
         contacts: { some: {} },
-        updatedAt: { gte: previousStart, lte: previousEnd }
-      }
-    })
+        updatedAt: { gte: previousStart, lte: previousEnd },
+      },
+    }),
   ]);
 
   const avgProcessingCurrent = average(
-    processingCurrent.map((talent) => (talent.updatedAt.getTime() - talent.createdAt.getTime()) / (60 * 60 * 1000))
+    processingCurrent.map(
+      (talent) =>
+        (talent.updatedAt.getTime() - talent.createdAt.getTime()) /
+        (60 * 60 * 1000)
+    )
   );
   const avgProcessingPrevious = average(
-    processingPrevious.map((talent) => (talent.updatedAt.getTime() - talent.createdAt.getTime()) / (60 * 60 * 1000))
+    processingPrevious.map(
+      (talent) =>
+        (talent.updatedAt.getTime() - talent.createdAt.getTime()) /
+        (60 * 60 * 1000)
+    )
   );
 
-  const completionRateCurrent = ratioPercent(completedResponsesCurrent, totalResponsesCurrent);
-  const completionRatePrevious = ratioPercent(completedResponsesPrevious, totalResponsesPrevious);
+  const completionRateCurrent = ratioPercent(
+    completedResponsesCurrent,
+    totalResponsesCurrent
+  );
+  const completionRatePrevious = ratioPercent(
+    completedResponsesPrevious,
+    totalResponsesPrevious
+  );
 
-  const conversionCurrent = ratioPercent(interviewsCurrent, leadsQualifiedCurrent);
-  const conversionPrevious = ratioPercent(interviewsPrevious, leadsQualifiedPrevious);
+  const conversionCurrent = ratioPercent(
+    interviewsCurrent,
+    leadsQualifiedCurrent
+  );
+  const conversionPrevious = ratioPercent(
+    interviewsPrevious,
+    leadsQualifiedPrevious
+  );
 
   const updatedAt = new Date().toISOString();
   const period = { from: normalized.from, to: normalized.to };
@@ -251,7 +296,7 @@ export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCar
       period,
       definition: "Nombre de leads créés sur la période.",
       sourceQueryId: "kpi_overview_v1_q1",
-      updatedAt
+      updatedAt,
     },
     {
       id: "leads_qualified",
@@ -262,7 +307,7 @@ export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCar
       period,
       definition: "Nombre de leads passés en statut QUALIFIED sur la période.",
       sourceQueryId: "kpi_overview_v1_q2",
-      updatedAt
+      updatedAt,
     },
     {
       id: "questionnaire_completion_rate",
@@ -273,7 +318,7 @@ export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCar
       period,
       definition: "Questionnaires terminés / questionnaires démarrés.",
       sourceQueryId: "kpi_overview_v1_q3",
-      updatedAt
+      updatedAt,
     },
     {
       id: "avg_processing_time_hours",
@@ -284,7 +329,7 @@ export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCar
       period,
       definition: "Moyenne des délais (qualifiedAt - createdAt), en heures.",
       sourceQueryId: "kpi_overview_v1_q4",
-      updatedAt
+      updatedAt,
     },
     {
       id: "conversion_to_interview_rate",
@@ -295,50 +340,55 @@ export async function getOverviewKpis(filters: DashboardFilters): Promise<KpiCar
       period,
       definition: "Leads passés en entretien / leads qualifiés.",
       sourceQueryId: "kpi_overview_v1_q5",
-      updatedAt
-    }
+      updatedAt,
+    },
   ];
 }
 
-export async function getFunnelSteps(filters: DashboardFilters): Promise<FunnelStep[]> {
+export async function getFunnelSteps(
+  filters: DashboardFilters
+): Promise<FunnelStep[]> {
   const normalized = normalizeRange(filters.from, filters.to);
 
   const [started, completed, qualified, interview] = await Promise.all([
     prisma.talent.count({
-      where: { createdAt: { gte: normalized.start, lte: normalized.end } }
+      where: { createdAt: { gte: normalized.start, lte: normalized.end } },
     }),
     prisma.questionnaireResponse.count({
       where: {
         submittedAt: { gte: normalized.start, lte: normalized.end },
-        completionRate: { gte: 100 }
-      }
+        completionRate: { gte: 100 },
+      },
     }),
     prisma.talent.count({
       where: {
         approvalStatus: ApprovalStatus.APPROVED,
-        updatedAt: { gte: normalized.start, lte: normalized.end }
-      }
+        updatedAt: { gte: normalized.start, lte: normalized.end },
+      },
     }),
     prisma.talent.count({
       where: {
         approvalStatus: ApprovalStatus.APPROVED,
         contacts: { some: {} },
-        updatedAt: { gte: normalized.start, lte: normalized.end }
-      }
-    })
+        updatedAt: { gte: normalized.start, lte: normalized.end },
+      },
+    }),
   ]);
 
   const raw = [
     { key: "started", label: "Démarrés", value: started },
     { key: "completed", label: "Terminés", value: completed },
     { key: "qualified", label: "Qualifiés", value: qualified },
-    { key: "interview", label: "Entretiens", value: interview }
+    { key: "interview", label: "Entretiens", value: interview },
   ];
 
   return raw.map((step, index) => {
     if (index === 0) return { ...step, dropOffFromPrevious: 0 };
     const previous = raw[index - 1].value;
-    const dropOff = previous === 0 ? 0 : Math.max(0, Math.round((1 - step.value / previous) * 100));
+    const dropOff =
+      previous === 0
+        ? 0
+        : Math.max(0, Math.round((1 - step.value / previous) * 100));
     return { ...step, dropOffFromPrevious: dropOff };
   });
 }
@@ -371,8 +421,8 @@ export async function getLeadsPage(params: {
       where: {
         createdAt: {
           gte: normalized.start,
-          lte: normalized.end
-        }
+          lte: normalized.end,
+        },
       },
       orderBy: { createdAt: "desc" },
       take: batchSize,
@@ -380,13 +430,13 @@ export async function getLeadsPage(params: {
       include: {
         contacts: {
           take: 1,
-          orderBy: { createdAt: "desc" }
+          orderBy: { createdAt: "desc" },
         },
         questionnaireResponses: {
           take: 1,
-          orderBy: { submittedAt: "desc" }
-        }
-      }
+          orderBy: { submittedAt: "desc" },
+        },
+      },
     });
 
     if (talents.length === 0) {
@@ -403,7 +453,7 @@ export async function getLeadsPage(params: {
         approvalStatus: talent.approvalStatus,
         hasInterviewSignal: Boolean(contact),
         hasAnyResponse: Boolean(response),
-        completionRate: response?.completionRate
+        completionRate: response?.completionRate,
       });
       const priority = derivePriority(talent.createdAt, status);
       const slaState = deriveSlaState(talent.createdAt, status);
@@ -416,14 +466,14 @@ export async function getLeadsPage(params: {
         name: talent.name,
         emailMasked: maskEmail(contact?.email),
         phoneMasked: maskPhone(contact?.phone),
-        email: allowsPii(role) ? (contact?.email || undefined) : undefined,
-        phone: allowsPii(role) ? (contact?.phone || undefined) : undefined,
+        email: allowsPii(role) ? contact?.email || undefined : undefined,
+        phone: allowsPii(role) ? contact?.phone || undefined : undefined,
         status,
         priority,
         slaState,
         ownerId: undefined,
         createdAt: talent.createdAt.toISOString(),
-        updatedAt: talent.updatedAt.toISOString()
+        updatedAt: talent.updatedAt.toISOString(),
       });
 
       if (records.length >= limit) break;
@@ -437,32 +487,34 @@ export async function getLeadsPage(params: {
 
   return {
     items: records.slice(0, limit),
-    nextCursor
+    nextCursor,
   };
 }
 
-export async function getAuditEvents(filters: DashboardFilters & { actor?: string; entity?: string }): Promise<AuditEvent[]> {
+export async function getAuditEvents(
+  filters: DashboardFilters & { actor?: string; entity?: string }
+): Promise<AuditEvent[]> {
   const normalized = normalizeRange(filters.from, filters.to);
 
   const logs = await prisma.auditLog.findMany({
     where: {
       createdAt: {
         gte: normalized.start,
-        lte: normalized.end
+        lte: normalized.end,
       },
       ...(filters.actor ? { actorId: filters.actor } : {}),
-      ...(filters.entity ? { entity: filters.entity } : {})
+      ...(filters.entity ? { entity: filters.entity } : {}),
     },
     orderBy: { createdAt: "desc" },
-    take: 200
+    take: 200,
   });
 
   const actorIds = Array.from(new Set(logs.map((log) => log.actorId)));
   const users = actorIds.length
     ? await prisma.user.findMany({
-      where: { id: { in: actorIds } },
-      select: { id: true, role: true }
-    })
+        where: { id: { in: actorIds } },
+        select: { id: true, role: true },
+      })
     : [];
 
   const rolesByActor = new Map(
@@ -477,7 +529,6 @@ export async function getAuditEvents(filters: DashboardFilters & { actor?: strin
     entity: log.entity,
     entityId: log.entityId,
     createdAt: log.createdAt.toISOString(),
-    diffJson: log.diffJson || undefined
+    diffJson: log.diffJson || undefined,
   }));
 }
-

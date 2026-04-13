@@ -1,13 +1,13 @@
 ---
-title: 'Personal branding : positionnement, cohérence et stratégie de long terme'
+title: "Personal branding : positionnement, cohérence et stratégie de long terme"
 slug: personal-branding-marketing-influence-2025
-description: 'Cadre de personal branding pour créateurs en 2025 : niche, identité, cohérence éditoriale et relation aux marques.'
+description: "Cadre de personal branding pour créateurs en 2025 : niche, identité, cohérence éditoriale et relation aux marques."
 authorSlug: yaelle
 theme: branding
 category: Branding & Influence
-publishedAt: '2025-06-22'
-updatedAt: '2025-06-22'
-lastReviewedAt: '2025-06-22'
+publishedAt: "2025-06-22"
+updatedAt: "2025-06-22"
+lastReviewedAt: "2025-06-22"
 sources: []
 ---
 
@@ -161,4 +161,3 @@ La mention #ad, #partenariat ou #sponsorisé n'est pas seulement une obligation 
 Un personal brand fort ne se construit pas en 3 mois de publications intensives. Il se forge sur des années de cohérence : mêmes valeurs, même ton, même positionnement — même quand la plateforme change d'algorithme, même quand les tendances évoluent, même quand les offres commerciales attractives mais incohérentes se présentent.
 
 Les créateurs qui "percent" éphémèrement sont souvent ceux qui ont suivi chaque tendance sans construire d'identité propre. Ceux qui s'installent dans la durée sont ceux qui ont su trouver leur territoire et y rester fidèles, en l'approfondissant progressivement.
-

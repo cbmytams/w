@@ -1,4 +1,5 @@
 # AUDIT STRATEGIQUE COMPLET -- WAFIA.FR
+
 ### Avril 2026
 
 ---
@@ -26,6 +27,7 @@
 Wafia.fr est un site qui contient beaucoup de matiere premiere de qualite mais qui souffre de problemes structurels majeurs qui neutralisent son potentiel de conversion et de visibilite.
 
 **Ce qui fonctionne :**
+
 - La page `/for-brands` est la meilleure page du site : structure solide, preuves, process, case studies, comparaison concurrentielle. C'est un modele de landing page B2B.
 - La page `/for-talents` est ambitieuse et detaillee, avec une methodologie claire en 4 phases et des livrables concrets.
 - Le positionnement "agence hybride" (influence + studio + talent management) est potentiellement differenciateur.
@@ -33,6 +35,7 @@ Wafia.fr est un site qui contient beaucoup de matiere premiere de qualite mais q
 - La presence de case studies avec des chiffres reels (Basic Fit, CJ Group, Salon Auto) cree de la credibilite.
 
 **Ce qui ne fonctionne pas :**
+
 - **La homepage est vide.** C'est le probleme le plus critique. La page d'accueil ne contient qu'un H1 invisible (sr-only), trois boutons de navigation (Talents, Studio, Brands) et un lien Wiki. Aucune promesse, aucun contenu, aucune preuve, aucun contexte. Un visiteur arrivant sur wafia.fr ne comprend pas ce qu'est Wafia.
 - **Le Studio est un placeholder.** La page `/studio` ne contient qu'un titre et trois labels "Coming Soon". C'est une promesse non tenue dans la navigation principale.
 - **Double page services.** `/services` et `/for-brands` couvrent en grande partie le meme territoire (campagnes influence, production, talent management) avec des angles differents mais sans passerelle claire. Le visiteur ne sait pas laquelle consulter.
@@ -46,6 +49,7 @@ Wafia.fr est un site qui contient beaucoup de matiere premiere de qualite mais q
 ### Impact business estime
 
 Le site perd probablement 60-70% de ses visiteurs qualifies a cause de :
+
 1. La homepage vide qui ne retient personne
 2. L'absence de page Services dans la navigation principale
 3. La page Studio inachevee qui casse la credibilite
@@ -91,15 +95,15 @@ wafia.fr/
 
 ### 2.2 Navigation principale (header)
 
-| Element | Destination | Commentaire |
-|---------|-------------|-------------|
-| Logo Wafia | / | OK |
-| Talents | /for-talents | Libelle ambigu -- "Talents" pourrait etre la liste des talents |
-| Studio | /studio | Pointe vers un placeholder |
-| Brands | /for-brands | Libelle en anglais dans un site FR |
-| Wiki de l'influence | /wiki | OK |
-| CTA "Je suis une Marque" | /questionnaire/brands | Bon CTA segmentant |
-| CTA "Je suis un Talent" | /questionnaire/talents | Bon CTA segmentant |
+| Element                  | Destination            | Commentaire                                                    |
+| ------------------------ | ---------------------- | -------------------------------------------------------------- |
+| Logo Wafia               | /                      | OK                                                             |
+| Talents                  | /for-talents           | Libelle ambigu -- "Talents" pourrait etre la liste des talents |
+| Studio                   | /studio                | Pointe vers un placeholder                                     |
+| Brands                   | /for-brands            | Libelle en anglais dans un site FR                             |
+| Wiki de l'influence      | /wiki                  | OK                                                             |
+| CTA "Je suis une Marque" | /questionnaire/brands  | Bon CTA segmentant                                             |
+| CTA "Je suis un Talent"  | /questionnaire/talents | Bon CTA segmentant                                             |
 
 **Probleme majeur :** `/services` n'est pas dans la navigation principale. C'est pourtant la page qui presente le mieux l'offre globale.
 
@@ -122,8 +126,8 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 1. **Page longue avec sections empilees** : /for-brands, /for-talents, /services
 2. **Page grille immersive** : /studio
 3. **Page index + articles** : /wiki
-4. **Page iframe** : /questionnaire/*
-5. **Page texte legal** : /legal/*
+4. **Page iframe** : /questionnaire/\*
+5. **Page texte legal** : /legal/\*
 6. **Page profil** : /equipe/[slug]
 
 ---
@@ -135,6 +139,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 ### 3.1 HOMEPAGE (/)
 
 #### A. Identification
+
 - **URL :** /
 - **Type :** Page d'accueil / Hub de navigation
 - **Role :** Premiere impression, aiguillage vers les univers
@@ -143,6 +148,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Etape funnel :** Awareness
 
 #### B. Contexte strategique
+
 - **Promesse business :** Aucune -- la page ne porte aucun message
 - **Offre presentee :** Aucune
 - **Probleme adresse :** Aucun
@@ -150,6 +156,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Vraie fonction :** Simple aiguillage vers 3 univers + Wiki
 
 #### C. Analyse du copywriting
+
 - **Clarte de la promesse :** 1/10 -- Il n'y a pas de promesse visible. Le H1 "Agence d'influence marketing -- Studio creatif" est en `sr-only` (invisible pour les utilisateurs, visible uniquement pour le SEO et les lecteurs d'ecran).
 - **Headline visible :** Aucun. Les visiteurs voient uniquement 3 cartes cliquables ("Talents", "Studio", "Brands") et un lien "Wiki de l'influence".
 - **CTA :** Les 3 cartes agissent comme CTA, mais sans contexte ni hierarchie.
@@ -158,23 +165,27 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Incoherences FR/EN :** "Brands" est en anglais dans la navigation.
 
 #### D. Structure de contenu
+
 - **Ordre :** Background anime -> 3 cartes de navigation -> Footer
 - **Scannabilite :** Impossible -- il n'y a rien a scanner
 - **Sections manquantes :** Hero avec promesse, description de Wafia, social proof, logos clients, chiffres cles, CTA vers questionnaire
 - **Pertinence vs intention :** Catastrophique. Un visiteur cherchant "wafia" attend de comprendre ce qu'est Wafia.
 
 #### E. UX / Conversion
+
 - **Comprehension immediate :** 1/10 -- On ne comprend pas ce qu'est Wafia, pour qui, ni pourquoi
 - **Parcours utilisateur :** Le visiteur doit deviner ou cliquer
 - **Risque de drop :** Extreme. Bounce rate probablement > 70%
 - **Elements manquants pour convertir :** Tout ce qui constitue normalement une homepage d'agence
 
 #### F. Credibilite et preuve
+
 - **Preuves presentes :** Zero
 - **Social proof :** Zero
 - **Autorite percue :** Nulle -- la page semble inachevee
 
 #### G. SEO
+
 - **Mot-cle principal :** "wafia" (requete de marque)
 - **Potentiel organique :** Faible car aucun contenu indexable
 - **Titre SEO actuel :** "Wafia | Influence & Creative Studio" -- OK pour la marque mais mixe FR/EN
@@ -183,6 +194,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Meta description suggeree :** "Wafia, agence d'influence marketing basee en France. Campagnes data-driven, production UGC social-first, talent management. 17M+ impressions, 100+ createurs."
 
 #### H. Diagnostic final
+
 - **Ce qui fonctionne :** Le design anime/particules cree un univers visuel. Les 3 cartes permettent l'aiguillage.
 - **Ce qui nuit :** L'absence totale de contenu. C'est une homepage de startup pre-lancement, pas d'une agence avec 350+ marques et 400 talents.
 - **Quick wins :** Ajouter un hero avec H1 visible, tagline, description, stats et logos clients
@@ -198,6 +210,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 ### 3.2 SERVICES (/services)
 
 #### A. Identification
+
 - **URL :** /services
 - **Type :** Page hub de services
 - **Role :** Presenter l'offre complete de Wafia
@@ -207,6 +220,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Etape funnel :** Awareness / Consideration
 
 #### B. Contexte strategique
+
 - **Promesse business :** Agence d'influence complete avec 4 piliers (influence, UGC, talents, data)
 - **Offre presentee :** 4 services avec livrables concrets
 - **Probleme adresse :** Implicite -- besoin d'une agence complete et transparente
@@ -215,6 +229,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Vraie fonction :** Page SEO principale + presentation generique de l'offre
 
 #### C. Analyse du copywriting
+
 - **Clarte de la promesse :** 7/10 -- "agence d'influence marketing basee en France" + "campagnes data-driven avec des createurs verifies" est clair et factuel.
 - **Headline :** "Agence d'Influence Marketing, UGC & Talent Management" -- trop descriptif, pas assez impactant. C'est un titre SEO, pas un headline de vente.
 - **Subheadline :** Correct mais generique. "Nous concevons des campagnes data-driven" est un claim standard.
@@ -233,6 +248,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Ce qui manque :** Case studies, logos clients, temoignages. La page promet mais ne prouve pas assez.
 
 #### D. Structure de contenu
+
 - **Ordre :** Hero -> Stats -> 4 services -> FAQ -> CTA final
 - **Progression :** Logique mais lineaire. Pas de rupture de rythme.
 - **Redondances :** Les 4 services repetent la meme structure (description + bullets + livrables). C'est systematique mais monotone.
@@ -240,6 +256,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Equilibre :** Trop de branding/description, pas assez de preuve
 
 #### E. UX / Conversion
+
 - **Comprehension immediate :** 7/10 -- On comprend vite ce que fait Wafia
 - **Parcours :** Service -> CTA vers page dediee (/for-brands, /studio, /for-talents). Bon aiguillage.
 - **CTA coherence :** Bonne. Chaque service pointe vers la page appropriee sauf Service 4 (Data) qui n'a pas de CTA.
@@ -247,11 +264,13 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Risque de drop :** Moyen. La page est longue et les 4 services se ressemblent visuellement.
 
 #### F. Credibilite et preuve
+
 - **Preuves presentes :** Stats globales (mais non sourcees), FAQ detaillee
 - **Preuves absentes :** Logos clients, case studies, temoignages, certifications
 - **Ce qui est affirme sans etre prouve :** "17M+ impressions" -- de quand ? Sur quelle periode ? "100+ createurs" -- actifs actuellement ou cumules ?
 
 #### G. SEO
+
 - **Mot-cle principal :** "agence influence marketing"
 - **Mots-cles secondaires :** "agence UGC", "talent management", "production contenu social"
 - **Alignement contenu/SEO :** 7/10 -- Bon usage des termes dans les titres et descriptions
@@ -262,6 +281,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Maillage interne :** Bon vers /for-brands et /for-talents, manque vers /wiki
 
 #### H. Diagnostic final
+
 - **Ce qui fonctionne tres bien :** Structure en 4 services avec livrables, FAQ complete, CTA final avec reassurance
 - **Ce qui fonctionne moyennement :** Le hero (trop SEO, pas assez vendeur), la differenciation
 - **Ce qui nuit :** Absence de preuves visuelles (logos, case studies), cannibalisation avec /for-brands
@@ -278,6 +298,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 ### 3.3 FOR BRANDS (/for-brands)
 
 #### A. Identification
+
 - **URL :** /for-brands
 - **Type :** Landing page B2B
 - **Role :** Convaincre les marques/annonceurs de travailler avec Wafia
@@ -287,6 +308,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Etape funnel :** Consideration / Conversion
 
 #### B. Contexte strategique
+
 - **Promesse business :** "L'influence marketing qui performe vraiment" -- promesse d'efficacite face a un marche percu comme opaque
 - **Offre presentee :** Campagnes influence completes, de l'audit au reporting
 - **Probleme adresse :** Les agences classiques coutent cher pour des resultats flous
@@ -295,6 +317,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Vraie fonction :** Page de conversion principale pour le segment Marques
 
 #### C. Analyse du copywriting
+
 - **Clarte de la promesse :** 8/10 -- "L'influence marketing qui performe vraiment" est clair et differenciateur
 - **Headline :** Tres bon. Court, percutant, adresse le scepticisme du marche.
 - **Subheadline :** "Les bons createurs. Le bon contenu. Les vrais resultats." -- Rythme ternaire efficace, mais pourrait etre plus specifique.
@@ -317,6 +340,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Ce qui manque :** Temoignages clients directs (citation d'un CMO par ex.), ROI chiffre moyen, delai type
 
 #### D. Structure de contenu
+
 - **Ordre :** Hero + stats -> Logos clients -> 3 piliers -> 11 services -> Case studies -> Process 5 etapes -> Authenticite -> Comparaison -> Compliance -> Equipe -> FAQ -> CTA
 - **Progression :** Excellente. Promesse -> Preuve sociale -> Valeur -> Evidence -> Methode -> Differenciation -> Reassurance -> Action
 - **Redondances :** La section "NOS SERVICES" (11 cartes) fait doublon avec la page /services. Les 11 services sont trop nombreux et diluent le message.
@@ -324,6 +348,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Equilibre :** Bon. Beaucoup de preuve, bonne progression vers la conversion.
 
 #### E. UX / Conversion
+
 - **Comprehension immediate :** 8/10 -- En 5 secondes on comprend : agence influence, gros clients, approche data
 - **Parcours :** Scroll naturel, bien rythme, multiples points de conversion
 - **CTA :** "Cadrer ma campagne" (hero), "Reserver un audit" (services), "Voir la production" (case study), "Reserver un appel strategique" (final). Bonne variete.
@@ -333,12 +358,14 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Ce qui ralentit la conversion :** La section 11 services est trop dense, les marquees de logos/services peuvent desorienter
 
 #### F. Credibilite et preuve
+
 - **Preuves presentes :** 18 logos clients (Adidas, L'Oreal, Amazon...), 3 case studies chiffrees, equipe identifiee, stats, process detaille, compliance (ARPP, RGPD)
 - **Preuves absentes :** Temoignages clients verbatim, ROI moyen, anciennete des relations clients
 - **Social proof :** Forte. Les logos sont le meilleur atout du site.
 - **Ce qui est affirme sans preuve :** "8 ans d'experience" (Sasha) -- pas de details. "15K+ profils" dans la base de donnees -- aucune preuve.
 
 #### G. SEO
+
 - **Mot-cle principal :** "agence influence marketing marques"
 - **Mots-cles secondaires :** "campagne influenceur", "agence createur contenu", "UGC marque"
 - **Cannibalisation :** Oui, avec /services sur "agence influence marketing"
@@ -347,6 +374,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Meta description suggeree :** "Campagnes influence data-driven pour marques exigeantes. Createurs verifies, dashboard live, assets reutilisables. Adidas, L'Oreal, Amazon. Devis gratuit."
 
 #### H. Diagnostic final
+
 - **Ce qui fonctionne tres bien :** Logos clients, case studies, tableau comparatif, process, FAQ, headline
 - **Ce qui fonctionne moyennement :** Section 11 services (trop dense), section authenticite (un peu moralisatrice), hero stats (15+ marques semble faible vs logos montrant 18)
 - **Ce qui nuit :** Melanges FR/EN, reference "TGE" (Web3) dans les services, longueur excessive
@@ -363,6 +391,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 ### 3.4 FOR TALENTS (/for-talents)
 
 #### A. Identification
+
 - **URL :** /for-talents
 - **Type :** Landing page B2C (createurs, artistes)
 - **Role :** Recruter des talents pour le roster Wafia
@@ -372,6 +401,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Etape funnel :** Consideration / Conversion
 
 #### B. Contexte strategique
+
 - **Promesse business :** "Votre talent. Notre infrastructure." -- Wafia construit le systeme autour du createur
 - **Offre presentee :** Management complet : image, production, deals, admin, formation
 - **Probleme adresse :** "Des milliers de createurs emergent. Tres peu restent." -- manque de structure
@@ -380,6 +410,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Vraie fonction :** Page de recrutement de talents pour le roster
 
 #### C. Analyse du copywriting
+
 - **Clarte de la promesse :** 7/10 -- "infrastructure" est un mot fort et differenciateur mais peut etre abstrait pour des createurs non business
 - **Headline :** "Votre talent. Notre infrastructure." -- Fort, binaire, memorisable. Bon.
 - **Subheadline :** "On construit l'architecture autour de vous : image, production, deals, admin. L'objectif : une carriere qui tient." -- Concret et complet. Tres bon.
@@ -405,6 +436,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Ce qui manque cruellement :** Des exemples de talents accompagnes. Des avant/apres. Des chiffres de croissance reels. Aucun createur n'est nomme nulle part. C'est comme un cabinet medical sans avis patients.
 
 #### D. Structure de contenu
+
 - **Ordre :** Hero -> Constat/probleme -> Persona (3 profils) -> 9 Livrables -> Timeline 4 phases -> Distribution -> Equipe -> Pour qui -> FAQ -> CTA
 - **Progression :** Bonne : Probleme -> Solution -> Comment -> Pour qui -> Action
 - **Redondances :** Les 9 livrables et la timeline 8 etapes couvrent le meme territoire sous deux angles. C'est complementaire mais tres long.
@@ -412,6 +444,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Page tres longue :** Potentiellement 15+ ecrans de scroll. Risque de fatigue.
 
 #### E. UX / Conversion
+
 - **Comprehension immediate :** 7/10 -- Le hero est clair, le constat est bien pose
 - **CTA "Se referencer" :** Ambigu. Un createur pourrait penser a un annuaire gratuit plutot qu'un process de selection.
 - **"2 calls disponibles aujourd'hui" :** Bon mecanisme d'urgence mais risque de paraître fictif s'il affiche toujours "2".
@@ -419,12 +452,14 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Risque de drop :** La longueur de page est un facteur. Beaucoup de createurs consomment du contenu sur mobile et ne liront pas 15 sections.
 
 #### F. Credibilite et preuve
+
 - **Preuves presentes :** Methodologie detaillee, timeline, livrables, modele economique transparent
 - **Preuves absentes :** ZERO talent identifie dans le roster. Zero temoignage. Zero case study talent. Zero chiffre de croissance talent.
 - **C'est le paradoxe central :** La page vend de la structure et des resultats mais ne montre aucun resultat. Les 15 sections de methodologie ne compensent pas l'absence d'une seule phrase disant "X est passe de Y a Z en 6 mois avec nous."
 - **Distribution Spotify/Deezer/Apple :** Listee comme "Live" et "Partner" mais sans contexte -- partenaire de quoi ? Nombre d'artistes distribues ?
 
 #### G. SEO
+
 - **Mot-cle principal :** "talent management createur"
 - **Mots-cles secondaires :** "management influenceur", "agence talent digital", "accompagnement createur contenu"
 - **Potentiel organique :** Moyen. Le mot-cle "talent management" est domine par les RH traditionnels.
@@ -432,6 +467,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Meta description suggeree :** "Management complet pour createurs ambitieux : image, production, deals, juridique. Commission uniquement, zero frais fixe. L'objectif : votre independance."
 
 #### H. Diagnostic final
+
 - **Ce qui fonctionne tres bien :** Le positionnement "systeme vers autonomie", la transparence du modele economique, les formulations fortes, la section "Pour qui"
 - **Ce qui fonctionne moyennement :** La methodologie (trop detaillee pour une landing), le CTA "Se referencer" (ambigu)
 - **Ce qui nuit :** L'absence totale de preuves/temoignages/roster, l'incoherence tu/vous, la longueur excessive
@@ -448,6 +484,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 ### 3.5 STUDIO (/studio)
 
 #### A. Identification
+
 - **URL :** /studio
 - **Type :** Page portfolio/showcase
 - **Role :** Montrer les productions du studio creatif Wafia
@@ -456,12 +493,14 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Etape funnel :** Consideration
 
 #### B. Contexte strategique
+
 - **Promesse business :** "Social-First Content Factory"
 - **Offre presentee :** Quasi-aucune. 3 "labels" dont 2 "Coming Soon"
 - **Probleme adresse :** Aucun
 - **Vraie fonction :** Placeholder. Page inachevee.
 
 #### C. Analyse du copywriting
+
 - **Clarte :** 2/10 -- "Selectionnez un label pour explorer" ne dit rien de ce qu'est le studio, ce qu'il produit, ni pour qui
 - **Headline visible :** Aucun (H1 est sr-only)
 - **Labels :** "KRH -- Coming Soon", "Assaud -- High-End Cinematography (Coming Soon)", "AURA -- Live & Experiential"
@@ -469,26 +508,31 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Incoherences FR/EN :** "Social-First Content Factory", "High-End Cinematography", "Live & Experiential" -- tout en anglais
 
 #### D. Structure de contenu
+
 - Grille visuelle immersive avec 3 elements
 - Aucun texte descriptif, aucune explication, aucun contexte
 - Zero lien vers les case studies de /for-brands
 - Zero CTA
 
 #### E. UX / Conversion
+
 - **Comprehension immediate :** 1/10
 - **Conversion :** 0/10 -- aucun CTA, aucun parcours vers une action
 - **Risque de drop :** Maximal
 - **Impact sur la credibilite :** Negatif. Quand /services dit "Voir le Studio" et que la page est vide, ca casse la confiance.
 
 #### F. Credibilite et preuve
+
 - Zero preuve. Zero production montree. Zero chiffre.
 
 #### G. SEO
+
 - **Mot-cle :** "studio UGC", "production contenu social"
 - **Potentiel :** Totalement gache. La page n'a aucun contenu indexable.
 - **Titre SEO actuel :** "Studio creatif -- Production UGC & contenus sociaux | Wafia" -- correct mais la page ne le merite pas
 
 #### H. Diagnostic final
+
 - **Score global :** 1/10
 - **Score clarte :** 1/10
 - **Score credibilite :** 0/10
@@ -501,6 +545,7 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 ### 3.6 WIKI (/wiki)
 
 #### A. Identification
+
 - **URL :** /wiki + /wiki/[slug] + /wiki/platform/[id] + /wiki/theme/[id]
 - **Type :** Hub editorial / Blog
 - **Role :** Attirer du trafic organique, demontrer l'expertise, eduquer
@@ -509,12 +554,14 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Etape funnel :** Awareness / Authority
 
 #### B. Contexte strategique
+
 - **Promesse business :** "Guides, analyses et strategies sur l'influence, les plateformes et la monetisation des createurs"
 - **Offre implicite :** Si Wafia sait tout ca, ils savent aussi l'appliquer pour vous
 - **Vraie fonction :** Acquisition SEO (TOFU) + construction d'autorite
 - **Probleme :** Le Wiki est deconnecte du reste du site. Aucun CTA vers les services, aucun maillage interne visible.
 
 #### C. Analyse du copywriting
+
 - **Titres d'articles :** Globalement bons. "Tarifs influenceur : la methode pour calculer ton prix", "Reactivation d'une audience 'morte'" sont des titres qui repondent a des recherches reelles.
 - **Tonalite :** Tutoiement systematique dans les titres ("ton prix", "ton engagement"). Coherent avec l'audience createur.
 - **23 articles :** Quantite correcte pour un lancement mais insuffisante pour un hub SEO ambitieux.
@@ -522,25 +569,30 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 - **Plateformes :** TikTok, Instagram, YouTube, Twitch, Snapchat, X-Twitter, Facebook. Couverture complete.
 
 #### D. Structure de contenu
+
 - **Index :** Titre + filtres par theme/plateforme + liste d'articles. Fonctionnel.
 - **Manque :** Pas d'article "star" mis en avant, pas de parcours de lecture suggere, pas d'appel a s'inscrire a une newsletter
 - **Pas de CTA vers les services** : Un createur qui lit "Tarifs influenceur" ne voit jamais "Wafia gere ca pour vous"
 
 #### E. UX / Conversion
+
 - **Comprehension immediate :** 7/10 -- C'est un blog/wiki, c'est clair
 - **Conversion :** 2/10 -- Aucun mecanisme de conversion (pas de CTA, pas de lead magnet, pas de newsletter)
 - **Le Wiki ne nourrit pas le funnel.** C'est du contenu orphelin.
 
 #### F. Credibilite et preuve
+
 - **Autorite :** Le contenu cree de l'autorite mais sans auteur identifie, sans date visible, sans bio expert, l'autorite reste impersonnelle.
 
 #### G. SEO
+
 - **Potentiel :** Fort. Les sujets couvrent des requetes reelles.
 - **Structure :** Bonne taxonomie theme + plateforme
 - **Faiblesses :** Pas de liens internes vers les pages de service, pas de schema Article visible, pas d'auteur identifie (E-E-A-T)
 - **Opportunite :** Chaque article devrait contenir un CTA contextualise vers /for-brands ou /for-talents selon le sujet
 
 #### H. Diagnostic final
+
 - **Ce qui fonctionne :** Taxonomie, sujets, titres
 - **Ce qui nuit :** Deconnexion du funnel, absence d'auteur, pas de CTA
 - **Quick wins :** Ajouter un bloc CTA a la fin de chaque article, ajouter auteur + date, maillage interne
@@ -552,9 +604,10 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 
 ---
 
-### 3.7 PAGES LEGALES (/legal/*)
+### 3.7 PAGES LEGALES (/legal/\*)
 
 #### Diagnostic rapide
+
 - **Contenu :** Mentions legales, politique de confidentialite, cookies. Necessaire et present.
 - **Derniere mise a jour :** Fevrier 2026
 - **Qualite :** Correct pour des pages legales standards
@@ -563,9 +616,10 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 
 ---
 
-### 3.8 QUESTIONNAIRES (/questionnaire/*)
+### 3.8 QUESTIONNAIRES (/questionnaire/\*)
 
 #### Diagnostic rapide
+
 - **Type :** Iframes vers une app questionnaire
 - **Indexation :** Correctement en noindex
 - **Probleme :** Impossible d'auditer le contenu des questionnaires car ils sont dans des iframes externes
@@ -580,34 +634,40 @@ Header CTA -> /questionnaire/brands OU /questionnaire/talents
 
 **Comment Wafia se positionne reellement :**
 Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
+
 1. Agence d'influence marketing (pour marques)
 2. Studio de production UGC/contenu social
 3. Agence de talent management (pour createurs)
 4. Plateforme data/reporting
 
 **Ce qui est clair :**
+
 - Le pilier "influence marketing pour marques" est le mieux execute (page /for-brands)
 - Le modele economique cote talents (commission) est transparent
 - Le positionnement "data-driven" est coherent a travers les pages
 
 **Ce qui est ambigu :**
+
 - Wafia est-elle une agence, un studio, un label, une infrastructure ? Les termes changent d'une page a l'autre : "agence", "studio", "architecture", "systeme", "ecosysteme"
 - Le studio est-il un service pour les clients marques ou un outil interne pour les talents ? Les deux, mais ce n'est jamais explicite.
 - Le Wiki cible les createurs (monetisation, algorithmes) mais les services ciblent les marques. Quel est le client principal ?
 
 **Ce qui differencie Wafia :**
+
 - Le tableau comparatif vs agences classiques (section /for-brands) est le meilleur element de differenciation du site
 - "Zero vanity metric" est un positionnement fort
 - Le parcours "3 ans vers l'autonomie" pour les talents est unique
 - La double casquette marques + talents donne un avantage structurel (acces direct au roster)
 
 **Ce qui est trop generique :**
+
 - "Data-driven" est devenu un terme galvaude dans l'industrie
 - "Social-first" est un standard, pas un differentiateur
 - "Createurs verifies" -- quasiment toutes les agences influence le revendiquent
 - Les descriptions de services (surtout les 11 services sur /for-brands) sont generiques et pourraient etre celles de n'importe quelle agence
 
 **Ce qui devrait etre davantage assume :**
+
 - La petite taille de l'equipe (2 personnes visibles) devrait etre un argument, pas un handicap. "Boutique, senior, zero couches intermediaires."
 - Le modele artistique (labels dans le studio, direction artistique) est unique mais sous-exploite
 - L'expertise personnelle de Sasha (350+ marques, ~400 talents) est un argument massif mais niche dans une section equipe
@@ -616,20 +676,22 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 
 **Comprehension des poles :**
 
-| Pole | Clarte | Maturite editoriale | Public cible |
-|------|--------|---------------------|--------------|
-| For Brands | Haute | Haute | Marques, CMO |
-| For Talents | Moyenne | Haute (trop longue) | Createurs |
-| Studio | Nulle | Inexistante | Marques ? Talents ? |
-| Wiki | Moyenne | Moyenne | Createurs, marketeurs |
-| Services | Haute | Bonne | Generique (SEO) |
+| Pole        | Clarte  | Maturite editoriale | Public cible          |
+| ----------- | ------- | ------------------- | --------------------- |
+| For Brands  | Haute   | Haute               | Marques, CMO          |
+| For Talents | Moyenne | Haute (trop longue) | Createurs             |
+| Studio      | Nulle   | Inexistante         | Marques ? Talents ?   |
+| Wiki        | Moyenne | Moyenne             | Createurs, marketeurs |
+| Services    | Haute   | Bonne               | Generique (SEO)       |
 
 **Coherence entre les offres :**
+
 - For Brands et Services couvrent le meme terrain sous deux angles. C'est redondant mais pas inconciliable si Services est le hub SEO et For Brands la page de conversion.
 - Le Studio devrait faire le pont entre Marques (production de campagne) et Talents (production de contenu). Actuellement il ne fait rien.
 - Le Wiki devrait nourrir les deux audiences mais ne pointe vers aucun service.
 
 **Trous dans l'architecture :**
+
 1. **Pas de page "A propos" / "Qui sommes-nous"** -- Pour une agence dont l'expertise repose sur les fondateurs, c'est un manque majeur.
 2. **Pas de page "Roster" / "Nos talents"** -- Pour une agence de talent management, ne pas montrer ses talents est paradoxal.
 3. **Pas de page "Case studies" dediee** -- Les case studies sont dans /for-brands mais meritent une page autonome.
@@ -639,6 +701,7 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 ### 4.3 Coherence de marque
 
 **Coherence tonale :** 4/10
+
 - /services : professionnel, factuel, "nous"
 - /for-brands : confiant, direct, "nous/vous"
 - /for-talents : familier, alternatif "tu/vous" (incoherent)
@@ -647,10 +710,12 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 - Taglines : entre grandiloquence ("architecture", "ecosysteme") et familiarite ("On ne te signe pas")
 
 **Coherence du niveau de langage :** 5/10
+
 - Melange constant FR/EN : "Creative Studio & Talent Powerhouse", "Enterprise-ready", "Social-First Content Factory", "Live & Experiential", "One-Shot", "Brand Safety"
 - Pour un site en francais ciblant un marche francophone, ces anglicismes non traduits creent un decalage
 
 **Coherence entre ambition premium et execution :**
+
 - Le site revendique un positionnement premium (logos Adidas, L'Oreal, process structure, "zero compromis")
 - Mais la homepage vide, le studio placeholder, et l'absence de page equipe/about trahissent un niveau de finition insuffisant
 - Le decalage entre la promesse et l'execution editoriale est le signal le plus dangereux pour la credibilite
@@ -658,58 +723,69 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 ### 4.4 Parcours utilisateur global
 
 **Parcours existants :**
+
 1. **Marque decidee :** Header CTA -> Questionnaire brands (court mais sans nurturing)
 2. **Marque curieuse :** Services -> For Brands -> Questionnaire brands (bon mais trop long)
 3. **Talent curieux :** For Talents -> Questionnaire talents (OK mais sans preuve)
 4. **SEO visiteur :** Wiki article -> ??? (dead end)
 
 **Parcours qui devraient exister :**
+
 1. **Homepage -> Decouverte -> Service -> Conversion** : Actuellement impossible (homepage vide)
 2. **Wiki -> Service -> Conversion** : Le Wiki devrait nourrir le funnel
 3. **Case study -> Service -> Conversion** : Les case studies devraient avoir leur propre page
 4. **Studio -> For Brands -> Conversion** : Le studio devrait vendre la production
 
 **Points d'entree :**
+
 - Google (SEO) : /services, /wiki/[slug]
 - Direct (marque) : wafia.fr (probleme : homepage vide)
 - Referral (social) : wafia.fr ou pages specifiques
 
 **Points de sortie (leaks) :**
+
 - Homepage -> Bounce (pas de contenu)
 - Studio -> Bounce (placeholder)
 - Wiki articles -> Exit (pas de CTA)
 - Footer -> Liens sociaux (pas de retour)
 
 **Pages orphelines :**
+
 - /equipe/[slug] : Accessible uniquement depuis les sections equipe des pages, pas depuis une page equipe dediee
 - /studio/julien-ardid : Page case study/portfolio sans lien visible dans la navigation
 
 ### 4.5 Conversion
 
 **Ou le site convertit :**
+
 - /for-brands -> /questionnaire/brands : Le meilleur tunnel. Page complete, multiples CTA.
 - Header CTA -> Questionnaire : Raccourci efficace pour les visiteurs decides.
 
 **Ou il echoue a convertir :**
+
 - Homepage : Aucune conversion possible
 - Studio : Aucun CTA
 - Wiki : Aucun CTA vers les services
 - Services : Bon contenu mais manque de preuves pour declencher l'action
 
 **CTA trop faibles :**
+
 - "Voir nos expertises" (services hero) -- scroll vers le bas, pas une action
 - "Se referencer" (for-talents) -- ambigu, pas premium
 
 **CTA trop tard :**
+
 - Le CTA final de /for-brands arrive apres 12+ sections. Des visiteurs ont quitte avant.
 
 **CTA mal formules :**
+
 - "Se referencer" devrait etre "Candidater", "Rejoindre le roster" ou "Postuler"
 - "Voir le Studio" sur /services envoie vers un placeholder -- promesse brisee
 
 ### 4.6 Contenu / Editorial
 
 **Qualite generale des textes :** 6.5/10
+
 - Meilleure sur /for-brands (8/10) et la FAQ (8/10)
 - Correcte sur /services (7/10) et /for-talents (6/10)
 - Inexistante sur / et /studio
@@ -717,12 +793,14 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 **Maturite editoriale :** Inegale. Certaines pages sont a un niveau cabinet (for-brands), d'autres a un niveau brouillon (studio, homepage).
 
 **Presence de "filler" :**
+
 - "Une architecture complete pour transformer votre marque" -- filler
 - "Du concret." comme titre de section -- paresseux
 - "Chaque terrain a ses regles" -- vague
 - Certaines descriptions des 11 services de /for-brands sont generiques et interchangeables
 
 **Elements narratifs a renforcer pour une plateforme de marque :**
+
 - "Wafia n'est pas une agence : c'est une architecture/un systeme" -- cette phrase apparait deux fois sous des formes differentes. C'est le germe d'un positionnement unique qui devrait devenir la plateforme de marque.
 - "Notre succes se mesure a votre independance" -- tagline potentielle pour le pole Talents
 - "Zero vanity metric" -- territoire verbal a proteger et amplifier
@@ -731,6 +809,7 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 ### 4.7 SEO global
 
 **Structure editoriale actuelle :**
+
 ```
 /services (hub SEO principal)
   -> /for-brands (landing conversion marques)
@@ -745,6 +824,7 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 **Logique de hub :** Absente. /services ne lie pas vers /wiki, /wiki ne lie pas vers /services. Les deux fonctionnent en silos.
 
 **Potentiel du Wiki :**
+
 - Fort si le contenu est enrichi et relie au funnel
 - Les 23 articles couvrent des sujets recherches (tarifs, algorithmes, outils)
 - Manque : frequence de publication, auteurs identifies, liens internes
@@ -772,6 +852,7 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 **Pages a creer en priorite :** Voir section 11.
 
 **Maillage interne recommande :**
+
 - Chaque article wiki doit contenir 2-3 liens vers d'autres articles + 1 CTA vers page de service
 - Chaque page de service doit lier vers 2-3 articles wiki pertinents
 - La page /for-brands devrait lier vers les articles wiki les plus business (tarifs, ROI, mesure)
@@ -781,18 +862,18 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 
 ## 5. TABLEAU DE SYNTHESE
 
-| Page | Role | Audience | Message | Conversion | SEO | Priorite action |
-|------|------|----------|---------|------------|-----|-----------------|
-| / | Hub d'entree | Tout visiteur | 1/10 | 1/10 | 3/10 | **P0 - CRITIQUE** |
-| /services | Hub services SEO | Marques, SEO | 7/10 | 6/10 | 7/10 | P2 |
-| /for-brands | Landing marques | CMO, marketeurs | 8/10 | 7/10 | 6/10 | P2 |
-| /for-talents | Landing talents | Createurs | 6/10 | 5/10 | 5/10 | P1 |
-| /studio | Showcase studio | Marques | 1/10 | 0/10 | 1/10 | **P0 - CRITIQUE** |
-| /wiki | Hub editorial | Createurs, SEO | 6/10 | 2/10 | 6/10 | P1 |
-| /wiki/[slug] | Articles | SEO, createurs | 6/10 | 2/10 | 6/10 | P1 |
-| /legal/* | Legal | Tout visiteur | 6/10 | N/A | N/A | P3 |
-| /equipe/[slug] | Profils equipe | Curieux | 5/10 | 3/10 | 2/10 | P2 |
-| /questionnaire/* | Formulaires | Leads qualifies | ?/10 | ?/10 | N/A | P2 |
+| Page              | Role             | Audience        | Message | Conversion | SEO  | Priorite action   |
+| ----------------- | ---------------- | --------------- | ------- | ---------- | ---- | ----------------- |
+| /                 | Hub d'entree     | Tout visiteur   | 1/10    | 1/10       | 3/10 | **P0 - CRITIQUE** |
+| /services         | Hub services SEO | Marques, SEO    | 7/10    | 6/10       | 7/10 | P2                |
+| /for-brands       | Landing marques  | CMO, marketeurs | 8/10    | 7/10       | 6/10 | P2                |
+| /for-talents      | Landing talents  | Createurs       | 6/10    | 5/10       | 5/10 | P1                |
+| /studio           | Showcase studio  | Marques         | 1/10    | 0/10       | 1/10 | **P0 - CRITIQUE** |
+| /wiki             | Hub editorial    | Createurs, SEO  | 6/10    | 2/10       | 6/10 | P1                |
+| /wiki/[slug]      | Articles         | SEO, createurs  | 6/10    | 2/10       | 6/10 | P1                |
+| /legal/\*         | Legal            | Tout visiteur   | 6/10    | N/A        | N/A  | P3                |
+| /equipe/[slug]    | Profils equipe   | Curieux         | 5/10    | 3/10       | 2/10 | P2                |
+| /questionnaire/\* | Formulaires      | Leads qualifies | ?/10    | ?/10       | N/A  | P2                |
 
 ---
 
@@ -843,36 +924,36 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 
 ### JOURS 1-30 : Urgences
 
-| Action | Page | Detail | Impact |
-|--------|------|--------|--------|
-| Refaire la homepage | / | Hero + promesse + stats + logos + CTA segmentant + description. Reprendre la matiere de /services comme base. | Conversion +++ |
-| Retirer ou reconstruire /studio | /studio | Option A : retirer de la navigation et rediriger vers /for-brands#case-studies. Option B : transformer en galerie de productions avec CTA. | Credibilite +++ |
-| Ajouter CTA dans le wiki | /wiki/* | Bloc "Wafia gere ca pour vous" en fin de chaque article, contextualise par theme. | Conversion ++ |
-| Unifier tu/vous sur /for-talents | /for-talents | Tout passer en "tu" pour la coherence avec l'audience createur. | Clarte + |
-| Corriger "TGE" et anglicismes | /for-brands | Supprimer "TGE", traduire "Enterprise-ready" -> "Pret pour l'entreprise" ou "Conforme & securise". | Credibilite + |
-| Ajouter 2-3 preuves sur /for-talents | /for-talents | Temoignages de talents accompagnes (meme anonymises) + chiffres de croissance. | Credibilite +++ |
+| Action                               | Page         | Detail                                                                                                                                     | Impact          |
+| ------------------------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Refaire la homepage                  | /            | Hero + promesse + stats + logos + CTA segmentant + description. Reprendre la matiere de /services comme base.                              | Conversion +++  |
+| Retirer ou reconstruire /studio      | /studio      | Option A : retirer de la navigation et rediriger vers /for-brands#case-studies. Option B : transformer en galerie de productions avec CTA. | Credibilite +++ |
+| Ajouter CTA dans le wiki             | /wiki/\*     | Bloc "Wafia gere ca pour vous" en fin de chaque article, contextualise par theme.                                                          | Conversion ++   |
+| Unifier tu/vous sur /for-talents     | /for-talents | Tout passer en "tu" pour la coherence avec l'audience createur.                                                                            | Clarte +        |
+| Corriger "TGE" et anglicismes        | /for-brands  | Supprimer "TGE", traduire "Enterprise-ready" -> "Pret pour l'entreprise" ou "Conforme & securise".                                         | Credibilite +   |
+| Ajouter 2-3 preuves sur /for-talents | /for-talents | Temoignages de talents accompagnes (meme anonymises) + chiffres de croissance.                                                             | Credibilite +++ |
 
 ### JOURS 30-60 : Renforcement
 
-| Action | Page | Detail | Impact |
-|--------|------|--------|--------|
-| Creer page "A propos" | /about | Fondateurs, vision, equipe, valeurs. Capitaliser sur l'expertise de Sasha (350+ marques). | Autorite ++ |
-| Creer page "Case studies" | /case-studies | Les 3 etudes + 2-3 nouvelles. Page autonome avec filtres par industrie/objectif. | Conversion ++ |
-| Restructurer la navigation | Global | Header : Services, Studio*, Realisations, Wiki, A propos. CTA : "Estimer ma campagne" / "Rejoindre le roster". | UX +++ |
-| Maillage interne wiki <-> services | Wiki + Services | 2-3 liens internes par article, liens depuis services vers wiki. | SEO ++ |
-| Ajouter auteur + date aux articles wiki | Wiki | Photo auteur, bio courte, date de publication, date de mise a jour. | E-E-A-T ++ |
-| Raccourcir /for-talents | /for-talents | Fusionner Livrables et Timeline. Supprimer sections redondantes. Objectif : -30% de longueur. | UX ++ |
+| Action                                  | Page            | Detail                                                                                                          | Impact        |
+| --------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
+| Creer page "A propos"                   | /about          | Fondateurs, vision, equipe, valeurs. Capitaliser sur l'expertise de Sasha (350+ marques).                       | Autorite ++   |
+| Creer page "Case studies"               | /case-studies   | Les 3 etudes + 2-3 nouvelles. Page autonome avec filtres par industrie/objectif.                                | Conversion ++ |
+| Restructurer la navigation              | Global          | Header : Services, Studio\*, Realisations, Wiki, A propos. CTA : "Estimer ma campagne" / "Rejoindre le roster". | UX +++        |
+| Maillage interne wiki <-> services      | Wiki + Services | 2-3 liens internes par article, liens depuis services vers wiki.                                                | SEO ++        |
+| Ajouter auteur + date aux articles wiki | Wiki            | Photo auteur, bio courte, date de publication, date de mise a jour.                                             | E-E-A-T ++    |
+| Raccourcir /for-talents                 | /for-talents    | Fusionner Livrables et Timeline. Supprimer sections redondantes. Objectif : -30% de longueur.                   | UX ++         |
 
 ### JOURS 60-90 : Croissance
 
-| Action | Page | Detail | Impact |
-|--------|------|--------|--------|
-| Lancer cluster SEO "influence marketing" | Wiki + nouvelles pages | 5-7 articles TOFU/MOFU ciblant "campagne influence", "ROI influence", "cout influence" | SEO +++ |
-| Creer page "Comment ca marche" | /process | Version simplifiee du process, avec pricing indicatif et timeline. | Conversion ++ |
-| Lancer newsletter/lead magnet | Wiki | Guide PDF "Les 10 erreurs qui tuent une campagne influence" en echange d'email. | Lead gen ++ |
-| Creer landing pages par industrie | /industrie/* | Mode, beaute, sport, tech, food. Chaque page avec case study + offre contextualise. | SEO ++ / Conversion ++ |
-| Publier roster (meme partiel) | /talents | Showcase de 5-10 talents avec stats et contenus. | Credibilite +++ |
-| Harmoniser la plateforme de marque | Global | Fixer la tagline, la promesse centrale, le territoire verbal. "Wafia n'est pas une agence : c'est un systeme." | Branding +++ |
+| Action                                   | Page                   | Detail                                                                                                         | Impact                 |
+| ---------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| Lancer cluster SEO "influence marketing" | Wiki + nouvelles pages | 5-7 articles TOFU/MOFU ciblant "campagne influence", "ROI influence", "cout influence"                         | SEO +++                |
+| Creer page "Comment ca marche"           | /process               | Version simplifiee du process, avec pricing indicatif et timeline.                                             | Conversion ++          |
+| Lancer newsletter/lead magnet            | Wiki                   | Guide PDF "Les 10 erreurs qui tuent une campagne influence" en echange d'email.                                | Lead gen ++            |
+| Creer landing pages par industrie        | /industrie/\*          | Mode, beaute, sport, tech, food. Chaque page avec case study + offre contextualise.                            | SEO ++ / Conversion ++ |
+| Publier roster (meme partiel)            | /talents               | Showcase de 5-10 talents avec stats et contenus.                                                               | Credibilite +++        |
+| Harmoniser la plateforme de marque       | Global                 | Fixer la tagline, la promesse centrale, le territoire verbal. "Wafia n'est pas une agence : c'est un systeme." | Branding +++           |
 
 ---
 
@@ -929,6 +1010,7 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 ## 10. PLAN DE REECRITURE PRIORISE
 
 ### Priorite 1 : Homepage (/)
+
 - **Angle :** Passer de "carrefour vide" a "vitrine premium avec segmentation"
 - **Promesse a renforcer :** "Wafia = le systeme qui fait performer l'influence" (unifier les 3 piliers sous une promesse unique)
 - **Preuves a ajouter :** Logos clients, stats cles (17M+ impressions, 350+ marques, 100+ createurs), headline fort
@@ -942,6 +1024,7 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
   6. Lien vers Wiki
 
 ### Priorite 2 : For Talents (/for-talents)
+
 - **Angle :** Raccourcir, prouver, unifier
 - **Promesse a renforcer :** Garder "Votre talent. Notre infrastructure." mais ajouter des preuves immediates
 - **Preuves a ajouter :** 2-3 temoignages de talents (meme anonymises : "Createur lifestyle, 200K abonnes"), avant/apres en chiffres
@@ -950,17 +1033,20 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 - **Sections a fusionner/supprimer :** Fusionner Livrables + Timeline, supprimer ou raccourcir la section Persona (3 tabs)
 
 ### Priorite 3 : Studio (/studio)
+
 - **Angle :** Transformer en galerie de productions avec contexte business
 - **Promesse a renforcer :** "Production social-first qui performe" (lier les visuels aux resultats)
 - **Preuves a ajouter :** Chaque production avec metriques (vues, engagement, conversions)
 - **CTA a integrer :** "Lancer votre production" -> /questionnaire/brands
 
 ### Priorite 4 : Wiki (/wiki)
+
 - **Angle :** De "blog deconnecte" a "hub editorial strategique"
 - **Ce qui change :** Ajout d'un CTA contextualise en fin de chaque article, maillage interne, auteur + date
 - **Template article :** Intro -> Corps -> Points cles -> CTA ("Wafia vous accompagne") -> Articles lies
 
 ### Priorite 5 : Services (/services)
+
 - **Angle :** Renforcer la preuve, reduire la genericite
 - **Preuves a ajouter :** Logos clients, lien vers 1-2 case studies par service
 - **Hero :** Plus vendeur, moins SEO-only. Proposition : "Influence + Studio + Talents. Le systeme complet pour les marques qui veulent des resultats."
@@ -969,25 +1055,25 @@ Wafia se presente comme une "agence hybride" a l'intersection de 4 metiers :
 
 ## 11. PLAN DE NOUVELLES PAGES
 
-| Nom de page | Objectif | Cible | Mot-cle principal | Role funnel |
-|-------------|----------|-------|-------------------|-------------|
-| /about | Presenter l'equipe, la vision, l'histoire | Tout visiteur | "wafia agence" | Authority / Trust |
-| /case-studies | Hub des etudes de cas | CMO, marketeurs | "cas client influence marketing" | BOFU / Conversion |
-| /case-studies/[slug] | Etude de cas detaillee | CMO | "campagne influence [marque]" | BOFU |
-| /talents (roster) | Montrer les talents accompagnes | Marques + Talents | "roster influenceurs" | Trust / Conversion |
-| /process | Comment ca marche (simplifie) | Marques | "comment fonctionne agence influence" | MOFU |
-| /wiki/campagne-influence-guide | Guide complet campagne influence | Marketeurs | "comment lancer campagne influence" | TOFU |
-| /wiki/roi-influence-marketing | Guide ROI influence | CMO | "ROI influence marketing" | MOFU |
-| /wiki/cout-campagne-influence | Guide prix/budget | Marketeurs | "combien coute campagne influence" | MOFU |
-| /wiki/ugc-guide-complet | Guide UGC | Marketeurs | "UGC marketing guide" | TOFU |
-| /wiki/contrat-influenceur | Guide juridique | Createurs | "contrat influenceur modele" | MOFU |
-| /industrie/mode | Landing verticale mode | Marques mode | "agence influence mode" | BOFU |
-| /industrie/beaute | Landing verticale beaute | Marques beaute | "agence influence beaute" | BOFU |
-| /industrie/sport | Landing verticale sport | Marques sport | "agence influence sport" | BOFU |
-| /contact | Page contact simple | Tout visiteur | N/A | Conversion |
-| /resultats | Page chiffres agreges | CMO | "resultats agence influence" | Trust / BOFU |
+| Nom de page                    | Objectif                                  | Cible             | Mot-cle principal                     | Role funnel        |
+| ------------------------------ | ----------------------------------------- | ----------------- | ------------------------------------- | ------------------ |
+| /about                         | Presenter l'equipe, la vision, l'histoire | Tout visiteur     | "wafia agence"                        | Authority / Trust  |
+| /case-studies                  | Hub des etudes de cas                     | CMO, marketeurs   | "cas client influence marketing"      | BOFU / Conversion  |
+| /case-studies/[slug]           | Etude de cas detaillee                    | CMO               | "campagne influence [marque]"         | BOFU               |
+| /talents (roster)              | Montrer les talents accompagnes           | Marques + Talents | "roster influenceurs"                 | Trust / Conversion |
+| /process                       | Comment ca marche (simplifie)             | Marques           | "comment fonctionne agence influence" | MOFU               |
+| /wiki/campagne-influence-guide | Guide complet campagne influence          | Marketeurs        | "comment lancer campagne influence"   | TOFU               |
+| /wiki/roi-influence-marketing  | Guide ROI influence                       | CMO               | "ROI influence marketing"             | MOFU               |
+| /wiki/cout-campagne-influence  | Guide prix/budget                         | Marketeurs        | "combien coute campagne influence"    | MOFU               |
+| /wiki/ugc-guide-complet        | Guide UGC                                 | Marketeurs        | "UGC marketing guide"                 | TOFU               |
+| /wiki/contrat-influenceur      | Guide juridique                           | Createurs         | "contrat influenceur modele"          | MOFU               |
+| /industrie/mode                | Landing verticale mode                    | Marques mode      | "agence influence mode"               | BOFU               |
+| /industrie/beaute              | Landing verticale beaute                  | Marques beaute    | "agence influence beaute"             | BOFU               |
+| /industrie/sport               | Landing verticale sport                   | Marques sport     | "agence influence sport"              | BOFU               |
+| /contact                       | Page contact simple                       | Tout visiteur     | N/A                                   | Conversion         |
+| /resultats                     | Page chiffres agreges                     | CMO               | "resultats agence influence"          | Trust / BOFU       |
 
 ---
 
-*Fin de l'audit. Document genere le 2 avril 2026.*
-*Niveau : Audit strategique cabinet / Direction de marque.*
+_Fin de l'audit. Document genere le 2 avril 2026._
+_Niveau : Audit strategique cabinet / Direction de marque._

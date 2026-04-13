@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
-import { getAllWikiArticles, getWikiPlatforms, getWikiThemes } from "@/lib/wiki";
+import {
+  getAllWikiArticles,
+  getWikiPlatforms,
+  getWikiThemes,
+} from "@/lib/wiki";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [articles, themes, platforms] = await Promise.all([

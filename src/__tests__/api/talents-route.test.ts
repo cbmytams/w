@@ -10,7 +10,8 @@ const prismaMock = {
 };
 
 jest.mock("@/lib/apiAuth", () => ({
-  requireDashboardRole: (...args: unknown[]) => requireDashboardRoleMock(...args),
+  requireDashboardRole: (...args: unknown[]) =>
+    requireDashboardRoleMock(...args),
 }));
 
 jest.mock("@/lib/requestSecurity", () => ({

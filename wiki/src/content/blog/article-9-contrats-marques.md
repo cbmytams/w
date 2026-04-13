@@ -1,13 +1,13 @@
 ---
-title: 'Contrats de marque : négociation, clauses clés et sécurisation'
+title: "Contrats de marque : négociation, clauses clés et sécurisation"
 slug: contrats-influenceur-marques-2025
-description: 'Négocier des contrats de marque en 2025 : clauses sensibles, droits d’usage, exclusivité et cadre de négociation.'
+description: "Négocier des contrats de marque en 2025 : clauses sensibles, droits d’usage, exclusivité et cadre de négociation."
 authorSlug: sasha-guettat
 theme: business
 category: Business — Légal & Contrats
-publishedAt: '2025-07-27'
-updatedAt: '2025-07-27'
-lastReviewedAt: '2025-07-27'
+publishedAt: "2025-07-27"
+updatedAt: "2025-07-27"
+lastReviewedAt: "2025-07-27"
 sources: []
 ---
 
@@ -33,6 +33,7 @@ La différence entre un influenceur qui signe des contrats mal structurés et un
 Marque te paie pour créer 1 post (ou quelques posts) sur tes réseaux. Exemple : "Crée 3 posts Instagram de mon produit, je te paye 500 €".
 
 **Clauses clés à inclure :**
+
 - Nombre de posts / format.
 - Date de publication.
 - Contenu devra mentionner X hashtags.
@@ -53,6 +54,7 @@ Piège 3 : "Unlimited revisions" = la marque peut te demander de refaire le cont
 Tu deviens "official partner" d'une marque pour 3-12 mois. Tu fais régulièrement du contenu pour eux.
 
 **Clauses clés :**
+
 - Nombre de livrables par mois (ex : 2 posts Instagram + 1 TikTok par mois).
 - Exclusivité (peux-tu travailler avec les competitors pendant ce temps ?).
 - Durée du contrat et conditions de renouvellement.
@@ -60,6 +62,7 @@ Tu deviens "official partner" d'une marque pour 3-12 mois. Tu fais régulièreme
 - Compensation (montant fixe mensuel + bonuses si performance targets hit ?).
 
 **Tarification classique :**
+
 - Micro-influenceur (10-50k) : 500-1 500 €/mois.
 - Mid-tier (50-200k) : 1 500-5 000 €/mois.
 - Macro (200k+) : 5 000-20 000 €/mois.
@@ -72,6 +75,7 @@ Tu deviens "official partner" d'une marque pour 3-12 mois. Tu fais régulièreme
 Tu promeus un produit, chaque vente via ton link = tu gagnes X % de commission.
 
 **Clauses :**
+
 - Commission % ou € fixe par sale.
 - Quelle est la durée du suivi ? (30 jours ? 60 jours ? Lifetime ?)
 - Fraud protection : comment tu sais que tu es payé correctement ?
@@ -86,6 +90,7 @@ Tu promeus un produit, chaque vente via ton link = tu gagnes X % de commission.
 Marque te paie une base fixe + bonus si tu atteins des targets (ex : 50k views = +200 €).
 
 **Clauses :**
+
 - Base fixe.
 - Metrics de success (views ? clicks ? sales ?).
 - Bonus tiers (10k views = X, 50k views = X, etc.).
@@ -99,9 +104,10 @@ Cet format est très popular en 2025 car **align tes interests avec celles de la
 
 ### Définition : Qu'est-ce que "usage rights" ?
 
-C'est les droits **de réutiliser ton créatif** (tes vidéos/photos). 
+C'est les droits **de réutiliser ton créatif** (tes vidéos/photos).
 
 **Scénario :** Tu crées une vidéo TikTok 60 sec pour marque X. Si tu ne définis pas les usage rights, théoriquement :
+
 - La marque peut prendre ta vidéo et la publier sur sa chaîne YouTube.
 - Elle peut l'utiliser en pub YouTube ads.
 - Elle peut la modifier (ajouter du texte, du logo, de la musique).
@@ -114,17 +120,17 @@ C'est les droits **de réutiliser ton créatif** (tes vidéos/photos).
 
 **Niveau 1 : Très limité (Le moins cher pour la marque)**
 
-*Droits* : Utiliser le post/vidéo sur ses propres canaux owned (son Instagram, son website) pendant X durée. Pas de modification, pas d'ads payantes, pas de réutilisation commerciale.
+_Droits_ : Utiliser le post/vidéo sur ses propres canaux owned (son Instagram, son website) pendant X durée. Pas de modification, pas d'ads payantes, pas de réutilisation commerciale.
 
 **Prix : 100 % du rate normal.**
 
-*Exemple : "Influenceur crée un post Instagram. La marque peut le repost sur son Instagram pendant 6 mois, puis le post disparaît."*
+_Exemple : "Influenceur crée un post Instagram. La marque peut le repost sur son Instagram pendant 6 mois, puis le post disparaît."_
 
 ---
 
 **Niveau 2 : Limité (Modéré)**
 
-*Droits* : Utiliser sur tous les channels (Instagram, YouTube, TikTok), pendant 12 mois, inclu ads payantes (YouTube ads, Facebook ads) **mais pas de modification du créatif**.
+_Droits_ : Utiliser sur tous les channels (Instagram, YouTube, TikTok), pendant 12 mois, inclu ads payantes (YouTube ads, Facebook ads) **mais pas de modification du créatif**.
 
 **Prix : 150% du rate normal** (+50% pour les usage rights élargis).
 
@@ -132,7 +138,7 @@ C'est les droits **de réutiliser ton créatif** (tes vidéos/photos).
 
 **Niveau 3 : Étendu (C'est du premium)**
 
-*Droits* : Utiliser partout, 24 mois, modifier le créatif (ajouter du logo, texte), utiliser en ads payantes.
+_Droits_ : Utiliser partout, 24 mois, modifier le créatif (ajouter du logo, texte), utiliser en ads payantes.
 
 **Prix : 250-300% du rate normal** (3x le prix initial).
 
@@ -140,11 +146,11 @@ C'est les droits **de réutiliser ton créatif** (tes vidéos/photos).
 
 **Niveau 4 : Illimité (Very rare, onéreux)**
 
-*Droits* : Tout. Partout. Toujours. Marque peut vendre ta création à tiers, modifier à volonté, etc.
+_Droits_ : Tout. Partout. Toujours. Marque peut vendre ta création à tiers, modifier à volonté, etc.
 
 **Prix : 500-1 000 % du rate normal** ou deal forfait très gros.
 
-*Example : Tu crées une vidéo à 500 €. Usage rights illimitées = 2 500-5 000 € ou tu demandes un forfait total de 5 000-10 000 € pour ce contenu.*
+_Example : Tu crées une vidéo à 500 €. Usage rights illimitées = 2 500-5 000 € ou tu demandes un forfait total de 5 000-10 000 € pour ce contenu._
 
 ---
 
@@ -167,6 +173,7 @@ C'est les droits **de réutiliser ton créatif** (tes vidéos/photos).
 **Clause typique :** "Influenceur accepte de ne pas promouvoir X category (competitors) pendant Y mois."
 
 **À négocier :**
+
 - Durée : 1 mois acceptable. 3+ mois = demande extra compensation (20-30 % du deal).
 - Scope : "Category" veut dire quoi ? Vous travaillez dans la beauté — ça inclut tout produit beauty ou juste ce brand exact ?
 
@@ -280,4 +287,3 @@ Tu as le droit de parler de ta vie professionnelle publiquement. Full NDA = roug
 Tu veux un accompagnement pour négocier tes contrats et sécuriser tes deals ? Le [Talent Management Wafia](/for-talents) couvre la structuration contractuelle, la négociation et la roadmap carrière.
 
 Tu es une marque et tu cherches à structurer tes partenariats créateurs ? Découvrez notre approche [campagnes d'influence marketing](/for-brands).
-

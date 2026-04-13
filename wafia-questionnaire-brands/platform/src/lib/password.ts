@@ -12,7 +12,10 @@ export async function hashPassword(password: string) {
   return `${salt}:${derived.toString("base64url")}`;
 }
 
-export async function verifyPassword(password: string, passwordHash: string | null | undefined) {
+export async function verifyPassword(
+  password: string,
+  passwordHash: string | null | undefined
+) {
   if (!passwordHash) return false;
   const [salt, stored] = passwordHash.split(":");
   if (!salt || !stored) return false;
@@ -24,7 +27,8 @@ export async function verifyPassword(password: string, passwordHash: string | nu
 }
 
 export function generateTemporaryPassword(length = 18) {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$%^&*";
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$%^&*";
   const bytes = randomBytes(length);
   let output = "";
   for (let i = 0; i < length; i += 1) {

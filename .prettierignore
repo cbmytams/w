@@ -1,0 +1,12 @@
+.agent
+.claude
+.worktrees
+node_modules
+.next
+coverage
+dist
+public/questionnaire
+public/questionnaire-brands
+wafia-questionnaire-brands/dist
+wafia-questionnaire-brands/platform/.next
+wiki/dist

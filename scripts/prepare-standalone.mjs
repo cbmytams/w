@@ -26,7 +26,9 @@ async function ensureExists(target) {
   try {
     await mkdir(target, { recursive: true });
   } catch (error) {
-    throw new Error(`Unable to prepare directory ${target}: ${error instanceof Error ? error.message : String(error)}`);
+    throw new Error(
+      `Unable to prepare directory ${target}: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 
@@ -74,9 +76,13 @@ async function copyIntoStandalone() {
 
 copyIntoStandalone()
   .then(() => {
-    process.stdout.write("Standalone package prepared with public/ and .next/static assets.\n");
+    process.stdout.write(
+      "Standalone package prepared with public/ and .next/static assets.\n"
+    );
   })
   .catch((error) => {
-    process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+    process.stderr.write(
+      `${error instanceof Error ? error.message : String(error)}\n`
+    );
     process.exit(1);
   });

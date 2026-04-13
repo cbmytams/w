@@ -6,11 +6,11 @@ Add multi-language support to the Wafia website using `next-intl` with a subdoma
 
 ## Languages & Routing
 
-| Language | Domain | Locale |
-|----------|--------|--------|
-| Francais (defaut) | `wafia.co` | `fr` |
-| English | `en.wafia.co` | `en` |
-| Espanol | `es.wafia.co` | `es` |
+| Language          | Domain        | Locale |
+| ----------------- | ------------- | ------ |
+| Francais (defaut) | `wafia.co`    | `fr`   |
+| English           | `en.wafia.co` | `en`   |
+| Espanol           | `es.wafia.co` | `es`   |
 
 URLs remain identical across subdomains (`/services`, `/studio`, etc.). No path-based locale prefix.
 
@@ -57,7 +57,12 @@ Each JSON file follows this namespace structure:
   },
   "forBrands": {
     "meta": { "title": "...", "description": "..." },
-    "hero": { "badge": "...", "titleLine1": "...", "titleHighlight": "...", "subtitle": "..." },
+    "hero": {
+      "badge": "...",
+      "titleLine1": "...",
+      "titleHighlight": "...",
+      "subtitle": "..."
+    },
     "stats": {},
     "valueProposition": {},
     "caseStudies": {},
@@ -115,21 +120,21 @@ Each JSON file follows this namespace structure:
 
 ```typescript
 // src/middleware.ts
-import createMiddleware from 'next-intl/middleware';
+import createMiddleware from "next-intl/middleware";
 
 export default createMiddleware({
-  locales: ['fr', 'en', 'es'],
-  defaultLocale: 'fr',
+  locales: ["fr", "en", "es"],
+  defaultLocale: "fr",
   localeDetection: false,
   domains: [
-    { domain: 'wafia.co', defaultLocale: 'fr' },
-    { domain: 'en.wafia.co', defaultLocale: 'en' },
-    { domain: 'es.wafia.co', defaultLocale: 'es' }
-  ]
+    { domain: "wafia.co", defaultLocale: "fr" },
+    { domain: "en.wafia.co", defaultLocale: "en" },
+    { domain: "es.wafia.co", defaultLocale: "es" },
+  ],
 });
 
 export const config = {
-  matcher: ['/((?!api|admin|questionnaire|_next|.*\\..*).*)']
+  matcher: ["/((?!api|admin|questionnaire|_next|.*\\..*).*)"],
 };
 ```
 
@@ -139,22 +144,22 @@ export const config = {
 
 ```typescript
 // src/i18n/request.ts
-import { getRequestConfig } from 'next-intl/server';
+import { getRequestConfig } from "next-intl/server";
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  const locale = (await requestLocale) || 'fr';
+  const locale = (await requestLocale) || "fr";
   return {
     locale,
     messages: (await import(`../../messages/${locale}.json`)).default,
-    timeZone: 'Europe/Paris',
+    timeZone: "Europe/Paris",
     formats: {
       dateTime: {
-        short: { day: 'numeric', month: 'short', year: 'numeric' }
+        short: { day: "numeric", month: "short", year: "numeric" },
       },
       number: {
-        currency: { style: 'currency', currency: 'EUR' }
-      }
-    }
+        currency: { style: "currency", currency: "EUR" },
+      },
+    },
   };
 });
 ```
@@ -163,8 +168,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
 ```typescript
 // next.config.ts
-import createNextIntlPlugin from 'next-intl/plugin';
-const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+import createNextIntlPlugin from "next-intl/plugin";
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 export default withNextIntl({
   // ... existing config preserved
@@ -224,18 +229,18 @@ Every public page generates metadata dynamically with `hreflang` alternates:
 
 ```typescript
 export async function generateMetadata() {
-  const t = await getTranslations('services.meta');
+  const t = await getTranslations("services.meta");
   return {
-    title: t('title'),
-    description: t('description'),
+    title: t("title"),
+    description: t("description"),
     alternates: {
-      canonical: 'https://wafia.co/services',
+      canonical: "https://wafia.co/services",
       languages: {
-        fr: 'https://wafia.co/services',
-        en: 'https://en.wafia.co/services',
-        es: 'https://es.wafia.co/services',
-      }
-    }
+        fr: "https://wafia.co/services",
+        en: "https://en.wafia.co/services",
+        es: "https://es.wafia.co/services",
+      },
+    },
   };
 }
 ```
@@ -245,18 +250,26 @@ export async function generateMetadata() {
 Existing constants in `/src/constants/` are transformed from hardcoded text to translation keys:
 
 **Before:**
+
 ```typescript
 export const BRAND_HERO_CONTENT = {
   badge: "Creative Studio & Talent Powerhouse",
-  title: { line1: "L'influence marketing", highlight: "qui performe vraiment." },
+  title: {
+    line1: "L'influence marketing",
+    highlight: "qui performe vraiment.",
+  },
 };
 ```
 
 **After:**
+
 ```typescript
 export const BRAND_HERO_KEYS = {
-  badge: 'forBrands.hero.badge',
-  title: { line1: 'forBrands.hero.titleLine1', highlight: 'forBrands.hero.titleHighlight' },
+  badge: "forBrands.hero.badge",
+  title: {
+    line1: "forBrands.hero.titleLine1",
+    highlight: "forBrands.hero.titleHighlight",
+  },
 } as const;
 ```
 

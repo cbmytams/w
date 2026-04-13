@@ -41,7 +41,7 @@ for (const member of TEAM) {
   if (!assertAuthorSlug(member.slug)) continue;
 
   const sameAs = [member.links.linkedin, member.links.instagram].filter(
-    (value): value is string => Boolean(value),
+    (value): value is string => Boolean(value)
   );
 
   authorEntries.push([
@@ -68,7 +68,9 @@ export function getAuthorBySlug(slug: string): AuthorProfile | null {
 export function getDefaultAuthor(): AuthorProfile {
   const author = getAuthorBySlug("sasha-guettat");
   if (!author) {
-    throw new Error("Default author profile is missing for slug sasha-guettat.");
+    throw new Error(
+      "Default author profile is missing for slug sasha-guettat."
+    );
   }
   return author;
 }

@@ -1,35 +1,35 @@
-import { HomeClient } from "@/components/home/HomeClient"
+import { HomeClient } from "@/components/home/HomeClient";
 import { sitePaths } from "@/lib/site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: {
-        absolute: "Wafia | Influence & Creative Studio",
-    },
+  title: {
+    absolute: "Wafia | Influence & Creative Studio",
+  },
+  description:
+    "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management.",
+  alternates: {
+    canonical: sitePaths.home,
+  },
+  openGraph: {
+    title: "Wafia | Influence & Creative Studio",
     description:
-        "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management.",
-    alternates: {
-        canonical: sitePaths.home,
-    },
-    openGraph: {
-        title: "Wafia | Influence & Creative Studio",
-        description:
-            "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management."
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Wafia | Influence & Creative Studio",
-        description:
-            "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management."
-    }
+      "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wafia | Influence & Creative Studio",
+    description:
+      "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management.",
+  },
 };
 
 /**
  * Homepage - Server Component
- * 
+ *
  * Renders the Client Component for the main interactive experience.
  * This structure allows us to add `generateMetadata` or other server-side logic here if needed.
  */
 export default function Homepage() {
-    return <HomeClient />
+  return <HomeClient />;
 }

@@ -44,10 +44,13 @@ function normalizeOrigin(rawOrigin) {
 }
 
 const SITE_ORIGIN = normalizeOrigin(
-  process.env.WIKI_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL,
+  process.env.WIKI_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL
 );
 const SITE_HOST = new URL(SITE_ORIGIN).hostname;
-const OG_IMAGE_URL = new URL(`${WIKI_BASE_PATH}/og-image.svg`, SITE_ORIGIN).toString();
+const OG_IMAGE_URL = new URL(
+  `${WIKI_BASE_PATH}/og-image.svg`,
+  SITE_ORIGIN
+).toString();
 
 function escapeHtml(value) {
   return String(value)
@@ -126,14 +129,13 @@ function toPubDate(value) {
 }
 
 function readTimeFromContent(markdownBody) {
-  const words = stripMarkdown(markdownBody)
-    .split(/\s+/)
-    .filter(Boolean).length;
+  const words = stripMarkdown(markdownBody).split(/\s+/).filter(Boolean).length;
   return `${Math.max(1, Math.ceil(words / 225))} min`;
 }
 
 function buildWikiUrl(routePath) {
-  const normalized = routePath === "/" ? WIKI_BASE_PATH : `${WIKI_BASE_PATH}${routePath}`;
+  const normalized =
+    routePath === "/" ? WIKI_BASE_PATH : `${WIKI_BASE_PATH}${routePath}`;
   return new URL(normalized, SITE_ORIGIN).toString();
 }
 
@@ -155,7 +157,7 @@ function setMetaByName(html, name, content) {
   const tag = `<meta name="${name}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(
     `<meta\\s+name=["']${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["'][^>]*>`,
-    "i",
+    "i"
   );
   if (regex.test(html)) return html.replace(regex, tag);
   return html.replace("</head>", `    ${tag}\n</head>`);
@@ -165,7 +167,7 @@ function setMetaByProperty(html, property, content) {
   const tag = `<meta property="${property}" content="${escapeHtml(content)}" />`;
   const regex = new RegExp(
     `<meta\\s+property=["']${property.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["'][^>]*>`,
-    "i",
+    "i"
   );
   if (regex.test(html)) return html.replace(regex, tag);
   return html.replace("</head>", `    ${tag}\n</head>`);
@@ -183,13 +185,14 @@ function setLdJson(html, object) {
   const script = `<script type="application/ld+json" id="wiki-ld">${serialized}</script>`;
   const stripped = html.replace(
     /<script[^>]+id=["']wiki-ld["'][\s\S]*?<\/script>\s*/gi,
-    "",
+    ""
   );
   return stripped.replace("</head>", `    ${script}\n</head>`);
 }
 
 function setPlausibleDomain(html, host) {
-  const regex = /<script\s+defer\s+data-domain=["'][^"']*["']\s+src=["']https:\/\/plausible\.io\/js\/script\.js["']><\/script>/i;
+  const regex =
+    /<script\s+defer\s+data-domain=["'][^"']*["']\s+src=["']https:\/\/plausible\.io\/js\/script\.js["']><\/script>/i;
   const tag = `<script defer data-domain="${escapeHtml(host)}" src="https://plausible.io/js/script.js"></script>`;
   if (regex.test(html)) return html.replace(regex, tag);
   return html.replace("</head>", `    ${tag}\n</head>`);
@@ -198,7 +201,7 @@ function setPlausibleDomain(html, host) {
 function stripLegacyPlaceholders(html) {
   return html.replace(
     /<!--\s*Replace\s+wiki-influence\.com[\s\S]*?-->\s*/gi,
-    "",
+    ""
   );
 }
 
@@ -206,7 +209,7 @@ function setRobotsMeta(html) {
   return setMetaByName(
     html,
     "robots",
-    "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
   );
 }
 
@@ -246,13 +249,15 @@ async function readArticles() {
     const raw = await fs.readFile(absolutePath, "utf8");
     const { data, content } = matter(raw);
     const titleFromBody = content.match(/^#\s+(.+)$/m)?.[1]?.trim();
-    const title = String(data.title || titleFromBody || file.replace(/\.mdx?$/, "")).trim();
+    const title = String(
+      data.title || titleFromBody || file.replace(/\.mdx?$/, "")
+    ).trim();
     const slug = String(data.slug || file.replace(/\.mdx?$/, "")).trim();
     const metaDescription = extractMetaDescription(content);
     const firstParagraph = extractFirstParagraph(content);
     const description = normalizeDescription(
       data.description || metaDescription || firstParagraph,
-      DEFAULT_DESCRIPTION,
+      DEFAULT_DESCRIPTION
     );
     const publishedAt = toIsoDate(data.publishedAt);
     const article = {
@@ -269,7 +274,10 @@ async function readArticles() {
     articles.push(article);
   }
 
-  articles.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+  articles.sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
   return articles;
 }
 
@@ -279,7 +287,9 @@ function buildSitemapXml(routes) {
   const close = `</urlset>`;
   const rows = routes
     .map((route) => {
-      const lastmod = route.lastmod ? `<lastmod>${escapeXml(route.lastmod)}</lastmod>` : "";
+      const lastmod = route.lastmod
+        ? `<lastmod>${escapeXml(route.lastmod)}</lastmod>`
+        : "";
       return `  <url>
     <loc>${escapeXml(route.url)}</loc>
     <changefreq>${route.changefreq}</changefreq>
@@ -368,8 +378,12 @@ async function main() {
   const templateBase = await fs.readFile(distIndexPath, "utf8");
   const articles = await readArticles();
 
-  const uniqueThemes = [...new Set(articles.map((a) => a.theme).filter(Boolean))].sort();
-  const uniquePlatforms = [...new Set(articles.map((a) => a.platform).filter(Boolean))].sort();
+  const uniqueThemes = [
+    ...new Set(articles.map((a) => a.theme).filter(Boolean)),
+  ].sort();
+  const uniquePlatforms = [
+    ...new Set(articles.map((a) => a.platform).filter(Boolean)),
+  ].sort();
 
   const rootUrl = buildWikiUrl("/");
   const blogUrl = buildWikiUrl("/blog");
@@ -399,7 +413,7 @@ async function main() {
     const routePath = `/blog/theme/${theme}`;
     const url = buildWikiUrl(routePath);
     const description = normalizeDescription(
-      `Articles et méthodes sur ${label.toLowerCase()} pour structurer une stratégie influence durable.`,
+      `Articles et méthodes sur ${label.toLowerCase()} pour structurer une stratégie influence durable.`
     );
 
     await writeRoutePage(rootTemplate, routePath, {
@@ -416,7 +430,7 @@ async function main() {
     const routePath = `/blog/platform/${platform}`;
     const url = buildWikiUrl(routePath);
     const description = normalizeDescription(
-      `Guides ${label} pour créateurs: formats, distribution, croissance et monétisation.`,
+      `Guides ${label} pour créateurs: formats, distribution, croissance et monétisation.`
     );
 
     await writeRoutePage(rootTemplate, routePath, {
@@ -474,7 +488,7 @@ async function main() {
   await fs.writeFile(path.join(DIST_DIR, "rss.xml"), rssXml, "utf8");
 
   console.log(
-    `[wiki:postbuild-seo] OK - ${articles.length} articles, ${uniqueThemes.length} thèmes, ${uniquePlatforms.length} plateformes.`,
+    `[wiki:postbuild-seo] OK - ${articles.length} articles, ${uniqueThemes.length} thèmes, ${uniquePlatforms.length} plateformes.`
   );
   console.log(`[wiki:postbuild-seo] Base URL: ${SITE_ORIGIN}${WIKI_BASE_PATH}`);
 }

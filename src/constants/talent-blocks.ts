@@ -11,27 +11,42 @@ export * from "./talent-blocks/pillars";
 export * from "./talent-blocks/method-compressed";
 
 export const TALENT_NAVIGATION = [
-    { href: "#what-we-build", label: "Services" },
-    { href: "#method", label: "Méthode" },
-    { href: "#who", label: "Pour qui" },
-    { href: "#faq", label: "FAQ" }
+  { href: "#what-we-build", label: "Services" },
+  { href: "#method", label: "Méthode" },
+  { href: "#who", label: "Pour qui" },
+  { href: "#faq", label: "FAQ" },
 ] as const;
 
 // Not extracting this tiny platform block into a dedicated file since it's the only one left
 export const TALENT_PLATFORMS = {
-    label: "Centralisation",
-    title: "On centralise",
-    titleLine2: "tout au même endroit.",
-    subtitle: "Votre roadmap sur une seule plateforme.",
-    items: [
-        { name: "Briefs & Contrats", icon: "FileText" },
-        { name: "Validation", icon: "CheckSquare" },
-        { name: "Statistiques", icon: "LineChart" },
-        { name: "Ops & Admin", icon: "Archive" }
-    ],
-    cards: [
-        { title: "Visibilité", text: "Suivi en temps réel de vos performances sur toutes vos plateformes.", icon: "Activity", color: "text-pink-500" },
-        { title: "Engagement", text: "Analyse de l'engagement de votre communauté et recommandations stratégiques.", icon: "Heart", color: "text-red-500" },
-        { title: "Communication", text: "Central de messages pour gérer toutes vos conversations professionnelles.", icon: "MessageCircle", color: "text-blue-500" }
-    ]
+  label: "Centralisation",
+  title: "On centralise",
+  titleLine2: "tout au même endroit.",
+  subtitle: "Votre roadmap sur une seule plateforme.",
+  items: [
+    { name: "Briefs & Contrats", icon: "FileText" },
+    { name: "Validation", icon: "CheckSquare" },
+    { name: "Statistiques", icon: "LineChart" },
+    { name: "Ops & Admin", icon: "Archive" },
+  ],
+  cards: [
+    {
+      title: "Visibilité",
+      text: "Suivi en temps réel de vos performances sur toutes vos plateformes.",
+      icon: "Activity",
+      color: "text-pink-500",
+    },
+    {
+      title: "Engagement",
+      text: "Analyse de l'engagement de votre communauté et recommandations stratégiques.",
+      icon: "Heart",
+      color: "text-red-500",
+    },
+    {
+      title: "Communication",
+      text: "Central de messages pour gérer toutes vos conversations professionnelles.",
+      icon: "MessageCircle",
+      color: "text-blue-500",
+    },
+  ],
 } as const;

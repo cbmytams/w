@@ -1,6 +1,7 @@
+import { apiSuccess } from "@/lib/api-response";
+
 export async function GET() {
-  return Response.json({
-    ok: true,
-    timestamp: new Date().toISOString()
+  return apiSuccess({
+    timestamp: new Date().toISOString(),
   });
 }

@@ -1,6 +1,9 @@
 import type { NextRequest } from "next/server";
 import { requireDashboardRole } from "@/lib/apiAuth";
-import { parseDashboardFilters, getOverviewKpis } from "@/lib/dashboard/queries";
+import {
+  parseDashboardFilters,
+  getOverviewKpis,
+} from "@/lib/dashboard/queries";
 import { enforceRateLimit } from "@/lib/requestSecurity";
 
 export async function GET(request: NextRequest) {
@@ -10,7 +13,7 @@ export async function GET(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "dashboard-overview-get",
     limit: 120,
-    windowMs: 60 * 1000
+    windowMs: 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 

@@ -8,128 +8,162 @@ import { ArrowLeft, ArrowUp, Search, Moon, Sun } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface NavBarProps {
-    isDeep?: boolean;
-    isReading?: boolean;
-    parentLabel?: string;
-    currentTitle?: string;
-    onBack?: () => void;
-    showUI?: boolean;
-    isDark?: boolean;
-    onToggleDark?: () => void;
+  isDeep?: boolean;
+  isReading?: boolean;
+  parentLabel?: string;
+  currentTitle?: string;
+  onBack?: () => void;
+  showUI?: boolean;
+  isDark?: boolean;
+  onToggleDark?: () => void;
 }
 
-export default function WikiNavBar({ isDeep, isReading, parentLabel, currentTitle, onBack, showUI = true, isDark, onToggleDark, mounted }: NavBarProps & { mounted?: boolean }) {
-    const router = useRouter();
-    const prefersReducedMotion = useReducedMotion();
-    const [isTransitioning, setIsTransitioning] = useState(false);
-    const navigationTimeoutRef = useRef<number | null>(null);
+export default function WikiNavBar({
+  isDeep,
+  isReading,
+  parentLabel,
+  currentTitle,
+  onBack,
+  showUI = true,
+  isDark,
+  onToggleDark,
+  mounted,
+}: NavBarProps & { mounted?: boolean }) {
+  const router = useRouter();
+  const prefersReducedMotion = useReducedMotion();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const navigationTimeoutRef = useRef<number | null>(null);
 
-    // Default to true if mounted isn't passed from the parent to avoid breaking standard usages
-    const isReady = mounted ?? true;
+  // Default to true if mounted isn't passed from the parent to avoid breaking standard usages
+  const isReady = mounted ?? true;
 
-    useEffect(() => {
-        return () => {
-            if (navigationTimeoutRef.current !== null) {
-                window.clearTimeout(navigationTimeoutRef.current);
-            }
-        };
-    }, []);
-
-    /** Inverse animation — wiki slides UP before navigating home */
-    const handleRetour = (e: React.MouseEvent) => {
-        e.preventDefault();
-        if (isTransitioning) return;
-
-        if (prefersReducedMotion) {
-            router.push("/");
-            return;
-        }
-
-        setIsTransitioning(true);
-        document.getElementById("wiki-root")?.classList.add("wiki-to-home-exit");
-
-        navigationTimeoutRef.current = window.setTimeout(() => {
-            router.push("/");
-        }, 620);
+  useEffect(() => {
+    return () => {
+      if (navigationTimeoutRef.current !== null) {
+        window.clearTimeout(navigationTimeoutRef.current);
+      }
     };
+  }, []);
 
-    return (
-        <motion.nav
-            initial={false}
-            animate={{ y: showUI ? 0 : "-100%" }}
-            transition={{ duration: 0.4, ease: EASING.easeInOut }}
-            aria-label="Main Navigation"
-            className="fixed top-0 inset-x-0 z-50 h-20 flex items-end pb-4 px-6"
-            style={{ backgroundColor: 'var(--wiki-nav-bg)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid var(--wiki-line)' }}
+  /** Inverse animation — wiki slides UP before navigating home */
+  const handleRetour = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isTransitioning) return;
+
+    if (prefersReducedMotion) {
+      router.push("/");
+      return;
+    }
+
+    setIsTransitioning(true);
+    document.getElementById("wiki-root")?.classList.add("wiki-to-home-exit");
+
+    navigationTimeoutRef.current = window.setTimeout(() => {
+      router.push("/");
+    }, 620);
+  };
+
+  return (
+    <motion.nav
+      initial={false}
+      animate={{ y: showUI ? 0 : "-100%" }}
+      transition={{ duration: 0.4, ease: EASING.easeInOut }}
+      aria-label="Main Navigation"
+      className="fixed top-0 inset-x-0 z-50 h-20 flex items-end pb-4 px-6"
+      style={{
+        backgroundColor: "var(--wiki-nav-bg)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        borderBottom: "1px solid var(--wiki-line)",
+      }}
+    >
+      {isDeep && (
+        <motion.button
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          onClick={onBack}
+          aria-label={parentLabel ? `Back to ${parentLabel}` : "Go back"}
+          className="flex items-center gap-2 absolute left-6 bottom-4 z-10 hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm"
+          style={{ color: "var(--wiki-ink)" }}
         >
-            {isDeep && (
-                <motion.button
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    onClick={onBack}
-                    aria-label={parentLabel ? `Back to ${parentLabel}` : "Go back"}
-                    className="flex items-center gap-2 absolute left-6 bottom-4 z-10 hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm"
-                    style={{ color: 'var(--wiki-ink)' }}
-                >
-                    <ArrowLeft size={20} strokeWidth={1.5} />
-                    <span className="text-xs font-mono uppercase tracking-widest hidden sm:block">{parentLabel}</span>
-                </motion.button>
+          <ArrowLeft size={20} strokeWidth={1.5} />
+          <span className="text-xs font-mono uppercase tracking-widest hidden sm:block">
+            {parentLabel}
+          </span>
+        </motion.button>
+      )}
+
+      {!isDeep && (
+        <motion.button
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          onClick={handleRetour}
+          disabled={isTransitioning}
+          aria-label="Retour au site Wafia"
+          className={`flex items-center gap-2 absolute left-6 bottom-4 z-10 hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm cursor-pointer ${isTransitioning ? "wiki-retour--transitioning pointer-events-none" : ""}`}
+          style={{ color: "var(--wiki-ink)" }}
+        >
+          <span className="wiki-retour-icon inline-flex">
+            <ArrowUp size={20} strokeWidth={1.5} />
+          </span>
+          <span className="wiki-retour-label text-xs font-mono uppercase tracking-widest hidden sm:block">
+            Retour à Wafia
+          </span>
+        </motion.button>
+      )}
+
+      {isReading && currentTitle && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute inset-x-0 bottom-4 text-center pointer-events-none hidden md:block px-32"
+        >
+          <span
+            className="font-serif italic text-lg line-clamp-1 block px-4 opacity-80"
+            style={{
+              color: "var(--wiki-ink)",
+              maskImage:
+                "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+            }}
+          >
+            {currentTitle}
+          </span>
+        </motion.div>
+      )}
+
+      <div className="absolute right-6 bottom-4 flex items-center gap-3">
+        {onToggleDark && isReady && (
+          <button
+            onClick={onToggleDark}
+            aria-label={
+              isDark ? "Passer en mode clair" : "Passer en mode sombre"
+            }
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            style={{ color: "var(--wiki-ink-secondary)" }}
+          >
+            {isDark ? (
+              <Sun size={18} strokeWidth={1.5} />
+            ) : (
+              <Moon size={18} strokeWidth={1.5} />
             )}
+          </button>
+        )}
+        {onToggleDark && !isReady && <div className="w-10 h-10" />}
 
-            {!isDeep && (
-                <motion.button
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    onClick={handleRetour}
-                    disabled={isTransitioning}
-                    aria-label="Retour au site Wafia"
-                    className={`flex items-center gap-2 absolute left-6 bottom-4 z-10 hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm cursor-pointer ${isTransitioning ? "wiki-retour--transitioning pointer-events-none" : ""}`}
-                    style={{ color: 'var(--wiki-ink)' }}
-                >
-                    <span className="wiki-retour-icon inline-flex">
-                        <ArrowUp size={20} strokeWidth={1.5} />
-                    </span>
-                    <span className="wiki-retour-label text-xs font-mono uppercase tracking-widest hidden sm:block">Retour à Wafia</span>
-                </motion.button>
-            )}
-
-            {isReading && currentTitle && (
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute inset-x-0 bottom-4 text-center pointer-events-none hidden md:block px-32"
-                >
-                    <span className="font-serif italic text-lg line-clamp-1 block px-4 opacity-80" style={{ color: 'var(--wiki-ink)', maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)' }}>
-                        {currentTitle}
-                    </span>
-                </motion.div>
-            )}
-
-            <div className="absolute right-6 bottom-4 flex items-center gap-3">
-                {onToggleDark && isReady && (
-                    <button
-                        onClick={onToggleDark}
-                        aria-label={isDark ? "Passer en mode clair" : "Passer en mode sombre"}
-                        className="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-60 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                        style={{ color: 'var(--wiki-ink-secondary)' }}
-                    >
-                        {isDark ? <Sun size={18} strokeWidth={1.5} /> : <Moon size={18} strokeWidth={1.5} />}
-                    </button>
-                )}
-                {onToggleDark && !isReady && (
-                    <div className="w-10 h-10" />
-                )}
-
-                <button
-                    onClick={() => window.dispatchEvent(new Event('open-search'))}
-                    aria-label="Rechercher"
-                    className="flex items-center gap-2 hover:opacity-60 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm"
-                    style={{ color: 'var(--wiki-ink-secondary)' }}
-                >
-                    <span className="text-xs font-mono uppercase tracking-widest hidden sm:block">Rechercher</span>
-                    <Search size={20} strokeWidth={1.5} />
-                </button>
-            </div>
-        </motion.nav>
-    );
+        <button
+          onClick={() => window.dispatchEvent(new Event("open-search"))}
+          aria-label="Rechercher"
+          className="flex items-center gap-2 hover:opacity-60 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 rounded-sm"
+          style={{ color: "var(--wiki-ink-secondary)" }}
+        >
+          <span className="text-xs font-mono uppercase tracking-widest hidden sm:block">
+            Rechercher
+          </span>
+          <Search size={20} strokeWidth={1.5} />
+        </button>
+      </div>
+    </motion.nav>
+  );
 }

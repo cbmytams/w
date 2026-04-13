@@ -79,42 +79,42 @@ This section appears first by design. When dev opens the spec, the first thing t
 
 These questions are removed because they push the form toward pricing, quoting, or tactical media qualification instead of first-contact qualification:
 
-| Question | Decision |
-| --- | --- |
-| `ql_budget` | Remove |
-| `f_budget_global` | Remove |
-| `d3_cac_target` | Remove |
+| Question          | Decision |
+| ----------------- | -------- |
+| `ql_budget`       | Remove   |
+| `f_budget_global` | Remove   |
+| `d3_cac_target`   | Remove   |
 
 ### Simplification removals
 
 These questions are removed because they over-detail the flow for an entry questionnaire or create tactical friction without improving first-call qualification enough:
 
-| Question | Decision |
-| --- | --- |
-| `c_roas` | Remove |
-| `d1_kpis` | Remove |
-| `d1_ambassadors` | Remove |
-| `d2_volume` | Remove |
-| `d2_levers` | Remove |
-| `d3_roas_target` | Remove |
-| `d3_formats` | Remove |
-| `d4_loyalty_devices` | Remove |
-| `d4_interests` | Remove |
-| `i_discovery` | Remove |
+| Question             | Decision |
+| -------------------- | -------- |
+| `c_roas`             | Remove   |
+| `d1_kpis`            | Remove   |
+| `d1_ambassadors`     | Remove   |
+| `d2_volume`          | Remove   |
+| `d2_levers`          | Remove   |
+| `d3_roas_target`     | Remove   |
+| `d3_formats`         | Remove   |
+| `d4_loyalty_devices` | Remove   |
+| `d4_interests`       | Remove   |
+| `i_discovery`        | Remove   |
 
 ### Kept but repurposed
 
 These questions remain useful, but their wording or block placement must change:
 
-| Question | New role |
-| --- | --- |
-| `a_budget_validator` | Decision circuit / launch validation, without budget framing |
-| `f_start` | Timing |
-| `f_duration` | Nature of engagement horizon |
-| `f_deadline` | Deadline or business milestone |
-| `i_constraints` | Final open expectations / specific expectations vis-a-vis Wafia |
-| `e_*` block | Accompaniment expected, phrased neutrally and non-commercially |
-| `g_competitors` | Optional competitor context for AM orientation, non-scoring by default |
+| Question                      | New role                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------- |
+| `a_budget_validator`          | Decision circuit / launch validation, without budget framing                          |
+| `f_start`                     | Timing                                                                                |
+| `f_duration`                  | Nature of engagement horizon                                                          |
+| `f_deadline`                  | Deadline or business milestone                                                        |
+| `i_constraints`               | Final open expectations / specific expectations vis-a-vis Wafia                       |
+| `e_*` block                   | Accompaniment expected, phrased neutrally and non-commercially                        |
+| `g_competitors`               | Optional competitor context for AM orientation, non-scoring by default                |
 | `g_tone` + `g_creative_codes` | Merge into one creative direction / guardrails signal inside `Accompaniment expected` |
 
 ### Scoring continuity constraints
@@ -123,11 +123,11 @@ No Brand suppression may create an orphan scoring signal. Every removed signal m
 
 Mandatory scoring continuity rules:
 
-| Removed input | Previous signal | Replacement signal owner |
-| --- | --- | --- |
-| `c_roas` | `DATA` (conversion) | New question about acquisition structuring |
+| Removed input                      | Previous signal       | Replacement signal owner                              |
+| ---------------------------------- | --------------------- | ----------------------------------------------------- |
+| `c_roas`                           | `DATA` (conversion)   | New question about acquisition structuring            |
 | `d3_cac_target` + `d3_roas_target` | `ACTIVATION` + `DATA` | New question about current marketing steering quality |
-| `d1_kpis` | `DATA` (awareness) | Remaining awareness-specialized question |
+| `d1_kpis`                          | `DATA` (awareness)    | Remaining awareness-specialized question              |
 
 Additional mapping constraint:
 
@@ -137,10 +137,10 @@ Additional mapping constraint:
 
 These two replacement questions must exist in the spec before implementation planning because scoring migration cannot wire placeholders safely.
 
-| Placeholder | Suggested id | Target block | Role | Signal inherited |
-| --- | --- | --- | --- | --- |
-| "acquisition structuring" | `c_acquisition_structure` | `Marketing maturity` | `score` | `DATA` (conversion) from `c_roas` |
-| "marketing steering quality" | `c_piloting_quality` | `Marketing maturity` | `score` | `ACTIVATION` + `DATA` from `d3_cac_target` + `d3_roas_target` |
+| Placeholder                  | Suggested id              | Target block         | Role    | Signal inherited                                              |
+| ---------------------------- | ------------------------- | -------------------- | ------- | ------------------------------------------------------------- |
+| "acquisition structuring"    | `c_acquisition_structure` | `Marketing maturity` | `score` | `DATA` (conversion) from `c_roas`                             |
+| "marketing steering quality" | `c_piloting_quality`      | `Marketing maturity` | `score` | `ACTIVATION` + `DATA` from `d3_cac_target` + `d3_roas_target` |
 
 Provisional target definitions:
 

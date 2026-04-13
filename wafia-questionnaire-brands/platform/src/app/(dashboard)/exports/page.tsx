@@ -3,14 +3,16 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Exports | WAFIA BDD Talents",
-  description: "Générez et suivez les exports shortlists CSV/PDF."
+  description: "Générez et suivez les exports shortlists CSV/PDF.",
 };
 
 export default function ExportsPage() {
   return (
     <div className="space-y-6">
       <div className="surface-card p-6">
-        <div className="text-xs uppercase tracking-[0.3em] text-soft">Exports</div>
+        <div className="text-xs uppercase tracking-[0.3em] text-soft">
+          Exports
+        </div>
         <h1 className="text-2xl font-semibold mt-2">Shortlists & one-pagers</h1>
         <p className="text-sm text-muted mt-2">
           Préparez des exports CSV et des PDF premium pour les marques.

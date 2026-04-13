@@ -33,7 +33,9 @@ function getSessionSecret() {
 }
 
 function signPayload(payload: string) {
-  return createHmac("sha256", getSessionSecret()).update(payload).digest("base64url");
+  return createHmac("sha256", getSessionSecret())
+    .update(payload)
+    .digest("base64url");
 }
 
 function parseToken(token: string): SessionEnvelope | null {
@@ -53,7 +55,7 @@ export function createAdminSessionToken(input: {
     sub: input.sub,
     role: input.role,
     tenantSlug: input.tenantSlug || "wafia",
-    exp: Math.floor(Date.now() / 1000) + ttl
+    exp: Math.floor(Date.now() / 1000) + ttl,
   };
 
   const payload = base64Url(JSON.stringify(session));

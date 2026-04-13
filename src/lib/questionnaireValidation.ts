@@ -11,7 +11,7 @@ const BRAND_SECTIONS = new Set([
   "BUDGET",
   "COMPETITIVE",
   "ORGANIZATION",
-  "ADDITIONAL"
+  "ADDITIONAL",
 ]);
 
 const QUESTION_TYPES = new Set([
@@ -22,7 +22,7 @@ const QUESTION_TYPES = new Set([
   "email",
   "tel",
   "url",
-  "dropdown"
+  "dropdown",
 ]);
 
 const CONDITION_OPERATORS = new Set([
@@ -31,7 +31,7 @@ const CONDITION_OPERATORS = new Set([
   "one_of",
   "contains",
   "greater_than",
-  "less_than"
+  "less_than",
 ]);
 
 const PILLAR_KEYS = new Set([
@@ -39,7 +39,7 @@ const PILLAR_KEYS = new Set([
   "CONTENT",
   "ACTIVATION",
   "DATA",
-  "ORGANIZATION"
+  "ORGANIZATION",
 ]);
 
 const VALIDATION_TYPES = new Set(["email", "phone", "url"]);
@@ -66,7 +66,8 @@ function sanitizeCondition(value: unknown) {
 
   const questionId = toSafeString(value.questionId, 120);
   const operator =
-    typeof value.operator === "string" && CONDITION_OPERATORS.has(value.operator)
+    typeof value.operator === "string" &&
+    CONDITION_OPERATORS.has(value.operator)
       ? value.operator
       : null;
   const raw = value.value;
@@ -82,8 +83,13 @@ function sanitizeCondition(value: unknown) {
 function sanitizeImpact(value: unknown) {
   if (!isPlainObject(value)) return null;
   const pillar =
-    typeof value.pillar === "string" && PILLAR_KEYS.has(value.pillar) ? value.pillar : null;
-  const weight = typeof value.weight === "number" && Number.isFinite(value.weight) ? value.weight : null;
+    typeof value.pillar === "string" && PILLAR_KEYS.has(value.pillar)
+      ? value.pillar
+      : null;
+  const weight =
+    typeof value.weight === "number" && Number.isFinite(value.weight)
+      ? value.weight
+      : null;
   if (!pillar || weight === null) return null;
   return { pillar, weight };
 }
@@ -108,7 +114,7 @@ function sanitizeOption(value: unknown) {
     impacts,
     ...(description ? { description } : {}),
     ...(emoji ? { emoji } : {}),
-    ...(followUp ? { followUp } : {})
+    ...(followUp ? { followUp } : {}),
   };
 }
 
@@ -121,8 +127,13 @@ export function sanitizeQuestion(value: unknown) {
 
   const id = toSafeString(value.id, 120);
   const category =
-    typeof value.category === "string" && BRAND_SECTIONS.has(value.category) ? value.category : null;
-  const type = typeof value.type === "string" && QUESTION_TYPES.has(value.type) ? value.type : null;
+    typeof value.category === "string" && BRAND_SECTIONS.has(value.category)
+      ? value.category
+      : null;
+  const type =
+    typeof value.type === "string" && QUESTION_TYPES.has(value.type)
+      ? value.type
+      : null;
   const question = toSafeString(value.question, 500);
 
   if (!id || !category || !type || !question) return null;
@@ -130,7 +141,8 @@ export function sanitizeQuestion(value: unknown) {
   const subtitle = toOptionalString(value.subtitle, 500);
   const placeholder = toOptionalString(value.placeholder, 500);
   const validation =
-    typeof value.validation === "string" && VALIDATION_TYPES.has(value.validation)
+    typeof value.validation === "string" &&
+    VALIDATION_TYPES.has(value.validation)
       ? value.validation
       : undefined;
 
@@ -149,7 +161,11 @@ export function sanitizeQuestion(value: unknown) {
   if (min === null || max === null) return null;
 
   const required =
-    value.required === undefined ? undefined : typeof value.required === "boolean" ? value.required : null;
+    value.required === undefined
+      ? undefined
+      : typeof value.required === "boolean"
+        ? value.required
+        : null;
   if (required === null) return null;
 
   const orderIndex =
@@ -164,7 +180,7 @@ export function sanitizeQuestion(value: unknown) {
   const safeLabels = isPlainObject(labels)
     ? {
         min: toSafeString(labels.min, 120),
-        max: toSafeString(labels.max, 120)
+        max: toSafeString(labels.max, 120),
       }
     : undefined;
   if (safeLabels && (!safeLabels.min || !safeLabels.max)) return null;
@@ -175,17 +191,25 @@ export function sanitizeQuestion(value: unknown) {
         .map((entry) => toSafeString(entry, 120))
         .filter((entry): entry is string => Boolean(entry))
     : undefined;
-  if (Array.isArray(dropdownOptions) && safeDropdownOptions?.length !== dropdownOptions.length) return null;
+  if (
+    Array.isArray(dropdownOptions) &&
+    safeDropdownOptions?.length !== dropdownOptions.length
+  )
+    return null;
 
   const conditions = value.conditions;
   const safeConditions = Array.isArray(conditions)
     ? conditions.map(sanitizeCondition).filter(Boolean)
     : undefined;
-  if (Array.isArray(conditions) && safeConditions?.length !== conditions.length) return null;
+  if (Array.isArray(conditions) && safeConditions?.length !== conditions.length)
+    return null;
 
   const options = value.options;
-  const safeOptions = Array.isArray(options) ? options.map(sanitizeOption).filter(Boolean) : undefined;
-  if (Array.isArray(options) && safeOptions?.length !== options.length) return null;
+  const safeOptions = Array.isArray(options)
+    ? options.map(sanitizeOption).filter(Boolean)
+    : undefined;
+  if (Array.isArray(options) && safeOptions?.length !== options.length)
+    return null;
 
   return {
     id,
@@ -202,7 +226,7 @@ export function sanitizeQuestion(value: unknown) {
     ...(required !== undefined ? { required } : {}),
     ...(safeDropdownOptions ? { dropdownOptions: safeDropdownOptions } : {}),
     ...(validation ? { validation } : {}),
-    ...(orderIndex !== undefined ? { order_index: orderIndex } : {})
+    ...(orderIndex !== undefined ? { order_index: orderIndex } : {}),
   };
 }
 
@@ -220,7 +244,7 @@ const ALLOWED_UPDATE_KEYS = new Set([
   "required",
   "dropdownOptions",
   "validation",
-  "order_index"
+  "order_index",
 ]);
 
 export function sanitizeQuestionUpdates(value: unknown) {

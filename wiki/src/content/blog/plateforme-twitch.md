@@ -1,13 +1,13 @@
 ---
-title: 'Twitch : croissance communautaire et modèle de revenus'
+title: "Twitch : croissance communautaire et modèle de revenus"
 slug: guide-twitch-2025-streamer-monetisation
-description: 'Repères Twitch 2025 : acquisition, fidélisation communautaire et structure de revenus.'
+description: "Repères Twitch 2025 : acquisition, fidélisation communautaire et structure de revenus."
 authorSlug: sasha-guettat
 platform: twitch
 category: Plateforme — Twitch
-publishedAt: '2025-07-22'
-updatedAt: '2025-07-22'
-lastReviewedAt: '2025-07-22'
+publishedAt: "2025-07-22"
+updatedAt: "2025-07-22"
+lastReviewedAt: "2025-07-22"
 sources: []
 ---
 
@@ -86,6 +86,7 @@ Sur Twitch plus qu'ailleurs, la personnalité prime sur le contenu brut. Des mil
 ### Soigner la qualité technique
 
 Un stream propre est indispensable dès le départ :
+
 - **Micro** de bonne qualité (c'est la priorité absolue — un son mauvais fait partir les gens immédiatement)
 - **Caméra** webcam décente (les viewers aiment voir les réactions du streamer)
 - **Overlay** lisible mais pas chargé (alertes follows/subs, webcam, barre d'info)
@@ -137,6 +138,7 @@ Twitch propose un tableau de bord créateur avec les données essentielles.
 ### Adapter sa stratégie aux données
 
 Analysez les patterns sur plusieurs semaines :
+
 - Quels jours et horaires donnent le plus de viewers ?
 - Quelle catégorie de jeu vous apporte le plus de nouveaux viewers vs celle qui fidélise le plus les existants ?
 - À quel moment du stream le pic de viewers est-il atteint ? (Cela indique si vous devriez streamer plus longtemps)
@@ -155,6 +157,7 @@ Les conditions pour devenir Affilié Twitch sont atteignables en quelques mois p
 ### Les abonnements (Subscriptions) : la pierre angulaire
 
 Les viewers peuvent s'abonner pour :
+
 - **Tier 1** : 3,99 € — le plus courant
 - **Tier 2** : 7,99 €
 - **Tier 3** : 19,99 €
@@ -188,6 +191,7 @@ En tant qu'Affilié ou Partenaire, vous pouvez diffuser des publicités à vos v
 Les marques de hardware (casques, claviers, souris), de boissons énergisantes, de VPN, de logiciels et d'éditeurs de jeux investissent sur Twitch via des deals avec des streamers.
 
 Fourchettes approximatives selon la taille :
+
 - **50 à 100 viewers de moyenne** : 100 à 300 € pour une activation
 - **200 à 500 viewers** : 500 à 1 500 € par deal
 - **1 000 viewers et plus** : 2 000 à 10 000 € par campagne
@@ -234,4 +238,3 @@ La contrainte principale pour les marques : le live est imprévisible. Un chat t
 Twitch est une plateforme de **conversion et de fidélisation** plus que d'acquisition. La croissance y est plus lente que sur TikTok, mais la qualité du lien avec la communauté est incomparable. Un abonné Twitch qui vous suit depuis 6 mois est probablement votre fan le plus fidèle sur toutes vos plateformes réunies.
 
 La stratégie la plus efficace : utiliser TikTok et YouTube pour acquérir de l'audience, et Twitch pour convertir une partie de cette audience en communauté payante ultra-engagée. Bien orchestrés, ces trois piliers se renforcent mutuellement.
-

@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { ALL_QUESTIONS, CALIBRATION_QUESTIONS, MAIN_QUESTIONS } from "./questions";
+import {
+  ALL_QUESTIONS,
+  CALIBRATION_QUESTIONS,
+  MAIN_QUESTIONS,
+} from "./questions";
 
 describe("questionnaire integrity", () => {
   it("has no duplicate question ids", () => {
@@ -24,16 +28,20 @@ describe("questionnaire integrity", () => {
   });
 
   it("ensures option and scale metadata are present when required", () => {
-    const invalidOptionQuestions = ALL_QUESTIONS
-      .filter((question) => question.type === "single" || question.type === "multiple")
+    const invalidOptionQuestions = ALL_QUESTIONS.filter(
+      (question) => question.type === "single" || question.type === "multiple"
+    )
       .filter((question) => !question.options || question.options.length === 0)
       .map((question) => question.id);
 
-    const invalidScaleQuestions = ALL_QUESTIONS
-      .filter((question) => question.type === "scale")
+    const invalidScaleQuestions = ALL_QUESTIONS.filter(
+      (question) => question.type === "scale"
+    )
       .filter((question) => {
-        const hasMinMax = typeof question.min === "number" && typeof question.max === "number";
-        const hasLabels = Boolean(question.labels?.min) && Boolean(question.labels?.max);
+        const hasMinMax =
+          typeof question.min === "number" && typeof question.max === "number";
+        const hasLabels =
+          Boolean(question.labels?.min) && Boolean(question.labels?.max);
         return !hasMinMax || !hasLabels;
       })
       .map((question) => question.id);
@@ -42,4 +50,3 @@ describe("questionnaire integrity", () => {
     expect(invalidScaleQuestions).toEqual([]);
   });
 });
-

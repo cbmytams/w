@@ -5,14 +5,16 @@ const navItems = [
   { href: "/talents", label: "Talents" },
   { href: "/questionnaires", label: "Questionnaires" },
   { href: "/exports", label: "Exports" },
-  { href: "/settings", label: "Settings" }
+  { href: "/settings", label: "Settings" },
 ];
 
 export function Sidebar() {
   return (
     <aside className="hidden lg:flex lg:flex-col lg:w-72 lg:shrink-0 lg:border-r lg:border-black/10 dark:lg:border-white/10 lg:bg-white/70 dark:lg:bg-black/30 lg:backdrop-blur-xl">
       <div className="px-8 py-10">
-        <div className="text-xs uppercase tracking-[0.4em] text-soft">WAFIA</div>
+        <div className="text-xs uppercase tracking-[0.4em] text-soft">
+          WAFIA
+        </div>
         <div className="text-lg font-semibold mt-2">BDD Talents</div>
       </div>
       <nav className="flex-1 px-6 space-y-2">

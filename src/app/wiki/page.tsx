@@ -47,9 +47,12 @@ export default async function WikiIndexPage() {
               url: new URL("/wiki", siteConfig.url).toString(),
               items: articleSummaries.map((article) => ({
                 name: article.title,
-                url: new URL(`/wiki/${article.slug}`, siteConfig.url).toString(),
+                url: new URL(
+                  `/wiki/${article.slug}`,
+                  siteConfig.url
+                ).toString(),
               })),
-            }),
+            })
           ),
         }}
       />

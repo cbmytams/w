@@ -1,13 +1,13 @@
 ---
-title: 'Discord pour créateurs : structuration de communauté et revenus récurrents'
+title: "Discord pour créateurs : structuration de communauté et revenus récurrents"
 slug: discord-server-communaute-createurs-2025
-description: 'Mettre en place un serveur Discord créateur : architecture, animation communautaire et options de revenus récurrents.'
+description: "Mettre en place un serveur Discord créateur : architecture, animation communautaire et options de revenus récurrents."
 authorSlug: yaelle
 theme: croissance
 category: Stratégie — Communauté
-publishedAt: '2025-07-06'
-updatedAt: '2025-07-06'
-lastReviewedAt: '2025-07-06'
+publishedAt: "2025-07-06"
+updatedAt: "2025-07-06"
+lastReviewedAt: "2025-07-06"
 sources: []
 ---
 
@@ -51,40 +51,48 @@ Un Discord fonctionnel pour créateur nécessite une structure claire dès le d�
 
 ### Canaux d'accueil et informations
 
-**#welcome** : Le premier channel que les gens voient. 
+**#welcome** : Le premier channel que les gens voient.
+
 - Message de bienvenue chaleureux.
 - Règles du serveur (respect, pas de spam, pas de self-promo).
 - Liens vers tes réseaux sociaux.
 - Instructions pour accéder aux canals (comment débloquer les channels selon les rôles).
 
 **#announcements** (uniquement modérateurs) :
+
 - Annonces officielles (nouveaux contenus, événements, changements serveur).
 - Notifications importantes.
 
 ### Canaux de contenu
 
 **#general** :
+
 - Discussion générale non-modérée strictement, mais on applique les règles.
 - Le cœur de la vie du serveur.
 
 **#introductions** (optionnel) :
+
 - Les nouveaux membres se présentent.
 - Aide à créer un lien communautaire.
 
 **#media** :
+
 - Partage de photos, vidéos, fanarts.
 - Garde #general clean de spam media.
 
 **#showcase** (si applicable) :
+
 - Espace où les members partagent leur travail (si tu es streamer : leurs setups, leurs créations, etc.).
 
 ### Canaux premium (memberships payants)
 
 **#members-only** :
+
 - Contenu exclusive pour les members payants.
 - Peut être du contenu en avant-première, des coulisses, des AMA (Ask Me Anything).
 
 **#live-alerts-premium** :
+
 - Notifications spéciales pour les members (alertes live prioritaires, accès VIP à des événements).
 
 ### Canaux spécialisés (selon ta niche)
@@ -96,6 +104,7 @@ Si tu es podcasteur : **#episode-discussion**, **#topic-suggestions**.
 ### Canaux modération
 
 **#logs** (privé, modérateurs uniquement) :
+
 - Logs automatisés de deletions, bans, etc.
 - Permet de tracker les problèmes d'ordre.
 
@@ -120,6 +129,7 @@ Si tu es podcasteur : **#episode-discussion**, **#topic-suggestions**.
 ### Permissions par rôle
 
 Via Discord settings, assigne les permissions :
+
 - **Members** : Envoi de messages, réactions, upload de fichiers. **Pas** : mention du serveur, manage les channels, ban users.
 - **Mods** : Tout ce que Members + warn/timeout/kick.
 - **Admins** : Accès à tout, sauf les settings du serveur.
@@ -133,6 +143,7 @@ Via Discord settings, assigne les permissions :
 Les members reviennent PARCE QUE tu es là. Si tu disparais 6 mois, le serveur devient zombie.
 
 **Stratégie pratique :**
+
 - Passe au moins 15-20 min par jour sur le serveur (réponds aux messages, liike les bons contenus).
 - Chaque jour que tu streamez, annonce-le sur Discord 30 min avant.
 - Une fois par semaine, un message plus long (update, réflexion, question ouverte aux members).
@@ -174,24 +185,28 @@ Les members reviennent PARCE QUE tu es là. Si tu disparais 6 mois, le serveur d
 
 ### Stratégie tarifaire
 
-**Tier 1 (Starter)** : 2,99-4,99 €/mois  
+**Tier 1 (Starter)** : 2,99-4,99 €/mois
+
 - Accès #members-only channel.
 - Emoji custom.
 - Rôle @Member spécifique.
 
-**Tier 2 (Premium)** : 9,99-14,99 €/mois  
+**Tier 2 (Premium)** : 9,99-14,99 €/mois
+
 - Tout du Tier 1.
 - Accès à un live mensuel privé (gaming, coaching, Q&A).
 - Mention spéciale dans #announcements une fois par mois.
 - 10% discount sur ta merch.
 
-**Tier 3 (VIP/Founder)** : 24,99-49,99 €/mois  
+**Tier 3 (VIP/Founder)** : 24,99-49,99 €/mois
+
 - Tout du Tier 2.
 - 1 on 1 chat session avec toi par mois (30 min).
 - Custom emoji de ton choix.
 - "Co-creator" status (rôle coloré spécial).
 
 **Benchmarks réalistes :**
+
 - Serveur de 1 000 members : ~20-50 membres payants (2-5 %).
 - Serveur de 10 000 members : ~500-1 500 payants.
 
@@ -200,6 +215,7 @@ Avec 500 members payants en moyenne à 7,50 € (mix des tiers) = **2 625 € me
 ### Ce que les members veulent VRAIMENT
 
 Étude : la plupart des members payants Discord ne veulent pas "plus de contenu" — ils veulent :
+
 1. **Accès direct et prioritaire au créateur** (pas un bot automatisé).
 2. **Sentiment d'appartenance** (être un insider, pas juste un acheteur).
 3. **Création communautaire** (des events, des hang-outs, une vraie culture).
@@ -233,4 +249,3 @@ Beaucoup de créateurs lancent les memberships à 15-20 € pensant "quality ove
 - **Twitch** : Panel sur ta page qui dit "Rejoins mon Discord".
 - **TikTok** : Lien Snapcode Discord dans ta bio.
 - **Instagram** : Lien cliquable dans la bio.
-

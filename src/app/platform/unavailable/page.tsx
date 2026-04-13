@@ -15,21 +15,29 @@ export const metadata: Metadata = {
 };
 
 export default async function PlatformUnavailablePage({
-  searchParams
+  searchParams,
 }: {
   searchParams: UnavailableSearchParams;
 }) {
   const params = await searchParams;
-  const target = typeof params.target === "string" ? params.target : "/platform/login";
+  const target =
+    typeof params.target === "string" ? params.target : "/platform/login";
 
   return (
-    <main id="main-content" className="min-h-screen bg-[#0b111a] text-white flex items-center justify-center px-6">
+    <main
+      id="main-content"
+      className="min-h-screen bg-[#0b111a] text-white flex items-center justify-center px-6"
+    >
       <div className="max-w-xl w-full border border-white/10 rounded-2xl p-8 bg-white/[0.03]">
-        <p className="text-xs uppercase tracking-[0.25em] text-white/60">Plateforme Admin</p>
-        <h1 className="mt-3 text-2xl font-semibold">Plateforme momentanément indisponible</h1>
+        <p className="text-xs uppercase tracking-[0.25em] text-white/60">
+          Plateforme Admin
+        </p>
+        <h1 className="mt-3 text-2xl font-semibold">
+          Plateforme momentanément indisponible
+        </h1>
         <p className="mt-3 text-sm text-white/70">
-          Le service admin n&apos;est pas joignable pour le moment. Vérifie que le serveur
-          platform est démarré, puis réessaie.
+          Le service admin n&apos;est pas joignable pour le moment. Vérifie que
+          le serveur platform est démarré, puis réessaie.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link

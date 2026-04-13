@@ -1,5 +1,5 @@
 ---
-title: 'Algorithmes des réseaux sociaux : principes de diffusion par plateforme'
+title: "Algorithmes des réseaux sociaux : principes de diffusion par plateforme"
 slug: algorithmes-reseaux-sociaux-2025
 description: >-
   Analyse des mécanismes de recommandation sur TikTok, Instagram, YouTube, Twitch, Snapchat, X et Facebook, avec des
@@ -7,9 +7,9 @@ description: >-
 authorSlug: sasha-guettat
 theme: algorithmes
 category: Stratégie Digitale
-publishedAt: '2025-06-01'
-updatedAt: '2025-06-01'
-lastReviewedAt: '2025-06-01'
+publishedAt: "2025-06-01"
+updatedAt: "2025-06-01"
+lastReviewedAt: "2025-06-01"
 sources: []
 ---
 
@@ -54,6 +54,7 @@ TikTok est l'algorithme le plus démocratique qui soit. Un compte inconnu peut d
 La For You Page repose sur un système de **test progressif** : TikTok montre d'abord votre vidéo à un petit groupe d'utilisateurs. Si le taux de complétion et l'engagement sont élevés, la vidéo est présentée à un panel plus large. Ce processus se répète par vagues successives. Une vidéo peut ainsi exploser des semaines après sa publication.
 
 Les signaux prioritaires sont, dans l'ordre d'importance :
+
 - Les interactions utilisateur (commentaires, likes, partages, follows)
 - Le temps de visionnage — notamment les premières secondes
 - Les informations sur le contenu (hashtags, sons, sujet)
@@ -104,6 +105,7 @@ YouTube est le deuxième moteur de recherche mondial. Contrairement aux autres p
 Twitch est la plateforme où l'algorithme joue le rôle le moins décisif. L'annuaire des chaînes en live est trié par défaut par nombre de spectateurs, ce qui avantage structurellement les gros comptes. Pour un talent émergent, la croissance organique interne est donc limitée.
 
 Ce qui fait vraiment la différence sur Twitch :
+
 - La régularité des lives (présence consistante dans les créneaux de sa catégorie)
 - Les raids entrants (quand un autre streamer envoie sa communauté vers vous)
 - La promotion externe via YouTube, TikTok, Twitter, Discord
@@ -140,4 +142,3 @@ Les algorithmes optimisent pour la satisfaction humaine. Concentrez-vous sur des
 ## Aller plus loin avec Wafia
 
 Vous souhaitez activer des créateurs alignés avec votre cible en exploitant les algorithmes ? Découvrez les [campagnes d'influence marketing Wafia](/for-brands) ou consultez nos [services](/services).
-

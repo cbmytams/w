@@ -1,13 +1,13 @@
 ---
-title: 'IRL streaming : exigences techniques et organisation opérationnelle'
+title: "IRL streaming : exigences techniques et organisation opérationnelle"
 slug: irl-streaming-mobile-setup-2025
-description: 'Référentiel opérationnel IRL streaming : équipement mobile, connectivité, sécurité et organisation de production.'
+description: "Référentiel opérationnel IRL streaming : équipement mobile, connectivité, sécurité et organisation de production."
 authorSlug: yaelle
 theme: production
 category: Production — Équipement
-publishedAt: '2025-07-20'
-updatedAt: '2025-07-20'
-lastReviewedAt: '2025-07-20'
+publishedAt: "2025-07-20"
+updatedAt: "2025-07-20"
+lastReviewedAt: "2025-07-20"
 sources: []
 ---
 
@@ -55,53 +55,62 @@ En France, tu as deux options majeures :
 - **Coût total** : 0 € (tu utilises ton téléphone existant).
 
 **Avantages :**
+
 - Zero setup complexe.
 - Failover automatique si une connexion drop.
 
 **Inconvénients :**
+
 - Qualité max : 1080p 30fps (limité par la compression mobile).
 - Autonomie batterie limitée (streaming mobile bouffe 50-60 % batterie/heure).
 
 #### Option B : Encodeur 4G/5G (Pro, fiable 95 %+)
 
 **Matériel typique :**
+
 - **LIVE U SOLO** (ton setup exact) : ~2 000 €. Encodeur 4G/5G portable. Supporte jusqu'à 1080p 60fps. Livestream de qualité TV-like.
 - **Linkpi REC** (ton setup exact) : ~800 €. Encodeur 4G/5G plus compact, qualité un peu moins élevée mais excellente.
 
 Avec un encodeur :
+
 - Tu connects une **caméra vidéo** (Sony A7 par exemple) ou une **GoPro** en HDMI.
 - L'encodeur compresse et envoie via 5G/4G.
 - Qualité : 4K possible, mais réaliste 1080p 60fps pour stabilité.
 - Batteries externes (10 000 mAh) te donnent 3-4 heures d'IRL stream.
 
 **Avantages :**
+
 - Qualité professionnelle.
 - Reliability supérieure (dual LTE cards possible sur LIVE U).
 
 **Inconvénients :**
+
 - Setup complexe initialement.
 - Poids à porter (sac à dos ou chest rig).
 - Coût matériel + SIM data plans.
 
-*Option recommandée pour toi (Wafia, Twitch setup) : LIVE U SOLO ou équivalent.*
+_Option recommandée pour toi (Wafia, Twitch setup) : LIVE U SOLO ou équivalent._
 
 ### 2. Caméra
 
 **Options courantes :**
 
 **Caméra 1 : GoPro Hero (600 €)**
+
 - Robuste, small, vue large angle (parfait pour POV streaming).
 - Qualité vidéo très bonne en 4K.
 - Audio plutôt OK.
 - Connecte directement à encodeur via HDMI USB.
 
 **Caméra 2 : Sony A7IV (2 000-2 500 €) — Ton équipement**
+
 - Qualité audio/vidéo supérieure.
 - Flexibilité focales (lenses).
 - Poids + fragilité comparé à GoPro.
 - Excellente pour l'IRL si tu veux du cinéma-like.
 
 **Caméra 3 : Smartphone (0 €, tu l'as déjà)**
+
 - Qualité acceptable avec dual sim.
 - Pratique, léger.
 - Limites : batterie, qualité max 1080p-ish.
@@ -116,7 +125,7 @@ Avec un encodeur :
 - **Rode Mic Array** (100 €) : Micro USB omnidirectionnel (capture tout, bruits de rue moins isolés).
 - **Rode Lav** (30 €) : Très basique mais fonctionne.
 
-*Recommandation pour IRL : Rode Wireless GO II. Elle capture TA voix (pas les bruits de rue indésirables).*
+_Recommandation pour IRL : Rode Wireless GO II. Elle capture TA voix (pas les bruits de rue indésirables)._
 
 ### 4. Stabilisation vidéo
 
@@ -129,7 +138,8 @@ Avec un encodeur :
 
 ### 5. Batterie & Power
 
-**Battery Pack :** 
+**Battery Pack :**
+
 - 20 000 mAh USB-C : ~50-100 €. Charge ton téléphone 2-3x complètement, ou ton LIVE U 3-4 heures.
 - **Batterie rechargeable pour caméra** : 60-150 € selon le modèle.
 
@@ -219,4 +229,3 @@ Si les gens entendent rien, ils partent. Investir dans un bon micro = priorité 
 **Budget minimum viable :** 1 500 € (téléphone dual sim + micro).  
 **Setup confortable :** 3 000-4 000 € (encodeur + caméra dédiée + bon micro).  
 **Setup professionnel :** 5 000+ € (dual encodeurs, multiple caméras, monitoring setup, etc.).
-

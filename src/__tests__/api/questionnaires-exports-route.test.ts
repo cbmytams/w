@@ -11,7 +11,8 @@ const prismaMock = {
 };
 
 jest.mock("@/lib/apiAuth", () => ({
-  requireDashboardRole: (...args: unknown[]) => requireDashboardRoleMock(...args),
+  requireDashboardRole: (...args: unknown[]) =>
+    requireDashboardRoleMock(...args),
 }));
 
 jest.mock("@/lib/requestSecurity", () => ({
@@ -20,7 +21,8 @@ jest.mock("@/lib/requestSecurity", () => ({
 }));
 
 jest.mock("@/lib/questionnaireTenant", () => ({
-  getQuestionnaireVersionForTenant: (...args: unknown[]) => getQuestionnaireVersionForTenantMock(...args),
+  getQuestionnaireVersionForTenant: (...args: unknown[]) =>
+    getQuestionnaireVersionForTenantMock(...args),
 }));
 
 jest.mock("@/lib/db", () => ({ prisma: prismaMock }));
@@ -50,9 +52,16 @@ describe("questionnaires exports route", () => {
     const body = await response.json();
 
     expect(response.status).toBe(404);
-    expect(body).toEqual({ error: "Questionnaire version not found" });
+    expect(body).toEqual({
+      success: false,
+      error: "Questionnaire version not found",
+    });
     expect(prismaMock.questionnaireResponse.findMany).not.toHaveBeenCalled();
-    expect(getQuestionnaireVersionForTenantMock).toHaveBeenCalledWith("tenant-admin", "TALENTS", "v42");
+    expect(getQuestionnaireVersionForTenantMock).toHaveBeenCalledWith(
+      "tenant-admin",
+      "TALENTS",
+      "v42"
+    );
   });
 
   it("serializes headers and all CSV cells", async () => {
@@ -163,6 +172,10 @@ describe("questionnaires exports route", () => {
     const response = await GET(request);
 
     expect(response.status).toBe(200);
-    expect(getQuestionnaireVersionForTenantMock).toHaveBeenCalledWith("tenant-admin", "BRANDS", "v3");
+    expect(getQuestionnaireVersionForTenantMock).toHaveBeenCalledWith(
+      "tenant-admin",
+      "BRANDS",
+      "v3"
+    );
   });
 });

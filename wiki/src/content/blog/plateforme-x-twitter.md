@@ -1,13 +1,13 @@
 ---
-title: 'X (Twitter) : distribution, formats éditoriaux et monétisation'
+title: "X (Twitter) : distribution, formats éditoriaux et monétisation"
 slug: guide-x-twitter-2025-influenceur-monetisation
-description: 'Repères X (Twitter) 2025 : formats éditoriaux, distribution For You, analytics et monétisation.'
+description: "Repères X (Twitter) 2025 : formats éditoriaux, distribution For You, analytics et monétisation."
 authorSlug: sasha-guettat
 platform: x
 category: Plateforme — X / Twitter
-publishedAt: '2025-08-05'
-updatedAt: '2025-08-05'
-lastReviewedAt: '2025-08-05'
+publishedAt: "2025-08-05"
+updatedAt: "2025-08-05"
+lastReviewedAt: "2025-08-05"
 sources: []
 ---
 
@@ -90,6 +90,7 @@ Soyez réactif : commenter un événement en tendance dans votre niche rapidemen
 Les **threads** sont le format roi pour le contenu à forte valeur ajoutée sur X. Un thread bien construit ("Voici 10 choses que j'ai apprises en 5 ans d'entrepreneuriat") peut aller viral, générer des milliers de likes et de retweets, et vous amener des centaines de nouveaux followers en quelques heures.
 
 Structure d'un thread performant :
+
 - **Tweet 1** : l'accroche — une promesse claire et intrigante. "Ce que personne ne vous dit sur X." Ou un fait contre-intuitif. Ou une question qui pique la curiosité.
 - **Tweets 2-N** : développement clair, une idée par tweet, lisible indépendamment.
 - **Dernier tweet** : conclusion + CTA (s'abonner, commentaire, partager).
@@ -214,4 +215,3 @@ Le positionnement idéal de X dans un écosystème multi-plateformes :
 **X = personal branding professionnel et distribution de contenu.** Si votre niche est le business, la tech, la finance, le marketing, l'entrepreneuriat ou n'importe quel sujet où la réflexion écrite a de la valeur, X est indispensable pour votre crédibilité. C'est la plateforme où les journalistes et les décideurs vous trouvent, où les opportunités professionnelles naissent.
 
 **X = canal de promotion de votre autre contenu.** Annoncez vos nouvelles vidéos YouTube, vos lives Twitch, vos articles, vos publications Instagram. L'audience X clique sur les liens — c'est une plateforme d'intention.
-

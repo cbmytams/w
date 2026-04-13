@@ -1,13 +1,13 @@
 ---
-title: 'Live shopping : formats, modèles économiques et mise en œuvre'
+title: "Live shopping : formats, modèles économiques et mise en œuvre"
 slug: live-shopping-social-commerce-2025
-description: 'Évaluer et exécuter une stratégie de live shopping en 2025 : plateformes, formats et modèles économiques.'
+description: "Évaluer et exécuter une stratégie de live shopping en 2025 : plateformes, formats et modèles économiques."
 authorSlug: sasha-guettat
 theme: monetisation
 category: Monétisation — Live & Commerce
-publishedAt: '2025-07-13'
-updatedAt: '2025-07-13'
-lastReviewedAt: '2025-07-13'
+publishedAt: "2025-07-13"
+updatedAt: "2025-07-13"
+lastReviewedAt: "2025-07-13"
 sources: []
 ---
 
@@ -30,16 +30,19 @@ Ce guide détaille comment utiliser le live shopping comme créateur pour monét
 ### Statistiques 2024-2025
 
 **En France :**
+
 - 67 % des Français se disent intéressés par le live shopping.
 - 40+ % ont déjà participé à un live shopping selon les enquêtes récentes.
 - Taux de conversion moyen : 8-12 % (comparer à 2-3 % pour un e-commerce classique).
 - Panier moyen : 40-60 € par acheteur sur un live shopping (supérieur à un achat e-commerce classique).
 
 **Côté créateurs :**
+
 - Un créateur avec 50 000 abonnés peut générer 2 000-5 000 € de CA par live shopping (commission 10-15 % du CA généré).
 - Les tops live shoppers font 3-4 lives par semaine et génèrent 5 000-15 000 € hebdomadaires.
 
 **Côté marques :**
+
 - 72 % des marques prévoient d'augmenter leur budget live shopping en 2025-2026.
 - Le ROI du live shopping vs influencer sponsoring classique est estimé à 3-7x.
 
@@ -59,20 +62,24 @@ Ce guide détaille comment utiliser le live shopping comme créateur pour monét
 **Comment ça marche :**
 
 TikTok a lancé TikTok Shop directement dans l'app. Les créateurs avec le statut de Seller peuvent :
+
 1. Uploader des produits depuis leur compte.
 2. Annoncer un live shopping.
 3. Pendant le live, les viewers achètent directement dans le stream (produits affichés, lien pour commander en pop-up).
 
 **Modèle de rémunération :**
+
 - Commission par vente : 5-20 % selon le produit et l'arrangement avec la marque.
 - Ou : deal au forfait ("Je fais 3 lives TikTok Shop par mois pour marque X" = 1 000-3 000 €/mois).
 
 **Avantages :**
+
 - Intégration native = friction minimale pour les buyers (ils achètent sans quitter TikTok).
 - Audience jeune (18-34 principalement) très disposée à acheter en impulse.
 - TikTok prend une commission mais facilite la logistique.
 
 **Frein :**
+
 - TikTok Shop en France en est à ses débuts (février 2026). Fonctionnalités en phase de rollout.
 
 ### Instagram Shopping & Instagram Live Shopping
@@ -82,19 +89,23 @@ TikTok a lancé TikTok Shop directement dans l'app. Les créateurs avec le statu
 Instagram a des tags shopping sur les posts (tu tagues un produit, le lien vend directement).
 
 Pour le **live shopping Instagram**, tu peux :
+
 1. Activer une session live.
 2. Tagger des produits en temps réel (ils apparaissent comme stickers clickables).
 3. Les viewers achètent directement via Instagram Checkout (si activé dans leur pays).
 
 **Modèle économique :**
+
 - Affiliation commission ou deal marque au forfait.
 - Instagram ne prend pas de commission sur les produits tiers (seulement si c'est du Instagram Shopping directement intégré).
 
 **Avantages :**
+
 - Public plus large (25-55 ans) que TikTok = puissance d'achat souvent supérieure.
 - Intégration avec Shopify et autres commerce platforms.
 
 **Limites :**
+
 - Reach organique d'Instagram très réduite (besoin de promotion externe).
 - Moins "native" que TikTok Shop.
 
@@ -103,19 +114,23 @@ Pour le **live shopping Instagram**, tu peux :
 **Comment ça marche :**
 
 YouTube permet les "shopping activations" sur les lives :
+
 1. Tu fais un live YouTube.
 2. Tu affiches les produits en overlay (image + lien d'achat vers un landing page ou site).
 3. Les viewers cliquent et achètent (généralement Shopify ou site tiers).
 
 **Modèle :**
+
 - Affiliation directe (tu fournis un lien, commission par vente).
 - Ou deal marque fixe.
 
 **Avantages :**
+
 - Audience plus large et internationale que TikTok.
 - YouTube permet les lives très longs (jusqu'à plusieurs heures).
 
 **Limite majeure :**
+
 - Friction plus élevée = le viewer doit quitter YouTube pour acheter.
 
 ---
@@ -142,16 +157,19 @@ YouTube permet les "shopping activations" sur les lives :
 **Ouverture (premiers 5 min) :** Chaleur, remerciements aux viewers.
 
 **Présentation produit (10 min) :**
+
 - Montre le produit en détail.
 - Raconte pourquoi tu l'aimes / utilises.
 - Mention du code promo / lien d'achat.
 
 **Interaction (15-25 min) :**
+
 - Réponds aux questions en direct.
 - Adresse les objections ("Oui, il y a aussi une version X").
 - Encourage les achats sans être agressif ("Dernière chance dans 10 min, on a 50 unités et 30 ont été prises").
 
 **Urgence finale (dernières 5 min) :**
+
 - "Le code promo expire dans 5 min."
 - "Stock limite." (si vrai).
 - Remercie ceux qui achètent, invite les autres à suivre pour la prochaine session.
@@ -169,28 +187,33 @@ YouTube permet les "shopping activations" sur les lives :
 ### Par taille d'audience
 
 **Micro (10k-50k) :**
+
 - Commission 10-15 % des ventes générées, **OU**
 - Forfait 300-800 € par live shopping.
 
 **Mid-tier (50k-200k) :**
+
 - Commission 8-12 %, **OU**
 - Forfait 800-2 500 € par live.
 
 **Macro (200k+) :**
+
 - Commission 5-10 %, **OU**
 - Forfait 2 500-10 000 € par live.
 
 ### Cas de figure : Commission vs Forfait
 
 **Commission (% du CA) :**
+
 - Avantage : si le produit explose, tu gagnes gros.
 - Risque : si ça flop, tu fais ça pour rien.
 
 **Forfait :**
+
 - Avantage : sécurité, chiffre connu d'avance.
 - Risque : si tu génères 20 000 € de ventes, tu es payée 1 500 € forfait (regret !).
 
-*Recommandation : Mix hybride. Base forfaitaire 50% + commission 10-15 % sur les ventes dès 10 000 € de CA générés.*
+_Recommandation : Mix hybride. Base forfaitaire 50% + commission 10-15 % sur les ventes dès 10 000 € de CA générés._
 
 ---
 
@@ -233,9 +256,9 @@ Forfait 3 000 € + commission 8 % sur dépassement 10 000 €.
 ## Tendances futures
 
 **La livestream shopping va exploser :**
+
 - TikTok continue d'améliorer TikTok Shop.
 - Instagram intensifie les outils de shopping live.
 - YouTube et Twitch vont probablement lancer leurs versions.
 
 **Les créateurs qui se positionnent maintenant comme "live shopping specialists" dans leur niche auront un avantage compétitif énorme.**
-

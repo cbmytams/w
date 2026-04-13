@@ -4,12 +4,15 @@ const resolveConfiguredTenantIdMock = jest.fn();
 const getOrCreateCurrentQuestionnaireForTenantMock = jest.fn();
 
 jest.mock("@/lib/apiAuth", () => ({
-  requireDashboardRole: (...args: unknown[]) => requireDashboardRoleMock(...args),
+  requireDashboardRole: (...args: unknown[]) =>
+    requireDashboardRoleMock(...args),
 }));
 
 jest.mock("@/lib/questionnaireTenant", () => ({
-  resolveConfiguredTenantId: (...args: unknown[]) => resolveConfiguredTenantIdMock(...args),
-  getOrCreateCurrentQuestionnaireForTenant: (...args: unknown[]) => getOrCreateCurrentQuestionnaireForTenantMock(...args),
+  resolveConfiguredTenantId: (...args: unknown[]) =>
+    resolveConfiguredTenantIdMock(...args),
+  getOrCreateCurrentQuestionnaireForTenant: (...args: unknown[]) =>
+    getOrCreateCurrentQuestionnaireForTenantMock(...args),
 }));
 
 import { GET } from "@/app/api/v1/questionnaires/current/route";
@@ -32,27 +35,37 @@ describe("questionnaires current GET route", () => {
       sectionsJson: [{ id: "section-1" }],
     });
 
-    const request = new NextRequest("https://wafia.test/api/v1/questionnaires/current");
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/current"
+    );
 
     const response = await GET(request);
     const body = await response.json();
 
     expect(response.status).toBe(200);
     expect(body).toEqual({
-      questionnaireId: "questionnaire-1",
-      version: "v7",
-      questions: [{ id: "section-1" }],
+      success: true,
+      data: {
+        questionnaireId: "questionnaire-1",
+        version: "v7",
+        questions: [{ id: "section-1" }],
+      },
     });
     expect(requireDashboardRoleMock).not.toHaveBeenCalled();
-    expect(getOrCreateCurrentQuestionnaireForTenantMock).toHaveBeenCalledWith("tenant-default", "TALENTS");
+    expect(getOrCreateCurrentQuestionnaireForTenantMock).toHaveBeenCalledWith(
+      "tenant-default",
+      "TALENTS"
+    );
   });
 
   it("returns a 500 error when the database is unavailable", async () => {
     getOrCreateCurrentQuestionnaireForTenantMock.mockRejectedValue(
-      new Error("Environment variable not found: DATABASE_URL"),
+      new Error("Environment variable not found: DATABASE_URL")
     );
 
-    const request = new NextRequest("https://wafia.test/api/v1/questionnaires/current");
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/current"
+    );
 
     const response = await GET(request);
     const body = await response.json();
@@ -67,7 +80,9 @@ describe("questionnaires current GET route", () => {
   it("returns 503 when no default tenant is configured", async () => {
     resolveConfiguredTenantIdMock.mockResolvedValue(null);
 
-    const request = new NextRequest("https://wafia.test/api/v1/questionnaires/current");
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/current"
+    );
 
     const response = await GET(request);
     const body = await response.json();
@@ -87,17 +102,25 @@ describe("questionnaires current GET route", () => {
       sectionsJson: [{ id: "brand-question-1" }],
     });
 
-    const request = new NextRequest("https://wafia.test/api/v1/questionnaires/current?type=BRANDS");
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/questionnaires/current?type=BRANDS"
+    );
 
     const response = await GET(request);
     const body = await response.json();
 
     expect(response.status).toBe(200);
     expect(body).toEqual({
-      questionnaireId: "questionnaire-brand-1",
-      version: "v2",
-      questions: [{ id: "brand-question-1" }],
+      success: true,
+      data: {
+        questionnaireId: "questionnaire-brand-1",
+        version: "v2",
+        questions: [{ id: "brand-question-1" }],
+      },
     });
-    expect(getOrCreateCurrentQuestionnaireForTenantMock).toHaveBeenCalledWith("tenant-default", "BRANDS");
+    expect(getOrCreateCurrentQuestionnaireForTenantMock).toHaveBeenCalledWith(
+      "tenant-default",
+      "BRANDS"
+    );
   });
 });

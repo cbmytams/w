@@ -43,7 +43,9 @@ export function getWebsiteEnv(): WebsiteEnv {
   const rawSiteUrl = optional("NEXT_PUBLIC_SITE_URL");
   const nextPublicSiteUrl =
     process.env.NODE_ENV === "production"
-      ? rawSiteUrl && rawSiteUrl !== "http://localhost:3000" && !isLocalOrigin(rawSiteUrl)
+      ? rawSiteUrl &&
+        rawSiteUrl !== "http://localhost:3000" &&
+        !isLocalOrigin(rawSiteUrl)
         ? rawSiteUrl
         : "https://wafia.fr"
       : rawSiteUrl || "http://localhost:3000";
@@ -56,7 +58,7 @@ export function getWebsiteEnv(): WebsiteEnv {
     contactWebhookUrl: optional("CONTACT_WEBHOOK_URL"),
     contactIntakeToken: optional("CONTACT_INTAKE_TOKEN"),
     otelEndpoint: optional("OTEL_EXPORTER_OTLP_ENDPOINT"),
-    otelHeaders: optional("OTEL_EXPORTER_OTLP_HEADERS")
+    otelHeaders: optional("OTEL_EXPORTER_OTLP_HEADERS"),
   };
 
   globalState[GLOBAL_KEY] = env;

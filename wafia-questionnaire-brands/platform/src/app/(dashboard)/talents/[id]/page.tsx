@@ -2,14 +2,17 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Fiche talent | WAFIA BDD Talents",
-  description: "Détail talent: profils sociaux, stats, contacts et notes internes."
+  description:
+    "Détail talent: profils sociaux, stats, contacts et notes internes.",
 };
 
 export default function TalentDetailPage() {
   return (
     <div className="space-y-6">
       <div className="surface-card p-6">
-        <div className="text-xs uppercase tracking-[0.3em] text-soft">Fiche talent</div>
+        <div className="text-xs uppercase tracking-[0.3em] text-soft">
+          Fiche talent
+        </div>
         <h1 className="text-3xl font-semibold mt-2">Nom du talent</h1>
         <p className="text-sm text-muted mt-2">
           Vue complète avec infos, plateformes, stats et notes internes.

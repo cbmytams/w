@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Studio créatif | Wafia",
     description:
-      "Studio Wafia : production social-first, formats verticaux, UGC et assets premium pour marques et agences."
-  }
+      "Studio Wafia : production social-first, formats verticaux, UGC et assets premium pour marques et agences.",
+  },
 };
 
 export default function StudioLayout({
@@ -38,8 +38,14 @@ export default function StudioLayout({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbSchema([
-              { name: "Accueil", url: new URL(sitePaths.home, siteConfig.url).toString() },
-              { name: "Studio", url: new URL(sitePaths.studio, siteConfig.url).toString() },
+              {
+                name: "Accueil",
+                url: new URL(sitePaths.home, siteConfig.url).toString(),
+              },
+              {
+                name: "Studio",
+                url: new URL(sitePaths.studio, siteConfig.url).toString(),
+              },
             ])
           ),
         }}

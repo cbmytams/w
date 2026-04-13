@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -55,7 +55,8 @@ export default function NotFoundClient() {
           transition={{ delay: 0.4, duration: 0.8, ease: EASING.premium }}
           className="mt-8 max-w-md text-base sm:text-lg text-white/50"
         >
-          L'URL que vous recherchez semble incorrecte ou la page a été déplacée. Reprenons une connexion plus stable.
+          L'URL que vous recherchez semble incorrecte ou la page a été déplacée.
+          Reprenons une connexion plus stable.
         </motion.p>
 
         {/* Buttons */}

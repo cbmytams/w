@@ -20,10 +20,10 @@ describe("authOptions session callback", () => {
     findFirstMock.mockResolvedValue({ tenantId: "tenant-123" });
 
     const session = await authOptions.callbacks?.session?.({
-      session: ({
+      session: {
         expires: new Date(Date.now() + 60_000).toISOString(),
         user: { name: "Admin" },
-      } as unknown as Session),
+      } as unknown as Session,
       token: {
         sub: "admin@example.com",
         role: "ADMIN",

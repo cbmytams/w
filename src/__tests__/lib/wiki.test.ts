@@ -1,4 +1,9 @@
-import { __wikiInternals, clearWikiCacheForTests, getAllWikiArticles, type WikiArticle } from "../../lib/wiki";
+import {
+  __wikiInternals,
+  clearWikiCacheForTests,
+  getAllWikiArticles,
+  type WikiArticle,
+} from "../../lib/wiki";
 
 describe("wiki content layer", () => {
   beforeEach(() => {
@@ -17,10 +22,15 @@ theme: "monetisation"
 Contenu de test.
 `;
 
-    const parsed = await __wikiInternals.parseRawWikiDocument("/tmp/wiki-test.md", raw);
+    const parsed = await __wikiInternals.parseRawWikiDocument(
+      "/tmp/wiki-test.md",
+      raw
+    );
 
     expect(parsed.article).toBeNull();
-    expect(parsed.errors.some((error) => error.includes("title manquant"))).toBe(true);
+    expect(
+      parsed.errors.some((error) => error.includes("title manquant"))
+    ).toBe(true);
   });
 
   it("rejects frontmatter when publishedAt is invalid", async () => {
@@ -36,10 +46,15 @@ theme: "monetisation"
 Contenu de test.
 `;
 
-    const parsed = await __wikiInternals.parseRawWikiDocument("/tmp/wiki-test.md", raw);
+    const parsed = await __wikiInternals.parseRawWikiDocument(
+      "/tmp/wiki-test.md",
+      raw
+    );
 
     expect(parsed.article).toBeNull();
-    expect(parsed.errors.some((error) => error.includes("publishedAt invalide"))).toBe(true);
+    expect(
+      parsed.errors.some((error) => error.includes("publishedAt invalide"))
+    ).toBe(true);
   });
 
   it("throws when duplicate slugs are detected", () => {
@@ -76,7 +91,9 @@ Contenu de test.
       },
     ];
 
-    expect(() => __wikiInternals.ensureNoDuplicateSlugs(articles)).toThrow("slug dupliqué");
+    expect(() => __wikiInternals.ensureNoDuplicateSlugs(articles)).toThrow(
+      "slug dupliqué"
+    );
   });
 
   it("sorts parsed articles by publishedAt descending", async () => {

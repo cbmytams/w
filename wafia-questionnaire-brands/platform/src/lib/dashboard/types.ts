@@ -77,4 +77,3 @@ export interface AuditEvent {
   createdAt: string;
   diffJson?: unknown;
 }
-

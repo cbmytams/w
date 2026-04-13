@@ -8,7 +8,7 @@
  */
 
 // Re-export animation tokens from canonical source
-export { EASING, DURATION } from "./easing"
+export { EASING, DURATION } from "./easing";
 
 export const COLORS = {
   neutral: "slate",
@@ -31,42 +31,43 @@ export const COLORS = {
     success: "emerald-500",
     danger: "rose-500",
   },
-} as const
+} as const;
 
 export const RADIUS = {
   card: "rounded-xl",
   prominent: "rounded-2xl",
   pill: "rounded-full",
-} as const
+} as const;
 
 export const SHADOW = {
   soft: "shadow-lg",
   elevated: "shadow-2xl",
-} as const
+} as const;
 
 export const SPRING = {
   responsive: { stiffness: 300, damping: 25 },
   gentle: { stiffness: 120, damping: 28 },
-} as const
+} as const;
 
 export const TYPOGRAPHY = {
   heading: "font-heading",
   body: "font-sans",
-} as const
+} as const;
 
 export const SECTION = {
   compact: "py-16 md:py-20",
   standard: "py-20 md:py-28",
   generous: "py-24 md:py-32",
-} as const
+} as const;
 
 export const HEADER_MARGIN = {
   sm: "mb-12",
   md: "mb-16",
   lg: "mb-20",
-} as const
+} as const;
 
 export const CARD = {
   dark: "rounded-xl bg-slate-900/80 backdrop-blur-xl border border-white/10",
-  light: "rounded-xl bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10",
-} as const
+  light:
+    "rounded-xl bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10",
+} as const;

@@ -5,7 +5,7 @@ import {
   ADMIN_SESSION_COOKIE,
   createAdminSessionToken,
   getAdminSessionCookieMaxAge,
-  verifyAdminSessionToken
+  verifyAdminSessionToken,
 } from "@/lib/authSession";
 import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
@@ -20,7 +20,7 @@ function safeEqual(a: string, b: string) {
 const noStoreHeaders = {
   "Cache-Control": "no-store, no-cache, must-revalidate",
   Pragma: "no-cache",
-  Expires: "0"
+  Expires: "0",
 };
 
 function getCredentialMap() {
@@ -35,7 +35,10 @@ function getCredentialMap() {
   const managerUser = process.env.MANAGER_USERNAME;
   const managerPass = process.env.MANAGER_PASSWORD;
   if (managerUser && managerPass) {
-    map.set(managerUser, { password: managerPass, role: DASHBOARD_ROLES.MANAGER });
+    map.set(managerUser, {
+      password: managerPass,
+      role: DASHBOARD_ROLES.MANAGER,
+    });
   }
 
   const viewerUser = process.env.VIEWER_USERNAME;
@@ -51,21 +54,30 @@ export async function GET() {
   const cookieStore = await cookies();
   const token = cookieStore.get(ADMIN_SESSION_COOKIE)?.value;
   if (!token) {
-    return Response.json({ error: "Unauthorized" }, { status: 401, headers: noStoreHeaders });
+    return Response.json(
+      { error: "Unauthorized" },
+      { status: 401, headers: noStoreHeaders }
+    );
   }
 
   const session = verifyAdminSessionToken(token);
   if (!session) {
-    return Response.json({ error: "Unauthorized" }, { status: 401, headers: noStoreHeaders });
+    return Response.json(
+      { error: "Unauthorized" },
+      { status: 401, headers: noStoreHeaders }
+    );
   }
 
-  return Response.json({
-    user: {
-      username: session.sub,
-      role: session.role,
-      tenantSlug: session.tenantSlug
-    }
-  }, { headers: noStoreHeaders });
+  return Response.json(
+    {
+      user: {
+        username: session.sub,
+        role: session.role,
+        tenantSlug: session.tenantSlug,
+      },
+    },
+    { headers: noStoreHeaders }
+  );
 }
 
 export async function POST(request: NextRequest) {
@@ -75,18 +87,22 @@ export async function POST(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "admin-session-login",
     limit: 8,
-    windowMs: 15 * 60 * 1000
+    windowMs: 15 * 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 
-  const body = await request.json().catch(() => null) as
-    | { username?: string; password?: string }
-    | null;
+  const body = (await request.json().catch(() => null)) as {
+    username?: string;
+    password?: string;
+  } | null;
   const username = body?.username?.trim();
   const password = body?.password;
 
   if (!username || !password) {
-    return Response.json({ error: "Missing credentials" }, { status: 400, headers: noStoreHeaders });
+    return Response.json(
+      { error: "Missing credentials" },
+      { status: 400, headers: noStoreHeaders }
+    );
   }
 
   const credentials = getCredentialMap();
@@ -94,7 +110,7 @@ export async function POST(request: NextRequest) {
     return Response.json(
       {
         error:
-          "Authentication is not configured. Set ADMIN_USERNAME/ADMIN_PASSWORD (and optional MANAGER/VIEWER credentials)."
+          "Authentication is not configured. Set ADMIN_USERNAME/ADMIN_PASSWORD (and optional MANAGER/VIEWER credentials).",
       },
       { status: 503, headers: noStoreHeaders }
     );
@@ -103,12 +119,15 @@ export async function POST(request: NextRequest) {
   const user = credentials.get(username);
 
   if (!user || !safeEqual(user.password, password)) {
-    return Response.json({ error: "Invalid credentials" }, { status: 401, headers: noStoreHeaders });
+    return Response.json(
+      { error: "Invalid credentials" },
+      { status: 401, headers: noStoreHeaders }
+    );
   }
 
   const token = createAdminSessionToken({
     sub: username,
-    role: user.role
+    role: user.role,
   });
 
   const cookieStore = await cookies();
@@ -117,15 +136,18 @@ export async function POST(request: NextRequest) {
     sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: getAdminSessionCookieMaxAge()
+    maxAge: getAdminSessionCookieMaxAge(),
   });
 
-  return Response.json({
-    user: {
-      username,
-      role: user.role
-    }
-  }, { headers: noStoreHeaders });
+  return Response.json(
+    {
+      user: {
+        username,
+        role: user.role,
+      },
+    },
+    { headers: noStoreHeaders }
+  );
 }
 
 export async function DELETE(request: NextRequest) {
@@ -138,7 +160,7 @@ export async function DELETE(request: NextRequest) {
     sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: 0
+    maxAge: 0,
   });
   return Response.json({ ok: true }, { headers: noStoreHeaders });
 }

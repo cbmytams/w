@@ -1,5 +1,10 @@
 import type { DashboardFilters, KpiCard } from "./types";
-import { normalizeRange, percentDelta, ratioPercent, average } from "./queries/utils";
+import {
+  normalizeRange,
+  percentDelta,
+  ratioPercent,
+  average,
+} from "./queries/utils";
 import { fetchKpiRawData } from "./queries/kpi-data";
 
 export { parseDashboardFilters } from "./queries/parse-filters";
@@ -7,7 +12,10 @@ export { getFunnelSteps } from "./queries/funnel";
 export { getLeadsPage } from "./queries/leads";
 export { getAuditEvents } from "./queries/audit";
 
-export async function getOverviewKpis(filters: DashboardFilters, tenantId: string): Promise<KpiCard[]> {
+export async function getOverviewKpis(
+  filters: DashboardFilters,
+  tenantId: string
+): Promise<KpiCard[]> {
   const normalized = normalizeRange(filters.from, filters.to);
 
   const [
@@ -22,21 +30,41 @@ export async function getOverviewKpis(filters: DashboardFilters, tenantId: strin
     processingCurrent,
     processingPrevious,
     interviewsCurrent,
-    interviewsPrevious
+    interviewsPrevious,
   ] = await fetchKpiRawData(filters, tenantId);
 
   const avgProcessingCurrent = average(
-    processingCurrent.map((talent) => (talent.updatedAt.getTime() - talent.createdAt.getTime()) / (60 * 60 * 1000))
+    processingCurrent.map(
+      (talent) =>
+        (talent.updatedAt.getTime() - talent.createdAt.getTime()) /
+        (60 * 60 * 1000)
+    )
   );
   const avgProcessingPrevious = average(
-    processingPrevious.map((talent) => (talent.updatedAt.getTime() - talent.createdAt.getTime()) / (60 * 60 * 1000))
+    processingPrevious.map(
+      (talent) =>
+        (talent.updatedAt.getTime() - talent.createdAt.getTime()) /
+        (60 * 60 * 1000)
+    )
   );
 
-  const completionRateCurrent = ratioPercent(completedResponsesCurrent, totalResponsesCurrent);
-  const completionRatePrevious = ratioPercent(completedResponsesPrevious, totalResponsesPrevious);
+  const completionRateCurrent = ratioPercent(
+    completedResponsesCurrent,
+    totalResponsesCurrent
+  );
+  const completionRatePrevious = ratioPercent(
+    completedResponsesPrevious,
+    totalResponsesPrevious
+  );
 
-  const conversionCurrent = ratioPercent(interviewsCurrent, leadsQualifiedCurrent);
-  const conversionPrevious = ratioPercent(interviewsPrevious, leadsQualifiedPrevious);
+  const conversionCurrent = ratioPercent(
+    interviewsCurrent,
+    leadsQualifiedCurrent
+  );
+  const conversionPrevious = ratioPercent(
+    interviewsPrevious,
+    leadsQualifiedPrevious
+  );
 
   const updatedAt = new Date().toISOString();
   const period = { from: normalized.from, to: normalized.to };
@@ -51,7 +79,7 @@ export async function getOverviewKpis(filters: DashboardFilters, tenantId: strin
       period,
       definition: "Nombre de leads créés sur la période.",
       sourceQueryId: "kpi_overview_v1_q1",
-      updatedAt
+      updatedAt,
     },
     {
       id: "leads_qualified",
@@ -62,7 +90,7 @@ export async function getOverviewKpis(filters: DashboardFilters, tenantId: strin
       period,
       definition: "Nombre de leads passés en statut QUALIFIED sur la période.",
       sourceQueryId: "kpi_overview_v1_q2",
-      updatedAt
+      updatedAt,
     },
     {
       id: "questionnaire_completion_rate",
@@ -73,7 +101,7 @@ export async function getOverviewKpis(filters: DashboardFilters, tenantId: strin
       period,
       definition: "Questionnaires terminés / questionnaires démarrés.",
       sourceQueryId: "kpi_overview_v1_q3",
-      updatedAt
+      updatedAt,
     },
     {
       id: "avg_processing_time_hours",
@@ -84,7 +112,7 @@ export async function getOverviewKpis(filters: DashboardFilters, tenantId: strin
       period,
       definition: "Moyenne des délais (qualifiedAt - createdAt), en heures.",
       sourceQueryId: "kpi_overview_v1_q4",
-      updatedAt
+      updatedAt,
     },
     {
       id: "conversion_to_interview_rate",
@@ -95,7 +123,7 @@ export async function getOverviewKpis(filters: DashboardFilters, tenantId: strin
       period,
       definition: "Leads passés en entretien / leads qualifiés.",
       sourceQueryId: "kpi_overview_v1_q5",
-      updatedAt
-    }
+      updatedAt,
+    },
   ];
 }

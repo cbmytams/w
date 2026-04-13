@@ -4,8 +4,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
-  Menu, X, LayoutDashboard, Users, FileText,
-  Download, Activity, Settings, ArrowLeftRight, ExternalLink, type LucideIcon
+  Menu,
+  X,
+  LayoutDashboard,
+  Users,
+  FileText,
+  Download,
+  Activity,
+  Settings,
+  ArrowLeftRight,
+  ExternalLink,
+  type LucideIcon,
 } from "lucide-react";
 import { WafiaLogo } from "@/components/ui/WafiaLogo";
 
@@ -50,11 +59,15 @@ function SidebarContent({
         {/* Logo / Brand */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
-             <WafiaLogo className="w-full h-full text-white" />
+            <WafiaLogo className="w-full h-full text-white" />
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-medium">Wafia OS</div>
-            <div className="text-sm font-semibold text-white/90 leading-tight">{portalLabel}</div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-medium">
+              Wafia OS
+            </div>
+            <div className="text-sm font-semibold text-white/90 leading-tight">
+              {portalLabel}
+            </div>
           </div>
         </div>
 
@@ -73,7 +86,9 @@ function SidebarContent({
 
       {/* Nav */}
       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto custom-scrollbar">
-        <div className="px-3 mb-3 text-[9px] uppercase tracking-[0.3em] text-white/20 font-medium">Navigation</div>
+        <div className="px-3 mb-3 text-[9px] uppercase tracking-[0.3em] text-white/20 font-medium">
+          Navigation
+        </div>
         {navItems.map(({ href, label, icon: Icon }) => {
           const isActive = pathname?.startsWith(href);
           return (
@@ -83,15 +98,17 @@ function SidebarContent({
               onClick={onNavigate}
               className={`
                 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 group
-                ${isActive
-                  ? "bg-white/10 text-white border border-white/10 shadow-inner"
-                  : "text-white/40 hover:text-white/80 hover:bg-white/5"
+                ${
+                  isActive
+                    ? "bg-white/10 text-white border border-white/10 shadow-inner"
+                    : "text-white/40 hover:text-white/80 hover:bg-white/5"
                 }
               `}
             >
               <Icon
-                className={`w-4 h-4 flex-shrink-0 transition-all duration-200 ${isActive ? "text-orange-400" : "group-hover:text-white/80"
-                  }`}
+                className={`w-4 h-4 flex-shrink-0 transition-all duration-200 ${
+                  isActive ? "text-orange-400" : "group-hover:text-white/80"
+                }`}
               />
               <span className="font-medium tracking-tight">{label}</span>
               {isActive && (
@@ -112,7 +129,9 @@ function SidebarContent({
           <ArrowLeftRight className="w-3.5 h-3.5 flex-shrink-0" />
           <span>Passer au {switchLabel}</span>
         </Link>
-        <div className="px-3 text-[9px] text-white/15 font-mono">v1.0 · unified platform</div>
+        <div className="px-3 text-[9px] text-white/15 font-mono">
+          v1.0 · unified platform
+        </div>
       </div>
     </div>
   );
@@ -124,8 +143,12 @@ export function Sidebar() {
   const basePath = isBrands ? "/admin/brands" : "/admin/talents";
   const portalLabel = isBrands ? "Marques" : "Talents";
   const switchLabel = isBrands ? "Portail Talents" : "Portail Marques";
-  const switchHref = isBrands ? "/admin/talents/dashboard" : "/admin/brands/dashboard";
-  const questionnaireHref = isBrands ? "/questionnaire/brands" : "/questionnaire/talents";
+  const switchHref = isBrands
+    ? "/admin/talents/dashboard"
+    : "/admin/brands/dashboard";
+  const questionnaireHref = isBrands
+    ? "/questionnaire/brands"
+    : "/questionnaire/talents";
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = NAV_ITEMS.map((item) => ({

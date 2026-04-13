@@ -7,10 +7,7 @@ const HIGH_PRIORITY_ROUTES = new Set([
   sitePaths.forTalents,
 ]);
 
-const MEDIUM_PRIORITY_ROUTES = new Set([
-  sitePaths.studio,
-  sitePaths.wiki,
-]);
+const MEDIUM_PRIORITY_ROUTES = new Set([sitePaths.studio, sitePaths.wiki]);
 
 const LEGAL_ROUTES = new Set([
   sitePaths.legalPrivacy,
@@ -26,7 +23,9 @@ function getRoutePriority(route: string): number {
   return 0.7;
 }
 
-function getRouteChangeFrequency(route: string): "weekly" | "monthly" | "yearly" {
+function getRouteChangeFrequency(
+  route: string
+): "weekly" | "monthly" | "yearly" {
   if (route === sitePaths.home) return "weekly";
   if (LEGAL_ROUTES.has(route)) return "yearly";
   return "monthly";

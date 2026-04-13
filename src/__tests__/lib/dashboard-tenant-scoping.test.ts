@@ -45,7 +45,7 @@ describe("dashboard queries tenant scoping", () => {
         where: expect.objectContaining({
           tenantId: "tenant-1",
         }),
-      }),
+      })
     );
   });
 
@@ -57,7 +57,7 @@ describe("dashboard queries tenant scoping", () => {
         where: expect.objectContaining({
           tenantId: "tenant-2",
         }),
-      }),
+      })
     );
     expect(prismaMock.questionnaireResponse.count).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -66,7 +66,7 @@ describe("dashboard queries tenant scoping", () => {
             tenantId: "tenant-2",
           }),
         }),
-      }),
+      })
     );
   });
 
@@ -82,7 +82,7 @@ describe("dashboard queries tenant scoping", () => {
         where: expect.objectContaining({
           tenantId: "tenant-3",
         }),
-      }),
+      })
     );
   });
 });

@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "platform-talents-list",
     limit: 120,
-    windowMs: 60 * 1000
+    windowMs: 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 
@@ -26,15 +26,12 @@ export async function GET(request: NextRequest) {
         status: true,
         approvalStatus: true,
         createdAt: true,
-        updatedAt: true
-      }
+        updatedAt: true,
+      },
     });
 
     return Response.json({ talents });
   } catch {
-    return Response.json(
-      { error: "Database not configured" },
-      { status: 500 }
-    );
+    return Response.json({ error: "Database not configured" }, { status: 500 });
   }
 }

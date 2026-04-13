@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { getStoredConsent, setStoredConsent, type CookieConsent } from "@/hooks/useCookieConsent";
+import {
+  getStoredConsent,
+  setStoredConsent,
+  type CookieConsent,
+} from "@/hooks/useCookieConsent";
 
 export function CookieBanner() {
   const [consent, setConsent] = useState<CookieConsent>(null);
@@ -19,9 +23,12 @@ export function CookieBanner() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 backdrop-blur-md dark:border-zinc-700 dark:bg-zinc-900/95">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-sm text-slate-600 dark:text-zinc-300">
-          Nous utilisons des cookies pour améliorer l&apos;expérience et mesurer la performance.
-          Consultez notre{" "}
-          <Link href="/legal/cookies" className="font-semibold text-slate-900 underline underline-offset-4 dark:text-white">
+          Nous utilisons des cookies pour améliorer l&apos;expérience et mesurer
+          la performance. Consultez notre{" "}
+          <Link
+            href="/legal/cookies"
+            className="font-semibold text-slate-900 underline underline-offset-4 dark:text-white"
+          >
             politique cookies
           </Link>
           .

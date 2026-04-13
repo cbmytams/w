@@ -1,7 +1,10 @@
-import { buildLeadSlug, normalizeLeadSlugBase } from "../../lib/questionnaireSlug";
+import {
+  buildLeadSlug,
+  normalizeLeadSlugBase,
+} from "../../lib/questionnaireSlug";
 
 describe("questionnaire submit slug generation", () => {
-    it("transliterates accents and collapses separators", () => {
+  it("transliterates accents and collapses separators", () => {
     const base = normalizeLeadSlugBase("  Élodie   Créateur  ");
     expect(base).toBe("elodie-createur");
   });

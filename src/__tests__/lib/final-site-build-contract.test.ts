@@ -3,10 +3,7 @@ import {
   MOCK_CREATORS,
   MOCK_CAMPAIGN_HISTORY,
 } from "@/constants/features";
-import {
-  TALENT_PROOF_STRIP,
-  TALENT_OS_SYSTEM,
-} from "@/constants";
+import { TALENT_PROOF_STRIP, TALENT_OS_SYSTEM } from "@/constants";
 
 describe("final site build contracts", () => {
   it("exposes the brand dashboard mock data required by optional sections", () => {
@@ -20,7 +17,7 @@ describe("final site build contracts", () => {
         name: expect.any(String),
         reach: expect.any(String),
         eng: expect.any(String),
-      }),
+      })
     );
 
     expect(Array.isArray(MOCK_CAMPAIGN_HISTORY)).toBe(true);
@@ -29,7 +26,7 @@ describe("final site build contracts", () => {
       expect.objectContaining({
         name: expect.any(String),
         score: expect.any(Number),
-      }),
+      })
     );
   });
 
@@ -39,7 +36,7 @@ describe("final site build contracts", () => {
         id: expect.any(String),
         title: expect.any(String),
         highlightWord: expect.any(String),
-      }),
+      })
     );
     expect(Array.isArray(TALENT_PROOF_STRIP.badges)).toBe(true);
     expect(Array.isArray(TALENT_PROOF_STRIP.bullets)).toBe(true);
@@ -49,7 +46,7 @@ describe("final site build contracts", () => {
         id: expect.any(String),
         title: expect.any(String),
         highlightWord: expect.any(String),
-      }),
+      })
     );
     expect(Array.isArray(TALENT_OS_SYSTEM.items)).toBe(true);
     expect(TALENT_OS_SYSTEM.items.length).toBeGreaterThan(0);

@@ -48,7 +48,9 @@ function requiredOneOf(names: string[]) {
     if (value) return value;
   }
 
-  throw new Error(`Missing required environment variable: ${names.join(" or ")}`);
+  throw new Error(
+    `Missing required environment variable: ${names.join(" or ")}`
+  );
 }
 
 export function getPlatformEnv(): PlatformEnv {
@@ -77,7 +79,7 @@ export function getPlatformEnv(): PlatformEnv {
     resendFromEmail: optional("RESEND_FROM_EMAIL") || "onboarding@resend.dev",
     resendWebhookSecret: optional("RESEND_WEBHOOK_SECRET"),
     otelEndpoint: optional("OTEL_EXPORTER_OTLP_ENDPOINT"),
-    otelHeaders: optional("OTEL_EXPORTER_OTLP_HEADERS")
+    otelHeaders: optional("OTEL_EXPORTER_OTLP_HEADERS"),
   };
 
   globalState[GLOBAL_KEY] = env;

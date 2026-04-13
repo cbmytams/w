@@ -8,7 +8,9 @@ const standaloneNextDir = path.join(standaloneDir, ".next");
 const serverPath = path.join(standaloneDir, "server.js");
 const port = Number(process.env.STANDALONE_PORT || 3410);
 const baseUrl = `http://127.0.0.1:${port}`;
-const canonicalOrigin = (process.env.CANONICAL_ORIGIN || "https://wafia.fr").replace(/\/$/, "");
+const canonicalOrigin = (
+  process.env.CANONICAL_ORIGIN || "https://wafia.fr"
+).replace(/\/$/, "");
 
 async function assertExists(target) {
   try {
@@ -93,22 +95,29 @@ async function verifyRuntime() {
     wikiSitemapXml,
     llmsTxt,
     rssXml,
-  ] =
-    await Promise.all([
-      fetchText(`${baseUrl}/`),
-      fetchText(`${baseUrl}/services`),
-      fetchText(`${baseUrl}/wiki`),
-      fetchText(`${baseUrl}/wiki/guide-tiktok-2025-strategie-influenceur`),
-      fetchText(`${baseUrl}/for-brands`),
-      fetchText(`${baseUrl}/robots.txt`),
-      fetchText(`${baseUrl}/sitemap.xml`),
-      fetchText(`${baseUrl}/wiki/sitemap.xml`),
-      fetchText(`${baseUrl}/llms.txt`),
-      fetchText(`${baseUrl}/rss.xml`),
-    ]);
+  ] = await Promise.all([
+    fetchText(`${baseUrl}/`),
+    fetchText(`${baseUrl}/services`),
+    fetchText(`${baseUrl}/wiki`),
+    fetchText(`${baseUrl}/wiki/guide-tiktok-2025-strategie-influenceur`),
+    fetchText(`${baseUrl}/for-brands`),
+    fetchText(`${baseUrl}/robots.txt`),
+    fetchText(`${baseUrl}/sitemap.xml`),
+    fetchText(`${baseUrl}/wiki/sitemap.xml`),
+    fetchText(`${baseUrl}/llms.txt`),
+    fetchText(`${baseUrl}/rss.xml`),
+  ]);
 
-  const cssAsset = extractAsset(brandsHtml, /href="(\/_next\/static\/[^"]+\.css)"/, "CSS asset");
-  const fontAsset = extractAsset(brandsHtml, /href="(\/_next\/static\/[^"]+\.woff2)"/, "font asset");
+  const cssAsset = extractAsset(
+    brandsHtml,
+    /href="(\/_next\/static\/[^"]+\.css)"/,
+    "CSS asset"
+  );
+  const fontAsset = extractAsset(
+    brandsHtml,
+    /href="(\/_next\/static\/[^"]+\.woff2)"/,
+    "font asset"
+  );
 
   [
     [homeHtml, "/"],
@@ -158,7 +167,9 @@ async function verifyRuntime() {
     fetchOk(`${baseUrl}${fontAsset}`),
     fetchOk(`${baseUrl}/logos/adidas-2.svg`),
     fetchOk(`${baseUrl}/llms.txt`),
-    fetchOk(`${baseUrl}/_next/image?url=%2Flogos%2Fofficial%2Fbasic-fit-light.png&w=828&q=75`),
+    fetchOk(
+      `${baseUrl}/_next/image?url=%2Flogos%2Fofficial%2Fbasic-fit-light.png&w=828&q=75`
+    ),
   ]);
 }
 
@@ -200,11 +211,15 @@ async function main() {
   });
 
   if (exitCode !== 0 && exitCode !== null && exitCode !== 143) {
-    throw new Error(`Standalone server exited with code ${exitCode}.\n${stderr}`);
+    throw new Error(
+      `Standalone server exited with code ${exitCode}.\n${stderr}`
+    );
   }
 }
 
 main().catch((error) => {
-  process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+  process.stderr.write(
+    `${error instanceof Error ? error.message : String(error)}\n`
+  );
   process.exit(1);
 });

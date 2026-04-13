@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "dashboard-audit-get",
     limit: 60,
-    windowMs: 60 * 1000
+    windowMs: 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 

@@ -5,7 +5,7 @@ describe("team route data contract", () => {
   it("keeps the dynamic team route dataset aligned with canonical team content", () => {
     expect(routeTeam.length).toBeGreaterThan(0);
     expect(routeTeam.map((member) => member.slug).sort()).toEqual(
-      canonicalTeam.map((member) => member.slug).sort(),
+      canonicalTeam.map((member) => member.slug).sort()
     );
   });
 });

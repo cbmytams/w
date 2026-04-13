@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function TalentsLeadsPage(
-  props: { searchParams: Promise<Record<string, string | string[] | undefined>> }
-) {
+export default async function TalentsLeadsPage(props: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const searchParams = await props.searchParams;
   const sp = new URLSearchParams();
   for (const [k, v] of Object.entries(searchParams)) {
@@ -49,10 +49,15 @@ export default async function TalentsLeadsPage(
       {/* Header card */}
       <div className="surface-card p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.35em] text-white/25 font-medium">Base de données</div>
-          <div className="text-lg font-semibold text-white/90 mt-0.5">Talents</div>
+          <div className="text-[10px] uppercase tracking-[0.35em] text-white/25 font-medium">
+            Base de données
+          </div>
+          <div className="text-lg font-semibold text-white/90 mt-0.5">
+            Talents
+          </div>
           <div className="text-xs text-white/30 mt-1">
-            {leads.length} lead{leads.length !== 1 ? "s" : ""} enregistré{leads.length !== 1 ? "s" : ""}
+            {leads.length} lead{leads.length !== 1 ? "s" : ""} enregistré
+            {leads.length !== 1 ? "s" : ""}
           </div>
         </div>
         <a
@@ -70,10 +75,17 @@ export default async function TalentsLeadsPage(
       <div className="surface-card overflow-hidden">
         {leads.length === 0 ? (
           <div className="py-24 flex flex-col items-center text-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center text-3xl">🎤</div>
+            <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center text-3xl">
+              🎤
+            </div>
             <div>
-              <h3 className="text-base font-semibold text-white/70">Aucun talent enregistré</h3>
-              <p className="text-sm text-white/30 mt-1 max-w-xs">Les leads apparaîtront ici dès qu'un talent soumet le questionnaire.</p>
+              <h3 className="text-base font-semibold text-white/70">
+                Aucun talent enregistré
+              </h3>
+              <p className="text-sm text-white/30 mt-1 max-w-xs">
+                Les leads apparaîtront ici dès qu'un talent soumet le
+                questionnaire.
+              </p>
             </div>
             <a
               href="/questionnaire/talents"
@@ -97,14 +109,27 @@ export default async function TalentsLeadsPage(
             {/* Rows */}
             <div className="divide-y divide-white/5 min-w-[640px]">
               {leads.map((lead) => {
-                const statusClass = STATUS_COLOR[lead.status] ?? "bg-white/5 text-white/40 border-white/10";
+                const statusClass =
+                  STATUS_COLOR[lead.status] ??
+                  "bg-white/5 text-white/40 border-white/10";
                 return (
-                  <div key={lead.id} className="grid grid-cols-[2fr_2fr_1fr_1fr_auto] gap-4 px-6 py-4 items-center text-sm hover:bg-white/[0.02] transition">
-                    <div className="font-medium text-white/80 truncate">{lead.name}</div>
-                    <div className="text-white/40 truncate">{lead.email || lead.emailMasked || "—"}</div>
-                    <div className="text-white/30 text-xs">{new Date(lead.createdAt).toLocaleDateString("fr-FR")}</div>
+                  <div
+                    key={lead.id}
+                    className="grid grid-cols-[2fr_2fr_1fr_1fr_auto] gap-4 px-6 py-4 items-center text-sm hover:bg-white/[0.02] transition"
+                  >
+                    <div className="font-medium text-white/80 truncate">
+                      {lead.name}
+                    </div>
+                    <div className="text-white/40 truncate">
+                      {lead.email || lead.emailMasked || "—"}
+                    </div>
+                    <div className="text-white/30 text-xs">
+                      {new Date(lead.createdAt).toLocaleDateString("fr-FR")}
+                    </div>
                     <div>
-                      <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium border ${statusClass}`}>
+                      <span
+                        className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium border ${statusClass}`}
+                      >
                         {lead.status}
                       </span>
                     </div>

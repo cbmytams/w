@@ -1,13 +1,13 @@
 ---
-title: 'Choisir sa niche : méthode de validation et positionnement'
+title: "Choisir sa niche : méthode de validation et positionnement"
 slug: choisir-niche-createur-2025
-description: 'Méthode de choix de niche pour créateurs : validation marché, positionnement et trajectoire de développement.'
+description: "Méthode de choix de niche pour créateurs : validation marché, positionnement et trajectoire de développement."
 authorSlug: yaelle
 theme: branding
 category: Stratégie — Fondamentaux
-publishedAt: '2025-08-03'
-updatedAt: '2025-08-03'
-lastReviewedAt: '2025-08-03'
+publishedAt: "2025-08-03"
+updatedAt: "2025-08-03"
+lastReviewedAt: "2025-08-03"
 sources: []
 ---
 
@@ -32,12 +32,12 @@ Les créateurs qui explosent en audience ? Ils sont **hyper-spécialisés** d'ab
 **Approche 1 : Large (Généraliste)**
 "Je vais faire du contenu lifestyle général pour toucher le max de gens."
 
-*Résultat* : Growth lent (pas d'expertise perçue), audience peu engagée (des randoms qui regardent une vidéo puis s'en vont), difficile à monétiser (marques préfèrent des audiences ciblées).
+_Résultat_ : Growth lent (pas d'expertise perçue), audience peu engagée (des randoms qui regardent une vidéo puis s'en vont), difficile à monétiser (marques préfèrent des audiences ciblées).
 
 **Approche 2 : Micro-niche (Très spécialisé)**
 "Je vais faire du contenu pour les freelanceurs productifs avec ADHD en France."
 
-*Résultat* : Growth plus rapide initialement (community effet), audience TRÈS engagée, super facile à monétiser (marques paient bien), positionnement fort.
+_Résultat_ : Growth plus rapide initialement (community effet), audience TRÈS engagée, super facile à monétiser (marques paient bien), positionnement fort.
 
 **La vérité en 2025 :** Micro-niche wins. Toujours.
 
@@ -46,11 +46,13 @@ Raison ? Les algorithmes **récomparden la spécialisation** — tu deviens expe
 ### Cas concret : Large vs Micro-niche
 
 **Créateur 1 : "Conseils pratiques généraux"**
+
 - 100k followers après 18 mois.
 - Audience très diverse, taux d'engagement 1-2 %.
 - Difficile à monétiser : marques savent pas qui cible.
 
 **Créateur 2 : "Productivité et ADHD"**
+
 - 50k followers après 18 mois (moins).
 - Audience très spécialisée, taux d'engagement 8-15 %.
 - Easy to monetize : marques ADHD et productivité la payent bien.
@@ -72,6 +74,7 @@ Liste 3-5 sujets : Ex. Productivité, Gaming, Voyage, Beauté, Tech.
 Y a-t-il des gens qui VEULENT ce contenu ?
 
 Comment tu checks ?
+
 - Google Trends : Tape ta niche (ex : "productivité" vs "productivité ADHD"). Plus la courbe monte = plus de demande.
 - Reddit : Va sur r/ADHD ou r/productivity. Y a des posts avec 5k upvotes ? Gens sont intéressés.
 - YouTube search : Tape "productivité ADHD" = combien de vidéos existent ? Si 0 = niche saturée ou inexistante.
@@ -82,6 +85,7 @@ Comment tu checks ?
 Peut-on gagner de l'argent avec cette niche ?
 
 Checklist :
+
 - Y a-t-il des marques dans cette niche ? (Si je google "productivité apps" ou "ADHD coaching", y a des ads ?)
 - Ces marques ont-elles du budget ? (Startup ou déjà established ?)
 - Les gens dans cette niche achètent-ils des produits/services ?
@@ -106,6 +110,7 @@ Chaque niveau de nichage = moins de compétition, audience plus engagée.
 "Je crée du contenu [NICHE] pour [AUDIENCE SPÉCIFIQUE] qui [SPECIFIC PAIN POINT]."
 
 Exemples :
+
 - "Je crée du contenu productivité pour les freelanceurs ADHD qui luttent avec la procrastination."
 - "Je crée du contenu beauté durable pour les femmes avec peau sensible qui ont un budget limité."
 - "Je crée du contenu gaming pour les parents qui veulent jouer mais n'ont que 1h/semaine."
@@ -121,6 +126,7 @@ Exemples :
 3. Regarde les "related queries" = à quels autres sujets les gens l'associent.
 
 **Interprétation :**
+
 - Courbe stable/montante = ok.
 - Courbe baissante sharply = mauvais signal.
 
@@ -141,6 +147,7 @@ Exemple : r/ADHD, top post : "Comment vous survivez au travail avec ADHD ?"
 4. Si 10 000+ = super saturé, besoin d'angle unique.
 
 **Critères à checker sur les competitors :**
+
 - Combien de subscribers/followers ils ont ?
 - Quel est leur style/positionnement ?
 - Où est-ce qu'ils se sont "différentiés" (angle unique) ?
@@ -230,4 +237,3 @@ Si tu as lancé et tu réalises que ta niche n'est pas bonne, quand tu peux chan
 **Réponse:** Après 3 mois minimum de test, si c'est clair que ça marche pas, tu peux pivoter.
 
 **Mais attention :** Les followers existants peuvent partir (ils étaient là pour ta vieille niche). Donc pivot = restart partiel d'audience.
-

@@ -1,6 +1,14 @@
 import type { NextRequest } from "next/server";
-import { ADMIN_SESSION_COOKIE, verifyAdminSessionToken, type AdminSession } from "./authSession";
-import { DASHBOARD_ROLES, canAccessDashboardRole, type DashboardRole } from "./rbac";
+import {
+  ADMIN_SESSION_COOKIE,
+  verifyAdminSessionToken,
+  type AdminSession,
+} from "./authSession";
+import {
+  DASHBOARD_ROLES,
+  canAccessDashboardRole,
+  type DashboardRole,
+} from "./rbac";
 
 function unauthorizedResponse(message = "Unauthorized", status = 401) {
   return Response.json({ error: message }, { status });
@@ -22,7 +30,10 @@ export function requireDashboardRole(
 ): DashboardAuthResult {
   const session = getAdminSessionFromRequest(request);
   if (!session) {
-    return { session: null, response: unauthorizedResponse("Unauthorized", 401) };
+    return {
+      session: null,
+      response: unauthorizedResponse("Unauthorized", 401),
+    };
   }
 
   if (!canAccessDashboardRole(session.role, minimumRole)) {

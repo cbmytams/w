@@ -39,7 +39,8 @@ function getUrls() {
 async function main() {
   const host = requireEnv("INDEXNOW_HOST");
   const key = requireEnv("INDEXNOW_KEY");
-  const keyLocation = process.env.INDEXNOW_KEY_LOCATION?.trim() || `https://${host}/${key}.txt`;
+  const keyLocation =
+    process.env.INDEXNOW_KEY_LOCATION?.trim() || `https://${host}/${key}.txt`;
   const urlList = getUrls();
 
   const payload = {
@@ -59,13 +60,19 @@ async function main() {
 
   if (!response.ok) {
     const body = await response.text();
-    throw new Error(`IndexNow submission failed with ${response.status}: ${body}`);
+    throw new Error(
+      `IndexNow submission failed with ${response.status}: ${body}`
+    );
   }
 
-  process.stdout.write(`IndexNow submission sent for ${urlList.length} URL(s).\n`);
+  process.stdout.write(
+    `IndexNow submission sent for ${urlList.length} URL(s).\n`
+  );
 }
 
 main().catch((error) => {
-  process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+  process.stderr.write(
+    `${error instanceof Error ? error.message : String(error)}\n`
+  );
   process.exit(1);
 });

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import WikiCategoryView from "@/components/wiki/WikiCategoryView";
-import { WIKI_THEME_LABELS, getWikiArticleSummaries, getWikiThemes } from "@/lib/wiki";
+import {
+  WIKI_THEME_LABELS,
+  getWikiArticleSummaries,
+  getWikiThemes,
+} from "@/lib/wiki";
 import { siteConfig } from "@/lib/site";
 import { collectionPageSchema } from "@/lib/structured-data";
 
@@ -23,7 +27,9 @@ function resolveThemeLabel(themeId: string): string {
   return WIKI_THEME_LABELS[themeId] ?? themeId;
 }
 
-export async function generateMetadata({ params }: WikiThemePageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: WikiThemePageProps): Promise<Metadata> {
   const { id } = await params;
   const title = resolveThemeLabel(id);
   const canonicalPath = `/wiki/theme/${id}`;
@@ -52,7 +58,10 @@ export async function generateMetadata({ params }: WikiThemePageProps): Promise<
 
 export default async function WikiThemePage({ params }: WikiThemePageProps) {
   const { id } = await params;
-  const [themes, allArticles] = await Promise.all([getWikiThemes(), getWikiArticleSummaries()]);
+  const [themes, allArticles] = await Promise.all([
+    getWikiThemes(),
+    getWikiArticleSummaries(),
+  ]);
 
   if (!themes.includes(id)) {
     notFound();
@@ -74,9 +83,12 @@ export default async function WikiThemePage({ params }: WikiThemePageProps) {
               url: canonicalUrl,
               items: themeArticles.map((article) => ({
                 name: article.title,
-                url: new URL(`/wiki/${article.slug}`, siteConfig.url).toString(),
+                url: new URL(
+                  `/wiki/${article.slug}`,
+                  siteConfig.url
+                ).toString(),
               })),
-            }),
+            })
           ),
         }}
       />

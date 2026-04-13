@@ -3,8 +3,8 @@
  * Direction: Brand Heat — Strategic Diagnostic
  */
 
-import { useMemo, useEffect } from 'react';
-import { useDiagnostic } from './hooks/useDiagnostic';
+import { useMemo, useEffect } from "react";
+import { useDiagnostic } from "./hooks/useDiagnostic";
 import {
   DiagnosticLanding,
   ProgressBar,
@@ -13,13 +13,13 @@ import {
   BackgroundWrapper,
   InterstitialScreen,
   QuantumThread,
-} from './components';
-import { BrandResultsSummary } from './components/BrandResultsSummary';
-import { ContactForm } from './components/ContactForm';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { DiagnosticProvider } from './context/DiagnosticContext';
-import { CALIBRATION_QUESTIONS, MAIN_QUESTIONS } from './constants';
-import { filterVisibleQuestions } from './utils/conditions';
+} from "./components";
+import { BrandResultsSummary } from "./components/BrandResultsSummary";
+import { ContactForm } from "./components/ContactForm";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { DiagnosticProvider } from "./context/DiagnosticContext";
+import { CALIBRATION_QUESTIONS, MAIN_QUESTIONS } from "./constants";
+import { filterVisibleQuestions } from "./utils/conditions";
 
 function App() {
   const {
@@ -43,20 +43,20 @@ function App() {
   // Dynamic document title based on phase
   useEffect(() => {
     const titles: Record<string, string> = {
-      landing: 'Wafia — Diagnostic Marques',
+      landing: "Wafia — Diagnostic Marques",
       quick_lead: `Contact Express ${progress.current}/${progress.total} | Wafia`,
       deep_qualification: `Diagnostic ${progress.current}/${progress.total} | Wafia`,
-      results: 'Vos Résultats | Wafia',
+      results: "Vos Résultats | Wafia",
     };
-    document.title = titles[phase] || 'Wafia — Diagnostic Marques';
+    document.title = titles[phase] || "Wafia — Diagnostic Marques";
   }, [phase, progress]);
 
   // Is this the last question in the current phase?
   const isLastQuestion = useMemo(() => {
-    if (phase === 'quick_lead') {
+    if (phase === "quick_lead") {
       return progress.current === CALIBRATION_QUESTIONS.length;
     }
-    if (phase === 'deep_qualification') {
+    if (phase === "deep_qualification") {
       const visibleQuestions = filterVisibleQuestions(MAIN_QUESTIONS, answers);
       return progress.current === visibleQuestions.length;
     }
@@ -66,15 +66,11 @@ function App() {
   // Render content based on phase
   const renderContent = () => {
     switch (phase) {
-      case 'landing':
-        return (
-          <DiagnosticLanding
-            onStart={startDiagnostic}
-          />
-        );
+      case "landing":
+        return <DiagnosticLanding onStart={startDiagnostic} />;
 
-      case 'quick_lead':
-      case 'deep_qualification':
+      case "quick_lead":
+      case "deep_qualification":
         // Show interstitial between sections
         if (interstitial) {
           return (
@@ -123,7 +119,7 @@ function App() {
             />
 
             {/* Skip to deep qualification — only during quick lead */}
-            {phase === 'quick_lead' && progress.current >= 3 && (
+            {phase === "quick_lead" && progress.current >= 3 && (
               <div className="fixed bottom-2 right-4 z-50">
                 <button
                   onClick={startDeepQualification}
@@ -136,11 +132,13 @@ function App() {
           </>
         );
 
-      case 'results':
+      case "results":
         if (!result) return null;
-        return <BrandResultsSummary result={result} onReset={resetDiagnostic} />;
+        return (
+          <BrandResultsSummary result={result} onReset={resetDiagnostic} />
+        );
 
-      case 'contact':
+      case "contact":
         return <ContactForm onBack={resetDiagnostic} />;
 
       default:
@@ -152,10 +150,7 @@ function App() {
     <ErrorBoundary>
       <DiagnosticProvider>
         {/* Skip link for accessibility */}
-        <a
-          href="#main-content"
-          className="skip-link sr-only focus:not-sr-only"
-        >
+        <a href="#main-content" className="skip-link sr-only focus:not-sr-only">
           Aller au contenu principal
         </a>
 
@@ -165,7 +160,7 @@ function App() {
           role="main"
         >
           <BackgroundWrapper phase={phase} currentQuestion={currentQuestion}>
-            <QuantumThread isActive={phase === 'deep_qualification'} />
+            <QuantumThread isActive={phase === "deep_qualification"} />
             {renderContent()}
           </BackgroundWrapper>
         </div>

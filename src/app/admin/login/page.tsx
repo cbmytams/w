@@ -40,7 +40,10 @@ export default function LoginPage() {
   }
 
   return (
-    <main id="main-content" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0b111a] text-white">
+    <main
+      id="main-content"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0b111a] text-white"
+    >
       {/* Premium Apple / VisionOS Background Gradients */}
       <div className="absolute inset-0 z-0">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[120px] mix-blend-screen" />
@@ -57,8 +60,10 @@ export default function LoginPage() {
         Retour
       </button>
 
-      <form onSubmit={handleSubmit} className="relative z-10 admin-glass-panel p-10 sm:p-12 w-full max-w-md mx-4 overflow-hidden group">
-
+      <form
+        onSubmit={handleSubmit}
+        className="relative z-10 admin-glass-panel p-10 sm:p-12 w-full max-w-md mx-4 overflow-hidden group"
+      >
         {/* Subtle inner highlight */}
         <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none mix-blend-overlay" />
 
@@ -70,12 +75,16 @@ export default function LoginPage() {
           </div>
 
           <div className="text-center mb-8">
-            <p className="text-sm font-medium text-white/40 uppercase tracking-widest">Workspace Personnel</p>
+            <p className="text-sm font-medium text-white/40 uppercase tracking-widest">
+              Workspace Personnel
+            </p>
           </div>
 
           <div className="space-y-4">
             <label className="block group/label">
-              <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/40 ml-1 mb-2 block group-focus-within/label:text-white/70 transition-colors">Username</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/40 ml-1 mb-2 block group-focus-within/label:text-white/70 transition-colors">
+                Username
+              </span>
               <input
                 type="text"
                 autoComplete="username"
@@ -88,7 +97,9 @@ export default function LoginPage() {
             </label>
 
             <label className="block group/label">
-              <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/40 ml-1 mb-2 block group-focus-within/label:text-white/70 transition-colors">Password</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/40 ml-1 mb-2 block group-focus-within/label:text-white/70 transition-colors">
+                Password
+              </span>
               <input
                 type="password"
                 autoComplete="current-password"
@@ -102,7 +113,9 @@ export default function LoginPage() {
 
             {error ? (
               <div className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
-                <p className="text-xs font-medium text-red-400 text-center">{error}</p>
+                <p className="text-xs font-medium text-red-400 text-center">
+                  {error}
+                </p>
               </div>
             ) : null}
 
@@ -112,7 +125,9 @@ export default function LoginPage() {
               className="w-full relative overflow-hidden rounded-2xl bg-white text-black py-4 mt-2 text-sm font-semibold hover:bg-white/90 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:active:scale-100 group/btn"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700" />
-              <span className="relative z-10">{loading ? "Authentification..." : "Se connecter"}</span>
+              <span className="relative z-10">
+                {loading ? "Authentification..." : "Se connecter"}
+              </span>
             </button>
           </div>
         </div>

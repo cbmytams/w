@@ -92,6 +92,7 @@
 ### Task 0: Create an isolated worktree and capture the baseline
 
 **Files:**
+
 - Create: none
 - Modify: none
 - Test: none
@@ -133,6 +134,7 @@ Expected: the approved spec commit is visible and will be referenced during impl
 ### Task 1: Add failing root tests for canonical content access
 
 **Files:**
+
 - Create: `src/__tests__/lib/questionnaireContent.test.ts`
 - Modify: `src/__tests__/api/questionnaires-current-route.test.ts`
 - Modify: `src/__tests__/lib/completion.test.ts`
@@ -158,6 +160,7 @@ Expected: FAIL because `questionnaireContent.ts` and `questionnaireTalentContent
 ### Task 2: Implement the root canonical content registry
 
 **Files:**
+
 - Create: `src/lib/questionnaireTalentContent.ts`
 - Create: `src/lib/questionnaireContent.ts`
 - Modify: `src/lib/questionnaireMap.ts`
@@ -209,6 +212,7 @@ git commit -m "feat: add canonical questionnaire content registry"
 ### Task 3: Rewrite the Brand canonical source to the approved structure
 
 **Files:**
+
 - Modify: `wafia-questionnaire-brands/src/constants/questions.ts`
 - Modify: `wafia-questionnaire-brands/src/types/index.ts`
 - Modify: `wafia-questionnaire-brands/src/constants/questions.integrity.test.ts`
@@ -274,6 +278,7 @@ git commit -m "feat: align brand canonical questionnaire content"
 ### Task 4: Add failing flow tests for the new Brand section model
 
 **Files:**
+
 - Modify: `wafia-questionnaire-brands/src/utils/conditions.test.ts`
 - Create: `wafia-questionnaire-brands/src/hooks/useDiagnostic.flow.test.tsx`
 
@@ -305,6 +310,7 @@ Expected: FAIL until runtime flow files are updated.
 ### Task 5: Rewire the Brand runtime flow to the 5-block structure
 
 **Files:**
+
 - Modify: `wafia-questionnaire-brands/src/constants/pillars.ts`
 - Modify: `wafia-questionnaire-brands/src/hooks/useDiagnostic.ts`
 - Modify: `wafia-questionnaire-brands/src/App.tsx`
@@ -356,6 +362,7 @@ git commit -m "feat: migrate brand questionnaire flow to five-block structure"
 ### Task 6: Add failing scoring tests for the post-budget Brand model
 
 **Files:**
+
 - Modify: `wafia-questionnaire-brands/src/utils/scoring.test.ts`
 - Create: `wafia-questionnaire-brands/src/components/BrandResultsSummary.test.tsx`
 
@@ -388,6 +395,7 @@ Expected: FAIL against the old scoring model.
 ### Task 7: Implement the new Brand scoring and result model
 
 **Files:**
+
 - Modify: `wafia-questionnaire-brands/src/utils/scoring.ts`
 - Modify: `wafia-questionnaire-brands/src/types/index.ts`
 - Modify: `wafia-questionnaire-brands/src/components/BrandResultsSummary.tsx`
@@ -452,6 +460,7 @@ git commit -m "feat: migrate brand scoring away from budget and packages"
 ### Task 8: Add failing tests for canonical admin/reporting readers
 
 **Files:**
+
 - Modify: `src/__tests__/api/questionnaires-exports-route.test.ts`
 - Modify: `src/__tests__/lib/completion.test.ts`
 - Create: `wafia-questionnaire-brands/src/context/DiagnosticContext.test.tsx`
@@ -486,6 +495,7 @@ Expected: FAIL until readers and Brand admin API calls are rewired.
 ### Task 9: Rewire admin/reporting consumers to canonical content
 
 **Files:**
+
 - Modify: `src/app/api/v1/questionnaires/current/route.ts`
 - Modify: `src/app/api/v1/questionnaires/submit/route.ts`
 - Modify: `src/app/api/v1/questionnaires/exports/route.ts`
@@ -543,6 +553,7 @@ git commit -m "feat: rewire questionnaire admin and reporting to canonical conte
 ### Task 10: Run the full targeted verification suite
 
 **Files:**
+
 - Create: none
 - Modify: none
 - Test: existing suites only
@@ -590,4 +601,3 @@ Document:
 - new Brand ids
 - new lead-score dimensions
 - confirmation that no live runtime path imports questionnaire content from `src/lib/questionnaireData.ts`
-

@@ -20,7 +20,10 @@ function listFiles(dir: string, extensions: string[]): string[] {
     if (entry.isDirectory()) {
       return listFiles(fullPath, extensions);
     }
-    if (entry.isFile() && extensions.some((extension) => entry.name.endsWith(extension))) {
+    if (
+      entry.isFile() &&
+      extensions.some((extension) => entry.name.endsWith(extension))
+    ) {
       return [fullPath];
     }
     return [];
@@ -55,7 +58,10 @@ function assertSources(value: unknown, filePath: string) {
 
 describe("content frontmatter contract", () => {
   it("enforces machine-readable fields on blog and wiki content", () => {
-    const files = [...listFiles(BLOG_DIR, [".mdx"]), ...listFiles(WIKI_DIR, [".md", ".mdx"])];
+    const files = [
+      ...listFiles(BLOG_DIR, [".mdx"]),
+      ...listFiles(WIKI_DIR, [".md", ".mdx"]),
+    ];
     expect(files.length).toBeGreaterThan(0);
 
     files.forEach((filePath) => {

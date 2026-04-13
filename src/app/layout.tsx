@@ -24,7 +24,6 @@ const outfit = Outfit({
   display: "swap",
 });
 
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -99,7 +98,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html
+      lang="fr"
+      className="scroll-smooth"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body
         className={`${plusJakarta.variable} ${outfit.variable} antialiased font-sans`}
         suppressHydrationWarning
@@ -108,7 +112,9 @@ export default function RootLayout({
         <BfCacheScrollRecovery />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
         <script
           type="application/ld+json"
@@ -120,7 +126,9 @@ export default function RootLayout({
         >
           Aller au contenu
         </a>
-        <Suspense fallback={null}><GlobalBackground /></Suspense>
+        <Suspense fallback={null}>
+          <GlobalBackground />
+        </Suspense>
         <GlobalNav />
         <PageTransition>{children}</PageTransition>
         <CookieBanner />

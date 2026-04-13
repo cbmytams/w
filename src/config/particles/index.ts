@@ -5,9 +5,9 @@ import { growingConfig } from "./growing";
 import { nyanConfig } from "./nyan";
 
 export const particleConfigs = [
-    constellationConfig,
-    starfieldConfig,
-    meshConfig,
-    growingConfig,
-    nyanConfig,
+  constellationConfig,
+  starfieldConfig,
+  meshConfig,
+  growingConfig,
+  nyanConfig,
 ];

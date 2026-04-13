@@ -22,7 +22,7 @@ export function jsonApiError(
   const body: ApiErrorDto = { code, error };
   return Response.json(body, {
     status: options.status,
-    headers: options.headers
+    headers: options.headers,
   });
 }
 
@@ -32,7 +32,9 @@ function readUnknownErrorMessage(input: unknown) {
 
 export function isServiceUnavailableError(input: unknown) {
   const message = readUnknownErrorMessage(input);
-  return /prisma|p1001|can't reach database|econnrefused|socket|timeout/i.test(message);
+  return /prisma|p1001|can't reach database|econnrefused|socket|timeout/i.test(
+    message
+  );
 }
 
 export function toSafeApiErrorResponse(
@@ -43,7 +45,7 @@ export function toSafeApiErrorResponse(
   if (isServiceUnavailableError(input)) {
     return jsonApiError("SERVICE_UNAVAILABLE", "Service unavailable", {
       status: 503,
-      headers
+      headers,
     });
   }
   return jsonApiError("INTERNAL_ERROR", fallback, { status: 500, headers });

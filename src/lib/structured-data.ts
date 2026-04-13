@@ -155,7 +155,10 @@ export function articleSchema({
   author: AuthorProfile;
   keywords?: string[];
 }) {
-  const authorProfileUrl = new URL(`/equipe/${author.slug}`, siteConfig.url).toString();
+  const authorProfileUrl = new URL(
+    `/equipe/${author.slug}`,
+    siteConfig.url
+  ).toString();
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",

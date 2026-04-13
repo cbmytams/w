@@ -1,6 +1,8 @@
 import type { NextRequest } from "next/server";
 import type { Prisma } from "@prisma/client";
+import { z } from "zod";
 import { prisma } from "@/lib/db";
+import { apiError, apiSuccess, validateBody } from "@/lib/api-response";
 import { DASHBOARD_ROLES } from "@/lib/rbac";
 import { enforceRateLimit, enforceSameOrigin } from "@/lib/requestSecurity";
 import { sanitizeQuestionList } from "@/lib/questionnaireValidation";
@@ -9,27 +11,37 @@ import { resolveType } from "@/lib/questionnaireType";
 import {
   getOrCreateCurrentQuestionnaireForTenant,
   replaceQuestionnaireSectionsForTenant,
-  resolveConfiguredTenantId
+  resolveConfiguredTenantId,
 } from "@/lib/questionnaireTenant";
+
+const QuestionnaireCurrentSchema = z.object({
+  questions: z.unknown(),
+  version: z.string().optional(),
+});
 
 export async function GET(request: NextRequest) {
   try {
     const type = resolveType(request.nextUrl.searchParams);
     const tenantId = await resolveConfiguredTenantId();
     if (!tenantId) {
-      return Response.json({ success: false, error: "questionnaire_unavailable" }, { status: 503 });
+      return apiError("questionnaire_unavailable", 503);
     }
 
-    const questionnaire = await getOrCreateCurrentQuestionnaireForTenant(tenantId, type);
-    const questions = Array.isArray(questionnaire.sectionsJson) ? questionnaire.sectionsJson : [];
+    const questionnaire = await getOrCreateCurrentQuestionnaireForTenant(
+      tenantId,
+      type
+    );
+    const questions = Array.isArray(questionnaire.sectionsJson)
+      ? questionnaire.sectionsJson
+      : [];
 
-    return Response.json({
+    return apiSuccess({
       questionnaireId: questionnaire.id,
       version: questionnaire.version,
-      questions
+      questions,
     });
   } catch {
-    return Response.json({ success: false, error: "database_unavailable" }, { status: 500 });
+    return apiError("database_unavailable", 500);
   }
 }
 
@@ -40,25 +52,31 @@ export async function PUT(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "questionnaire-current-put",
     limit: 30,
-    windowMs: 60 * 1000
+    windowMs: 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 
   const auth = await requireDashboardRole(request, DASHBOARD_ROLES.ADMIN);
   if (auth.response) return auth.response;
 
-  const body = await request.json().catch(() => null) as
-    | { questions?: unknown; version?: string }
-    | null;
-  const questions = sanitizeQuestionList(body?.questions);
+  const body = await request.json().catch(() => null);
+  if (!body) return apiError("Invalid JSON body");
+
+  const validation = validateBody(QuestionnaireCurrentSchema, body);
+  if (!validation.success) return validation.response;
+
+  const questions = sanitizeQuestionList(validation.data.questions);
 
   if (!questions) {
-    return Response.json({ error: "Invalid payload: questions[] is required." }, { status: 400 });
+    return apiError("Invalid payload: questions[] is required.", 400);
   }
 
   const type = resolveType(request.nextUrl.searchParams);
-  const current = await getOrCreateCurrentQuestionnaireForTenant(auth.session.tenantId, type);
-  const version = body?.version || current.version;
+  const current = await getOrCreateCurrentQuestionnaireForTenant(
+    auth.session.tenantId,
+    type
+  );
+  const version = validation.data.version || current.version;
   const updated = await replaceQuestionnaireSectionsForTenant(
     auth.session.tenantId,
     type,
@@ -66,20 +84,25 @@ export async function PUT(request: NextRequest) {
     version
   );
 
-  await prisma.auditLog.create({ data: { tenantId: auth.session.tenantId,
-    actorId: auth.session.id,
-    action: "QUESTIONNAIRE_REPLACED",
-    entity: "Questionnaire",
-    entityId: updated.id,
-    diffJson: {
-      count: questions.length,
-      version
-    } as Prisma.InputJsonValue
-  } }).catch(() => null);
+  await prisma.auditLog
+    .create({
+      data: {
+        tenantId: auth.session.tenantId,
+        actorId: auth.session.id,
+        action: "QUESTIONNAIRE_REPLACED",
+        entity: "Questionnaire",
+        entityId: updated.id,
+        diffJson: {
+          count: questions.length,
+          version,
+        } as Prisma.InputJsonValue,
+      },
+    })
+    .catch(() => null);
 
-  return Response.json({
+  return apiSuccess({
     questionnaireId: updated.id,
     version: updated.version,
-    questions
+    questions,
   });
 }

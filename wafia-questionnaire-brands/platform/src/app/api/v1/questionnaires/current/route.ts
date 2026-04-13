@@ -19,12 +19,14 @@ export async function GET(request: NextRequest) {
     tenant.tenantId,
     QuestionnaireType.BRANDS
   );
-  const questions = Array.isArray(questionnaire.sectionsJson) ? questionnaire.sectionsJson : [];
+  const questions = Array.isArray(questionnaire.sectionsJson)
+    ? questionnaire.sectionsJson
+    : [];
 
   return Response.json({
     questionnaireId: questionnaire.id,
     version: questionnaire.version,
-    questions
+    questions,
   });
 }
 
@@ -35,7 +37,7 @@ export async function PUT(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "questionnaire-current-put",
     limit: 30,
-    windowMs: 60 * 1000
+    windowMs: 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 
@@ -45,13 +47,17 @@ export async function PUT(request: NextRequest) {
   const tenant = await requireTenantContext(auth.session);
   if (tenant.response) return tenant.response;
 
-  const body = await request.json().catch(() => null) as
-    | { questions?: unknown; version?: string }
-    | null;
+  const body = (await request.json().catch(() => null)) as {
+    questions?: unknown;
+    version?: string;
+  } | null;
   const questions = sanitizeQuestionList(body?.questions);
 
   if (!questions) {
-    return Response.json({ error: "Invalid payload: questions[] is required." }, { status: 400 });
+    return Response.json(
+      { error: "Invalid payload: questions[] is required." },
+      { status: 400 }
+    );
   }
 
   const current = await getOrCreateCurrentQuestionnaireForTenant(
@@ -63,27 +69,29 @@ export async function PUT(request: NextRequest) {
     where: { id: current.id },
     data: {
       sectionsJson: questions as Prisma.InputJsonValue,
-      version
-    }
+      version,
+    },
   });
 
-  await prisma.auditLog.create({
-    data: {
-      tenantId: tenant.tenantId,
-      actorId: auth.session.sub,
-      action: "QUESTIONNAIRE_REPLACED",
-      entity: "Questionnaire",
-      entityId: updated.id,
-      diffJson: {
-        count: questions.length,
-        version
-      } as Prisma.InputJsonValue
-    }
-  }).catch(() => null);
+  await prisma.auditLog
+    .create({
+      data: {
+        tenantId: tenant.tenantId,
+        actorId: auth.session.sub,
+        action: "QUESTIONNAIRE_REPLACED",
+        entity: "Questionnaire",
+        entityId: updated.id,
+        diffJson: {
+          count: questions.length,
+          version,
+        } as Prisma.InputJsonValue,
+      },
+    })
+    .catch(() => null);
 
   return Response.json({
     questionnaireId: updated.id,
     version: updated.version,
-    questions
+    questions,
   });
 }

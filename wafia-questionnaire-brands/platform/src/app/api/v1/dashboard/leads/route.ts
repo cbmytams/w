@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "dashboard-leads-get",
     limit: 120,
-    windowMs: 60 * 1000
+    windowMs: 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     cursor,
     limit,
     status,
-    priority
+    priority,
   });
 
   return Response.json(page);
@@ -43,16 +43,17 @@ export async function PATCH(request: NextRequest) {
   const rateLimitError = enforceRateLimit(request, {
     scope: "dashboard-leads-patch",
     limit: 60,
-    windowMs: 60 * 1000
+    windowMs: 60 * 1000,
   });
   if (rateLimitError) return rateLimitError;
 
   const auth = requireDashboardRole(request, DASHBOARD_ROLES.MANAGER);
   if (auth.response) return auth.response;
 
-  const body = await request.json().catch(() => null) as
-    | { id?: string; status?: string }
-    | null;
+  const body = (await request.json().catch(() => null)) as {
+    id?: string;
+    status?: string;
+  } | null;
   const id = body?.id;
   const status = body?.status;
 
@@ -60,7 +61,8 @@ export async function PATCH(request: NextRequest) {
     return Response.json({ error: "Missing id or status" }, { status: 400 });
   }
 
-  const updates: { status?: TalentStatus; approvalStatus?: ApprovalStatus } = {};
+  const updates: { status?: TalentStatus; approvalStatus?: ApprovalStatus } =
+    {};
 
   switch (status) {
     case "ARCHIVED":
@@ -85,16 +87,18 @@ export async function PATCH(request: NextRequest) {
       return Response.json({ error: "Unsupported status" }, { status: 400 });
   }
 
-  const updated = await prisma.talent.update({
-    where: { id },
-    data: updates,
-    select: {
-      id: true,
-      status: true,
-      approvalStatus: true,
-      updatedAt: true
-    }
-  }).catch(() => null);
+  const updated = await prisma.talent
+    .update({
+      where: { id },
+      data: updates,
+      select: {
+        id: true,
+        status: true,
+        approvalStatus: true,
+        updatedAt: true,
+      },
+    })
+    .catch(() => null);
 
   if (!updated) {
     return Response.json({ error: "Lead not found" }, { status: 404 });

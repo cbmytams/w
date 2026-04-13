@@ -1,13 +1,13 @@
 ---
-title: 'YouTube : stratégie éditoriale, croissance et monétisation'
+title: "YouTube : stratégie éditoriale, croissance et monétisation"
 slug: guide-youtube-2025-influenceur-monetisation
-description: 'Repères YouTube 2025 : stratégie éditoriale, SEO, analytics et revenus (AdSense, sponsoring, affiliation).'
+description: "Repères YouTube 2025 : stratégie éditoriale, SEO, analytics et revenus (AdSense, sponsoring, affiliation)."
 authorSlug: sasha-guettat
 platform: youtube
 category: Plateforme — YouTube
-publishedAt: '2025-07-15'
-updatedAt: '2025-07-15'
-lastReviewedAt: '2025-07-15'
+publishedAt: "2025-07-15"
+updatedAt: "2025-07-15"
+lastReviewedAt: "2025-07-15"
 sources: []
 ---
 
@@ -28,6 +28,7 @@ YouTube est souvent qualifiée de plateforme la plus "dure" mais aussi la plus *
 YouTube dépasse 2,5 milliards d'utilisateurs actifs mensuels dans le monde. En France, ce sont environ 46 millions de personnes qui visitent YouTube chaque mois — pratiquement tous les internautes. Le public est ultra large et international : YouTube s'adresse à tout le monde, de l'enfant aux seniors, du professionnel au consommateur de divertissement pur.
 
 La plateforme est construite autour de deux formats :
+
 - **Les vidéos longues** (plusieurs minutes à plusieurs heures) : le format historique, le plus monétisable, celui qui construit les abonnés les plus fidèles.
 - **Les Shorts** (vidéos verticales de moins de 60 secondes) : lancés pour concurrencer TikTok, ils ont explosé en 2022-2023 et constituent aujourd'hui un levier d'acquisition important, bien que moins monétisé.
 
@@ -58,6 +59,7 @@ Le CTR dépend entièrement du couple **titre + miniature**. Ce sont les deux é
 Le **watch time** mesure le temps total accumulé de visionnage d'une vidéo. YouTube en a besoin pour maximiser le temps passé sur la plateforme. Une vidéo de 10 minutes retenant 60 % de l'audience (6 minutes en moyenne) performe mieux qu'une vidéo de 5 minutes à 50 % (2,5 minutes en moyenne).
 
 La **courbe de rétention** est la métrique la plus précieuse que YouTube Analytics fournit. Elle montre précisément où vous perdez vos spectateurs :
+
 - Une chute à 20-30 secondes : l'intro est trop longue ou pas assez percutante
 - Une chute au milieu : un segment ennuyeux ou hors-sujet
 - Une courbe stable jusqu'à la fin : excellente vidéo, YouTube la poussera
@@ -81,6 +83,7 @@ YouTube valorise les vidéos qui incitent les spectateurs à **continuer à rega
 ### Accrocher dans les 30 premières secondes
 
 Exit les intros animées de 10 secondes et les longues présentations du créateur. Allez direct au vif. Les formats d'accroche qui fonctionnent :
+
 - Aperçu de ce qui va se passer ("Aujourd'hui on va escalader X, mais restez jusqu'à la fin — il y a eu un imprévu de fou...")
 - Question choc ou statistique surprenante
 - Mini-montage teaser des moments forts de la vidéo

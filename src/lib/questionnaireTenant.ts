@@ -1,4 +1,8 @@
-import { type Prisma, type Questionnaire, type QuestionnaireType } from "@prisma/client";
+import {
+  type Prisma,
+  type Questionnaire,
+  type QuestionnaireType,
+} from "@prisma/client";
 import { prisma } from "@/lib/db";
 
 type QuestionEntry = Prisma.JsonValue;
@@ -13,15 +17,27 @@ export async function resolveConfiguredTenantId(): Promise<string | null> {
     return null;
   }
 
-  const tenant = await prisma.tenant.findUnique({ where: { slug: configuredTenantSlug }, select: { id: true } });
+  const tenant = await prisma.tenant.findUnique({
+    where: { slug: configuredTenantSlug },
+    select: { id: true },
+  });
   return tenant?.id ?? null;
 }
 
-export async function getCurrentQuestionnaireForTenant(tenantId: string, type: QuestionnaireType) {
-  return prisma.questionnaire.findFirst({ where: { tenantId, isActive: true, type }, orderBy: { createdAt: "desc" } });
+export async function getCurrentQuestionnaireForTenant(
+  tenantId: string,
+  type: QuestionnaireType
+) {
+  return prisma.questionnaire.findFirst({
+    where: { tenantId, isActive: true, type },
+    orderBy: { createdAt: "desc" },
+  });
 }
 
-export async function getOrCreateCurrentQuestionnaireForTenant(tenantId: string, type: QuestionnaireType) {
+export async function getOrCreateCurrentQuestionnaireForTenant(
+  tenantId: string,
+  type: QuestionnaireType
+) {
   const current = await getCurrentQuestionnaireForTenant(tenantId, type);
   if (current) return current;
 
@@ -31,8 +47,8 @@ export async function getOrCreateCurrentQuestionnaireForTenant(tenantId: string,
       version: "v1",
       type,
       sectionsJson: [],
-      isActive: true
-    }
+      isActive: true,
+    },
   });
 }
 
@@ -42,13 +58,16 @@ export async function replaceQuestionnaireSectionsForTenant(
   sectionsJson: Prisma.InputJsonValue,
   version?: string
 ) {
-  const current = await getOrCreateCurrentQuestionnaireForTenant(tenantId, type);
+  const current = await getOrCreateCurrentQuestionnaireForTenant(
+    tenantId,
+    type
+  );
   return prisma.questionnaire.update({
     where: { id: current.id },
     data: {
       sectionsJson,
-      ...(version ? { version } : {})
-    }
+      ...(version ? { version } : {}),
+    },
   });
 }
 
@@ -57,12 +76,15 @@ export async function appendQuestionForTenant(
   type: QuestionnaireType,
   question: Prisma.JsonValue
 ) {
-  const current = await getOrCreateCurrentQuestionnaireForTenant(tenantId, type);
+  const current = await getOrCreateCurrentQuestionnaireForTenant(
+    tenantId,
+    type
+  );
   const sections = getQuestionList(current.sectionsJson as Prisma.JsonValue);
   sections.push(question);
   const updated = await prisma.questionnaire.update({
     where: { id: current.id },
-    data: { sectionsJson: sections as Prisma.InputJsonValue }
+    data: { sectionsJson: sections as Prisma.InputJsonValue },
   });
 
   return { updated, questions: sections };
@@ -74,9 +96,14 @@ export async function updateQuestionForTenant(
   questionId: string,
   updates: Prisma.JsonObject
 ) {
-  const current = await getOrCreateCurrentQuestionnaireForTenant(tenantId, type);
+  const current = await getOrCreateCurrentQuestionnaireForTenant(
+    tenantId,
+    type
+  );
   const questions = getQuestionList(current.sectionsJson as Prisma.JsonValue);
-  const index = questions.findIndex((entry) => (entry as { id?: string })?.id === questionId);
+  const index = questions.findIndex(
+    (entry) => (entry as { id?: string })?.id === questionId
+  );
 
   if (index < 0) {
     return null;
@@ -84,12 +111,12 @@ export async function updateQuestionForTenant(
 
   questions[index] = {
     ...(questions[index] as Prisma.JsonObject),
-    ...updates
+    ...updates,
   } as Prisma.JsonValue;
 
   const updated = await prisma.questionnaire.update({
     where: { id: current.id },
-    data: { sectionsJson: questions as Prisma.InputJsonValue }
+    data: { sectionsJson: questions as Prisma.InputJsonValue },
   });
 
   return { updated, questions };
@@ -100,9 +127,14 @@ export async function deleteQuestionForTenant(
   type: QuestionnaireType,
   questionId: string
 ) {
-  const current = await getOrCreateCurrentQuestionnaireForTenant(tenantId, type);
+  const current = await getOrCreateCurrentQuestionnaireForTenant(
+    tenantId,
+    type
+  );
   const questions = getQuestionList(current.sectionsJson as Prisma.JsonValue);
-  const filtered = questions.filter((entry) => (entry as { id?: string })?.id !== questionId);
+  const filtered = questions.filter(
+    (entry) => (entry as { id?: string })?.id !== questionId
+  );
 
   if (filtered.length === questions.length) {
     return null;
@@ -110,7 +142,7 @@ export async function deleteQuestionForTenant(
 
   const updated = await prisma.questionnaire.update({
     where: { id: current.id },
-    data: { sectionsJson: filtered as Prisma.InputJsonValue }
+    data: { sectionsJson: filtered as Prisma.InputJsonValue },
   });
 
   return { updated, questions: filtered };
@@ -122,7 +154,10 @@ export async function reorderQuestionsForTenant(
   startIndex: number,
   endIndex: number
 ) {
-  const current = await getOrCreateCurrentQuestionnaireForTenant(tenantId, type);
+  const current = await getOrCreateCurrentQuestionnaireForTenant(
+    tenantId,
+    type
+  );
   const questions = getQuestionList(current.sectionsJson as Prisma.JsonValue);
 
   if (
@@ -139,12 +174,12 @@ export async function reorderQuestionsForTenant(
 
   const withOrderIndex = questions.map((entry, index) => ({
     ...(entry as Record<string, unknown>),
-    order_index: index
+    order_index: index,
   }));
 
   const updated = await prisma.questionnaire.update({
     where: { id: current.id },
-    data: { sectionsJson: withOrderIndex as Prisma.InputJsonValue }
+    data: { sectionsJson: withOrderIndex as Prisma.InputJsonValue },
   });
 
   return { updated, questions: withOrderIndex };
@@ -154,14 +189,17 @@ export async function getQuestionnaireVersionForTenant(
   tenantId: string,
   type: QuestionnaireType,
   version: string
-): Promise<Pick<Questionnaire, "id" | "version" | "type" | "sectionsJson"> | null> {
+): Promise<Pick<
+  Questionnaire,
+  "id" | "version" | "type" | "sectionsJson"
+> | null> {
   return prisma.questionnaire.findFirst({
     where: { tenantId, version, type },
     select: {
       id: true,
       version: true,
       type: true,
-      sectionsJson: true
-    }
+      sectionsJson: true,
+    },
   });
 }

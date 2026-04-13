@@ -3,5 +3,5 @@
  * Export centralisé de toutes les constantes
  */
 
-export * from './pillars';
-export * from './questions';
+export * from "./pillars";
+export * from "./questions";

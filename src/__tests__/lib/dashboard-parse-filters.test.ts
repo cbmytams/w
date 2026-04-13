@@ -18,7 +18,10 @@ describe("parseDashboardFilters", () => {
   });
 
   it("drops an invalid type value", () => {
-    const params = new URLSearchParams({ source: "questionnaire", type: "OTHER" });
+    const params = new URLSearchParams({
+      source: "questionnaire",
+      type: "OTHER",
+    });
     const filters = parseDashboardFilters(params);
 
     expect(filters.source).toBe("questionnaire");

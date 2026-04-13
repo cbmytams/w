@@ -15,6 +15,7 @@
 ### Task 1: Create design-tokens.ts
 
 **Files:**
+
 - Create: `src/lib/design-tokens.ts`
 
 - [ ] **Step 1: Create the design tokens file**
@@ -30,7 +31,7 @@
  */
 
 // Re-export animation tokens from canonical source
-export { EASING, DURATION } from "./easing"
+export { EASING, DURATION } from "./easing";
 
 export const COLORS = {
   neutral: "slate",
@@ -53,45 +54,46 @@ export const COLORS = {
     success: "emerald-500",
     danger: "rose-500",
   },
-} as const
+} as const;
 
 export const RADIUS = {
   card: "rounded-xl",
   prominent: "rounded-2xl",
   pill: "rounded-full",
-} as const
+} as const;
 
 export const SHADOW = {
   soft: "shadow-lg",
   elevated: "shadow-2xl",
-} as const
+} as const;
 
 export const SPRING = {
   responsive: { stiffness: 300, damping: 25 },
   gentle: { stiffness: 120, damping: 28 },
-} as const
+} as const;
 
 export const TYPOGRAPHY = {
   heading: "font-heading",
   body: "font-sans",
-} as const
+} as const;
 
 export const SECTION = {
   compact: "py-16 md:py-20",
   standard: "py-20 md:py-28",
   generous: "py-24 md:py-32",
-} as const
+} as const;
 
 export const HEADER_MARGIN = {
   sm: "mb-12",
   md: "mb-16",
   lg: "mb-20",
-} as const
+} as const;
 
 export const CARD = {
   dark: "rounded-xl bg-slate-900/80 backdrop-blur-xl border border-white/10",
-  light: "rounded-xl bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10",
-} as const
+  light:
+    "rounded-xl bg-white/90 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10",
+} as const;
 ```
 
 - [ ] **Step 2: Verify build passes**
@@ -111,6 +113,7 @@ git commit -m "feat: add centralized design tokens file"
 ### Task 2: Extend Tailwind config with border-radius
 
 **Files:**
+
 - Modify: `tailwind.config.ts`
 
 - [ ] **Step 1: Add borderRadius extension**
@@ -128,8 +131,8 @@ const config = {
         ui: ["var(--font-ui)", "-apple-system", "sans-serif"],
       },
       borderRadius: {
-        'xl': '1.25rem',
-        '2xl': '1.75rem',
+        xl: "1.25rem",
+        "2xl": "1.75rem",
       },
     },
   },
@@ -155,6 +158,7 @@ git commit -m "feat: extend tailwind border-radius to 20px/28px"
 ### Task 3: Remove Syne font
 
 **Files:**
+
 - Modify: `src/app/layout.tsx` (lines 3, 27-33, 110)
 - Modify: `src/components/for-talents/distribution/SmartDistributionDashboard.tsx`
 - Modify: `src/components/for-talents/distribution/PlatformTable.tsx`
@@ -162,6 +166,7 @@ git commit -m "feat: extend tailwind border-radius to 20px/28px"
 - [ ] **Step 1: Remove Syne import and config from layout.tsx**
 
 In `src/app/layout.tsx`:
+
 - Line 3: Change `import { Plus_Jakarta_Sans, Outfit, Syne } from "next/font/google"` to `import { Plus_Jakarta_Sans, Outfit } from "next/font/google"`
 - Lines 27-33: Delete the entire `const syne = Syne({...})` block
 - Line 110: Change `${plusJakarta.variable} ${outfit.variable} ${syne.variable}` to `${plusJakarta.variable} ${outfit.variable}`
@@ -171,6 +176,7 @@ In `src/app/layout.tsx`:
 Run: `grep -rn "font-syne\|font-display" src/components/ --include="*.tsx" --include="*.ts"`
 
 Replace every `font-syne` with `font-heading` in the results. Known files:
+
 - `src/components/for-talents/distribution/SmartDistributionDashboard.tsx`
 - `src/components/for-talents/distribution/PlatformTable.tsx`
 
@@ -198,12 +204,14 @@ git commit -m "feat: remove Syne font, standardize on Outfit + Plus Jakarta"
 ### Task 4: Remove ServicesAndMetrics from /for-brands
 
 **Files:**
+
 - Modify: `src/app/for-brands/page.tsx` (lines 7, 25)
 - Modify: `src/constants/brand-additions.ts` (lines 3-8)
 
 - [ ] **Step 1: Remove ServicesAndMetrics from page**
 
 In `src/app/for-brands/page.tsx`:
+
 - Delete line 7: `import { ServicesAndMetrics } from "@/components/for-brands/ServicesAndMetrics"`
 - Delete line 25: `<ServicesAndMetrics />`
 
@@ -213,9 +221,9 @@ In `src/constants/brand-additions.ts`, replace lines 3-8:
 
 ```ts
 export const BRAND_NAVIGATION = [
-    { href: "#case-studies", label: "Réalisations" },
-    { href: "#process", label: "Méthode" },
-    { href: "#faq", label: "FAQ" }
+  { href: "#case-studies", label: "Réalisations" },
+  { href: "#process", label: "Méthode" },
+  { href: "#faq", label: "FAQ" },
 ] as const;
 ```
 
@@ -236,27 +244,31 @@ git commit -m "feat: remove ServicesAndMetrics section from brands page"
 ### Task 5: Remove Studio from navigation + add redirect
 
 **Files:**
+
 - Modify: `src/constants/navigation.ts` (line 10)
 - Modify: `next.config.ts` (after line 107)
 
 - [ ] **Step 1: Remove Studio from MAIN_NAVIGATION**
 
 In `src/constants/navigation.ts`, remove the Studio entry (line 10):
+
 ```ts
 { name: "Studio", href: "/studio" },
 ```
 
 Result should be:
+
 ```ts
 export const MAIN_NAVIGATION = [
-    { name: "Services", href: "/services" },
-    { name: "Réalisations", href: "/for-brands#case-studies" }
+  { name: "Services", href: "/services" },
+  { name: "Réalisations", href: "/for-brands#case-studies" },
 ] as const;
 ```
 
 - [ ] **Step 2: Add /studio redirect in next.config.ts**
 
 In `next.config.ts`, add after the last wiki redirect (after line 107):
+
 ```ts
       {
         source: "/studio",
@@ -282,27 +294,30 @@ git commit -m "feat: remove Studio from nav, add redirect to case studies"
 ### Task 6: Remove AuthenticitySection from /for-brands
 
 **Files:**
+
 - Modify: `src/app/for-brands/page.tsx` (lines 6, 31)
 
 - [ ] **Step 1: Remove AuthenticitySection from page**
 
 In `src/app/for-brands/page.tsx`:
+
 - Delete the import: `import { AuthenticitySection } from "@/components/for-brands/AuthenticitySection"`
 - Delete the render: `<AuthenticitySection />`
 
 Resulting section order (10 sections):
+
 ```tsx
 <PageShell>
-    <BrandHeroV2 />
-    <ClientsSection />
-    <ValuePropositionSection />
-    <CaseStudiesSection />
-    <ProcessSection />
-    <ComparisonSectionV2 />
-    <ComplianceSection />
-    <TeamSectionBrands />
-    <FaqSection />
-    <CtaSection estimateHref="/questionnaire/brands" />
+  <BrandHeroV2 />
+  <ClientsSection />
+  <ValuePropositionSection />
+  <CaseStudiesSection />
+  <ProcessSection />
+  <ComparisonSectionV2 />
+  <ComplianceSection />
+  <TeamSectionBrands />
+  <FaqSection />
+  <CtaSection estimateHref="/questionnaire/brands" />
 </PageShell>
 ```
 
@@ -323,6 +338,7 @@ git commit -m "feat: remove AuthenticitySection, reduce brands page to 10 sectio
 ### Task 7: Simplify BrandHeroV2
 
 **Files:**
+
 - Modify: `src/components/for-brands/BrandHeroV2.tsx`
 
 - [ ] **Step 1: Identify and remove ROI performance widget**
@@ -348,6 +364,7 @@ git commit -m "feat: simplify brand hero, remove ROI widget"
 ### Task 8: Replace ClientsSection marquee with static grid
 
 **Files:**
+
 - Modify: `src/components/for-brands/ClientsSection.tsx`
 
 - [ ] **Step 1: Rewrite ClientsSection as static grid**
@@ -355,41 +372,45 @@ git commit -m "feat: simplify brand hero, remove ROI widget"
 Replace the entire content of `src/components/for-brands/ClientsSection.tsx`:
 
 ```tsx
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Container } from "@/components/ui/container"
-import { RevealAnimation } from "@/components/common/RevealAnimation"
-import { CLIENTS } from "@/constants/clients"
+import Image from "next/image";
+import { Container } from "@/components/ui/container";
+import { RevealAnimation } from "@/components/common/RevealAnimation";
+import { CLIENTS } from "@/constants/clients";
 
 function LogoCard({ name, logoLight }: { name: string; logoLight: string }) {
-    return (
-        <div className="flex items-center justify-center p-4">
-            <Image
-                src={logoLight}
-                alt={name}
-                width={120}
-                height={40}
-                className="h-8 w-auto object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
-            />
-        </div>
-    )
+  return (
+    <div className="flex items-center justify-center p-4">
+      <Image
+        src={logoLight}
+        alt={name}
+        width={120}
+        height={40}
+        className="h-8 w-auto object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+      />
+    </div>
+  );
 }
 
 export function ClientsSection() {
-    return (
-        <section className="py-16 md:py-20 px-4 relative z-10">
-            <Container>
-                <RevealAnimation>
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-8 items-center max-w-6xl mx-auto">
-                        {CLIENTS.map((client) => (
-                            <LogoCard key={client.name} name={client.name} logoLight={client.logoLight} />
-                        ))}
-                    </div>
-                </RevealAnimation>
-            </Container>
-        </section>
-    )
+  return (
+    <section className="py-16 md:py-20 px-4 relative z-10">
+      <Container>
+        <RevealAnimation>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-8 items-center max-w-6xl mx-auto">
+            {CLIENTS.map((client) => (
+              <LogoCard
+                key={client.name}
+                name={client.name}
+                logoLight={client.logoLight}
+              />
+            ))}
+          </div>
+        </RevealAnimation>
+      </Container>
+    </section>
+  );
 }
 ```
 
@@ -410,6 +431,7 @@ git commit -m "feat: replace client marquee with static logo grid"
 ### Task 9: Add content to homepage
 
 **Files:**
+
 - Modify: `src/components/home/HomeClient.tsx`
 
 - [ ] **Step 1: Add content overlay to HomeClient**
@@ -441,9 +463,10 @@ git commit -m "feat: add content overlay to homepage (H1, tagline, logos, CTAs)"
 
 ## Chunk 3: Systematic Migrations
 
-### Task 10: Migrate gray-* to slate-* site-wide
+### Task 10: Migrate gray-_ to slate-_ site-wide
 
 **Files:**
+
 - Modify: All files in `src/components/` containing `gray-` (~49 files)
 
 - [ ] **Step 1: Count current gray- occurrences**
@@ -481,6 +504,7 @@ git commit -m "feat: migrate entire site from gray-* to slate-* palette"
 ### Task 11: Unify dark backgrounds to #0b111a
 
 **Files:**
+
 - Modify: `src/components/home/HomeClient.tsx`
 - Modify: `src/components/common/BackgroundFlow.tsx`
 - Modify: Studio components (if any contain hardcoded dark bgs)
@@ -493,6 +517,7 @@ Run: `grep -rn "#050510\|#0A0A0A\|#0a0a0a\|#07080c\|#050508\|bg-black" src/ --in
 - [ ] **Step 2: Replace each occurrence**
 
 For each file found:
+
 - `#050510` → `#0b111a`
 - `#0A0A0A` / `#0a0a0a` → `#0b111a`
 - `#07080c` → `#0b111a`
@@ -518,6 +543,7 @@ git commit -m "feat: unify all dark backgrounds to #0b111a"
 ### Task 12: Standardize border-radius
 
 **Files:**
+
 - Modify: All files containing `rounded-[` custom values
 
 - [ ] **Step 1: Find all custom border-radius**
@@ -527,6 +553,7 @@ Run: `grep -rn "rounded-\[" src/components/ --include="*.tsx" -l`
 - [ ] **Step 2: Replace per the mapping**
 
 For each file:
+
 - `rounded-[20px]` → `rounded-xl`
 - `rounded-[28px]` → `rounded-2xl`
 - `rounded-[2rem]` → `rounded-2xl`
@@ -557,6 +584,7 @@ git commit -m "feat: standardize border-radius to xl/2xl/full (3 values)"
 ### Task 13: Standardize shadows
 
 **Files:**
+
 - Modify: All files containing `shadow-[` custom values
 
 - [ ] **Step 1: Find all custom shadows**
@@ -566,6 +594,7 @@ Run: `grep -rn "shadow-\[" src/components/ --include="*.tsx" -l`
 - [ ] **Step 2: Replace per the mapping**
 
 For each file:
+
 - `shadow-[0_30px_80px_rgba(15,23,42,0.08)]` → `shadow-2xl`
 - `shadow-[0_20px_60px_rgba(15,23,42,0.08)]` → `shadow-2xl`
 - `shadow-[0_20px_40px_-15px_rgba(249,115,22,0.1)]` → `shadow-lg`
@@ -595,6 +624,7 @@ git commit -m "feat: standardize shadows to shadow-lg/shadow-2xl"
 ### Task 14: Standardize spring physics
 
 **Files:**
+
 - Modify: `src/components/for-brands/ProcessSection.tsx`
 - Modify: `src/components/for-brands/FloatingNavigation.tsx`
 - Modify: `src/components/common/BackgroundFlow.tsx`
@@ -603,13 +633,15 @@ git commit -m "feat: standardize shadows to shadow-lg/shadow-2xl"
 - [ ] **Step 1: Add SPRING import to each file**
 
 At the top of each file, add:
+
 ```ts
-import { SPRING } from "@/lib/design-tokens"
+import { SPRING } from "@/lib/design-tokens";
 ```
 
 - [ ] **Step 2: Replace inline spring values**
 
 In each file, find `stiffness:` and `damping:` values and replace:
+
 - Navigation/button contexts → `...SPRING.responsive`
 - Card/section/scroll contexts → `...SPRING.gentle`
 
@@ -632,6 +664,7 @@ git commit -m "feat: standardize spring physics to responsive/gentle tokens"
 ### Task 15: Standardize animation timings
 
 **Files:**
+
 - Modify: All files with hardcoded easing arrays or duration values
 
 - [ ] **Step 1: Find hardcoded easing arrays**
@@ -641,6 +674,7 @@ Run: `grep -rn "\[0\.\|ease:" src/components/ --include="*.tsx" | grep -v "EASIN
 - [ ] **Step 2: Replace hardcoded easings with EASING imports**
 
 For each file found:
+
 - Add `import { EASING, DURATION } from "@/lib/design-tokens"` (or from `@/lib/easing`)
 - `[0.21, 0.47, 0.32, 0.98]` → `EASING.smooth`
 - `[0.22, 1, 0.36, 1]` (literal) → `EASING.smooth`
@@ -682,6 +716,7 @@ git commit -m "feat: standardize all animation timings to EASING/DURATION tokens
 ### Task 16: Add BackgroundFlow to /services and /wiki
 
 **Files:**
+
 - Modify: `src/app/services/page.tsx`
 - Modify: `src/app/wiki/page.tsx`
 

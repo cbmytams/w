@@ -1,13 +1,13 @@
 ---
-title: 'Croissance organique : hook, rétention et collaborations'
+title: "Croissance organique : hook, rétention et collaborations"
 slug: croissance-organique-reseaux-sociaux-2025
-description: 'Méthodes de croissance organique en 2025 : qualité du hook, rétention, itération et collaborations multi-plateformes.'
+description: "Méthodes de croissance organique en 2025 : qualité du hook, rétention, itération et collaborations multi-plateformes."
 authorSlug: yaelle
 theme: croissance
 category: Stratégie de Contenu
-publishedAt: '2025-06-15'
-updatedAt: '2025-06-15'
-lastReviewedAt: '2025-06-15'
+publishedAt: "2025-06-15"
+updatedAt: "2025-06-15"
+lastReviewedAt: "2025-06-15"
 sources: []
 ---
 
@@ -91,6 +91,7 @@ TikTok offre le meilleur ratio effort/croissance de toutes les plateformes en 20
 ### Instagram : le duo gagnant Reels + Stories
 
 Sur Instagram en 2025, la stratégie optimale repose sur un binôme :
+
 - **Reels pour acquérir** de nouveaux abonnés via l'onglet Explore et le fil Reels.
 - **Stories pour retenir** et convertir en communauté fidèle.
 
@@ -185,4 +186,3 @@ Un créateur TikTok a remarqué dans ses analytics que ses vidéos de 30 seconde
 **4. Collaborez.** C'est le raccourci le plus efficace et le plus sous-utilisé de la croissance organique.
 
 **5. Soyez natifs.** Créez pour chaque plateforme selon ses codes propres. Un contenu pensé pour YouTube recyclé sans adaptation sur TikTok ne fonctionnera pas — et vice versa.
-

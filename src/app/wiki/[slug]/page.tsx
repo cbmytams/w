@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import WikiArticleView from "@/components/wiki/WikiArticleView";
-import { getAllWikiSlugs, getWikiArticleBySlug, getWikiArticleSummaries } from "@/lib/wiki";
+import {
+  getAllWikiSlugs,
+  getWikiArticleBySlug,
+  getWikiArticleSummaries,
+} from "@/lib/wiki";
 import { articleSchema, breadcrumbSchema } from "@/lib/structured-data";
 import { siteConfig, sitePaths } from "@/lib/site";
 import { getAuthorBySlug, getDefaultAuthor } from "@/lib/authors";
@@ -20,7 +24,9 @@ export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
   return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: WikiArticlePageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: WikiArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = await getWikiArticleBySlug(slug);
 
@@ -59,7 +65,9 @@ export async function generateMetadata({ params }: WikiArticlePageProps): Promis
   };
 }
 
-export default async function WikiArticlePage({ params }: WikiArticlePageProps) {
+export default async function WikiArticlePage({
+  params,
+}: WikiArticlePageProps) {
   const { slug } = await params;
   const [article, allArticles] = await Promise.all([
     getWikiArticleBySlug(slug),
@@ -70,7 +78,10 @@ export default async function WikiArticlePage({ params }: WikiArticlePageProps) 
     notFound();
   }
 
-  const canonicalUrl = new URL(`/wiki/${article.slug}`, siteConfig.url).toString();
+  const canonicalUrl = new URL(
+    `/wiki/${article.slug}`,
+    siteConfig.url
+  ).toString();
   const author = getAuthorBySlug(article.authorSlug) ?? getDefaultAuthor();
 
   return (
@@ -86,8 +97,12 @@ export default async function WikiArticlePage({ params }: WikiArticlePageProps) 
               datePublished: article.publishedAt,
               dateModified: article.updatedAt,
               author,
-              keywords: [article.category, article.theme ?? "", article.platform ?? ""].filter(Boolean),
-            }),
+              keywords: [
+                article.category,
+                article.theme ?? "",
+                article.platform ?? "",
+              ].filter(Boolean),
+            })
           ),
         }}
       />
@@ -96,10 +111,16 @@ export default async function WikiArticlePage({ params }: WikiArticlePageProps) 
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             breadcrumbSchema([
-              { name: "Accueil", url: new URL(sitePaths.home, siteConfig.url).toString() },
-              { name: "Wiki", url: new URL(sitePaths.wiki, siteConfig.url).toString() },
+              {
+                name: "Accueil",
+                url: new URL(sitePaths.home, siteConfig.url).toString(),
+              },
+              {
+                name: "Wiki",
+                url: new URL(sitePaths.wiki, siteConfig.url).toString(),
+              },
               { name: article.title, url: canonicalUrl },
-            ]),
+            ])
           ),
         }}
       />

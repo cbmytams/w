@@ -38,7 +38,7 @@
 
   /* --- Shadows --- */
   --shadow-brand: rgba(249, 115, 22, 0.25);
-  --shadow-brand-strong: rgba(249, 115, 22, 0.40);
+  --shadow-brand-strong: rgba(249, 115, 22, 0.4);
 
   /* --- Questionnaire / Social Cut Theme --- */
   --questionnaire-bg: #0a0a0a;
@@ -175,23 +175,31 @@ body {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px rgba(255, 255, 255, 0.06);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.06);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .surface-card:hover {
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px rgba(255, 255, 255, 0.08);
 }
 
 /* Admin login panel: deeper frosted glass */
 .admin-glass-panel {
-  background: rgba(15, 15, 20, 0.70);
+  background: rgba(15, 15, 20, 0.7);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6), inset 0 1px rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.6),
+    inset 0 1px rgba(255, 255, 255, 0.08);
 }
 
 /* Shimmer animation for skeleton loading states */
@@ -206,15 +214,16 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 0.04) 25%,
-      rgba(255, 255, 255, 0.10) 50%,
-      rgba(255, 255, 255, 0.04) 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
   background-size: 200% 100%;
   animation: admin-shimmer 1.6s ease-in-out infinite;
   border-radius: 8px;
 }
-
 
 /* ============================================
    UTILITY CLASSES - Brand Gradient
@@ -273,7 +282,6 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.22);
 }
-
 
 /* ============================================
    ANIMATIONS - Aurora Blobs
@@ -378,7 +386,6 @@ body {
    ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -412,7 +419,6 @@ body {
    Enforce readability baseline on very small utility sizes
    ============================================ */
 @media (max-width: 640px) {
-
   .text-\[9px\],
   .text-\[10px\],
   .text-\[11px\],
@@ -475,7 +481,6 @@ body {
 
 /* Wiki CTA — infinite bounce for discovery arrow */
 @keyframes wiki-bounce {
-
   0%,
   100% {
     transform: translateY(0);
@@ -531,11 +536,13 @@ body {
 }
 
 .wiki-cta--transitioning .wiki-cta-float {
-  animation: wiki-cta-drop var(--wiki-cta-exit-duration) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: wiki-cta-drop var(--wiki-cta-exit-duration)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .wiki-cta--transitioning .wiki-cta-arrow {
-  animation: wiki-arrow-commit var(--wiki-cta-exit-duration) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: wiki-arrow-commit var(--wiki-cta-exit-duration)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .wiki-cta--transitioning .wiki-cta-aura {
@@ -543,17 +550,18 @@ body {
 }
 
 .home-to-wiki-exit {
-  animation: home-to-wiki-descend var(--home-shift-duration) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: home-to-wiki-descend var(--home-shift-duration)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
   will-change: transform, opacity, filter;
 }
 
 .home-from-wiki-enter {
-  animation: home-from-wiki-descend var(--home-shift-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: home-from-wiki-descend var(--home-shift-duration)
+    cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: transform, opacity, filter;
 }
 
 @keyframes wiki-float {
-
   0%,
   100% {
     transform: translateY(0);
@@ -575,7 +583,6 @@ body {
 }
 
 @keyframes wiki-pulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -666,15 +673,18 @@ body {
 }
 
 .wiki-retour--transitioning .wiki-retour-icon {
-  animation: wiki-retour-arrow-commit var(--wiki-cta-exit-duration) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: wiki-retour-arrow-commit var(--wiki-cta-exit-duration)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .wiki-retour--transitioning .wiki-retour-label {
-  animation: wiki-retour-label-commit var(--wiki-cta-exit-duration) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: wiki-retour-label-commit var(--wiki-cta-exit-duration)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .wiki-to-home-exit {
-  animation: wiki-to-home-ascend var(--home-shift-duration) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: wiki-to-home-ascend var(--home-shift-duration)
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
   will-change: transform, opacity, filter;
 }
 

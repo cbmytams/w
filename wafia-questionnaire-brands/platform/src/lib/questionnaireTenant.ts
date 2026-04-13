@@ -7,7 +7,7 @@ export async function getCurrentQuestionnaireForTenant(
 ) {
   return prisma.questionnaire.findFirst({
     where: { tenantId, type, isActive: true },
-    orderBy: { createdAt: "desc" }
+    orderBy: { createdAt: "desc" },
   });
 }
 
@@ -24,7 +24,7 @@ export async function getOrCreateCurrentQuestionnaireForTenant(
       type,
       version: "v1",
       sectionsJson: [],
-      isActive: true
-    }
+      isActive: true,
+    },
   });
 }

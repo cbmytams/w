@@ -8,8 +8,8 @@ const config = {
         ui: ["var(--font-ui)", "-apple-system", "sans-serif"],
       },
       borderRadius: {
-        'xl': '1.25rem',
-        '2xl': '1.75rem',
+        xl: "1.25rem",
+        "2xl": "1.75rem",
       },
     },
   },

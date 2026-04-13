@@ -24,11 +24,13 @@ function isHtmlNavigation(request: NextRequest) {
 }
 
 function serviceUnavailableResponse(request: NextRequest) {
-  if (looksLikeApiPath(request.nextUrl.pathname.replace(/^\/platform\/?/, ""))) {
+  if (
+    looksLikeApiPath(request.nextUrl.pathname.replace(/^\/platform\/?/, ""))
+  ) {
     return Response.json(
       {
         error: "Platform service unavailable",
-        code: "SERVICE_UNAVAILABLE"
+        code: "SERVICE_UNAVAILABLE",
       },
       { status: 503 }
     );
@@ -36,14 +38,17 @@ function serviceUnavailableResponse(request: NextRequest) {
 
   if (isHtmlNavigation(request)) {
     const fallback = new URL("/platform/unavailable", request.url);
-    fallback.searchParams.set("target", request.nextUrl.pathname + request.nextUrl.search);
+    fallback.searchParams.set(
+      "target",
+      request.nextUrl.pathname + request.nextUrl.search
+    );
     return Response.redirect(fallback, 307);
   }
 
   return Response.json(
     {
       error: "Platform service unavailable",
-      code: "SERVICE_UNAVAILABLE"
+      code: "SERVICE_UNAVAILABLE",
     },
     { status: 503 }
   );
@@ -81,7 +86,7 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
   const init: RequestInit = {
     method: request.method,
     headers: copyRequestHeaders(request),
-    redirect: "manual"
+    redirect: "manual",
   };
 
   if (METHODS_WITH_BODY.has(request.method)) {
@@ -96,7 +101,7 @@ async function handleProxy(request: NextRequest, context: RouteContext) {
 
     return new Response(upstream.body, {
       status: upstream.status,
-      headers
+      headers,
     });
   } catch {
     return serviceUnavailableResponse(request);

@@ -135,19 +135,28 @@ function normalizeWikiAuthorSlug(theme: string, rawAuthorSlug: string): string {
   const authorSlug = rawAuthorSlug.trim();
   if (authorSlug) return authorSlug;
 
-  const yaelleThemes = new Set(["croissance", "branding", "production", "audience"]);
+  const yaelleThemes = new Set([
+    "croissance",
+    "branding",
+    "production",
+    "audience",
+  ]);
   return yaelleThemes.has(theme) ? "yaelle" : "sasha-guettat";
 }
 
 function toSources(value: unknown, sourcePath: string): ArticleSource[] {
   if (value == null) return [];
   if (!Array.isArray(value)) {
-    throw new Error(`Invalid wiki frontmatter in ${sourcePath}: sources must be an array.`);
+    throw new Error(
+      `Invalid wiki frontmatter in ${sourcePath}: sources must be an array.`
+    );
   }
 
   return value.map((item, index) => {
     if (!item || typeof item !== "object") {
-      throw new Error(`Invalid wiki frontmatter in ${sourcePath}: sources[${index}] must be an object.`);
+      throw new Error(
+        `Invalid wiki frontmatter in ${sourcePath}: sources[${index}] must be an object.`
+      );
     }
 
     const candidate = item as Record<string, unknown>;
@@ -159,20 +168,22 @@ function toSources(value: unknown, sourcePath: string): ArticleSource[] {
 
     if (!label || !url || !sourceType || !accessedAt) {
       throw new Error(
-        `Invalid wiki frontmatter in ${sourcePath}: sources[${index}] requires label, url, sourceType and accessedAt.`,
+        `Invalid wiki frontmatter in ${sourcePath}: sources[${index}] requires label, url, sourceType and accessedAt.`
       );
     }
 
     if (!VALID_SOURCE_TYPES.has(sourceType)) {
       throw new Error(
-        `Invalid wiki frontmatter in ${sourcePath}: sources[${index}].sourceType "${sourceType}" is invalid.`,
+        `Invalid wiki frontmatter in ${sourcePath}: sources[${index}].sourceType "${sourceType}" is invalid.`
       );
     }
 
     try {
       new URL(url);
     } catch {
-      throw new Error(`Invalid wiki frontmatter in ${sourcePath}: sources[${index}].url must be absolute.`);
+      throw new Error(
+        `Invalid wiki frontmatter in ${sourcePath}: sources[${index}].url must be absolute.`
+      );
     }
 
     return {
@@ -185,15 +196,21 @@ function toSources(value: unknown, sourcePath: string): ArticleSource[] {
 }
 
 async function markdownToHtml(markdown: string): Promise<string> {
-  const [{ unified }, { default: remarkParse }, { default: remarkGfm }, { default: remarkRehype }, { default: rehypeRaw }, { default: rehypeStringify }] =
-    await Promise.all([
-      import("unified"),
-      import("remark-parse"),
-      import("remark-gfm"),
-      import("remark-rehype"),
-      import("rehype-raw"),
-      import("rehype-stringify"),
-    ]);
+  const [
+    { unified },
+    { default: remarkParse },
+    { default: remarkGfm },
+    { default: remarkRehype },
+    { default: rehypeRaw },
+    { default: rehypeStringify },
+  ] = await Promise.all([
+    import("unified"),
+    import("remark-parse"),
+    import("remark-gfm"),
+    import("remark-rehype"),
+    import("rehype-raw"),
+    import("rehype-stringify"),
+  ]);
 
   const result = await unified()
     .use(remarkParse)
@@ -207,7 +224,9 @@ async function markdownToHtml(markdown: string): Promise<string> {
 }
 
 async function splitIntoChapters(markdown: string): Promise<WikiChapter[]> {
-  const sections = cleanMarkdown(markdown).split(/^(?=## )/m).filter((section) => section.trim());
+  const sections = cleanMarkdown(markdown)
+    .split(/^(?=## )/m)
+    .filter((section) => section.trim());
   const chapters: WikiChapter[] = [];
 
   for (const section of sections) {
@@ -238,9 +257,11 @@ async function splitIntoChapters(markdown: string): Promise<WikiChapter[]> {
       continue;
     }
 
-    const mergedContent = `${chapters[chapters.length - 1].content}\n\n${section.trim()}`.trim();
+    const mergedContent =
+      `${chapters[chapters.length - 1].content}\n\n${section.trim()}`.trim();
     chapters[chapters.length - 1].content = mergedContent;
-    chapters[chapters.length - 1].contentHtml = await markdownToHtml(mergedContent);
+    chapters[chapters.length - 1].contentHtml =
+      await markdownToHtml(mergedContent);
   }
 
   return chapters;
@@ -248,8 +269,11 @@ async function splitIntoChapters(markdown: string): Promise<WikiChapter[]> {
 
 function validateFrontmatter(
   frontmatter: Record<string, unknown>,
-  sourcePath: string,
-): { errors: string[]; normalized: Omit<WikiArticle, "chapters" | "contentHtml" | "readTime"> } {
+  sourcePath: string
+): {
+  errors: string[];
+  normalized: Omit<WikiArticle, "chapters" | "contentHtml" | "readTime">;
+} {
   const errors: string[] = [];
 
   const title = toSafeString(frontmatter.title);
@@ -259,7 +283,8 @@ function validateFrontmatter(
   const category = toSafeString(frontmatter.category);
   const publishedAtRaw = toSafeString(frontmatter.publishedAt);
   const updatedAtRaw = toSafeString(frontmatter.updatedAt) || publishedAtRaw;
-  const lastReviewedAtRaw = toSafeString(frontmatter.lastReviewedAt) || updatedAtRaw;
+  const lastReviewedAtRaw =
+    toSafeString(frontmatter.lastReviewedAt) || updatedAtRaw;
   const theme = toSafeString(frontmatter.theme);
   const platform = toSafeString(frontmatter.platform);
   let sources: ArticleSource[] = [];
@@ -277,8 +302,10 @@ function validateFrontmatter(
   if (!category) errors.push(`category manquante (${sourcePath})`);
   if (!publishedAtRaw) errors.push(`publishedAt manquant (${sourcePath})`);
   if (!updatedAtRaw) errors.push(`updatedAt manquant (${sourcePath})`);
-  if (!lastReviewedAtRaw) errors.push(`lastReviewedAt manquant (${sourcePath})`);
-  if (!theme && !platform) errors.push(`theme ou platform requis (${sourcePath})`);
+  if (!lastReviewedAtRaw)
+    errors.push(`lastReviewedAt manquant (${sourcePath})`);
+  if (!theme && !platform)
+    errors.push(`theme ou platform requis (${sourcePath})`);
 
   const publishedAt = toIsoDate(publishedAtRaw);
   const updatedAt = toIsoDate(updatedAtRaw);
@@ -290,7 +317,9 @@ function validateFrontmatter(
     errors.push(`updatedAt invalide "${updatedAtRaw}" (${sourcePath})`);
   }
   if (lastReviewedAtRaw && !lastReviewedAt) {
-    errors.push(`lastReviewedAt invalide "${lastReviewedAtRaw}" (${sourcePath})`);
+    errors.push(
+      `lastReviewedAt invalide "${lastReviewedAtRaw}" (${sourcePath})`
+    );
   }
 
   const authorSlug = normalizeWikiAuthorSlug(theme, authorSlugRaw);
@@ -321,7 +350,7 @@ function validateFrontmatter(
 
 async function parseRawWikiDocument(
   sourcePath: string,
-  raw: string,
+  raw: string
 ): Promise<ParseResult> {
   const { data, content } = matter(raw);
   const { errors, normalized } = validateFrontmatter(data, sourcePath);
@@ -333,7 +362,7 @@ async function parseRawWikiDocument(
   const metaDescription = extractMetaDescription(content);
   const firstParagraph = extractFirstParagraph(content);
   const description = normalizeDescription(
-    normalized.description || metaDescription || stripMarkdown(firstParagraph),
+    normalized.description || metaDescription || stripMarkdown(firstParagraph)
   );
   const chapters = await splitIntoChapters(content);
 
@@ -376,7 +405,7 @@ function ensureNoDuplicateSlugs(articles: WikiArticle[]) {
     const previous = seen.get(article.slug);
     if (previous) {
       duplicates.push(
-        `slug dupliqué "${article.slug}" (${previous}) et (${article.sourcePath})`,
+        `slug dupliqué "${article.slug}" (${previous}) et (${article.sourcePath})`
       );
       continue;
     }
@@ -384,7 +413,9 @@ function ensureNoDuplicateSlugs(articles: WikiArticle[]) {
   }
 
   if (duplicates.length > 0) {
-    throw new Error(`Invalid wiki content:\n${duplicates.map((d) => `- ${d}`).join("\n")}`);
+    throw new Error(
+      `Invalid wiki content:\n${duplicates.map((d) => `- ${d}`).join("\n")}`
+    );
   }
 }
 
@@ -419,11 +450,14 @@ async function loadAllWikiArticles(): Promise<WikiArticle[]> {
   ensureNoDuplicateSlugs(parsedArticles);
 
   if (parseErrors.length > 0) {
-    throw new Error(`Invalid wiki content:\n${parseErrors.map((d) => `- ${d}`).join("\n")}`);
+    throw new Error(
+      `Invalid wiki content:\n${parseErrors.map((d) => `- ${d}`).join("\n")}`
+    );
   }
 
   return parsedArticles.sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
 }
 
@@ -434,7 +468,9 @@ export async function getAllWikiArticles(): Promise<WikiArticle[]> {
   return cache;
 }
 
-export async function getWikiArticleBySlug(slug: string): Promise<WikiArticle | null> {
+export async function getWikiArticleBySlug(
+  slug: string
+): Promise<WikiArticle | null> {
   const articles = await getAllWikiArticles();
   return articles.find((article) => article.slug === slug) ?? null;
 }

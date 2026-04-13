@@ -1,4 +1,5 @@
 # AUDIT DESIGN COMPLET — WAFIA.FR
+
 ### Avril 2026 | Niveau Direction de Creation
 
 ---
@@ -12,24 +13,31 @@ Wafia possede les ingredients d'un site premium — une palette ambitieuse, des 
 Le resultat est un site qui impressionne dans les 3 premieres secondes, mais qui fatigue, disperse et finit par affaiblir la credibilite qu'il cherche a construire.
 
 ### Direction artistique : 4/10
+
 Le site n'a pas UNE direction artistique. Il en a 4-5 qui cohabitent sans lien. La homepage est une experience generative art immersive. La page services est un template texte minimaliste. La page brands melange glassmorphism Apple, neo-brutalisme et editorial classique. Le studio est une app iOS. Le wiki est un blog. Aucune de ces identites ne se prolonge dans les autres.
 
 ### Animations : 6/10
+
 Individuellement, certaines animations sont bien executees (reveal au scroll, spring physics, blur entrance). Collectivement, elles sont trop nombreuses, trop variees dans leurs timings, et souvent decoratives plutot que fonctionnelles. Le site a un systeme d'easing bien defini (`easing.ts`) que la moitie des composants ignore.
 
 ### Widgets : 3/10
+
 C'est le point le plus faible. Les widgets simules (DealDesk, KPIPulse, ProductionPipeline, SmartDistributionDashboard, WafiaOS) donnent une impression de "mockup" qui contredit directement le positionnement premium. Ils suggerent un produit SaaS qui n'existe pas. Sur /for-talents, ils ont ete retires — bon choix. Sur les autres pages et dans le codebase, ils restent un risque.
 
 ### Coherence premium : 3/10
+
 C'est le probleme central. La qualite percue fluctue massivement d'une section a l'autre, d'une page a l'autre. Les ecarts de finition — 12 valeurs de border-radius, 4 fonds noirs differents, 2 palettes de gris concurrentes (gray vs slate), des ombres neo-brutalistes a cote de glows Apple — creent une sensation de collage plutot que de systeme.
 
 ### Charge cognitive : 4/10
+
 La page /for-brands fait 13 800px de long avec 12+ sections. Chaque section utilise un design pattern different. Les marquees de logos et de services ajoutent du mouvement permanent. Les 11 services en cards marquee sont excessifs. La page /for-talents, apres refonte, est meilleure (7 sections, zero widget) mais le reste du site reste dense.
 
 ### Credibilite : 6/10
+
 Les logos clients (Adidas, L'Oreal, Amazon) et les case studies chiffrees sont les elements les plus credibles du site. Ils font le vrai travail. En revanche, les widgets simules, la page studio inachevee, et les stats non sourcees affaiblissent cette credibilite.
 
 ### Design / Conversion : 5/10
+
 Le design attire mais disperse. Les CTA sont bien places mais noyees dans la densite visuelle. Les pages donnent envie de regarder plus que d'agir. La sophistication visuelle cannibalise parfois l'intention de conversion.
 
 ---
@@ -104,15 +112,18 @@ Le site n'a pas de direction artistique. Il a des references visuelles multiples
 **Verdict :** C'est le probleme n.1 du site. Un site premium est reconnaissable. Wafia n'est pas reconnaissable — il change d'identite a chaque page.
 
 ### Ce qui fonctionne
+
 - La palette chromatique brands (orange/warm) vs talents (violet/cool) est une bonne idee de segmentation.
 - Le gradient violet-to-fuchsia du hero talents est premium et contemporain.
 
 ### Ce qui nuit
+
 - La section ServicesAndMetrics avec ses ombres neo-brutalistes (`shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]`) et ses cards en rotation est esthetiquement incompatible avec tout le reste du site.
 - Le studio utilise un design system completement separe (`#0A0A0A`, `#1A1A1A`, phone frames, toggles custom) qui ne partage rien avec les autres pages.
 - La homepage ne prepare pas l'experience du reste du site. Elle est belle mais deconnectee.
 
 ### Actions correctives
+
 - **P0** : Definir UNE direction artistique et l'appliquer a toutes les pages.
 - **P0** : Redesigner ServicesAndMetrics pour eliminer le neo-brutalisme.
 - **P1** : Creer un pont visuel entre la homepage et les pages internes.
@@ -137,10 +148,12 @@ La hierarchie visuelle souffre de deux problemes :
 - **ProcessSection** : La timeline alternee (gauche/droite) avec 5 steps detailles + nodes + progress bar cree un tunnel de lecture de 3+ ecrans. La densite est proportionnelle a l'importance percue — mais le process n'est pas ce qui convertit.
 
 ### Ce qui fonctionne
+
 - La section "Pour qui / Pas pour qui" a une hierarchie parfaite : 1 titre, 2 cartes, 4 items chacune. Net, scannable.
 - Le hero talents est bien structure : 1 titre, 1 subtitle, 1 indicateur, 2 CTA. Pas de bruit.
 
 ### Actions correctives
+
 - **P0** : Standardiser 3 niveaux de padding section : `py-20 md:py-28` (standard), `py-24 md:py-32` (genereux), `py-12 md:py-16` (compact).
 - **P1** : Reduire ServicesAndMetrics a un format qui ne casse pas la hierarchie (titre normal, 4-5 services max, pas de marquee).
 - **P1** : Simplifier le hero brands — retirer le widget ROI ou le reduire a un chiffre discret.
@@ -152,18 +165,19 @@ La hierarchie visuelle souffre de deux problemes :
 
 ### Inventaire des patterns de cartes
 
-| Pattern | Pages | Verdict |
-|---------|-------|---------|
-| Glassmorphism (`bg-white/5 border-white/10`) | ValueProp, Process, Talents | Premium courant, OK si unifie |
-| Neo-brutaliste (`shadow hard, rotation`) | ServicesAndMetrics | Incoherent — a redesigner |
-| Editorial magazine (image + overlay) | CaseStudies | Bon, ancre dans le reel |
-| Sombre opaque (`bg-slate-900/80`) | WhatWeBuild, Method (talents) | Lisible, premium |
-| Light translucide (`bg-white/90 backdrop-blur`) | Team cards | Bon en light mode |
-| Comparison rows (full-width gradient) | ComparisonV2 | Original, fonctionne |
+| Pattern                                         | Pages                         | Verdict                       |
+| ----------------------------------------------- | ----------------------------- | ----------------------------- |
+| Glassmorphism (`bg-white/5 border-white/10`)    | ValueProp, Process, Talents   | Premium courant, OK si unifie |
+| Neo-brutaliste (`shadow hard, rotation`)        | ServicesAndMetrics            | Incoherent — a redesigner     |
+| Editorial magazine (image + overlay)            | CaseStudies                   | Bon, ancre dans le reel       |
+| Sombre opaque (`bg-slate-900/80`)               | WhatWeBuild, Method (talents) | Lisible, premium              |
+| Light translucide (`bg-white/90 backdrop-blur`) | Team cards                    | Bon en light mode             |
+| Comparison rows (full-width gradient)           | ComparisonV2                  | Original, fonctionne          |
 
 **Probleme majeur :** Il y a 6 patterns de cartes pour un seul site. Un design system premium en a 2-3 max.
 
 ### Composants premium (a conserver)
+
 - **FloatingNavigation** — Bien execute, Apple-like, fonctionnel
 - **Case study cards** — Ancrees dans le reel, bons visuels
 - **Comparison table** — Original, differenciant, pedagogique
@@ -171,19 +185,23 @@ La hierarchie visuelle souffre de deux problemes :
 - **Team cards (brands/talents)** — Genereux, bien scenes, avec identite geo
 
 ### Composants generiques (a rehausser)
+
 - **FAQ accordion** — Correct mais standard. Pourrait etre plus elegant.
 - **CTA section finale** — Le gradient violet/fuchsia est bien mais le pattern est generique.
 - **Stats bar (services)** — 4 chiffres en ligne, template-level.
 
 ### Composants gadgets (a supprimer ou redesigner)
+
 - **ServicesAndMetrics marquee + CTA widget** — Neo-brutalisme incongru, "Your Project?" en anglais dans un site FR
 - **ClientsSection marquee** — Le mouvement perpetuel fatigue. Preferer une grille statique.
 
 ### Composants placeholder (a reconstruire)
+
 - **Page Studio entiere** — "Coming Soon" n'est pas un design, c'est un aveu d'inachevement
 - **Homepage** — Art generatif sans message = ecran de veille premium
 
 ### Actions correctives
+
 - **P0** : Definir 2-3 patterns de cartes maximum et les appliquer partout
 - **P0** : Supprimer le pattern neo-brutaliste de ServicesAndMetrics
 - **P1** : Remplacer la marquee clients par une grille statique
@@ -195,19 +213,19 @@ La hierarchie visuelle souffre de deux problemes :
 
 ### Inventaire complet
 
-| Widget | Page | Role theorique | Role reel | Verdict |
-|--------|------|---------------|-----------|---------|
-| SmartDistributionDashboard | /for-talents (supprime) | Montrer le reseau de distribution | Simulation decorative | **SUPPRIME** - bon choix |
-| DealDeskWidget | /for-talents (supprime) | Montrer la protection contractuelle | Faux contrat anime | **SUPPRIME** - bon choix |
-| KPIPulseWidget | /for-talents (supprime) | Montrer le pilotage | Radar sweep anime | **SUPPRIME** - bon choix |
-| ProductionPipelineWidget | /for-talents (supprime) | Montrer le workflow | Convoyeur anime | **SUPPRIME** - bon choix |
-| IdentityLensWidget | /for-talents (supprime) | Montrer l'audit | Coherence score simule | **SUPPRIME** - bon choix |
-| SeriesFormatsWidget | /for-talents (supprime) | Montrer les formats | Stats simulees | **SUPPRIME** - bon choix |
-| WafiaOSWidget | /for-talents (supprime) | Montrer le "systeme" | Dashboard mockup | **SUPPRIME** - bon choix |
-| ScriptCard (Fiction) | /for-talents (supprime) | Montrer le casting | Script anime | **SUPPRIME** - bon choix |
-| ROI widget (hero brands) | /for-brands | Montrer la performance | Chiffre ROI flottant | **SIMPLIFIER** - trop prominent |
-| Tech Stack card | /for-brands | Montrer les outils | Liste d'outils | **GARDER** - informatif |
-| ServicesAndMetrics CTA widget | /for-brands | Call to action | "Your Project?" en anglais | **SUPPRIMER** - incoherent |
+| Widget                        | Page                    | Role theorique                      | Role reel                  | Verdict                         |
+| ----------------------------- | ----------------------- | ----------------------------------- | -------------------------- | ------------------------------- |
+| SmartDistributionDashboard    | /for-talents (supprime) | Montrer le reseau de distribution   | Simulation decorative      | **SUPPRIME** - bon choix        |
+| DealDeskWidget                | /for-talents (supprime) | Montrer la protection contractuelle | Faux contrat anime         | **SUPPRIME** - bon choix        |
+| KPIPulseWidget                | /for-talents (supprime) | Montrer le pilotage                 | Radar sweep anime          | **SUPPRIME** - bon choix        |
+| ProductionPipelineWidget      | /for-talents (supprime) | Montrer le workflow                 | Convoyeur anime            | **SUPPRIME** - bon choix        |
+| IdentityLensWidget            | /for-talents (supprime) | Montrer l'audit                     | Coherence score simule     | **SUPPRIME** - bon choix        |
+| SeriesFormatsWidget           | /for-talents (supprime) | Montrer les formats                 | Stats simulees             | **SUPPRIME** - bon choix        |
+| WafiaOSWidget                 | /for-talents (supprime) | Montrer le "systeme"                | Dashboard mockup           | **SUPPRIME** - bon choix        |
+| ScriptCard (Fiction)          | /for-talents (supprime) | Montrer le casting                  | Script anime               | **SUPPRIME** - bon choix        |
+| ROI widget (hero brands)      | /for-brands             | Montrer la performance              | Chiffre ROI flottant       | **SIMPLIFIER** - trop prominent |
+| Tech Stack card               | /for-brands             | Montrer les outils                  | Liste d'outils             | **GARDER** - informatif         |
+| ServicesAndMetrics CTA widget | /for-brands             | Call to action                      | "Your Project?" en anglais | **SUPPRIMER** - incoherent      |
 
 **Principe directeur pour les widgets Wafia :**
 Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utilise, resultat obtenu, processus documente). Un widget qui simule un produit qui n'existe pas affaiblit la credibilite. Wafia n'est pas un SaaS — elle ne doit pas ressembler a un SaaS.
@@ -218,19 +236,19 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 
 ### Inventaire par famille
 
-| Famille | Emplacement | Utilite | Verdict |
-|---------|------------|---------|---------|
-| Reveal au scroll (fade + translateY) | Toutes les sections | Rythme la decouverte | **GARDER** — mais uniformiser les timings |
-| Stagger children (decalage sequentiel) | Cartes, listes | Elegance d'apparition | **GARDER** |
-| Scroll-driven timeline | ProcessSection | Engagement | **GARDER** — bien execute |
-| Marquee perpetuelle | ClientsSection, ServicesAndMetrics | Mouvement permanent | **SUPPRIMER** — fatigue visuelle |
-| Spring physics hover | Cards, buttons, navigation | Interactivite | **ATTENUER** — trop de rebond sur certains elements |
-| Blur entrance (word-by-word) | Journey signature (ancien) | Effet cinematique | **SUPPRIME** — bon choix, remplace par RevealAnimation |
-| Parallax card | PositionnementSection (supprime) | Profondeur | **SUPPRIME** — bon choix |
-| Particles generatif | Homepage | Identite | **GARDER** — mais ne pas l'utiliser comme substitut de contenu |
-| Ping animation (dots) | Hero talents (dispo indicator), Process (terminal) | Signal de statut | **ATTENUER** — le ping perpetuel fatigue |
-| Counter animation (numbers) | Stats bar, ServicesAndMetrics | Dramatisation | **GARDER** — classique mais efficace |
-| BackgroundFlow (gradient shift au scroll) | Brands, Talents | Atmosphere | **GARDER** — subtil et utile pour la segmentation chromatique |
+| Famille                                   | Emplacement                                        | Utilite               | Verdict                                                        |
+| ----------------------------------------- | -------------------------------------------------- | --------------------- | -------------------------------------------------------------- |
+| Reveal au scroll (fade + translateY)      | Toutes les sections                                | Rythme la decouverte  | **GARDER** — mais uniformiser les timings                      |
+| Stagger children (decalage sequentiel)    | Cartes, listes                                     | Elegance d'apparition | **GARDER**                                                     |
+| Scroll-driven timeline                    | ProcessSection                                     | Engagement            | **GARDER** — bien execute                                      |
+| Marquee perpetuelle                       | ClientsSection, ServicesAndMetrics                 | Mouvement permanent   | **SUPPRIMER** — fatigue visuelle                               |
+| Spring physics hover                      | Cards, buttons, navigation                         | Interactivite         | **ATTENUER** — trop de rebond sur certains elements            |
+| Blur entrance (word-by-word)              | Journey signature (ancien)                         | Effet cinematique     | **SUPPRIME** — bon choix, remplace par RevealAnimation         |
+| Parallax card                             | PositionnementSection (supprime)                   | Profondeur            | **SUPPRIME** — bon choix                                       |
+| Particles generatif                       | Homepage                                           | Identite              | **GARDER** — mais ne pas l'utiliser comme substitut de contenu |
+| Ping animation (dots)                     | Hero talents (dispo indicator), Process (terminal) | Signal de statut      | **ATTENUER** — le ping perpetuel fatigue                       |
+| Counter animation (numbers)               | Stats bar, ServicesAndMetrics                      | Dramatisation         | **GARDER** — classique mais efficace                           |
+| BackgroundFlow (gradient shift au scroll) | Brands, Talents                                    | Atmosphere            | **GARDER** — subtil et utile pour la segmentation chromatique  |
 
 ### Inconsistances d'animation
 
@@ -239,6 +257,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 3. **Durees non standardisees** : malgre le systeme `DURATION.*`, la plupart des composants hardcodent `0.42s`, `0.52s`, `0.7s` — des valeurs qui ne correspondent a aucun token.
 
 ### Actions correctives
+
 - **P1** : Uniformiser TOUS les reveals au scroll sur `EASING.subtle` + `DURATION.normal` (0.4s)
 - **P1** : Definir 2 springs standard : "responsive" (navigation, buttons) et "gentle" (cards, sections)
 - **P2** : Remplacer les marquees par des grilles statiques
@@ -250,24 +269,24 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 
 ### Ecarts de niveau identifies
 
-| Element | Niveau premium | Commentaire |
-|---------|---------------|-------------|
-| FloatingNavigation | 9/10 | Meilleur composant du site |
-| Case studies | 8/10 | Ancrees dans le reel, bien composees |
-| Team cards | 8/10 | Genereux, bien scenes |
-| Comparison table | 7/10 | Original et pedagogique |
-| Hero talents | 7/10 | Net, memorisable |
-| ForWho section | 8/10 | Elegante et qualifiante |
-| ProcessSection | 7/10 | Bien structure, un peu long |
-| BackgroundFlow | 7/10 | Subtil et differenciant |
-| BrandHero | 6/10 | Dense mais correct |
-| FAQ | 6/10 | Standard |
-| Stats bar | 5/10 | Template-level |
-| Homepage | 4/10 | Beau mais vide = ecran de veille |
-| Services page | 3/10 | Texte nu, zero identite visuelle |
-| ServicesAndMetrics | 3/10 | Neo-brutalisme incoherent |
-| Studio page | 2/10 | Placeholder |
-| Wiki | 4/10 | Blog generique |
+| Element            | Niveau premium | Commentaire                          |
+| ------------------ | -------------- | ------------------------------------ |
+| FloatingNavigation | 9/10           | Meilleur composant du site           |
+| Case studies       | 8/10           | Ancrees dans le reel, bien composees |
+| Team cards         | 8/10           | Genereux, bien scenes                |
+| Comparison table   | 7/10           | Original et pedagogique              |
+| Hero talents       | 7/10           | Net, memorisable                     |
+| ForWho section     | 8/10           | Elegante et qualifiante              |
+| ProcessSection     | 7/10           | Bien structure, un peu long          |
+| BackgroundFlow     | 7/10           | Subtil et differenciant              |
+| BrandHero          | 6/10           | Dense mais correct                   |
+| FAQ                | 6/10           | Standard                             |
+| Stats bar          | 5/10           | Template-level                       |
+| Homepage           | 4/10           | Beau mais vide = ecran de veille     |
+| Services page      | 3/10           | Texte nu, zero identite visuelle     |
+| ServicesAndMetrics | 3/10           | Neo-brutalisme incoherent            |
+| Studio page        | 2/10           | Placeholder                          |
+| Wiki               | 4/10           | Blog generique                       |
 
 **L'ecart entre le meilleur (FloatingNavigation, 9/10) et le pire (Studio, 2/10) est de 7 points.** C'est un gouffre. Un site premium tolere un ecart de 2 points maximum.
 
@@ -300,6 +319,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 3. **Services bottom** — Apres la FAQ et avant le CTA final, la page s'arrete net.
 
 ### Question centrale repondue
+
 > Ou le site est-il trop intelligent visuellement pour son propre bien ?
 
 **Reponse :** ServicesAndMetrics. C'est la section qui essaie le plus d'impressionner et qui reussit le moins a convaincre. Le neo-brutalisme, le titre en 8rem, les 11 services en marquee, le CTA en anglais — chaque element crie "regardez-moi" et aucun ne dit "voici ce qu'on fait pour vous."
@@ -309,6 +329,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 ## H. Credibilite percue
 
 ### Ce qui est credible
+
 - **Logos clients reels** (Adidas, L'Oreal, Amazon, etc.) — c'est la preuve la plus forte du site
 - **Case studies avec chiffres** (6M vues, 21.44% engagement, 67 createurs) — ancrage dans le reel
 - **Team avec photos et bios** — humanise la marque
@@ -316,18 +337,21 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - **Modele commission talents** — alignement d'interets credible
 
 ### Ce qui fait "mockup"
+
 - **Widgets simules** (sur /for-talents, retires — bien) — suggeraient un produit qui n'existe pas
 - **Stats sans source ni date** ("17M+ impressions" — quand ? sur quelle periode ?)
 - **"100+ createurs" vs case study CJ Group "67 createurs"** — incoherence numerique
 - **Tech Stack card** ("HypeAuditor", "Favikon", "Traackr", "Kolsquare") — liste d'outils tiers sans contexte
 
 ### Ce qui fait "facade"
+
 - **Studio "Coming Soon"** — promesse non tenue dans la navigation principale
 - **Homepage vide** — pas de contenu = pas de substance
 - **ServicesAndMetrics CTA "Your Project?"** — anglais non justifie, semble copie d'un template
 - **"15+ Marques accompagnees"** dans le hero vs 18 logos affiches — le chiffre semble faussement modeste
 
 ### Ce qui augmente la confiance
+
 - Le tableau comparatif "Agence classique vs Wafia" — positionne Wafia contre un ennemi concret
 - La section compliance (ARPP, RGPD, DSA) — rassurance juridique
 - Le process en 5 etapes avec livrables — montre la methode
@@ -337,6 +361,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 ## I. Conversion design
 
 ### Ou le design sert la conversion
+
 - **Double CTA header** ("Je suis une Marque" / "Je suis un Talent") — segmentation immediate, excellente
 - **FloatingNavigation CTA** ("Cadrer ma campagne") — persistant, visible, bien formule
 - **Section "Pour qui"** — auto-qualification qui filtre et rassure
@@ -344,6 +369,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - **CTA final brands** ("Votre prochaine campagne merite mieux") — bon timing, bon message
 
 ### Ou le design cannibalise la conversion
+
 - **Marquees perpetuelles** — attirent l'oeil vers le mouvement au lieu du CTA
 - **ServicesAndMetrics** — le titre en 8rem, les 11 services, le CTA "Your Project?" dispersent completement l'attention
 - **Longueur de /for-brands** (13 800px) — les derniers CTA arrivent apres trop de scroll
@@ -351,11 +377,13 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - **Studio page** — dead end sans aucun CTA
 
 ### Ou il faudrait retirer de la sophistication
+
 - ServicesAndMetrics — simplifier radicalement
 - ProcessSection — condenser (5 etapes OK, mais 5-7 bullets par etape est excessif)
 - BrandHero — retirer le widget ROI ou le reduire
 
 ### Ou il faudrait augmenter la preuve
+
 - Homepage — ajouter au minimum les logos clients et une description
 - Services page — ajouter des visuels, des cas, des logos
 - Talents page — ajouter des temoignages reels
@@ -365,6 +393,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 # 4. AUDIT PAGE PAR PAGE
 
 ## Homepage (/)
+
 - **Niveau visuel :** 4/10
 - **Forces :** Background generatif singulier, atmosphere premium
 - **Faiblesses :** Zero contenu, H1 invisible (sr-only), aucune promesse, aucune preuve
@@ -375,6 +404,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - **Verdict :** Ecran de veille premium. A refaire avec du contenu.
 
 ## Services (/services)
+
 - **Niveau visuel :** 3/10
 - **Forces :** Structure claire en 4 services, FAQ bien redigee
 - **Faiblesses :** Zero identite visuelle, pas d'image, pas de logo client, template texte nu
@@ -383,6 +413,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - **Verdict :** La page la plus faible visuellement. Doit etre rehaussee ou fusionnee avec /for-brands.
 
 ## For Brands (/for-brands)
+
 - **Niveau visuel :** 7/10
 - **Forces :** Logos clients, case studies, comparison table, process timeline, FloatingNavigation, team cards
 - **Faiblesses :** ServicesAndMetrics incoherent, hero trop dense, page trop longue
@@ -395,6 +426,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - **Verdict :** Meilleure page du site, mais en surpoids. Condenser de 20-30%.
 
 ## For Talents (/for-talents) — apres refonte
+
 - **Niveau visuel :** 6.5/10
 - **Forces :** Hero net, ForWho qualifiant, 6 piliers clairs, methode compressible, team cards riches
 - **Faiblesses :** Absence de preuves reelles (zero temoignage, zero talent montre), contraste des cartes corrige mais a verifier en light mode
@@ -405,6 +437,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - **Verdict :** Bonne structure, manque de chair (temoignages, cas reels).
 
 ## Studio (/studio)
+
 - **Niveau visuel :** 2/10
 - **Forces :** Le design iOS-like est un choix fort quand il est complet
 - **Faiblesses :** 2/3 labels "Coming Soon", aucun contenu reel, design system deconnecte du reste
@@ -412,6 +445,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - **Verdict :** Soit terminer, soit retirer de la navigation.
 
 ## Wiki (/wiki)
+
 - **Niveau visuel :** 4/10
 - **Forces :** Taxonomie claire (themes + plateformes), recherche
 - **Faiblesses :** Design blog generique, pas d'identite Wafia, pas de CTA, pas d'auteur
@@ -422,44 +456,44 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 
 # 5. LISTE DES WIDGETS ET VERDICT
 
-| # | Widget | Page | Verdict | Action |
-|---|--------|------|---------|--------|
-| 1 | SmartDistributionDashboard | /for-talents | Simulation decorative | **SUPPRIME** |
-| 2 | DealDeskWidget | /for-talents | Faux contrat | **SUPPRIME** |
-| 3 | KPIPulseWidget | /for-talents | Radar sweep decoratif | **SUPPRIME** |
-| 4 | ProductionPipelineWidget | /for-talents | Convoyeur simule | **SUPPRIME** |
-| 5 | IdentityLensWidget | /for-talents | Score simule | **SUPPRIME** |
-| 6 | SeriesFormatsWidget | /for-talents | Stats simulees | **SUPPRIME** |
-| 7 | WafiaOSWidget | /for-talents | Dashboard mockup | **SUPPRIME** |
-| 8 | ScriptCard | /for-talents | Script anime | **SUPPRIME** |
-| 9 | EventEngineWidget | /for-talents | Non rendu | **SUPPRIME** |
-| 10 | ROI widget (hero) | /for-brands | Chiffre ROI | **SIMPLIFIER** — reduire a un badge discret |
-| 11 | Tech Stack card | /for-brands | Liste d'outils | **GARDER** — informatif |
-| 12 | ServicesAndMetrics CTA | /for-brands | "Your Project?" | **SUPPRIMER** — anglais, deconnecte |
-| 13 | Marquee logos | /for-brands | Mouvement perpetuel | **REMPLACER** par grille statique |
-| 14 | Marquee services | /for-brands | 11 services defilants | **REMPLACER** par grille 4-5 items |
+| #   | Widget                     | Page         | Verdict               | Action                                      |
+| --- | -------------------------- | ------------ | --------------------- | ------------------------------------------- |
+| 1   | SmartDistributionDashboard | /for-talents | Simulation decorative | **SUPPRIME**                                |
+| 2   | DealDeskWidget             | /for-talents | Faux contrat          | **SUPPRIME**                                |
+| 3   | KPIPulseWidget             | /for-talents | Radar sweep decoratif | **SUPPRIME**                                |
+| 4   | ProductionPipelineWidget   | /for-talents | Convoyeur simule      | **SUPPRIME**                                |
+| 5   | IdentityLensWidget         | /for-talents | Score simule          | **SUPPRIME**                                |
+| 6   | SeriesFormatsWidget        | /for-talents | Stats simulees        | **SUPPRIME**                                |
+| 7   | WafiaOSWidget              | /for-talents | Dashboard mockup      | **SUPPRIME**                                |
+| 8   | ScriptCard                 | /for-talents | Script anime          | **SUPPRIME**                                |
+| 9   | EventEngineWidget          | /for-talents | Non rendu             | **SUPPRIME**                                |
+| 10  | ROI widget (hero)          | /for-brands  | Chiffre ROI           | **SIMPLIFIER** — reduire a un badge discret |
+| 11  | Tech Stack card            | /for-brands  | Liste d'outils        | **GARDER** — informatif                     |
+| 12  | ServicesAndMetrics CTA     | /for-brands  | "Your Project?"       | **SUPPRIMER** — anglais, deconnecte         |
+| 13  | Marquee logos              | /for-brands  | Mouvement perpetuel   | **REMPLACER** par grille statique           |
+| 14  | Marquee services           | /for-brands  | 11 services defilants | **REMPLACER** par grille 4-5 items          |
 
 ---
 
 # 6. LISTE DES ANIMATIONS ET VERDICT
 
-| # | Animation | Emplacement | Utilite | Action |
-|---|-----------|-------------|---------|--------|
-| 1 | Reveal fade+Y au scroll | Global | Rythme | **GARDER** — uniformiser timings |
-| 2 | Stagger children | Cards, listes | Elegance | **GARDER** |
-| 3 | Scroll-driven timeline | ProcessSection | Engagement | **GARDER** |
-| 4 | Counter animation | Stats | Dramatisation | **GARDER** |
-| 5 | BackgroundFlow gradient | Brands, Talents | Atmosphere | **GARDER** |
-| 6 | Spring hover cards | Cards | Interactivite | **ATTENUER** — reduire le scale |
-| 7 | Particules generatifs | Homepage | Identite | **GARDER** — ajouter du contenu par dessus |
-| 8 | Marquee perpetuelle logos | ClientsSection | Social proof | **SUPPRIMER** — grille statique |
-| 9 | Marquee perpetuelle services | ServicesAndMetrics | Showcase | **SUPPRIMER** — grille statique |
-| 10 | Ping perpetuel (dots) | Hero talents, Process | Signal statut | **ATTENUER** — dot statique sans ping |
-| 11 | Gradient bar scaleX | Team cards | Detail | **GARDER** — subtil et elegant |
-| 12 | FloatingNav spring | Navigation | Fluidite | **GARDER** — bien calibre |
-| 13 | Blur entrance words | Signature methode (ancien) | Cinematique | **SUPPRIME** — correct, remplace par reveal |
-| 14 | Parallax card | Persona tabs (ancien) | Profondeur | **SUPPRIME** — correct |
-| 15 | Card rotation hover | ServicesAndMetrics | Neo-brutalisme | **SUPPRIMER** — incoherent |
+| #   | Animation                    | Emplacement                | Utilite        | Action                                      |
+| --- | ---------------------------- | -------------------------- | -------------- | ------------------------------------------- |
+| 1   | Reveal fade+Y au scroll      | Global                     | Rythme         | **GARDER** — uniformiser timings            |
+| 2   | Stagger children             | Cards, listes              | Elegance       | **GARDER**                                  |
+| 3   | Scroll-driven timeline       | ProcessSection             | Engagement     | **GARDER**                                  |
+| 4   | Counter animation            | Stats                      | Dramatisation  | **GARDER**                                  |
+| 5   | BackgroundFlow gradient      | Brands, Talents            | Atmosphere     | **GARDER**                                  |
+| 6   | Spring hover cards           | Cards                      | Interactivite  | **ATTENUER** — reduire le scale             |
+| 7   | Particules generatifs        | Homepage                   | Identite       | **GARDER** — ajouter du contenu par dessus  |
+| 8   | Marquee perpetuelle logos    | ClientsSection             | Social proof   | **SUPPRIMER** — grille statique             |
+| 9   | Marquee perpetuelle services | ServicesAndMetrics         | Showcase       | **SUPPRIMER** — grille statique             |
+| 10  | Ping perpetuel (dots)        | Hero talents, Process      | Signal statut  | **ATTENUER** — dot statique sans ping       |
+| 11  | Gradient bar scaleX          | Team cards                 | Detail         | **GARDER** — subtil et elegant              |
+| 12  | FloatingNav spring           | Navigation                 | Fluidite       | **GARDER** — bien calibre                   |
+| 13  | Blur entrance words          | Signature methode (ancien) | Cinematique    | **SUPPRIME** — correct, remplace par reveal |
+| 14  | Parallax card                | Persona tabs (ancien)      | Profondeur     | **SUPPRIME** — correct                      |
+| 15  | Card rotation hover          | ServicesAndMetrics         | Neo-brutalisme | **SUPPRIMER** — incoherent                  |
 
 ---
 
@@ -557,6 +591,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 # 10. PRINCIPES DIRECTEURS
 
 ## Regles d'animation
+
 1. Toute animation doit utiliser les tokens de `easing.ts` — jamais de courbe hardcodee
 2. Duree par defaut : `DURATION.normal` (0.4s). Maximum : `DURATION.slower` (0.8s).
 3. 2 springs standard : `responsive` (stiffness: 300, damping: 25) et `gentle` (stiffness: 120, damping: 28)
@@ -564,6 +599,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 5. Une animation doit servir la comprehension ou la hierarchie — jamais la decoration
 
 ## Regles de widgets
+
 1. Un widget ne doit montrer que des donnees reelles ou des outils reellement utilises
 2. Pas de simulation de produit (dashboard, radar, pipeline) sauf si le produit existe
 3. Un widget informatif (Tech Stack, liste d'outils) est autorise
@@ -571,6 +607,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 5. En cas de doute, remplacer le widget par une preuve textuelle (chiffre, temoignage, cas)
 
 ## Regles de hierarchie
+
 1. Maximum 4 elements dans le viewport initial d'un hero (titre + subtitle + CTA + 1 preuve)
 2. Maximum 8 sections par page longue
 3. Maximum 5 items par grille de cards
@@ -578,6 +615,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 5. Un titre de section ne depasse jamais `text-6xl` (pas de `text-[8rem]`)
 
 ## Regles de cartes
+
 1. 2 patterns maximum : dark opaque (`bg-slate-900/80`) + light translucide (`bg-white/90 dark:bg-zinc-900/80`)
 2. 3 radius : `rounded-xl` (standard) / `rounded-2xl` (prominent) / `rounded-full` (pills)
 3. 2 ombres : `shadow-lg` (standard) / `shadow-2xl` (elevated)
@@ -585,6 +623,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 5. Pas d'ombre neo-brutaliste
 
 ## Regles de sophistication
+
 1. La sophistication est dans la retenue, pas dans l'accumulation
 2. Si un effet attire l'oeil plus que le contenu, il est trop fort
 3. Si une animation dure plus de 0.8s, elle doit etre justifiee
@@ -592,6 +631,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 5. Le meilleur design est celui qu'on ne remarque pas — on remarque le message
 
 ## Regles de charge cognitive
+
 1. Maximum 1 element en mouvement par viewport
 2. Pas de marquee perpetuelle
 3. Pas de compteur anime + marquee + hover animation dans le meme viewport
@@ -599,6 +639,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 5. Alterner sections denses et sections aerees (rythme binaire)
 
 ## Regles de premium
+
 1. Premium = intention precise, pas profusion
 2. Chaque element doit justifier sa presence
 3. L'espace vide est un choix de design, pas un manque
@@ -606,6 +647,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 5. Le premium se mesure a la coherence des micro-details, pas a la spectacularite des macro-effets
 
 ## Regles de coherence globale
+
 1. 1 palette de gris (slate)
 2. 1 fond noir (#0b111a)
 3. 2 polices (Outfit headings + Plus Jakarta body)
@@ -617,6 +659,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 # 11. DIRECTION DE REFONTE IDEALE
 
 ## Ce qu'il faut conserver
+
 - La segmentation chromatique brands (warm) vs talents (cool) — c'est une idee forte
 - Le BackgroundFlow — atmosperique et subtil
 - La FloatingNavigation — meilleur composant, la garder comme reference de qualite
@@ -627,6 +670,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - Le tableau comparatif — pedagogique et differenciant
 
 ## Ce qu'il faut supprimer
+
 - TOUS les widgets simules (deja fait pour /for-talents)
 - La section ServicesAndMetrics en neo-brutalisme
 - Les marquees perpetuelles
@@ -636,6 +680,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - Le CTA "Your Project?" en anglais
 
 ## Ce qu'il faut simplifier
+
 - La homepage (ajouter contenu, garder particules en fond)
 - Le hero brands (de 7 a 4 elements)
 - Le process brands (de 5-7 bullets a 3 lignes par etape)
@@ -643,6 +688,7 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - Le Studio (soit un vrai portfolio, soit retirer de la nav)
 
 ## Ce qu'il faut amplifier
+
 - Les logos clients — les montrer plus tot, plus souvent, en grille statique
 - Les temoignages — ajouter 1-2 verbatims de CMO
 - Les resultats — publier un "bilan" ou une page "resultats" avec chiffres agreges
@@ -650,18 +696,22 @@ Un widget est justifie UNIQUEMENT s'il montre quelque chose de reel (outil utili
 - L'identite geographique (Paris + Montreal) — un differenciateur sous-exploite
 
 ## DA cible
+
 **Dark premium editorial.** Un site sombre, net, avec des accents de couleur segmentes. Pas de glassmorphism excessif. Pas de neo-brutalisme. Des surfaces opaques, des typographies precises, des espaces genereux. L'atmosphere du BackgroundFlow comme fil conducteur. La retenue comme marque de fabrique. "Wafia ne fait pas de bruit — elle fait autorite."
 
 ## Motion target
+
 **Subtil et systemique.** Reveals au scroll uniformes. Springs calibrees. Zero mouvement perpetuel. L'animation sert la comprehension, jamais la decoration. Le site doit sembler "calme et maitrise", pas "anime et dynamique."
 
 ## Role des widgets dans le futur
+
 **Informatifs uniquement.** Un widget Wafia montre un outil reel utilise, un resultat reel obtenu, ou un processus reel documente. Il ne simule jamais un produit. La preuve doit etre dans les chiffres, les temoignages et les cas — pas dans les mockups.
 
 ## Equilibre cible
+
 **60% editorial (promesse, methode, positionnement) + 20% preuve (logos, cas, temoignages) + 15% conversion (CTA, FAQ, qualification) + 5% branding (atmosphere, motion, details).** Aujourd'hui le site est a environ 40% branding + 30% editorial + 20% preuve + 10% conversion. Le branding doit reculer pour laisser la preuve et la conversion avancer.
 
 ---
 
-*Fin de l'audit design. Document genere le 2 avril 2026.*
-*Niveau : Audit direction de creation / Head of Design.*
+_Fin de l'audit design. Document genere le 2 avril 2026._
+_Niveau : Audit direction de creation / Head of Design._

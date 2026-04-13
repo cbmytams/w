@@ -10,7 +10,12 @@ function normalizeSecret(secret) {
 
 async function ensureStandaloneNextAuthSecret({
   env = process.env,
-  secretFile = path.join(process.cwd(), ".next", "standalone", ".nextauth-local-secret"),
+  secretFile = path.join(
+    process.cwd(),
+    ".next",
+    "standalone",
+    ".nextauth-local-secret"
+  ),
   generateSecret = () => randomBytes(32).toString("hex"),
 } = {}) {
   const envSecret = normalizeSecret(env.NEXTAUTH_SECRET);

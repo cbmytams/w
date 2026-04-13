@@ -57,7 +57,11 @@ function getClientIp(request: NextRequest) {
   return request.headers.get("x-real-ip") || "unknown";
 }
 
-function consumeToken(key: string, limit: number, windowMs: number): RateLimitResult {
+function consumeToken(
+  key: string,
+  limit: number,
+  windowMs: number
+): RateLimitResult {
   const now = Date.now();
   const store = getStore();
   const existing = store.get(key);
@@ -70,7 +74,10 @@ function consumeToken(key: string, limit: number, windowMs: number): RateLimitRe
   if (existing.count >= limit) {
     return {
       allowed: false,
-      retryAfterSeconds: Math.max(1, Math.ceil((existing.resetAt - now) / 1000))
+      retryAfterSeconds: Math.max(
+        1,
+        Math.ceil((existing.resetAt - now) / 1000)
+      ),
     };
   }
 
@@ -80,26 +87,32 @@ function consumeToken(key: string, limit: number, windowMs: number): RateLimitRe
 }
 
 function buildExpectedOrigins(request: NextRequest) {
-  const hostHeader = request.headers.get("x-forwarded-host") || request.headers.get("host");
+  const hostHeader =
+    request.headers.get("x-forwarded-host") || request.headers.get("host");
   const host = hostHeader?.split(",")[0]?.trim() || null;
   const forwardedProto = request.headers.get("x-forwarded-proto");
   const currentOrigin = normalizeUrlOrigin(request.url);
-  const protoFromOrigin = currentOrigin?.startsWith("https://") ? "https" : "http";
+  const protoFromOrigin = currentOrigin?.startsWith("https://")
+    ? "https"
+    : "http";
   const protocol = forwardedProto || protoFromOrigin;
 
   const expectedFromHost = host ? `${protocol}://${host}` : null;
   const expectedFromEnv = normalizeUrlOrigin(
     process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || null
   );
-  const extraOrigins = splitAndTrim(process.env.ALLOWED_ORIGINS || null).map((entry) =>
-    normalizeUrlOrigin(entry)
+  const extraOrigins = splitAndTrim(process.env.ALLOWED_ORIGINS || null).map(
+    (entry) => normalizeUrlOrigin(entry)
   );
 
   return Array.from(
     new Set(
-      [expectedFromHost, expectedFromEnv, currentOrigin, ...extraOrigins].filter(
-        (value): value is string => Boolean(value)
-      )
+      [
+        expectedFromHost,
+        expectedFromEnv,
+        currentOrigin,
+        ...extraOrigins,
+      ].filter((value): value is string => Boolean(value))
     )
   );
 }
@@ -119,7 +132,10 @@ export function enforceSameOrigin(request: NextRequest) {
   return Response.json({ error: "Invalid origin" }, { status: 403 });
 }
 
-export function enforceRateLimit(request: NextRequest, options: RateLimitOptions) {
+export function enforceRateLimit(
+  request: NextRequest,
+  options: RateLimitOptions
+) {
   const ip = getClientIp(request);
   const key = `${options.scope}:${ip}`;
   const result = consumeToken(key, options.limit, options.windowMs);
@@ -131,8 +147,8 @@ export function enforceRateLimit(request: NextRequest, options: RateLimitOptions
     {
       status: 429,
       headers: {
-        "Retry-After": String(result.retryAfterSeconds)
-      }
+        "Retry-After": String(result.retryAfterSeconds),
+      },
     }
   );
 }

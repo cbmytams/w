@@ -5,7 +5,7 @@ export async function resolveTenantIdForSession(tenantSlug?: string | null) {
 
   const bySlug = await prisma.tenant.findUnique({
     where: { slug: tenantSlug },
-    select: { id: true }
+    select: { id: true },
   });
 
   return bySlug?.id ?? null;

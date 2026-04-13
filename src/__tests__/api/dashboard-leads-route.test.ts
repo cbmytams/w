@@ -13,7 +13,8 @@ const prismaMock = {
 };
 
 jest.mock("@/lib/apiAuth", () => ({
-  requireDashboardRole: (...args: unknown[]) => requireDashboardRoleMock(...args),
+  requireDashboardRole: (...args: unknown[]) =>
+    requireDashboardRoleMock(...args),
 }));
 
 jest.mock("@/lib/requestSecurity", () => ({
@@ -44,17 +45,20 @@ describe("dashboard leads PATCH route", () => {
   it("returns 404 when no tenant-scoped lead is updated", async () => {
     prismaMock.talent.updateMany.mockResolvedValue({ count: 0 });
 
-    const request = new NextRequest("https://wafia.test/api/v1/dashboard/leads", {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ id: "lead_123", status: "QUALIFIED" }),
-    });
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/dashboard/leads",
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id: "lead_123", status: "QUALIFIED" }),
+      }
+    );
 
     const response = await PATCH(request);
     const body = await response.json();
 
     expect(response.status).toBe(404);
-    expect(body).toEqual({ error: "Lead not found" });
+    expect(body).toEqual({ success: false, error: "Lead not found" });
     expect(prismaMock.talent.updateMany).toHaveBeenCalledWith({
       where: { id: "lead_123", tenantId: "tenant-1" },
       data: {
@@ -65,18 +69,26 @@ describe("dashboard leads PATCH route", () => {
   });
 
   it("returns 500 for unexpected database errors", async () => {
-    prismaMock.talent.updateMany.mockRejectedValue(new Error("database unavailable"));
+    prismaMock.talent.updateMany.mockRejectedValue(
+      new Error("database unavailable")
+    );
 
-    const request = new NextRequest("https://wafia.test/api/v1/dashboard/leads", {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ id: "lead_456", status: "ARCHIVED" }),
-    });
+    const request = new NextRequest(
+      "https://wafia.test/api/v1/dashboard/leads",
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id: "lead_456", status: "ARCHIVED" }),
+      }
+    );
 
     const response = await PATCH(request);
     const body = await response.json();
 
     expect(response.status).toBe(500);
-    expect(body).toEqual({ error: "Internal Server Error" });
+    expect(body).toEqual({
+      success: false,
+      error: "Internal Server Error",
+    });
   });
 });

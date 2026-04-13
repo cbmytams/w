@@ -81,7 +81,10 @@ export async function GET() {
   }));
 
   const items = wikiItems
-    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    )
     .slice(0, RSS_LIMIT);
 
   return new Response(toFeedXml(items), {

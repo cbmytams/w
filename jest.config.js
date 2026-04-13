@@ -7,6 +7,14 @@ module.exports = {
   testEnvironment: "node",
   roots: ["<rootDir>/src"],
   testMatch: ["<rootDir>/src/**/*.test.ts", "<rootDir>/src/**/*.spec.ts"],
+  collectCoverage: true,
+  coverageProvider: "v8",
+  coverageThreshold: {
+    global: {
+      branches: 50,
+      statements: 60,
+    },
+  },
   transform: {
     ...tsJestTransformCfg,
   },

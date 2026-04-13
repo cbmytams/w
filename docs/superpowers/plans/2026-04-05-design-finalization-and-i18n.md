@@ -15,6 +15,7 @@
 ### Task 1: Remove Studio from navigation + add redirect
 
 **Files:**
+
 - Modify: `src/constants/navigation.ts:10`
 - Modify: `next.config.ts:86-108`
 
@@ -24,9 +25,9 @@ In `src/constants/navigation.ts`, replace lines 8-12:
 
 ```ts
 export const MAIN_NAVIGATION: NavItem[] = [
-    { name: "Services", href: "/services" },
-    { name: "Réalisations", href: "/for-brands#case-studies" },
-]
+  { name: "Services", href: "/services" },
+  { name: "Réalisations", href: "/for-brands#case-studies" },
+];
 ```
 
 - [ ] **Step 2: Add /studio redirect in next.config.ts**
@@ -58,6 +59,7 @@ git commit -m "feat: remove Studio from nav, add 301 redirect to case-studies"
 ### Task 2: Fix homepage dark background (#050510 → #0b111a)
 
 **Files:**
+
 - Modify: `src/components/home/HomeClient.tsx:22,92`
 
 - [ ] **Step 1: Replace both #050510 occurrences**
@@ -65,24 +67,31 @@ git commit -m "feat: remove Studio from nav, add 301 redirect to case-studies"
 In `src/components/home/HomeClient.tsx`:
 
 Line 22 — replace:
+
 ```tsx
 <div className="absolute inset-0 z-0 bg-[#050510]">
 ```
+
 with:
+
 ```tsx
 <div className="absolute inset-0 z-0 bg-[#0b111a]">
 ```
 
 Line 23 — update the radial gradient endpoint to match:
+
 ```tsx
 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.08)_0%,rgba(236,72,153,0.06)_35%,rgba(11,17,26,1)_70%)]" />
 ```
 
 Line 92 — replace:
+
 ```tsx
 <div id="home-root" className="min-h-screen w-full bg-[#050510] flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
 ```
+
 with:
+
 ```tsx
 <div id="home-root" className="min-h-screen w-full bg-[#0b111a] flex flex-col relative overflow-hidden selection:bg-brand-primary/30">
 ```
@@ -104,6 +113,7 @@ git commit -m "fix: unify homepage background to #0b111a"
 ### Task 3: Replace ClientsSection marquee with static grid
 
 **Files:**
+
 - Modify: `src/components/for-brands/ClientsSection.tsx`
 
 - [ ] **Step 1: Rewrite ClientsSection as static grid**
@@ -111,38 +121,42 @@ git commit -m "fix: unify homepage background to #0b111a"
 Replace the entire content of `src/components/for-brands/ClientsSection.tsx`:
 
 ```tsx
-"use client"
+"use client";
 
-import Image from "next/image"
-import { CLIENTS } from "@/constants/clients"
+import Image from "next/image";
+import { CLIENTS } from "@/constants/clients";
 
 function LogoCard({ name, logoLight }: { name: string; logoLight: string }) {
-    return (
-        <div className="flex items-center justify-center p-4">
-            <Image
-                src={logoLight}
-                alt={name}
-                width={120}
-                height={40}
-                sizes="120px"
-                className="h-8 w-auto object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
-            />
-        </div>
-    )
+  return (
+    <div className="flex items-center justify-center p-4">
+      <Image
+        src={logoLight}
+        alt={name}
+        width={120}
+        height={40}
+        sizes="120px"
+        className="h-8 w-auto object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+      />
+    </div>
+  );
 }
 
 export function ClientsSection() {
-    return (
-        <section id="clients" className="py-12 md:py-16 relative z-10">
-            <div className="max-w-6xl mx-auto px-4">
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-8 items-center">
-                    {CLIENTS.map((client) => (
-                        <LogoCard key={client.name} name={client.name} logoLight={client.logoLight} />
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
+  return (
+    <section id="clients" className="py-12 md:py-16 relative z-10">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-8 items-center">
+          {CLIENTS.map((client) => (
+            <LogoCard
+              key={client.name}
+              name={client.name}
+              logoLight={client.logoLight}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 ```
 
@@ -163,6 +177,7 @@ git commit -m "feat: replace client marquee with static logo grid"
 ### Task 4: Fix hardcoded spring in TalentJourneySection
 
 **Files:**
+
 - Modify: `src/components/for-talents/TalentJourneySection.tsx:91`
 
 - [ ] **Step 1: Add SPRING import**
@@ -170,16 +185,19 @@ git commit -m "feat: replace client marquee with static logo grid"
 At the top of `src/components/for-talents/TalentJourneySection.tsx`, add:
 
 ```ts
-import { SPRING } from "@/lib/design-tokens"
+import { SPRING } from "@/lib/design-tokens";
 ```
 
 - [ ] **Step 2: Replace hardcoded spring values**
 
 Line 91 — replace:
+
 ```tsx
 transition={{ type: "spring", stiffness: 400, damping: 30 }}
 ```
+
 with:
+
 ```tsx
 transition={{ type: "spring", ...SPRING.responsive }}
 ```
@@ -201,6 +219,7 @@ git commit -m "fix: use SPRING.responsive token in TalentJourneySection"
 ### Task 5: Clean up dead code + minor issues
 
 **Files:**
+
 - Modify: `src/constants/brand-additions.ts:34-68`
 - Modify: `src/constants/index.ts:43`
 - Modify: `src/constants/legacy.ts` (remove AUTHENTICITY_CARDS re-export)
@@ -239,6 +258,7 @@ git commit -m "chore: remove AUTHENTICITY_CARDS dead code"
 ### Task 6: Install next-intl + create i18n infrastructure
 
 **Files:**
+
 - Modify: `package.json`
 - Create: `src/i18n/request.ts`
 - Create: `src/i18n/routing.ts`
@@ -254,7 +274,7 @@ Run: `cd ~/Desktop/"wafia - website" && npm install next-intl`
 Create `src/i18n/routing.ts`:
 
 ```ts
-import { defineRouting } from "next-intl/routing"
+import { defineRouting } from "next-intl/routing";
 
 export const routing = defineRouting({
   locales: ["fr", "en", "es"],
@@ -265,9 +285,9 @@ export const routing = defineRouting({
     { domain: "en.wafia.co", defaultLocale: "en" },
     { domain: "es.wafia.co", defaultLocale: "es" },
   ],
-})
+});
 
-export type Locale = (typeof routing.locales)[number]
+export type Locale = (typeof routing.locales)[number];
 ```
 
 - [ ] **Step 3: Create request configuration**
@@ -275,13 +295,13 @@ export type Locale = (typeof routing.locales)[number]
 Create `src/i18n/request.ts`:
 
 ```ts
-import { getRequestConfig } from "next-intl/server"
-import { routing } from "./routing"
+import { getRequestConfig } from "next-intl/server";
+import { routing } from "./routing";
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  let locale = await requestLocale
+  let locale = await requestLocale;
   if (!locale || !routing.locales.includes(locale as "fr" | "en" | "es")) {
-    locale = routing.defaultLocale
+    locale = routing.defaultLocale;
   }
 
   return {
@@ -296,8 +316,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
         currency: { style: "currency", currency: "EUR" },
       },
     },
-  }
-})
+  };
+});
 ```
 
 - [ ] **Step 4: Create middleware**
@@ -305,14 +325,14 @@ export default getRequestConfig(async ({ requestLocale }) => {
 Create `src/middleware.ts`:
 
 ```ts
-import createMiddleware from "next-intl/middleware"
-import { routing } from "./i18n/routing"
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
-export default createMiddleware(routing)
+export default createMiddleware(routing);
 
 export const config = {
   matcher: ["/((?!api|admin|questionnaire|_next|.*\\..*).*)"],
-}
+};
 ```
 
 - [ ] **Step 5: Wrap next.config.ts with next-intl plugin**
@@ -333,6 +353,7 @@ export default withNextIntl(nextConfig);
 ```
 
 Specifically:
+
 - Line 1: keep `import type { NextConfig } from "next";`
 - After line 1: add `import createNextIntlPlugin from "next-intl/plugin";`
 - After that: add `const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");`
@@ -355,6 +376,7 @@ git commit -m "feat: add next-intl infrastructure (routing, middleware, request 
 ### Task 7: Create French translation file (source of truth)
 
 **Files:**
+
 - Create: `messages/fr.json`
 
 - [ ] **Step 1: Create messages directory**
@@ -532,6 +554,7 @@ git commit -m "feat: add translation files (fr source of truth, en/es empty skel
 ### Task 8: Integrate NextIntlClientProvider into root layout
 
 **Files:**
+
 - Modify: `src/app/layout.tsx`
 
 - [ ] **Step 1: Make layout async and add next-intl provider**
@@ -539,8 +562,8 @@ git commit -m "feat: add translation files (fr source of truth, en/es empty skel
 In `src/app/layout.tsx`, add imports at the top (after existing imports):
 
 ```ts
-import { NextIntlClientProvider } from "next-intl"
-import { getLocale, getMessages } from "next-intl/server"
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 ```
 
 - [ ] **Step 2: Make RootLayout async and wrap with provider**
@@ -557,7 +580,12 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html
+      lang={locale}
+      className="scroll-smooth"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body
         className={`${plusJakarta.variable} ${outfit.variable} antialiased font-sans`}
         suppressHydrationWarning
@@ -566,7 +594,9 @@ export default async function RootLayout({
         <BfCacheScrollRecovery />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
         <script
           type="application/ld+json"
@@ -579,7 +609,9 @@ export default async function RootLayout({
           Aller au contenu
         </a>
         <NextIntlClientProvider messages={messages}>
-          <Suspense fallback={null}><GlobalBackground /></Suspense>
+          <Suspense fallback={null}>
+            <GlobalBackground />
+          </Suspense>
           <GlobalNav />
           <PageTransition>{children}</PageTransition>
           <CookieBanner />
@@ -591,6 +623,7 @@ export default async function RootLayout({
 ```
 
 Key changes:
+
 - `export default function` → `export default async function`
 - `lang="fr"` → `lang={locale}` (dynamic)
 - Added `NextIntlClientProvider` wrapping all interactive content
@@ -612,6 +645,7 @@ git commit -m "feat: integrate NextIntlClientProvider in root layout"
 ### Task 9: Migrate navigation constants to translation keys
 
 **Files:**
+
 - Modify: `src/constants/navigation.ts`
 - Modify: `src/components/layout/GlobalNav.tsx` (or wherever nav is rendered)
 
@@ -624,31 +658,39 @@ Read `src/components/layout/GlobalNav.tsx` to see how MAIN_NAVIGATION and FOOTER
 In `src/constants/navigation.ts`, replace the hardcoded labels with translation key identifiers:
 
 ```ts
-import type { NavItem } from "@/types"
-import { Instagram, Linkedin, Music, type LucideIcon } from "lucide-react"
+import type { NavItem } from "@/types";
+import { Instagram, Linkedin, Music, type LucideIcon } from "lucide-react";
 
 export const MAIN_NAVIGATION = [
-    { key: "services", href: "/services" },
-    { key: "achievements", href: "/for-brands#case-studies" },
-] as const
+  { key: "services", href: "/services" },
+  { key: "achievements", href: "/for-brands#case-studies" },
+] as const;
 
 export const FOOTER_NAVIGATION = [
-    { key: "legal", href: "/legal/mentions" },
-    { key: "privacy", href: "/legal/privacy" },
-    { key: "cookies", href: "/legal/cookies" },
-] as const
+  { key: "legal", href: "/legal/mentions" },
+  { key: "privacy", href: "/legal/privacy" },
+  { key: "cookies", href: "/legal/cookies" },
+] as const;
 
 export interface SocialLink {
-    name: string
-    href: string
-    icon: LucideIcon
+  name: string;
+  href: string;
+  icon: LucideIcon;
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
-    { name: "Instagram", href: "https://www.instagram.com/wafia.agency", icon: Instagram },
-    { name: "LinkedIn", href: "https://www.linkedin.com/company/wafia-agency", icon: Linkedin },
-    { name: "TikTok", href: "https://www.tiktok.com/@wafia.agency", icon: Music },
-]
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/wafia.agency",
+    icon: Instagram,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/wafia-agency",
+    icon: Linkedin,
+  },
+  { name: "TikTok", href: "https://www.tiktok.com/@wafia.agency", icon: Music },
+];
 ```
 
 - [ ] **Step 3: Update GlobalNav to use useTranslations**
@@ -656,17 +698,19 @@ export const SOCIAL_LINKS: SocialLink[] = [
 In the GlobalNav component (or wherever the nav items are rendered), add:
 
 ```tsx
-import { useTranslations } from "next-intl"
+import { useTranslations } from "next-intl";
 
 // Inside the component:
-const t = useTranslations("navigation")
+const t = useTranslations("navigation");
 
 // Render nav items:
-{MAIN_NAVIGATION.map((item) => (
+{
+  MAIN_NAVIGATION.map((item) => (
     <Link key={item.key} href={item.href}>
-        {t(item.key)}
+      {t(item.key)}
     </Link>
-))}
+  ));
+}
 ```
 
 Do the same for footer navigation using `t = useTranslations("footer")`.
@@ -692,6 +736,7 @@ git commit -m "feat: migrate navigation to i18n translation keys"
 ### Task 10: Migrate HomeClient to i18n
 
 **Files:**
+
 - Modify: `src/components/home/HomeClient.tsx`
 - Modify: `src/constants/home-blocks.ts` (if labels are there)
 
@@ -700,18 +745,19 @@ git commit -m "feat: migrate navigation to i18n translation keys"
 In `src/components/home/HomeClient.tsx`, add:
 
 ```tsx
-import { useTranslations } from "next-intl"
+import { useTranslations } from "next-intl";
 ```
 
 Inside the `HomeClient` function, add:
 
 ```tsx
-const t = useTranslations("home")
+const t = useTranslations("home");
 ```
 
 - [ ] **Step 2: Replace hardcoded strings**
 
 Replace:
+
 - Line 106: `<h1 className="sr-only">Agence d&apos;influence marketing – Studio cr&eacute;atif</h1>` → `<h1 className="sr-only">{t("hero.h1")}</h1>`
 - Any French labels in HOME_OPTIONS should reference `t("options.talents")`, `t("options.studio")`, `t("options.brands")`
 
@@ -732,6 +778,7 @@ git commit -m "feat: migrate HomeClient to i18n"
 ### Task 11: Migrate BrandHeroV2 + brand constants to i18n
 
 **Files:**
+
 - Modify: `src/components/for-brands/BrandHeroV2.tsx`
 - Modify: `src/constants/brand-additions.ts`
 
@@ -742,15 +789,16 @@ Read `src/components/for-brands/BrandHeroV2.tsx` to see how `BRAND_HERO_CONTENT`
 - [ ] **Step 2: Add useTranslations to BrandHeroV2**
 
 ```tsx
-import { useTranslations } from "next-intl"
+import { useTranslations } from "next-intl";
 
 // Inside component:
-const t = useTranslations("forBrands.hero")
+const t = useTranslations("forBrands.hero");
 ```
 
 - [ ] **Step 3: Replace BRAND_HERO_CONTENT references with t() calls**
 
 Replace each hardcoded constant reference:
+
 - `BRAND_HERO_CONTENT.badge` → `t("badge")`
 - `BRAND_HERO_CONTENT.title.line1` → `t("titleLine1")`
 - `BRAND_HERO_CONTENT.title.highlight` → `t("titleHighlight")`
@@ -766,7 +814,7 @@ Keep non-text values (colors, hrefs, delays) in constants — only extract user-
 In the FloatingNavigation or wherever BRAND_NAVIGATION is rendered:
 
 ```tsx
-const t = useTranslations("forBrands.nav")
+const t = useTranslations("forBrands.nav");
 // Use t("achievements"), t("method"), t("faq")
 ```
 
@@ -787,6 +835,7 @@ git commit -m "feat: migrate brand hero and nav to i18n"
 ### Task 12: Migrate talent constants + hero to i18n
 
 **Files:**
+
 - Modify: `src/components/for-talents/HeroSection.tsx`
 - Modify: `src/constants/talent-blocks/core.ts`
 - Modify: Other talent components that render text from constants
@@ -798,15 +847,16 @@ Read `src/components/for-talents/HeroSection.tsx` and trace which constants it u
 - [ ] **Step 2: Add useTranslations to HeroSection**
 
 ```tsx
-import { useTranslations } from "next-intl"
+import { useTranslations } from "next-intl";
 
 // Inside component:
-const t = useTranslations("forTalents.hero")
+const t = useTranslations("forTalents.hero");
 ```
 
 - [ ] **Step 3: Replace TALENT_HERO references with t() calls**
 
 Replace all hardcoded text from TALENT_HERO constant with translation calls:
+
 - `TALENT_HERO.badge` → `t("badge")`
 - `TALENT_HERO.title` → `t("title")`
 - `TALENT_HERO.titleHighlight` → `t("titleHighlight")`
@@ -835,6 +885,7 @@ git commit -m "feat: migrate talent pages to i18n"
 ### Task 13: Migrate remaining pages (services, team, legal, errors)
 
 **Files:**
+
 - Modify: `src/app/services/page.tsx` and service components
 - Modify: `src/app/equipe/page.tsx` and team components
 - Modify: `src/app/legal/` pages
@@ -856,12 +907,13 @@ For `src/app/legal/privacy/page.tsx`, `mentions/page.tsx`, `cookies/page.tsx` �
 - [ ] **Step 4: Migrate error pages**
 
 `src/app/not-found.tsx`:
+
 ```tsx
-import { getTranslations } from "next-intl/server"
+import { getTranslations } from "next-intl/server";
 
 export default async function NotFound() {
-  const t = await getTranslations("common.errors")
-  return <div>{t("notFound")}</div>
+  const t = await getTranslations("common.errors");
+  return <div>{t("notFound")}</div>;
 }
 ```
 
@@ -888,6 +940,7 @@ git commit -m "feat: migrate services, team, legal, and error pages to i18n"
 ### Task 14: Migrate common components (CookieBanner, skip link, footer)
 
 **Files:**
+
 - Modify: `src/components/compliance/CookieBanner.tsx`
 - Modify: `src/app/layout.tsx` (skip link text)
 - Modify: Footer component
@@ -929,6 +982,7 @@ git commit -m "feat: migrate common components (cookie banner, skip link, footer
 ### Task 15: Add LanguageSwitcher component
 
 **Files:**
+
 - Create: `src/components/layout/LanguageSwitcher.tsx`
 - Modify: GlobalNav component (to include the switcher)
 
@@ -937,32 +991,33 @@ git commit -m "feat: migrate common components (cookie banner, skip link, footer
 Create `src/components/layout/LanguageSwitcher.tsx`:
 
 ```tsx
-"use client"
+"use client";
 
-import { useLocale } from "next-intl"
-import { routing, type Locale } from "@/i18n/routing"
+import { useLocale } from "next-intl";
+import { routing, type Locale } from "@/i18n/routing";
 
 const DOMAIN_MAP: Record<Locale, string> = {
   fr: "wafia.co",
   en: "en.wafia.co",
   es: "es.wafia.co",
-}
+};
 
 const LABELS: Record<Locale, string> = {
   fr: "FR",
   en: "EN",
   es: "ES",
-}
+};
 
 export function LanguageSwitcher() {
-  const currentLocale = useLocale() as Locale
-  const currentPath = typeof window !== "undefined" ? window.location.pathname : "/"
+  const currentLocale = useLocale() as Locale;
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "/";
 
   return (
     <div className="flex items-center gap-1 text-sm">
       {routing.locales.map((locale) => {
-        const isActive = locale === currentLocale
-        const href = `https://${DOMAIN_MAP[locale]}${currentPath}`
+        const isActive = locale === currentLocale;
+        const href = `https://${DOMAIN_MAP[locale]}${currentPath}`;
 
         return (
           <a
@@ -977,10 +1032,10 @@ export function LanguageSwitcher() {
           >
             {LABELS[locale]}
           </a>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 ```
 
@@ -989,9 +1044,9 @@ export function LanguageSwitcher() {
 Read `src/components/layout/GlobalNav.tsx` and add the `LanguageSwitcher` component next to the navigation items (right side of header, before any mobile menu toggle).
 
 ```tsx
-import { LanguageSwitcher } from "./LanguageSwitcher"
+import { LanguageSwitcher } from "./LanguageSwitcher";
 // Inside the nav bar:
-<LanguageSwitcher />
+<LanguageSwitcher />;
 ```
 
 - [ ] **Step 3: Verify build**
@@ -1011,6 +1066,7 @@ git commit -m "feat: add language switcher (FR/EN/ES) to global navigation"
 ### Task 16: Update SEO metadata for all pages
 
 **Files:**
+
 - Modify: `src/app/page.tsx` (homepage metadata)
 - Modify: `src/app/for-brands/page.tsx`
 - Modify: `src/app/for-talents/page.tsx`
@@ -1025,11 +1081,11 @@ git commit -m "feat: add language switcher (FR/EN/ES) to global navigation"
 For each public page, replace static `metadata` exports with dynamic `generateMetadata`:
 
 ```tsx
-import { getTranslations } from "next-intl/server"
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata() {
-  const t = await getTranslations("forBrands.meta")
-  const path = "/for-brands"
+  const t = await getTranslations("forBrands.meta");
+  const path = "/for-brands";
   return {
     title: t("title"),
     description: t("description"),
@@ -1041,7 +1097,7 @@ export async function generateMetadata() {
         es: `https://es.wafia.co${path}`,
       },
     },
-  }
+  };
 }
 ```
 
@@ -1056,7 +1112,7 @@ const locales = [
   { domain: "https://wafia.co", locale: "fr" },
   { domain: "https://en.wafia.co", locale: "en" },
   { domain: "https://es.wafia.co", locale: "es" },
-]
+];
 
 // For each route, generate entries for all locales
 ```
