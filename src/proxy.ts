@@ -6,7 +6,7 @@ import {
   type DashboardRole,
 } from "@/lib/rbac";
 
-function buildCspHeader(nonce: string) {
+function buildCspHeader(nonce: string, allowSameOriginFrame: boolean) {
   return [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
@@ -14,21 +14,37 @@ function buildCspHeader(nonce: string) {
     "img-src 'self' data: https:",
     "font-src 'self'",
     "connect-src 'self' https://*.sentry.io https://*.upstash.io",
-    "frame-ancestors 'none'",
+    allowSameOriginFrame ? "frame-ancestors 'self'" : "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
     "object-src 'none'",
   ].join("; ");
 }
 
-function applySecurityHeaders(response: NextResponse, nonce: string) {
-  response.headers.set("Content-Security-Policy", buildCspHeader(nonce));
+function allowSameOriginFrame(pathname: string) {
+  return (
+    pathname.startsWith("/questionnaire") ||
+    pathname.startsWith("/questionnaire-brands") ||
+    pathname.startsWith("/questionnaire-talents")
+  );
+}
+
+function applySecurityHeaders(
+  response: NextResponse,
+  nonce: string,
+  pathname: string
+) {
+  const allowFrame = allowSameOriginFrame(pathname);
+  response.headers.set(
+    "Content-Security-Policy",
+    buildCspHeader(nonce, allowFrame)
+  );
   response.headers.set(
     "Strict-Transport-Security",
     "max-age=31536000; includeSubDomains; preload"
   );
   response.headers.set("X-Content-Type-Options", "nosniff");
-  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-Frame-Options", allowFrame ? "SAMEORIGIN" : "DENY");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set(
     "Permissions-Policy",
@@ -56,6 +72,7 @@ export default async function proxy(req: NextRequest) {
   const nonce = crypto.randomUUID();
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set("x-nonce", nonce);
+  const pathname = req.nextUrl.pathname;
 
   const passThrough = applySecurityHeaders(
     NextResponse.next({
@@ -63,10 +80,11 @@ export default async function proxy(req: NextRequest) {
         headers: requestHeaders,
       },
     }),
-    nonce
+    nonce,
+    pathname
   );
 
-  const { isApiAdmin, isAdminRoute } = getRouteChecks(req.nextUrl.pathname);
+  const { isApiAdmin, isAdminRoute } = getRouteChecks(pathname);
   if (!isApiAdmin && !isAdminRoute) {
     return passThrough;
   }
@@ -85,12 +103,14 @@ export default async function proxy(req: NextRequest) {
     if (req.nextUrl.pathname.startsWith("/api")) {
       return applySecurityHeaders(
         new NextResponse("Unauthorized", { status: 401 }),
-        nonce
+        nonce,
+        pathname
       );
     }
     return applySecurityHeaders(
       NextResponse.redirect(new URL("/admin/login", req.url)),
-      nonce
+      nonce,
+      pathname
     );
   }
 
