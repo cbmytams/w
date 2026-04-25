@@ -45,10 +45,27 @@ function allowSameOriginFrame(pathname: string) {
 }
 
 function isQuestionnaireStaticPath(pathname: string) {
-  return (
+  if (
     pathname.startsWith("/questionnaire-brands") ||
     pathname.startsWith("/questionnaire-talents")
-  );
+  ) {
+    return true;
+  }
+  // Talents SPA (Vite) is served from public/questionnaire/. Next.js routes
+  // under /questionnaire/ are talents, brands, admin — those keep the default CSP.
+  if (pathname === "/questionnaire" || pathname === "/questionnaire/") {
+    return true;
+  }
+  if (pathname.startsWith("/questionnaire/assets/")) {
+    return true;
+  }
+  if (
+    pathname.startsWith("/questionnaire/") &&
+    /\.(html|svg|js|css|png|jpe?g|webp|woff2?|ico|map)$/.test(pathname)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 function applySecurityHeaders(
