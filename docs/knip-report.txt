@@ -1,0 +1,212 @@
+Unused files (65)
+src/components/common/index.ts                                        
+src/components/common/InlineCallout.tsx                               
+src/components/for-brands/AuthenticitySection.tsx                     
+src/components/for-brands/ComparisonSection.tsx                       
+src/components/for-brands/DashboardSection.tsx                        
+src/components/for-brands/DeliverablesSection.tsx                     
+src/components/for-brands/DeliverablesSectionV2.tsx                   
+src/components/for-brands/DeliverablesSectionV3.tsx                   
+src/components/for-brands/EstimatorModal.tsx                          
+src/components/for-brands/GlobalPresentationSection.tsx               
+src/components/for-brands/HeroSection.tsx                             
+src/components/for-brands/ServicesAndMetrics.tsx                      
+src/components/for-talents/BusinessSection.tsx                        
+src/components/for-talents/CreatorTrajectoryWidget.tsx                
+src/components/for-talents/DeliverableDetailDrawer.tsx                
+src/components/for-talents/DeliverablesSection.tsx                    
+src/components/for-talents/distribution/CategoryTabs.tsx              
+src/components/for-talents/distribution/data.ts                       
+src/components/for-talents/distribution/PlatformTable.tsx             
+src/components/for-talents/distribution/SmartDistributionDashboard.tsx
+src/components/for-talents/distribution/SubFilterPills.tsx            
+src/components/for-talents/distribution/types.ts                      
+src/components/for-talents/IdentitySection.tsx                        
+src/components/for-talents/LevelsSection.tsx                          
+src/components/for-talents/MethodSection.tsx                          
+src/components/for-talents/PersonaSection.tsx                         
+src/components/for-talents/PlatformsSection.tsx                       
+src/components/for-talents/PositionnementSection.tsx                  
+src/components/for-talents/ProblemSection.tsx                         
+src/components/for-talents/ProofStripSection.tsx                      
+src/components/for-talents/redesign/ConstellationBackground.tsx       
+src/components/for-talents/redesign/DealFlowWidget.tsx                
+src/components/for-talents/redesign/FloatingMetrics.tsx               
+src/components/for-talents/redesign/GradientBackground.tsx            
+src/components/for-talents/redesign/GradientRevealText.tsx            
+src/components/for-talents/redesign/IdentityPhoneWidget.tsx           
+src/components/for-talents/redesign/ParallaxCard.tsx                  
+src/components/for-talents/redesign/SmartDistributionTable.tsx        
+src/components/for-talents/redesign/WafiaOSWidget.tsx                 
+src/components/for-talents/ServiceDetailDrawer.tsx                    
+src/components/for-talents/ServicesSection.tsx                        
+src/components/for-talents/SlideDivider.tsx                           
+src/components/for-talents/TalentOSSection.tsx                        
+src/components/for-talents/widgets/DealDeskWidget.tsx                 
+src/components/for-talents/widgets/EventEngineWidget.tsx              
+src/components/for-talents/widgets/FormationWidget.tsx                
+src/components/for-talents/widgets/IdentityLensWidget.tsx             
+src/components/for-talents/widgets/KPIPulseWidget.tsx                 
+src/components/for-talents/widgets/OpsHubWidget.tsx                   
+src/components/for-talents/widgets/PricingOffersWidget.tsx            
+src/components/for-talents/widgets/ProductionPipelineWidget.tsx       
+src/components/for-talents/widgets/SeriesFormatsWidget.tsx            
+src/components/layout/header.tsx                                      
+src/components/layout/index.ts                                        
+src/components/questionnaire/MissingFieldsBadge.tsx                   
+src/components/team/TeamCard.tsx                                      
+src/components/team/TeamSection.tsx                                   
+src/components/ui/button-animated.tsx                                 
+src/components/ui/card.tsx                                            
+src/components/ui/FuturisticBackground.tsx                            
+src/components/ui/highlight.tsx                                       
+src/components/ui/index.ts                                            
+src/components/ui/input.tsx                                           
+src/hooks/useBodyScrollLock.ts                                        
+src/styles/glass.ts                                                   
+Unused devDependencies (7)
+@axe-core/cli            package.json:64:6
+@tailwindcss/typography  package.json:66:6
+axe-core                 package.json:71:6
+pa11y                    package.json:78:6
+tailwindcss              package.json:81:6
+tailwindcss-animate      package.json:82:6
+ts-node                  package.json:84:6
+Unlisted dependencies (1)
+postcss  postcss.config.mjs
+Unused exports (89)
+FinancialCoreModule               function  src/components/for-brands/HeroWidgets.tsx:110:17      
+buttonVariants                              src/components/ui/button.tsx:56:18                    
+StaggerContainer                  function  src/components/ui/fade-in.tsx:74:17                   
+AUTHENTICITY_CARDS                          src/constants/brand-additions.ts:42:14                
+WIDGETS                                     src/constants/deliverables-widgets.ts:36:14           
+DELIVERABLE_ASSETS                          src/constants/features.ts:96:14                       
+TALENT_PERSONA                              src/constants/index.ts:15:3                           
+TALENT_DELIVERABLES                         src/constants/index.ts:19:3                           
+TALENT_BUSINESS                             src/constants/index.ts:22:3                           
+TALENT_IDENTITY                             src/constants/index.ts:23:3                           
+CLIENTS                                     src/constants/index.ts:37:3                           
+PROCESS_STEPS                               src/constants/index.ts:38:3                           
+TALENT_TIMELINE                             src/constants/index.ts:39:3                           
+TALENT_METHOD                               src/constants/index.ts:40:3                           
+TALENT_SERVICES                             src/constants/index.ts:41:3                           
+TALENT_PLATFORMS                            src/constants/index.ts:42:3                           
+AUTHENTICITY_CARDS                          src/constants/index.ts:43:3                           
+BRAND_HERO_CONTENT                          src/constants/index.ts:44:3                           
+MAIN_NAVIGATION                             src/constants/index.ts:45:3                           
+FOOTER_NAVIGATION                           src/constants/index.ts:46:3                           
+SOCIAL_LINKS                                src/constants/index.ts:47:3                           
+WIDGETS                                     src/constants/index.ts:48:3                           
+TALENT_JOURNEY_HEADER                       src/constants/index.ts:49:3                           
+TALENT_JOURNEY_PHASES                       src/constants/index.ts:50:3                           
+TALENT_JOURNEY_STEPS                        src/constants/index.ts:51:3                           
+getStepsByPhase                             src/constants/index.ts:52:3                           
+getPhaseConfig                              src/constants/index.ts:53:3                           
+CLIENTS                                     src/constants/legacy.ts:9:10                          
+PROCESS_STEPS                               src/constants/legacy.ts:12:10                         
+TALENT_TIMELINE                             src/constants/legacy.ts:16:3                          
+TALENT_METHOD                               src/constants/legacy.ts:17:3                          
+TALENT_SERVICES                             src/constants/legacy.ts:18:3                          
+TALENT_PLATFORMS                            src/constants/legacy.ts:19:3                          
+AUTHENTICITY_CARDS                          src/constants/legacy.ts:23:10                         
+BRAND_HERO_CONTENT                          src/constants/legacy.ts:23:30                         
+MAIN_NAVIGATION                             src/constants/legacy.ts:26:10                         
+FOOTER_NAVIGATION                           src/constants/legacy.ts:26:27                         
+SOCIAL_LINKS                                src/constants/legacy.ts:26:46                         
+WIDGETS                                     src/constants/legacy.ts:30:10                         
+TALENT_JOURNEY_HEADER                       src/constants/legacy.ts:35:3                          
+TALENT_JOURNEY_PHASES                       src/constants/legacy.ts:36:3                          
+TALENT_JOURNEY_STEPS                        src/constants/legacy.ts:37:3                          
+getStepsByPhase                             src/constants/legacy.ts:38:3                          
+getPhaseConfig                              src/constants/legacy.ts:39:3                          
+MAIN_NAVIGATION                             src/constants/navigation.ts:8:14                      
+FOOTER_NAVIGATION                           src/constants/navigation.ts:17:14                     
+SOCIAL_LINKS                                src/constants/navigation.ts:32:14                     
+TALENT_PLATFORMS                            src/constants/talent-blocks.ts:21:14                  
+TALENT_BUSINESS                             src/constants/talent-blocks/core.ts:63:14             
+TALENT_IDENTITY                             src/constants/talent-blocks/core.ts:80:14             
+TALENT_DELIVERABLES                         src/constants/talent-blocks/deliverables.ts:1:14      
+TALENT_METHOD_PHASES                        src/constants/talent-blocks/method-compressed.ts:17:14
+METHOD_SECTION_HEADER                       src/constants/talent-blocks/method-compressed.ts:53:14
+TALENT_METHOD                               src/constants/talent-blocks/method.ts:1:14            
+TALENT_PERSONA                              src/constants/talent-blocks/persona.ts:1:14           
+WHAT_WE_BUILD_HEADER                        src/constants/talent-blocks/pillars.ts:60:14          
+TALENT_SERVICES                             src/constants/talent-blocks/services.ts:1:14          
+TALENT_TIMELINE                             src/constants/talent-blocks/timeline.ts:1:14          
+TALENT_JOURNEY_STEPS                        src/constants/talent-journey-steps.ts:82:14           
+getStepsByPhase                   function  src/constants/talent-journey-steps.ts:210:17          
+getPhaseConfig                    function  src/constants/talent-journey-steps.ts:215:17          
+getAuthorProfileUrl               function  src/lib/authors.ts:78:17                              
+EASING                                      src/lib/design-tokens.ts:11:10                        
+DURATION                                    src/lib/design-tokens.ts:11:18                        
+COLORS                                      src/lib/design-tokens.ts:13:14                        
+RADIUS                                      src/lib/design-tokens.ts:36:14                        
+SHADOW                                      src/lib/design-tokens.ts:42:14                        
+TYPOGRAPHY                                  src/lib/design-tokens.ts:52:14                        
+SECTION                                     src/lib/design-tokens.ts:57:14                        
+HEADER_MARGIN                               src/lib/design-tokens.ts:63:14                        
+CARD                                        src/lib/design-tokens.ts:69:14                        
+getWebsiteContactIntakeUrl        function  src/lib/env.server.ts:68:17                           
+logInfo                           function  src/lib/logger.ts:43:17                               
+evaluateCondition                 function  src/lib/questionnaireConditions.ts:5:17               
+getCurrentQuestionnaireForTenant  function  src/lib/questionnaireTenant.ts:27:23                  
+rateLimiter                                 src/lib/rate-limit.ts:48:14                           
+authRateLimiter                             src/lib/rate-limit.ts:49:14                           
+PLATFORM_ROLES                              src/lib/rbac.ts:1:14                                  
+sitemapRoutes                               src/lib/site.ts:84:14                                 
+serializeJsonLd                   function  src/lib/structured-data.ts:5:17                       
+personSchema                      function  src/lib/structured-data.ts:33:17                      
+profilePageSchema                 function  src/lib/structured-data.ts:53:17                      
+buildTalentQuestionnaireUrl       function  src/lib/talent-questionnaire.ts:17:17                 
+PaginationSchema                            src/lib/validations/api.ts:11:14                      
+SlugSchema                                  src/lib/validations/api.ts:20:14                      
+IdSchema                                    src/lib/validations/api.ts:28:14                      
+PaginationSchema                            src/lib/validations/index.ts:2:3                      
+SlugSchema                                  src/lib/validations/index.ts:3:3                      
+IdSchema                                    src/lib/validations/index.ts:4:3                      
+Unused exported types (40)
+ButtonProps               interface  src/components/ui/button.tsx:35:18                   
+Client                    interface  src/constants/clients.ts:6:18                        
+WidgetId                  type       src/constants/deliverables-widgets.ts:16:13          
+WidgetData                interface  src/constants/deliverables-widgets.ts:23:18          
+DashboardTabId            type       src/constants/features.ts:12:13                      
+SocialLink                type       src/constants/index.ts:57:3                          
+WidgetId                  type       src/constants/index.ts:58:3                          
+WidgetData                type       src/constants/index.ts:59:3                          
+JourneyPhase              type       src/constants/index.ts:60:3                          
+JourneyStep               type       src/constants/index.ts:61:3                          
+PhaseConfig               type       src/constants/index.ts:62:3                          
+SocialLink                type       src/constants/legacy.ts:27:15                        
+WidgetId                  type       src/constants/legacy.ts:31:15                        
+WidgetData                type       src/constants/legacy.ts:31:25                        
+JourneyPhase              type       src/constants/legacy.ts:42:3                         
+JourneyStep               type       src/constants/legacy.ts:43:3                         
+PhaseConfig               type       src/constants/legacy.ts:44:3                         
+SocialLink                interface  src/constants/navigation.ts:26:18                    
+StudioProduction          interface  src/constants/studio.ts:3:18                         
+CompressedPhase           interface  src/constants/talent-blocks/method-compressed.ts:8:18
+TalentPillar              interface  src/constants/talent-blocks/pillars.ts:8:18          
+JourneyPhase              type       src/constants/talent-journey-steps.ts:9:13           
+JourneyStep               interface  src/constants/talent-journey-steps.ts:15:18          
+PhaseConfig               interface  src/constants/talent-journey-steps.ts:26:18          
+TeamMember                type       src/data/team.ts:1:21                                
+AdminSession              type       src/lib/apiAuth.ts:11:13                             
+AdminSession              interface  src/lib/authSession.ts:7:18                          
+BackgroundRuntimeProfile  type       src/lib/background-flow.ts:4:13                      
+CompletionData            type       src/lib/completion.ts:6:13                           
+ConditionAnswers          type       src/lib/questionnaireConditions.ts:3:13              
+Option                    type       src/lib/questionnaireData.ts:3:13                    
+QuestionData              type       src/lib/questionnaireData.ts:22:13                   
+PlatformRole              type       src/lib/rbac.ts:8:13                                 
+RouteCluster              type       src/lib/route-motion.ts:3:13                         
+BreadcrumbItem            type       src/lib/structured-data.ts:10:13                     
+WikiTaxonomyItem          interface  src/lib/wiki-taxonomy.ts:1:18                        
+WikiArticleSummary        interface  src/lib/wiki.ts:36:18                                
+Client                    interface  src/types/index.ts:21:18                             
+FaqItem                   interface  src/types/index.ts:30:18                             
+SectionHeadingProps       interface  src/types/index.ts:39:18                             
+Configuration hints (4)
+. (root)                         knip.json  Add entry and/or refine project files (65 unused files)
+wiki/**                          knip.json  Remove from ignore                                     
+wafia-questionnaire-brands/**    knip.json  Remove from ignore                                     
+src/proxy.ts                     knip.json  Remove redundant entry pattern                         
