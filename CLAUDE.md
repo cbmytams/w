@@ -70,6 +70,10 @@ prisma/
 - **Rate-limit** : Upstash Redis (`kind: "auth"` pour endpoints sensibles).
 - **JSON-LD** : `serializeJsonLd()` échappe `<` pour éviter `</script>` injection.
 - **Tokens internes** : comparaison `timingSafeEqual`.
+- **Mots de passe admin** : bcrypt (cost=12) — env `ADMIN_PASSWORD_HASH` /
+  `MANAGER_PASSWORD_HASH` / `VIEWER_PASSWORD_HASH`. Générer avec
+  `node scripts/hash-password.mjs '<plaintext>'`. Les vars legacy
+  `*_PASSWORD` (plaintext) restent acceptées en fallback pendant la migration.
 
 ## Build & deploy
 

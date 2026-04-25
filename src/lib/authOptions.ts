@@ -2,6 +2,7 @@ import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { DASHBOARD_ROLES, type DashboardRole } from "@/lib/rbac";
 import { prisma } from "@/lib/db";
+import bcrypt from "bcryptjs";
 import { timingSafeEqual } from "crypto";
 
 function optionalEnv(name: string) {
@@ -19,47 +20,63 @@ function safeCompare(a: string, b: string): boolean {
   }
 }
 
+// Bcrypt hashes start with $2a$ / $2b$ / $2y$. If the env value isn't a hash,
+// fall back to constant-time plaintext compare for backwards compatibility
+// during rollout. Once all envs migrate to *_PASSWORD_HASH, the fallback can
+// be removed.
+async function verifyPassword(stored: string, input: string): Promise<boolean> {
+  if (/^\$2[aby]\$/.test(stored)) {
+    return bcrypt.compare(input, stored);
+  }
+  return safeCompare(stored, input);
+}
+
 type DashboardCredential = {
-  password: string;
+  storedPassword: string;
   role: DashboardRole;
   name: string;
 };
 
-type DashboardActor = Omit<DashboardCredential, "password">;
+type DashboardActor = Omit<DashboardCredential, "storedPassword">;
 
 function getDashboardCredentials() {
   const credentials = new Map<string, DashboardCredential>();
 
-  const adminUsername = optionalEnv("ADMIN_USERNAME");
-  const adminPassword = optionalEnv("ADMIN_PASSWORD");
+  const register = (
+    usernameVar: string,
+    hashVar: string,
+    legacyVar: string,
+    role: DashboardRole,
+    name: string
+  ) => {
+    const username = optionalEnv(usernameVar);
+    const stored = optionalEnv(hashVar) ?? optionalEnv(legacyVar);
+    if (username && stored) {
+      credentials.set(username, { storedPassword: stored, role, name });
+    }
+  };
 
-  if (adminUsername && adminPassword) {
-    credentials.set(adminUsername, {
-      password: adminPassword,
-      role: DASHBOARD_ROLES.ADMIN,
-      name: "Admin",
-    });
-  }
-
-  const managerUsername = optionalEnv("MANAGER_USERNAME");
-  const managerPassword = optionalEnv("MANAGER_PASSWORD");
-  if (managerUsername && managerPassword) {
-    credentials.set(managerUsername, {
-      password: managerPassword,
-      role: DASHBOARD_ROLES.MANAGER,
-      name: "Manager",
-    });
-  }
-
-  const viewerUsername = optionalEnv("VIEWER_USERNAME");
-  const viewerPassword = optionalEnv("VIEWER_PASSWORD");
-  if (viewerUsername && viewerPassword) {
-    credentials.set(viewerUsername, {
-      password: viewerPassword,
-      role: DASHBOARD_ROLES.VIEWER,
-      name: "Viewer",
-    });
-  }
+  register(
+    "ADMIN_USERNAME",
+    "ADMIN_PASSWORD_HASH",
+    "ADMIN_PASSWORD",
+    DASHBOARD_ROLES.ADMIN,
+    "Admin"
+  );
+  register(
+    "MANAGER_USERNAME",
+    "MANAGER_PASSWORD_HASH",
+    "MANAGER_PASSWORD",
+    DASHBOARD_ROLES.MANAGER,
+    "Manager"
+  );
+  register(
+    "VIEWER_USERNAME",
+    "VIEWER_PASSWORD_HASH",
+    "VIEWER_PASSWORD",
+    DASHBOARD_ROLES.VIEWER,
+    "Viewer"
+  );
 
   return credentials;
 }
@@ -86,8 +103,12 @@ export const authOptions: AuthOptions = {
         if (!credentials?.username || !credentials?.password) return null;
 
         const user = getDashboardCredentials().get(credentials.username);
-        if (!user || !safeCompare(user.password, credentials.password))
-          return null;
+        if (!user) return null;
+        const ok = await verifyPassword(
+          user.storedPassword,
+          credentials.password
+        );
+        if (!ok) return null;
 
         return {
           id: credentials.username,
