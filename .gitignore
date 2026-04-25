@@ -1,24 +1,58 @@
+# Dependencies
 node_modules/
+
+# Build outputs
 .next/
+out/
 output/
-.env
-.env.local
-tmp_*.js
-tmp_*.ts
-tmp_*.json
-.DS_Store
-**/.DS_Store
-.playwright-cli/
-.codex/
-SKILLS/
-tsconfig.tsbuildinfo
-wiki/vite_debug_log.txt
-wiki/test-parse.mjs
-public/studio/
-.claude/worktrees/reverent-wilbur
 dist/
 build/
 coverage/
 .turbo/
+tsconfig.tsbuildinfo
+
+# Env / secrets — never commit
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+**/.env.*.local
+!.env.example
+!**/.env.example
+
+# Logs / temp
 *.log
+tmp_*.js
+tmp_*.ts
+tmp_*.json
+
+# macOS
+.DS_Store
+**/.DS_Store
+._*
+**/._*
+
+# Editor / agent worktrees & state
+.claude/worktrees/
 .worktrees/
+.playwright-cli/
+.codex/
+SKILLS/
+
+# Audit / report artifacts (generated, not source)
+audit/
+report/
+
+# Project-specific
+wiki/vite_debug_log.txt
+wiki/test-parse.mjs
+public/studio/
+
+# Finder duplicates (just in case iCloud strikes again)
+* 2.*
+* 3.*
+* 4.*
+* 2
+* 3
+* 4

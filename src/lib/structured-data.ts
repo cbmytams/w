@@ -1,4 +1,10 @@
 import { siteConfig } from "@/lib/site";
+
+// Escape `<` to prevent `</script>` injection if a JSON-LD value ever
+// contains user-derived strings. Inert in the JSON spec, safe in HTML.
+export function serializeJsonLd(value: unknown): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
 import type { AuthorProfile } from "@/lib/authors";
 
 export type BreadcrumbItem = {

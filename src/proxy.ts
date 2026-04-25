@@ -10,7 +10,10 @@ function buildDefaultCspHeader(nonce: string, allowSameOriginFrame: boolean) {
   return [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
-    "style-src 'self' 'unsafe-inline'",
+    // 'unsafe-inline' is kept as a fallback because Next.js/React still emit
+    // inline <style> tags. Modern browsers ignore 'unsafe-inline' when a nonce
+    // is present — once all inline styles are nonce-tagged, drop the fallback.
+    `style-src 'self' 'nonce-${nonce}' 'unsafe-inline'`,
     "img-src 'self' data: https:",
     "font-src 'self'",
     "connect-src 'self' https://*.sentry.io https://*.upstash.io",
