@@ -3,6 +3,7 @@ import { ContactFormSchema } from "@/lib/validations";
 import { validateBody, apiError, apiSuccess } from "@/lib/api-response";
 import { logError } from "@/lib/logger";
 import { enforceRateLimitWithUpstash } from "@/lib/rate-limit-middleware";
+import { enforceSameOrigin } from "@/lib/requestSecurity";
 
 export const runtime = "nodejs";
 
@@ -41,6 +42,9 @@ async function forwardToWebhook(payload: Record<string, unknown>) {
 }
 
 export async function POST(request: NextRequest) {
+  const originError = enforceSameOrigin(request);
+  if (originError) return originError;
+
   const clientKey = getClientKey(request);
   const rateLimitError = await enforceRateLimitWithUpstash(request, {
     scope: "contact",

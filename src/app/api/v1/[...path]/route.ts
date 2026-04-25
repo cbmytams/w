@@ -1,3 +1,4 @@
+import { timingSafeEqual } from "node:crypto";
 import type { NextRequest } from "next/server";
 import { apiError } from "@/lib/api-response";
 import { getWebsiteEnv } from "@/lib/env.server";
@@ -44,16 +45,24 @@ function hasUnsafePathSegment(pathSegments: string[]) {
   return pathSegments.some((segment) => segment === "." || segment === "..");
 }
 
+function safeEqual(a: string, b: string) {
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) return false;
+  return timingSafeEqual(aBuf, bBuf);
+}
+
 function hasValidInternalToken(request: NextRequest) {
   const expected = process.env.INTERNAL_JOB_TOKEN?.trim();
   if (!expected) return false;
 
   const bearer = request.headers.get("authorization");
   if (bearer?.startsWith("Bearer ")) {
-    return bearer.slice("Bearer ".length) === expected;
+    return safeEqual(bearer.slice("Bearer ".length), expected);
   }
 
-  return request.headers.get("x-internal-job-token") === expected;
+  const headerToken = request.headers.get("x-internal-job-token");
+  return headerToken ? safeEqual(headerToken, expected) : false;
 }
 
 function resolvePlatformBaseUrl() {
