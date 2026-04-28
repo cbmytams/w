@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   AlertTriangle,
   CheckCircle,
@@ -38,7 +38,7 @@ export function QuestionnaireHealthPanel({
   const [exporting, setExporting] = useState(false);
   const [purging, setPurging] = useState(false);
 
-  const refreshHealth = () => {
+  const refreshHealth = useCallback(() => {
     setLoading(true);
     fetch(`/api/v1/questionnaires/health?type=${type}`)
       .then((res) => res.json())
@@ -69,12 +69,14 @@ export function QuestionnaireHealthPanel({
         });
         setLoading(false);
       });
-  };
+  }, [type]);
 
   useEffect(() => {
-    refreshHealth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type]);
+    const frame = window.requestAnimationFrame(() => {
+      refreshHealth();
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [refreshHealth]);
 
   const handleExport = async () => {
     setExporting(true);

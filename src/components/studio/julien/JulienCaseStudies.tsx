@@ -21,7 +21,7 @@ const CASE_STUDIES = [
     title: "30 Millions de vues",
     description:
       "L'histoire a commencé avec une publicité fictive pour les dragibus. Les backstages ont atteint plus de 30 millions de vues. Cela m'a permis d'être repéré par la marque et de travailler officiellement avec eux. Coloré, gourmand, la bonne humeur pure.",
-    tags: ["Viral", "Coloré", "Storytelling"],
+    tags: ["Portée organique", "Coloré", "Storytelling"],
     mockUrl: "/studio/krh/basic-fit-redha-vf.mp4",
   },
   {
@@ -45,8 +45,8 @@ export function JulienCaseStudies() {
               Études de Cas.
             </h2>
             <p className="text-zinc-500 font-medium mt-6 max-w-2xl mx-auto uppercase tracking-widest text-sm">
-              Behind the scenes & masterclass executions pour les plus grandes
-              marques mondiales.
+              Coulisses, systèmes de production et exécutions visuelles pour des
+              marques à forte image.
             </p>
           </div>
         </FadeIn>

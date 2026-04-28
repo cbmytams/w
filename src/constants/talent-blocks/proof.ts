@@ -1,14 +1,14 @@
 export const TALENT_PROOF_STRIP = {
   id: "proof",
-  title: "Pas de magie.",
-  highlightWord: "Juste du travail.",
+  title: "Pas de hasard.",
+  highlightWord: "Une méthode.",
   subtitle:
-    "On ne vend pas du rêve. On vend un système qui marche. Si tu appliques, ça fonctionne.",
-  badges: ["Pas de frais cachés", "Liberté totale", "Support 7/7"],
+    "Wafia structure ce qui permet à un talent de mieux décider : image, projets, droits, revenus et autonomie.",
+  badges: ["Cadre clair", "Image protégée", "Transmission"],
   bullets: [
     "Un plan d'action clair dès le jour 1",
-    "Des outils pros pour gagner du temps",
-    "Un réseau de partenaires validés",
-    "Une roadmap évolutive selon tes résultats",
+    "Des outils professionnels pour gagner du temps",
+    "Un réseau de partenaires qualifiés",
+    "Une roadmap évolutive selon vos résultats",
   ],
 } as const;

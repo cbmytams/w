@@ -8,24 +8,24 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 
 const COMPARISON_DATA = [
   {
-    old: "Intuition & Casting subjectif",
-    new: "Qualification par la Data",
+    old: "Casting basé sur l'intuition",
+    new: "Shortlist argumentée",
   },
   {
-    old: "PDF statique post-campagne",
-    new: "Dashboard de pilotage Live 24/7",
+    old: "Reporting livré trop tard",
+    new: "Pilotage visible pendant la campagne",
   },
   {
-    old: "Contenu jetable (usage unique)",
-    new: "Asset Bank réutilisable (Ads)",
+    old: "Contenus à usage unique",
+    new: "Assets réutilisables avec droits cadrés",
   },
   {
-    old: "Opération ponctuelle 'One-Shot'",
-    new: "Stratégie d'acquisition continue",
+    old: "Activation isolée",
+    new: "Apprentissages pour le cycle suivant",
   },
   {
-    old: "Black box (aucun apprentissage)",
-    new: "Playbook itératif & transparent",
+    old: "Budget difficile à défendre",
+    new: "Décisions documentées",
   },
 ];
 
@@ -39,7 +39,7 @@ export function ComparisonSectionV2() {
               <>
                 Pourquoi les agences classiques{" "}
                 <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-                  vous coûtent cher
+                  deviennent difficiles à piloter
                 </span>
               </>
             }
@@ -50,13 +50,13 @@ export function ComparisonSectionV2() {
             <div className="hidden md:flex items-center justify-between px-8 mb-6">
               <div className="flex-1">
                 <span className="text-xs font-bold tracking-[0.2em] text-slate-400 dark:text-slate-500 uppercase">
-                  L'approche artisanale
+                  Quand l'influence reste floue
                 </span>
               </div>
               <div className="w-16"></div>
               <div className="flex-1 text-right">
                 <span className="text-xs font-bold tracking-[0.2em] text-orange-500 uppercase">
-                  Le standard Wafia
+                  Le cadre Wafia
                 </span>
               </div>
             </div>

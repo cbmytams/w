@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 const SYSTEM_FAILURES = [
   {
     id: "direction",
-    label: "Direction",
-    title: "Direction floue.",
+    label: "Image",
+    title: "Image difficile à lire.",
     description:
-      "Sans vision à long terme, la croissance d'une audience finit inévitablement par stagner.",
+      "Quand le positionnement reste flou, les bons projets ont du mal à comprendre votre valeur.",
     icon: Compass,
     className: "md:col-span-2",
     iconColor: "text-fuchsia-500",
@@ -19,9 +19,10 @@ const SYSTEM_FAILURES = [
   },
   {
     id: "production",
-    label: "Opérations",
-    title: "Production instable.",
-    description: "Le rythme de publication chute. L'algorithme pénalise.",
+    label: "Projets",
+    title: "Production dispersée.",
+    description:
+      "Contenus, scène, studio, collaborations : sans cadre, chaque opportunité devient une charge mentale.",
     icon: Zap,
     className: "md:col-span-1",
     iconColor: "text-amber-500",
@@ -30,8 +31,9 @@ const SYSTEM_FAILURES = [
   {
     id: "deals",
     label: "Business",
-    title: "Deals mal négociés.",
-    description: "La valeur est sous-estimée. Frustration financière garantie.",
+    title: "Opportunités mal cadrées.",
+    description:
+      "Un partenariat, un booking ou une collaboration peut abîmer la valeur s'il n'est pas négocié et protégé.",
     icon: Handshake,
     className: "md:col-span-1",
     iconColor: "text-rose-500",
@@ -39,9 +41,10 @@ const SYSTEM_FAILURES = [
   },
   {
     id: "partnerships",
-    label: "Image",
-    title: "Partenariats hors-sujet.",
-    description: "L'authenticité se perd. L'audience se désengage rapidement.",
+    label: "Droits",
+    title: "Cadre fragile.",
+    description:
+      "Droits d'image, usages, durée, territoires, facturation : ce qui n'est pas cadré finit par coûter cher.",
     icon: Target,
     className: "md:col-span-2",
     iconColor: "text-violet-500",

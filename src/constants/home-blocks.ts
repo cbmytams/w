@@ -2,7 +2,7 @@ export const HOME_OPTIONS = [
   {
     id: "talent",
     label: "Talents",
-    description: "Join our roster",
+    description: "Image, revenus, carrière",
     icon: "Sparkles",
     route: "/for-talents",
     gradient: "from-indigo-500/20 via-purple-500/20 to-pink-500/20",
@@ -13,7 +13,7 @@ export const HOME_OPTIONS = [
   {
     id: "studio",
     label: "Studio",
-    description: "Creative production",
+    description: "Production & assets",
     icon: "Building2",
     route: "/studio",
     gradient: "from-blue-500/20 via-cyan-500/20 to-teal-500/20",
@@ -23,8 +23,8 @@ export const HOME_OPTIONS = [
   },
   {
     id: "brand",
-    label: "Brands",
-    description: "Launch campaigns",
+    label: "Marques",
+    description: "Campagnes créateurs",
     icon: "Briefcase",
     route: "/for-brands",
     gradient: "from-orange-500/20 via-red-500/20 to-pink-500/20",

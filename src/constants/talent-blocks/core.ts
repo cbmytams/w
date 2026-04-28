@@ -1,36 +1,36 @@
 export const TALENT_HERO = {
-  badge: "Pour les créateurs qui visent juste",
+  badge: "Talent management 360",
   title: "Votre talent.",
-  titleHighlight: "Notre infrastructure.",
+  titleHighlight: "Une structure autour.",
   subtitle:
-    "On construit l'architecture autour de vous : image, production, deals, admin. L'objectif : une carrière qui tient.",
+    "Wafia accompagne les créateurs, artistes, comédiens, musiciens et talents hybrides dans la construction de leur image, de leurs revenus et de leurs opportunités.",
   ctaPrimary: "Se référencer",
   ctaSecondary: "Notre approche",
   callsAvailable: 0,
   proofPoints: [
-    { label: "Positionnement & image", value: "Identité" },
-    { label: "Studio & pipeline", value: "Production" },
-    { label: "Business & protection", value: "Deals" },
+    { label: "Image & positionnement", value: "Identité" },
+    { label: "Projets & production", value: "Formats" },
+    { label: "Revenus & protection", value: "Business" },
   ],
 } as const;
 
 export const TALENT_PROBLEM = {
   id: "problem",
-  title: "Le talent démarre tout. Le système décide de la suite.",
+  title: "Le talent ouvre les portes. La structure construit la carrière.",
   description:
-    "Chaque année, des milliers de créateurs émergent. Très peu restent. Ce qui fait la différence : une direction claire, une production régulière, et quelqu'un qui gère ce qui se passe en coulisses.",
+    "Un talent peut venir d'une scène, d'un atelier, d'un plateau, d'un studio ou d'une audience. Ce qui fait la différence dans la durée : une image lisible, des projets choisis, des droits protégés et une équipe qui sait gérer ce qui se joue en coulisses.",
   painTags: [
-    "Direction floue",
-    "Production instable",
-    "Deals mal négociés",
-    "Partenariats hors-sujet",
+    "Image difficile à lire",
+    "Opportunités mal cadrées",
+    "Droits insuffisamment protégés",
+    "Revenus trop dépendants du hasard",
   ],
   conclusion:
-    "On ne vous ajoute pas à une liste. On construit quelque chose autour de vous.",
+    "Nous ne vous ajoutons pas à une liste. Nous structurons l'écosystème qui doit exister autour de vous.",
 } as const;
 
 export const TALENT_CTA = {
-  title: "Prêt à passer un cap ?",
+  title: "Prêt à structurer la suite ?",
   description: "",
   ctaText: "Se référencer",
 } as const;
@@ -41,19 +41,19 @@ export const TALENT_FOR_WHO = {
   forYou: {
     title: "C'est fait pour vous si :",
     items: [
-      "Vous avez déjà une audience engagée et une production régulière.",
-      "Vous voulez une carrière construite, pas seulement des opportunités isolées.",
-      "Vous cherchez une structure solide : legal, admin, stratégie, production.",
-      "Vous voulez des deals qui ont du sens et protègent votre valeur.",
+      "Vous êtes créateur, artiste, comédien, musicien, peintre, performer ou talent hybride avec une image à structurer.",
+      "Vous voulez une trajectoire construite, pas seulement une succession d'opportunités isolées.",
+      "Vous cherchez une structure solide : image, production, droits, admin, stratégie, revenus.",
+      "Vous voulez des partenariats, bookings et projets qui respectent votre valeur.",
     ],
   },
   notForYou: {
     title: "Pas pour vous si :",
     items: [
-      "Votre audience est encore en phase de démarrage.",
-      "Vous cherchez uniquement de la mise en relation ponctuelle.",
-      "La stratégie d'image et la direction créative ne sont pas vos priorités.",
-      "L'idée de process et de délégation ne vous correspond pas.",
+      "Vous cherchez uniquement une mise en relation ponctuelle.",
+      "Vous ne souhaitez pas travailler votre image, vos offres ou votre cadre professionnel.",
+      "Vous préférez multiplier les opportunités sans arbitrage stratégique.",
+      "L'idée de process, de droits cadrés et de délégation ne vous correspond pas.",
     ],
   },
 } as const;
@@ -62,19 +62,19 @@ export const BRAND_GRADIENT = "from-pink-500 to-pink-600";
 
 export const TALENT_BUSINESS = {
   label: "Business & Revenus",
-  title: "Faites de votre audience",
-  titleLine2: "un revenu stable.",
+  title: "Transformez votre valeur",
+  titleLine2: "en revenus structurés.",
   description:
-    "On structure votre activité pour que chaque contenu compte financièrement. Grille tarifaire, négociation, facturation, protection juridique. Tout est cadmé.",
+    "Nous structurons votre activité pour que chaque collaboration, apparition, contenu ou projet s'inscrive dans un cadre clair : offres, tarifs, droits, facturation et protection juridique.",
   quote:
-    "Un créateur sans modèle économique, c'est un passionné. Avec une structure, c'est une entreprise.",
+    "Un talent sans modèle économique dépend des occasions. Avec une structure, il choisit sa trajectoire.",
   steps: [
     "Audit de la monétisation actuelle",
     "Création d'une grille tarifaire sur mesure",
-    "Mise en place des process de négociation",
+    "Mise en place des process de négociation et de booking",
     "Sécurisation juridique des partenariats",
   ],
-  conclusion: "De l'audience à un revenu pérenne.",
+  conclusion: "De la visibilité à une activité pérenne.",
 } as const;
 
 export const TALENT_IDENTITY = {

@@ -21,7 +21,16 @@ export function HeroSection() {
   return (
     <section className="pt-32 pb-24 px-4 min-h-[85vh] flex items-center relative">
       <Container className="relative z-10">
-        <div className="max-w-4xl">
+        <div className="w-[calc(100vw-4rem)] max-w-4xl min-w-0 sm:w-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: DURATION.slower, ease: EASING.entrance }}
+            className="mb-6 inline-flex rounded-full border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/[0.04] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-white/50 backdrop-blur-xl"
+          >
+            {TALENT_HERO.badge}
+          </motion.div>
+
           {/* Title - Large, two lines */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -29,7 +38,7 @@ export function HeroSection() {
             transition={{ duration: DURATION.slower, ease: EASING.entrance }}
             className="mb-8"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-slate-900 dark:text-white">
+            <h1 className="w-full max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-slate-900 dark:text-white break-words">
               {TALENT_HERO.title}{" "}
               <span className="text-slate-600 dark:text-slate-300">
                 {TALENT_HERO.titleHighlight}
@@ -46,7 +55,7 @@ export function HeroSection() {
               delay: 0.2,
               ease: EASING.entrance,
             }}
-            className="text-lg sm:text-xl text-slate-600 dark:text-white/60 max-w-2xl leading-relaxed mb-8"
+            className="w-full max-w-2xl text-lg sm:text-xl text-slate-600 dark:text-white/60 leading-relaxed mb-8 break-words"
           >
             {TALENT_HERO.subtitle}
           </motion.p>

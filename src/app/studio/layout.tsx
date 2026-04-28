@@ -3,25 +3,25 @@ import { siteConfig, sitePaths } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Studio créatif – Production UGC & contenus sociaux",
+  title: "Studio Créatif – Production, UGC & Assets",
   description:
-    "Studio Wafia : production social-first, formats verticaux, UGC et assets premium pour marques et agences.",
+    "Studio Wafia : production UGC, formats sociaux, captations, films de marque et assets réutilisables pour campagnes, talents et marques.",
   alternates: {
     canonical: sitePaths.studio,
   },
   openGraph: {
-    title: "Studio créatif – Production UGC & contenus sociaux | Wafia",
+    title: "Studio Créatif – Production, UGC & Assets | Wafia",
     description:
-      "Studio Wafia : production social-first, formats verticaux, UGC et assets premium pour marques et agences.",
+      "Studio Wafia : production UGC, formats sociaux, captations, films de marque et assets réutilisables pour campagnes, talents et marques.",
     url: sitePaths.studio,
     siteName: siteConfig.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Studio créatif | Wafia",
+    title: "Studio Créatif | Wafia",
     description:
-      "Studio Wafia : production social-first, formats verticaux, UGC et assets premium pour marques et agences.",
+      "Studio Wafia : production UGC, formats sociaux, captations, films de marque et assets réutilisables pour campagnes, talents et marques.",
   },
 };
 

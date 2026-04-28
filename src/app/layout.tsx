@@ -28,7 +28,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Wafia | Influence & Creative Studio",
+    default: "Wafia | Influence, Talents & Studio",
     template: "%s | Wafia",
   },
   description: siteConfig.description,
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "campagnes social media",
   ],
   openGraph: {
-    title: "Wafia | Influence & Creative Studio",
+    title: "Wafia | Influence, Talents & Studio",
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wafia | Influence & Creative Studio",
+    title: "Wafia | Influence, Talents & Studio",
     description: siteConfig.description,
     images: [siteConfig.ogImage],
     creator: siteConfig.twitterHandle || undefined,

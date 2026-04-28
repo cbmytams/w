@@ -45,11 +45,11 @@ export function ConstatSection() {
             >
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
                 <span className="text-slate-900 dark:text-white">
-                  Le talent d&eacute;marre tout.
+                  Le talent ouvre les portes.
                 </span>
                 <br />
                 <span className="text-slate-500 dark:text-slate-400">
-                  Le syst&egrave;me d&eacute;cide de la suite.
+                  La structure construit la suite.
                 </span>
               </h2>
             </motion.div>

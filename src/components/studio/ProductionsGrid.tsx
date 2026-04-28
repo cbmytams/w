@@ -326,7 +326,7 @@ export function ProductionsGrid() {
                         {/* Services List */}
                         <div>
                           <h4 className="text-[12px] font-semibold text-white/30 uppercase tracking-[0.2em] mb-5">
-                            Core Services
+                            Services clés
                           </h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                             {prod.services.map((service, i) => (

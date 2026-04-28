@@ -2,13 +2,14 @@ export const TALENT_OS_SYSTEM = {
   id: "os",
   title: "Wafia OS",
   highlightWord: "OS",
-  subtitle: "Ton nouveau système d'exploitation.",
+  subtitle: "Votre système de pilotage.",
   description:
-    "Tout ce dont tu as besoin pour gérer ta carrière, au même endroit.",
+    "Les documents, contrats, revenus, contenus et décisions de carrière au même endroit.",
   items: [
     {
       title: "Centralisation",
-      description: "Tous tes documents, contrats et factures au même endroit.",
+      description:
+        "Documents, contrats, factures et ressources au même endroit.",
       icon: "📂",
     },
     {
@@ -18,7 +19,8 @@ export const TALENT_OS_SYSTEM = {
     },
     {
       title: "Tracking",
-      description: "Suivi de tes performances et de tes revenus en temps réel.",
+      description:
+        "Suivi des performances, revenus et opportunités en temps réel.",
       icon: "📊",
     },
     {

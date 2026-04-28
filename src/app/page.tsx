@@ -4,23 +4,23 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Wafia | Influence & Creative Studio",
+    absolute: "Wafia | Influence, Talents & Studio",
   },
   description:
-    "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management.",
+    "Wafia structure les campagnes des marques et les carrières des talents : influence marketing, talent management 360, production studio et reporting.",
   alternates: {
     canonical: sitePaths.home,
   },
   openGraph: {
-    title: "Wafia | Influence & Creative Studio",
+    title: "Wafia | Influence, Talents & Studio",
     description:
-      "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management.",
+      "Wafia structure les campagnes des marques et les carrières des talents : influence marketing, talent management 360, production studio et reporting.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wafia | Influence & Creative Studio",
+    title: "Wafia | Influence, Talents & Studio",
     description:
-      "Wafia, agence d'influence marketing et studio créatif. Campagnes data-driven, créateurs vérifiés, UGC social-first et talent management.",
+      "Wafia structure les campagnes des marques et les carrières des talents : influence marketing, talent management 360, production studio et reporting.",
   },
 };
 

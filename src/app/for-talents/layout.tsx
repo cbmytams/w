@@ -4,33 +4,37 @@ import { breadcrumbSchema, faqSchema } from "@/lib/structured-data";
 import { TALENT_FAQ } from "@/constants";
 
 export const metadata: Metadata = {
-  title: "Talent Management & Stratégie Créateurs",
+  title: "Talent Management 360 & Stratégie d'Image",
   description:
-    "Passe pro sans te perdre. Management de talents, structure business et production studio pour créateurs, artistes et comédiens ambitieux.",
+    "Management 360 pour créateurs, artistes, comédiens, musiciens et talents hybrides : image, revenus, droits, production et opportunités.",
   keywords: [
     "talent management",
     "créateur",
     "artiste",
+    "comédien",
+    "artiste peintre",
+    "intermittent du spectacle",
     "management musical",
     "influenceur",
-    "carrière créateur",
+    "stratégie d'image",
+    "carrière artistique",
   ],
   alternates: {
     canonical: sitePaths.forTalents,
   },
   openGraph: {
-    title: "Wafia | Talent Management & Accompagnement Créateurs",
+    title: "Wafia | Talent Management 360 & Stratégie d'Image",
     description:
-      "Management de talents, structure business et production studio pour créateurs, artistes et comédiens. Accompagnement 360° par Wafia.",
+      "Image, projets, revenus, droits, production et opportunités pour créateurs, artistes, comédiens, musiciens et talents hybrides.",
     url: sitePaths.forTalents,
     siteName: siteConfig.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wafia | Talent Management & Accompagnement Créateurs",
+    title: "Wafia | Talent Management 360 & Stratégie d'Image",
     description:
-      "Management de talents, structure business et production studio pour créateurs, artistes et comédiens. Accompagnement 360° par Wafia.",
+      "Image, projets, revenus, droits, production et opportunités pour créateurs, artistes, comédiens, musiciens et talents hybrides.",
   },
 };
 

@@ -28,7 +28,7 @@ export function BrandHeroV2() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-xl z-20 relative"
+            className="w-[calc(100vw-2rem)] max-w-xl min-w-0 z-20 relative sm:w-auto"
           >
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-100 to-rose-100 dark:from-orange-900/30 dark:to-rose-900/30 text-orange-600 dark:text-orange-400 text-sm font-bold mb-8 border border-orange-200 dark:border-orange-800/50">
@@ -37,7 +37,7 @@ export function BrandHeroV2() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-heading text-3xl sm:text-5xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight">
+            <h1 className="w-full font-heading text-3xl sm:text-5xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight break-words">
               {BRAND_HERO_CONTENT.title.line1} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-600">
                 {BRAND_HERO_CONTENT.title.highlight}
@@ -45,12 +45,12 @@ export function BrandHeroV2() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-xl text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 leading-relaxed font-medium">
+            <p className="w-full text-base sm:text-xl text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 leading-relaxed font-medium break-words">
               {BRAND_HERO_CONTENT.subtitle}
             </p>
 
             {/* Stats Row — always 3 columns */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-10">
+            <div className="grid w-full grid-cols-3 gap-2 sm:gap-4 mb-10">
               {BRAND_HERO_CONTENT.stats.map((stat, i) => {
                 const IconComponent =
                   STAT_ICONS[stat.color as keyof typeof STAT_ICONS];

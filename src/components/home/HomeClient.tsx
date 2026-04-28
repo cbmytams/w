@@ -41,31 +41,19 @@ export function HomeClient() {
   const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
   const [showParticles, setShowParticles] = React.useState(false);
-  const [enableBackground, setEnableBackground] = React.useState(() => {
+  const enableBackground = React.useMemo(() => {
     if (typeof window !== "undefined") {
       const connection = (
         navigator as Navigator & { connection?: { saveData?: boolean } }
       ).connection;
       const saveData = connection?.saveData === true;
-      return (
-        !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
-        !saveData
-      );
+      return !prefersReducedMotion && !saveData;
     }
     return true;
-  });
-
-  React.useEffect(() => {
-    const connection = (
-      navigator as Navigator & { connection?: { saveData?: boolean } }
-    ).connection;
-    const saveData = connection?.saveData === true;
-    setEnableBackground(!prefersReducedMotion && !saveData);
   }, [prefersReducedMotion]);
 
   React.useEffect(() => {
     if (!enableBackground) {
-      setShowParticles(false);
       return;
     }
 
@@ -130,7 +118,8 @@ export function HomeClient() {
         className="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-6 py-20"
       >
         <h1 className="sr-only">
-          Agence d&apos;influence marketing – Studio cr&eacute;atif
+          Agence d&apos;influence, talent management 360 et studio
+          cr&eacute;atif
         </h1>
 
         {/* LOGO - Medium with Glow Effect */}
@@ -149,6 +138,16 @@ export function HomeClient() {
           )}
           <WafiaLogo className="h-14 md:h-[4.5rem] lg:h-24 w-auto text-white relative z-10 drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]" />
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: EASING.premium }}
+          className="-mt-10 mb-12 max-w-xl text-center text-sm sm:text-base text-white/55 leading-relaxed"
+        >
+          Wafia structure les campagnes des marques et les carrières des
+          talents.
+        </motion.p>
 
         {/* NAVIGATION - Minimalist Horizontal Pills */}
         <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">

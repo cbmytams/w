@@ -18,10 +18,10 @@ export function WhatWeBuildSection() {
           {/* Header */}
           <RevealAnimation className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4">
-              Ce qu&apos;on prend en charge
+              Ce que nous structurons
             </h2>
             <p className="text-xl text-slate-600 dark:text-white/70">
-              Tu repars avec un syst&egrave;me qui tourne.
+              Image, projets, revenus, droits, production et autonomie.
             </p>
           </RevealAnimation>
 

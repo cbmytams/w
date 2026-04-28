@@ -2,26 +2,26 @@
 export const FAQ_ITEMS = [
   {
     q: "Travaillez-vous avec des startups ?",
-    a: "Oui. Ce qui compte : votre ambition et la clarté de votre objectif. On s'adapte au budget. Pas à la qualité.",
+    a: "Oui, si l'objectif est clair. Nous adaptons le dispositif au budget disponible, sans réduire l'exigence sur le casting, les droits et la qualité d'exécution.",
   },
   {
     q: "Peut-on tester sur une seule campagne ?",
-    a: "Oui. On accepte les collaborations ciblées. Et on vous donne toujours les clés pour capitaliser après.",
+    a: "Oui. Une campagne ciblée peut être un excellent point de départ si elle produit des contenus exploitables, des apprentissages et une base pour la suite.",
   },
   {
     q: "Vous faites uniquement de l'influence ?",
-    a: "Non. Wafia c'est stratégie, studio et talents. L'influence fonctionne mieux quand tout le reste est solide. On gère les deux.",
+    a: "Non. Wafia réunit stratégie, studio, talents, droits et pilotage. L'influence fonctionne mieux quand la campagne est pensée comme un système complet.",
   },
   {
     q: "Comment mesure-t-on les résultats ?",
-    a: "Tableau de bord en temps réel. Rétention, taux de complétion, conversions, trafic. Zéro vanity metric.",
+    a: "Nous suivons les indicateurs qui aident à décider : complétion vidéo, rétention, trafic, conversions, coût par résultat, qualité des contenus et apprentissages créateurs.",
   },
   {
     q: "Les droits d'utilisation sont gérés ?",
-    a: "Oui. On sécurise tout avant le lancement : usage organique, paid, durée, territoire. Aucune zone grise.",
+    a: "Oui. Les usages organiques, paid, la durée, les territoires et les canaux sont cadrés avant le lancement pour que les contenus puissent être réutilisés proprement.",
   },
   {
-    q: "On n'a jamais fait de campagne influence. Vous nous aidez ?",
-    a: "C'est notre spécialité. On pose les bases avec vous : stratégie, casting, production, diffusion, analyse. Vous validez, on exécute.",
+    q: "C'est notre première campagne influence. Vous nous aidez ?",
+    a: "Oui. Nous posons les bases avec vous : objectif, audience, casting, production, droits, diffusion et analyse. Vous gardez la validation, nous cadrons l'exécution.",
   },
 ] as const;

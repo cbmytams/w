@@ -1,19 +1,23 @@
 export const TALENT_FAQ = [
   {
+    q: "Travaillez-vous uniquement avec des influenceurs ?",
+    a: "Non. Nous accompagnons les talents publics et créatifs : créateurs, artistes, comédiens, musiciens, peintres, profils de scène, intermittents et personnalités hybrides.",
+  },
+  {
     q: "Combien ça coûte ?",
-    a: "Commission uniquement. Zéro frais fixe. On gagne quand vous gagnez. L'alignement total.",
+    a: "Le modèle dépend du niveau d'accompagnement. L'objectif reste le même : aligner nos intérêts sur la croissance réelle de votre activité.",
   },
 
   {
     q: "Faut-il publier davantage ?",
-    a: "Pas forcément. On commence par optimiser ce qui existe déjà. La fréquence n'est pas une fin en soi.",
+    a: "Pas forcément. Nous commençons par clarifier ce qui existe déjà : image, formats, projets, revenus et opportunités. La fréquence n'est jamais une stratégie à elle seule.",
   },
   {
     q: "Gérez-vous nos réseaux ?",
-    a: "Non. Votre voix vous appartient. On structure tout ce qui l'entoure : production, deals, admin, stratégie.",
+    a: "Votre voix vous appartient. Nous structurons ce qui l'entoure : production, partenariats, droits, administration, stratégie et pilotage.",
   },
   {
     q: "Quelle différence avec une agence classique ?",
-    a: "Une agence vous place sur des deals. Wafia construit le système autour de vous : studio, pricing, cadre juridique. Et vous le transmet.",
+    a: "Une agence classique cherche souvent l'opportunité suivante. Wafia construit l'architecture autour du talent : image, offres, revenus, droits, production, équipe et autonomie.",
   },
 ] as const;

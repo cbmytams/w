@@ -59,7 +59,7 @@ export const siteConfig = {
   name: "Wafia",
   legalName: "Wafia",
   description:
-    "Agence hybride : Influence, Talents, Studio Créatif et Stratégie. Campagnes traçables, production brand-ready.",
+    "Agence hybride : influence marketing, talent management 360, studio créatif et stratégie. Campagnes cadrées, talents structurés, production exploitable.",
   url: resolveSiteOrigin(),
   locale: "fr_FR",
   logo: "/wafia.svg",

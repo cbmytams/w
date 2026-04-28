@@ -17,9 +17,9 @@ import { ServicesFaqAccordion } from "@/components/services/ServicesFaqAccordion
    ───────────────────────────────────────────── */
 
 export const metadata: Metadata = {
-  title: "Agence Influence Marketing, UGC & Talents",
+  title: "Influence, Talent Management 360 & Studio",
   description:
-    "Agence influence marketing en France : campagnes créateurs, production UGC, talent management et studio créatif. Résultats mesurables. Contactez-nous.",
+    "Wafia structure les campagnes créateurs, la production social media et le talent management 360 : image, revenus, droits, studio et reporting.",
   keywords: [
     "agence influence marketing",
     "agence UGC france",
@@ -32,18 +32,18 @@ export const metadata: Metadata = {
     canonical: sitePaths.services,
   },
   openGraph: {
-    title: "Wafia | Agence Influence Marketing, UGC & Talents en France",
+    title: "Wafia | Influence, Talent Management 360 & Studio",
     description:
-      "Campagnes d'influence, production UGC, talent management et studio créatif. Une agence complète pour des résultats mesurables.",
+      "Campagnes créateurs, production UGC, studio social media, talent management 360 et pilotage opérationnel.",
     url: sitePaths.services,
     siteName: siteConfig.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wafia | Agence Influence Marketing, UGC & Talents en France",
+    title: "Wafia | Influence, Talent Management 360 & Studio",
     description:
-      "Campagnes d'influence, production UGC, talent management et studio créatif. Une agence complète pour des résultats mesurables.",
+      "Campagnes créateurs, production UGC, studio social media, talent management 360 et pilotage opérationnel.",
   },
 };
 
@@ -54,24 +54,24 @@ export const metadata: Metadata = {
 const STATS = [
   { value: "17M+", label: "Impressions cumulées" },
   { value: "100+", label: "Créateurs activés" },
-  { value: "250+", label: "Contenus produits" },
-  { value: "21%", label: "Taux d'engagement moyen" },
+  { value: "250+", label: "Assets produits" },
+  { value: "21%", label: "Engagement moyen" },
 ];
 
 const SERVICES = [
   {
     id: "influence-marketing",
-    title: "Campagnes d'Influence Marketing",
+    title: "Campagnes créateurs",
     description:
-      "Nous concevons et pilotons des campagnes d'influence marketing de bout en bout : identification des créateurs, négociation, production et reporting. Chaque activation repose sur une sélection data-driven et un suivi KPI en temps réel, selon notre méthode éprouvée.",
+      "Nous concevons des campagnes d'influence marketing comme des dispositifs complets : stratégie, casting, briefs, négociation, production, droits, diffusion et reporting. Chaque activation doit être lisible, défendable et réutilisable.",
     descriptionLinkText: null,
     descriptionLinkHref: null,
     descriptionSuffix: "",
     points: [
-      "Stratégie de casting et sélection data-driven",
+      "Stratégie de casting et shortlist argumentée",
       "Activation multi-plateforme (TikTok, Instagram, YouTube)",
-      "Suivi KPIs en temps réel et optimisation",
-      "Reporting post-campagne détaillé",
+      "Cadrage des droits, usages et validations",
+      "Reporting post-campagne orienté décisions",
     ],
     deliverables: [
       "Brief créatif",
@@ -79,69 +79,69 @@ const SERVICES = [
       "Dashboard live",
       "Bilan de campagne",
     ],
-    cta: { label: "Découvrir l'expertise Marques", href: "/for-brands" },
+    cta: { label: "Voir l'approche Marques", href: "/for-brands" },
   },
   {
     id: "studio-ugc",
-    title: "Production UGC & Studio Créatif",
+    title: "Studio & production sociale",
     description:
-      "Notre studio interne produit du contenu social-first pensé pour convertir : UGC authentique, montage dynamique, VFX et déclinaisons multi-formats. Nous maîtrisons les codes de chaque plateforme — consultez",
+      "Notre studio produit les contenus qui donnent de la matière aux campagnes : UGC, formats verticaux, captations, films de marque, déclinaisons paid media et assets réutilisables. Les formats sont pensés pour les plateformes, mais cadrés pour la marque — consultez",
     descriptionLinkText: "nos guides plateformes",
     descriptionLinkHref: "/wiki",
     descriptionSuffix: " pour en savoir plus.",
     points: [
       "Tournage vertical et montage natif social",
-      "UGC authentique ou production studio premium",
-      "VFX, motion design et hooks visuels",
-      "Déclinaisons Reels, Shorts, TikTok, Stories",
+      "UGC, captation, films de marque et assets paid-ready",
+      "Direction artistique cohérente avec l'image de marque",
+      "Déclinaisons Reels, Shorts, TikTok, Stories et Ads",
     ],
     deliverables: [
       "Rushes bruts",
       "Montages finaux",
-      "Packs ads multi-formats",
+      "Packs ads et déclinaisons",
       "Adaptations plateforme",
     ],
     cta: { label: "Voir le Studio", href: "/studio" },
   },
   {
     id: "talent-management",
-    title: "Talent Management & Accompagnement Créateurs",
+    title: "Talent management 360",
     description:
-      "Nous accompagnons un roster exclusif de créateurs, artistes et comédiens dans la structuration de leur carrière : positionnement éditorial, négociation de contrats, production de contenu et monétisation durable.",
+      "Nous accompagnons les créateurs, artistes, comédiens, musiciens, peintres et talents hybrides dans la structuration de leur image, de leurs projets, de leurs revenus et de leurs droits. L'objectif n'est pas seulement d'obtenir plus d'opportunités, mais de construire une carrière lisible, protégée et durable.",
     descriptionLinkText: null,
     descriptionLinkHref: null,
     descriptionSuffix: "",
     points: [
-      "Positionnement éditorial et direction artistique",
-      "Négociation et sécurisation contractuelle",
-      "Roadmap carrière et développement de marque",
-      "Monétisation multi-canal structurée",
+      "Positionnement, récit public et direction artistique",
+      "Partenariats, bookings, collaborations et négociation",
+      "Droits d'image, contrats, facturation et cadre juridique",
+      "Roadmap carrière, production et autonomie progressive",
     ],
     deliverables: [
       "Roadmap carrière",
-      "Contrats sécurisés",
-      "Ligne éditoriale",
-      "Bilan trimestriel",
+      "Architecture d'image",
+      "Cadre droits & revenus",
+      "Plan d'opportunités",
     ],
     cta: { label: "Découvrir le Talent Management", href: "/for-talents" },
   },
   {
     id: "data-tracabilite",
-    title: "Traçabilité & Reporting Data",
+    title: "Pilotage & cadre opérationnel",
     description:
-      "Nous avons construit nos propres outils pour suivre chaque étape de la campagne en temps réel. Transparence totale sur le budget, les validations et les résultats — intégré à notre process.",
+      "Nous structurons le suivi de chaque campagne ou accompagnement : objectifs, budget, validations, contenus, droits, performances et apprentissages. Le pilotage sert à décider, pas à empiler des chiffres.",
     descriptionLinkText: null,
     descriptionLinkHref: null,
     descriptionSuffix: "",
     points: [
       "Dashboard client en temps réel",
-      "KPIs décisionnels, zéro vanity metrics",
-      "Traçabilité casting → ops → reporting",
+      "KPIs décisionnels et lecture des signaux utiles",
+      "Traçabilité casting → production → droits → reporting",
       "Automatisation des tâches répétitives",
     ],
     deliverables: [
       "Dashboard accès client",
-      "Reporting KPI unifié",
+      "Reporting unifié",
       "Suivi budgétaire",
       "Facturation transparente",
     ],
@@ -152,15 +152,15 @@ const SERVICES = [
 const SERVICE_FAQ_ITEMS = [
   {
     q: "Combien coûte une campagne d'influence marketing ?",
-    a: "Le budget varie selon le nombre de créateurs, les plateformes ciblées et la durée de l'activation. Nos campagnes débutent à partir de 5 000 €. Nous établissons un devis détaillé après analyse de vos objectifs et de votre marché.",
+    a: "Le budget dépend du nombre de créateurs, du niveau de production, des droits d'usage, des plateformes et de la durée d'activation. Nous cadrons d'abord l'objectif, puis nous construisons un dispositif défendable.",
   },
   {
     q: "Comment choisir les bons influenceurs pour sa marque ?",
-    a: "Nous utilisons une méthodologie data-driven combinant analyse d'audience, taux d'engagement réel, brand-safety et affinité thématique. Chaque créateur est vérifié manuellement avant d'être proposé au casting.",
+    a: "Nous croisons audience, cohérence d'image, historique de collaboration, qualité de contenu, disponibilité, risques de brand safety et capacité à produire. Le casting doit pouvoir se justifier, pas seulement plaire.",
   },
   {
     q: "Quels KPIs suivre pour mesurer une campagne d'influence ?",
-    a: "Nous mesurons uniquement les indicateurs décisionnels : taux de complétion vidéo, sauvegardes, trafic généré, conversions et coût par résultat. Aucune vanity metric. Tout est accessible en temps réel via votre dashboard.",
+    a: "Nous suivons les indicateurs qui aident à décider : complétion vidéo, rétention, sauvegardes, trafic, conversions, coût par résultat, qualité des contenus et potentiel de réutilisation.",
   },
   {
     q: "Quelle est la différence entre UGC et influence marketing ?",
@@ -168,7 +168,7 @@ const SERVICE_FAQ_ITEMS = [
   },
   {
     q: "Travaillez-vous avec des marques hors de France ?",
-    a: "Oui. Notre roster inclut des créateurs francophones et internationaux. Nous gérons des campagnes en France, en Belgique, en Suisse et au-delà. Notre siège est basé en France, ce qui garantit la conformité juridique européenne.",
+    a: "Oui. Nous pouvons activer des profils francophones et internationaux, avec un cadre juridique européen clair sur les droits, mentions, usages et validations.",
   },
   {
     q: "Peut-on réutiliser les contenus produits en campagne pour du paid media ?",
@@ -176,7 +176,7 @@ const SERVICE_FAQ_ITEMS = [
   },
   {
     q: "En combien de temps une campagne d'influence est-elle livrée ?",
-    a: "Le délai moyen est de 4 à 6 semaines entre le brief initial et la livraison du reporting final. Les activations urgentes peuvent être orchestrées en 2 semaines sous conditions spécifiques.",
+    a: "Le délai dépend du casting, de la production et des validations. Une campagne complète se construit généralement en 4 à 6 semaines ; les activations plus rapides demandent un cadrage très précis.",
   },
 ];
 
@@ -194,7 +194,7 @@ const servicesBreadcrumbs = breadcrumbSchema([
 const influenceServiceJsonLd = serviceSchema({
   name: "Campagnes d'Influence Marketing",
   description:
-    "Conception et pilotage de campagnes d'influence marketing : casting data-driven, activation multi-plateforme et reporting KPI.",
+    "Conception et pilotage de campagnes d'influence marketing : stratégie, casting argumenté, production, droits et reporting KPI.",
   url: new URL(sitePaths.forBrands, baseUrl).toString(),
   serviceType: ["Influence Marketing", "Campagne Créateurs"],
 });
@@ -202,17 +202,17 @@ const influenceServiceJsonLd = serviceSchema({
 const studioServiceJsonLd = serviceSchema({
   name: "Production UGC & Studio Créatif",
   description:
-    "Production de contenu social-first : UGC authentique, montage dynamique, VFX et déclinaisons multi-formats.",
+    "Production UGC, formats sociaux, captations, films de marque et déclinaisons multi-formats.",
   url: new URL("/studio", baseUrl).toString(),
   serviceType: ["Production UGC", "Studio Créatif", "Contenu Social Media"],
 });
 
 const talentServiceJsonLd = serviceSchema({
-  name: "Talent Management & Accompagnement Créateurs",
+  name: "Talent Management 360",
   description:
-    "Management de créateurs : positionnement éditorial, négociation contrats, roadmap carrière et monétisation durable.",
+    "Management 360 pour talents publics et créatifs : image, projets, droits, revenus, opportunités et production.",
   url: new URL(sitePaths.forTalents, baseUrl).toString(),
-  serviceType: ["Talent Management", "Gestion de Talents"],
+  serviceType: ["Talent Management", "Gestion de Talents", "Stratégie d'image"],
 });
 
 const dataServiceJsonLd = serviceSchema({
@@ -271,18 +271,17 @@ export default function ServicesPage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
-              Agence d&apos;Influence Marketing, UGC &amp; Talent Management
+              Influence. Talent management. Studio.
             </h1>
             <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto">
-              Wafia est une agence d&apos;influence marketing basée en France.
-              Nous concevons des campagnes data-driven avec des créateurs
-              vérifiés, un studio créatif intégré et un talent management
-              structuré.
+              Wafia structure les campagnes des marques et les carrières des
+              talents : stratégie, image, production, droits, revenus et
+              reporting dans un même cadre.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" asChild>
                 <Link href="/questionnaire/brands">
-                  Lancer votre campagne <ArrowRight className="ml-2 h-4 w-4" />
+                  Cadrer un besoin <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
@@ -405,11 +404,11 @@ export default function ServicesPage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-              Prêt à lancer votre prochaine campagne d&apos;influence ?
+              Un projet mérite un cadre avant d&apos;être lancé.
             </h2>
             <p className="text-lg text-slate-400 mb-10">
-              Discutons de vos objectifs et construisons un dispositif sur
-              mesure.
+              Discutons de vos objectifs et construisons un cadre clair avant
+              d&apos;activer les bons profils.
             </p>
             <Button
               size="lg"
@@ -417,8 +416,7 @@ export default function ServicesPage() {
               asChild
             >
               <Link href="/questionnaire/brands">
-                Réserver un appel stratégique{" "}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                Structurer un projet <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
@@ -429,7 +427,7 @@ export default function ServicesPage() {
                 <Check className="h-4 w-4 text-green-400" /> Process clair
               </span>
               <span className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-green-400" /> Zéro engagement
+                <Check className="h-4 w-4 text-green-400" /> Premier cadrage
               </span>
             </div>
           </div>

@@ -12,10 +12,10 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 
 const PHASE_BENEFITS = [
-  "On clarifie ton positionnement, ton potentiel business et les mauvais deals a éviter.",
-  "On structure ton image, tes formats et ton offre commerciale.",
-  "On industrialise la production, les partenariats et le pilotage.",
-  "On construit une équipe et des process qui te rendent durable.",
+  "Nous clarifions votre positionnement, votre potentiel business et les opportunités à refuser.",
+  "Nous structurons votre image, vos formats, vos projets et votre offre commerciale.",
+  "Nous installons une production, des partenariats et un pilotage qui tiennent dans la durée.",
+  "Nous construisons une équipe, des process et un cadre qui rendent votre carrière plus autonome.",
 ];
 
 export function TalentJourneySection() {
@@ -56,7 +56,8 @@ export function TalentJourneySection() {
               </span>
             </h2>
             <p className="mt-6 text-xl text-slate-500 dark:text-slate-400 max-w-lg mx-auto font-light">
-              De l&apos;audit initial à l&apos;autonomie complète. 36 mois.
+              De l&apos;audit initial à l&apos;autonomie complète : une
+              trajectoire construite, pas subie.
             </p>
           </RevealAnimation>
 

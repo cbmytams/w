@@ -17,11 +17,11 @@ export function ComplianceSection() {
                   Enterprise-ready
                 </div>
                 <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                  Pas de mauvaise surprise. Jamais.
+                  Un cadre clair avant la mise en ligne.
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400">
-                  Même les détails juridiques sont pris en charge. Vous dormez
-                  tranquille.
+                  Droits, mentions, usages et validations sont cadrés avant que
+                  les contenus circulent.
                 </p>
               </div>
 
@@ -55,11 +55,11 @@ export function ComplianceSection() {
                   },
                   {
                     title: "Brand safety garantie",
-                    desc: "Validation manuelle + algorithmique de chaque profil",
+                    desc: "Validation manuelle + signaux d'audience et d'historique",
                   },
                   {
-                    title: "Zéro risque reputationnel",
-                    desc: "Pas de fake followers, pas de bots, pas de profils controversés",
+                    title: "Risque réputationnel réduit",
+                    desc: "Filtrage des profils, signaux faibles et sujets sensibles",
                   },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-3">

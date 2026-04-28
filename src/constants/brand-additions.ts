@@ -7,24 +7,25 @@ export const BRAND_NAVIGATION = [
 ] as const;
 
 export const BRAND_HERO_CONTENT = {
-  badge: "Creative Studio & Talent Powerhouse",
+  badge: "Campagnes créateurs, structurées de bout en bout",
   title: {
-    line1: "L'influence marketing",
-    highlight: "qui performe vraiment.",
+    line1: "Des campagnes créateurs",
+    highlight: "structurées.",
   },
-  subtitle: "Les bons créateurs. Le bon contenu. Les vrais résultats.",
+  subtitle:
+    "Wafia réunit stratégie, casting, production, droits et reporting pour transformer une campagne en actif exploitable.",
   antiMarket: [
     {
       type: "check",
-      text: "Pas de casting au hasard : sélection cohérente, justifiée, traçable.",
+      text: "Casting argumenté : audience, cohérence de marque, historique et risques vérifiés.",
     },
     {
       type: "check",
-      text: "Pas de contenu générique : co-création + prod premium, social-first.",
+      text: "Production pensée pour durer : contenus natifs, assets paid-ready, droits cadrés.",
     },
     {
       type: "check",
-      text: "Pas d’opacité : pilotage, feedbacks, reporting clair et actionnable.",
+      text: "Pilotage lisible : validations, budget, performances et enseignements centralisés.",
     },
   ],
   stats: [
@@ -34,9 +35,12 @@ export const BRAND_HERO_CONTENT = {
   ],
   cta: {
     primary: { text: "Voir nos réalisations", href: "#case-studies" },
-    secondary: { text: "Cadrer ma campagne", href: "/questionnaire/brands" },
+    secondary: {
+      text: "Structurer ma campagne",
+      href: "/questionnaire/brands",
+    },
   },
-  timing: "⏱️ 1-2 semaines pour une campagne complète.",
+  timing: "Cadrage, casting, production, droits, reporting.",
 } as const;
 
 export const AUTHENTICITY_CARDS = [

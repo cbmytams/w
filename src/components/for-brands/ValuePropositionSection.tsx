@@ -21,10 +21,10 @@ const VALUE_PILLARS = [
     number: "01",
     gradient: "from-orange-500 to-rose-500",
     glowColor: "rgba(249, 115, 22, 0.4)",
-    title: "Créateurs vérifiés",
+    title: "Casting qualifié",
     stat: { value: "15K+", label: "profils" },
     description:
-      "Fake follower check. Historique de collab. Brand affinity score.",
+      "Audience, cohérence, historique, disponibilité et risques analysés avant shortlist.",
     points: [
       "Audience qualifiée",
       "Alignement valeurs",
@@ -37,10 +37,11 @@ const VALUE_PILLARS = [
     number: "02",
     gradient: "from-purple-500 to-indigo-500",
     glowColor: "rgba(168, 85, 247, 0.4)",
-    title: "Production premium",
+    title: "Production exploitable",
     stat: { value: "12", label: "mois de droits" },
-    description: "Assets réutilisables en Ads. Direction artistique cohérente.",
-    points: ["Formats multi-ratio", "Droits cédés", "DA brandée"],
+    description:
+      "Contenus natifs, déclinaisons paid-ready et droits d'usage cadrés dès le départ.",
+    points: ["Formats multi-ratio", "Droits cadrés", "DA cohérente"],
   },
   {
     id: "data",
@@ -48,10 +49,10 @@ const VALUE_PILLARS = [
     number: "03",
     gradient: "from-green-500 to-emerald-500",
     glowColor: "rgba(34, 197, 94, 0.4)",
-    title: "ROI en temps réel",
+    title: "Pilotage lisible",
     stat: { value: "24/7", label: "live" },
     description:
-      "Dashboard live. Chaque euro tracké. Ajustements en cours de campagne.",
+      "Dashboard, validations, budget, performances et recommandations dans un même cadre.",
     points: [
       "Tracking instantané",
       "Optimisation live",
@@ -264,9 +265,9 @@ export function ValuePropositionSection() {
               }
               className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-4"
             >
-              Trois piliers.{" "}
+              Trois exigences.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500">
-                Zéro compromis.
+                Une campagne plus lisible.
               </span>
             </motion.h2>
 
@@ -282,7 +283,8 @@ export function ValuePropositionSection() {
               }
               className="text-lg text-slate-500 dark:text-slate-400 max-w-md mx-auto"
             >
-              Ce qui nous sépare des autres agences.
+              Ce qui rend une activation plus facile à défendre, à suivre et à
+              réutiliser.
             </motion.p>
           </motion.div>
 
