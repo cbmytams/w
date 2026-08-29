@@ -8,8 +8,6 @@ import {
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
-import { LegalPageTransition } from "@/components/legal/LegalPageTransition";
-
 function LegalLayoutContent({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
   const contextParam = searchParams.get("context");
@@ -22,7 +20,7 @@ function LegalLayoutContent({ children }: { children: React.ReactNode }) {
     <PageShell nav={<LegalTopNav context={context} />}>
       <div className="relative z-10 min-h-screen px-4 pb-24 pt-28">
         <div className="max-w-5xl mx-auto">
-          <LegalPageTransition>{children}</LegalPageTransition>
+          {children}
         </div>
       </div>
     </PageShell>

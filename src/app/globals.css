@@ -839,58 +839,71 @@ body {
     color 0.3s ease;
 }
 
-.orb-orientation-row:hover .orb-row-arrow {
-  opacity: 1;
-  transform: translateX(0);
+/* Hover states only on real pointers; touch gets a static visible arrow
+   (no sticky :hover after tap). */
+@media (hover: hover) {
+  .orb-orientation-row:hover .orb-row-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .orb-row-brands:hover {
+    border-color: rgba(249, 115, 22, 0.5);
+    background: rgba(249, 115, 22, 0.08);
+    padding-left: 1.75rem;
+  }
+
+  .orb-row-brands:hover b {
+    color: #fb923c;
+  }
+
+  .orb-row-brands:hover .orb-row-arrow {
+    color: #fb923c;
+  }
+
+  .orb-row-talents:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.1);
+    padding-left: 1.75rem;
+  }
+
+  .orb-row-talents:hover b {
+    color: #a78bfa;
+  }
+
+  .orb-row-talents:hover .orb-row-arrow {
+    color: #a78bfa;
+  }
 }
 
-.orb-row-brands:hover {
-  border-color: rgba(249, 115, 22, 0.5);
-  background: rgba(249, 115, 22, 0.08);
-  padding-left: 1.75rem;
-}
-
-.orb-row-brands:hover b {
-  color: #fb923c;
-}
-
-.orb-row-brands:hover .orb-row-arrow {
-  color: #fb923c;
-}
-
-.orb-row-talents:hover {
-  border-color: rgba(139, 92, 246, 0.5);
-  background: rgba(139, 92, 246, 0.1);
-  padding-left: 1.75rem;
-}
-
-.orb-row-talents:hover b {
-  color: #a78bfa;
-}
-
-.orb-row-talents:hover .orb-row-arrow {
-  color: #a78bfa;
+@media (pointer: coarse) {
+  .orb-orientation-row .orb-row-arrow {
+    opacity: 0.55;
+    transform: translateX(0);
+  }
 }
 
 /* Logo pill switcher items */
-.orb-switch-item:hover {
-  background: rgba(255, 255, 255, 0.07);
-}
+@media (hover: hover) {
+  .orb-switch-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+  }
 
-.orb-switch-item-brands:hover {
-  background: rgba(249, 115, 22, 0.12);
-}
+  .orb-switch-item-brands:hover {
+    background: rgba(249, 115, 22, 0.12);
+  }
 
-.orb-switch-item-brands:hover b {
-  color: #fb923c;
-}
+  .orb-switch-item-brands:hover b {
+    color: #fb923c;
+  }
 
-.orb-switch-item-talents:hover {
-  background: rgba(139, 92, 246, 0.14);
-}
+  .orb-switch-item-talents:hover {
+    background: rgba(139, 92, 246, 0.14);
+  }
 
-.orb-switch-item-talents:hover b {
-  color: #a78bfa;
+  .orb-switch-item-talents:hover b {
+    color: #a78bfa;
+  }
 }
 
 /* Wiki button: looping shimmer sweep + nudging arrow */

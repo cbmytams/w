@@ -75,6 +75,10 @@ export function OrbSwitcherPill({
   tone = "auto",
 }: OrbSwitcherPillProps) {
   const [open, setOpen] = useState(false);
+  const [menuId] = useState(
+    () => `orb-switch-menu-${current}`
+  );
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const closeTimerRef = useRef<number | null>(null);
   const navigateWithCloud = useOrbNavigate();
   const items = itemsFor(current);
@@ -97,6 +101,14 @@ export function OrbSwitcherPill({
     }, CLOSE_DELAY_MS);
   }, []);
 
+  const closeNow = useCallback(() => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setOpen(false);
+  }, []);
+
   // Clear any pending close timer on unmount.
   useEffect(
     () => () => {
@@ -106,6 +118,23 @@ export function OrbSwitcherPill({
     },
     []
   );
+
+  // Close on outside pointerdown (touch / click away).
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (
+        rootRef.current &&
+        !rootRef.current.contains(event.target as Node)
+      ) {
+        closeNow();
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [open, closeNow]);
 
   const pillTone =
     tone === "dark"
@@ -128,23 +157,27 @@ export function OrbSwitcherPill({
 
   return (
     <div
+      ref={rootRef}
       className="group relative"
       onMouseEnter={cancelClose}
       onMouseLeave={scheduleClose}
+      onBlur={(e) => {
+        // Close when focus leaves the pill wrapper (keyboard navigation).
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+          closeNow();
+        }
+      }}
       onKeyDown={(e) => {
         if (e.key === "Escape") {
-          if (closeTimerRef.current !== null) {
-            window.clearTimeout(closeTimerRef.current);
-            closeTimerRef.current = null;
-          }
-          setOpen(false);
+          closeNow();
         }
       }}
     >
       <button
         type="button"
-        aria-haspopup="true"
+        aria-haspopup="menu"
         aria-expanded={open}
+        aria-controls={menuId}
         onClick={() => {
           cancelClose();
           setOpen((v) => !v);
@@ -179,6 +212,8 @@ export function OrbSwitcherPill({
       />
 
       <div
+        id={menuId}
+        role="menu"
         onMouseEnter={cancelClose}
         className={`absolute left-0 top-[58px] w-[250px] rounded-2xl border p-2 shadow-2xl backdrop-blur-[40px] saturate-150 transition-all duration-300 ${
           open
@@ -190,6 +225,7 @@ export function OrbSwitcherPill({
           <Link
             key={item.href}
             href={item.href}
+            role="menuitem"
             onClick={navigateWithCloud(item.href, item.target)}
             onFocus={() => setOpen(true)}
             className={`orb-switch-item flex items-center justify-between rounded-xl px-4 py-3 transition-colors duration-200 ${

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Users, Play, TrendingUp, Sparkles } from "lucide-react";
+import { ArrowRight, Users, Play, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BRAND_HERO_CONTENT } from "@/constants/brand-additions";
 import {
@@ -30,12 +30,6 @@ export function BrandHeroV2() {
             transition={{ duration: 0.8 }}
             className="w-[calc(100vw-2rem)] max-w-xl min-w-0 z-20 relative sm:w-auto"
           >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-100 to-rose-100 dark:from-orange-900/30 dark:to-rose-900/30 text-orange-600 dark:text-orange-400 text-sm font-bold mb-8 border border-orange-200 dark:border-orange-800/50">
-              <Sparkles className="w-4 h-4" />
-              {BRAND_HERO_CONTENT.badge}
-            </div>
-
             {/* Headline */}
             <h1 className="w-full font-heading text-3xl sm:text-5xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight break-words">
               {BRAND_HERO_CONTENT.title.line1} <br />

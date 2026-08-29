@@ -14,7 +14,8 @@ export function KineticTitle({
       <br />
       {prefix[1]}
       <br />
-      <span className="orb-kine">
+      <span className="sr-only">les marques et les talents.</span>
+      <span className="orb-kine" aria-hidden="true">
         <span className="orb-kine-col">
           <span className="text-orange-400">les marques.</span>
           <span className="text-violet-400">les talents.</span>

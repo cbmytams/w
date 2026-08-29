@@ -24,8 +24,18 @@ import {
    while the orbs are already mid-flight toward the destination layout. */
 export type OrbTargetVariant = "brands" | "talents" | "home";
 
-const PUSH_AT_MS = 520;
-const MORPH_CLEAR_MS = 760;
+type OrbDeviceProfile = "desktop" | "tablet" | "mobile";
+
+// Lead-time before the route pushes (orbs are already morphing) and total
+// morph window. Shorter on touch devices so a tap feels immediate.
+const ORB_TIMING: Record<
+  OrbDeviceProfile,
+  { pushAtMs: number; morphClearMs: number }
+> = {
+  desktop: { pushAtMs: 520, morphClearMs: 760 },
+  tablet: { pushAtMs: 430, morphClearMs: 620 },
+  mobile: { pushAtMs: 340, morphClearMs: 480 },
+};
 
 interface OrbTransitionOptions {
   href: string;
@@ -50,8 +60,39 @@ export function OrbTransitionProvider({ children }: { children: ReactNode }) {
   // variant follows the route. Deriving it (instead of syncing in an effect)
   // keeps a single source of truth and avoids cascading re-renders.
   const [override, setOverride] = useState<BackgroundFlowVariant | null>(null);
+  const [deviceProfile, setDeviceProfile] =
+    useState<OrbDeviceProfile>("desktop");
   const busyRef = useRef(false);
   const timeoutsRef = useRef<number[]>([]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mobileMedia = window.matchMedia("(max-width: 768px)");
+    const tabletMedia = window.matchMedia(
+      "(min-width: 769px) and (max-width: 1024px)"
+    );
+    const update = () => {
+      if (mobileMedia.matches) {
+        setDeviceProfile("mobile");
+        return;
+      }
+      if (tabletMedia.matches) {
+        setDeviceProfile("tablet");
+        return;
+      }
+      setDeviceProfile("desktop");
+    };
+
+    update();
+    mobileMedia.addEventListener("change", update);
+    tabletMedia.addEventListener("change", update);
+
+    return () => {
+      mobileMedia.removeEventListener("change", update);
+      tabletMedia.removeEventListener("change", update);
+    };
+  }, []);
 
   const later = useCallback((fn: () => void, ms: number) => {
     timeoutsRef.current.push(window.setTimeout(fn, ms));
@@ -78,15 +119,16 @@ export function OrbTransitionProvider({ children }: { children: ReactNode }) {
 
       busyRef.current = true;
       setOverride(opts.target);
+      const { pushAtMs, morphClearMs } = ORB_TIMING[deviceProfile];
       later(() => {
         router.push(opts.href);
-      }, PUSH_AT_MS);
+      }, pushAtMs);
       later(() => {
         busyRef.current = false;
         setOverride(null);
-      }, PUSH_AT_MS + MORPH_CLEAR_MS);
+      }, pushAtMs + morphClearMs);
     },
-    [later, prefersReducedMotion, router]
+    [deviceProfile, later, prefersReducedMotion, router]
   );
 
   return (
