@@ -38,7 +38,7 @@ export function CtaSection({
                 asChild
                 className="h-16 px-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xl font-semibold shadow-2xl shadow-orange-500/25"
               >
-                <a href={estimateHref}>Réserver un appel stratégique</a>
+                <a href={estimateHref}>Nous contacter</a>
               </Button>
             </div>
           </RevealAnimation>

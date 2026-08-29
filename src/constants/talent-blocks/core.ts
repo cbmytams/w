@@ -4,7 +4,7 @@ export const TALENT_HERO = {
   titleHighlight: "Une structure autour.",
   subtitle:
     "Image, projets, revenus, droits : Wafia accompagne les créateurs, artistes, comédiens, musiciens et talents hybrides dans la structuration complète de leur carrière.",
-  ctaPrimary: "Faire le diagnostic talent",
+  ctaPrimary: "Nous contacter",
   ctaSecondary: "Notre approche",
   callsAvailable: 0,
   proofPoints: [
@@ -38,7 +38,7 @@ export const TALENT_PROBLEM = {
 export const TALENT_CTA = {
   title: "Prêt à structurer la suite ?",
   description: "",
-  ctaText: "Faire le diagnostic talent",
+  ctaText: "Nous contacter",
 } as const;
 
 export const TALENT_FOR_WHO = {

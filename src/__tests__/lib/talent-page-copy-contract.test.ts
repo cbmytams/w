@@ -5,9 +5,9 @@ import {
 } from "@/constants/talent-blocks/core";
 
 describe("talent page copy contract", () => {
-  it("uses a clear diagnostic CTA instead of an ambiguous listing CTA", () => {
-    expect(TALENT_HERO.ctaPrimary).toBe("Faire le diagnostic talent");
-    expect(TALENT_CTA.ctaText).toBe("Faire le diagnostic talent");
+  it("uses a contact CTA instead of a diagnostic-specific CTA", () => {
+    expect(TALENT_HERO.ctaPrimary).toBe("Nous contacter");
+    expect(TALENT_CTA.ctaText).toBe("Nous contacter");
   });
 
   it("keeps the core Wafia talent promise centered on structure", () => {
