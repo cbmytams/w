@@ -463,7 +463,7 @@ body {
   animation: marquee-vertical var(--duration) linear infinite;
 }
 
-/* Wiki CTA — infinite bounce for discovery arrow */
+/* Wiki CTA — bounce for the discovery arrow (used by .wiki-cta-arrow) */
 @keyframes wiki-bounce {
   0%,
   100% {
@@ -477,10 +477,6 @@ body {
   }
 }
 
-.animate-wiki-bounce {
-  animation: wiki-bounce 2s ease-in-out infinite;
-}
-
 /* ============================================
    WIKI CTA ANIMATIONS
    ============================================ */
@@ -490,10 +486,6 @@ body {
 
 .wiki-cta-orbit {
   animation: wiki-spin 12s linear infinite;
-}
-
-.wiki-cta-pulse {
-  animation: wiki-pulse 3s ease-in-out infinite;
 }
 
 .wiki-cta-arrow {
@@ -563,19 +555,6 @@ body {
 
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes wiki-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(0.85);
-    opacity: 0.6;
   }
 }
 
