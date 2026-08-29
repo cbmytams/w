@@ -765,3 +765,181 @@ body {
   --wiki-ink-muted: #666660;
   --wiki-line: #2a2a2a;
 }
+
+/* ============================================
+   WAFIA ORB HOME — hero & transition
+   ============================================ */
+
+/* Kinetic word carousel (masked vertical slide, seamless loop) */
+.orb-kine {
+  display: inline-block;
+  vertical-align: bottom;
+  overflow: hidden;
+  height: 1.14em;
+}
+
+.orb-kine-col {
+  display: flex;
+  flex-direction: column;
+  animation: orb-kine-loop 12s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+  will-change: transform;
+}
+
+.orb-kine-col > span {
+  display: block;
+  height: 1.14em;
+  line-height: 1.14em;
+  white-space: nowrap;
+  /* Hide the previous word's sub-pixel bleed at the mask's top edge. */
+  transform: translateY(-0.02em);
+}
+
+@keyframes orb-kine-loop {
+  0%,
+  26% {
+    transform: translateY(0);
+  }
+  34%,
+  55% {
+    transform: translateY(-1.14em);
+  }
+  63%,
+  84% {
+    transform: translateY(-2.28em);
+  }
+  92%,
+  100% {
+    transform: translateY(-3.42em);
+  }
+}
+
+/* Pulsing status dot in the logo pill */
+.orb-dot {
+  animation: orb-dot-pulse 2.2s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
+}
+
+@keyframes orb-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Orientation rows: hover reveals a sliding arrow */
+.orb-orientation-row .orb-row-arrow {
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    color 0.3s ease;
+}
+
+.orb-orientation-row:hover .orb-row-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.orb-row-brands:hover {
+  border-color: rgba(249, 115, 22, 0.5);
+  background: rgba(249, 115, 22, 0.08);
+  padding-left: 1.75rem;
+}
+
+.orb-row-brands:hover b {
+  color: #fb923c;
+}
+
+.orb-row-brands:hover .orb-row-arrow {
+  color: #fb923c;
+}
+
+.orb-row-talents:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.1);
+  padding-left: 1.75rem;
+}
+
+.orb-row-talents:hover b {
+  color: #a78bfa;
+}
+
+.orb-row-talents:hover .orb-row-arrow {
+  color: #a78bfa;
+}
+
+/* Logo pill switcher items */
+.orb-switch-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.orb-switch-item-brands:hover {
+  background: rgba(249, 115, 22, 0.12);
+}
+
+.orb-switch-item-brands:hover b {
+  color: #fb923c;
+}
+
+.orb-switch-item-talents:hover {
+  background: rgba(139, 92, 246, 0.14);
+}
+
+.orb-switch-item-talents:hover b {
+  color: #a78bfa;
+}
+
+/* Wiki button: looping shimmer sweep + nudging arrow */
+.orb-shimmer-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 42%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: orb-shimmer 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes orb-shimmer {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  55%,
+  100% {
+    transform: translateX(260%) skewX(-18deg);
+  }
+}
+
+.orb-nudge-arrow {
+  animation: orb-nudge 1.9s ease-in-out infinite;
+}
+
+@keyframes orb-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+/* Reduced motion: static word, no loops */
+@media (prefers-reduced-motion: reduce) {
+  .orb-kine-col,
+  .orb-shimmer-btn::after,
+  .orb-nudge-arrow,
+  .orb-dot {
+    animation: none;
+  }
+}

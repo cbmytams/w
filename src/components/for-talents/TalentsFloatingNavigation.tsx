@@ -6,6 +6,7 @@ import { WafiaLogo } from "@/components/ui/WafiaLogo";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { OrbSwitcherPill } from "@/components/navigation/OrbSwitcherPill";
 import { TALENT_NAVIGATION, BRAND_GRADIENT } from "@/constants";
 import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire";
 import { EASING, DURATION } from "@/lib/easing";
@@ -151,28 +152,7 @@ export function TalentsFloatingNavigation() {
         transition={{ duration: DURATION.slow, ease: EASING.entrance }}
         className="fixed top-4 left-4 sm:top-8 sm:left-8 z-[100]"
       >
-        <Link
-          href="/for-talents"
-          onClick={(e) => {
-            setMobileMenuOpen(false);
-            if (
-              typeof window !== "undefined" &&
-              window.location.pathname === "/for-talents"
-            ) {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
-          className="h-12 group flex items-center px-5 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
-        >
-          <WafiaLogo className="h-4 w-auto text-slate-900 dark:text-white" />
-          <div className="flex items-center justify-center w-6 z-10 mx-1">
-            <div className="w-[5px] h-[5px] rounded-full bg-purple-500 animate-pulse shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
-          </div>
-          <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">
-            TALENTS
-          </span>
-        </Link>
+        <OrbSwitcherPill current="talents" />
       </motion.div>
 
       {/* 2. Center - Navigation Pill (Premium Apple Style) - Desktop only */}
@@ -235,15 +215,6 @@ export function TalentsFloatingNavigation() {
         transition={{ duration: DURATION.slow, ease: EASING.entrance }}
         className="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] flex items-center gap-3"
       >
-        {/* Home - Desktop only */}
-        <Link
-          href="/"
-          className="h-12 hidden lg:!flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
-        >
-          <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-          <span>Menu principal</span>
-        </Link>
-
         {/* Hamburger - Mobile only */}
         <button
           type="button"

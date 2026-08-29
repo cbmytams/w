@@ -39,6 +39,8 @@ tmp_*.json
 .playwright-cli/
 .codex/
 SKILLS/
+.agents/
+.code-review-graph/
 
 # Audit / report artifacts (generated, not source)
 audit/
@@ -49,10 +51,9 @@ wiki/vite_debug_log.txt
 wiki/test-parse.mjs
 public/studio/
 
-# Finder duplicates (just in case iCloud strikes again)
-* 2.*
-* 3.*
-* 4.*
-* 2
-* 3
-* 4
+# Finder / iCloud duplicate artifacts (precise — avoids ignoring legit "report 2.pdf")
+*(2).*
+*(3).*
+*(4).*
+*.icloud
+.superpowers/

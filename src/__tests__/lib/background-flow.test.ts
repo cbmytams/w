@@ -7,6 +7,13 @@ import {
 
 describe("background flow", () => {
   describe("getGlobalBackgroundConfig", () => {
+    it("returns showcase settings for the orb home", () => {
+      expect(getGlobalBackgroundConfig("/", null)).toEqual({
+        variant: "home",
+        intensity: "showcase",
+      });
+    });
+
     it("returns showcase settings for for-brands", () => {
       expect(getGlobalBackgroundConfig("/for-brands", null)).toEqual({
         variant: "brands",
@@ -113,7 +120,7 @@ describe("background flow", () => {
         isConstrainedRuntime: false,
         mobileLite: true,
         allowBubbleMotion: true,
-        bubbleCount: 3,
+        bubbleCount: 6,
       });
     });
 
@@ -145,7 +152,7 @@ describe("background flow", () => {
         isConstrainedRuntime: false,
         mobileLite: false,
         allowBubbleMotion: false,
-        bubbleCount: 5,
+        bubbleCount: 6,
       });
     });
   });

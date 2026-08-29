@@ -1,10 +1,10 @@
 export const TALENT_HERO = {
-  badge: "Talent management 360",
+  badge: "",
   title: "Votre talent.",
   titleHighlight: "Une structure autour.",
   subtitle:
-    "Wafia accompagne les créateurs, artistes, comédiens, musiciens et talents hybrides dans la construction de leur image, de leurs revenus et de leurs opportunités.",
-  ctaPrimary: "Se référencer",
+    "Image, projets, revenus, droits : Wafia accompagne les créateurs, artistes, comédiens, musiciens et talents hybrides dans la structuration complète de leur carrière.",
+  ctaPrimary: "Faire le diagnostic talent",
   ctaSecondary: "Notre approche",
   callsAvailable: 0,
   proofPoints: [
@@ -13,6 +13,12 @@ export const TALENT_HERO = {
     { label: "Revenus & protection", value: "Business" },
   ],
 } as const;
+
+export const TALENT_PROOF_POINTS = [
+  { label: "Talents accompagnés", value: "~400" },
+  { label: "Expérience", value: "8 ans" },
+  { label: "Pôles d'expertise", value: "2 pôles" },
+] as const;
 
 export const TALENT_PROBLEM = {
   id: "problem",
@@ -32,7 +38,7 @@ export const TALENT_PROBLEM = {
 export const TALENT_CTA = {
   title: "Prêt à structurer la suite ?",
   description: "",
-  ctaText: "Se référencer",
+  ctaText: "Faire le diagnostic talent",
 } as const;
 
 export const TALENT_FOR_WHO = {

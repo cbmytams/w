@@ -1,4 +1,4 @@
-import { HomeClient } from "@/components/home/HomeClient";
+import { OrbHomePage } from "@/components/home/home-orb/OrbHomePage";
 import { sitePaths } from "@/lib/site";
 import type { Metadata } from "next";
 
@@ -25,11 +25,10 @@ export const metadata: Metadata = {
 };
 
 /**
- * Homepage - Server Component
- *
- * Renders the Client Component for the main interactive experience.
- * This structure allows us to add `generateMetadata` or other server-side logic here if needed.
+ * Homepage — orb experience.
+ * Server Component wrapper: metadata stays server-side, the interactive
+ * experience lives in <OrbHomePage /> (client).
  */
 export default function Homepage() {
-  return <HomeClient />;
+  return <OrbHomePage />;
 }

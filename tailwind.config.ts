@@ -1,6 +1,7 @@
 const config = {
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-  safelist: ["col-span-2", "fixed", "inset-0", "overflow-hidden"],
+  safelist: ["col-span-2", "fixed", "inset-0", "overflow-hidden", "dark"],
   theme: {
     extend: {
       fontFamily: {

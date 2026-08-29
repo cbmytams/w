@@ -1,17 +1,21 @@
-export type BackgroundFlowVariant = "brands" | "talents";
+export type BackgroundFlowVariant = "brands" | "talents" | "home";
 export type BackgroundFlowIntensity = "base" | "showcase";
 
 export type BackgroundRuntimeProfile = {
   isConstrainedRuntime: boolean;
   mobileLite: boolean;
   allowBubbleMotion: boolean;
-  bubbleCount: 3 | 5;
+  bubbleCount: 3 | 6;
 };
 
 export function getGlobalBackgroundConfig(
   pathname: string | null | undefined,
   legalContext: string | null
 ): { variant: BackgroundFlowVariant; intensity: BackgroundFlowIntensity } {
+  if (pathname === "/") {
+    return { variant: "home", intensity: "showcase" };
+  }
+
   if (pathname?.startsWith("/for-brands")) {
     return { variant: "brands", intensity: "showcase" };
   }
@@ -89,6 +93,6 @@ export function getBackgroundRuntimeProfile({
     isConstrainedRuntime,
     mobileLite,
     allowBubbleMotion,
-    bubbleCount: mobileLite ? 3 : 5,
+    bubbleCount: isConstrainedRuntime ? 3 : 6,
   };
 }

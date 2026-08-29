@@ -6,6 +6,7 @@ import { WafiaLogo } from "@/components/ui/WafiaLogo";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { OrbSwitcherPill } from "@/components/navigation/OrbSwitcherPill";
 import { BRAND_NAVIGATION } from "@/constants";
 import { EASING, DURATION } from "@/lib/easing";
 import { SPRING } from "@/lib/design-tokens";
@@ -122,28 +123,7 @@ export function FloatingNavigation({
         transition={{ duration: DURATION.slow, ease: EASING.entrance }}
         className="fixed top-4 left-4 sm:top-8 sm:left-8 z-[100]"
       >
-        <Link
-          href="/for-brands"
-          onClick={(e) => {
-            setMobileMenuOpen(false);
-            if (
-              typeof window !== "undefined" &&
-              window.location.pathname === "/for-brands"
-            ) {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
-          className="h-12 group flex items-center px-5 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300"
-        >
-          <WafiaLogo className="h-4 w-auto text-black dark:text-white" />
-          <div className="flex items-center justify-center w-6 z-10 mx-1">
-            <div className="w-[5px] h-[5px] rounded-full bg-orange-500 animate-pulse shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
-          </div>
-          <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider leading-none mb-[1px]">
-            BRANDS
-          </span>
-        </Link>
+        <OrbSwitcherPill current="brands" />
       </motion.div>
 
       {/* 2. Center - Navigation Pill (Premium Apple Style) - Desktop only */}
@@ -190,35 +170,26 @@ export function FloatingNavigation({
               asChild
               className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-slate-100 px-6 h-9 text-white dark:text-black text-sm font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105"
             >
-              <a href={estimateHref}>Cadrer ma campagne</a>
+              <a href={estimateHref}>Structurer ma campagne</a>
             </Button>
           ) : (
             <Button
               onClick={handleEstimateClick}
               className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-slate-100 px-6 h-9 text-white dark:text-black text-sm font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105"
             >
-              Cadrer ma campagne
+              Structurer ma campagne
             </Button>
           )}
         </div>
       </motion.nav>
 
-      {/* 3. Right - Home (Desktop) / Hamburger (Mobile) */}
+      {/* 3. Right - Hamburger (Mobile) */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: DURATION.slow, ease: EASING.entrance }}
         className="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] flex items-center gap-3"
       >
-        {/* Home - Desktop only */}
-        <Link
-          href="/"
-          className="h-12 hidden lg:flex group items-center gap-2.5 px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
-        >
-          <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-300" />
-          <span>Menu principal</span>
-        </Link>
-
         {/* Hamburger - Mobile only */}
         <button
           type="button"
@@ -324,7 +295,7 @@ export function FloatingNavigation({
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex h-14 w-full items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-lg hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
                       >
-                        Cadrer ma campagne
+                        Structurer ma campagne
                       </a>
                     ) : (
                       <button
@@ -335,7 +306,7 @@ export function FloatingNavigation({
                         }}
                         className="h-14 w-full rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-lg hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:focus-visible:outline-black"
                       >
-                        Cadrer ma campagne
+                        Structurer ma campagne
                       </button>
                     )}
                   </motion.div>

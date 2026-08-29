@@ -6,6 +6,7 @@ import "./globals.css";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { GlobalNav } from "@/components/layout/GlobalNav";
 import { GlobalBackground } from "@/components/common/GlobalBackground";
+import { OrbTransitionProvider } from "@/components/home/orb/OrbTransitionProvider";
 import { siteConfig } from "@/lib/site";
 import { CookieBanner } from "@/components/compliance/CookieBanner";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
@@ -125,6 +126,13 @@ export default async function RootLayout({
         />
         <script
           nonce={nonce}
+          dangerouslySetInnerHTML={{
+            __html:
+              'try{if(location.pathname==="/"){document.documentElement.classList.add("dark");document.documentElement.dataset.orbDark="1"}}catch(e){}',
+          }}
+        />
+        <script
+          nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
@@ -134,11 +142,13 @@ export default async function RootLayout({
         >
           Aller au contenu
         </a>
-        <Suspense fallback={null}>
-          <GlobalBackground />
-        </Suspense>
-        <GlobalNav />
-        <PageTransition>{children}</PageTransition>
+        <OrbTransitionProvider>
+          <Suspense fallback={null}>
+            <GlobalBackground />
+          </Suspense>
+          <GlobalNav />
+          <PageTransition>{children}</PageTransition>
+        </OrbTransitionProvider>
         <CookieBanner />
       </body>
     </html>

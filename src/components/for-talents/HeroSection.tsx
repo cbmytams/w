@@ -22,14 +22,16 @@ export function HeroSection() {
     <section className="pt-32 pb-24 px-4 min-h-[85vh] flex items-center relative">
       <Container className="relative z-10">
         <div className="w-[calc(100vw-4rem)] max-w-4xl min-w-0 sm:w-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: DURATION.slower, ease: EASING.entrance }}
-            className="mb-6 inline-flex rounded-full border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/[0.04] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-white/50 backdrop-blur-xl"
-          >
-            {TALENT_HERO.badge}
-          </motion.div>
+          {TALENT_HERO.badge ? (
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: DURATION.slower, ease: EASING.entrance }}
+              className="mb-6 inline-flex rounded-full border border-slate-200/70 dark:border-white/10 bg-white/70 dark:bg-white/[0.04] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-white/50 backdrop-blur-xl"
+            >
+              {TALENT_HERO.badge}
+            </motion.div>
+          ) : null}
 
           {/* Title - Large, two lines */}
           <motion.div
