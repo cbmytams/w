@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import * as Sentry from "@sentry/nextjs";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import Link from "next/link";
 import { OrbLink } from "@/components/navigation/OrbLink";
 
 export default function Error({

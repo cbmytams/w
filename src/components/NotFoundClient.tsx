@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { OrbLink } from "@/components/navigation/OrbLink";
 import { motion } from "framer-motion";
 import { EASING } from "@/lib/easing";

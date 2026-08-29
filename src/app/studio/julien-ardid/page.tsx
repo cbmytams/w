@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { OrbLink } from "@/components/navigation/OrbLink";
 import { JulienHero } from "@/components/studio/julien/JulienHero";
 import { JulienBio } from "@/components/studio/julien/JulienBio";

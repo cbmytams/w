@@ -93,16 +93,16 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
         transition={{ duration: 0.5, ease: EASING.smooth }}
         className="fixed top-4 left-4 sm:top-8 sm:left-8 z-[100]"
       >
-        <Link
+        <OrbLink
           href={BACK_ROUTE[context]}
-          aria-label="Retour"
+          ariaLabel="Retour"
           className="h-12 group flex items-center justify-center gap-2.5 px-4 sm:px-6 rounded-full bg-white/40 dark:bg-[#1C1C1E]/60 backdrop-blur-[40px] saturate-[180%] shadow-lg border border-white/50 dark:border-white/10 hover:scale-105 hover:bg-white/50 dark:hover:bg-[#1C1C1E]/80 transition-all duration-300 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-300">
             ←
           </span>
           <span className="hidden sm:inline">Retour</span>
-        </Link>
+        </OrbLink>
       </motion.div>
 
       {/* 2. Center - Navigation Pill (Desktop only) */}

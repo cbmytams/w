@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
 import { WafiaLogo } from "@/components/ui/WafiaLogo";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Home, Menu, X } from "lucide-react";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { OrbLink } from "@/components/navigation/OrbLink";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -26,18 +26,18 @@ export default function ContactPage() {
           actionnables.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link
+          <OrbLink
             href="/contact/brands"
             className="inline-flex h-11 items-center rounded-full bg-slate-900 px-6 text-sm font-medium text-white transition-opacity hover:opacity-90 dark:bg-white dark:text-slate-900"
           >
             Je suis une marque
-          </Link>
-          <Link
+          </OrbLink>
+          <OrbLink
             href="/contact/talents"
             className="inline-flex h-11 items-center rounded-full border border-slate-300 px-6 text-sm font-medium text-slate-700 transition-colors hover:border-slate-500 dark:border-white/20 dark:text-white/80 dark:hover:border-white/40"
           >
             Je suis un talent
-          </Link>
+          </OrbLink>
         </div>
       </Container>
     </main>

@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { EASING, DURATION } from "@/lib/easing";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { OrbLink } from "@/components/navigation/OrbLink";
 import WikiNavBar from "./WikiNavBar";
 import WikiSearchDialog from "./WikiSearchDialog";

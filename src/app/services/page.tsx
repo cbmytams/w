@@ -376,9 +376,9 @@ export default function ServicesPage() {
 
               {service.cta && (
                 <Button variant="outline" asChild>
-                  <Link href={service.cta.href}>
+                  <OrbLink href={service.cta.href}>
                     {service.cta.label} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  </OrbLink>
                 </Button>
               )}
             </div>
