@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { TALENT_HERO } from "@/constants";
 import { EASING, DURATION } from "@/lib/easing";
+import { OrbLink } from "@/components/navigation/OrbLink";
 
 /**
  * HeroSection — Clean editorial layout
@@ -69,7 +70,7 @@ export function HeroSection() {
             className="flex flex-wrap items-center gap-3 md:gap-4"
           >
             {/* Primary CTA - Filled */}
-            <a href={talentHeroCtaHref} className="inline-flex">
+            <OrbLink href={talentHeroCtaHref} className="inline-flex">
               <motion.span
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -77,7 +78,7 @@ export function HeroSection() {
               >
                 {TALENT_HERO.ctaPrimary}
               </motion.span>
-            </a>
+            </OrbLink>
 
             {/* Secondary CTA - White Pill High Vis / Dark Glass in Night Mode */}
             <motion.button

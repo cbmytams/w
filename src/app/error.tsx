@@ -5,6 +5,7 @@ import * as Sentry from "@sentry/nextjs";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import Link from "next/link";
+import { OrbLink } from "@/components/navigation/OrbLink";
 
 export default function Error({
   error,
@@ -38,7 +39,7 @@ export default function Error({
           <div className="mt-8 flex justify-center gap-4">
             <Button onClick={() => reset()}>Réessayer</Button>
             <Button variant="outline" asChild>
-              <Link href="/contact/brands">Support</Link>
+              <OrbLink href="/contact/brands">Support</OrbLink>
             </Button>
           </div>
         </Container>

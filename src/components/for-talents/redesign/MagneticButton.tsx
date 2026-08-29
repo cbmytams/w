@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ReactNode, MouseEvent } from "react";
-import Link from "next/link";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface MagneticButtonProps {
@@ -71,7 +71,7 @@ export function MagneticButton({
   );
 
   if (href) {
-    return <Link href={href}>{buttonContent}</Link>;
+    return <OrbLink href={href}>{buttonContent}</OrbLink>;
   }
 
   return (

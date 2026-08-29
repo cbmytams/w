@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { RevealAnimation } from "@/components/common/RevealAnimation";
+import { OrbLink } from "@/components/navigation/OrbLink";
 
 type CtaSectionProps = {
   estimateHref?: string;
@@ -38,7 +39,7 @@ export function CtaSection({
                 asChild
                 className="h-16 px-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xl font-semibold shadow-2xl shadow-orange-500/25"
               >
-                <a href={estimateHref}>Nous contacter</a>
+                <OrbLink href={estimateHref}>Nous contacter</OrbLink>
               </Button>
             </div>
           </RevealAnimation>

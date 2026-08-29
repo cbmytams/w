@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { EASING, DURATION } from "@/lib/easing";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import WikiNavBar from "./WikiNavBar";
 import WikiSearchDialog from "./WikiSearchDialog";
 import { useWikiDarkMode } from "@/hooks/useWikiDarkMode";
@@ -355,26 +356,24 @@ export default function WikiArticleView({
             Vous travaillez sur une campagne d&apos;influence ?
           </p>
           <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
-            <Link
+            <OrbLink
               href="/for-brands"
-              style={{
-                color: "var(--wiki-ink)",
-                fontWeight: 600,
-                fontSize: "0.9rem",
-              }}
+              className="font-semibold text-[0.9rem]"
+              ariaLabel="Pour les marques"
             >
-              Pour les marques &rarr;
-            </Link>
-            <Link
+              <span style={{ color: "var(--wiki-ink)" }}>
+                Pour les marques &rarr;
+              </span>
+            </OrbLink>
+            <OrbLink
               href="/for-talents"
-              style={{
-                color: "var(--wiki-ink)",
-                fontWeight: 600,
-                fontSize: "0.9rem",
-              }}
+              className="font-semibold text-[0.9rem]"
+              ariaLabel="Pour les talents"
             >
-              Pour les talents &rarr;
-            </Link>
+              <span style={{ color: "var(--wiki-ink)" }}>
+                Pour les talents &rarr;
+              </span>
+            </OrbLink>
           </div>
         </div>
       </article>

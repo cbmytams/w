@@ -7,6 +7,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OrbSwitcherPill } from "@/components/navigation/OrbSwitcherPill";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import { TALENT_NAVIGATION, BRAND_GRADIENT } from "@/constants";
 import { EASING, DURATION } from "@/lib/easing";
 import { SPRING } from "@/lib/design-tokens";
@@ -195,13 +196,13 @@ export function TalentsFloatingNavigation() {
             })}
           </div>
           <div className="w-1"></div>
-          <a href={desktopCtaHref}>
+          <OrbLink href={desktopCtaHref}>
             <Button
               className={`rounded-full bg-gradient-to-r ${BRAND_GRADIENT} hover:opacity-90 px-6 h-9 text-white text-sm font-bold tracking-wide shadow-md shadow-pink-500/25 hover:shadow-pink-500/40 transition-transform duration-300 hover:scale-105`}
             >
               Se référencer
             </Button>
-          </a>
+          </OrbLink>
         </div>
       </motion.nav>
 
@@ -302,25 +303,25 @@ export function TalentsFloatingNavigation() {
                 <div className="mt-6 w-full flex flex-col gap-3 relative z-10 shrink-0">
                   {/* Secondary: Menu principal */}
                   <motion.div variants={menuItemVariants}>
-                    <Link
+                    <OrbLink
                       href="/"
                       onClick={() => setMobileMenuOpen(false)}
                       className="h-12 w-full flex items-center justify-center gap-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300 text-base font-semibold text-slate-700 dark:text-slate-300 group"
                     >
                       <Home className="h-[18px] w-[18px] group-hover:scale-110 transition-transform" />
                       Menu principal
-                    </Link>
+                    </OrbLink>
                   </motion.div>
 
                   {/* Primary CTA Button */}
                   <motion.div variants={menuItemVariants}>
-                    <a
+                    <OrbLink
                       href={mobileCtaHref}
                       onClick={() => setMobileMenuOpen(false)}
                       className={`h-14 w-full flex items-center justify-center rounded-full bg-gradient-to-r ${BRAND_GRADIENT} text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300`}
                     >
                       Se référencer
-                    </a>
+                    </OrbLink>
                   </motion.div>
                 </div>
               </div>

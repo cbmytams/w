@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Play, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import { BRAND_HERO_CONTENT } from "@/constants/brand-additions";
 import {
   MainPerformanceModule,
@@ -95,9 +96,9 @@ export function BrandHeroV2() {
                 variant="outline"
                 className="rounded-full border-2 border-slate-300 dark:border-zinc-700 hover:border-slate-400 dark:hover:border-zinc-600 px-5 sm:px-8 h-11 sm:h-14 font-semibold text-sm sm:text-base"
               >
-                <Link href={BRAND_HERO_CONTENT.cta.secondary.href}>
+                <OrbLink href={BRAND_HERO_CONTENT.cta.secondary.href}>
                   {BRAND_HERO_CONTENT.cta.secondary.text}
-                </Link>
+                </OrbLink>
               </Button>
             </div>
           </motion.div>

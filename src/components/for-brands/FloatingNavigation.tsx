@@ -7,6 +7,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OrbSwitcherPill } from "@/components/navigation/OrbSwitcherPill";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import { BRAND_NAVIGATION } from "@/constants";
 import { EASING, DURATION } from "@/lib/easing";
 import { SPRING } from "@/lib/design-tokens";
@@ -170,7 +171,7 @@ export function FloatingNavigation({
               asChild
               className="rounded-full bg-[#111111] dark:bg-white hover:bg-black dark:hover:bg-slate-100 px-6 h-9 text-white dark:text-black text-sm font-bold tracking-wide shadow-md transition-transform duration-300 hover:scale-105"
             >
-              <a href={estimateHref}>Structurer ma campagne</a>
+              <OrbLink href={estimateHref}>Structurer ma campagne</OrbLink>
             </Button>
           ) : (
             <Button
@@ -277,26 +278,26 @@ export function FloatingNavigation({
                 <div className="mt-6 w-full flex flex-col gap-3 relative z-10 shrink-0">
                   {/* Secondary: Menu principal */}
                   <motion.div variants={menuItemVariants}>
-                    <Link
+                    <OrbLink
                       href="/"
                       onClick={() => setMobileMenuOpen(false)}
                       className="h-12 w-full flex items-center justify-center gap-2.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-300 text-base font-semibold text-slate-700 dark:text-slate-300 group"
                     >
                       <Home className="h-[18px] w-[18px] group-hover:scale-110 transition-transform" />
                       Menu principal
-                    </Link>
+                    </OrbLink>
                   </motion.div>
 
                   {/* Primary CTA Button */}
                   <motion.div variants={menuItemVariants}>
                     {estimateHref ? (
-                      <a
+                      <OrbLink
                         href={estimateHref}
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex h-14 w-full items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-lg shadow-lg hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300"
                       >
                         Structurer ma campagne
-                      </a>
+                      </OrbLink>
                     ) : (
                       <button
                         type="button"

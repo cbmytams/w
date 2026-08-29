@@ -1,18 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 import { X, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SPRING } from "@/lib/design-tokens";
 import { STUDIO_PRODUCTIONS } from "@/constants/studio";
 import { SequentialVideoPlayer } from "@/components/studio/SequentialVideoPlayer";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { EASING } from "@/lib/easing";
 
 export function ProductionsGrid() {
-  const router = useRouter();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [videoMode, setVideoMode] = useState<"process" | "result">("result");
   const prefersReducedMotion = useReducedMotion();
@@ -351,12 +350,12 @@ export function ProductionsGrid() {
                         {/* CTA */}
                         {prod.id === "krh" ? (
                           <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                            <button
-                              onClick={() => router.push("/contact/brands")}
+                            <OrbLink
+                              href="/contact/brands"
                               className="w-full sm:flex-1 py-4 px-6 rounded-full font-semibold text-[15px] bg-white text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center text-center"
                             >
                               Estimer le volume
-                            </button>
+                            </OrbLink>
                             <div className="w-full sm:flex-1 relative group cursor-not-allowed">
                               {/* Subtle Animated Glow Behind Button */}
                               <div className="absolute -inset-0.5 bg-gradient-to-r from-white/10 to-white/5 rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
@@ -373,12 +372,12 @@ export function ProductionsGrid() {
                           </div>
                         ) : (
                           <div className="pt-4">
-                            <button
-                              onClick={() => router.push("/contact/brands")}
+                            <OrbLink
+                              href="/contact/brands"
                               className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-[15px] bg-white text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center"
                             >
                               Lancer le projet
-                            </button>
+                            </OrbLink>
                           </div>
                         )}
                       </div>

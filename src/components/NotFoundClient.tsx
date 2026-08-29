@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import { motion } from "framer-motion";
 import { EASING } from "@/lib/easing";
 import { ArrowRight, Home } from "lucide-react";
@@ -66,21 +67,21 @@ export default function NotFoundClient() {
           transition={{ delay: 0.5, duration: 0.8, ease: EASING.premium }}
           className="mt-12 flex flex-col w-full sm:w-auto sm:flex-row items-center gap-4"
         >
-          <Link
+          <OrbLink
             href="/"
             className="group relative flex w-full sm:w-auto items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-semibold text-black transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-white/5"
           >
             <Home className="h-4 w-4" />
             Retour à l'accueil
-          </Link>
+          </OrbLink>
 
-          <Link
+          <OrbLink
             href="/contact/brands"
             className="group relative flex w-full sm:w-auto items-center justify-center gap-2 overflow-hidden rounded-full bg-white/5 px-8 py-4 text-sm font-medium text-white ring-1 ring-inset ring-white/10 transition-all hover:bg-white/10 hover:ring-white/20 active:scale-95"
           >
             Contacter l'agence
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          </OrbLink>
         </motion.div>
       </div>
     </main>

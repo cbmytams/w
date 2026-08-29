@@ -7,6 +7,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 import { WafiaLogo } from "@/components/ui/WafiaLogo";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import { SPRING } from "@/lib/design-tokens";
 import { EASING } from "@/lib/easing";
 
@@ -20,7 +21,7 @@ const LEGAL_LINKS = [
 
 const CTA_CONFIG: Record<LegalNavContext, { href: string; label: string }> = {
   brands: { href: "/contact/brands", label: "Structurer ma campagne" },
-  talents: { href: "/for-talents#contact", label: "Rejoindre Wafia" },
+  talents: { href: "/contact/talents", label: "Rejoindre Wafia" },
   default: { href: "/contact/brands", label: "Nous contacter" },
 };
 
@@ -147,11 +148,11 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
             })}
           </div>
           <div className="w-1"></div>
-          <a href={cta.href}>
+          <OrbLink href={cta.href}>
             <div className="flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF4C00] to-[#FF8C00] hover:opacity-90 px-6 h-9 text-white text-sm font-bold tracking-wide shadow-md shadow-orange-500/25 hover:shadow-orange-500/40 transition-transform duration-300 hover:scale-105">
               {cta.label}
             </div>
-          </a>
+          </OrbLink>
         </div>
       </motion.nav>
 
@@ -230,13 +231,13 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                   variants={menuItemVariants}
                   className="mt-8 w-full relative z-10"
                 >
-                  <a
+                  <OrbLink
                     href={cta.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className="h-14 w-full flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF4C00] to-[#FF8C00] text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
                   >
                     {cta.label}
-                  </a>
+                  </OrbLink>
                 </motion.div>
               </div>
             </motion.div>

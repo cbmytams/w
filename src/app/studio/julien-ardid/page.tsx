@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { OrbLink } from "@/components/navigation/OrbLink";
 import { JulienHero } from "@/components/studio/julien/JulienHero";
 import { JulienBio } from "@/components/studio/julien/JulienBio";
 import { JulienStats } from "@/components/studio/julien/JulienStats";
@@ -67,13 +68,13 @@ export default function JulienArdidPage() {
                 Créons des images, vidéos et déclinaisons capables de porter
                 votre marque au-delà d'une seule publication.
               </p>
-              <Link
+              <OrbLink
                 href="/contact/brands"
                 className="inline-flex items-center gap-4 px-8 py-5 md:px-12 md:py-6 rounded-full bg-white text-black font-black text-sm md:text-base uppercase tracking-widest hover:scale-105 active:scale-95 transition-transform duration-300 focus:outline-none focus:ring-4 focus:ring-white/30"
               >
                 Cadrer une production
                 <ArrowRight className="w-5 h-5 mb-0.5" />
-              </Link>
+              </OrbLink>
             </FadeIn>
           </Container>
 
