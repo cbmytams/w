@@ -3,8 +3,6 @@
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/for-talents/HeroSection";
 import { ConstatSection } from "@/components/for-talents/ConstatSection";
-import { MotionConfig } from "framer-motion";
-
 import { PageShell } from "@/components/common/PageShell";
 
 // Below-fold sections — dynamically imported to reduce initial JS bundle
@@ -36,18 +34,16 @@ const CtaSection = dynamic(() =>
 export function ForTalentsClient() {
   return (
     <PageShell>
-      <MotionConfig reducedMotion="user">
-        <div className="relative z-10">
-          <HeroSection />
-          <ConstatSection />
-          <WhatWeBuildSection />
-          <TalentJourneySection />
-          <ForWhoSection />
-          <TeamSectionTalents />
-          <FaqSection />
-          <CtaSection />
-        </div>
-      </MotionConfig>
+      <div className="relative z-10">
+        <HeroSection />
+        <ConstatSection />
+        <WhatWeBuildSection />
+        <TalentJourneySection />
+        <ForWhoSection />
+        <TeamSectionTalents />
+        <FaqSection />
+        <CtaSection />
+      </div>
     </PageShell>
   );
 }

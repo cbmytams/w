@@ -15,6 +15,12 @@ export function GlobalBackground() {
     return null;
   }
 
+  // Wiki paints a fully opaque --wiki-bg surface: the orb field underneath
+  // would never be visible, so skip rendering it entirely (perf).
+  if (pathname?.startsWith("/wiki")) {
+    return null;
+  }
+
   const routeConfig = getGlobalBackgroundConfig(
     pathname,
     searchParams.get("context")
@@ -23,7 +29,5 @@ export function GlobalBackground() {
   // Prefer the live display variant so the orb field morphs ahead of the route.
   const variant = orbTransition?.displayVariant ?? routeConfig.variant;
 
-  return (
-    <BackgroundFlow variant={variant} intensity={routeConfig.intensity} />
-  );
+  return <BackgroundFlow variant={variant} intensity={routeConfig.intensity} />;
 }

@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { TEAM } from "@/data/team";
 import { Metadata } from "next";
 import { SmartBackButton } from "@/components/ui/SmartBackButton";
+import { RevealAnimation } from "@/components/common/RevealAnimation";
 
 export function generateStaticParams() {
   return TEAM.map((member) => ({ slug: member.slug }));
@@ -75,7 +76,7 @@ export default async function ProfilePage({
       <section className="relative w-full pt-32 pb-16 md:py-32 px-4 overflow-hidden border-b border-[var(--neutral-200)] dark:border-[var(--neutral-800)]">
         <div className="max-w-4xl mx-auto text-center md:text-left md:flex md:items-end md:justify-between gap-10">
           <div>
-            <div className="mb-6 relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border border-[var(--neutral-200)] dark:border-[var(--neutral-800)] mx-auto md:mx-0">
+            <RevealAnimation className="mb-6 relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border border-[var(--neutral-200)] dark:border-[var(--neutral-800)] mx-auto md:mx-0">
               <Image
                 src={member.image}
                 alt={member.name}
@@ -83,11 +84,13 @@ export default async function ProfilePage({
                 sizes="(min-width: 768px) 128px, 96px"
                 className="object-cover"
               />
-            </div>
+            </RevealAnimation>
 
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-[var(--foreground)] mb-4 font-[family-name:var(--font-heading)]">
-              {member.name}
-            </h1>
+            <RevealAnimation delay={0.1}>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-[var(--foreground)] mb-4 font-[family-name:var(--font-heading)]">
+                {member.name}
+              </h1>
+            </RevealAnimation>
 
             <div className="flex flex-col md:flex-row gap-2 md:gap-4 md:items-center">
               <span className="inline-block text-sm font-bold text-[var(--brand-primary)] uppercase tracking-wide">
@@ -108,9 +111,11 @@ export default async function ProfilePage({
           <div className="flex gap-6 md:gap-10 items-start">
             <div className="hidden md:block w-1 h-24 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></div>
             <div>
-              <h2 className="text-2xl md:text-4xl font-semibold leading-tight text-[var(--foreground)] mb-8 font-[family-name:var(--font-heading)]">
-                &ldquo;{member.quote}&rdquo;
-              </h2>
+              <RevealAnimation>
+                <h2 className="text-2xl md:text-4xl font-semibold leading-tight text-[var(--foreground)] mb-8 font-[family-name:var(--font-heading)]">
+                  &ldquo;{member.quote}&rdquo;
+                </h2>
+              </RevealAnimation>
 
               {/* Proof chips inside bio section */}
               <div className="flex flex-wrap gap-3 mb-8">
@@ -132,7 +137,10 @@ export default async function ProfilePage({
       <section className="py-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto space-y-20">
           {member.longSections.map((section, idx) => (
-            <div key={idx} className="md:grid md:grid-cols-12 gap-10">
+            <RevealAnimation
+              key={idx}
+              className="md:grid md:grid-cols-12 gap-10"
+            >
               <div className="md:col-span-4 mb-6 md:mb-0">
                 <h3 className="text-xl font-bold text-[var(--foreground)] sticky top-24 font-[family-name:var(--font-heading)]">
                   {section.title}
@@ -165,7 +173,7 @@ export default async function ProfilePage({
                   </div>
                 )}
               </div>
-            </div>
+            </RevealAnimation>
           ))}
         </div>
       </section>
@@ -173,9 +181,11 @@ export default async function ProfilePage({
       {/* CTA Section */}
       <section className="py-24 bg-[var(--foreground)] text-[var(--background)]">
         <div className="max-w-2xl mx-auto text-center px-4">
-          <h2 className="text-3xl font-bold mb-6 font-[family-name:var(--font-heading)]">
-            Prêt à construire ?
-          </h2>
+          <RevealAnimation>
+            <h2 className="text-3xl font-bold mb-6 font-[family-name:var(--font-heading)]">
+              Prêt à construire ?
+            </h2>
+          </RevealAnimation>
           <p className="text-[var(--neutral-200)] mb-10 text-lg">
             On ne cherche pas des clients, on cherche des partenaires.
           </p>

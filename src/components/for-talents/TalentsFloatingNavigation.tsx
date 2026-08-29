@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { WafiaLogo } from "@/components/ui/WafiaLogo";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Home, Menu, X } from "lucide-react";
@@ -48,16 +48,6 @@ export function TalentsFloatingNavigation() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const desktopCtaHref = "/contact/talents";
   const mobileCtaHref = "/contact/talents";
-
-  const scrollToSection = useCallback((href: string) => {
-    const id = href.substring(1);
-    const element = document.getElementById(id);
-    if (!element) return;
-
-    setActiveSection(href);
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.replaceState(null, "", href);
-  }, []);
 
   // Scroll spy logic
   useEffect(() => {
@@ -167,10 +157,6 @@ export function TalentsFloatingNavigation() {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(item.href);
-                  }}
                   className={`relative h-9 px-5 rounded-full transition-all duration-300 text-sm font-semibold leading-[1.2] text-center flex items-center justify-center min-w-[80px] ${
                     isActive
                       ? "text-slate-900 dark:text-white"
@@ -270,11 +256,7 @@ export function TalentsFloatingNavigation() {
                         key={item.label}
                         href={item.href}
                         variants={menuItemVariants}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setMobileMenuOpen(false);
-                          scrollToSection(item.href);
-                        }}
+                        onClick={() => setMobileMenuOpen(false)}
                         className={`relative px-6 py-2.5 text-2xl font-black tracking-tighter transition-all duration-300 hover:scale-105 active:scale-95 group ${
                           isActive
                             ? "text-slate-900 dark:text-white"

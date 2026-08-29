@@ -43,7 +43,7 @@ export function TalentJourneySection() {
   return (
     <section
       id="method"
-      className="py-24 md:py-32 px-4 relative z-10 overflow-hidden"
+      className="scroll-mt-28 py-24 md:py-32 px-4 relative z-10 overflow-hidden"
     >
       <Container>
         <div className="max-w-4xl mx-auto">

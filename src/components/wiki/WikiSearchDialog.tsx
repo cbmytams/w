@@ -145,7 +145,7 @@ export default function WikiSearchDialog({
                     key={r.slug}
                     href={`/wiki/${r.slug}`}
                     onClick={closeDialog}
-                    className="w-full text-left px-6 py-4 flex items-center justify-between border-b last:border-0 group focus-visible:outline-none transition-opacity hover:opacity-70"
+                    className="w-full text-left px-6 py-4 flex items-center justify-between border-b last:border-0 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] transition-opacity hover:opacity-70"
                     style={{ borderColor: "var(--wiki-line)" }}
                   >
                     <div>

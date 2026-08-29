@@ -672,6 +672,24 @@ body {
   will-change: transform, opacity, filter;
 }
 
+/* SmartBackButton: light exit before history navigation */
+.smart-back-exit {
+  animation: smart-back-fade 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes smart-back-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.55;
+    transform: scale(0.994);
+  }
+}
+
 @keyframes wiki-retour-arrow-commit {
   0% {
     transform: translateY(0);

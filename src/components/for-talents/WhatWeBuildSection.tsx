@@ -12,7 +12,10 @@ export function WhatWeBuildSection() {
     useRevealViewport();
 
   return (
-    <section id="what-we-build" className="section-spacing px-4 relative z-10">
+    <section
+      id="what-we-build"
+      className="scroll-mt-28 section-spacing px-4 relative z-10"
+    >
       <Container>
         <div className="max-w-6xl mx-auto">
           {/* Header */}

@@ -16,7 +16,7 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="py-24 lg:py-32 px-4 relative overflow-hidden bg-transparent z-10"
+      className="scroll-mt-28 py-24 lg:py-32 px-4 relative overflow-hidden bg-transparent z-10"
     >
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-500/5 dark:bg-violet-500/10 rounded-full blur-[100px] -z-10" />

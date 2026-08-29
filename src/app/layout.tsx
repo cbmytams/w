@@ -7,6 +7,7 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { GlobalNav } from "@/components/layout/GlobalNav";
 import { GlobalBackground } from "@/components/common/GlobalBackground";
 import { OrbTransitionProvider } from "@/components/home/orb/OrbTransitionProvider";
+import { GlobalMotionConfig } from "@/components/layout/GlobalMotionConfig";
 import { siteConfig } from "@/lib/site";
 import { CookieBanner } from "@/components/compliance/CookieBanner";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
@@ -143,11 +144,13 @@ export default async function RootLayout({
           Aller au contenu
         </a>
         <OrbTransitionProvider>
-          <Suspense fallback={null}>
-            <GlobalBackground />
-          </Suspense>
-          <GlobalNav />
-          <PageTransition>{children}</PageTransition>
+          <GlobalMotionConfig>
+            <Suspense fallback={null}>
+              <GlobalBackground />
+            </Suspense>
+            <GlobalNav />
+            <PageTransition>{children}</PageTransition>
+          </GlobalMotionConfig>
         </OrbTransitionProvider>
         <CookieBanner />
       </body>

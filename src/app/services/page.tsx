@@ -12,6 +12,7 @@ import {
 } from "@/lib/structured-data";
 import { ServicesFaqAccordion } from "@/components/services/ServicesFaqAccordion";
 import { OrbLink } from "@/components/navigation/OrbLink";
+import { RevealAnimation } from "@/components/common/RevealAnimation";
 
 /* ─────────────────────────────────────────────
    METADATA
@@ -271,14 +272,18 @@ export default function ServicesPage() {
       <section className="py-24 md:py-32">
         <Container>
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
-              Influence. Talent management. Studio.
-            </h1>
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto">
-              Wafia structure les campagnes des marques et les carrières des
-              talents : stratégie, image, production, droits, revenus et
-              reporting dans un même cadre.
-            </p>
+            <RevealAnimation>
+              <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
+                Influence. Talent management. Studio.
+              </h1>
+            </RevealAnimation>
+            <RevealAnimation delay={0.1}>
+              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto">
+                Wafia structure les campagnes des marques et les carrières des
+                talents : stratégie, image, production, droits, revenus et
+                reporting dans un même cadre.
+              </p>
+            </RevealAnimation>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" asChild>
                 <OrbLink href="/contact/brands">
@@ -298,14 +303,14 @@ export default function ServicesPage() {
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {STATS.map((stat, i) => (
-              <div key={i} className="text-center">
+              <RevealAnimation key={i} delay={i * 0.08} className="text-center">
                 <div className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-2">
                   {stat.value}
                 </div>
                 <div className="text-sm text-slate-400 font-medium">
                   {stat.label}
                 </div>
-              </div>
+              </RevealAnimation>
             ))}
           </div>
         </Container>
@@ -319,7 +324,7 @@ export default function ServicesPage() {
           className="scroll-mt-28 py-16 md:py-20 border-t border-slate-200/60 dark:border-slate-700/40"
         >
           <Container>
-            <div className="max-w-4xl">
+            <RevealAnimation className="max-w-4xl">
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
                 {service.title}
               </h2>
@@ -381,7 +386,7 @@ export default function ServicesPage() {
                   </OrbLink>
                 </Button>
               )}
-            </div>
+            </RevealAnimation>
           </Container>
         </section>
       ))}
@@ -404,9 +409,11 @@ export default function ServicesPage() {
       <section className="py-20 md:py-28 bg-slate-900/90 backdrop-blur-sm text-white">
         <Container>
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-              Un projet mérite un cadre avant d&apos;être lancé.
-            </h2>
+            <RevealAnimation>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                Un projet mérite un cadre avant d&apos;être lancé.
+              </h2>
+            </RevealAnimation>
             <p className="text-lg text-slate-400 mb-10">
               Discutons de vos objectifs et construisons un cadre clair avant
               d&apos;activer les bons profils.

@@ -89,8 +89,17 @@ function TeamCardBrands({
       }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative cursor-pointer"
+      className="group relative cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:focus-visible:outline-orange-400"
+      role="button"
+      tabIndex={0}
+      aria-label={`Voir le profil de ${member.name}`}
       onClick={() => onOpen(member, { ...geoConfig, ...brandData })}
+      onKeyDown={(e: React.KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen(member, { ...geoConfig, ...brandData });
+        }
+      }}
     >
       {/* Glow Effect - Geography Based */}
       <motion.div

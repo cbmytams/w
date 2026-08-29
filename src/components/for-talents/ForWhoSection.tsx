@@ -75,7 +75,7 @@ export function ForWhoSection() {
   return (
     <section
       id={TALENT_FOR_WHO.id}
-      className="section-spacing px-4 bg-transparent relative z-10 overflow-hidden"
+      className="scroll-mt-28 section-spacing px-4 bg-transparent relative z-10 overflow-hidden"
     >
       {/* Ambient Background Sphere (Monochrome) */}
       <div className="absolute inset-0 pointer-events-none flex justify-center items-center z-0">

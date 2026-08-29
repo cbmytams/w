@@ -75,9 +75,7 @@ export function OrbSwitcherPill({
   tone = "auto",
 }: OrbSwitcherPillProps) {
   const [open, setOpen] = useState(false);
-  const [menuId] = useState(
-    () => `orb-switch-menu-${current}`
-  );
+  const [menuId] = useState(() => `orb-switch-menu-${current}`);
   const rootRef = useRef<HTMLDivElement | null>(null);
   const closeTimerRef = useRef<number | null>(null);
   const navigateWithCloud = useOrbNavigate();
@@ -123,10 +121,7 @@ export function OrbSwitcherPill({
   useEffect(() => {
     if (!open) return;
     const onPointerDown = (event: PointerEvent) => {
-      if (
-        rootRef.current &&
-        !rootRef.current.contains(event.target as Node)
-      ) {
+      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
         closeNow();
       }
     };
@@ -228,7 +223,7 @@ export function OrbSwitcherPill({
             role="menuitem"
             onClick={navigateWithCloud(item.href, item.target)}
             onFocus={() => setOpen(true)}
-            className={`orb-switch-item flex items-center justify-between rounded-xl px-4 py-3 transition-colors duration-200 ${
+            className={`orb-switch-item flex items-center justify-between rounded-xl px-4 py-3 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
               item.accent === "brands"
                 ? "orb-switch-item-brands"
                 : item.accent === "talents"

@@ -34,6 +34,22 @@ export function OrbHomePage() {
       el.classList.contains("dark") && el.dataset.orbDark !== "1";
     el.classList.add("dark");
     el.dataset.orbDark = "1";
+
+    // Mirror of the wiki exit: when coming back from the wiki, the content
+    // rises back into place (home-from-wiki-enter) instead of popping in.
+    let returning = false;
+    try {
+      returning = sessionStorage.getItem("wafia:wiki-return") === "1";
+      if (returning) sessionStorage.removeItem("wafia:wiki-return");
+    } catch {
+      // sessionStorage unavailable — plain mount.
+    }
+    if (returning) {
+      document
+        .getElementById("main-content")
+        ?.classList.add("home-from-wiki-enter");
+    }
+
     return () => {
       if (!hadDarkElsewhere) el.classList.remove("dark");
       delete el.dataset.orbDark;

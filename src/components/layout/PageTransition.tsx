@@ -79,8 +79,15 @@ export function PageTransition({ children }: PageTransitionProps) {
     previousCluster === "home" &&
     (cluster === "talents" || cluster === "brands");
   const transition = routeTransitionTiming[cluster][deviceProfile];
+  // Orb-cluster destinations (home, studio, contact, talents, brands when
+  // handed off from home) run in sync so the orb field stays visible during
+  // the swap; everything else (incl. wiki, which plays its own cinematic)
+  // waits for the exit to finish.
   const presenceMode: "sync" | "wait" =
-    cluster === "home" || cluster === "studio" || isHomeToTalentsOrBrands
+    cluster === "home" ||
+    cluster === "studio" ||
+    cluster === "contact" ||
+    isHomeToTalentsOrBrands
       ? "sync"
       : "wait";
   const backdropDurationClass = isHomeToTalentsOrBrands
@@ -90,7 +97,8 @@ export function PageTransition({ children }: PageTransitionProps) {
     : deviceProfile === "desktop"
       ? "duration-300"
       : "duration-200";
-  const showContinuityBackdrop = cluster !== "talents" && cluster !== "brands";
+  const showContinuityBackdrop =
+    cluster !== "talents" && cluster !== "brands" && cluster !== "contact";
   const veilClassName = isHomeToTalentsOrBrands
     ? cluster === "talents"
       ? "bg-gradient-to-b from-violet-500/16 via-transparent to-transparent"

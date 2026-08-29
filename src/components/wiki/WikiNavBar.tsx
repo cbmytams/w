@@ -58,6 +58,13 @@ export default function WikiNavBar({
     setIsTransitioning(true);
     document.getElementById("wiki-root")?.classList.add("wiki-to-home-exit");
 
+    // Ask the home to replay its mirrored entrance once it mounts.
+    try {
+      sessionStorage.setItem("wafia:wiki-return", "1");
+    } catch {
+      // sessionStorage unavailable (private mode) — the home simply mounts plainly.
+    }
+
     navigationTimeoutRef.current = window.setTimeout(() => {
       router.push("/");
     }, 620);

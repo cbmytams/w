@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { OrbLink } from "@/components/navigation/OrbLink";
+import { RevealAnimation } from "@/components/common/RevealAnimation";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -14,18 +15,27 @@ export default function ContactPage() {
       className="min-h-[70vh] bg-white py-24 dark:bg-transparent"
     >
       <Container className="max-w-3xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
-          Contact
-        </p>
-        <h1 className="mt-4 text-4xl font-heading font-bold text-slate-900 dark:text-white">
-          Parlons de votre projet
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-slate-600 dark:text-white/60">
-          Utilisez notre formulaire pour nous partager votre contexte. Nous
-          revenons vers vous avec un cadrage rapide et des recommandations
-          actionnables.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <RevealAnimation>
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            Contact
+          </p>
+        </RevealAnimation>
+        <RevealAnimation delay={0.1}>
+          <h1 className="mt-4 text-4xl font-heading font-bold text-slate-900 dark:text-white">
+            Parlons de votre projet
+          </h1>
+        </RevealAnimation>
+        <RevealAnimation delay={0.2}>
+          <p className="mx-auto mt-6 max-w-2xl text-slate-600 dark:text-white/60">
+            Utilisez notre formulaire pour nous partager votre contexte. Nous
+            revenons vers vous avec un cadrage rapide et des recommandations
+            actionnables.
+          </p>
+        </RevealAnimation>
+        <RevealAnimation
+          delay={0.3}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        >
           <OrbLink
             href="/contact/brands"
             className="inline-flex h-11 items-center rounded-full bg-slate-900 px-6 text-sm font-medium text-white transition-opacity hover:opacity-90 dark:bg-white dark:text-slate-900"
@@ -38,7 +48,7 @@ export default function ContactPage() {
           >
             Je suis un talent
           </OrbLink>
-        </div>
+        </RevealAnimation>
       </Container>
     </main>
   );
