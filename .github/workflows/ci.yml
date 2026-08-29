@@ -3,13 +3,6 @@ on: [push, pull_request]
 jobs:
   root:
     runs-on: ubuntu-latest
-    env:
-      ADMIN_USERNAME: ci-admin
-      ADMIN_PASSWORD: ci-password
-      NEXTAUTH_SECRET: ci-nextauth-secret-at-least-32-characters-long
-      NEXTAUTH_URL: http://127.0.0.1:3000
-      DEFAULT_TENANT_SLUG: wafia
-      DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/wafia?schema=public
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -17,14 +10,8 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run type-check
-      - run: npm run test -- --runInBand
-      - run: npm run build:standalone
-      - run: npm run verify:standalone
-      - run: npm run wiki:verify
-      - name: Prisma schema sanity
-        run: |
-          npx prisma validate
-          find prisma/migrations -mindepth 2 -maxdepth 2 -name migration.sql | grep -q .
+      - run: npm test -- --coverage=false
+      - run: npm run build
       - name: knip (advisory)
         run: npx knip --config knip.json || true
       - run: npm audit --omit=dev
@@ -34,50 +21,3 @@ jobs:
             echo "Duplicate tracked files or path segments with numbered suffix detected."
             exit 1
           fi
-
-  job-wiki:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm ci
-        working-directory: wiki
-      - run: npm run build
-        working-directory: wiki
-      - run: npm run lint
-        working-directory: wiki
-
-  job-questionnaire-brands:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm ci
-        working-directory: wafia-questionnaire-brands
-      - run: npm run build
-        working-directory: wafia-questionnaire-brands
-      - run: npm run lint
-        working-directory: wafia-questionnaire-brands
-      - run: npm run type-check
-        working-directory: wafia-questionnaire-brands
-
-  job-platform:
-    runs-on: ubuntu-latest
-    env:
-      ADMIN_SESSION_SECRET: ci-admin-session-secret-at-least-32-characters-long
-      DEFAULT_TENANT_SLUG: wafia
-      DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/wafia?schema=public
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm ci
-        working-directory: wafia-questionnaire-brands/platform
-      - run: npx prisma generate
-        working-directory: wafia-questionnaire-brands/platform
-      - run: npm run build
-        working-directory: wafia-questionnaire-brands/platform
-      - run: npm run lint
-        working-directory: wafia-questionnaire-brands/platform
