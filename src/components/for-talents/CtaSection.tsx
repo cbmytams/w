@@ -5,10 +5,8 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { MagneticButton } from "@/components/for-talents/redesign/MagneticButton";
 import { TALENT_CTA } from "@/constants";
-import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire";
-
 export function CtaSection() {
-  const ctaHref = buildTalentQuestionnaireHref("for-talents-final-cta");
+  const ctaHref = "/contact/talents";
 
   return (
     <section className="pt-24 pb-12 sm:pt-32 sm:pb-16 px-4 relative z-10">

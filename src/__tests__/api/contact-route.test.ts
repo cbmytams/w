@@ -22,7 +22,10 @@ describe("/api/contact route", () => {
 
     const request = new NextRequest("https://wafia.test/api/contact", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        origin: "https://wafia.test",
+      },
       body: JSON.stringify({
         name: "Marie Dupont",
         email: "marie@wafia.fr",
@@ -50,7 +53,10 @@ describe("/api/contact route", () => {
 
     const request = new NextRequest("https://wafia.test/api/contact", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        origin: "https://wafia.test",
+      },
       body: JSON.stringify({
         name: "Marie Dupont",
         email: "marie@wafia.fr",
@@ -81,7 +87,10 @@ describe("/api/contact route", () => {
   it("rejects invalid payload", async () => {
     const request = new NextRequest("https://wafia.test/api/contact", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        origin: "https://wafia.test",
+      },
       body: "not-json",
     });
 

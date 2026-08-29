@@ -42,7 +42,7 @@ export function GlobalNav() {
     return (
       <FloatingNavigation
         key={`brands-${pathname}`}
-        estimateHref="/questionnaire/brands"
+        estimateHref="/contact/brands"
       />
     );
   }

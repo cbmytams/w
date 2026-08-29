@@ -38,7 +38,7 @@ export default function Error({
           <div className="mt-8 flex justify-center gap-4">
             <Button onClick={() => reset()}>Réessayer</Button>
             <Button variant="outline" asChild>
-              <Link href="/questionnaire/brands">Support</Link>
+              <Link href="/contact/brands">Support</Link>
             </Button>
           </div>
         </Container>

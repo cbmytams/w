@@ -71,9 +71,6 @@ export function MagneticButton({
   );
 
   if (href) {
-    if (href.startsWith("/questionnaire")) {
-      return <a href={href}>{buttonContent}</a>;
-    }
     return <Link href={href}>{buttonContent}</Link>;
   }
 

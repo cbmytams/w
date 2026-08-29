@@ -280,7 +280,7 @@ export default function ServicesPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" asChild>
-                <Link href="/questionnaire/brands">
+                <Link href="/contact/brands">
                   Cadrer un besoin <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -415,7 +415,7 @@ export default function ServicesPage() {
               className="bg-white text-slate-900 hover:bg-slate-100"
               asChild
             >
-              <Link href="/questionnaire/brands">
+              <Link href="/contact/brands">
                 Structurer un projet <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

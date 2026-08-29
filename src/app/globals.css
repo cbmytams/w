@@ -39,14 +39,6 @@
   /* --- Shadows --- */
   --shadow-brand: rgba(249, 115, 22, 0.25);
   --shadow-brand-strong: rgba(249, 115, 22, 0.4);
-
-  /* --- Questionnaire / Social Cut Theme --- */
-  --questionnaire-bg: #0a0a0a;
-  --questionnaire-surface: #121214;
-  --questionnaire-elevated: #1c1c1f;
-  --questionnaire-primary: #f97316;
-  --questionnaire-secondary: #ef4444;
-  --questionnaire-muted: rgba(255, 255, 255, 0.08);
 }
 
 /* Dark mode overrides — class-based (for manual toggle) */
@@ -73,14 +65,6 @@
   /* Expose brand colors to Tailwind */
   --color-brand-primary: var(--brand-primary);
   --color-brand-secondary: var(--brand-secondary);
-
-  /* Expose questionnaire tokens */
-  --color-questionnaire-bg: var(--questionnaire-bg);
-  --color-questionnaire-surface: var(--questionnaire-surface);
-  --color-questionnaire-elevated: var(--questionnaire-elevated);
-  --color-questionnaire-primary: var(--questionnaire-primary);
-  --color-questionnaire-secondary: var(--questionnaire-secondary);
-  --color-questionnaire-muted: var(--questionnaire-muted);
 }
 
 /* ============================================

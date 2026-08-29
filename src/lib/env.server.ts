@@ -1,8 +1,6 @@
 type WebsiteEnv = {
   nextPublicSiteUrl: string;
   nextPublicGaId?: string;
-  platformPublicUrl?: string;
-  platformContactIntakeUrl?: string;
   contactWebhookUrl?: string;
   contactIntakeToken?: string;
   otelEndpoint?: string;
@@ -53,8 +51,6 @@ export function getWebsiteEnv(): WebsiteEnv {
   const env: WebsiteEnv = {
     nextPublicSiteUrl,
     nextPublicGaId: optional("NEXT_PUBLIC_GA_ID"),
-    platformPublicUrl: optional("PLATFORM_PUBLIC_URL"),
-    platformContactIntakeUrl: optional("PLATFORM_CONTACT_INTAKE_URL"),
     contactWebhookUrl: optional("CONTACT_WEBHOOK_URL"),
     contactIntakeToken: optional("CONTACT_INTAKE_TOKEN"),
     otelEndpoint: optional("OTEL_EXPORTER_OTLP_ENDPOINT"),
@@ -63,15 +59,4 @@ export function getWebsiteEnv(): WebsiteEnv {
 
   globalState[GLOBAL_KEY] = env;
   return env;
-}
-
-export function getWebsiteContactIntakeUrl() {
-  const env = getWebsiteEnv();
-  const intakeUrl = env.platformContactIntakeUrl || env.contactWebhookUrl;
-  if (!intakeUrl) {
-    throw new Error(
-      "Missing required environment variable: PLATFORM_CONTACT_INTAKE_URL or CONTACT_WEBHOOK_URL"
-    );
-  }
-  return intakeUrl;
 }

@@ -101,27 +101,43 @@ const nextConfig: NextConfig = {
         destination: "/wiki/:slug",
         statusCode: 301,
       },
+      {
+        source: "/questionnaire/brands",
+        destination: "/contact/brands",
+        permanent: true,
+      },
+      {
+        source: "/questionnaire/talents",
+        destination: "/contact/talents",
+        permanent: true,
+      },
+      {
+        source: "/questionnaire/brands/:path*",
+        destination: "/contact/brands",
+        permanent: true,
+      },
+      {
+        source: "/questionnaire/talents/:path*",
+        destination: "/contact/talents",
+        permanent: true,
+      },
+      {
+        source: "/questionnaire",
+        destination: "/contact/talents",
+        permanent: true,
+      },
+      {
+        source: "/questionnaire/:path*",
+        destination: "/contact/talents",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
     return {
       beforeFiles: [],
       afterFiles: [],
-      fallback: [
-        { source: "/questionnaire", destination: "/questionnaire/index.html" },
-        {
-          source: "/questionnaire/:path*",
-          destination: "/questionnaire/index.html",
-        },
-        {
-          source: "/questionnaire-brands",
-          destination: "/questionnaire-brands/index.html",
-        },
-        {
-          source: "/questionnaire-brands/:path*",
-          destination: "/questionnaire-brands/index.html",
-        },
-      ],
+      fallback: [],
     };
   },
 };

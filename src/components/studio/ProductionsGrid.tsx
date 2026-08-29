@@ -352,9 +352,7 @@ export function ProductionsGrid() {
                         {prod.id === "krh" ? (
                           <div className="flex flex-col sm:flex-row gap-3 pt-4">
                             <button
-                              onClick={() =>
-                                router.push("/questionnaire/brands")
-                              }
+                              onClick={() => router.push("/contact/brands")}
                               className="w-full sm:flex-1 py-4 px-6 rounded-full font-semibold text-[15px] bg-white text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center text-center"
                             >
                               Estimer le volume
@@ -376,9 +374,7 @@ export function ProductionsGrid() {
                         ) : (
                           <div className="pt-4">
                             <button
-                              onClick={() =>
-                                router.push("/questionnaire/brands")
-                              }
+                              onClick={() => router.push("/contact/brands")}
                               className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-[15px] bg-white text-black transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg flex items-center justify-center"
                             >
                               Lancer le projet

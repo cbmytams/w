@@ -75,7 +75,7 @@ export default function NotFoundClient() {
           </Link>
 
           <Link
-            href="/questionnaire/brands"
+            href="/contact/brands"
             className="group relative flex w-full sm:w-auto items-center justify-center gap-2 overflow-hidden rounded-full bg-white/5 px-8 py-4 text-sm font-medium text-white ring-1 ring-inset ring-white/10 transition-all hover:bg-white/10 hover:ring-white/20 active:scale-95"
           >
             Contacter l'agence

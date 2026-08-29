@@ -16,6 +16,13 @@ export function getGlobalBackgroundConfig(
     return { variant: "home", intensity: "showcase" };
   }
 
+  if (pathname?.startsWith("/contact")) {
+    return {
+      variant: pathname.startsWith("/contact/brands") ? "brands" : "talents",
+      intensity: "showcase",
+    };
+  }
+
   if (pathname?.startsWith("/for-brands")) {
     return { variant: "brands", intensity: "showcase" };
   }

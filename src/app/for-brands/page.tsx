@@ -60,7 +60,7 @@ export default function ForBrandsPage() {
 
       <FaqSection />
 
-      <CtaSection estimateHref="/questionnaire/brands" />
+      <CtaSection estimateHref="/contact/brands" />
     </PageShell>
   );
 }

@@ -1,12 +1,6 @@
-import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
-import {
-  canAccessDashboardRole,
-  DASHBOARD_ROLES,
-  type DashboardRole,
-} from "@/lib/rbac";
 
-function buildDefaultCspHeader(nonce: string, allowSameOriginFrame: boolean) {
+function buildDefaultCspHeader(nonce: string) {
   return [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
@@ -17,79 +11,21 @@ function buildDefaultCspHeader(nonce: string, allowSameOriginFrame: boolean) {
     "img-src 'self' data: https:",
     "font-src 'self'",
     "connect-src 'self' https://*.sentry.io https://*.upstash.io",
-    allowSameOriginFrame ? "frame-ancestors 'self'" : "frame-ancestors 'none'",
+    "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
     "object-src 'none'",
   ].join("; ");
 }
 
-function buildQuestionnaireStaticCspHeader() {
-  return [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline'",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "img-src 'self' data: https:",
-    "font-src 'self' https://fonts.gstatic.com data:",
-    "connect-src 'self' https:",
-    "frame-ancestors 'self'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "object-src 'none'",
-  ].join("; ");
-}
-
-function allowSameOriginFrame(pathname: string) {
-  return (
-    pathname.startsWith("/questionnaire") ||
-    pathname.startsWith("/questionnaire-brands") ||
-    pathname.startsWith("/questionnaire-talents")
-  );
-}
-
-function isQuestionnaireStaticPath(pathname: string) {
-  if (
-    pathname.startsWith("/questionnaire-brands") ||
-    pathname.startsWith("/questionnaire-talents")
-  ) {
-    return true;
-  }
-  // Talents SPA (Vite) is served from public/questionnaire/. Next.js routes
-  // under /questionnaire/ are talents, brands, admin — those keep the default CSP.
-  if (pathname === "/questionnaire" || pathname === "/questionnaire/") {
-    return true;
-  }
-  if (pathname.startsWith("/questionnaire/assets/")) {
-    return true;
-  }
-  if (
-    pathname.startsWith("/questionnaire/") &&
-    /\.(html|svg|js|css|png|jpe?g|webp|woff2?|ico|map)$/.test(pathname)
-  ) {
-    return true;
-  }
-  return false;
-}
-
-function applySecurityHeaders(
-  response: NextResponse,
-  nonce: string,
-  pathname: string
-) {
-  const allowFrame = allowSameOriginFrame(pathname);
-  const isQuestionnaireStatic = isQuestionnaireStaticPath(pathname);
-  response.headers.set(
-    "Content-Security-Policy",
-    isQuestionnaireStatic
-      ? buildQuestionnaireStaticCspHeader()
-      : buildDefaultCspHeader(nonce, allowFrame)
-  );
+function applySecurityHeaders(response: NextResponse, nonce: string) {
+  response.headers.set("Content-Security-Policy", buildDefaultCspHeader(nonce));
   response.headers.set(
     "Strict-Transport-Security",
     "max-age=31536000; includeSubDomains; preload"
   );
   response.headers.set("X-Content-Type-Options", "nosniff");
-  response.headers.set("X-Frame-Options", allowFrame ? "SAMEORIGIN" : "DENY");
+  response.headers.set("X-Frame-Options", "DENY");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set(
     "Permissions-Policy",
@@ -99,67 +35,19 @@ function applySecurityHeaders(
   return response;
 }
 
-export function getRouteChecks(pathname: string) {
-  const isQuestionnaireAdminApi =
-    pathname.startsWith("/api/v1/questionnaires") &&
-    pathname !== "/api/v1/questionnaires/current" &&
-    pathname !== "/api/v1/questionnaires/submit";
-  const isApiAdmin =
-    pathname.startsWith("/api/v1/admin") ||
-    pathname.startsWith("/api/v1/dashboard") ||
-    isQuestionnaireAdminApi;
-  const isAdminRoute =
-    pathname.startsWith("/admin") && !pathname.startsWith("/admin/login");
-  return { isApiAdmin, isAdminRoute };
-}
-
 export default async function proxy(req: NextRequest) {
   const nonce = crypto.randomUUID();
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set("x-nonce", nonce);
-  const pathname = req.nextUrl.pathname;
 
-  const passThrough = applySecurityHeaders(
+  return applySecurityHeaders(
     NextResponse.next({
       request: {
         headers: requestHeaders,
       },
     }),
-    nonce,
-    pathname
+    nonce
   );
-
-  const { isApiAdmin, isAdminRoute } = getRouteChecks(pathname);
-  if (!isApiAdmin && !isAdminRoute) {
-    return passThrough;
-  }
-
-  const token = await getToken({
-    req,
-    secret: process.env.NEXTAUTH_SECRET,
-  });
-
-  const role = typeof token?.role === "string" ? token.role : null;
-  const hasDashboardAccess = role
-    ? canAccessDashboardRole(role as DashboardRole, DASHBOARD_ROLES.VIEWER)
-    : false;
-
-  if (!hasDashboardAccess) {
-    if (req.nextUrl.pathname.startsWith("/api")) {
-      return applySecurityHeaders(
-        new NextResponse("Unauthorized", { status: 401 }),
-        nonce,
-        pathname
-      );
-    }
-    return applySecurityHeaders(
-      NextResponse.redirect(new URL("/admin/login", req.url)),
-      nonce,
-      pathname
-    );
-  }
-
-  return passThrough;
 }
 
 export const config = {

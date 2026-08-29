@@ -68,7 +68,7 @@ export default function JulienArdidPage() {
                 votre marque au-delà d'une seule publication.
               </p>
               <Link
-                href="/questionnaire/brands"
+                href="/contact/brands"
                 className="inline-flex items-center gap-4 px-8 py-5 md:px-12 md:py-6 rounded-full bg-white text-black font-black text-sm md:text-base uppercase tracking-widest hover:scale-105 active:scale-95 transition-transform duration-300 focus:outline-none focus:ring-4 focus:ring-white/30"
               >
                 Cadrer une production

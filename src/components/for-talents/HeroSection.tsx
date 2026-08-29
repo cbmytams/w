@@ -3,14 +3,13 @@
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { TALENT_HERO } from "@/constants";
-import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire";
 import { EASING, DURATION } from "@/lib/easing";
 
 /**
  * HeroSection — Clean editorial layout
  */
 export function HeroSection() {
-  const talentHeroCtaHref = buildTalentQuestionnaireHref("for-talents-hero");
+  const talentHeroCtaHref = "/contact/talents";
   const handleSecondaryCtaClick = () => {
     const methodSection = document.getElementById("method");
     if (!methodSection) return;

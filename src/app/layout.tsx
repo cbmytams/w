@@ -128,7 +128,7 @@ export default async function RootLayout({
           nonce={nonce}
           dangerouslySetInnerHTML={{
             __html:
-              'try{if(location.pathname==="/"){document.documentElement.classList.add("dark");document.documentElement.dataset.orbDark="1"}}catch(e){}',
+              'try{if(location.pathname==="/"||location.pathname.startsWith("/contact")){document.documentElement.classList.add("dark");document.documentElement.dataset.orbDark="1"}}catch(e){}',
           }}
         />
         <script

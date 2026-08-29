@@ -37,7 +37,7 @@ export const BRAND_HERO_CONTENT = {
     primary: { text: "Voir nos réalisations", href: "#case-studies" },
     secondary: {
       text: "Structurer ma campagne",
-      href: "/questionnaire/brands",
+      href: "/contact/brands",
     },
   },
   timing: "Cadrage, casting, production, droits, reporting.",

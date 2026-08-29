@@ -9,7 +9,7 @@ type CtaSectionProps = {
 };
 
 export function CtaSection({
-  estimateHref = "/questionnaire/brands",
+  estimateHref = "/contact/brands",
 }: CtaSectionProps) {
   return (
     <section className="py-24 md:py-32 px-4">

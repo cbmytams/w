@@ -8,7 +8,6 @@ import { Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OrbSwitcherPill } from "@/components/navigation/OrbSwitcherPill";
 import { TALENT_NAVIGATION, BRAND_GRADIENT } from "@/constants";
-import { buildTalentQuestionnaireHref } from "@/lib/talent-questionnaire";
 import { EASING, DURATION } from "@/lib/easing";
 import { SPRING } from "@/lib/design-tokens";
 
@@ -47,10 +46,8 @@ const menuItemVariants: Variants = {
 export function TalentsFloatingNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const desktopCtaHref = buildTalentQuestionnaireHref(
-    "for-talents-nav-desktop"
-  );
-  const mobileCtaHref = buildTalentQuestionnaireHref("for-talents-nav-mobile");
+  const desktopCtaHref = "/contact/talents";
+  const mobileCtaHref = "/contact/talents";
 
   const scrollToSection = useCallback((href: string) => {
     const id = href.substring(1);
