@@ -44,6 +44,8 @@ VPS OVH (`ssh wafia`) — Docker (`wafia-site:latest`, port 3004, Caddy en front
 ```bash
 # sur le VPS
 cd /var/www/wafia-site && git pull origin main
+# Medias non versionnes (public/studio ignore par git) : synchroniser si nouveaux fichiers
+# rsync -avz --progress public/studio/krh/ wafia:/var/www/wafia-site/public/studio/krh/
 docker build -t wafia-site:latest .
 cd /opt/wafia-site && docker compose up -d
 ```

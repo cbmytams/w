@@ -116,8 +116,10 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
+      // Note: pas de wildcard /studio/:path* — les medias
+      // /studio/krh/* (previews + posters Basic-Fit) doivent rester servis.
       {
-        source: "/studio/:path*",
+        source: "/studio/julien-ardid",
         destination: "/",
         permanent: true,
       },
