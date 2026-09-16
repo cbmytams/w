@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { WafiaLogo } from "@/components/ui/WafiaLogo";
+import { WafiaMark } from "@/components/ui/WafiaLogo";
 import { sitePaths } from "@/lib/site";
 import { useOrbNavigate } from "@/components/home/orb/useOrbNavigate";
 import type { OrbTargetVariant } from "@/lib/orb-targets";
@@ -179,7 +179,7 @@ export function OrbSwitcherPill({
         }}
         className={`flex h-12 items-center gap-2.5 rounded-full border px-5 shadow-lg backdrop-blur-[40px] saturate-150 transition-all duration-300 hover:scale-105 hover:bg-white/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:hover:bg-[#1c1c1e]/80 ${pillTone}`}
       >
-        <WafiaLogo className="h-4 w-auto" />
+        <WafiaMark className="h-4 w-auto" />
         <span
           aria-hidden="true"
           className={`orb-dot h-[5px] w-[5px] rounded-full ${DOT_CLASS[current]}`}

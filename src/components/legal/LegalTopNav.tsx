@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-import { WafiaLogo } from "@/components/ui/WafiaLogo";
+import { WafiaMark } from "@/components/ui/WafiaLogo";
 import { OrbLink } from "@/components/navigation/OrbLink";
 import { SPRING } from "@/lib/design-tokens";
 import { EASING } from "@/lib/easing";
@@ -198,7 +198,7 @@ export function LegalTopNav({ context }: LegalTopNavProps) {
                 <div className="absolute inset-x-0 -bottom-24 h-48 bg-gradient-to-t from-pink-500/20 dark:from-pink-500/10 to-transparent blur-[40px] pointer-events-none rounded-full" />
 
                 <div className="flex items-center justify-center mb-8 relative z-10">
-                  <WafiaLogo className="h-6 w-auto text-slate-900 dark:text-white" />
+                  <WafiaMark className="h-6 w-auto text-slate-900 dark:text-white" />
                   <div className="flex items-center justify-center w-6 z-10 mx-3">
                     <div className="w-[6px] h-[6px] rounded-full bg-orange-500 animate-pulse shadow-[0_0_10px_rgba(249,115,22,0.8)]"></div>
                   </div>

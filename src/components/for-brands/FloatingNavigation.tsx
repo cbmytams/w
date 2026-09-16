@@ -131,9 +131,9 @@ export function FloatingNavigation({
               ariaLabel="Wafia, accueil"
             >
               <Image
-                src="/wafia.svg"
-                width={711}
-                height={231}
+                src="/wafia-w.svg"
+                width={204}
+                height={110}
                 alt=""
                 priority
               />
@@ -170,7 +170,7 @@ export function FloatingNavigation({
       >
         <div className={styles.mobileTop}>
           <span className={styles.logo} id="brands-menu-title">
-            <Image src="/wafia.svg" width={711} height={231} alt="Wafia" />
+            <Image src="/wafia-w.svg" width={204} height={110} alt="Wafia" />
           </span>
           <button autoFocus onClick={closeMenu} aria-label="Fermer le menu">
             <X size={25} />

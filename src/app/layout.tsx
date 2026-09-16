@@ -62,9 +62,14 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle || undefined,
   },
   icons: {
-    icon: "/wafia.svg",
-    shortcut: "/wafia.svg",
-    apple: "/wafia.svg",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/icon.svg",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   manifest: "/manifest.webmanifest",
   robots: {
