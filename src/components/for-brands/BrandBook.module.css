@@ -33,7 +33,7 @@
   position: absolute;
   z-index: 2;
   left: 6%;
-  top: 23%;
+  top: 16%;
   width: 42%;
   max-width: 620px;
   transform-origin: left center;
@@ -427,7 +427,7 @@
 }
 @media (max-height: 740px) and (min-width: 769px) {
   .intro {
-    top: 22%;
+    top: 15%;
   }
   .intro h1 {
     font-size: 58px;
