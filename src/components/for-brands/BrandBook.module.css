@@ -1,0 +1,509 @@
+.story {
+  --font-heading: var(--font-outfit);
+  --book-paper: #f5f5f2;
+  --book-ink: #161918;
+  --book-accent: #f45a32;
+  --book-white: #f5f5ef;
+  --book-muted: #b6bbb5;
+  position: relative;
+  height: 480svh;
+  color: var(--book-ink);
+  letter-spacing: 0;
+  font-family: var(--font-plus-jakarta), sans-serif;
+}
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 640px;
+  overflow: clip;
+  isolation: isolate;
+}
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.intro {
+  position: absolute;
+  z-index: 2;
+  left: 6%;
+  top: 23%;
+  width: 42%;
+  max-width: 620px;
+  transform-origin: left center;
+}
+.intro h1 {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: 0;
+  margin: 0 0 28px;
+}
+.intro h1 span {
+  color: #d74624;
+}
+.intro p {
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 440px;
+  color: #505953;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 30px;
+}
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: var(--book-ink);
+  color: var(--book-white);
+  padding: 16px 20px;
+  font-size: 13px;
+  border-radius: 4px;
+  transition: background 180ms;
+}
+.primary:hover {
+  background: #35433c;
+}
+.textButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 1px solid #a0a6a0;
+}
+.disciplines {
+  margin-top: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: #535e57;
+}
+.disciplines span {
+  color: #90978f;
+}
+.coverNote {
+  position: absolute;
+  bottom: 15%;
+  left: 58%;
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+  font-size: 10px;
+  color: #535e57;
+}
+.coverNote span:first-child {
+  color: var(--book-ink);
+  font-weight: 600;
+}
+.bookHeader {
+  position: absolute;
+  top: 17%;
+  left: 6%;
+  right: 6%;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--book-white);
+}
+.bookHeader > span:first-child {
+  color: var(--book-accent);
+}
+.bookHeader > div {
+  height: 1px;
+  background: #4e534d;
+  flex: 1;
+}
+.bookHeader i {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--book-accent);
+  transform-origin: left;
+}
+.chapterPanel {
+  position: absolute;
+  right: 6%;
+  width: 24%;
+  top: 26%;
+  bottom: 15%;
+  display: flex;
+  flex-direction: column;
+  color: var(--book-white);
+}
+.chapterNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+  margin-bottom: 32px;
+}
+.chapterNav button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #434a42;
+  padding: 13px 0;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--book-muted);
+}
+.chapterNav button svg {
+  margin-left: auto;
+  opacity: 0;
+}
+.chapterNav button span {
+  font-size: 10px;
+}
+.chapterNav button[aria-current],
+.chapterNav button:hover {
+  color: var(--book-accent);
+}
+.chapterNav button[aria-current] svg {
+  opacity: 1;
+}
+.pitch h2 {
+  font-family: var(--font-heading);
+  font-size: 29px;
+  line-height: 1.15;
+  font-weight: 500;
+  margin-bottom: 18px;
+  letter-spacing: 0;
+}
+.pitch p {
+  color: var(--book-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.pitch ul {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+.pitch li {
+  font-size: 10px;
+  padding: 7px 0;
+  color: #d7dcd5;
+}
+.pitch li::before {
+  content: "+";
+  color: var(--book-accent);
+  margin-right: 10px;
+}
+.chapterCta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 11px;
+}
+.chapterCta:hover {
+  color: var(--book-accent);
+}
+.bottomLine {
+  position: absolute;
+  bottom: 5%;
+  left: 6%;
+  right: 6%;
+  padding-top: 20px;
+  border-top: 1px solid #b8beb6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: 9px;
+}
+.bottomLine button {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 8px 0;
+}
+.stage[data-open="true"] .bottomLine {
+  color: var(--book-muted);
+  border-color: #444b43;
+}
+.story :is(a, button):focus-visible {
+  outline: 2px solid var(--book-accent);
+  outline-offset: 5px;
+}
+.fallback {
+  position: absolute;
+  top: 29%;
+  left: 54%;
+  width: 29%;
+  aspect-ratio: 3 / 4;
+  background: #1b201d;
+  color: #f5f5ef;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 14px 22px 30px #0002;
+  font-size: 15px;
+}
+.fallback img {
+  display: block;
+  width: 65%;
+  height: auto;
+  filter: invert(1);
+}
+@media (min-width: 1600px) {
+  .intro h1 {
+    font-size: 80px;
+  }
+  .intro p {
+    font-size: 19px;
+  }
+  .pitch h2 {
+    font-size: 36px;
+  }
+  .pitch p {
+    font-size: 14px;
+  }
+  .pitch li {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1100px) and (min-width: 769px) {
+  .intro h1 {
+    font-size: 50px;
+  }
+  .intro p {
+    font-size: 14px;
+  }
+  .chapterPanel {
+    right: 4%;
+    width: 28%;
+  }
+  .pitch h2 {
+    font-size: 25px;
+  }
+  .chapterNav {
+    margin-bottom: 20px;
+  }
+  .pitch ul {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .story {
+    height: 500svh;
+  }
+  .stage {
+    min-height: 0;
+  }
+  .intro {
+    left: 7%;
+    top: clamp(104px, 11svh, 122px);
+    width: 86%;
+    max-width: none;
+  }
+  .intro h1 {
+    font-size: 40px;
+    line-height: 1.03;
+    margin-bottom: 15px;
+  }
+  .intro p {
+    font-size: 13px;
+    line-height: 1.65;
+    max-width: 380px;
+  }
+  .actions {
+    margin-top: 16px;
+    gap: 15px;
+  }
+  .primary {
+    padding: 12px 14px;
+    font-size: 11px;
+    gap: 10px;
+  }
+  .textButton {
+    font-size: 10px;
+  }
+  .disciplines {
+    margin-top: 18px;
+    font-size: 9px;
+    gap: 9px;
+  }
+  .coverNote {
+    bottom: 12%;
+    left: 7%;
+    right: 7%;
+    justify-content: space-between;
+    font-size: 8px;
+  }
+  .bookHeader {
+    top: 14%;
+    left: 7%;
+    right: 7%;
+    gap: 15px;
+    font-size: 8px;
+  }
+  .chapterPanel {
+    top: 53%;
+    left: 7%;
+    right: 7%;
+    width: auto;
+    bottom: 12%;
+  }
+  .chapterNav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 17px;
+  }
+  .chapterNav button {
+    gap: 5px;
+    font-size: 10px;
+    padding: 10px 0;
+  }
+  .chapterNav button span {
+    font-size: 8px;
+  }
+  .chapterNav button svg {
+    display: none;
+  }
+  .pitch h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    max-width: 450px;
+  }
+  .pitch p {
+    font-size: 11px;
+    line-height: 1.65;
+  }
+  .pitch ul {
+    display: none;
+  }
+  .chapterCta {
+    font-size: 10px;
+    padding-top: 12px;
+  }
+  .bottomLine {
+    left: 7%;
+    right: 7%;
+    bottom: 3%;
+    padding-top: 10px;
+    font-size: 7px;
+    gap: 12px;
+  }
+  .bottomLine > span {
+    max-width: 200px;
+  }
+  .bottomLine button {
+    white-space: nowrap;
+    font-size: 9px;
+  }
+  .fallback {
+    top: 56%;
+    left: 34%;
+    width: 32%;
+    padding: 14px;
+    font-size: 8px;
+  }
+  .fallback img {
+    width: 80%;
+  }
+}
+@media (max-height: 740px) and (min-width: 769px) {
+  .intro {
+    top: 22%;
+  }
+  .intro h1 {
+    font-size: 58px;
+    margin-bottom: 18px;
+  }
+  .intro p {
+    font-size: 14px;
+  }
+  .disciplines {
+    margin-top: 24px;
+  }
+  .chapterPanel {
+    top: 23%;
+    bottom: 13%;
+  }
+  .chapterNav {
+    margin-bottom: 20px;
+  }
+  .pitch h2 {
+    font-size: 25px;
+  }
+  .pitch p {
+    font-size: 11px;
+  }
+}
+@media (max-width: 600px) and (max-height: 720px) {
+  .intro {
+    top: 92px;
+  }
+  .intro h1 {
+    margin-bottom: 10px;
+  }
+  .actions {
+    margin-top: 12px;
+  }
+  .disciplines {
+    margin-top: 10px;
+  }
+  .scene {
+    transform: translateY(28px) scale(0.88);
+    transform-origin: center;
+  }
+  .coverNote {
+    bottom: 10.5%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .story * {
+    scroll-behavior: auto;
+  }
+}
+@media (max-width: 374px) {
+  .intro h1 {
+    font-size: 36px;
+  }
+  .intro p {
+    font-size: 11px;
+  }
+  .primary {
+    padding: 11px;
+    font-size: 10px;
+  }
+  .actions {
+    gap: 10px;
+  }
+  .disciplines {
+    gap: 7px;
+    font-size: 8px;
+  }
+  .pitch h2 {
+    font-size: 22px;
+  }
+  .pitch p {
+    font-size: 10px;
+  }
+  .chapterNav button {
+    font-size: 9px;
+  }
+}

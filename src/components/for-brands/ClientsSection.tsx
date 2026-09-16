@@ -1,49 +1,97 @@
-"use client";
-
 import Image from "next/image";
-import { CLIENTS } from "@/constants/clients";
-import { Marquee } from "@/components/ui/marquee";
+import { CornerRightDown } from "lucide-react";
+import clsx from "clsx";
+import { CLIENTS, type Client } from "@/constants/clients";
+import styles from "./ClientsSection.module.css";
+import motionStyles from "./ClientsSection.motion.module.css";
 
-const firstRow = CLIENTS.slice(0, Math.ceil(CLIENTS.length / 2));
-const secondRow = CLIENTS.slice(Math.ceil(CLIENTS.length / 2));
+const LOGO_OPTICAL_CLASSES = {
+  letterbox: styles.letterbox,
+  squareMark: styles.squareMark,
+} as const;
 
-function LogoCard({ name, logoLight }: { name: string; logoLight: string }) {
+const CLIENT_ROW_SPLIT = Math.ceil(CLIENTS.length / 2);
+const CLIENT_ROWS = [
+  CLIENTS.slice(0, CLIENT_ROW_SPLIT),
+  CLIENTS.slice(CLIENT_ROW_SPLIT),
+] as const;
+
+type LogoSequenceProps = {
+  readonly clients: readonly Client[];
+  readonly duplicate?: boolean;
+};
+
+function LogoSequence({ clients, duplicate = false }: LogoSequenceProps) {
   return (
-    <div className="flex items-center justify-center px-8 py-4">
-      <Image
-        src={logoLight}
-        alt={name}
-        width={120}
-        height={40}
-        sizes="120px"
-        className="h-8 w-auto object-contain opacity-40 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-500"
-      />
+    <div
+      className={clsx(
+        styles.logoSequence,
+        duplicate && motionStyles.duplicateSequence
+      )}
+      aria-hidden={duplicate || undefined}
+    >
+      {clients.map((client) => (
+        <div className={styles.logoFrame} key={client.name}>
+          <Image
+            src={client.logoLight}
+            alt={duplicate ? "" : client.name}
+            className={clsx(
+              styles.logo,
+              client.logoClass && LOGO_OPTICAL_CLASSES[client.logoClass]
+            )}
+            width={184}
+            height={56}
+            sizes="(max-width: 700px) 132px, 184px"
+            loading="lazy"
+          />
+        </div>
+      ))}
     </div>
   );
 }
 
 export function ClientsSection() {
   return (
-    <section className="py-12 md:py-16 relative z-10 overflow-hidden">
-      <div className="relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <Marquee pauseOnHover className="[--duration:40s]">
-          {firstRow.map((client) => (
-            <LogoCard
-              key={client.name}
-              name={client.name}
-              logoLight={client.logoLight}
-            />
+    <section
+      id="trusted-brands"
+      className={styles.section}
+      aria-labelledby="trusted-brands-title"
+      data-nav-tone="light"
+    >
+      <header className={styles.header}>
+        <div className={styles.trustSignal}>
+          <h2 id="trusted-brands-title">Ils nous font confiance</h2>
+          <CornerRightDown
+            className={styles.signalArrow}
+            aria-hidden="true"
+            size={31}
+            strokeWidth={1.35}
+          />
+        </div>
+      </header>
+
+      <div
+        className={clsx(styles.corridor, motionStyles.corridor)}
+        aria-label="Marques accompagnées par Wafia"
+      >
+        <div className={styles.logoRows}>
+          {CLIENT_ROWS.map((clients, rowIndex) => (
+            <div className={styles.logoRow} key={rowIndex}>
+              <div
+                className={clsx(
+                  motionStyles.marqueeTrack,
+                  rowIndex === 1 && motionStyles.reverseTrack
+                )}
+              >
+                <LogoSequence clients={clients} />
+                <LogoSequence clients={clients} duplicate />
+              </div>
+            </div>
           ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:40s] mt-4">
-          {secondRow.map((client) => (
-            <LogoCard
-              key={client.name}
-              name={client.name}
-              logoLight={client.logoLight}
-            />
-          ))}
-        </Marquee>
+        </div>
+        <div className={motionStyles.scanner} aria-hidden="true">
+          <span />
+        </div>
       </div>
     </section>
   );

@@ -54,7 +54,7 @@ const CONTENT: Record<
 };
 
 const INPUT_CLASS =
-  "w-full px-4 py-3.5 rounded-xl border border-white/10 bg-white/[0.03] text-white placeholder-white/30 focus:border-white/30 focus:outline-none focus:ring-2 focus:ring-white/10 transition-all";
+  "w-full rounded-xl border border-slate-300/80 bg-white px-4 py-3.5 text-slate-950 placeholder-slate-500 shadow-sm outline-none transition-all focus:border-slate-950 focus:ring-2 focus:ring-slate-950/10";
 
 export function ContactForm({ variant }: { variant: ContactVariant }) {
   const prefersReducedMotion = useReducedMotion() ?? false;
@@ -64,13 +64,10 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
   // restore the previous state when leaving (same pattern as the orb home).
   useEffect(() => {
     const el = document.documentElement;
-    const hadDarkElsewhere =
-      el.classList.contains("dark") && el.dataset.orbDark !== "1";
+    const hadDarkElsewhere = el.classList.contains("dark");
     el.classList.add("dark");
-    el.dataset.orbDark = "1";
     return () => {
       if (!hadDarkElsewhere) el.classList.remove("dark");
-      delete el.dataset.orbDark;
     };
   }, []);
 
@@ -104,10 +101,11 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
 
   return (
     <div className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-5 py-24 sm:px-8">
+      <div className="absolute inset-0 bg-white/35 backdrop-blur-[2px] dark:bg-slate-950/20" />
       <header className="absolute inset-x-0 top-0 flex items-center justify-between px-5 py-5 sm:px-8">
         <OrbLink
           href="/"
-          className="flex h-12 items-center gap-2.5 rounded-full border border-white/10 bg-[#1c1c1e]/40 px-5 shadow-lg backdrop-blur-[40px] saturate-150 transition-all duration-300 hover:scale-105 hover:bg-[#1c1c1e]/60"
+          className="flex h-12 items-center gap-2.5 rounded-full border border-slate-900/10 bg-slate-950/75 px-5 shadow-lg shadow-slate-950/10 backdrop-blur-[40px] saturate-150 transition-all duration-300 hover:scale-105 hover:bg-slate-950/90"
         >
           <WafiaLogo className="h-4 w-auto text-white" />
           <span className="text-xs font-bold uppercase tracking-[0.18em] text-white">
@@ -116,7 +114,7 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
         </OrbLink>
         <OrbLink
           href={content.backHref}
-          className="inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm ring-1 ring-slate-900/10 backdrop-blur-xl transition-colors hover:bg-white hover:text-slate-950"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>{content.backLabel}</span>
@@ -125,7 +123,7 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
 
       <main
         id="main-content"
-        className="w-full max-w-md"
+        className="relative w-full max-w-lg"
         aria-label="Formulaire de contact"
       >
         {submitted ? (
@@ -133,7 +131,7 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="py-12 text-center"
+            className="rounded-[1.75rem] border border-slate-900/10 bg-white/92 p-8 text-center shadow-2xl shadow-slate-950/15 backdrop-blur-2xl"
           >
             <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10">
               <svg
@@ -150,10 +148,10 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                 />
               </svg>
             </div>
-            <h1 className="mb-2 text-2xl font-semibold text-white">
+            <h1 className="mb-2 text-2xl font-semibold text-slate-950">
               Demande envoyée
             </h1>
-            <p className="mb-8 text-white/60">
+            <p className="mb-8 text-slate-600">
               Merci ! Nous revenons vers vous sous 24h.
             </p>
             <OrbLink
@@ -164,12 +162,12 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
             </OrbLink>
           </motion.div>
         ) : (
-          <>
+          <section className="rounded-[1.75rem] border border-slate-900/10 bg-white/92 p-6 shadow-2xl shadow-slate-950/15 backdrop-blur-2xl sm:p-8">
             <motion.div {...motionProps}>
-              <h1 className="mb-3 text-3xl font-semibold text-white">
+              <h1 className="mb-3 text-3xl font-semibold text-slate-950">
                 {content.title}
               </h1>
-              <p className="mb-10 text-white/60">{content.intro}</p>
+              <p className="mb-8 text-slate-600">{content.intro}</p>
             </motion.div>
 
             <motion.form
@@ -234,7 +232,7 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                       <option
                         key={b.value}
                         value={b.value}
-                        className="bg-[#1c1c1e]"
+                        className="bg-white text-slate-950"
                       >
                         {b.label}
                       </option>
@@ -297,12 +295,12 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
               <motion.button
                 type="submit"
                 whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-                className="w-full rounded-xl bg-white py-3.5 font-medium text-slate-900 transition-opacity hover:opacity-90"
+                className="w-full rounded-xl bg-slate-950 py-3.5 font-semibold text-white transition-colors hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-950/20 focus:ring-offset-2"
               >
                 {content.submitLabel}
               </motion.button>
             </motion.form>
-          </>
+          </section>
         )}
       </main>
     </div>

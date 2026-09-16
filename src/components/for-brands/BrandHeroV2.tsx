@@ -1,147 +1,210 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Users, Play, TrendingUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { OrbLink } from "@/components/navigation/OrbLink";
-import { BRAND_HERO_CONTENT } from "@/constants/brand-additions";
+import { useRef, useState } from "react";
 import {
-  MainPerformanceModule,
-  TalentStreamModule,
-  ContentReactorModule,
-} from "./HeroWidgets";
+  AnimatePresence,
+  motion,
+  transform,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
+import { BOOK_CHAPTERS, chapterAt } from "./brand-book-content";
+import styles from "./BrandBook.module.css";
 
-// Stat icons mapping
-const STAT_ICONS = {
-  orange: Users,
-  blue: Play,
-  green: TrendingUp,
-} as const;
+const BrandBookScene = dynamic(() => import("./BrandBookScene"), {
+  ssr: false,
+});
 
 export function BrandHeroV2() {
+  const section = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
+  const [chapter, setChapter] = useState(0);
+  const [opened, setOpened] = useState(false);
+  const { scrollYProgress } = useScroll({
+    target: section,
+    offset: ["start start", "end end"],
+  });
+  // Function transforms keep DOM and WebGL on the same section-local timeline.
+  const introOpacity = useTransform(() =>
+    transform(scrollYProgress.get(), [0, 0.06, 0.19], [1, 1, 0])
+  );
+  const introY = useTransform(() =>
+    transform(scrollYProgress.get(), [0.04, 0.22], [0, -90])
+  );
+  const introScale = useTransform(() =>
+    transform(scrollYProgress.get(), [0.04, 0.22], [1, 0.96])
+  );
+  const stageColor = useTransform(() =>
+    transform(scrollYProgress.get(), [0.06, 0.3], ["#f5f5f2", "#151716"])
+  );
+  const chapterOpacity = useTransform(() =>
+    transform(scrollYProgress.get(), [0.23, 0.32], [0, 1])
+  );
+  const entry = BOOK_CHAPTERS[chapter];
+
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    setChapter(chapterAt(progress + 0.025));
+    setOpened(progress > 0.24);
+  });
+
+  function goToChapter(index: number) {
+    if (!section.current) return;
+    const top = section.current.getBoundingClientRect().top + window.scrollY;
+    const distance = section.current.offsetHeight - window.innerHeight;
+    window.scrollTo({
+      top: top + distance * (0.34 + index * 0.205),
+      behavior: reducedMotion ? "instant" : "smooth",
+    });
+  }
+
   return (
-    <section className="relative pt-24 pb-12 lg:pt-36 lg:pb-24 overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
-          {/* LEFT COLUMN: Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="w-[calc(100vw-2rem)] max-w-xl min-w-0 z-20 relative sm:w-auto"
-          >
-            {/* Headline */}
-            <h1 className="w-full font-heading text-3xl sm:text-5xl lg:text-7xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-6 tracking-tight break-words">
-              {BRAND_HERO_CONTENT.title.line1} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-600">
-                {BRAND_HERO_CONTENT.title.highlight}
-              </span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="w-full text-base sm:text-xl text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 leading-relaxed font-medium break-words">
-              {BRAND_HERO_CONTENT.subtitle}
-            </p>
-
-            {/* Stats Row — always 3 columns */}
-            <div className="grid w-full grid-cols-3 gap-2 sm:gap-4 mb-10">
-              {BRAND_HERO_CONTENT.stats.map((stat, i) => {
-                const IconComponent =
-                  STAT_ICONS[stat.color as keyof typeof STAT_ICONS];
-                const colorClasses = {
-                  orange:
-                    "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400",
-                  blue: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
-                  green:
-                    "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400",
-                };
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className="text-center p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm border border-slate-100 dark:border-zinc-800"
-                  >
-                    <div
-                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl mx-auto mb-1.5 sm:mb-2 flex items-center justify-center ${colorClasses[stat.color as keyof typeof colorClasses]}`}
-                    >
-                      <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
-                    <div className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white">
-                      {stat.value}
-                    </div>
-                    <div className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button
-                asChild
-                className="rounded-full bg-gradient-to-r from-orange-500 to-rose-600 hover:from-orange-600 hover:to-rose-700 text-white font-semibold px-5 sm:px-8 h-11 sm:h-14 shadow-lg shadow-orange-500/20 text-sm sm:text-base transition-all hover:scale-105"
-              >
-                <Link href={BRAND_HERO_CONTENT.cta.primary.href}>
-                  {BRAND_HERO_CONTENT.cta.primary.text}
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="rounded-full border-2 border-slate-300 dark:border-zinc-700 hover:border-slate-400 dark:hover:border-zinc-600 px-5 sm:px-8 h-11 sm:h-14 font-semibold text-sm sm:text-base"
-              >
-                <OrbLink href={BRAND_HERO_CONTENT.cta.secondary.href}>
-                  {BRAND_HERO_CONTENT.cta.secondary.text}
-                </OrbLink>
-              </Button>
-            </div>
-          </motion.div>
-
-          {/* RIGHT COLUMN: The Command Center Stack */}
-          <div className="hidden lg:block relative h-[600px] w-full perspective-1000">
-            {/* 
-                            GRID COMPOSITION 
-                            We use a 12-column grid in a fixed container to orchestrate the density.
-                        */}
-            <div className="absolute top-[10%] right-[0%] w-[120%] h-[80%] grid grid-cols-12 grid-rows-6 gap-4 p-4 transform -rotate-y-12 rotate-x-6 scale-90 translate-x-12">
-              {/* 1. Main Performance Module (Big, Center-Left) */}
-              <div className="col-span-8 row-span-4 z-10">
-                <MainPerformanceModule />
-              </div>
-
-              {/* 2. Talent Stream (Mid-Right) */}
-              <div className="col-span-2 row-span-3 z-30 -ml-12 mt-4 h-[120%]">
-                <TalentStreamModule />
-              </div>
-
-              {/* 4. Content Reactor (Bottom-Left, Titled) */}
-              <div className="col-span-4 row-span-2 z-40 -mt-12 ml-8 absolute bottom-0 left-0">
-                <ContentReactorModule />
-              </div>
-
-              {/* Decorative Elements */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-                className="absolute -top-10 -right-10 w-64 h-64 bg-orange-500/20 rounded-full blur-[100px] pointer-events-none mix-blend-screen"
-              />
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.2 }}
-                className="absolute bottom-0 left-20 w-48 h-48 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none mix-blend-screen"
-              />
-            </div>
-          </div>
+    <section
+      ref={section}
+      className={styles.story}
+      aria-label="Wafia, du premier brief à la diffusion"
+      data-book-story
+    >
+      <motion.div
+        className={styles.stage}
+        style={{ backgroundColor: stageColor }}
+        data-open={opened}
+      >
+        <div className={styles.scene} aria-hidden="true">
+          <BrandBookScene
+            progress={scrollYProgress}
+            reducedMotion={Boolean(reducedMotion)}
+          />
         </div>
-      </div>
+        <motion.div
+          className={styles.intro}
+          style={{
+            opacity: introOpacity,
+            y: reducedMotion ? 0 : introY,
+            scale: reducedMotion ? 1 : introScale,
+          }}
+          inert={opened}
+        >
+          <h1>
+            Des campagnes
+            <br />
+            créateurs
+            <br />
+            <span>structurées.</span>
+          </h1>
+          <p>
+            Une idée juste. Les bons créateurs. Des contenus qui restent. Wafia
+            réunit influence, création, production et ads pour faire avancer
+            votre marque.
+          </p>
+          <div className={styles.actions}>
+            <Link href="#case-studies" className={styles.primary}>
+              Voir nos réalisations <ArrowUpRight size={18} />
+            </Link>
+            <button
+              onClick={() => goToChapter(0)}
+              className={styles.textButton}
+            >
+              Ouvrir le dossier <ArrowDown size={16} />
+            </button>
+          </div>
+          <div className={styles.disciplines}>
+            Influence <span>/</span> Création <span>/</span> Production{" "}
+            <span>/</span> Ads
+          </div>
+        </motion.div>
+        <motion.div
+          className={styles.coverNote}
+          style={{ opacity: introOpacity }}
+          aria-hidden="true"
+        >
+          <span>LE DOSSIER WAFIA</span>
+          <span>Des idées à leur diffusion.</span>
+        </motion.div>
+        <motion.div
+          className={styles.bookHeader}
+          style={{ opacity: chapterOpacity }}
+          aria-hidden="true"
+        >
+          <span>Le dossier Wafia</span>
+          <div>
+            <motion.i style={{ scaleX: scrollYProgress }} />
+          </div>
+          <span>0{chapter + 1} / 04</span>
+        </motion.div>
+        <motion.aside
+          className={styles.chapterPanel}
+          style={{ opacity: chapterOpacity }}
+          inert={!opened}
+          aria-label="Nos expertises"
+        >
+          <nav className={styles.chapterNav} aria-label="Chapitres du dossier">
+            {BOOK_CHAPTERS.map((item, index) => (
+              <button
+                key={item.service}
+                onClick={() => goToChapter(index)}
+                aria-current={chapter === index ? "step" : undefined}
+              >
+                <span>0{index + 1}</span>
+                {item.service}
+                <ArrowUpRight size={15} />
+              </button>
+            ))}
+          </nav>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              className={styles.pitch}
+              key={entry.service}
+              initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reducedMotion ? 0 : -10 }}
+              transition={{ duration: reducedMotion ? 0.1 : 0.18 }}
+            >
+              <h2>{entry.promise}</h2>
+              <p>{entry.body}</p>
+              <ul>
+                {entry.deliverables.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </motion.div>
+          </AnimatePresence>
+          <Link href="/contact/brands" className={styles.chapterCta}>
+            Construisons votre campagne <ArrowUpRight size={17} />
+          </Link>
+        </motion.aside>
+        <div className={styles.bottomLine}>
+          <span>
+            {opened
+              ? "UNE ÉQUIPE. DU BRIEF À LA DIFFUSION."
+              : "VOTRE MARQUE A UNE HISTOIRE. DONNONS-LUI DE L’ÉCHO."}
+          </span>
+          <button
+            onClick={() =>
+              chapter < 3
+                ? goToChapter(opened ? chapter + 1 : 0)
+                : section.current?.nextElementSibling?.scrollIntoView({
+                    behavior: reducedMotion ? "instant" : "smooth",
+                  })
+            }
+          >
+            {opened
+              ? chapter === 3
+                ? "La suite"
+                : "Chapitre suivant"
+              : "Découvrir"}{" "}
+            {opened && chapter === 3 ? (
+              <ArrowRight size={16} />
+            ) : (
+              <ArrowDown size={16} />
+            )}
+          </button>
+        </div>
+      </motion.div>
     </section>
   );
 }

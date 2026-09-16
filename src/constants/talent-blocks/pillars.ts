@@ -15,42 +15,42 @@ export interface TalentPillar {
 export const TALENT_PILLARS: TalentPillar[] = [
   {
     id: "positioning",
-    icon: "🎯",
+    icon: "positioning",
     title: "Positionnement & image",
     description:
       "Nous clarifions ce que vous représentez, ce que vous refusez et la manière dont votre image doit être perçue.",
   },
   {
     id: "production",
-    icon: "⚡",
+    icon: "production",
     title: "Projets & production",
     description:
       "Contenus, shootings, captations, prises de parole, formats récurrents ou projets artistiques : chaque support sert une trajectoire.",
   },
   {
     id: "deals",
-    icon: "🤝",
+    icon: "deals",
     title: "Opportunités & négociation",
     description:
       "Nous filtrons, négocions et cadrons les partenariats, bookings et collaborations pour protéger votre valeur.",
   },
   {
     id: "legal-ops",
-    icon: "📋",
+    icon: "legal",
     title: "Droits & cadre juridique",
     description:
       "Contrats, image, usages, territoires, facturation, relances : l'arrière-plan devient lisible et sécurisé.",
   },
   {
     id: "kpis",
-    icon: "📊",
+    icon: "kpis",
     title: "Revenus & pilotage",
     description:
       "Nous suivons ce qui compte : revenus, demandes entrantes, performance des formats, qualité des opportunités et progression réelle.",
   },
   {
     id: "autonomy",
-    icon: "🏗️",
+    icon: "autonomy",
     title: "Équipe & autonomie",
     description:
       "Process, recrutement, transmission et montée en compétences. L'objectif : une carrière plus maîtrisée, pas une dépendance.",

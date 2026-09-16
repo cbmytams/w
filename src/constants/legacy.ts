@@ -8,9 +8,6 @@
 // Clients & Stats
 export { CLIENTS } from "./clients";
 
-// Process steps
-export { PROCESS_STEPS } from "./process-steps";
-
 // Talent blocks (still used by existing section components)
 export {
   TALENT_TIMELINE,

@@ -25,11 +25,6 @@ export function ConstatSection() {
       id="constat"
       className="relative z-10 py-32 md:py-44 lg:py-52 px-4 overflow-hidden"
     >
-      {/* Atmospheric layers (Monochrome / silver) */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.02] dark:bg-white/[0.015] rounded-full blur-[150px]" />
-      </div>
-
       <Container>
         <div className="max-w-5xl mx-auto relative">
           {/* Title */}

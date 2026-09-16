@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 
 function buildDefaultCspHeader(nonce: string) {
+  const scriptSource =
+    process.env.NODE_ENV === "development"
+      ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval'`
+      : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`;
+  const styleElementSource =
+    process.env.NODE_ENV === "development"
+      ? "style-src-elem 'self' 'unsafe-inline'"
+      : `style-src-elem 'self' 'nonce-${nonce}'`;
+
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
-    // 'unsafe-inline' is kept as a fallback because Next.js/React still emit
-    // inline <style> tags. Modern browsers ignore 'unsafe-inline' when a nonce
-    // is present — once all inline styles are nonce-tagged, drop the fallback.
-    `style-src 'self' 'nonce-${nonce}' 'unsafe-inline'`,
+    scriptSource,
+    `style-src 'self' 'nonce-${nonce}'`,
+    styleElementSource,
+    "style-src-attr 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self'",
     "connect-src 'self' https://*.sentry.io https://*.upstash.io",

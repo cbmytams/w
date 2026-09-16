@@ -1,50 +1,72 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { RevealAnimation } from "@/components/common/RevealAnimation";
-import { OrbLink } from "@/components/navigation/OrbLink";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./CtaSection.module.css";
 
 type CtaSectionProps = {
-  estimateHref?: string;
+  readonly estimateHref?: string;
 };
+
+const VIEWPORT = { once: true, amount: 0.36 } as const;
 
 export function CtaSection({
   estimateHref = "/contact/brands",
 }: CtaSectionProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="py-24 md:py-32 px-4">
-      <Container>
-        <div className="max-w-4xl mx-auto text-center">
-          <RevealAnimation>
-            <h2 className="text-5xl sm:text-7xl font-bold text-slate-900 dark:text-white mb-8">
-              Votre prochaine campagne{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">
-                mérite mieux.
-              </span>
-            </h2>
-          </RevealAnimation>
+    <section className={styles.section} aria-labelledby="brands-cta-title">
+      <Image
+        src="/images/cases/cta-studio-shoot.webp"
+        alt=""
+        fill
+        loading="eager"
+        sizes="100vw"
+        className={styles.image}
+        aria-hidden="true"
+      />
+      <div className={styles.scrim} aria-hidden="true" />
 
-          <RevealAnimation delay={0.2}>
-            <p className="text-2xl text-slate-600 dark:text-slate-400 mb-12">
-              Parlons de vos objectifs. On vous montre exactement comment on les
-              atteint.
-            </p>
-          </RevealAnimation>
+      <div className={styles.inner}>
+        <motion.div
+          className={styles.copy}
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={VIEWPORT}
+          transition={{ duration: 0.56, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className={styles.eyebrow}>Studio de campagne</p>
+          <h2 id="brands-cta-title">
+            Parlons de votre
+            <br />
+            prochaine campagne.
+          </h2>
+        </motion.div>
 
-          <RevealAnimation delay={0.4}>
-            <div className="flex items-center justify-center">
-              <Button
-                size="lg"
-                asChild
-                className="h-16 px-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xl font-semibold shadow-2xl shadow-orange-500/25"
-              >
-                <OrbLink href={estimateHref}>Nous contacter</OrbLink>
-              </Button>
-            </div>
-          </RevealAnimation>
-        </div>
-      </Container>
+        <motion.aside
+          className={styles.panel}
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={VIEWPORT}
+          transition={{
+            duration: 0.56,
+            delay: reduceMotion ? 0 : 0.08,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          <p>
+            Une idée, un enjeu, une marque ? Discutons de la meilleure façon de
+            la faire vivre avec les bons créateurs.
+          </p>
+          <Link href={estimateHref} className={styles.cta}>
+            Nous contacter
+            <ArrowRight aria-hidden="true" size={20} strokeWidth={1.8} />
+          </Link>
+        </motion.aside>
+      </div>
     </section>
   );
 }

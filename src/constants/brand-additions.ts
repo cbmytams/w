@@ -7,40 +7,40 @@ export const BRAND_NAVIGATION = [
 ] as const;
 
 export const BRAND_HERO_CONTENT = {
-  badge: "Campagnes créateurs, structurées de bout en bout",
+  badge: "Pour les marques et agences qui veulent un cadre clair",
   title: {
-    line1: "Des campagnes créateurs",
-    highlight: "structurées.",
+    line1: "Wafia construit les campagnes créateurs",
+    highlight: "que les marques peuvent assumer.",
   },
   subtitle:
-    "Wafia réunit stratégie, casting, production, droits et reporting pour transformer une campagne en actif exploitable.",
+    "Nous aidons les marques à choisir les bons talents, produire les bons formats et cadrer les droits avant que la campagne parte en diffusion. Pas de casting décoratif. Pas de contenu jetable. Pas de reporting illisible.",
   antiMarket: [
     {
       type: "check",
-      text: "Casting argumenté : audience, cohérence de marque, historique et risques vérifiés.",
+      text: "Le casting doit pouvoir s'expliquer, pas seulement séduire.",
     },
     {
       type: "check",
-      text: "Production pensée pour durer : contenus natifs, assets paid-ready, droits cadrés.",
+      text: "Le contenu doit pouvoir resservir, en organique comme en paid.",
     },
     {
       type: "check",
-      text: "Pilotage lisible : validations, budget, performances et enseignements centralisés.",
+      text: "Les droits, validations et résultats doivent être clairs avant le bilan.",
     },
   ],
   stats: [
-    { value: "15+", label: "Marques accompagnées", color: "orange" },
-    { value: "200+", label: "Contenus produits", color: "blue" },
-    { value: "Top 3%", label: "Des talents audités retenus", color: "green" },
+    { value: "15+", label: "marques accompagnées", color: "orange" },
+    { value: "200+", label: "contenus produits", color: "blue" },
+    { value: "Top 3%", label: "des profils audités retenus", color: "green" },
   ],
   cta: {
-    primary: { text: "Voir nos réalisations", href: "#case-studies" },
+    primary: { text: "Parler d'une campagne", href: "/contact/brands" },
     secondary: {
-      text: "Structurer ma campagne",
-      href: "/contact/brands",
+      text: "Voir les dossiers",
+      href: "#case-studies",
     },
   },
-  timing: "Cadrage, casting, production, droits, reporting.",
+  timing: "Casting, production, droits, diffusion, lecture des résultats.",
 } as const;
 
 export const AUTHENTICITY_CARDS = [

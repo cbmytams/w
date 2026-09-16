@@ -1,155 +1,123 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Plus } from "lucide-react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, Sparkles } from "lucide-react";
-import { Container } from "@/components/ui/container";
 import { FAQ_ITEMS } from "@/constants/faq";
-import { cn } from "@/lib/utils";
+import styles from "./FaqSection.module.css";
 
-import { LegalHubContent } from "@/components/legal/LegalHubContent";
-import { EASING } from "@/lib/easing";
-
-const LEGAL_ITEMS = [
-  {
-    q: "Mentions Légales & Confidentialité",
-    a: <LegalHubContent context="brands" />,
-  },
-];
+const VIEWPORT = { once: true, amount: 0.28 } as const;
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  // Combine standard FAQ with Legal Items (Brands)
-  const allItems = [...FAQ_ITEMS, ...LEGAL_ITEMS];
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="faq" className="py-20 md:py-28 px-4 relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full blur-[100px] -z-10" />
+    <section id="faq" className={styles.section} aria-labelledby="faq-title">
+      <div className={styles.inner}>
+        <motion.header
+          className={styles.header}
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={VIEWPORT}
+          transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className={styles.eyebrow}>FAQ</p>
+          <h2 id="faq-title">
+            Vos questions.
+            <br />
+            Nos réponses.
+          </h2>
+        </motion.header>
 
-      <Container>
-        <div className="max-w-3xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16 space-y-4">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider"
-            >
-              <Sparkles className="w-3 h-3" />
-              Support & Clarté
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight"
-            >
-              Questions fréquentes
-            </motion.h2>
-          </div>
-
-          {/* FAQ Items */}
-          <div className="space-y-4">
-            {allItems.map((item, i) => (
-              <FaqItem
-                key={i}
-                item={item}
-                isOpen={openIndex === i}
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                index={i}
-              />
-            ))}
-          </div>
+        <div className={styles.list}>
+          {FAQ_ITEMS.map((item, index) => (
+            <FaqItem
+              key={item.q}
+              answer={item.a}
+              index={index}
+              isOpen={openIndex === index}
+              question={item.q}
+              reduceMotion={Boolean(reduceMotion)}
+              onToggle={() => setOpenIndex(openIndex === index ? null : index)}
+            />
+          ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
 
+type FaqItemProps = {
+  readonly answer: string;
+  readonly index: number;
+  readonly isOpen: boolean;
+  readonly onToggle: () => void;
+  readonly question: string;
+  readonly reduceMotion: boolean;
+};
+
 function FaqItem({
-  item,
-  isOpen,
-  onClick,
+  answer,
   index,
-}: {
-  item: { q: string; a: React.ReactNode };
-  isOpen: boolean;
-  onClick: () => void;
-  index: number;
-}) {
+  isOpen,
+  onToggle,
+  question,
+  reduceMotion,
+}: FaqItemProps) {
   const panelId = `faq-brands-panel-${index}`;
   const triggerId = `faq-brands-trigger-${index}`;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className={cn(
-        "group rounded-2xl border transition-all duration-300 overflow-hidden",
-        isOpen
-          ? "bg-white dark:bg-white/10 border-orange-200 dark:border-white/10 shadow-lg shadow-orange-500/5"
-          : "bg-white/50 dark:bg-white/5 border-transparent hover:border-orange-200/50 dark:hover:border-white/10 hover:bg-white/80 dark:hover:bg-white/10"
-      )}
+    <motion.article
+      className={styles.item}
+      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={VIEWPORT}
+      transition={{
+        duration: 0.48,
+        delay: reduceMotion ? 0 : index * 0.035,
+        ease: [0.22, 1, 0.36, 1],
+      }}
     >
       <button
         id={triggerId}
         type="button"
-        onClick={onClick}
-        aria-expanded={isOpen}
+        className={styles.trigger}
         aria-controls={panelId}
-        className="w-full flex items-center justify-between p-6 md:p-8 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 rounded-2xl"
+        aria-expanded={isOpen}
+        onClick={onToggle}
       >
-        <span
-          className={cn(
-            "text-lg md:text-xl font-medium transition-colors pr-8",
-            isOpen
-              ? "text-slate-900 dark:text-white"
-              : "text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white"
-          )}
-        >
-          {item.q}
+        <span className={styles.number}>
+          {String(index + 1).padStart(2, "0")}
         </span>
-        <span
-          className={cn(
-            "relative flex items-center justify-center w-8 h-8 rounded-full border transition-all duration-500 shrink-0",
-            isOpen
-              ? "bg-orange-500 border-orange-500 text-white rotate-180"
-              : "bg-slate-100 dark:bg-white/10 border-slate-200 dark:border-white/10 text-slate-400 group-hover:bg-white group-hover:scale-110"
-          )}
-        >
-          {isOpen ? (
-            <Minus className="w-4 h-4" />
-          ) : (
-            <Plus className="w-4 h-4" />
-          )}
+        <span className={styles.question}>{question}</span>
+        <span className={styles.icon} data-open={isOpen}>
+          <Plus aria-hidden="true" size={21} strokeWidth={1.8} />
         </span>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
+      <AnimatePresence initial={false}>
+        {isOpen ? (
           <motion.div
             id={panelId}
             role="region"
             aria-labelledby={triggerId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: EASING.easeInOut }}
+            className={styles.answer}
+            initial={reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            animate={
+              reduceMotion ? { opacity: 1 } : { height: "auto", opacity: 1 }
+            }
+            exit={reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={{
+              duration: reduceMotion ? 0.16 : 0.28,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
-            <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0">
-              <div className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
-                {item.a}
-              </div>
-            </div>
+            <p>{answer}</p>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
-    </motion.div>
+    </motion.article>
   );
 }

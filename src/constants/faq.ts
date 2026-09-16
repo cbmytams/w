@@ -2,26 +2,26 @@
 export const FAQ_ITEMS = [
   {
     q: "Travaillez-vous avec des startups ?",
-    a: "Oui, si l'objectif est clair. Nous adaptons le dispositif au budget disponible, sans réduire l'exigence sur le casting, les droits et la qualité d'exécution.",
+    a: "Oui. Le bon sujet n’est pas la taille de la marque, mais la clarté du moment : ce qu’il faut raconter, à qui, et avec quelle ambition.",
   },
   {
     q: "Peut-on tester sur une seule campagne ?",
-    a: "Oui. Une campagne ciblée peut être un excellent point de départ si elle produit des contenus exploitables, des apprentissages et une base pour la suite.",
+    a: "Oui. Une première campagne peut servir de terrain propre : on apprend vite, on garde ce qui marche et on construit la suite avec plus de précision.",
   },
   {
     q: "Vous faites uniquement de l'influence ?",
-    a: "Non. Wafia réunit stratégie, studio, talents, droits et pilotage. L'influence fonctionne mieux quand la campagne est pensée comme un système complet.",
+    a: "Non. On part de l’idée, puis on assemble les bons créateurs, les bons formats, la production et la diffusion. L’influence devient plus forte quand elle a une vraie direction.",
   },
   {
     q: "Comment mesure-t-on les résultats ?",
-    a: "Nous suivons les indicateurs qui aident à décider : complétion vidéo, rétention, trafic, conversions, coût par résultat, qualité des contenus et apprentissages créateurs.",
+    a: "On regarde ce qui aide à décider : attention, engagement, trafic, réutilisation des contenus, coût par résultat et qualité des signaux. Pas seulement les chiffres qui brillent.",
   },
   {
     q: "Les droits d'utilisation sont gérés ?",
-    a: "Oui. Les usages organiques, paid, la durée, les territoires et les canaux sont cadrés avant le lancement pour que les contenus puissent être réutilisés proprement.",
+    a: "Oui. Quand un contenu mérite de durer, il faut pouvoir le réutiliser simplement : en organique, en paid, sur les bons canaux et au bon moment.",
   },
   {
     q: "C'est notre première campagne influence. Vous nous aidez ?",
-    a: "Oui. Nous posons les bases avec vous : objectif, audience, casting, production, droits, diffusion et analyse. Vous gardez la validation, nous cadrons l'exécution.",
+    a: "Oui. On pose le cadre avec vous, puis on avance étape par étape : idée, talents, formats, production, diffusion, lecture des résultats.",
   },
 ] as const;

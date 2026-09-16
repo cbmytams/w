@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
@@ -106,15 +105,6 @@ function TeamCardTalents({
         }
       }}
     >
-      {/* Glow Effect - Geography Based */}
-      <motion.div
-        className="absolute -inset-1 rounded-2xl blur-2xl transition-all duration-500"
-        style={{
-          background: `radial-gradient(circle, ${geoConfig.shadowColor.replace("0.15", "0.3")} 0%, transparent 70%)`,
-          opacity: isHovered ? 0.6 : 0,
-        }}
-      />
-
       {/* Card Content */}
       <div
         className={cn(
@@ -164,7 +154,11 @@ function TeamCardTalents({
           {/* Header: Photo + Name/Role */}
           <div className="flex flex-col sm:flex-row gap-6 sm:items-start mb-6">
             <div
-              className="relative w-24 h-24 flex-shrink-0 rounded-2xl overflow-hidden ring-4 transition-all duration-300"
+              className={cn(
+                "relative flex h-24 w-24 flex-shrink-0 items-center justify-center rounded-2xl border bg-gradient-to-br text-3xl font-black transition-all duration-300",
+                geoConfig.gradient,
+                "border-white/30 text-white"
+              )}
               style={
                 {
                   "--tw-ring-color": isHovered
@@ -176,21 +170,14 @@ function TeamCardTalents({
                 } as React.CSSProperties
               }
             >
-              <Image
-                src={member.image}
-                alt={member.name}
-                fill
-                sizes="96px"
-                className="object-cover"
-              />
+              {member.name.charAt(0)}
             </div>
 
             <div className="flex-1 mt-2">
               <span
                 className={cn(
                   "inline-block text-xs font-black uppercase tracking-widest mb-2",
-                  "text-transparent bg-clip-text bg-gradient-to-r",
-                  geoConfig.gradient
+                  geoConfig.badgeText
                 )}
               >
                 {displayRole}

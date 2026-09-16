@@ -1,9 +1,9 @@
 export const TALENT_HERO = {
   badge: "",
-  title: "Votre talent.",
-  titleHighlight: "Une structure autour.",
+  title: "Votre talent",
+  titleHighlight: "mérite une structure.",
   subtitle:
-    "Image, projets, revenus, droits : Wafia accompagne les créateurs, artistes, comédiens, musiciens et talents hybrides dans la structuration complète de leur carrière.",
+    "Wafia accompagne les créateurs, artistes, comédiens, musiciens et profils hybrides quand l'image, les projets, les revenus et les droits doivent enfin tenir dans le même cadre.",
   ctaPrimary: "Nous contacter",
   ctaSecondary: "Notre approche",
   callsAvailable: 0,
@@ -36,8 +36,9 @@ export const TALENT_PROBLEM = {
 } as const;
 
 export const TALENT_CTA = {
-  title: "Prêt à structurer la suite ?",
-  description: "",
+  title: "Parlons de ce qui doit tenir autour de vous.",
+  description:
+    "On regarde votre situation actuelle, vos opportunités, vos points de fragilité et le niveau de structure utile maintenant.",
   ctaText: "Nous contacter",
 } as const;
 

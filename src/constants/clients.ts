@@ -4,14 +4,18 @@
  */
 
 export interface Client {
-  name: string;
-  logoLight: string; // Chemin vers le logo clair (relatif à /public)
-  logoDark?: string; // Chemin vers le logo sombre (relatif à /public)
-  logoClass?: string; // Ajustement optique optionnel
+  readonly name: string;
+  readonly logoLight: string; // Chemin vers le logo clair (relatif à /public)
+  readonly logoDark?: string; // Chemin vers le logo sombre (relatif à /public)
+  readonly logoClass?: "letterbox" | "squareMark";
 }
 
 export const CLIENTS: Client[] = [
-  { name: "Adidas", logoLight: "/logos/adidas-2.svg" },
+  {
+    name: "Adidas",
+    logoLight: "/logos/adidas-2.svg",
+    logoClass: "squareMark",
+  },
   { name: "Asics", logoLight: "/logos/asics-6.svg" },
   { name: "Alibaba", logoLight: "/logos/brandbird-alibaba-logotype.svg" },
   { name: "BYD", logoLight: "/logos/byd-auto-logo-1.svg" },
@@ -21,7 +25,11 @@ export const CLIENTS: Client[] = [
   { name: "Gigabyte", logoLight: "/logos/gigabyte-technology-logo-2008.svg" },
   { name: "Hostinger", logoLight: "/logos/hostinger.svg" },
   { name: "JBL", logoLight: "/logos/jbl-2.svg" },
-  { name: "L'Oréal", logoLight: "/logos/l-oreal-3.svg" },
+  {
+    name: "L'Oréal",
+    logoLight: "/logos/l-oreal-3.svg",
+    logoClass: "letterbox",
+  },
   { name: "Amazon", logoLight: "/logos/logo-amazon.svg" },
   { name: "Netgear", logoLight: "/logos/netgear-logo-2014.svg" },
   { name: "Shopify", logoLight: "/logos/shopify.svg" },

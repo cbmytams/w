@@ -9,7 +9,7 @@ export const TALENT_PERSONA = {
       "Protection des masters & contrats",
       "Constitution d'équipe & de label",
     ],
-    color: "from-purple-500/20 to-purple-600/20",
+    color: "from-slate-500/15 to-slate-900/15",
   },
   comedian: {
     title: "Pour les Comédiens.",

@@ -35,7 +35,6 @@ export { HOME_OPTIONS } from "./home-blocks";
 // Restore legacy for broken components
 export {
   CLIENTS,
-  PROCESS_STEPS,
   TALENT_TIMELINE,
   TALENT_METHOD,
   TALENT_SERVICES,

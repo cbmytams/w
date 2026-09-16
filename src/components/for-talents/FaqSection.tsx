@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, Sparkles } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { TALENT_FAQ } from "@/constants";
 import { cn } from "@/lib/utils";
@@ -18,23 +18,10 @@ export function FaqSection() {
       id="faq"
       className="scroll-mt-28 py-24 lg:py-32 px-4 relative overflow-hidden bg-transparent z-10"
     >
-      {/* Background Decor */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-500/5 dark:bg-violet-500/10 rounded-full blur-[100px] -z-10" />
-
       <Container>
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16 space-y-4">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider"
-            >
-              <Sparkles className="w-3 h-3" />
-              Support & Clarté
-            </motion.div>
-
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -3,28 +3,14 @@ import { PageShell } from "@/components/common/PageShell";
 import { BrandHeroV2 } from "@/components/for-brands/BrandHeroV2";
 import { ClientsSection } from "@/components/for-brands/ClientsSection";
 
-// Below-fold sections — dynamically imported to reduce initial JS bundle
-const ValuePropositionSection = dynamic(() =>
-  import("@/components/for-brands/ValuePropositionSection").then(
-    (m) => m.ValuePropositionSection
-  )
-);
 const CaseStudiesSection = dynamic(() =>
   import("@/components/for-brands/CaseStudiesSection").then(
     (m) => m.CaseStudiesSection
   )
 );
-const ProcessSection = dynamic(() =>
-  import("@/components/for-brands/ProcessSection").then((m) => m.ProcessSection)
-);
-const ComparisonSectionV2 = dynamic(() =>
-  import("@/components/for-brands/ComparisonSectionV2").then(
-    (m) => m.ComparisonSectionV2
-  )
-);
-const ComplianceSection = dynamic(() =>
-  import("@/components/for-brands/ComplianceSection").then(
-    (m) => m.ComplianceSection
+const BrandMethodSection = dynamic(() =>
+  import("@/components/for-brands/BrandMethodSection").then(
+    (m) => m.BrandMethodSection
   )
 );
 const TeamSectionBrands = dynamic(() =>
@@ -41,20 +27,14 @@ const CtaSection = dynamic(() =>
 
 export default function ForBrandsPage() {
   return (
-    <PageShell>
+    <PageShell className="!overflow-x-clip">
       <BrandHeroV2 />
+
+      <BrandMethodSection />
 
       <ClientsSection />
 
-      <ValuePropositionSection />
-
       <CaseStudiesSection />
-
-      <ProcessSection />
-
-      <ComparisonSectionV2 />
-
-      <ComplianceSection />
 
       <TeamSectionBrands />
 

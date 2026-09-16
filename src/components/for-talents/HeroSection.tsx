@@ -48,7 +48,6 @@ export function HeroSection() {
             </h1>
           </motion.div>
 
-          {/* Subtitle - Smaller, descriptive */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -62,31 +61,50 @@ export function HeroSection() {
             {TALENT_HERO.subtitle}
           </motion.p>
 
-          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: DURATION.slower,
+              delay: 0.32,
+              ease: EASING.entrance,
+            }}
+            className="mb-9 grid max-w-2xl gap-3 border-y border-slate-200/70 py-5 dark:border-white/10 sm:grid-cols-3"
+          >
+            {TALENT_HERO.proofPoints.map((item) => (
+              <div key={item.label} className="min-w-0">
+                <div className="text-base font-semibold text-slate-900 dark:text-white">
+                  {item.value}
+                </div>
+                <div className="mt-1 text-sm leading-snug text-slate-500 dark:text-slate-400">
+                  {item.label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex flex-wrap items-center gap-3 md:gap-4"
           >
-            {/* Primary CTA - Filled */}
             <OrbLink href={talentHeroCtaHref} className="inline-flex">
               <motion.span
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex px-6 md:px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-base font-semibold shadow-lg shadow-slate-900/20 dark:shadow-white/20 hover:shadow-xl transition-all"
+                className="inline-flex px-6 md:px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-base font-semibold shadow-sm transition-all"
               >
                 {TALENT_HERO.ctaPrimary}
               </motion.span>
             </OrbLink>
 
-            {/* Secondary CTA - White Pill High Vis / Dark Glass in Night Mode */}
             <motion.button
               type="button"
               onClick={handleSecondaryCtaClick}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-4 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-2xl border border-white/60 dark:border-white/10 text-slate-900 dark:text-white text-base font-bold shadow-xl shadow-black/5 dark:shadow-white/5 hover:bg-white dark:hover:bg-black/60 dark:hover:border-white/20 transition-all duration-300"
+              className="px-6 md:px-8 py-4 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-2xl border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-base font-semibold shadow-sm hover:bg-white dark:hover:bg-black/60 dark:hover:border-white/20 transition-all duration-300"
             >
               {TALENT_HERO.ctaSecondary}
             </motion.button>

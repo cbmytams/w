@@ -1,12 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Suspense } from "react";
 import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { GlobalNav } from "@/components/layout/GlobalNav";
-import { GlobalBackground } from "@/components/common/GlobalBackground";
-import { OrbTransitionProvider } from "@/components/home/orb/OrbTransitionProvider";
 import { GlobalMotionConfig } from "@/components/layout/GlobalMotionConfig";
 import { siteConfig } from "@/lib/site";
 import { CookieBanner } from "@/components/compliance/CookieBanner";
@@ -120,6 +117,7 @@ export default async function RootLayout({
         <BfCacheScrollRecovery />
         <script
           nonce={nonce}
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
@@ -127,13 +125,15 @@ export default async function RootLayout({
         />
         <script
           nonce={nonce}
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html:
-              'try{if(location.pathname==="/"||location.pathname.startsWith("/contact")){document.documentElement.classList.add("dark");document.documentElement.dataset.orbDark="1"}}catch(e){}',
+              'try{if(location.pathname==="/"||location.pathname.startsWith("/contact")){document.documentElement.classList.add("dark")}}catch(e){}',
           }}
         />
         <script
           nonce={nonce}
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
@@ -143,15 +143,10 @@ export default async function RootLayout({
         >
           Aller au contenu
         </a>
-        <OrbTransitionProvider>
-          <GlobalMotionConfig>
-            <Suspense fallback={null}>
-              <GlobalBackground />
-            </Suspense>
-            <GlobalNav />
-            <PageTransition>{children}</PageTransition>
-          </GlobalMotionConfig>
-        </OrbTransitionProvider>
+        <GlobalMotionConfig>
+          <GlobalNav />
+          <PageTransition>{children}</PageTransition>
+        </GlobalMotionConfig>
         <CookieBanner />
       </body>
     </html>

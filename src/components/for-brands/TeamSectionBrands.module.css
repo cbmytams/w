@@ -1,0 +1,264 @@
+.section {
+  --team-paper: #f5f5f2;
+  --team-ink: #19201e;
+  --team-muted: #5f6561;
+  --team-line: rgb(25 32 30 / 16%);
+  --team-accent: #f45a32;
+  position: relative;
+  overflow: clip;
+  color: var(--team-ink);
+  background: var(--team-paper);
+  border-block: 1px solid var(--team-line);
+  font-family: var(--font-plus-jakarta), sans-serif;
+  scroll-margin-top: 80px;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(270px, 0.9fr) minmax(430px, 1.35fr) minmax(
+      160px,
+      0.46fr
+    );
+  align-items: center;
+  gap: clamp(24px, 2.8vw, 48px);
+  width: 88%;
+  max-width: 1500px;
+  min-height: 430px;
+  margin: 0 auto;
+  padding: 58px 0 54px;
+}
+
+.eyebrow {
+  margin: 0 0 24px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(38px, 3.2vw, 54px);
+  font-weight: 680;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.body {
+  max-width: 390px;
+  margin: 24px 0 0;
+  color: var(--team-muted);
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.58;
+}
+
+.discover,
+.portrait {
+  appearance: none;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+}
+
+.discover {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 44px;
+  margin-top: 17px;
+  color: var(--team-accent);
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.discover svg {
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.discover:hover svg,
+.discover:focus-visible svg {
+  transform: translateX(5px);
+}
+
+.discover:focus-visible,
+.portrait:focus-visible {
+  outline: 2px solid var(--team-accent);
+  outline-offset: 5px;
+}
+
+.portraits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 16px;
+  align-items: start;
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.portraitMedia {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1.08 / 1;
+  background: #d9d9d4;
+}
+
+.portraitImage {
+  object-fit: cover;
+  object-position: center 25%;
+  filter: grayscale(1) contrast(1.04);
+  transition:
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 320ms ease;
+}
+
+.portrait:hover .portraitImage,
+.portrait:focus-visible .portraitImage {
+  transform: scale(1.025);
+  filter: grayscale(1) contrast(1.1);
+}
+
+.name {
+  display: block;
+  margin-top: 11px;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 16px;
+  font-weight: 680;
+  line-height: 1.1;
+}
+
+.role {
+  display: block;
+  margin-top: 3px;
+  color: var(--team-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.portrait::after {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 13px;
+  background: linear-gradient(
+    90deg,
+    var(--team-accent) 0 66%,
+    var(--team-line) 66% 100%
+  );
+  content: "";
+  transform: scaleX(0.38);
+  transform-origin: left;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portrait:hover::after,
+.portrait:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.caption {
+  grid-column: 1 / -1;
+  justify-self: end;
+  margin: 16px 0 0;
+  color: #838783;
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.note {
+  position: relative;
+  justify-self: center;
+  margin: 0;
+  font-family: "Bradley Hand", "Segoe Print", var(--font-outfit), sans-serif;
+  font-size: clamp(28px, 2.7vw, 42px);
+  font-weight: 600;
+  line-height: 1.02;
+}
+
+.note span {
+  display: block;
+  width: 78%;
+  height: 2px;
+  margin: 13px 0 0 20%;
+  background: currentColor;
+  transform: rotate(-8deg);
+}
+
+@media (max-width: 1100px) {
+  .inner {
+    grid-template-columns: minmax(260px, 0.85fr) minmax(410px, 1.2fr);
+    min-height: 410px;
+  }
+
+  .note {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    width: 86%;
+    min-height: 0;
+    padding: 48px 0 45px;
+  }
+
+  .eyebrow {
+    margin-bottom: 18px;
+  }
+
+  .title {
+    font-size: clamp(36px, 11.5vw, 48px);
+  }
+
+  .body {
+    max-width: 520px;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  .portraits {
+    gap: 0 12px;
+  }
+
+  .portraitMedia {
+    aspect-ratio: 0.92 / 1;
+  }
+
+  .name {
+    font-size: 15px;
+  }
+
+  .role {
+    min-height: 34px;
+    font-size: 10px;
+  }
+
+  .caption {
+    justify-self: start;
+    max-width: 100%;
+    font-size: 7px;
+    line-height: 1.6;
+    letter-spacing: 0.26em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discover svg,
+  .portraitImage,
+  .portrait::after {
+    transition: none;
+  }
+}

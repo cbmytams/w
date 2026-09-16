@@ -1,11 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  BadgeCheck,
+  BriefcaseBusiness,
+  ChartNoAxesCombined,
+  CircleDollarSign,
+  Clapperboard,
+  Scale,
+} from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { RevealAnimation } from "@/components/common/RevealAnimation";
 import { TALENT_PILLARS } from "@/constants/talent-blocks/pillars";
 import { useRevealViewport } from "@/hooks/useRevealViewport";
 import { EASING } from "@/lib/easing";
+
+const PILLAR_ICONS = {
+  positioning: BadgeCheck,
+  production: Clapperboard,
+  deals: BriefcaseBusiness,
+  legal: Scale,
+  kpis: ChartNoAxesCombined,
+  autonomy: CircleDollarSign,
+} as const;
 
 export function WhatWeBuildSection() {
   const { disableMotion, viewport, transitionDuration, clampDelay } =
@@ -48,9 +65,14 @@ export function WhatWeBuildSection() {
                 className="group relative p-8 bg-black/[0.02] dark:bg-white/[0.02] backdrop-blur-[40px] rounded-2xl border border-black/[0.05] dark:border-white/[0.05] shadow-lg hover:shadow-2xl dark:shadow-none hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 flex flex-col min-h-[260px]"
               >
                 <div className="flex flex-col h-full relative z-10">
-                  {/* Large Icon */}
-                  <div className="text-4xl leading-none drop-shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.15] origin-top-left mb-auto">
-                    {pillar.icon}
+                  <div className="mb-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors duration-300 group-hover:border-slate-300 dark:border-white/10 dark:bg-white/[0.04] dark:text-white">
+                    {(() => {
+                      const Icon =
+                        PILLAR_ICONS[
+                          pillar.icon as keyof typeof PILLAR_ICONS
+                        ] ?? BadgeCheck;
+                      return <Icon className="h-5 w-5" strokeWidth={1.8} />;
+                    })()}
                   </div>
 
                   {/* Content */}
@@ -64,11 +86,7 @@ export function WhatWeBuildSection() {
                   </div>
                 </div>
 
-                {/* Glass Edge */}
                 <div className="absolute inset-0 rounded-2xl border border-white/20 dark:border-white/5 pointer-events-none" />
-
-                {/* Organic Hover Glow (Monochrome) */}
-                <div className="absolute inset-0 bg-white/0 group-hover:bg-black/[0.02] dark:group-hover:bg-white/[0.02] rounded-2xl transition-all duration-500 pointer-events-none" />
               </motion.div>
             ))}
           </div>

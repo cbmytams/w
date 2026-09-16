@@ -30,10 +30,8 @@ export function OrbHomePage() {
   // then restore the previous state when leaving.
   useEffect(() => {
     const el = document.documentElement;
-    const hadDarkElsewhere =
-      el.classList.contains("dark") && el.dataset.orbDark !== "1";
+    const hadDarkElsewhere = el.classList.contains("dark");
     el.classList.add("dark");
-    el.dataset.orbDark = "1";
 
     // Mirror of the wiki exit: when coming back from the wiki, the content
     // rises back into place (home-from-wiki-enter) instead of popping in.
@@ -52,7 +50,6 @@ export function OrbHomePage() {
 
     return () => {
       if (!hadDarkElsewhere) el.classList.remove("dark");
-      delete el.dataset.orbDark;
     };
   }, []);
 

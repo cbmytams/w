@@ -39,7 +39,7 @@ export const PROCESS_STEPS = [
   {
     num: "04",
     title: "Pilotage & optimisation",
-    deliverable: "Tableau de bord de performance (Live)",
+    deliverable: "Tableau de bord de performance",
     points: [
       "Suivi des indicateurs utiles pendant la campagne",
       "Lecture des formats, hooks et créateurs qui tirent la performance",
@@ -50,7 +50,7 @@ export const PROCESS_STEPS = [
   {
     num: "05",
     title: "Reporting & roadmap",
-    deliverable: "Playbook Stratégique + Roadmap Itérative",
+    deliverable: "Playbook stratégique + roadmap itérative",
     points: [
       "Bilan d'exécution clair et exploitable",
       "Résultats comparés aux objectifs et benchmarks utiles",

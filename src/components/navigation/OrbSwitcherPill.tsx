@@ -5,7 +5,7 @@ import Link from "next/link";
 import { WafiaLogo } from "@/components/ui/WafiaLogo";
 import { sitePaths } from "@/lib/site";
 import { useOrbNavigate } from "@/components/home/orb/useOrbNavigate";
-import type { OrbTargetVariant } from "@/components/home/orb/OrbTransitionProvider";
+import type { OrbTargetVariant } from "@/lib/orb-targets";
 
 export type OrbSwitcherCurrent = "home" | "brands" | "talents";
 

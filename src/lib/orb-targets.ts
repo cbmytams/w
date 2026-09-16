@@ -1,4 +1,4 @@
-import type { OrbTargetVariant } from "@/components/home/orb/OrbTransitionProvider";
+export type OrbTargetVariant = "brands" | "talents" | "home";
 
 /**
  * Resolves an internal href to the orb field variant it belongs to, or null

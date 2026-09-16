@@ -77,11 +77,6 @@ export function ForWhoSection() {
       id={TALENT_FOR_WHO.id}
       className="scroll-mt-28 section-spacing px-4 bg-transparent relative z-10 overflow-hidden"
     >
-      {/* Ambient Background Sphere (Monochrome) */}
-      <div className="absolute inset-0 pointer-events-none flex justify-center items-center z-0">
-        <div className="w-[600px] h-[600px] rounded-full blur-[120px] bg-slate-500/5 dark:bg-white/5" />
-      </div>
-
       <Container>
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Header */}

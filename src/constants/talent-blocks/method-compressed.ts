@@ -20,7 +20,7 @@ export const TALENT_METHOD_PHASES: CompressedPhase[] = [
     name: "Diagnostic",
     label: "Mois 0 → 1",
     icon: "Search",
-    gradient: "from-violet-500 to-purple-500",
+    gradient: "from-slate-700 to-slate-900",
     benefit:
       "On clarifie ton positionnement, ton potentiel business et les mauvais deals à éviter.",
   },
@@ -29,7 +29,7 @@ export const TALENT_METHOD_PHASES: CompressedPhase[] = [
     name: "Fondation",
     label: "Mois 1 → 3",
     icon: "Layers",
-    gradient: "from-purple-500 to-fuchsia-500",
+    gradient: "from-orange-500 to-red-500",
     benefit: "On structure ton image, tes formats et ton offre commerciale.",
   },
   {
@@ -37,7 +37,7 @@ export const TALENT_METHOD_PHASES: CompressedPhase[] = [
     name: "Croissance",
     label: "Mois 3 → 12",
     icon: "TrendingUp",
-    gradient: "from-fuchsia-500 to-pink-500",
+    gradient: "from-rose-500 to-red-500",
     benefit: "On industrialise la production, les partenariats et le pilotage.",
   },
   {

@@ -1,0 +1,363 @@
+.section {
+  --method-paper: #f5f5f2;
+  --method-ink: #19201e;
+  --method-muted: #515650;
+  --method-accent: #c94426;
+  --method-rule: #19201e26;
+  --method-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --method-cycle: 7.5s;
+  background: var(--method-paper);
+  color: var(--method-ink);
+  font-family: var(--font-plus-jakarta), sans-serif;
+  letter-spacing: 0;
+  scroll-margin-top: 100px;
+}
+
+.inner {
+  padding: 36px 6% 42px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 25px;
+}
+.header h2,
+.header p {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.header h2 {
+  font-weight: 700;
+}
+.header p {
+  font-weight: 500;
+}
+.rail {
+  position: relative;
+  height: 48px;
+  margin-bottom: 6px;
+  overflow: clip;
+}
+.rail::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 23px;
+  height: 1px;
+  background: var(--method-rule);
+}
+.runner {
+  position: absolute;
+  left: 0;
+  top: 23px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 68%,
+    #c9442633 78%,
+    #c94426cc 95%,
+    var(--method-accent)
+  );
+  transform: translateX(-100%);
+}
+.runner::after,
+.mobileRunner::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff8f0;
+  border: 2px solid var(--method-accent);
+  box-shadow:
+    0 0 0 4px #f45a3226,
+    0 0 12px 4px #f45a3273,
+    0 0 25px 7px #f45a3233;
+}
+.trackArea {
+  position: relative;
+}
+.mobileRunner {
+  display: none;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.step {
+  min-width: 0;
+  padding-inline: 24px;
+  border-left: 1px solid var(--method-rule);
+}
+.step:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.step:last-child {
+  padding-right: 0;
+}
+.marker {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+.marker > span:first-child {
+  color: var(--method-accent);
+  font:
+    600 18px/1 var(--font-outfit),
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.connector {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  color: #777d76;
+}
+.connector::before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.65;
+}
+.connector svg {
+  flex: 0 0 16px;
+  margin-left: -8px;
+}
+.copy h3 {
+  margin: 0 0 8px;
+  font:
+    650 18px/1.2 var(--font-outfit),
+    sans-serif;
+  text-transform: uppercase;
+}
+.copy p {
+  margin: 0;
+  max-width: 235px;
+  color: var(--method-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .runner,
+  .mobileRunner {
+    animation: rail-run var(--method-cycle) linear infinite;
+    animation-play-state: paused;
+  }
+  .step {
+    animation: step-cycle var(--method-cycle) var(--method-ease) infinite;
+    animation-play-state: paused;
+  }
+  .step:nth-child(2) {
+    animation-delay: -6s;
+  }
+  .step:nth-child(3) {
+    animation-delay: -4.5s;
+  }
+  .step:nth-child(4) {
+    animation-delay: -3s;
+  }
+  .step:nth-child(5) {
+    animation-delay: -1.5s;
+  }
+  .section[data-running="true"] :is(.runner, .mobileRunner, .step) {
+    animation-play-state: running;
+  }
+  .section:focus-within :is(.runner, .mobileRunner, .step) {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes rail-run {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  3%,
+  94% {
+    opacity: 1;
+  }
+  94% {
+    transform: translateX(0);
+  }
+  98%,
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+@keyframes rail-run-vertical {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  3%,
+  94% {
+    opacity: 1;
+  }
+  94% {
+    transform: translateY(0);
+  }
+  98%,
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+@keyframes step-cycle {
+  0%,
+  15%,
+  100% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+  20%,
+  92% {
+    opacity: 0.78;
+    transform: translateY(0);
+  }
+  96% {
+    opacity: 0.85;
+    transform: translateY(2px);
+  }
+}
+
+@media (max-width: 1099px) {
+  .rail {
+    display: none;
+  }
+  .trackArea {
+    padding-left: 26px;
+    overflow: clip;
+  }
+  .trackArea::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    width: 1px;
+    background: var(--method-rule);
+  }
+  .mobileRunner {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 14px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent 68%,
+      #c9442633 78%,
+      #c94426cc 95%,
+      var(--method-accent)
+    );
+    transform: translateY(-100%);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .mobileRunner {
+      animation-name: rail-run-vertical;
+    }
+  }
+  .mobileRunner::after {
+    top: auto;
+    bottom: 0;
+    right: auto;
+    left: -4px;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .step,
+  .step:first-child,
+  .step:last-child {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    padding: 20px 0;
+    border-left: 0;
+    border-top: 1px solid var(--method-rule);
+  }
+  .step:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+  .step:last-child {
+    padding-bottom: 0;
+  }
+  .marker {
+    align-items: flex-start;
+    margin: 2px 0 0;
+  }
+  .connector {
+    display: none;
+  }
+  .copy {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.7fr) 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .copy h3 {
+    margin: 0;
+  }
+  .copy p {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    scroll-margin-top: 84px;
+  }
+  .inner {
+    padding: 30px 7% 34px;
+  }
+  .header {
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-bottom: 24px;
+  }
+  .header p {
+    color: var(--method-muted);
+  }
+  .step,
+  .step:first-child,
+  .step:last-child {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+  .copy {
+    display: block;
+  }
+  .copy h3 {
+    margin-bottom: 7px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header p {
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .runner,
+  .mobileRunner {
+    display: none;
+  }
+}
