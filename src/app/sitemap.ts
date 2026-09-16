@@ -31,13 +31,9 @@ function getRouteChangeFrequency(
   return "monthly";
 }
 
+// Single-page prod : seul l'accueil (page Marques) + les pages legales.
 const ALL_ROUTES = [
   sitePaths.home,
-  sitePaths.services,
-  sitePaths.forBrands,
-  sitePaths.forTalents,
-  sitePaths.studio,
-  sitePaths.wiki,
   sitePaths.legalPrivacy,
   sitePaths.legalMentions,
   sitePaths.legalCookies,

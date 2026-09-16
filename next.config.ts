@@ -41,7 +41,11 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   compress: true,
+  devIndicators: false,
   output: "standalone",
+  turbopack: {
+    root: process.cwd(),
+  },
   experimental: {
     clientTraceMetadata: ["sentry-trace", "baggage"],
   },
@@ -73,32 +77,88 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/talents",
-        destination: "/for-talents",
+        destination: "/",
         permanent: true,
       },
       {
         source: "/brands",
-        destination: "/for-brands",
+        destination: "/",
+        permanent: true,
+      },
+      // Single-page prod : la page Marques est l'accueil, le reste redirige vers /
+      {
+        source: "/for-brands",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/for-talents",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/for-talents/:path*",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/services",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/services/:path*",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/studio",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/studio/:path*",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/equipe",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/equipe/:path*",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/wiki",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/wiki/:path*",
+        destination: "/",
         permanent: true,
       },
       {
         source: "/wiki/blog",
-        destination: "/wiki",
+        destination: "/",
         statusCode: 301,
       },
       {
         source: "/wiki/blog/theme/:id",
-        destination: "/wiki/theme/:id",
+        destination: "/",
         statusCode: 301,
       },
       {
         source: "/wiki/blog/platform/:id",
-        destination: "/wiki/platform/:id",
+        destination: "/",
         statusCode: 301,
       },
       {
         source: "/wiki/blog/:slug",
-        destination: "/wiki/:slug",
+        destination: "/",
         statusCode: 301,
       },
       {

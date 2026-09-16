@@ -32,13 +32,8 @@ export function GlobalNav() {
     return null;
   }
 
-  // Home page has its own specific navigation
-  if (pathname === "/") {
-    return null;
-  }
-
-  // Brands page specific nav
-  if (pathname === "/for-brands") {
+  // Homepage = page Marques (single-page prod)
+  if (pathname === "/" || pathname === "/for-brands") {
     return (
       <FloatingNavigation
         key={`brands-${pathname}`}

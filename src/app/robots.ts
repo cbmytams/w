@@ -10,10 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/contact/", "/api/"],
       },
     ],
-    sitemap: [
-      new URL("/sitemap.xml", siteConfig.url).toString(),
-      new URL("/wiki/sitemap.xml", siteConfig.url).toString(),
-    ],
+    sitemap: [new URL("/sitemap.xml", siteConfig.url).toString()],
     host: siteConfig.url,
   };
 }

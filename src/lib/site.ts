@@ -83,11 +83,6 @@ export const sitePaths = {
 
 export const sitemapRoutes = [
   sitePaths.home,
-  sitePaths.services,
-  sitePaths.forBrands,
-  sitePaths.forTalents,
-  sitePaths.wiki,
-  sitePaths.studio,
 
   sitePaths.legalPrivacy,
   sitePaths.legalMentions,

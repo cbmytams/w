@@ -40,27 +40,35 @@ describe("wiki SEO contract", () => {
         ? await nextConfig.redirects()
         : [];
 
+    // Single-page prod : le wiki est supprime, tout redirige vers /
     expect(redirects).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           source: "/wiki/blog",
-          destination: "/wiki",
+          destination: "/",
           statusCode: 301,
         }),
         expect.objectContaining({
           source: "/wiki/blog/theme/:id",
-          destination: "/wiki/theme/:id",
-          statusCode: 301,
+          destination: "/",
         }),
         expect.objectContaining({
           source: "/wiki/blog/platform/:id",
-          destination: "/wiki/platform/:id",
-          statusCode: 301,
+          destination: "/",
         }),
         expect.objectContaining({
           source: "/wiki/blog/:slug",
-          destination: "/wiki/:slug",
-          statusCode: 301,
+          destination: "/",
+        }),
+        expect.objectContaining({
+          source: "/wiki",
+          destination: "/",
+          permanent: true,
+        }),
+        expect.objectContaining({
+          source: "/wiki/:path*",
+          destination: "/",
+          permanent: true,
         }),
       ])
     );
