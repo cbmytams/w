@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { WafiaMark } from "@/components/ui/WafiaLogo";
+import { WafiaLogo } from "@/components/ui/WafiaLogo";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -238,7 +238,7 @@ export function TalentsFloatingNavigation() {
 
                 {/* Header with Pulsing Dot & Context */}
                 <div className="flex items-center justify-center mb-6 relative z-10">
-                  <WafiaMark className="h-6 w-auto text-slate-900 dark:text-white" />
+                  <WafiaLogo className="h-6 w-auto text-slate-900 dark:text-white" />
                   <div className="flex items-center justify-center w-6 z-10 mx-3">
                     <div className="w-[6px] h-[6px] rounded-full bg-purple-500 animate-pulse shadow-[0_0_10px_rgba(168,85,247,0.8)]"></div>
                   </div>

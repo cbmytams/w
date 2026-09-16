@@ -36,7 +36,7 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  width: 50px;
+  width: 96px;
   flex: none;
 }
 .logo img {
@@ -214,7 +214,7 @@
     grid-template-columns: 1fr auto;
   }
   .logo {
-    width: 46px;
+    width: 88px;
   }
   .links,
   .end,
