@@ -6,7 +6,6 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { GlobalNav } from "@/components/layout/GlobalNav";
 import { GlobalMotionConfig } from "@/components/layout/GlobalMotionConfig";
 import { siteConfig } from "@/lib/site";
-import { CookieBanner } from "@/components/compliance/CookieBanner";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { BfCacheScrollRecovery } from "@/components/common/BfCacheScrollRecovery";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
@@ -147,7 +146,6 @@ export default async function RootLayout({
           <GlobalNav />
           <PageTransition>{children}</PageTransition>
         </GlobalMotionConfig>
-        <CookieBanner />
       </body>
     </html>
   );

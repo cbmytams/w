@@ -4,45 +4,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import styles from "./ContactForm.module.css";
 
 type ContactVariant = "brands" | "talents";
 
-const BRAND_BUDGETS = [
-  { value: "under-5k", label: "Moins de 5K€" },
-  { value: "5-15k", label: "5 à 15K€" },
-  { value: "15-30k", label: "15 à 30K€" },
-  { value: "30-50k", label: "30 à 50K€" },
-  { value: "over-50k", label: "Plus de 50K€" },
-] as const;
-
 const CONTENT: Record<
   ContactVariant,
-  {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    backHref: string;
-    backLabel: string;
-  }
+  { eyebrow: string; title: string; intro: string }
 > = {
   brands: {
     eyebrow: "Contact marques",
-    title: "Parlons de votre prochaine campagne.",
+    title: "Remplissez le dossier.",
     intro:
-      "Décrivez votre projet en quelques lignes, nous revenons vers vous sous 24h avec un premier cadrage.",
-    backHref: "/",
-    backLabel: "Retour",
+      "Le brief qui lance tout : votre marque, vos coordonnées, votre projet. Vous recevez sous 24h un premier cadrage.",
   },
   talents: {
     eyebrow: "Contact talents",
-    title: "Parlons de votre parcours.",
+    title: "Remplissez le dossier.",
     intro:
-      "Présentez-vous en quelques lignes, nous revenons vers vous sous 24h.",
-    backHref: "/",
-    backLabel: "Retour",
+      "Qui vous êtes, où vous suivre, où vous voulez aller. Nous revenons vers vous sous 24h.",
   },
 };
 
@@ -52,13 +34,11 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
   const reduceMotion = useReducedMotion();
   const content = CONTENT[variant];
   const [status, setStatus] = useState<Status>("idle");
-  const [serverError, setServerError] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (status === "sending") return;
     setStatus("sending");
-    setServerError("");
 
     const data = new FormData(event.currentTarget);
     const text = (name: string) => String(data.get(name) ?? "").trim();
@@ -69,7 +49,6 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
             email: text("email"),
             company: text("company"),
             message: text("objective"),
-            objective: `Budget indicatif : ${text("budget") || "non précisé"}`,
             type: "brand",
           }
         : {
@@ -91,11 +70,16 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
       setStatus("sent");
     } catch {
       setStatus("error");
-      setServerError(
-        "L’envoi a échoué. Vérifiez votre connexion puis réessayez."
-      );
     }
   }
+
+  const entrance = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 18 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+      };
 
   return (
     <main className={styles.section}>
@@ -109,48 +93,45 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
             priority
           />
         </Link>
-        <Link href={content.backHref} className={styles.back}>
+        <Link href="/" className={styles.back}>
           <ArrowLeft aria-hidden="true" size={15} />
-          {content.backLabel}
+          Retour
         </Link>
       </div>
 
-      <div className={styles.inner}>
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className={styles.eyebrow}>{content.eyebrow}</p>
-          <h1 className={styles.title}>{content.title}</h1>
+      <motion.div {...entrance}>
+        <div className={styles.head}>
+          <div>
+            <p className={styles.eyebrow}>{content.eyebrow}</p>
+            <h1 className={styles.title}>{content.title}</h1>
+          </div>
           <p className={styles.intro}>{content.intro}</p>
-          <p className={styles.reassure}>
-            <span>Réponse sous 24h.</span> Un interlocuteur, pas un tunnel de
-            vente.
-          </p>
-        </motion.div>
+        </div>
 
         {status === "sent" ? (
           <div className={styles.success} role="status">
             <span aria-hidden="true" className={styles.successMark} />
-            <p className={styles.eyebrow}>Demande envoyée</p>
+            <p className={styles.eyebrow}>Dossier reçu</p>
             <h2 className={styles.title}>Merci, c’est bien reçu.</h2>
-            <p className={styles.intro}>
-              Nous revenons vers vous sous 24h avec un premier cadrage.
+            <p className={styles.intro}>Nous revenons vers vous sous 24h.</p>
+            <p style={{ marginTop: 28 }}>
+              <Link href="/" className={styles.submit}>
+                Retour
+                <ArrowRight aria-hidden="true" size={18} />
+              </Link>
             </p>
-            <Link href={content.backHref} className={styles.submit}>
-              {content.backLabel}
-              <ArrowRight aria-hidden="true" size={17} />
-            </Link>
           </div>
         ) : (
-          <form className={styles.form} onSubmit={handleSubmit}>
+          <form className={styles.dossier} onSubmit={handleSubmit}>
             {variant === "brands" ? (
               <>
-                <div className={styles.field}>
-                  <label htmlFor="contact-company">Entreprise</label>
+                <div className={styles.row}>
+                  <span aria-hidden="true" className={styles.num}>
+                    01
+                  </span>
+                  <label htmlFor="v2-company">Entreprise</label>
                   <input
-                    id="contact-company"
+                    id="v2-company"
                     name="company"
                     type="text"
                     autoComplete="organization"
@@ -159,11 +140,14 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                     maxLength={120}
                   />
                 </div>
-                <div className={styles.row}>
-                  <div className={styles.field}>
-                    <label htmlFor="contact-name">Votre nom</label>
+                <div className={styles.duo}>
+                  <div className={styles.row}>
+                    <span aria-hidden="true" className={styles.num}>
+                      02
+                    </span>
+                    <label htmlFor="v2-name">Votre nom</label>
                     <input
-                      id="contact-name"
+                      id="v2-name"
                       name="name"
                       type="text"
                       autoComplete="name"
@@ -173,10 +157,13 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                       maxLength={80}
                     />
                   </div>
-                  <div className={styles.field}>
-                    <label htmlFor="contact-email">Email professionnel</label>
+                  <div className={styles.row}>
+                    <span aria-hidden="true" className={styles.num}>
+                      03
+                    </span>
+                    <label htmlFor="v2-email">Email pro</label>
                     <input
-                      id="contact-email"
+                      id="v2-email"
                       name="email"
                       type="email"
                       autoComplete="email"
@@ -186,43 +173,35 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                     />
                   </div>
                 </div>
-                <div className={styles.field}>
-                  <label htmlFor="contact-budget">Budget indicatif</label>
-                  <div className={styles.selectWrap}>
-                    <select id="contact-budget" name="budget" defaultValue="">
-                      <option value="" disabled>
-                        Sélectionner une fourchette
-                      </option>
-                      {BRAND_BUDGETS.map((budget) => (
-                        <option key={budget.value} value={budget.label}>
-                          {budget.label}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown aria-hidden="true" size={17} />
+                <div className={styles.row}>
+                  <span aria-hidden="true" className={styles.num}>
+                    04
+                  </span>
+                  <label htmlFor="v2-objective">Votre projet</label>
+                  <div>
+                    <textarea
+                      id="v2-objective"
+                      name="objective"
+                      placeholder="Contexte, enjeux, timing."
+                      required
+                      minLength={20}
+                      maxLength={3000}
+                      rows={4}
+                    />
+                    <span className={styles.hint}>20 caractères minimum.</span>
                   </div>
-                </div>
-                <div className={styles.field}>
-                  <label htmlFor="contact-objective">Votre projet</label>
-                  <textarea
-                    id="contact-objective"
-                    name="objective"
-                    placeholder="Contexte, enjeux, timing."
-                    required
-                    minLength={20}
-                    maxLength={3000}
-                    rows={4}
-                  />
-                  <span className={styles.hint}>20 caractères minimum.</span>
                 </div>
               </>
             ) : (
               <>
-                <div className={styles.row}>
-                  <div className={styles.field}>
-                    <label htmlFor="contact-name">Nom complet</label>
+                <div className={styles.duo}>
+                  <div className={styles.row}>
+                    <span aria-hidden="true" className={styles.num}>
+                      01
+                    </span>
+                    <label htmlFor="v2-name">Nom complet</label>
                     <input
-                      id="contact-name"
+                      id="v2-name"
                       name="name"
                       type="text"
                       autoComplete="name"
@@ -232,10 +211,13 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                       maxLength={80}
                     />
                   </div>
-                  <div className={styles.field}>
-                    <label htmlFor="contact-instagram">Instagram</label>
+                  <div className={styles.row}>
+                    <span aria-hidden="true" className={styles.num}>
+                      02
+                    </span>
+                    <label htmlFor="v2-instagram">Instagram</label>
                     <input
-                      id="contact-instagram"
+                      id="v2-instagram"
                       name="instagram"
                       type="text"
                       autoComplete="off"
@@ -245,10 +227,13 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                     />
                   </div>
                 </div>
-                <div className={styles.field}>
-                  <label htmlFor="contact-email">Email</label>
+                <div className={styles.row}>
+                  <span aria-hidden="true" className={styles.num}>
+                    03
+                  </span>
+                  <label htmlFor="v2-email">Email</label>
                   <input
-                    id="contact-email"
+                    id="v2-email"
                     name="email"
                     type="email"
                     autoComplete="email"
@@ -257,45 +242,56 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                     maxLength={160}
                   />
                 </div>
-                <div className={styles.field}>
-                  <label htmlFor="contact-objective">Votre parcours</label>
-                  <textarea
-                    id="contact-objective"
-                    name="objective"
-                    placeholder="Contenus, audience, objectifs."
-                    required
-                    minLength={20}
-                    maxLength={3000}
-                    rows={4}
-                  />
-                  <span className={styles.hint}>20 caractères minimum.</span>
+                <div className={styles.row}>
+                  <span aria-hidden="true" className={styles.num}>
+                    04
+                  </span>
+                  <label htmlFor="v2-objective">Votre parcours</label>
+                  <div>
+                    <textarea
+                      id="v2-objective"
+                      name="objective"
+                      placeholder="Contenus, audience, objectifs."
+                      required
+                      minLength={20}
+                      maxLength={3000}
+                      rows={4}
+                    />
+                    <span className={styles.hint}>20 caractères minimum.</span>
+                  </div>
                 </div>
               </>
             )}
 
             {status === "error" ? (
               <p className={styles.error} role="alert">
-                {serverError}
+                L’envoi a échoué. Vérifiez votre connexion puis réessayez.
               </p>
             ) : null}
 
-            <button
-              type="submit"
-              className={styles.submit}
-              disabled={status === "sending"}
-            >
-              {status === "sending" ? (
-                "Envoi en cours"
-              ) : (
-                <>
-                  Envoyer
-                  <ArrowRight aria-hidden="true" size={17} />
-                </>
-              )}
-            </button>
+            <div className={styles.foot}>
+              <p className={styles.note}>
+                <span>Réponse sous 24h.</span> Un interlocuteur, pas un tunnel
+                de vente.
+              </p>
+              <button
+                type="submit"
+                className={styles.submit}
+                disabled={status === "sending"}
+              >
+                {status === "sending" ? (
+                  "Envoi en cours"
+                ) : (
+                  <>
+                    Envoyer le dossier
+                    <ArrowRight aria-hidden="true" size={18} />
+                  </>
+                )}
+              </button>
+            </div>
           </form>
         )}
-      </div>
+      </motion.div>
     </main>
   );
 }
