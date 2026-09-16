@@ -212,6 +212,7 @@
   align-items: center;
   gap: 12px;
   margin-top: auto;
+  margin-bottom: 26px;
   padding-top: 20px;
   font-size: 11px;
 }
@@ -398,6 +399,7 @@
   .chapterCta {
     font-size: 10px;
     padding-top: 12px;
+    margin-bottom: 20px;
   }
   .bottomLine {
     left: 7%;
