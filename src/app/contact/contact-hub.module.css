@@ -1,0 +1,143 @@
+.section {
+  min-height: 100svh;
+  background: #f5f5ef;
+  color: #19201e;
+  font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 88%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 26px 0;
+}
+
+.logo {
+  display: inline-flex;
+}
+
+.logo img {
+  display: block;
+  height: 26px;
+  width: auto;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #19201e;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(25 32 30 / 16%);
+  padding-bottom: 3px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.back:hover {
+  color: #c94426;
+  border-color: #c94426;
+}
+
+.back:focus-visible {
+  outline: 2px solid #c94426;
+  outline-offset: 3px;
+}
+
+.inner {
+  width: 88%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: clamp(40px, 8vw, 110px) 0;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  color: #c94426;
+  font-size: 11px;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 0.98;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.intro {
+  margin: 22px 0 0;
+  max-width: 52ch;
+  color: #515650;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+  padding-top: 30px;
+  border-top: 2px solid #19201e;
+  max-width: 640px;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 17px 30px;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.primary {
+  background: #19201e;
+  color: #f5f5ef;
+}
+
+.secondary {
+  border: 1px solid rgb(25 32 30 / 30%);
+  color: #19201e;
+}
+
+.secondary:hover {
+  border-color: #c94426;
+  color: #c94426;
+}
+
+.primary:focus-visible,
+.secondary:focus-visible {
+  outline: 2px solid #c94426;
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .top,
+  .inner {
+    width: 86%;
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

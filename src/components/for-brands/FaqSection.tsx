@@ -1,6 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { FAQ_ITEMS } from "@/constants/faq";

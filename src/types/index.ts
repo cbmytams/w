@@ -3,8 +3,6 @@
  * Centralise toutes les interfaces et types réutilisables
  */
 
-import { ReactNode } from "react";
-
 // ============================================
 // Navigation Types
 // ============================================
@@ -35,10 +33,3 @@ export interface FaqItem {
 // ============================================
 // Component Props Types
 // ============================================
-
-export interface SectionHeadingProps {
-  title: ReactNode;
-  subtitle?: string;
-  align?: "left" | "center";
-  className?: string;
-}

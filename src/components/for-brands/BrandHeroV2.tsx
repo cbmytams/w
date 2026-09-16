@@ -8,10 +8,10 @@ import {
   motion,
   transform,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useTransform,
 } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { BOOK_CHAPTERS, chapterAt } from "./brand-book-content";
 import styles from "./BrandBook.module.css";
@@ -52,12 +52,18 @@ export function BrandHeroV2() {
     setOpened(progress > 0.24);
   });
 
+  // Stable spread centers: each chapter spans 0.205 of progress from 0.32,
+  // minus the +/-0.045 page-turn window at every boundary. Aiming at a
+  // boundary parks the book mid-turn, frozen.
+  const CHAPTER_TARGETS = [0.34, 0.63, 0.83, 0.99] as const;
+
   function goToChapter(index: number) {
     if (!section.current) return;
+    const clamped = Math.min(3, Math.max(0, index));
     const top = section.current.getBoundingClientRect().top + window.scrollY;
     const distance = section.current.offsetHeight - window.innerHeight;
     window.scrollTo({
-      top: top + distance * (0.34 + index * 0.205),
+      top: top + distance * CHAPTER_TARGETS[clamped],
       behavior: reducedMotion ? "instant" : "smooth",
     });
   }

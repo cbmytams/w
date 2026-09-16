@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/container";
-import { OrbLink } from "@/components/navigation/OrbLink";
-import { RevealAnimation } from "@/components/common/RevealAnimation";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import styles from "./contact-hub.module.css";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -10,46 +11,38 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main
-      id="main-content"
-      className="min-h-[70vh] bg-white py-24 dark:bg-transparent"
-    >
-      <Container className="max-w-3xl text-center">
-        <RevealAnimation>
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
-            Contact
-          </p>
-        </RevealAnimation>
-        <RevealAnimation delay={0.1}>
-          <h1 className="mt-4 text-4xl font-heading font-bold text-slate-900 dark:text-white">
-            Parlons de votre projet
-          </h1>
-        </RevealAnimation>
-        <RevealAnimation delay={0.2}>
-          <p className="mx-auto mt-6 max-w-2xl text-slate-600 dark:text-white/60">
-            Utilisez notre formulaire pour nous partager votre contexte. Nous
-            revenons vers vous avec un cadrage rapide et des recommandations
-            actionnables.
-          </p>
-        </RevealAnimation>
-        <RevealAnimation
-          delay={0.3}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
-        >
-          <OrbLink
-            href="/contact/brands"
-            className="inline-flex h-11 items-center rounded-full bg-slate-900 px-6 text-sm font-medium text-white transition-opacity hover:opacity-90 dark:bg-white dark:text-slate-900"
-          >
+    <main className={styles.section}>
+      <div className={styles.top}>
+        <Link href="/" aria-label="Wafia, accueil" className={styles.logo}>
+          <Image
+            src="/wafia.svg"
+            alt="Wafia"
+            width={104}
+            height={34}
+            priority
+          />
+        </Link>
+        <Link href="/" className={styles.back}>
+          <ArrowLeft aria-hidden="true" size={15} />
+          Retour
+        </Link>
+      </div>
+      <div className={styles.inner}>
+        <p className={styles.eyebrow}>Contact</p>
+        <h1 className={styles.title}>Parlons de votre projet.</h1>
+        <p className={styles.intro}>
+          Une campagne de marque ou un parcours de talent : choisissez votre
+          entrée, nous revenons vers vous sous 24h.
+        </p>
+        <div className={styles.choices}>
+          <Link href="/contact/brands" className={styles.primary}>
             Je suis une marque
-          </OrbLink>
-          <OrbLink
-            href="/contact/talents"
-            className="inline-flex h-11 items-center rounded-full border border-slate-300 px-6 text-sm font-medium text-slate-700 transition-colors hover:border-slate-500 dark:border-white/20 dark:text-white/80 dark:hover:border-white/40"
-          >
+          </Link>
+          <Link href="/contact/talents" className={styles.secondary}>
             Je suis un talent
-          </OrbLink>
-        </RevealAnimation>
-      </Container>
+          </Link>
+        </div>
+      </div>
     </main>
   );
 }

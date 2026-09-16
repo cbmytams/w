@@ -12,8 +12,10 @@ describe("talent page copy contract", () => {
 
   it("keeps the core Wafia talent promise centered on structure", () => {
     expect(TALENT_HERO.title).toBe("Votre talent.");
-    expect(TALENT_HERO.titleHighlight).toBe("Une structure autour.");
-    expect(TALENT_HERO.subtitle).toContain("Image, projets, revenus, droits");
+    expect(TALENT_HERO.titleHighlight).toBe("mérite une structure.");
+    expect(TALENT_HERO.subtitle).toContain(
+      "les projets, les revenus et les droits"
+    );
   });
 
   it("surfaces senior proof points for credibility", () => {

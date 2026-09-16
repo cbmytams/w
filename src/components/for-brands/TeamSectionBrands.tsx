@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { BRAND_TEAM_PROFILES } from "@/components/for-brands/brand-team-content";
 import { BrandTeamDrawer } from "@/components/for-brands/BrandTeamDrawer";
 import styles from "./TeamSectionBrands.module.css";

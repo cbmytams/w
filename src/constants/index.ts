@@ -26,9 +26,6 @@ export {
   BRAND_GRADIENT,
 } from "./talent-blocks";
 
-// Brand additions
-export { BRAND_NAVIGATION } from "./brand-additions";
-
 // Home
 export { HOME_OPTIONS } from "./home-blocks";
 
@@ -39,8 +36,6 @@ export {
   TALENT_METHOD,
   TALENT_SERVICES,
   TALENT_PLATFORMS,
-  AUTHENTICITY_CARDS,
-  BRAND_HERO_CONTENT,
   MAIN_NAVIGATION,
   FOOTER_NAVIGATION,
   SOCIAL_LINKS,

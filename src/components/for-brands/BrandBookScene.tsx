@@ -23,6 +23,29 @@ const smooth = (value: number) => {
   return t * t * (3 - 2 * t);
 };
 
+// The page grain is deterministic: render it once, then stamp it onto
+// every page. Drawing 75k specks per texture blocked first paint for ~1s.
+let grainPattern: HTMLCanvasElement | null = null;
+
+function grainCanvas() {
+  if (grainPattern) return grainPattern;
+  const pattern = document.createElement("canvas");
+  pattern.width = 1000;
+  pattern.height = 1400;
+  const pctx = pattern.getContext("2d")!;
+  let seed = 81;
+  for (let n = 0; n < 75000; n++) {
+    seed = (seed * 16807) % 2147483647;
+    const x = seed % 1000;
+    seed = (seed * 16807) % 2147483647;
+    const y = seed % 1400;
+    pctx.fillStyle = n % 2 ? "#ffffff09" : "#00000018";
+    pctx.fillRect(x, y, 1, 2);
+  }
+  grainPattern = pattern;
+  return pattern;
+}
+
 function surface(base = "#1d1d1d") {
   const canvas = document.createElement("canvas");
   const density = window.innerWidth <= 768 ? 1.5 : 2;
@@ -33,15 +56,7 @@ function surface(base = "#1d1d1d") {
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, 1000, 1400);
   // A deterministic fine grain keeps the cover tactile at every resolution.
-  let seed = 81;
-  for (let n = 0; n < 75000; n++) {
-    seed = (seed * 16807) % 2147483647;
-    const x = seed % 1000;
-    seed = (seed * 16807) % 2147483647;
-    const y = seed % 1400;
-    ctx.fillStyle = n % 2 ? "#ffffff09" : "#00000018";
-    ctx.fillRect(x, y, 1, 2);
-  }
+  ctx.drawImage(grainCanvas(), 0, 0, 1000, 1400);
   return { canvas, ctx };
 }
 
@@ -340,12 +355,28 @@ export default function BrandBookScene({
         16
       );
       const cover = coverTexture(font, logo, maxAnisotropy);
-      const leftMaps = BOOK_CHAPTERS.map((_, i) =>
-        leftTexture(i, font, maxAnisotropy)
-      );
-      const rightMaps = BOOK_CHAPTERS.map((_, i) =>
-        rightTexture(i, font, logo, maxAnisotropy)
-      );
+      // The closed book only shows the cover and chapter-0 pages. Later
+      // chapters generate after first paint so opening the page never waits.
+      const leftMaps: Array<THREE.Texture | null> = [null, null, null, null];
+      const rightMaps: Array<THREE.Texture | null> = [null, null, null, null];
+      const leftZero = leftTexture(0, font, maxAnisotropy);
+      const rightZero = rightTexture(0, font, logo, maxAnisotropy);
+      leftMaps[0] = leftZero;
+      rightMaps[0] = rightZero;
+      const pendingChapters = [1, 2, 3];
+      const fillNextChapter = () => {
+        if (disposed) return;
+        const index = pendingChapters.shift();
+        if (index === undefined) return;
+        leftMaps[index] = leftTexture(index, font, maxAnisotropy);
+        rightMaps[index] = rightTexture(index, font, logo, maxAnisotropy);
+        if (pendingChapters.length > 0) scheduleIdle(fillNextChapter);
+        else requestRender();
+      };
+      const scheduleIdle = (fn: () => void) => {
+        if ("requestIdleCallback" in window) window.requestIdleCallback(fn);
+        else setTimeout(fn, 0);
+      };
       const leatherGrain = grainTexture("leather");
       const paperGrain = grainTexture("paper");
       const edge = new THREE.MeshPhysicalMaterial({
@@ -365,13 +396,13 @@ export default function BrandBookScene({
         sheenRoughness: 0.9,
       });
       const leftMat = new THREE.MeshStandardMaterial({
-        map: leftMaps[0],
+        map: leftZero,
         roughness: 0.96,
         bumpMap: paperGrain,
         bumpScale: 0.001,
       });
       const rightMat = new THREE.MeshStandardMaterial({
-        map: rightMaps[0],
+        map: rightZero,
         roughness: 0.96,
         bumpMap: paperGrain,
         bumpScale: 0.001,
@@ -409,14 +440,13 @@ export default function BrandBookScene({
       for (let i = 0; i < undersideUvs.count; i++)
         undersideUvs.setX(i, 1 - undersideUvs.getX(i));
       const turningFrontMat = new THREE.MeshStandardMaterial({
-        map: rightMaps[0],
+        map: rightZero,
         roughness: 0.96,
         bumpMap: paperGrain,
         bumpScale: 0.001,
         side: THREE.FrontSide,
       });
       const turningBackMat = new THREE.MeshStandardMaterial({
-        map: leftMaps[1],
         roughness: 0.96,
         bumpMap: paperGrain,
         bumpScale: 0.001,
@@ -570,6 +600,9 @@ export default function BrandBookScene({
           for (let i = 0; i < BOOK_CHAPTERS.length - 1; i++) {
             const boundary = 0.32 + (i + 1) * 0.205;
             if (current >= boundary - 0.045 && current <= boundary + 0.045) {
+              // Turning needs both faces generated; until then the open
+              // spread simply stays put for a few frames.
+              if (!rightMaps[i] || !leftMaps[i + 1]) break;
               turning = i;
               turn = smooth((current - boundary + 0.045) / 0.09);
               break;
@@ -578,21 +611,28 @@ export default function BrandBookScene({
         }
         const leftIndex = turning >= 0 && turn < 0.5 ? turning : next;
         const rightIndex = turning >= 0 ? turning + 1 : next;
-        if (
-          leftMat.map !== leftMaps[leftIndex] ||
-          rightMat.map !== rightMaps[rightIndex]
-        ) {
-          leftMat.map = leftMaps[leftIndex];
-          rightMat.map = rightMaps[rightIndex];
-          leftMat.needsUpdate = rightMat.needsUpdate = true;
+        const leftReady = leftMaps[leftIndex];
+        const rightReady = rightMaps[rightIndex];
+        if (leftReady && leftMat.map !== leftReady) {
+          leftMat.map = leftReady;
+          leftMat.needsUpdate = true;
+        }
+        if (rightReady && rightMat.map !== rightReady) {
+          rightMat.map = rightReady;
+          rightMat.needsUpdate = true;
         }
         active = next;
         turningPage.visible = turning >= 0;
         if (turning >= 0) {
-          if (turningFrontMat.map !== rightMaps[turning]) {
-            turningFrontMat.map = rightMaps[turning];
-            turningBackMat.map = leftMaps[turning + 1];
-            turningFrontMat.needsUpdate = turningBackMat.needsUpdate = true;
+          const turnFront = rightMaps[turning];
+          const turnBack = leftMaps[turning + 1];
+          if (turnFront && turningFrontMat.map !== turnFront) {
+            turningFrontMat.map = turnFront;
+            turningFrontMat.needsUpdate = true;
+          }
+          if (turnBack && turningBackMat.map !== turnBack) {
+            turningBackMat.map = turnBack;
+            turningBackMat.needsUpdate = true;
           }
           turningPage.rotation.y = -Math.PI * turn;
           turningPage.rotation.x = -0.025 * Math.sin(Math.PI * turn);
@@ -654,6 +694,7 @@ export default function BrandBookScene({
       renderer.domElement.addEventListener("webglcontextrestored", restored);
       setReady(true);
       requestRender();
+      scheduleIdle(fillNextChapter);
       cleanup = () => {
         cancelAnimationFrame(frame);
         unsubscribe();
@@ -687,7 +728,7 @@ export default function BrandBookScene({
           contactMap,
           ...leftMaps,
           ...rightMaps,
-        ].forEach((map) => map.dispose());
+        ].forEach((map) => map?.dispose());
         environment.dispose();
         renderer.dispose();
         renderer.domElement.remove();

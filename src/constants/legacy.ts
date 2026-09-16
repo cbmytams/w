@@ -16,9 +16,6 @@ export {
   TALENT_PLATFORMS,
 } from "./talent-blocks";
 
-// Brand additions (only AUTHENTICITY_CARDS and BRAND_HERO_CONTENT still consumed)
-export { AUTHENTICITY_CARDS, BRAND_HERO_CONTENT } from "./brand-additions";
-
 // Navigation
 export { MAIN_NAVIGATION, FOOTER_NAVIGATION, SOCIAL_LINKS } from "./navigation";
 export type { SocialLink } from "./navigation";

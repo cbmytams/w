@@ -1,6 +1,6 @@
 export const TALENT_HERO = {
   badge: "",
-  title: "Votre talent",
+  title: "Votre talent.",
   titleHighlight: "mérite une structure.",
   subtitle:
     "Wafia accompagne les créateurs, artistes, comédiens, musiciens et profils hybrides quand l'image, les projets, les revenus et les droits doivent enfin tenir dans le même cadre.",

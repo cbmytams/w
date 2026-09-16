@@ -29,6 +29,6 @@ export const ContactFormSchema = z.object({
     .trim()
     .min(20, "Le message doit contenir au moins 20 caractères")
     .max(3000, "Le message ne peut pas dépasser 3000 caractères"),
-  type: z.enum(["agency", "brand"]).default("brand"),
+  type: z.enum(["agency", "brand", "talent"]).default("brand"),
   objective: z.string().trim().nullable().optional(),
 });
