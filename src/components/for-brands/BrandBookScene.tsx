@@ -558,7 +558,7 @@ export default function BrandBookScene({
           ? 0
           : lerp(viewWidth * 0.237, -viewWidth * 0.145, open);
         book.position.x = centerX - ((PAGE_W * scale) / 2) * (1 - open);
-        book.position.y = mobile ? lerp(-1.55, 1.05, open) : -0.1;
+        book.position.y = mobile ? lerp(-1.55, 1.32, open) : -0.1;
         book.rotation.set(
           lerp(0.22, -0.18, open),
           lerp(-0.35, 0.04, open),
