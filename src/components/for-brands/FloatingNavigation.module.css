@@ -48,24 +48,6 @@
 .header[data-tone="dark"] .logo img {
   filter: invert(1);
 }
-.switcher {
-  position: relative;
-}
-.switcher summary {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 11px;
-  cursor: pointer;
-  padding-block: 15px;
-  list-style: none;
-}
-.switcher summary::-webkit-details-marker {
-  display: none;
-}
-.switcher[open] summary svg {
-  transform: rotate(180deg);
-}
 .links {
   display: flex;
   align-items: center;
@@ -219,8 +201,7 @@
     width: 88px;
   }
   .links,
-  .end,
-  .switcher {
+  .end {
     display: none;
   }
   .menuButton {

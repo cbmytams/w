@@ -2,29 +2,50 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { OrbLink } from "@/components/navigation/OrbLink";
 import styles from "./FloatingNavigation.module.css";
 
-const links = [
+const BRAND_LINKS = [
   { href: "#case-studies", label: "Nos réalisations" },
   { href: "#process", label: "Notre méthode" },
   { href: "#faq", label: "Questions" },
 ];
 
+interface FloatingNavigationLink {
+  href: string;
+  label: string;
+}
+
 interface FloatingNavigationProps {
   onEstimateClick?: () => void;
   estimateHref?: string;
+  /**
+   * Liens de route (par ex. les pages légales). Omis, la navigation suit
+   * les ancres de la page Marques.
+   */
+  routeLinks?: readonly FloatingNavigationLink[];
+  /** Légende au-dessus des liens dans le menu mobile. */
+  mobileLabel?: string;
+  navAriaLabel?: string;
+  mobileNavAriaLabel?: string;
 }
 
 export function FloatingNavigation({
   onEstimateClick,
   estimateHref,
+  routeLinks,
+  mobileLabel = "Pour les marques",
+  navAriaLabel = "Navigation Marques",
+  mobileNavAriaLabel = "Navigation mobile Marques",
 }: FloatingNavigationProps) {
+  const pathname = usePathname();
+  const items = routeLinks ?? BRAND_LINKS;
+  const isRouteNavigation = Boolean(routeLinks);
   const [dark, setDark] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const dialog = useRef<HTMLDialogElement>(null);
-  const switcher = useRef<HTMLDetailsElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
   const savedOverflow = useRef<string | null>(null);
 
@@ -47,8 +68,9 @@ export function FloatingNavigation({
             isDark = section.dataset.navTone === "dark";
         });
       setDark(isDark);
+      if (isRouteNavigation) return;
       let current = "";
-      links.forEach(({ href }) => {
+      BRAND_LINKS.forEach(({ href }) => {
         const rect = document.querySelector(href)?.getBoundingClientRect();
         if (rect && rect.top <= 160 && rect.bottom > 160) current = href;
       });
@@ -57,29 +79,17 @@ export function FloatingNavigation({
     function schedule() {
       if (!frame) frame = requestAnimationFrame(update);
     }
-    function dismiss(event: PointerEvent) {
-      if (switcher.current && !switcher.current.contains(event.target as Node))
-        switcher.current.open = false;
-    }
-    function escape(event: KeyboardEvent) {
-      if (event.key === "Escape" && switcher.current)
-        switcher.current.open = false;
-    }
     update();
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
-    document.addEventListener("pointerdown", dismiss);
-    document.addEventListener("keydown", escape);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
-      document.removeEventListener("pointerdown", dismiss);
-      document.removeEventListener("keydown", escape);
       if (savedOverflow.current !== null)
         document.body.style.overflow = savedOverflow.current;
     };
-  }, []);
+  }, [isRouteNavigation]);
 
   function openMenu() {
     savedOverflow.current = document.body.style.overflow;
@@ -139,12 +149,20 @@ export function FloatingNavigation({
               />
             </OrbLink>
           </div>
-          <nav className={styles.links} aria-label="Navigation Marques">
-            {links.map(({ href, label }) => (
+          <nav className={styles.links} aria-label={navAriaLabel}>
+            {items.map(({ href, label }) => (
               <a
                 key={href}
                 href={href}
-                aria-current={activeSection === href ? "location" : undefined}
+                aria-current={
+                  isRouteNavigation
+                    ? pathname === href
+                      ? "page"
+                      : undefined
+                    : activeSection === href
+                      ? "location"
+                      : undefined
+                }
               >
                 {label}
               </a>
@@ -176,12 +194,9 @@ export function FloatingNavigation({
             <X size={25} />
           </button>
         </div>
-        <p className={styles.mobileLabel}>Pour les marques</p>
-        <nav
-          aria-label="Navigation mobile Marques"
-          className={styles.mobileLinks}
-        >
-          {links.map(({ href, label }, index) => (
+        <p className={styles.mobileLabel}>{mobileLabel}</p>
+        <nav aria-label={mobileNavAriaLabel} className={styles.mobileLinks}>
+          {items.map(({ href, label }, index) => (
             <a key={href} href={href} onClick={closeMenu}>
               <span>0{index + 1}</span>
               {label}
