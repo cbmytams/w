@@ -336,28 +336,55 @@
     max-width: 380px;
   }
   .actions {
-    margin-top: 16px;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(128px, 0.72fr);
+    align-items: end;
+    margin-top: 18px;
+    gap: 18px;
   }
   .primary {
-    padding: 12px 14px;
+    width: 100%;
+    justify-content: space-between;
+    padding: 13px 15px;
     font-size: 11px;
-    gap: 10px;
+    gap: 12px;
   }
   .textButton {
-    font-size: 10px;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 10.5px;
+    padding: 12px 0 13px;
   }
   .disciplines {
-    margin-top: 18px;
-    font-size: 9px;
-    gap: 9px;
+    margin-top: 20px;
+    font-size: 10px;
+    line-height: 1.4;
+    gap: 9px 13px;
   }
   .coverNote {
-    bottom: 12%;
+    bottom: 14%;
     left: 7%;
     right: 7%;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: max-content minmax(36px, 1fr) max-content;
+    gap: 10px;
+    align-items: center;
     font-size: 8px;
+    line-height: 1;
+  }
+  .coverNote::after {
+    content: "";
+    grid-column: 2;
+    grid-row: 1;
+    height: 1px;
+    background: #aeb4ac;
+  }
+  .coverNote span:first-child {
+    grid-column: 1;
+  }
+  .coverNote span:last-child {
+    grid-column: 3;
+    color: #535e57;
   }
   .bookHeader {
     top: 14%;
@@ -411,12 +438,12 @@
   .bottomLine {
     left: 7%;
     right: 7%;
-    bottom: 3%;
-    padding-top: 10px;
+    bottom: max(18px, 2.8svh);
+    padding-top: 16px;
     font-size: 8.5px;
     line-height: 1.35;
     word-spacing: 0.08em;
-    gap: 12px;
+    gap: 18px;
   }
   .bottomLine > span {
     max-width: 210px;
