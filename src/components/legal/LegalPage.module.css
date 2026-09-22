@@ -1,11 +1,9 @@
 .page {
-  --legal-paper: #f5f5ef;
   --legal-ink: #1b1f1a;
   --legal-muted: #4b5148;
   --legal-faint: #7a7f76;
   --legal-line: rgb(25 32 30 / 12%);
   --legal-accent: #c94426;
-  --legal-accent-soft: rgb(201 68 38 / 8%);
 
   color: var(--legal-ink);
 }
@@ -169,55 +167,6 @@
   line-height: 1.45;
 }
 
-.callout {
-  padding: 1.5rem 1.6rem;
-  background: var(--legal-accent-soft);
-  border: 1px solid rgb(201 68 38 / 24%);
-  border-left: 3px solid var(--legal-accent);
-  border-radius: 0.75rem;
-}
-
-.calloutTitle {
-  margin: 0 0 0.65rem;
-  font-family: var(--font-outfit), var(--font-plus-jakarta), sans-serif;
-  font-size: 1.05rem;
-  font-weight: 650;
-}
-
-.calloutText {
-  margin: 0;
-  color: var(--legal-muted);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.calloutEmail {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.1rem;
-  padding: 0.65rem 1.1rem;
-  color: #ffffff;
-  background: var(--legal-accent);
-  border-radius: 9999px;
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease;
-}
-
-.calloutEmail:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.calloutEmail:focus-visible {
-  outline: 2px solid var(--legal-accent);
-  outline-offset: 3px;
-}
-
 .links {
   display: flex;
   flex-wrap: wrap;
@@ -256,7 +205,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .calloutEmail,
   .link {
     transition: none;
   }

@@ -64,21 +64,6 @@ function LegalBlockRenderer({ block }: { block: LegalBlock }) {
         </dl>
       );
 
-    case "callout":
-      return (
-        <div className={styles.callout}>
-          {block.title ? (
-            <h3 className={styles.calloutTitle}>{block.title}</h3>
-          ) : null}
-          <p className={styles.calloutText}>{block.text}</p>
-          {block.email ? (
-            <a className={styles.calloutEmail} href={`mailto:${block.email}`}>
-              {block.email}
-            </a>
-          ) : null}
-        </div>
-      );
-
     case "links":
       return (
         <div className={styles.links}>
