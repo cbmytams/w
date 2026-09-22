@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { GlobalNav } from "@/components/layout/GlobalNav";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { GlobalMotionConfig } from "@/components/layout/GlobalMotionConfig";
 import { siteConfig } from "@/lib/site";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
@@ -150,6 +151,7 @@ export default async function RootLayout({
         <GlobalMotionConfig>
           <GlobalNav />
           <PageTransition>{children}</PageTransition>
+          <SiteFooter />
         </GlobalMotionConfig>
       </body>
     </html>

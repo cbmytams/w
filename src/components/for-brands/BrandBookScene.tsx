@@ -340,7 +340,6 @@ export default function BrandBookScene({
       });
       key.shadow.bias = -0.001;
       key.shadow.normalBias = 0.014;
-      key.shadow.radius = 3;
       scene.add(key);
       const rim = new THREE.DirectionalLight(0xf1f5ff, 1.3);
       rim.position.set(3, -1, 3);

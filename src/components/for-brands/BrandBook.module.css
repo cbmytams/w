@@ -67,6 +67,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  min-height: 44px;
   background: var(--book-ink);
   color: var(--book-white);
   padding: 16px 20px;
@@ -81,6 +82,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-height: 44px;
   font-size: 12px;
   cursor: pointer;
   padding: 10px 0;
@@ -158,6 +160,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  min-height: 44px;
   border-bottom: 1px solid #434a42;
   padding: 13px 0;
   font-size: 12px;
@@ -211,6 +214,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-height: 44px;
   margin-top: auto;
   margin-bottom: 26px;
   padding-top: 20px;
@@ -236,6 +240,7 @@
   display: inline-flex;
   gap: 12px;
   align-items: center;
+  min-height: 44px;
   cursor: pointer;
   font-size: 11px;
   padding: 8px 0;
@@ -376,7 +381,8 @@
   .chapterNav button {
     gap: 5px;
     font-size: 10px;
-    padding: 10px 0;
+    min-height: 44px;
+    padding: 8px 0;
   }
   .chapterNav button span {
     font-size: 8px;
@@ -398,23 +404,27 @@
   }
   .chapterCta {
     font-size: 10px;
-    padding-top: 12px;
-    margin-bottom: 20px;
+    min-height: 44px;
+    padding-top: 10px;
+    margin-bottom: 18px;
   }
   .bottomLine {
     left: 7%;
     right: 7%;
     bottom: 3%;
     padding-top: 10px;
-    font-size: 7px;
+    font-size: 8.5px;
+    line-height: 1.35;
+    word-spacing: 0.08em;
     gap: 12px;
   }
   .bottomLine > span {
-    max-width: 200px;
+    max-width: 210px;
   }
   .bottomLine button {
     white-space: nowrap;
-    font-size: 9px;
+    min-height: 44px;
+    font-size: 10px;
   }
   .fallback {
     top: 56%;
