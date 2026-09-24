@@ -4,7 +4,6 @@ export type RouteCluster =
   | "home"
   | "talents"
   | "brands"
-  | "studio"
   | "wiki"
   | "contact"
   | "other";
@@ -12,8 +11,6 @@ export type RouteCluster =
 export function getRouteCluster(pathname: string): RouteCluster {
   if (pathname === "/") return "home";
   if (pathname.startsWith("/for-talents")) return "talents";
-  if (pathname.startsWith("/for-brands")) return "brands";
-  if (pathname.startsWith("/studio")) return "studio";
   if (pathname.startsWith("/wiki")) return "wiki";
   if (pathname.startsWith("/contact")) return "contact";
   return "other";
@@ -21,10 +18,8 @@ export function getRouteCluster(pathname: string): RouteCluster {
 
 export const routeTransitionVariants: Record<RouteCluster, Variants> = {
   home: {
-    // Returning to home should feel like a downward settle (from top to center).
     initial: { opacity: 1, y: -34, scale: 0.996 },
     animate: { opacity: 1, y: 0, scale: 1 },
-    // Leaving home for Studio should climb upward.
     exit: { opacity: 1, y: -34, scale: 0.996 },
   },
   talents: {
@@ -38,12 +33,6 @@ export const routeTransitionVariants: Record<RouteCluster, Variants> = {
     initial: { opacity: 0.82, y: 14, scale: 1.002 },
     animate: { opacity: 1, y: 0, scale: 1 },
     exit: { opacity: 0.92, y: -8, scale: 0.998 },
-  },
-  studio: {
-    // Studio enters from below and exits downward when returning home.
-    initial: { opacity: 1, y: 34, scale: 0.996 },
-    animate: { opacity: 1, y: 0, scale: 1 },
-    exit: { opacity: 1, y: 34, scale: 0.996 },
   },
   // Wiki plays its own cinematic descent/ascend (globals.css), so the page
   // container stays neutral and lets the dedicated choreography lead.
@@ -91,11 +80,6 @@ export const routeTransitionTiming: Record<
     tablet: { duration: 0.38, ease: TABLET_EASE },
     mobile: { duration: 0.34, ease: MOBILE_EASE },
   },
-  studio: {
-    desktop: { duration: 0.46, ease: DESKTOP_EASE },
-    tablet: { duration: 0.4, ease: TABLET_EASE },
-    mobile: { duration: 0.34, ease: MOBILE_EASE },
-  },
   wiki: {
     desktop: { duration: 0.5, ease: DESKTOP_EASE },
     tablet: { duration: 0.44, ease: TABLET_EASE },
@@ -131,7 +115,6 @@ export const routeVeilClassNames: Record<RouteCluster, string> = {
     "bg-gradient-to-br from-violet-400/10 via-transparent to-transparent dark:from-violet-400/12",
   brands:
     "bg-gradient-to-br from-orange-400/10 via-transparent to-transparent dark:from-orange-400/12",
-  studio: "bg-transparent",
   wiki: "bg-transparent",
   contact:
     "bg-gradient-to-b from-white/10 via-transparent to-transparent dark:from-white/8",
@@ -144,7 +127,6 @@ export const routeBackdropClassNames: Record<RouteCluster, string> = {
   home: "bg-transparent",
   talents: "bg-transparent",
   brands: "bg-transparent",
-  studio: "bg-black",
   wiki: "bg-[var(--background)]",
   contact: "bg-transparent",
   other: "bg-[var(--background)]",

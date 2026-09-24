@@ -1,13 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteConfig, sitePaths } from "@/lib/site";
 
-const HIGH_PRIORITY_ROUTES = new Set([
-  sitePaths.services,
-  sitePaths.forBrands,
-  sitePaths.forTalents,
-]);
+const HIGH_PRIORITY_ROUTES = new Set([sitePaths.forTalents]);
 
-const MEDIUM_PRIORITY_ROUTES = new Set([sitePaths.studio, sitePaths.wiki]);
+const MEDIUM_PRIORITY_ROUTES = new Set([sitePaths.wiki]);
 
 const LEGAL_ROUTES = new Set([
   sitePaths.legalPrivacy,

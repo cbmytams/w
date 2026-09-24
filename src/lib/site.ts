@@ -70,9 +70,6 @@ export const siteConfig = {
 
 export const sitePaths = {
   home: "/",
-  services: "/services",
-  studio: "/studio",
-  forBrands: "/for-brands",
   forTalents: "/for-talents",
   wiki: "/wiki",
 
@@ -83,7 +80,6 @@ export const sitePaths = {
 
 export const sitemapRoutes = [
   sitePaths.home,
-
   sitePaths.legalPrivacy,
   sitePaths.legalMentions,
   sitePaths.legalCookies,

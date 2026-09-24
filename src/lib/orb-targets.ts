@@ -2,7 +2,7 @@ export type OrbTargetVariant = "brands" | "talents" | "home";
 
 /**
  * Resolves an internal href to the orb field variant it belongs to, or null
- * when the destination has no orb identity (wiki, studio, services, legal…).
+ * when the destination has no orb identity (wiki, legal…).
  *
  * Only orb-cluster destinations (home, brands, talents showcase pages and
  * their contact forms) get the orb morph transition; everything else falls
@@ -15,8 +15,7 @@ export function resolveOrbTarget(href: string): OrbTargetVariant | null {
   // Strip query/hash before matching.
   const path = href.split("#")[0].split("?")[0];
 
-  if (path === "/") return "home";
-  if (path === "/for-brands" || path === "/for-brands/") return "brands";
+  if (path === "/") return "brands";
   if (path === "/for-talents" || path === "/for-talents/") return "talents";
   if (path === "/contact/brands") return "brands";
   if (path === "/contact/talents") return "talents";

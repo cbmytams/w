@@ -76,5 +76,6 @@ export function getDefaultAuthor(): AuthorProfile {
 }
 
 export function getAuthorProfileUrl(slug: string): string {
-  return new URL(`/equipe/${slug}`, siteConfig.url).toString();
+  const author = getAuthorBySlug(slug);
+  return author?.sameAs[0] ?? siteConfig.url;
 }

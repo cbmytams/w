@@ -1,6 +1,33 @@
-import ForBrandsPage from "./for-brands/page";
-import { sitePaths } from "@/lib/site";
+import dynamic from "next/dynamic";
+import { PageShell } from "@/components/common/PageShell";
+import { BrandHeroV2 } from "@/components/for-brands/BrandHeroV2";
+import { ClientsSection } from "@/components/for-brands/ClientsSection";
+import { breadcrumbSchema, faqSchema } from "@/lib/structured-data";
+import { FAQ_ITEMS } from "@/constants";
+import { siteConfig, sitePaths } from "@/lib/site";
 import type { Metadata } from "next";
+
+const CaseStudiesSection = dynamic(() =>
+  import("@/components/for-brands/CaseStudiesSection").then(
+    (m) => m.CaseStudiesSection
+  )
+);
+const BrandMethodSection = dynamic(() =>
+  import("@/components/for-brands/BrandMethodSection").then(
+    (m) => m.BrandMethodSection
+  )
+);
+const TeamSectionBrands = dynamic(() =>
+  import("@/components/for-brands/TeamSectionBrands").then(
+    (m) => m.TeamSectionBrands
+  )
+);
+const FaqSection = dynamic(() =>
+  import("@/components/for-brands/FaqSection").then((m) => m.FaqSection)
+);
+const CtaSection = dynamic(() =>
+  import("@/components/for-brands/CtaSection").then((m) => m.CtaSection)
+);
 
 export const metadata: Metadata = {
   title: {
@@ -24,10 +51,43 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * Homepage — page Marques (single-page prod).
- * Le contenu vit dans src/app/for-brands/page.tsx.
- */
 export default function Homepage() {
-  return <ForBrandsPage />;
+  return (
+    <>
+      <PageShell className="!overflow-x-clip">
+        <BrandHeroV2 />
+
+        <BrandMethodSection />
+
+        <ClientsSection />
+
+        <CaseStudiesSection />
+
+        <TeamSectionBrands />
+
+        <FaqSection />
+
+        <CtaSection estimateHref="/contact/brands" />
+      </PageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              {
+                name: "Accueil",
+                url: new URL(sitePaths.home, siteConfig.url).toString(),
+              },
+            ])
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema([...FAQ_ITEMS])),
+        }}
+      />
+    </>
+  );
 }

@@ -22,7 +22,7 @@ interface OrbSwitcherItem {
 
 function itemsFor(current: OrbSwitcherCurrent): OrbSwitcherItem[] {
   const marques: OrbSwitcherItem = {
-    href: sitePaths.forBrands,
+    href: sitePaths.home,
     target: "brands",
     label: "MARQUES",
     hint: "Campagnes créateurs & ROI",

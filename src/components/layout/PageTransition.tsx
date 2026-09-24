@@ -79,15 +79,8 @@ export function PageTransition({ children }: PageTransitionProps) {
     previousCluster === "home" &&
     (cluster === "talents" || cluster === "brands");
   const transition = routeTransitionTiming[cluster][deviceProfile];
-  // Orb-cluster destinations (home, studio, contact, talents, brands when
-  // handed off from home) run in sync so the orb field stays visible during
-  // the swap; everything else (incl. wiki, which plays its own cinematic)
-  // waits for the exit to finish.
   const presenceMode: "sync" | "wait" =
-    cluster === "home" ||
-    cluster === "studio" ||
-    cluster === "contact" ||
-    isHomeToTalentsOrBrands
+    cluster === "home" || cluster === "contact" || isHomeToTalentsOrBrands
       ? "sync"
       : "wait";
   const backdropDurationClass = isHomeToTalentsOrBrands

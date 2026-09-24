@@ -22,18 +22,13 @@ const TalentsFloatingNavigation = dynamic(
 export function GlobalNav() {
   const pathname = usePathname();
 
-  // Studio page has its own layout/UI
-  if (pathname?.startsWith("/studio")) {
-    return null;
-  }
-
   // Wiki has its own navigation
   if (pathname?.startsWith("/wiki")) {
     return null;
   }
 
   // Homepage = page Marques (single-page prod)
-  if (pathname === "/" || pathname === "/for-brands") {
+  if (pathname === "/") {
     return (
       <FloatingNavigation
         key={`brands-${pathname}`}

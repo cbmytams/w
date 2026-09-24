@@ -3,15 +3,14 @@ import { resolveOrbTarget, isModifiedClick } from "@/lib/orb-targets";
 describe("orb-targets", () => {
   describe("resolveOrbTarget", () => {
     it("maps orb cluster destinations to their variant", () => {
-      expect(resolveOrbTarget("/")).toBe("home");
-      expect(resolveOrbTarget("/for-brands")).toBe("brands");
+      expect(resolveOrbTarget("/")).toBe("brands");
       expect(resolveOrbTarget("/for-talents")).toBe("talents");
       expect(resolveOrbTarget("/contact/brands")).toBe("brands");
       expect(resolveOrbTarget("/contact/talents")).toBe("talents");
     });
 
     it("strips query and hash before matching", () => {
-      expect(resolveOrbTarget("/for-brands?utm=home")).toBe("brands");
+      expect(resolveOrbTarget("/?utm=home")).toBe("brands");
       expect(resolveOrbTarget("/for-talents#contact")).toBe("talents");
       expect(resolveOrbTarget("/contact/brands?x=1")).toBe("brands");
     });

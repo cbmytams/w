@@ -356,7 +356,7 @@ export default function WikiArticleView({
           </p>
           <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
             <OrbLink
-              href="/for-brands"
+              href="/"
               className="font-semibold text-[0.9rem]"
               ariaLabel="Pour les marques"
             >

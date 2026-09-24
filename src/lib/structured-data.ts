@@ -161,10 +161,7 @@ export function articleSchema({
   author: AuthorProfile;
   keywords?: string[];
 }) {
-  const authorProfileUrl = new URL(
-    `/equipe/${author.slug}`,
-    siteConfig.url
-  ).toString();
+  const authorProfileUrl = author.sameAs[0] ?? siteConfig.url;
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
