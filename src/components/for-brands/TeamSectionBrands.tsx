@@ -21,6 +21,7 @@ export function TeamSectionBrands() {
         <motion.div
           className={styles.copy}
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={reduceMotion ? { opacity: 1, y: 0 } : undefined}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={VIEWPORT}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
@@ -59,6 +60,7 @@ export function TeamSectionBrands() {
               onClick={() => setIsOpen(true)}
               aria-label={`Découvrir l'équipe avec ${profile.name}`}
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              animate={reduceMotion ? { opacity: 1, y: 0 } : undefined}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={VIEWPORT}
               transition={{
@@ -83,6 +85,7 @@ export function TeamSectionBrands() {
           <motion.p
             className={styles.caption}
             initial={reduceMotion ? false : { opacity: 0 }}
+            animate={reduceMotion ? { opacity: 1 } : undefined}
             whileInView={reduceMotion ? undefined : { opacity: 1 }}
             viewport={VIEWPORT}
             transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.32 }}
@@ -95,6 +98,7 @@ export function TeamSectionBrands() {
           className={styles.note}
           aria-label="Notre manière de travailler"
           initial={reduceMotion ? false : { opacity: 0, x: 16, rotate: 1 }}
+          animate={reduceMotion ? { opacity: 1, x: 0, rotate: -2 } : undefined}
           whileInView={
             reduceMotion ? undefined : { opacity: 1, x: 0, rotate: -2 }
           }

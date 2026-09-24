@@ -35,6 +35,7 @@ export function CtaSection({
         <motion.div
           className={styles.copy}
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={reduceMotion ? { opacity: 1, y: 0 } : undefined}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={VIEWPORT}
           transition={{ duration: 0.56, ease: [0.22, 1, 0.36, 1] }}
@@ -50,6 +51,7 @@ export function CtaSection({
         <motion.aside
           className={styles.panel}
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={reduceMotion ? { opacity: 1, y: 0 } : undefined}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={VIEWPORT}
           transition={{

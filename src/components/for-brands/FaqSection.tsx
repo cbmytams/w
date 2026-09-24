@@ -19,6 +19,7 @@ export function FaqSection() {
         <motion.header
           className={styles.header}
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={reduceMotion ? { opacity: 1, y: 0 } : undefined}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={VIEWPORT}
           transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
@@ -73,6 +74,7 @@ function FaqItem({
     <motion.article
       className={styles.item}
       initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      animate={reduceMotion ? { opacity: 1, y: 0 } : undefined}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={VIEWPORT}
       transition={{

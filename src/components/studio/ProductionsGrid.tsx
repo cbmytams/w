@@ -33,7 +33,7 @@ export function ProductionsGrid() {
       {/* LAUNCHER GRID - Asymmetrical Apple-style layout */}
       <motion.div
         initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-        animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={
           prefersReducedMotion
             ? undefined
