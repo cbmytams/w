@@ -198,3 +198,13 @@
     transition: none;
   }
 }
+
+@media (max-width: 400px) {
+  .topEnd {
+    gap: 8px;
+  }
+
+  .locales a {
+    min-width: 36px;
+  }
+}

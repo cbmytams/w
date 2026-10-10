@@ -1,0 +1,26 @@
+{
+  "title": "Nuestro método",
+  "subtitle": "Del diagnóstico al impacto",
+  "steps": [
+    {
+      "title": "Auditoría",
+      "description": "Tu marca, tus públicos, tus objetivos. Partimos de la realidad."
+    },
+    {
+      "title": "Estrategia",
+      "description": "La idea acertada. Un enfoque que da ganas de escucharte."
+    },
+    {
+      "title": "Casting",
+      "description": "Las voces adecuadas para tu marca. No solo audiencias."
+    },
+    {
+      "title": "Producción",
+      "description": "Del brief al último montaje. Contenidos hechos para su público."
+    },
+    {
+      "title": "Difusión y reporting",
+      "description": "Amplificar, medir, reutilizar. Hacer que dure lo que funciona."
+    }
+  ]
+}

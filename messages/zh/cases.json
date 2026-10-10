@@ -1,0 +1,75 @@
+{
+  "title": "我们的作品：三个品牌，三种表达方式。",
+  "viewCase": "查看客户案例",
+  "viewCaseAria": "查看{client}客户案例",
+  "resultsAria": "{client}的成果",
+  "proofHeading": "客户案例",
+  "closeAria": "关闭客户案例",
+  "brandMarkAlt": "CJ官方标志",
+  "dialogContact": "那么您的品牌呢？",
+  "studies": [
+    {
+      "client": "BASIC-FIT",
+      "context": "Boost Your Mood / 健身",
+      "title": "那你呢，你如何提振心情？",
+      "detail": "这份简报浓缩在一条Reel里：一句关于心情的开场，训练日常，之后的时光（散步、阅读、健康餐），最后以一段鼓舞人心的话邀请观众回应。Wafia负责甄选十位生活方式与健身领域的创作者，撰写意图简报，并让每位创作者按自己的风格去演绎：不设固定台词，只以#BoostYourMood话题标签作为唯一主线。成果：真实可信的TikTok与Reels内容，在首次发布之后依然保持生命力，也让每个人都能从中找到共鸣。",
+      "scope": "Boost Your Mood营销活动 · 10位创作者甄选 · 创意简报 · TikTok与Reels",
+      "proof": [
+        { "value": "10", "label": "参与创作者" },
+        { "value": "600万", "label": "自然播放量" },
+        { "value": "21.44%", "label": "互动率" }
+      ]
+    },
+    {
+      "client": "CJ GROUP",
+      "subtitle": "KOREA HOUSE",
+      "context": "品牌活动 / 巴黎2024",
+      "title": "在巴黎中心，一场文化沉浸体验。",
+      "description": "借由发现韩国文化的人们，让这份文化被更多人看见。并让这场相遇在活动结束后继续延伸。",
+      "imageAlt": "观众在巴黎Korea House门前入场",
+      "detail": "在Korea House，创作者的在场让这场活动变成一个个发现之旅的故事。从现场的相遇，到随后分享的内容，这场营销活动让韩国文化拥有了声音、视角与存在感，并在活动结束后持续延伸。",
+      "scope": "创作者现场活动 · 活动现场报道 · 社交媒体内容",
+      "proof": [
+        { "value": "67", "label": "参与创作者" },
+        { "value": "1100万", "label": "曝光量" },
+        { "value": "150+", "label": "内容" }
+      ]
+    },
+    {
+      "client": "汽车展",
+      "subtitle": "第50届",
+      "context": "媒体报道 / Paris Expo",
+      "title": "展会，在现场感受。更在现场之外延续。",
+      "description": "四天紧跟展会节奏：访谈、创新成果与短内容。这是一套让活动在社交网络上延续的报道方案。",
+      "imageAlt": "观众在EQUIP AUTO Paris展会上拍摄新车亮相",
+      "detail": "在Paris Expo，Wafia部署媒体与营销一体化方案，实时报道展会上的创新成果。一个内容工厂汇聚了23位创作者与记者，围绕访谈、直播与短内容开展工作。新闻编辑室式的工作方式，把现场亮点与社交媒体的使用习惯连接起来，既面向专业人士，也面向大众。",
+      "scope": "媒体与营销方案 · 访谈 · 内容工厂 · 直播",
+      "proof": [
+        { "value": "23", "label": "创作者与记者" },
+        { "value": "100+", "label": "产出内容" },
+        { "value": "4天", "label": "直播" }
+      ]
+    }
+  ],
+  "showcase": {
+    "kicker": "创作者内容制作",
+    "previewCount": "{count}条预览",
+    "heading": "BASIC-FIT",
+    "title": "能推动改变的内容。",
+    "description": "Boost Your Mood营销活动：十位创作者讲述运动如何改变他们的心情，让新一代人愿意把运动融入日常。",
+    "ctaAria": "查看Basic-Fit客户案例",
+    "railAria": "Basic-Fit视频预览",
+    "services": ["达人营销", "创意", "制作", "广告投放"],
+    "tagline": "从创意，到传播。",
+    "videoAria": "{talent}为Basic-Fit拍摄的视频预览",
+    "avatarAlt": "{talent}的TikTok头像",
+    "followersLabel": "{followers}粉丝",
+    "profileAria": "查看{talent}的TikTok主页{handle}，{followers}粉丝",
+    "previews": [
+      { "followers": "580万" },
+      { "followers": "160万" },
+      { "followers": "200万" },
+      { "followers": "25.6万" }
+    ]
+  }
+}

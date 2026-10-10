@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "hub": {
+      "title": "联系我们",
+      "description": "聊聊您的品牌与增长目标。"
+    },
+    "brands": {
+      "title": "品牌联系",
+      "description": "请告诉我们您的创作者营销活动。24小时内回复。"
+    },
+    "talents": {
+      "title": "达人联系",
+      "description": "请告诉我们您的发展规划。24小时内回复。"
+    }
+  },
+  "common": {
+    "logoAlt": "Wafia",
+    "homeAriaLabel": "Wafia，首页",
+    "back": "返回"
+  },
+  "hub": {
+    "eyebrow": "联系我们",
+    "title": "聊聊您的项目。",
+    "intro": "无论是品牌营销活动，还是达人成长之路：请选择您的入口，我们将在24小时内回复您。",
+    "brandsCta": "我是品牌方",
+    "talentsCta": "我是达人"
+  },
+  "form": {
+    "brands": {
+      "eyebrow": "品牌联系",
+      "title": "填写您的资料。",
+      "intro": "一切从这份简报开始：您的品牌、联系方式与项目。24小时内，您将收到初步的项目梳理。",
+      "fields": {
+        "company": {
+          "label": "公司",
+          "placeholder": "您的品牌"
+        },
+        "name": {
+          "label": "您的姓名",
+          "placeholder": "姓名"
+        },
+        "email": {
+          "label": "工作邮箱",
+          "placeholder": "you@brand.com"
+        },
+        "objective": {
+          "label": "您的项目",
+          "placeholder": "背景、挑战、时间安排。"
+        }
+      }
+    },
+    "talents": {
+      "eyebrow": "达人联系",
+      "title": "填写您的资料。",
+      "intro": "您是谁、在哪里关注您、您想走向何方。我们将在24小时内回复您。",
+      "fields": {
+        "name": {
+          "label": "全名",
+          "placeholder": "姓名"
+        },
+        "instagram": {
+          "label": "Instagram",
+          "placeholder": "@用户名"
+        },
+        "email": {
+          "label": "邮箱",
+          "placeholder": "you@email.com"
+        },
+        "objective": {
+          "label": "您的经历",
+          "placeholder": "内容、受众、目标。"
+        }
+      }
+    },
+    "hint": "至少20个字符。",
+    "error": "发送失败。请检查网络连接后重试。",
+    "note": "<highlight>24小时内回复。</highlight>专人对接，而非销售漏斗。",
+    "sending": "发送中",
+    "submit": "提交资料",
+    "rgpd": "提交本资料即表示您同意Wafia Agency处理您的数据以回复您的请求（保存期限为3年）。访问权、更正权和删除权：contact@wafia.fr。 <privacy>隐私政策</privacy>",
+    "success": {
+      "eyebrow": "资料已收到",
+      "title": "谢谢，我们已收到。",
+      "text": "我们将在24小时内回复您。",
+      "back": "返回"
+    }
+  }
+}

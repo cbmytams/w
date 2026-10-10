@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/i18n/config";
+import { locales, toLanguageTag } from "@/i18n/config";
 import { localizedPath } from "@/lib/seo";
 import { siteConfig, sitePaths } from "@/lib/site";
 
@@ -49,7 +49,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: getRouteChangeFrequency(route),
       priority: getRoutePriority(route),
       alternates: {
-        languages: Object.fromEntries(locales.map((l) => [l, abs(route, l)])),
+        languages: Object.fromEntries(
+          locales.map((l) => [toLanguageTag(l), abs(route, l)])
+        ),
       },
     }))
   );

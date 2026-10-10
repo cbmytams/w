@@ -1,0 +1,17 @@
+{
+  "error": {
+    "metaTitle": "出错了 – Wafia",
+    "eyebrow": "错误500",
+    "title": "出了点问题",
+    "description": "请重试；如果问题仍然存在，欢迎联系我们。",
+    "retry": "重试",
+    "support": "技术支持"
+  },
+  "notFound": {
+    "metaDescription": "您访问的页面不存在。您可以在这里找到我们关于达人营销的全部资源。",
+    "title": "页面未找到",
+    "description": "您要找的网址似乎有误，或者页面已被移动。让我们重新建立一个更稳定的连接。",
+    "home": "返回首页",
+    "contact": "联系Wafia团队"
+  }
+}

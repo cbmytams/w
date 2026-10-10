@@ -1,0 +1,235 @@
+{
+  "courtesyNotice": "本译文仅供参考，以法语版本为准。",
+  "nav": {
+    "links": {
+      "mentions": "法律声明",
+      "privacy": "隐私",
+      "cookies": "Cookie"
+    },
+    "mobileLabel": "法律信息",
+    "ariaLabel": "法律信息导航",
+    "mobileAriaLabel": "法律信息移动端导航"
+  },
+  "page": {
+    "eyebrow": "正式文件",
+    "updated": "最后更新：{date}"
+  },
+  "documents": {
+    "mentions": {
+      "title": "法律声明",
+      "description": "Wafia网站的发布方、托管服务与知识产权信息。",
+      "lede": "wafia.fr网站的发布方与托管方。",
+      "updatedAt": "2026年9月22日",
+      "sections": [
+        {
+          "title": "发布方",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "公司",
+                  "value": "Wafia Agency SASU"
+                },
+                {
+                  "label": "注册地址",
+                  "value": "Villeneuve-le-Roi, 94290 — France"
+                },
+                {
+                  "label": "商业与公司注册处（RCS）",
+                  "value": "Créteil 929 439 735"
+                },
+                {
+                  "label": "注册资本",
+                  "value": "1000欧元"
+                },
+                {
+                  "label": "欧盟增值税号",
+                  "value": "FR 91 929 439 735"
+                },
+                {
+                  "label": "出版负责人",
+                  "value": "Wahib GUETTAT"
+                },
+                {
+                  "label": "联系方式",
+                  "value": "contact@wafia.fr"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "托管",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "托管方",
+                  "value": "OVH SAS"
+                },
+                {
+                  "label": "地址",
+                  "value": "2 rue Kellermann, 59100 Roubaix — France"
+                },
+                {
+                  "label": "电话",
+                  "value": "1007"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "知识产权",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "本网站的内容、标志及Wafia品牌均受知识产权法保护。未经Wafia Agency事先书面许可，禁止任何复制或使用。"
+            }
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "title": "隐私政策",
+      "description": "Wafia网站上您的个人数据的收集、使用与保护。",
+      "lede": "Wafia Agency如何处理通过wafia.fr提交的数据。",
+      "updatedAt": "2026年9月22日",
+      "sections": [
+        {
+          "title": "数据控制者",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "公司",
+                  "value": "Wafia Agency SASU"
+                },
+                {
+                  "label": "注册地址",
+                  "value": "Villeneuve-le-Roi, 94290 — France"
+                },
+                {
+                  "label": "联系方式",
+                  "value": "contact@wafia.fr"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "收集的数据",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "仅限处理您的请求所必需的数据："
+            },
+            {
+              "type": "list",
+              "items": [
+                "姓名",
+                "电子邮箱地址",
+                "电话号码",
+                "您的社交媒体链接（申请时提供）"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "处理目的与法律依据",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "您的数据用于答复您的联系或报价请求、审核您的申请（合同订立前措施，依据GDPR（通用数据保护条例）第6条第1款b项），以及保障本网站的安全（正当利益，依据GDPR第6条第1款f项）。"
+            }
+          ]
+        },
+        {
+          "title": "保存期限与接收方",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "联系数据自最后一次沟通之日起保存3年，申请材料保存2年。上述数据仅供Wafia Agency团队及其分包商使用：OVH（托管）、Sentry（技术错误监控）和Upstash（表单保护）。其中部分分包商可能位于欧盟境外，适用欧盟委员会的标准合同条款。"
+            }
+          ]
+        },
+        {
+          "title": "您的权利",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "根据GDPR第15至22条，您享有访问权、更正权、删除权、限制处理权、数据可携带权和反对权，并有权随时撤回同意。如需行使上述权利，请通过contact@wafia.fr联系我们。"
+            }
+          ]
+        },
+        {
+          "title": "投诉",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "您可以向CNIL（法国数据保护机构）提出投诉，地址：3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07。"
+            }
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookie政策",
+      "description": "关于Wafia网站所用Cookie及其管理方式的说明。",
+      "lede": "wafia.fr上设置的Cookie及其管理方式。",
+      "updatedAt": "2026年9月22日",
+      "sections": [
+        {
+          "title": "什么是Cookie？",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "访问网站时存储在您设备上的文本文件，用于在有限时间内记住某些信息。"
+            }
+          ]
+        },
+        {
+          "title": "所用Cookie",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "wafia.fr不设置任何广告Cookie或社交网络像素。"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Sentry — 技术错误检测，有效期为会话期间。",
+                "Google Analytics — 受众统计，仅在您同意后加载。"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "您的选择",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "您可以随时通过浏览器设置（Chrome、Safari、Firefox、Edge）拒绝或删除Cookie，也可以参阅CNIL的指南。"
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "CNIL Cookie指南（法语）",
+                  "href": "https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser"
+                },
+                {
+                  "label": "隐私政策",
+                  "href": "/legal/privacy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

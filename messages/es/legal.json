@@ -1,0 +1,235 @@
+{
+  "courtesyNotice": "Traducción de cortesía. Prevalece la versión francesa.",
+  "nav": {
+    "links": {
+      "mentions": "Aviso legal",
+      "privacy": "Privacidad",
+      "cookies": "Cookies"
+    },
+    "mobileLabel": "Información legal",
+    "ariaLabel": "Navegación legal",
+    "mobileAriaLabel": "Navegación legal para móvil"
+  },
+  "page": {
+    "eyebrow": "Documento oficial",
+    "updated": "Última actualización: {date}"
+  },
+  "documents": {
+    "mentions": {
+      "title": "Aviso legal",
+      "description": "Editor, alojamiento y propiedad intelectual del sitio web de Wafia.",
+      "lede": "El editor y el proveedor de alojamiento del sitio web wafia.fr.",
+      "updatedAt": "22 de septiembre de 2026",
+      "sections": [
+        {
+          "title": "Editor",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "Sociedad",
+                  "value": "Wafia Agency SASU"
+                },
+                {
+                  "label": "Domicilio social",
+                  "value": "Villeneuve-le-Roi, 94290 — France"
+                },
+                {
+                  "label": "Registro Mercantil y de Sociedades (RCS)",
+                  "value": "Créteil 929 439 735"
+                },
+                {
+                  "label": "Capital social",
+                  "value": "1000 €"
+                },
+                {
+                  "label": "N.º de IVA intracomunitario",
+                  "value": "FR 91 929 439 735"
+                },
+                {
+                  "label": "Director de la publicación",
+                  "value": "Wahib GUETTAT"
+                },
+                {
+                  "label": "Contacto",
+                  "value": "contact@wafia.fr"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Alojamiento",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "Proveedor de alojamiento",
+                  "value": "OVH SAS"
+                },
+                {
+                  "label": "Dirección",
+                  "value": "2 rue Kellermann, 59100 Roubaix — France"
+                },
+                {
+                  "label": "Teléfono",
+                  "value": "1007"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Propiedad intelectual",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Los contenidos del sitio, su logotipo y la marca Wafia están protegidos por el derecho de la propiedad intelectual. Queda prohibida toda reproducción o explotación sin la autorización previa y por escrito de Wafia Agency."
+            }
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Política de privacidad",
+      "description": "Recogida, uso y protección de sus datos personales en el sitio web de Wafia.",
+      "lede": "Cómo trata Wafia Agency los datos transmitidos a través de wafia.fr.",
+      "updatedAt": "22 de septiembre de 2026",
+      "sections": [
+        {
+          "title": "Responsable del tratamiento",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "Sociedad",
+                  "value": "Wafia Agency SASU"
+                },
+                {
+                  "label": "Domicilio social",
+                  "value": "Villeneuve-le-Roi, 94290 — France"
+                },
+                {
+                  "label": "Contacto",
+                  "value": "contact@wafia.fr"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Datos recogidos",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Únicamente los datos necesarios para tramitar su solicitud:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Nombre y apellidos",
+                "Dirección de correo electrónico",
+                "Número de teléfono",
+                "Enlaces a sus redes sociales (candidaturas)"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Finalidades y bases jurídicas",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Sus datos se utilizan para responder a su solicitud de contacto o de presupuesto y para estudiar su candidatura (medidas precontractuales, art. 6.1.b del RGPD), así como para garantizar la seguridad del sitio (interés legítimo, art. 6.1.f del RGPD)."
+            }
+          ]
+        },
+        {
+          "title": "Conservación y destinatarios",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Los datos de contacto se conservan durante 3 años a partir del último intercambio y las candidaturas durante 2 años. Están destinados a los equipos de Wafia Agency y a sus subcontratistas: OVH (alojamiento), Sentry (supervisión de errores técnicos) y Upstash (protección de los formularios). Algunos de ellos pueden estar situados fuera de la Unión Europea, en el marco de las cláusulas contractuales tipo de la Comisión Europea."
+            }
+          ]
+        },
+        {
+          "title": "Sus derechos",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "De conformidad con los artículos 15 a 22 del RGPD, usted dispone de los derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición, así como del derecho a retirar su consentimiento en cualquier momento. Para ejercerlos, escríbanos a contact@wafia.fr."
+            }
+          ]
+        },
+        {
+          "title": "Reclamación",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Puede presentar una reclamación ante la CNIL (la autoridad francesa de protección de datos), 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07."
+            }
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Política de cookies",
+      "description": "Información sobre las cookies utilizadas en el sitio web de Wafia y sobre su gestión.",
+      "lede": "Las cookies instaladas en wafia.fr y cómo gestionarlas.",
+      "updatedAt": "22 de septiembre de 2026",
+      "sections": [
+        {
+          "title": "¿Qué es una cookie?",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Un archivo de texto que se almacena en su dispositivo al visitar el sitio y que sirve para recordar determinada información durante un tiempo limitado."
+            }
+          ]
+        },
+        {
+          "title": "Cookies utilizadas",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "En wafia.fr no se instala ninguna cookie publicitaria ni ningún píxel de redes sociales."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Sentry — detección de errores técnicos, duración de la sesión.",
+                "Google Analytics — medición de audiencia, cargado únicamente tras su consentimiento."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sus opciones",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Puede rechazar o eliminar las cookies en cualquier momento desde los ajustes de su navegador (Chrome, Safari, Firefox, Edge), o seguir la guía de la CNIL."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "Guía de la CNIL sobre cookies (en francés)",
+                  "href": "https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser"
+                },
+                {
+                  "label": "Política de privacidad",
+                  "href": "/legal/privacy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

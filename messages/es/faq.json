@@ -1,0 +1,30 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Tus preguntas.<br></br>Nuestras respuestas.",
+  "items": [
+    {
+      "q": "¿Trabajan con startups?",
+      "a": "Sí. Lo importante no es el tamaño de la marca, sino la claridad del momento: qué hay que contar, a quién y con qué ambición."
+    },
+    {
+      "q": "¿Se puede probar con una sola campaña?",
+      "a": "Sí. Una primera campaña puede ser un terreno de pruebas limpio: aprendemos rápido, nos quedamos con lo que funciona y construimos lo siguiente con más precisión."
+    },
+    {
+      "q": "¿Solo hacen influencia?",
+      "a": "No. Partimos de la idea y después reunimos a los creadores, los formatos, la producción y la difusión adecuados. La influencia es más fuerte cuando tiene una dirección real."
+    },
+    {
+      "q": "¿Cómo se miden los resultados?",
+      "a": "Miramos lo que ayuda a decidir: atención, engagement, tráfico, reutilización de los contenidos, costo por resultado y calidad de las señales. No solo las cifras que brillan."
+    },
+    {
+      "q": "¿Se gestionan los derechos de uso?",
+      "a": "Sí. Cuando un contenido merece perdurar, hay que poder reutilizarlo con facilidad: en orgánico, en paid, en los canales adecuados y en el momento justo."
+    },
+    {
+      "q": "Es nuestra primera campaña de influencia. ¿Nos ayudan?",
+      "a": "Sí. Definimos el marco contigo y avanzamos paso a paso: idea, talentos, formatos, producción, difusión y lectura de los resultados."
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "sectionLabel": "Wafia, del primer brief a la difusión",
+  "intro": {
+    "title": "Campañas con<br></br>creadores<br></br><accent>estructuradas.</accent>",
+    "text": "La idea acertada. Los creadores adecuados. Contenidos que perduran. Wafia reúne influencia, creatividad, producción y ads para impulsar tu marca.",
+    "seeWork": "Ver nuestro trabajo",
+    "openBook": "Abrir el dosier",
+    "disciplines": ["Influencia", "Creatividad", "Producción", "Ads"]
+  },
+  "cover": {
+    "label": "EL DOSIER WAFIA",
+    "tagline": "De las ideas a su difusión."
+  },
+  "bookHeader": {
+    "title": "El dosier de Wafia"
+  },
+  "panel": {
+    "ariaLabel": "Nuestras especialidades",
+    "navAriaLabel": "Capítulos del dosier",
+    "cta": "Construyamos tu campaña"
+  },
+  "bottomLine": {
+    "closed": "TU MARCA TIENE UNA HISTORIA. HAGÁMOSLA RESONAR.",
+    "opened": "UN EQUIPO. DEL BRIEF A LA DIFUSIÓN.",
+    "discover": "Descubrir",
+    "nextChapter": "Capítulo siguiente",
+    "next": "Continuar"
+  },
+  "chapters": [
+    {
+      "service": "Influencia",
+      "headline": ["LAS VOCES", "ADECUADAS.", "CONEXIONES", "REALES."],
+      "promise": "Haz que tu marca entre en la conversación.",
+      "body": "Elegimos a los creadores por lo que representan y por la confianza que han construido. Después imaginamos contigo un mensaje que dé ganas de escuchar a tu marca.",
+      "deliverables": [
+        "Estrategia y casting a medida",
+        "Negociación y seguimiento de talentos",
+        "Activación y medición de resultados"
+      ],
+      "caption": "La confianza no se compra por miles. Se construye con las personas adecuadas.",
+      "footer": "RELEVANCIA ANTES QUE ALCANCE."
+    },
+    {
+      "service": "Creatividad",
+      "headline": ["UNA IDEA", "ANTES QUE", "UN FORMATO."],
+      "promise": "Da una razón para detenerse en tu marca.",
+      "body": "Un formato no es una idea. Encontramos el ángulo que te pertenece y lo convertimos en conceptos, guiones y direcciones de arte que los creadores pueden hacer realmente suyos.",
+      "deliverables": [
+        "Concepto y territorio de campaña",
+        "Dirección de arte y guiones",
+        "Adaptaciones social-first"
+      ],
+      "caption": "Una idea reconocible. Contenidos que solo se parecen a ti.",
+      "footer": "TU SINGULARIDAD. NUESTRO PUNTO DE PARTIDA."
+    },
+    {
+      "service": "Producción",
+      "headline": ["UN CONTENIDO.", "VARIAS", "VIDAS."],
+      "promise": "Produce hoy lo que difundirás mañana.",
+      "body": "Desde el rodaje hasta la exportación final, creamos contenidos pensados para tus usos: redes sociales, e-commerce, campañas paid. Los formatos y los derechos se definen desde el principio.",
+      "deliverables": [
+        "Rodaje, foto y UGC",
+        "Montaje y adaptaciones multiformato",
+        "Derechos de uso y entrega organizada"
+      ],
+      "caption": "Cada toma cuenta. Cada adaptación tiene su lugar.",
+      "footer": "PENSADO PARA VERSE. DISEÑADO PARA REUTILIZARSE."
+    },
+    {
+      "service": "Ads",
+      "headline": ["LA CREACIÓN", "ATRAE.", "LOS ADS", "AMPLIFICAN."],
+      "promise": "Dale a tus mejores contenidos los medios para llegar más lejos.",
+      "body": "Conectamos creatividad y compra de medios: selección de contenidos, pruebas de ángulos, amplificación y optimización. Tu presupuesto sigue a lo que funciona, con una lectura clara de los resultados.",
+      "deliverables": [
+        "Social ads y creator ads",
+        "Pruebas creativas y optimización",
+        "Reporting orientado a objetivos"
+      ],
+      "caption": "Probar. Entender. Amplificar. Y volver a poner la creatividad a trabajar.",
+      "footer": "LA ATENCIÓN ES UN COMIENZO. LA ACCIÓN, EL OBJETIVO."
+    }
+  ],
+  "scene": {
+    "coverDisciplines": ["INFLUENCIA / CREATIVIDAD", "PRODUCCIÓN / ADS"],
+    "coverTitle": "Tu próximo capítulo.",
+    "coverTagline": "DE LAS IDEAS A SU DIFUSIÓN.",
+    "studyLabel": "/ ESTUDIO CREATIVO"
+  }
+}

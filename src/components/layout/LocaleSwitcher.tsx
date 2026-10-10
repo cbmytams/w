@@ -2,6 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { getPathname, usePathname } from "@/i18n/navigation";
+import { toLanguageTag } from "@/i18n/config";
 import { routing } from "@/i18n/routing";
 
 export function LocaleSwitcher({ className }: { className?: string }) {
@@ -17,8 +18,8 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         <a
           key={locale}
           href={getPathname({ href: pathname, locale })}
-          lang={locale}
-          hrefLang={locale}
+          lang={toLanguageTag(locale)}
+          hrefLang={toLanguageTag(locale)}
           aria-current={locale === current ? "true" : undefined}
           aria-label={t("switchTo", { language: t(`languages.${locale}`) })}
         >

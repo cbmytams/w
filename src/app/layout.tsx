@@ -12,7 +12,7 @@ import { siteConfig } from "@/lib/site";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { BfCacheScrollRecovery } from "@/components/common/BfCacheScrollRecovery";
 import { organizationSchema, getWebsiteSchema } from "@/lib/structured-data";
-import { defaultLocale, locales } from "@/i18n/config";
+import { defaultLocale, locales, toLanguageTag } from "@/i18n/config";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -116,7 +116,7 @@ export default async function RootLayout({
 
   return (
     <html
-      lang={locale}
+      lang={toLanguageTag(locale)}
       className="scroll-smooth"
       data-scroll-behavior="smooth"
       suppressHydrationWarning

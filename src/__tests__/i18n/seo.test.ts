@@ -14,7 +14,13 @@ describe("localized SEO paths", () => {
   it("builds canonical and hreflang alternates", () => {
     expect(pageAlternates("en", "/contact")).toEqual({
       canonical: "/en/contact",
-      languages: { fr: "/contact", en: "/en/contact", "x-default": "/contact" },
+      languages: {
+        fr: "/contact",
+        en: "/en/contact",
+        es: "/es/contact",
+        "zh-Hans": "/zh/contact",
+        "x-default": "/contact",
+      },
     });
   });
 });

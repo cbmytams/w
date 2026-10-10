@@ -1,3 +1,4 @@
+import { toLanguageTag } from "@/i18n/config";
 import { siteConfig } from "@/lib/site";
 
 // Escape `<` to prevent `</script>` injection if a JSON-LD value ever
@@ -28,7 +29,7 @@ export function getWebsiteSchema(locale: string) {
     "@type": "WebSite",
     name: siteConfig.name,
     url: siteConfig.url,
-    inLanguage: locale,
+    inLanguage: toLanguageTag(locale),
   };
 }
 

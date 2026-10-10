@@ -15,6 +15,8 @@
   "switchTo": "Passer le site en {language}",
   "languages": {
     "fr": "Français",
-    "en": "English"
+    "en": "English",
+    "es": "Español",
+    "zh": "中文"
   }
 }

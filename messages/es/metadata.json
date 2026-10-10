@@ -1,0 +1,21 @@
+{
+  "ogLocale": "es_ES",
+  "site": {
+    "title": "Wafia | Influencia, talentos y estudio",
+    "description": "Agencia híbrida: marketing de influencers, gestión de talentos 360°, estudio creativo y estrategia. Campañas bien definidas, talentos estructurados, producción aprovechable.",
+    "keywords": [
+      "marketing de influencers",
+      "gestión de talentos",
+      "estudio creativo",
+      "UGC",
+      "producción de contenido",
+      "campañas en redes sociales"
+    ]
+  },
+  "home": {
+    "title": "Wafia | Agencia de marketing de influencers para marcas",
+    "description": "Wafia estructura las campañas de influencers de las marcas: estrategia, casting de creadores, producción en estudio, difusión paid y reporting. Campañas pensadas como activos de marca.",
+    "shortDescription": "Wafia estructura las campañas de influencers de las marcas: estrategia, casting de creadores, producción en estudio, difusión paid y reporting.",
+    "breadcrumb": "Inicio"
+  }
+}

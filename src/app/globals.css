@@ -937,3 +937,8 @@ body {
     animation: none;
   }
 }
+
+/* Letter-spacing is tuned for Latin capitals; it spreads Chinese glyphs apart. */
+html:lang(zh-Hans) * {
+  letter-spacing: normal !important;
+}

@@ -1,4 +1,4 @@
-import { defaultLocale, locales } from "@/i18n/config";
+import { defaultLocale, locales, toLanguageTag } from "@/i18n/config";
 
 /** Public path of `path` in `locale`: the default locale has no prefix. */
 export function localizedPath(path: string, locale: string): string {
@@ -11,7 +11,9 @@ export function pageAlternates(locale: string, path: string) {
   return {
     canonical: localizedPath(path, locale),
     languages: {
-      ...Object.fromEntries(locales.map((l) => [l, localizedPath(path, l)])),
+      ...Object.fromEntries(
+        locales.map((l) => [toLanguageTag(l), localizedPath(path, l)])
+      ),
       "x-default": localizedPath(path, defaultLocale),
     },
   };

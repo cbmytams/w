@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "hub": {
+      "title": "Contacto",
+      "description": "Hablemos de los objetivos de tu marca y de tu crecimiento."
+    },
+    "brands": {
+      "title": "Contacto para marcas",
+      "description": "Cuéntanos tu campaña con creadores. Respuesta en 24 h."
+    },
+    "talents": {
+      "title": "Contacto para talentos",
+      "description": "Cuéntanos tu trayectoria. Respuesta en 24 h."
+    }
+  },
+  "common": {
+    "logoAlt": "Wafia",
+    "homeAriaLabel": "Wafia, inicio",
+    "back": "Volver"
+  },
+  "hub": {
+    "eyebrow": "Contacto",
+    "title": "Hablemos de tu proyecto.",
+    "intro": "Una campaña de marca o una trayectoria como talento: elige tu punto de entrada y te respondemos en 24 h.",
+    "brandsCta": "Soy una marca",
+    "talentsCta": "Soy un talento"
+  },
+  "form": {
+    "brands": {
+      "eyebrow": "Contacto marcas",
+      "title": "Completa el dosier.",
+      "intro": "El brief que lo pone todo en marcha: tu marca, tus datos de contacto, tu proyecto. En 24 h recibes un primer planteamiento.",
+      "fields": {
+        "company": {
+          "label": "Empresa",
+          "placeholder": "Tu marca"
+        },
+        "name": {
+          "label": "Tu nombre",
+          "placeholder": "Nombre y apellidos"
+        },
+        "email": {
+          "label": "Email de trabajo",
+          "placeholder": "tu@marca.es"
+        },
+        "objective": {
+          "label": "Tu proyecto",
+          "placeholder": "Contexto, retos, plazos."
+        }
+      }
+    },
+    "talents": {
+      "eyebrow": "Contacto talentos",
+      "title": "Completa el dosier.",
+      "intro": "Quién eres, dónde seguirte, adónde quieres llegar. Te respondemos en 24 h.",
+      "fields": {
+        "name": {
+          "label": "Nombre completo",
+          "placeholder": "Nombre y apellidos"
+        },
+        "instagram": {
+          "label": "Instagram",
+          "placeholder": "@usuario"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "tu@email.es"
+        },
+        "objective": {
+          "label": "Tu trayectoria",
+          "placeholder": "Contenidos, audiencia, objetivos."
+        }
+      }
+    },
+    "hint": "Mínimo 20 caracteres.",
+    "error": "El envío ha fallado. Comprueba tu conexión e inténtalo de nuevo.",
+    "note": "<highlight>Respuesta en 24 h.</highlight> Un interlocutor, no un embudo de ventas.",
+    "sending": "Enviando",
+    "submit": "Enviar el dosier",
+    "rgpd": "Al enviar este dosier, aceptas que Wafia Agency trate tus datos para responder a tu solicitud (conservación: 3 años). Derechos de acceso, rectificación y supresión: contact@wafia.fr. <privacy>Política de privacidad</privacy>",
+    "success": {
+      "eyebrow": "Dosier recibido",
+      "title": "Gracias, lo hemos recibido.",
+      "text": "Te respondemos en 24 h.",
+      "back": "Volver"
+    }
+  }
+}
