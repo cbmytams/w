@@ -67,12 +67,20 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     icons: {
       icon: [
-        { url: "/icon.svg", type: "image/svg+xml" },
-        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+        { url: "/icon.svg?v=2", type: "image/svg+xml" },
+        {
+          url: "/apple-touch-icon.png?v=2",
+          sizes: "180x180",
+          type: "image/png",
+        },
       ],
-      shortcut: "/icon.svg",
+      shortcut: "/icon.svg?v=2",
       apple: [
-        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+        {
+          url: "/apple-touch-icon.png?v=2",
+          sizes: "180x180",
+          type: "image/png",
+        },
       ],
     },
     manifest: "/manifest.webmanifest",
