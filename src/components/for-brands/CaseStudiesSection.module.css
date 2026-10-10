@@ -98,7 +98,7 @@
   display: flex;
   gap: 16px;
   align-items: center;
-  font-size: 8px;
+  font-size: 12px;
   text-transform: uppercase;
 }
 .meta i {
@@ -108,7 +108,7 @@
 }
 .meta > span:last-child {
   margin-left: auto;
-  font-size: 7px;
+  font-size: 12px;
 }
 .copy {
   position: relative;
@@ -145,7 +145,7 @@
   max-width: 260px;
 }
 .description {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
   max-width: 270px;
   color: #e0e1dc;
@@ -157,7 +157,8 @@
   align-self: flex-start;
   gap: 14px;
   padding: 8px 0;
-  font-size: 10px;
+  min-height: 44px;
+  font-size: 12px;
   cursor: pointer;
 }
 .link svg {
@@ -182,7 +183,7 @@
   background: #101311;
 }
 .proofHeading {
-  font-size: 8px;
+  font-size: 12px;
   text-transform: uppercase;
   text-align: right;
 }
@@ -203,13 +204,13 @@
 }
 .proofs dd {
   margin-top: 4px;
-  font-size: 7px;
+  font-size: 12px;
   text-transform: uppercase;
   line-height: 1.35;
 }
 .case[data-nav-tone="light"] {
   color: var(--case-ink);
-  --case-accent: #d83e25;
+  --case-accent: #c23a1f;
 }
 .case[data-nav-tone="light"] .visual::after {
   background: linear-gradient(
@@ -255,7 +256,7 @@
   gap: 20px;
   padding-bottom: 24px;
   border-bottom: 1px solid #12151325;
-  font-size: 10px;
+  font-size: 12px;
   text-transform: uppercase;
 }
 .dialogTop button {
@@ -283,7 +284,7 @@
   color: #414740;
 }
 .scope {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
   margin-top: 20px;
 }
@@ -299,10 +300,10 @@
   font:
     600 30px var(--font-outfit),
     sans-serif;
-  color: #d83e25;
+  color: #c23a1f;
 }
 .dialogMetrics dd {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
 }
 .dialogContact {
@@ -328,7 +329,7 @@
     font-size: 18px;
   }
   .description {
-    font-size: 11px;
+    font-size: 12px;
     max-width: 310px;
   }
   .proofs {
@@ -351,7 +352,7 @@
     font-size: 14px;
   }
   .description {
-    font-size: 9px;
+    font-size: 12px;
   }
   .proofs {
     padding-inline: 17px;
@@ -396,7 +397,7 @@
     top: 17px;
     left: 7%;
     right: 7%;
-    font-size: 8px;
+    font-size: 12px;
   }
   .meta i {
     max-width: 80px;
@@ -422,8 +423,8 @@
     display: none;
   }
   .link {
-    font-size: 10px;
-    min-height: 40px;
+    font-size: 12px;
+    min-height: 44px;
     padding-block: 7px;
   }
   .visual[data-image-treatment="square"] .imageStage {
@@ -447,7 +448,7 @@
     font-size: 22px;
   }
   .proofs dd {
-    font-size: 7px;
+    font-size: 12px;
     max-width: 95px;
   }
   .case[data-nav-tone="light"] .visual::after {

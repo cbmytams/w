@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  font-size: 11px;
+  font-size: 12px;
   white-space: nowrap;
 }
 .links a::after {
@@ -96,7 +96,7 @@
   justify-content: center;
   min-width: 44px;
   min-height: 44px;
-  font-size: 11px;
+  font-size: 12px;
   opacity: 0.7;
   transition: opacity 180ms;
 }
@@ -126,7 +126,7 @@
   color: var(--nav-paper);
   border-radius: 3px;
   padding: 13px 18px;
-  font-size: 11px;
+  font-size: 12px;
   cursor: pointer;
   transition: opacity 180ms;
 }
@@ -177,7 +177,7 @@
 .mobileLabel {
   margin-top: 44px;
   margin-bottom: 22px;
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   color: #666b66;
 }

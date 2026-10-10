@@ -21,7 +21,7 @@ type MethodStep = {
 
 const DIM = 0.5;
 const MUTED = "#9aa09a";
-const ACCENT = "#c94426";
+const ACCENT = "#c23a1f";
 
 function LitStep({
   step,

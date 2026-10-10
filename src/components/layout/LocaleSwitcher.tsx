@@ -21,7 +21,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
           lang={toLanguageTag(locale)}
           hrefLang={toLanguageTag(locale)}
           aria-current={locale === current ? "true" : undefined}
-          aria-label={t("switchTo", { language: t(`languages.${locale}`) })}
+          aria-label={`${locale.toUpperCase()}: ${t("switchTo", { language: t(`languages.${locale}`) })}`}
         >
           {locale.toUpperCase()}
         </a>

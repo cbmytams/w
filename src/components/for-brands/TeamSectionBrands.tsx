@@ -59,7 +59,6 @@ export function TeamSectionBrands() {
               key={profile.id}
               className={styles.portrait}
               onClick={() => setIsOpen(true)}
-              aria-label={t("section.portraitAria", { name: profile.name })}
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
               animate={reduceMotion ? { opacity: 1, y: 0 } : undefined}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -73,7 +72,7 @@ export function TeamSectionBrands() {
               <span className={styles.portraitMedia}>
                 <Image
                   src={profile.image}
-                  alt={t("section.portraitAlt", { name: profile.name })}
+                  alt=""
                   fill
                   sizes="(max-width: 760px) 43vw, (max-width: 1100px) 28vw, 19vw"
                   className={styles.portraitImage}

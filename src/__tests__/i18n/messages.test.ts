@@ -1,8 +1,9 @@
 import { readdirSync, readFileSync } from "fs";
 import { join } from "path";
+import { locales } from "@/i18n/config";
 
 const ROOT = join(process.cwd(), "messages");
-const LOCALES = readdirSync(ROOT);
+const LOCALES: readonly string[] = locales;
 const REFERENCE = "fr";
 
 type Json = string | number | boolean | null | Json[] | { [k: string]: Json };

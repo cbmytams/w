@@ -12,7 +12,8 @@ import { siteConfig } from "@/lib/site";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { BfCacheScrollRecovery } from "@/components/common/BfCacheScrollRecovery";
 import { organizationSchema, getWebsiteSchema } from "@/lib/structured-data";
-import { defaultLocale, locales, toLanguageTag } from "@/i18n/config";
+import { toLanguageTag } from "@/i18n/config";
+import { DARK_ROUTE_SCRIPT } from "@/i18n/dark-route-script";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -26,11 +27,6 @@ const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
 });
-
-// Pages with the dark hero (home, contact) get `dark` before first paint; the
-// locale prefix (/en…) is stripped first so every language behaves the same.
-const LOCALE_PREFIX = locales.filter((l) => l !== defaultLocale).join("|");
-const DARK_ROUTE_SCRIPT = `try{var p=location.pathname.replace(/^\/(${LOCALE_PREFIX})(?=\/|$)/,"")||"/";if(p==="/"||p.startsWith("/contact")){document.documentElement.classList.add("dark")}}catch(e){}`;
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();

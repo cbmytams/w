@@ -3,7 +3,7 @@
   --team-ink: #19201e;
   --team-muted: #5f6561;
   --team-line: rgb(25 32 30 / 16%);
-  --team-accent: #f45a32;
+  --team-accent: #c23a1f;
   position: relative;
   overflow: clip;
   color: var(--team-ink);
@@ -30,7 +30,7 @@
 
 .eyebrow {
   margin: 0 0 24px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
@@ -169,8 +169,8 @@
   grid-column: 1 / -1;
   justify-self: end;
   margin: 16px 0 0;
-  color: #838783;
-  font-size: 8px;
+  color: #5f655f;
+  font-size: 12px;
   font-weight: 650;
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -243,13 +243,13 @@
 
   .role {
     min-height: 34px;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .caption {
     justify-self: start;
     max-width: 100%;
-    font-size: 7px;
+    font-size: 12px;
     line-height: 1.6;
     letter-spacing: 0.26em;
   }

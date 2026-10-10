@@ -26,8 +26,8 @@ const previews: readonly Preview[] = [
     platform: "TikTok",
     avatar: "/images/talents/basic-fit/redha.jpeg",
     duration: "00:43",
-    video: "/studio/krh/basic-fit-redha-preview.mp4",
-    poster: "/studio/krh/basic-fit-redha-poster.jpg",
+    video: "/studio/krh/basic-fit-redha-preview-540.mp4",
+    poster: "/studio/krh/basic-fit-redha-poster-540.webp",
     href: "https://www.tiktok.com/@redhajr",
   },
   {
@@ -37,8 +37,8 @@ const previews: readonly Preview[] = [
     platform: "TikTok",
     avatar: "/images/talents/basic-fit/noah.jpeg",
     duration: "00:59",
-    video: "/studio/krh/noah-basic-fit-preview.mp4",
-    poster: "/studio/krh/noah-basic-fit-poster.jpg",
+    video: "/studio/krh/noah-basic-fit-preview-540.mp4",
+    poster: "/studio/krh/noah-basic-fit-poster-540.webp",
     href: "https://www.tiktok.com/@noah_sgds",
   },
   {
@@ -48,8 +48,8 @@ const previews: readonly Preview[] = [
     platform: "TikTok",
     avatar: "/images/talents/basic-fit/ana.jpeg",
     duration: "00:51",
-    video: "/studio/krh/ana-basic-fit-preview.mp4",
-    poster: "/studio/krh/ana-basic-fit-poster.jpg",
+    video: "/studio/krh/ana-basic-fit-preview-540.mp4",
+    poster: "/studio/krh/ana-basic-fit-poster-540.webp",
     href: "https://www.tiktok.com/@ana.hnf",
   },
   {
@@ -59,8 +59,8 @@ const previews: readonly Preview[] = [
     platform: "TikTok",
     avatar: "/images/talents/basic-fit/shayna.jpeg",
     duration: "00:55",
-    video: "/studio/krh/shayna-basic-fit-preview.mp4",
-    poster: "/studio/krh/shayna-basic-fit-poster.jpg",
+    video: "/studio/krh/shayna-basic-fit-preview-540.mp4",
+    poster: "/studio/krh/shayna-basic-fit-poster-540.webp",
     href: "https://www.tiktok.com/@shaynapropagandeclub",
   },
 ];
@@ -156,6 +156,10 @@ function PreviewCard({
     const video = videoRef.current;
     if (!card || !video) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const connection = (
+      navigator as Navigator & { connection?: { saveData?: boolean } }
+    ).connection;
+    if (connection?.saveData) return;
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -183,17 +187,15 @@ function PreviewCard({
         loop
         playsInline
         preload="none"
-        aria-label={t("showcase.videoAria", { talent: preview.talent })}
+        aria-hidden="true"
       />
-      <span className={styles.duration}>{preview.duration}</span>
-      <span className={styles.more} aria-hidden="true">
-        •••
-      </span>
+      <span className={styles.duration}>{preview.duration}</span>{" "}
+      <span className={styles.more} aria-hidden="true" />
       <span className={styles.creator}>
         <span className={styles.avatar}>
           <Image
             src={preview.avatar}
-            alt={t("showcase.avatarAlt", { talent: preview.talent })}
+            alt=""
             width={48}
             height={48}
             sizes="48px"
@@ -202,7 +204,7 @@ function PreviewCard({
         <span className={styles.platform}>
           <TikTokLogo aria-hidden="true" />
           <span>
-            <strong>{preview.platform}</strong>
+            <strong>{preview.platform}</strong>{" "}
             <em>{t("showcase.followersLabel", { followers })}</em>
           </span>
         </span>
@@ -217,11 +219,7 @@ function PreviewCard({
       href={preview.href}
       target="_blank"
       rel="noreferrer"
-      aria-label={t("showcase.profileAria", {
-        handle: preview.handle,
-        talent: preview.talent,
-        followers,
-      })}
+      aria-label={`${preview.duration} ${preview.platform} ${t("showcase.followersLabel", { followers })}. ${t("showcase.profileAria", { handle: preview.handle, talent: preview.talent })}`}
     >
       {content}
     </a>

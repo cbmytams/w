@@ -61,10 +61,8 @@
     "railAria": "Previews de video de Basic-Fit",
     "services": ["Influencia", "Creación", "Producción", "Ads"],
     "tagline": "De las ideas a su difusión.",
-    "videoAria": "Preview de video de {talent} para Basic-Fit",
-    "avatarAlt": "Foto de perfil de TikTok de {talent}",
     "followersLabel": "{followers} seguidores",
-    "profileAria": "Ver el perfil de TikTok {handle} de {talent}, {followers} seguidores",
+    "profileAria": "Ver el perfil de TikTok {handle} de {talent}",
     "previews": [
       { "followers": "5,8 M" },
       { "followers": "1,6 M" },

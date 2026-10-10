@@ -69,11 +69,21 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
+    const mediaCache = [
+      {
+        key: "Cache-Control",
+        value: "public, max-age=2592000, stale-while-revalidate=86400",
+      },
+    ];
     return [
       {
         source: "/:path*",
         headers: securityHeaders,
       },
+      { source: "/studio/:path*", headers: mediaCache },
+      { source: "/images/:path*", headers: mediaCache },
+      { source: "/logos/:path*", headers: mediaCache },
+      { source: "/wafia.svg", headers: mediaCache },
     ];
   },
   async redirects() {
@@ -207,13 +217,10 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withSentryConfig(
-  withNextIntl(nextConfig),
-  {
-    silent: true,
-    tunnelRoute: "/monitoring",
-    webpack: {
-      autoInstrumentServerFunctions: true,
-    },
-  }
-);
+export default withSentryConfig(withNextIntl(nextConfig), {
+  silent: true,
+  tunnelRoute: "/monitoring",
+  webpack: {
+    autoInstrumentServerFunctions: true,
+  },
+});

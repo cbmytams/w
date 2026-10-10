@@ -15,7 +15,6 @@
   position: sticky;
   top: 0;
   height: 100svh;
-  min-height: 640px;
   overflow: clip;
   isolation: isolate;
 }
@@ -93,7 +92,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  font-size: 11px;
+  font-size: 12px;
   color: #535e57;
 }
 .disciplines span {
@@ -102,11 +101,11 @@
 .coverNote {
   position: absolute;
   bottom: 15%;
-  left: 58%;
+  left: 6%;
   display: flex;
   gap: 24px;
   align-items: baseline;
-  font-size: 10px;
+  font-size: 12px;
   color: #535e57;
 }
 .coverNote span:first-child {
@@ -121,7 +120,7 @@
   display: flex;
   gap: 32px;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
   text-transform: uppercase;
   color: var(--book-white);
 }
@@ -140,12 +139,15 @@
   background: var(--book-accent);
   transform-origin: left;
 }
+.dock {
+  display: contents;
+}
 .chapterPanel {
   position: absolute;
   right: 6%;
   width: 24%;
   top: 26%;
-  bottom: 15%;
+  bottom: calc(5% + 76px);
   display: flex;
   flex-direction: column;
   color: var(--book-white);
@@ -173,7 +175,7 @@
   opacity: 0;
 }
 .chapterNav button span {
-  font-size: 10px;
+  font-size: 12px;
 }
 .chapterNav button[aria-current],
 .chapterNav button:hover {
@@ -181,6 +183,22 @@
 }
 .chapterNav button[aria-current] svg {
   opacity: 1;
+}
+.pitches {
+  display: grid;
+}
+.pitch {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 180ms,
+    visibility 0s 180ms;
+}
+.pitch[data-active="true"] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 180ms 60ms;
 }
 .pitch h2 {
   font-family: var(--font-heading);
@@ -202,7 +220,7 @@
   list-style: none;
 }
 .pitch li {
-  font-size: 10px;
+  font-size: 12px;
   padding: 7px 0;
   color: #d7dcd5;
 }
@@ -219,7 +237,7 @@
   margin-top: auto;
   margin-bottom: 26px;
   padding-top: 20px;
-  font-size: 11px;
+  font-size: 12px;
 }
 .chapterCta:hover {
   color: var(--book-accent);
@@ -235,7 +253,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  font-size: 9px;
+  font-size: 12px;
 }
 .bottomLine button {
   display: inline-flex;
@@ -243,7 +261,7 @@
   align-items: center;
   min-height: 44px;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 12px;
   padding: 8px 0;
 }
 .stage[data-open="true"] .bottomLine {
@@ -288,9 +306,6 @@
   .pitch p {
     font-size: 14px;
   }
-  .pitch li {
-    font-size: 12px;
-  }
 }
 @media (max-width: 1100px) and (min-width: 769px) {
   .intro h1 {
@@ -310,19 +325,124 @@
     margin-bottom: 20px;
   }
   .pitch ul {
-    margin-top: 12px;
+    display: none;
   }
 }
-@media (max-width: 768px) {
+@media (max-height: 740px) and (min-width: 769px) {
+  .intro {
+    top: 15%;
+  }
+  .intro h1 {
+    font-size: 58px;
+    margin-bottom: 18px;
+  }
+  .intro p {
+    font-size: 14px;
+  }
+  .disciplines {
+    margin-top: 24px;
+  }
+  .chapterPanel {
+    top: 21%;
+    bottom: calc(5% + 72px);
+  }
+  .chapterNav {
+    margin-bottom: 20px;
+  }
+  .pitch h2 {
+    font-size: 25px;
+  }
+  .pitch ul {
+    margin-top: 10px;
+  }
+  .pitch li {
+    padding: 4px 0;
+  }
+  .chapterCta {
+    margin-bottom: 12px;
+    padding-top: 12px;
+  }
+}
+@media (max-height: 640px) and (min-width: 769px) {
+  .intro p,
+  .disciplines,
+  .pitch ul {
+    display: none;
+  }
+  .intro h1 {
+    font-size: 50px;
+  }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .intro {
+    top: 76px;
+    left: 5%;
+    width: 46%;
+  }
+  .intro h1 {
+    font-size: clamp(28px, 8svh, 40px);
+    margin-bottom: 12px;
+  }
+  .intro p,
+  .disciplines,
+  .coverNote,
+  .pitch p,
+  .pitch ul,
+  .bottomLine > span {
+    display: none;
+  }
+  .actions {
+    margin-top: 0;
+    gap: 18px;
+  }
+  .bookHeader {
+    top: 74px;
+    left: 5%;
+    right: 5%;
+  }
+  .chapterPanel {
+    top: 112px;
+    right: 5%;
+    width: 38%;
+    bottom: 72px;
+  }
+  .chapterNav {
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+    gap: 0 10px;
+    margin-bottom: 10px;
+  }
+  .chapterNav button {
+    padding: 8px 0;
+  }
+  .chapterNav button span,
+  .chapterNav button svg {
+    display: none;
+  }
+  .pitch h2 {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+  .chapterCta {
+    margin-top: 8px;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+  .bottomLine {
+    bottom: 8px;
+    padding-top: 6px;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
   .story {
     height: 500svh;
   }
-  .stage {
-    min-height: 0;
-  }
   .intro {
     left: 7%;
-    top: clamp(104px, 11svh, 122px);
+    top: clamp(96px, 11svh, 122px);
     width: 86%;
     max-width: none;
   }
@@ -347,18 +467,16 @@
     width: 100%;
     justify-content: space-between;
     padding: 13px 15px;
-    font-size: 11px;
+    font-size: 12px;
     gap: 12px;
   }
   .textButton {
     justify-content: space-between;
     width: 100%;
-    font-size: 10.5px;
     padding: 12px 0 13px;
   }
   .disciplines {
     margin-top: 20px;
-    font-size: 10px;
     line-height: 1.4;
     gap: 9px 13px;
   }
@@ -370,7 +488,6 @@
     grid-template-columns: max-content minmax(36px, 1fr) max-content;
     gap: 10px;
     align-items: center;
-    font-size: 8px;
     line-height: 1;
   }
   .coverNote::after {
@@ -388,60 +505,61 @@
     color: #535e57;
   }
   .bookHeader {
-    top: 14%;
+    top: max(12.5%, 80px);
     left: 7%;
     right: 7%;
     gap: 15px;
-    font-size: 8px;
   }
-  .chapterPanel {
-    top: 53%;
+  .dock {
+    position: absolute;
+    z-index: 1;
     left: 7%;
     right: 7%;
+    bottom: max(16px, 2.4svh);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .chapterPanel,
+  .bottomLine {
+    position: static;
     width: auto;
-    bottom: 12%;
   }
   .chapterNav {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-    margin-bottom: 17px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 14px;
+    margin-bottom: 10px;
   }
   .chapterNav button {
-    gap: 5px;
-    font-size: 10px;
-    min-height: 44px;
-    padding: 8px 0;
-  }
-  .chapterNav button span {
-    font-size: 8px;
+    min-width: 44px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1px;
+    padding: 6px 0;
   }
   .chapterNav button svg {
     display: none;
   }
   .pitch h2 {
-    font-size: 25px;
-    margin-bottom: 10px;
+    font-size: 24px;
+    margin-bottom: 8px;
     max-width: 450px;
   }
   .pitch p {
-    font-size: 11px;
-    line-height: 1.65;
+    line-height: 1.55;
   }
   .pitch ul {
     display: none;
   }
   .chapterCta {
-    font-size: 10px;
-    min-height: 44px;
-    padding-top: 10px;
-    margin-bottom: 18px;
+    margin: 2px 0 0;
+    padding-top: 0;
   }
   .bottomLine {
-    left: 7%;
-    right: 7%;
-    bottom: max(18px, 2.8svh);
-    padding-top: 16px;
-    font-size: 8.5px;
+    padding-top: 10px;
     line-height: 1.35;
     word-spacing: 0.08em;
     gap: 18px;
@@ -451,99 +569,55 @@
   }
   .bottomLine button {
     white-space: nowrap;
-    min-height: 44px;
-    font-size: 10px;
   }
   .fallback {
     top: 56%;
     left: 34%;
     width: 32%;
     padding: 14px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .fallback img {
     width: 80%;
   }
 }
-@media (max-height: 740px) and (min-width: 769px) {
-  .intro {
-    top: 15%;
-  }
-  .intro h1 {
-    font-size: 58px;
-    margin-bottom: 18px;
-  }
-  .intro p {
-    font-size: 14px;
-  }
+@media (max-width: 768px) and (orientation: portrait) and (max-height: 700px) {
   .disciplines {
-    margin-top: 24px;
-  }
-  .chapterPanel {
-    top: 23%;
-    bottom: 13%;
-  }
-  .chapterNav {
-    margin-bottom: 20px;
-  }
-  .pitch h2 {
-    font-size: 25px;
-  }
-  .pitch p {
-    font-size: 11px;
+    display: none;
   }
 }
-@media (max-width: 600px) and (max-height: 720px) {
-  .intro {
-    top: 92px;
+@media (max-width: 768px) and (orientation: portrait) and (max-height: 640px) {
+  .intro p,
+  .pitch p {
+    display: none;
   }
+}
+@media (max-width: 400px) and (orientation: portrait) {
+  .coverNote span:last-child,
+  .coverNote::after {
+    display: none;
+  }
+}
+@media (max-width: 374px) and (orientation: portrait) {
   .intro h1 {
-    margin-bottom: 10px;
+    font-size: 36px;
+  }
+  .primary {
+    padding: 11px;
   }
   .actions {
-    margin-top: 12px;
+    gap: 10px;
   }
-  .disciplines {
-    margin-top: 10px;
-  }
-  .scene {
-    transform: translateY(28px) scale(0.88);
-    transform-origin: center;
-  }
-  .coverNote {
-    bottom: 10.5%;
+  .pitch h2 {
+    font-size: 22px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .story * {
     scroll-behavior: auto;
   }
-}
-@media (max-width: 374px) {
-  .intro h1 {
-    font-size: 36px;
-  }
-  .intro p {
-    font-size: 11px;
-  }
-  .primary {
-    padding: 11px;
-    font-size: 10px;
-  }
-  .actions {
-    gap: 10px;
-  }
-  .disciplines {
-    gap: 7px;
-    font-size: 8px;
-  }
-  .pitch h2 {
-    font-size: 22px;
-  }
-  .pitch p {
-    font-size: 10px;
-  }
-  .chapterNav button {
-    font-size: 9px;
+  .pitch,
+  .pitch[data-active="true"] {
+    transition: none;
   }
 }

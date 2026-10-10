@@ -5,7 +5,6 @@ import { Link } from "@/i18n/navigation";
 import { Fragment, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
-  AnimatePresence,
   motion,
   transform,
   useMotionValueEvent,
@@ -49,7 +48,6 @@ export function BrandHeroV2() {
   const chapterOpacity = useTransform(() =>
     transform(scrollYProgress.get(), [0.23, 0.32], [0, 1])
   );
-  const entry = chapters[chapter];
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
     setChapter(chapterAt(progress + 0.025));
@@ -98,6 +96,7 @@ export function BrandHeroV2() {
             scale: reducedMotion ? 1 : introScale,
           }}
           inert={opened}
+          data-book-slot="intro"
         >
           <h1>
             {t.rich("intro.title", {
@@ -135,6 +134,7 @@ export function BrandHeroV2() {
           className={styles.coverNote}
           style={{ opacity: introOpacity }}
           aria-hidden="true"
+          data-book-slot="cover-note"
         >
           <span>{t("cover.label")}</span>
           <span>{t("cover.tagline")}</span>
@@ -143,6 +143,7 @@ export function BrandHeroV2() {
           className={styles.bookHeader}
           style={{ opacity: chapterOpacity }}
           aria-hidden="true"
+          data-book-slot="book-header"
         >
           <span>{t("bookHeader.title")}</span>
           <div>
@@ -150,74 +151,77 @@ export function BrandHeroV2() {
           </div>
           <span>0{chapter + 1} / 04</span>
         </motion.div>
-        <motion.aside
-          className={styles.chapterPanel}
-          style={{ opacity: chapterOpacity }}
-          inert={!opened}
-          aria-label={t("panel.ariaLabel")}
-        >
-          <nav
-            className={styles.chapterNav}
-            aria-label={t("panel.navAriaLabel")}
+        <div className={styles.dock}>
+          <motion.aside
+            className={styles.chapterPanel}
+            style={{ opacity: chapterOpacity }}
+            inert={!opened}
+            aria-label={t("panel.ariaLabel")}
+            data-book-slot="panel"
           >
-            {chapters.map((item, index) => (
-              <button
-                key={item.service}
-                onClick={() => goToChapter(index)}
-                aria-current={chapter === index ? "step" : undefined}
-              >
-                <span>0{index + 1}</span>
-                {item.service}
-                <ArrowUpRight size={15} />
-              </button>
-            ))}
-          </nav>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              className={styles.pitch}
-              key={entry.service}
-              initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: reducedMotion ? 0 : -10 }}
-              transition={{ duration: reducedMotion ? 0.1 : 0.18 }}
+            <nav
+              className={styles.chapterNav}
+              aria-label={t("panel.navAriaLabel")}
             >
-              <h2>{entry.promise}</h2>
-              <p>{entry.body}</p>
-              <ul>
-                {entry.deliverables.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </motion.div>
-          </AnimatePresence>
-          <Link href="/contact/brands" className={styles.chapterCta}>
-            {t("panel.cta")} <ArrowUpRight size={17} />
-          </Link>
-        </motion.aside>
-        <div className={styles.bottomLine}>
-          <span>
-            {opened ? t("bottomLine.opened") : t("bottomLine.closed")}
-          </span>
-          <button
-            onClick={() =>
-              chapter < 3
-                ? goToChapter(opened ? chapter + 1 : 0)
-                : section.current?.nextElementSibling?.scrollIntoView({
-                    behavior: reducedMotion ? "instant" : "smooth",
-                  })
-            }
-          >
-            {opened
-              ? chapter === 3
-                ? t("bottomLine.next")
-                : t("bottomLine.nextChapter")
-              : t("bottomLine.discover")}{" "}
-            {opened && chapter === 3 ? (
-              <ArrowRight size={16} />
-            ) : (
-              <ArrowDown size={16} />
-            )}
-          </button>
+              {chapters.map((item, index) => (
+                <button
+                  key={item.service}
+                  onClick={() => goToChapter(index)}
+                  aria-current={chapter === index ? "step" : undefined}
+                >
+                  <span>0{index + 1}</span>
+                  {item.service}
+                  <ArrowUpRight size={15} />
+                </button>
+              ))}
+            </nav>
+            <div className={styles.pitches}>
+              {chapters.map((item, index) => (
+                <div
+                  className={styles.pitch}
+                  key={item.service}
+                  data-active={index === chapter}
+                  inert={index !== chapter}
+                >
+                  <h2>{item.promise}</h2>
+                  <p>{item.body}</p>
+                  <ul>
+                    {item.deliverables.map((deliverable) => (
+                      <li key={deliverable}>{deliverable}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <Link href="/contact/brands" className={styles.chapterCta}>
+              {t("panel.cta")} <ArrowUpRight size={17} />
+            </Link>
+          </motion.aside>
+          <div className={styles.bottomLine}>
+            <span>
+              {opened ? t("bottomLine.opened") : t("bottomLine.closed")}
+            </span>
+            <button
+              onClick={() =>
+                chapter < 3
+                  ? goToChapter(opened ? chapter + 1 : 0)
+                  : section.current?.nextElementSibling?.scrollIntoView({
+                      behavior: reducedMotion ? "instant" : "smooth",
+                    })
+              }
+            >
+              {opened
+                ? chapter === 3
+                  ? t("bottomLine.next")
+                  : t("bottomLine.nextChapter")
+                : t("bottomLine.discover")}{" "}
+              {opened && chapter === 3 ? (
+                <ArrowRight size={16} />
+              ) : (
+                <ArrowDown size={16} />
+              )}
+            </button>
+          </div>
         </div>
       </motion.div>
     </section>

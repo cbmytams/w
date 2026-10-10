@@ -16,7 +16,7 @@
   --drawer-ink: #19201e;
   --drawer-muted: #626763;
   --drawer-line: rgb(25 32 30 / 17%);
-  --drawer-accent: #f45a32;
+  --drawer-accent: #c23a1f;
   position: fixed;
   inset: 0 0 0 auto;
   z-index: 1060;
@@ -79,7 +79,7 @@
 .drawerEyebrow {
   margin: 0 0 28px;
   color: var(--drawer-accent);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 750;
   text-transform: uppercase;
 }
@@ -191,7 +191,7 @@
 .fact span {
   display: block;
   margin-bottom: 5px;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 750;
   text-transform: uppercase;
 }

@@ -38,8 +38,8 @@ export function roundedBoard(width: number, height: number, depth: number) {
 }
 
 export function curvedLeaf(side: -1 | 1, layer = 0) {
-  const columns = 96;
-  const rows = 32;
+  const columns = layer ? 32 : 96;
+  const rows = layer ? 12 : 32;
   const positions: number[] = [];
   const uvs: number[] = [];
   const indices: number[] = [];
@@ -94,9 +94,14 @@ export function contactShadowTexture() {
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = 512;
   const ctx = canvas.getContext("2d")!;
-  ctx.filter = "blur(25px)";
-  ctx.fillStyle = "#000";
-  ctx.fillRect(70, 65, 372, 382);
+  // Additive translucent rects fake the blur: canvas filters are missing in Safari.
+  const steps = 24;
+  ctx.globalCompositeOperation = "lighter";
+  ctx.fillStyle = `rgba(0,0,0,${1 / steps})`;
+  for (let i = 0; i < steps; i++) {
+    const inset = 40 - (i * 80) / steps;
+    ctx.fillRect(70 + inset, 65 + inset, 372 - inset * 2, 382 - inset * 2);
+  }
   return new THREE.CanvasTexture(canvas);
 }
 

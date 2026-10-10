@@ -54,7 +54,8 @@ function grainCanvas() {
 
 function surface(base = "#1d1d1d") {
   const canvas = document.createElement("canvas");
-  const density = window.innerWidth <= 768 ? 1.5 : 2;
+  const density =
+    window.innerWidth > 1400 && window.devicePixelRatio >= 2 ? 1.5 : 1;
   canvas.width = 1000 * density;
   canvas.height = 1400 * density;
   const ctx = canvas.getContext("2d")!;
@@ -107,10 +108,17 @@ function coverTexture(
   copy.coverDisciplines.forEach((line, n) =>
     ctx.fillText(line, 90, 120 + n * 42)
   );
+  const whiteLogo = document.createElement("canvas");
+  whiteLogo.width = 470;
+  whiteLogo.height = 153;
+  const tint = whiteLogo.getContext("2d")!;
+  tint.drawImage(logo, 0, 0, 470, 153);
+  tint.globalCompositeOperation = "source-in";
+  tint.fillStyle = "#fff";
+  tint.fillRect(0, 0, 470, 153);
   ctx.save();
-  ctx.filter = "invert(1)";
   ctx.globalAlpha = 0.2;
-  ctx.drawImage(logo, 265, 653, 470, 153);
+  ctx.drawImage(whiteLogo, 265, 653);
   ctx.restore();
   ctx.fillStyle = "#f45a32";
   ctx.fillRect(95, 1040, 92, 4);
@@ -313,25 +321,35 @@ export default function BrandBookScene({
         return;
       }
       if (disposed) return;
+      const lowPower =
+        window.innerWidth <= 768 ||
+        window.matchMedia("(pointer: coarse)").matches;
+      const pixelRatio = Math.min(window.devicePixelRatio, lowPower ? 1.5 : 2);
       let renderer: THREE.WebGLRenderer;
       try {
         renderer = new THREE.WebGLRenderer({
           alpha: true,
-          antialias: true,
+          antialias: pixelRatio < 2,
           powerPreference: "high-performance",
         });
       } catch {
         return;
       }
-      renderer.setPixelRatio(
-        Math.min(window.devicePixelRatio, window.innerWidth <= 768 ? 2 : 2.5)
-      );
+      renderer.setPixelRatio(pixelRatio);
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.05;
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       container.appendChild(renderer.domElement);
+      // Heavy setup is split by yields so no single task blocks input for long.
+      const released = async () => {
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
+        if (!disposed) return false;
+        renderer.dispose();
+        renderer.domElement.remove();
+        return true;
+      };
       const scene = new THREE.Scene();
       const camera = new THREE.OrthographicCamera(-6, 6, 4, -4, 0.1, 100);
       camera.position.set(0, 0, 15);
@@ -342,11 +360,12 @@ export default function BrandBookScene({
       scene.environmentIntensity = 0.38;
       room.dispose();
       environmentGenerator.dispose();
+      if (await released()) return;
       scene.add(new THREE.AmbientLight(0xffffff, 0.25));
       const key = new THREE.DirectionalLight(0xfff9f0, 3);
       key.position.set(-3, 5, 9);
       key.castShadow = true;
-      key.shadow.mapSize.set(2048, 2048);
+      key.shadow.mapSize.setScalar(lowPower ? 1024 : 2048);
       Object.assign(key.shadow.camera, {
         left: -8,
         right: 8,
@@ -386,31 +405,42 @@ export default function BrandBookScene({
       );
       leftMaps[0] = leftZero;
       rightMaps[0] = rightZero;
-      const pendingChapters = [1, 2, 3];
-      const fillNextChapter = () => {
-        if (disposed) return;
-        const index = pendingChapters.shift();
-        if (index === undefined) return;
-        leftMaps[index] = leftTexture(
-          index,
-          font,
-          maxAnisotropy,
-          chapters[index]
-        );
-        rightMaps[index] = rightTexture(
-          index,
-          font,
-          logo,
-          maxAnisotropy,
-          chapters[index],
-          sceneCopy.studyLabel
-        );
-        if (pendingChapters.length > 0) scheduleIdle(fillNextChapter);
-        else requestRender();
-      };
+      if (await released()) return;
+      // One texture per idle slot, uploaded to the GPU right away so the first
+      // page turn does not stall. Safari's idle callback can starve: timeout.
       const scheduleIdle = (fn: () => void) => {
-        if ("requestIdleCallback" in window) window.requestIdleCallback(fn);
-        else setTimeout(fn, 0);
+        if ("requestIdleCallback" in window)
+          window.requestIdleCallback(fn, { timeout: 1500 });
+        else setTimeout(fn, 300);
+      };
+      const pendingTextures = [1, 2, 3].flatMap((index) => [
+        () => {
+          leftMaps[index] = leftTexture(
+            index,
+            font,
+            maxAnisotropy,
+            chapters[index]
+          );
+          renderer.initTexture(leftMaps[index]!);
+        },
+        () => {
+          rightMaps[index] = rightTexture(
+            index,
+            font,
+            logo,
+            maxAnisotropy,
+            chapters[index],
+            sceneCopy.studyLabel
+          );
+          renderer.initTexture(rightMaps[index]!);
+        },
+      ]);
+      const fillNextTexture = () => {
+        if (disposed) return;
+        const job = pendingTextures.shift();
+        if (!job) return requestRender();
+        job();
+        scheduleIdle(fillNextTexture);
       };
       const leatherGrain = grainTexture("leather");
       const paperGrain = grainTexture("paper");
@@ -555,6 +585,7 @@ export default function BrandBookScene({
       );
       contact.position.z = -0.36;
       scene.add(contact);
+      if (await released()) return;
       const leaves = [...book.children, ...leftLeaves.children].filter(
         (object): object is THREE.Mesh<THREE.BufferGeometry> =>
           object instanceof THREE.Mesh &&
@@ -565,6 +596,69 @@ export default function BrandBookScene({
       let current = progress.get();
       let width = 1;
       let height = 1;
+      let place = {
+        closedY: -1.2,
+        closedScale: 0.65,
+        openY: 1.32,
+        openScale: 0.61,
+      };
+      const root = container.closest<HTMLElement>("[data-book-story]");
+      const isPortraitPhone = () => width <= 768 && height > width;
+      // The page layout decides where the book may sit: free room between the
+      // intro text and the cover note (closed), then header and chapter panel.
+      const measure = () => {
+        if (!root || !isPortraitPhone()) return;
+        const slot = (name: string) =>
+          root.querySelector<HTMLElement>(`[data-book-slot="${name}"]`);
+        const intro = slot("intro");
+        const cover = slot("cover-note");
+        const header = slot("book-header");
+        const panel = slot("panel");
+        if (!intro || !cover || !header || !panel) return;
+        const origin = container.getBoundingClientRect().top;
+        const unit = 8 / height;
+        const viewWidth = (8 * width) / height;
+        const gap = 14;
+        const fit = (
+          top: number,
+          bottom: number,
+          maxScale: number,
+          widthScale: number,
+          tall: number
+        ) => ({
+          y: 4 - ((top + bottom) / 2) * unit,
+          scale: clamp(
+            Math.min(
+              widthScale,
+              maxScale,
+              (Math.max(0, bottom - top) * unit) / tall
+            ),
+            0.26,
+            maxScale
+          ),
+        });
+        const closed = fit(
+          intro.offsetTop + intro.offsetHeight + gap,
+          cover.getBoundingClientRect().top - origin - gap,
+          0.65,
+          (viewWidth * 0.37) / PAGE_W,
+          PAGE_H * 1.08
+        );
+        const open = fit(
+          header.getBoundingClientRect().bottom - origin + gap,
+          panel.getBoundingClientRect().top - origin - gap,
+          0.61,
+          (viewWidth * 0.9) / (PAGE_W * 2),
+          PAGE_H * 1.05
+        );
+        place = {
+          closedY: closed.y,
+          closedScale: closed.scale,
+          openY: open.y,
+          openScale: open.scale,
+        };
+      };
+
       let frame = 0;
       let lastTime = 0;
       let lastOpen = -1;
@@ -580,21 +674,27 @@ export default function BrandBookScene({
         const open = reducedMotion
           ? Number(current > 0.2)
           : smooth((current - 0.06) / 0.25);
-        const mobile = width <= 768;
+        const mobile = isPortraitPhone();
         const viewWidth = (8 * width) / height;
         const scale = mobile
-          ? lerp(
-              Math.min((viewWidth * 0.37) / PAGE_W, 0.65),
-              Math.min((viewWidth * 0.9) / (PAGE_W * 2), 0.61),
-              open
-            )
-          : Math.min(1.18, (viewWidth * 0.56) / (PAGE_W * 2));
+          ? lerp(place.closedScale, place.openScale, open)
+          : clamp(
+              Math.min(
+                1.18,
+                (viewWidth * 0.56) / (PAGE_W * 2),
+                ((height - 190) * 8) / (height * PAGE_H * 1.05)
+              ),
+              0.4,
+              1.18
+            );
         book.scale.setScalar(scale);
         const centerX = mobile
           ? 0
           : lerp(viewWidth * 0.237, -viewWidth * 0.145, open);
         book.position.x = centerX - ((PAGE_W * scale) / 2) * (1 - open);
-        book.position.y = mobile ? lerp(-1.2, 1.32, open) : -0.1;
+        book.position.y = mobile
+          ? lerp(place.closedY, place.openY, open)
+          : -0.1;
         book.rotation.set(
           lerp(0.22, -0.18, open),
           lerp(-0.35, 0.04, open),
@@ -692,6 +792,7 @@ export default function BrandBookScene({
         renderer.render(scene, camera);
         renderer.domElement.dataset.bookProgress = current.toFixed(3);
         renderer.domElement.dataset.bookChapter = String(active);
+        renderer.domElement.dataset.bookScale = scale.toFixed(3);
         renderer.domElement.dataset.bookTurning =
           turning < 0 ? "0" : turn.toFixed(3);
         if (Math.abs(current - target) > 0.0001) requestRender();
@@ -705,15 +806,24 @@ export default function BrandBookScene({
           frame = requestAnimationFrame(render);
       }
       const resize = new ResizeObserver(() => {
-        width = container.clientWidth;
-        height = container.clientHeight;
-        renderer.setSize(width, height);
-        camera.left = (-4 * width) / height;
-        camera.right = (4 * width) / height;
-        camera.updateProjectionMatrix();
+        if (
+          container.clientWidth !== width ||
+          container.clientHeight !== height
+        ) {
+          width = container.clientWidth;
+          height = container.clientHeight;
+          renderer.setSize(width, height);
+          camera.left = (-4 * width) / height;
+          camera.right = (4 * width) / height;
+          camera.updateProjectionMatrix();
+        }
+        measure();
         requestRender();
       });
       resize.observe(container);
+      root
+        ?.querySelectorAll("[data-book-slot]")
+        .forEach((el) => resize.observe(el));
       const visibility = new IntersectionObserver(requestRender);
       visibility.observe(container);
       const unsubscribe = progress.on("change", requestRender);
@@ -729,7 +839,7 @@ export default function BrandBookScene({
       renderer.domElement.addEventListener("webglcontextrestored", restored);
       setReady(true);
       requestRender();
-      scheduleIdle(fillNextChapter);
+      scheduleIdle(fillNextTexture);
       cleanup = () => {
         cancelAnimationFrame(frame);
         unsubscribe();

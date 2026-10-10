@@ -61,10 +61,8 @@
     "railAria": "Basic-Fit视频预览",
     "services": ["达人营销", "创意", "制作", "广告投放"],
     "tagline": "从创意，到传播。",
-    "videoAria": "{talent}为Basic-Fit拍摄的视频预览",
-    "avatarAlt": "{talent}的TikTok头像",
     "followersLabel": "{followers}粉丝",
-    "profileAria": "查看{talent}的TikTok主页{handle}，{followers}粉丝",
+    "profileAria": "查看{talent}的TikTok主页{handle}",
     "previews": [
       { "followers": "580万" },
       { "followers": "160万" },
