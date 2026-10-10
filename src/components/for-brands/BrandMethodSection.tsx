@@ -1,14 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
+import { motion, useInView, type Transition } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -19,32 +12,59 @@ type MethodStep = {
   description: string;
 };
 
+const SWEEP = 1.8;
 const DIM = 0.5;
 const MUTED = "#9aa09a";
 const ACCENT = "#c23a1f";
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const stepVariants = {
+  idle: { opacity: DIM, y: 8 },
+  lit: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay, duration: 0.6, ease: EASE },
+  }),
+};
+
+const numberVariants = {
+  idle: { color: MUTED },
+  lit: (delay: number) => ({
+    color: ACCENT,
+    transition: { delay, duration: 0.6 },
+  }),
+};
 
 function LitStep({
   step,
   index,
   total,
-  progress,
+  lit,
 }: {
   step: MethodStep;
   index: number;
   total: number;
-  progress: MotionValue<number>;
+  lit: boolean;
 }) {
-  const from = Math.max(0, index / total - 0.03);
-  const to = index / total + 0.07;
-  const opacity = useTransform(progress, [from, to], [DIM, 1]);
-  const y = useTransform(progress, [from, to], [6, 0]);
-  const color = useTransform(progress, [from, to], [MUTED, ACCENT]);
+  // The rail reaches each column at (index / total) * SWEEP; the step lights
+  // just behind it.
+  const delay = 0.15 + (index / total) * SWEEP;
 
   return (
     <li className={styles.step}>
-      <motion.div className={styles.stepInner} style={{ opacity, y }}>
+      <motion.div
+        className={styles.stepInner}
+        variants={stepVariants}
+        custom={delay}
+        initial="idle"
+        animate={lit ? "lit" : "idle"}
+      >
         <div className={styles.marker} aria-hidden="true">
-          <motion.span className={styles.number} style={{ color }}>
+          <motion.span
+            className={styles.number}
+            variants={numberVariants}
+            custom={delay}
+          >
             {String(index + 1).padStart(2, "0")}
           </motion.span>
           <span className={styles.connector}>
@@ -65,21 +85,16 @@ export function BrandMethodSection() {
   const steps = t.raw("steps") as MethodStep[];
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 88%", "start 38%"],
-  });
-  // Critically damped: fluid, no overshoot. It also keeps the scrub on the JS
-  // path, which maps the section's scroll range reliably.
-  const smooth = useSpring(scrollYProgress, {
-    stiffness: 170,
-    damping: 26,
-    mass: 1,
-  });
-  const complete = useMotionValue(1);
-  const progress = reduceMotion ? complete : smooth;
-  const position = useTransform(progress, (value) => `${value * 100}%`);
-  const headOpacity = useTransform(progress, [0, 0.02, 0.97, 1], [0, 1, 1, 0]);
+  // Time-based, played once on arrival: it shows however the section is
+  // reached (scroll, nav anchor, reload). Reduced motion keeps the fills and
+  // fades; the travelling dot and the lift are dropped.
+  const lit = useInView(sectionRef, { once: true, amount: 0.3 });
+  const sweep = { duration: SWEEP, ease: "linear" } as const;
+  const dot: Transition = {
+    duration: SWEEP,
+    ease: "linear",
+    times: [0, 0.05, 0.95, 1],
+  };
 
   return (
     <section
@@ -95,22 +110,45 @@ export function BrandMethodSection() {
           <p>{t("subtitle")}</p>
         </header>
         <div className={styles.rail} aria-hidden="true">
-          <motion.span className={styles.line} style={{ scaleX: progress }} />
-          <motion.i
-            className={styles.head}
-            style={{ left: position, opacity: headOpacity }}
+          <motion.span
+            className={styles.line}
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            animate={{
+              clipPath: lit ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
+            }}
+            transition={sweep}
           />
+          {!reduceMotion && (
+            <motion.i
+              className={styles.head}
+              initial={{ left: "0%", opacity: 0 }}
+              animate={
+                lit ? { left: "100%", opacity: [0, 1, 1, 0] } : undefined
+              }
+              transition={dot}
+            />
+          )}
         </div>
         <div className={styles.trackArea}>
           <div className={styles.railV} aria-hidden="true">
             <motion.span
               className={styles.lineV}
-              style={{ scaleY: progress }}
+              initial={{ clipPath: "inset(0 0 100% 0)" }}
+              animate={{
+                clipPath: lit ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
+              }}
+              transition={sweep}
             />
-            <motion.i
-              className={styles.headV}
-              style={{ top: position, opacity: headOpacity }}
-            />
+            {!reduceMotion && (
+              <motion.i
+                className={styles.headV}
+                initial={{ top: "0%", opacity: 0 }}
+                animate={
+                  lit ? { top: "100%", opacity: [0, 1, 1, 0] } : undefined
+                }
+                transition={dot}
+              />
+            )}
           </div>
           <ol className={styles.steps}>
             {steps.map((step, index) => (
@@ -119,7 +157,7 @@ export function BrandMethodSection() {
                 step={step}
                 index={index}
                 total={steps.length}
-                progress={progress}
+                lit={lit}
               />
             ))}
           </ol>

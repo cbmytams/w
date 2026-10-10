@@ -53,7 +53,6 @@
   inset: 8px 0 auto;
   height: 2px;
   background: var(--method-accent);
-  transform-origin: left center;
 }
 .head,
 .headV {
@@ -179,7 +178,6 @@
     position: absolute;
     inset: 0;
     background: var(--method-accent);
-    transform-origin: center top;
   }
   .headV {
     left: -5px;
