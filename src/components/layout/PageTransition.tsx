@@ -67,18 +67,16 @@ export function PageTransition({ children }: PageTransitionProps) {
     };
   }, []);
 
-  // (useEffect for previousPathname removed, handled synchronously above)
-
-  if (prefersReducedMotion) {
-    return <>{children}</>;
-  }
-
   const previousCluster = getRouteCluster(routeContext.prev);
   const cluster = getRouteCluster(pathname);
   const isHomeToTalentsOrBrands =
     previousCluster === "home" &&
     (cluster === "talents" || cluster === "brands");
-  const transition = routeTransitionTiming[cluster][deviceProfile];
+  // Same tree for every motion preference: swapping it after mount would
+  // remount the whole page (and the 3D scene) for reduced-motion visitors.
+  const transition = prefersReducedMotion
+    ? { duration: 0 }
+    : routeTransitionTiming[cluster][deviceProfile];
   const presenceMode: "sync" | "wait" =
     cluster === "home" || cluster === "contact" || isHomeToTalentsOrBrands
       ? "sync"
@@ -116,15 +114,17 @@ export function PageTransition({ children }: PageTransitionProps) {
           transition={transition}
           className="relative z-[1] w-full"
         >
-          <motion.div
-            aria-hidden="true"
-            className={`pointer-events-none fixed inset-0 z-[80] ${veilClassName}`}
-            variants={veilVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={veilTransition}
-          />
+          {!prefersReducedMotion && (
+            <motion.div
+              aria-hidden="true"
+              className={`pointer-events-none fixed inset-0 z-[80] ${veilClassName}`}
+              variants={veilVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={veilTransition}
+            />
+          )}
           {children}
         </motion.div>
       </AnimatePresence>

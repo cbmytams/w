@@ -302,7 +302,12 @@ export default function BrandBookScene({
   const chapters = t.raw("chapters") as BookChapterCopy[];
   const sceneCopy = t.raw("scene") as BookSceneCopy;
   const host = useRef<HTMLDivElement>(null);
-  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const reducedRef = useRef(reducedMotion);
+
+  useEffect(() => {
+    reducedRef.current = reducedMotion;
+  }, [reducedMotion]);
 
   useEffect(() => {
     const container = host.current;
@@ -318,6 +323,7 @@ export default function BrandBookScene({
       } catch (error) {
         if (error instanceof Error)
           console.error("Wafia logo could not load", error);
+        setFailed(true);
         return;
       }
       if (disposed) return;
@@ -333,6 +339,7 @@ export default function BrandBookScene({
           powerPreference: "high-performance",
         });
       } catch {
+        setFailed(true);
         return;
       }
       renderer.setPixelRatio(pixelRatio);
@@ -341,6 +348,7 @@ export default function BrandBookScene({
       renderer.toneMappingExposure = 1.05;
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.domElement.style.opacity = "0";
       container.appendChild(renderer.domElement);
       // Heavy setup is split by yields so no single task blocks input for long.
       const released = async () => {
@@ -668,6 +676,7 @@ export default function BrandBookScene({
         const target = progress.get();
         const delta = Math.min((time - lastTime) / 1000 || 0.016, 0.06);
         lastTime = time;
+        const reducedMotion = reducedRef.current;
         current = reducedMotion
           ? target
           : lerp(current, target, 1 - Math.exp(-12 * delta));
@@ -790,6 +799,7 @@ export default function BrandBookScene({
           }
         }
         renderer.render(scene, camera);
+        renderer.domElement.style.opacity = "1";
         renderer.domElement.dataset.bookProgress = current.toFixed(3);
         renderer.domElement.dataset.bookChapter = String(active);
         renderer.domElement.dataset.bookScale = scale.toFixed(3);
@@ -805,7 +815,7 @@ export default function BrandBookScene({
         if (!frame && !disposed && isVisible())
           frame = requestAnimationFrame(render);
       }
-      const resize = new ResizeObserver(() => {
+      const fit = () => {
         if (
           container.clientWidth !== width ||
           container.clientHeight !== height
@@ -818,6 +828,9 @@ export default function BrandBookScene({
           camera.updateProjectionMatrix();
         }
         measure();
+      };
+      const resize = new ResizeObserver(() => {
+        fit();
         requestRender();
       });
       resize.observe(container);
@@ -829,15 +842,15 @@ export default function BrandBookScene({
       const unsubscribe = progress.on("change", requestRender);
       const lost = (event: Event) => {
         event.preventDefault();
-        setReady(false);
+        setFailed(true);
       };
       const restored = () => {
-        setReady(true);
+        setFailed(false);
         requestRender();
       };
       renderer.domElement.addEventListener("webglcontextlost", lost);
       renderer.domElement.addEventListener("webglcontextrestored", restored);
-      setReady(true);
+      fit();
       requestRender();
       scheduleIdle(fillNextTexture);
       cleanup = () => {
@@ -883,11 +896,11 @@ export default function BrandBookScene({
       disposed = true;
       cleanup();
     };
-  }, [progress, reducedMotion, chapters, sceneCopy]);
+  }, [progress, chapters, sceneCopy]);
 
   return (
     <div ref={host} style={{ width: "100%", height: "100%" }}>
-      {!ready && (
+      {failed && (
         <div className={styles.fallback}>
           <span>
             {sceneCopy.coverDisciplines.map((line, index) => (
