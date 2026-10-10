@@ -1,0 +1,21 @@
+{
+  "ogLocale": "en_US",
+  "site": {
+    "title": "Wafia | Influence, Talent & Studio",
+    "description": "Hybrid agency: influencer marketing, 360° talent management, creative studio and strategy. Structured campaigns, structured talent, production you can reuse.",
+    "keywords": [
+      "influencer marketing",
+      "talent management",
+      "creative studio",
+      "UGC",
+      "content production",
+      "social media campaigns"
+    ]
+  },
+  "home": {
+    "title": "Wafia | Influencer marketing agency for brands",
+    "description": "Wafia structures brand influencer campaigns: strategy, creator casting, studio production, paid distribution and reporting. Campaigns built as brand assets.",
+    "shortDescription": "Wafia structures brand influencer campaigns: strategy, creator casting, studio production, paid distribution and reporting.",
+    "breadcrumb": "Home"
+  }
+}

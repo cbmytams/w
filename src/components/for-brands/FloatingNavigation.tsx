@@ -2,16 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { OrbLink } from "@/components/navigation/OrbLink";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import styles from "./FloatingNavigation.module.css";
 
 const BRAND_LINKS = [
-  { href: "#case-studies", label: "Nos réalisations" },
-  { href: "#process", label: "Notre méthode" },
-  { href: "#faq", label: "Questions" },
-];
+  { href: "#case-studies", key: "cases" },
+  { href: "#process", key: "process" },
+  { href: "#faq", key: "faq" },
+] as const;
 
 interface FloatingNavigationLink {
   href: string;
@@ -36,13 +38,21 @@ export function FloatingNavigation({
   onEstimateClick,
   estimateHref,
   routeLinks,
-  mobileLabel = "Pour les marques",
-  navAriaLabel = "Navigation Marques",
-  mobileNavAriaLabel = "Navigation mobile Marques",
+  mobileLabel,
+  navAriaLabel,
+  mobileNavAriaLabel,
 }: FloatingNavigationProps) {
+  const t = useTranslations("nav");
   const pathname = usePathname();
-  const items = routeLinks ?? BRAND_LINKS;
+  const items =
+    routeLinks ??
+    BRAND_LINKS.map(({ href, key }) => ({
+      href,
+      label: t(`brandLinks.${key}`),
+    }));
   const isRouteNavigation = Boolean(routeLinks);
+  // Route links go through the localized Link; anchors stay plain.
+  const NavLink = isRouteNavigation ? Link : "a";
   const [dark, setDark] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const dialog = useRef<HTMLDialogElement>(null);
@@ -116,7 +126,7 @@ export function FloatingNavigation({
         className={mobile ? styles.mobileContact : styles.contact}
         onClick={mobile ? closeMenu : undefined}
       >
-        Nous contacter <ArrowUpRight size={16} aria-hidden="true" />
+        {t("contact")} <ArrowUpRight size={16} aria-hidden="true" />
       </OrbLink>
     ) : (
       <button
@@ -126,7 +136,7 @@ export function FloatingNavigation({
           onEstimateClick?.();
         }}
       >
-        Nous contacter <ArrowUpRight size={16} aria-hidden="true" />
+        {t("contact")} <ArrowUpRight size={16} aria-hidden="true" />
       </button>
     );
 
@@ -138,7 +148,7 @@ export function FloatingNavigation({
             <OrbLink
               href="/"
               className={styles.logo}
-              ariaLabel="Wafia, accueil"
+              ariaLabel={t("homeAriaLabel")}
             >
               <Image
                 src="/wafia.svg"
@@ -149,9 +159,12 @@ export function FloatingNavigation({
               />
             </OrbLink>
           </div>
-          <nav className={styles.links} aria-label={navAriaLabel}>
+          <nav
+            className={styles.links}
+            aria-label={navAriaLabel ?? t("navAriaLabel")}
+          >
             {items.map(({ href, label }) => (
-              <a
+              <NavLink
                 key={href}
                 href={href}
                 aria-current={
@@ -165,14 +178,17 @@ export function FloatingNavigation({
                 }
               >
                 {label}
-              </a>
+              </NavLink>
             ))}
           </nav>
-          <div className={styles.end}>{contact()}</div>
+          <div className={styles.end}>
+            <LocaleSwitcher className={styles.locales} />
+            {contact()}
+          </div>
           <button
             ref={menuButton}
             className={styles.menuButton}
-            aria-label="Ouvrir le menu"
+            aria-label={t("openMenu")}
             aria-haspopup="dialog"
             onClick={openMenu}
           >
@@ -190,20 +206,24 @@ export function FloatingNavigation({
           <span className={styles.logo} id="brands-menu-title">
             <Image src="/wafia.svg" width={711} height={231} alt="Wafia" />
           </span>
-          <button autoFocus onClick={closeMenu} aria-label="Fermer le menu">
+          <button autoFocus onClick={closeMenu} aria-label={t("closeMenu")}>
             <X size={25} />
           </button>
         </div>
-        <p className={styles.mobileLabel}>{mobileLabel}</p>
-        <nav aria-label={mobileNavAriaLabel} className={styles.mobileLinks}>
+        <p className={styles.mobileLabel}>{mobileLabel ?? t("mobileLabel")}</p>
+        <nav
+          aria-label={mobileNavAriaLabel ?? t("mobileNavAriaLabel")}
+          className={styles.mobileLinks}
+        >
           {items.map(({ href, label }, index) => (
-            <a key={href} href={href} onClick={closeMenu}>
+            <NavLink key={href} href={href} onClick={closeMenu}>
               <span>0{index + 1}</span>
               {label}
               <ArrowUpRight size={22} />
-            </a>
+            </NavLink>
           ))}
         </nav>
+        <LocaleSwitcher className={styles.mobileLocales} />
         {contact(true)}
       </dialog>
     </>

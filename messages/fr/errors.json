@@ -1,0 +1,17 @@
+{
+  "error": {
+    "metaTitle": "Erreur – Wafia",
+    "eyebrow": "Erreur 500",
+    "title": "Une erreur est survenue",
+    "description": "Réessayez ou contactez-nous si le problème persiste.",
+    "retry": "Réessayer",
+    "support": "Support"
+  },
+  "notFound": {
+    "metaDescription": "La page demandée n'existe pas. Retrouvez toutes nos ressources sur l'influence marketing.",
+    "title": "Page introuvable",
+    "description": "L'URL que vous recherchez semble incorrecte ou la page a été déplacée. Reprenons une connexion plus stable.",
+    "home": "Retour à l'accueil",
+    "contact": "Contacter l'agence"
+  }
+}

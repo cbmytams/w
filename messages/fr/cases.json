@@ -1,0 +1,75 @@
+{
+  "title": "Nos réalisations : trois marques, trois terrains d’expression.",
+  "viewCase": "Voir le cas client",
+  "viewCaseAria": "Voir le cas client {client}",
+  "resultsAria": "Résultats {client}",
+  "proofHeading": "Cas client",
+  "closeAria": "Fermer le cas client",
+  "brandMarkAlt": "Logo officiel CJ",
+  "dialogContact": "Et pour votre marque ?",
+  "studies": [
+    {
+      "client": "BASIC-FIT",
+      "context": "Boost Your Mood / Fitness",
+      "title": "Et toi, comment boostes-tu ton humeur ?",
+      "detail": "Le brief tient en un Reel : une accroche sur l’humeur, la routine d’entraînement, le moment d’après (balade, lecture, repas sain), puis une note inspirante qui invite l’audience à répondre. Wafia assure le casting de dix profils lifestyle et fitness, rédige le brief d’intention et laisse chaque créateur l’adapter à son univers : aucune réplique imposée, le hashtag #BoostYourMood comme seul fil rouge. Résultat : des TikTok et Reels crédibles, qui vivent au-delà de la première diffusion et dans lesquels chacun peut se reconnaître.",
+      "scope": "Campagne Boost Your Mood · Casting de 10 créateurs · Brief créatif · TikTok & Reels",
+      "proof": [
+        { "value": "10", "label": "créateurs activés" },
+        { "value": "6M", "label": "vues organiques" },
+        { "value": "21,44%", "label": "d’engagement" }
+      ]
+    },
+    {
+      "client": "CJ GROUP",
+      "subtitle": "KOREA HOUSE",
+      "context": "Activation / Paris 2024",
+      "title": "Une immersion culturelle au cœur de Paris.",
+      "description": "Faire rayonner la culture coréenne à travers ceux qui la découvrent. Et prolonger la rencontre au-delà de l’événement.",
+      "imageAlt": "Accueil du public devant Korea House à Paris",
+      "detail": "À Korea House, la présence des créateurs transforme l’activation en récits de découverte. Des rencontres sur place aux contenus partagés, la campagne donne à la culture coréenne des voix, des regards et une présence qui continue après l’événement.",
+      "scope": "Activation de créateurs · Couverture événementielle · Contenus sociaux",
+      "proof": [
+        { "value": "67", "label": "créateurs mobilisés" },
+        { "value": "11M", "label": "impressions" },
+        { "value": "+150", "label": "contenus" }
+      ]
+    },
+    {
+      "client": "SALON DE L’AUTO",
+      "subtitle": "50e ÉDITION",
+      "context": "Couverture média / Paris Expo",
+      "title": "Le salon se vit sur place. Et bien au-delà.",
+      "description": "Quatre jours au rythme du salon : interviews, innovations et formats courts. Une couverture pensée pour faire vivre l’événement sur les réseaux.",
+      "imageAlt": "Révélation automobile photographiée par le public au salon EQUIP AUTO Paris",
+      "detail": "À Paris Expo, Wafia déploie un dispositif média et campagne pour couvrir les innovations du salon en temps réel. Une content factory réunit 23 créateurs et journalistes autour d’interviews, de live et de formats courts. L’approche newsroom relie les temps forts sur place aux usages des réseaux sociaux, pour parler aux professionnels comme au grand public.",
+      "scope": "Dispositif média & campagne · Interviews · Content factory · Live",
+      "proof": [
+        { "value": "23", "label": "créateurs / journalistes" },
+        { "value": "+100", "label": "contenus produits" },
+        { "value": "4 jours", "label": "de live" }
+      ]
+    }
+  ],
+  "showcase": {
+    "kicker": "Production créateur",
+    "previewCount": "{count} previews",
+    "heading": "BASIC-FIT",
+    "title": "Du contenu qui fait bouger les lignes.",
+    "description": "Campagne Boost Your Mood : dix créateurs racontent comment le sport change leur humeur, pour engager une nouvelle génération autour du sport au quotidien.",
+    "ctaAria": "Voir le cas client Basic-Fit",
+    "railAria": "Previews vidéo Basic-Fit",
+    "services": ["Influence", "Création", "Production", "Ads"],
+    "tagline": "Des idées à leur diffusion.",
+    "videoAria": "Preview vidéo {talent} pour Basic-Fit",
+    "avatarAlt": "Photo de profil TikTok de {talent}",
+    "followersLabel": "{followers} abonnés",
+    "profileAria": "Voir le profil TikTok {handle} de {talent}, {followers} abonnés",
+    "previews": [
+      { "followers": "5,8M" },
+      { "followers": "1,6M" },
+      { "followers": "2M" },
+      { "followers": "256K" }
+    ]
+  }
+}

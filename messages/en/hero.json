@@ -1,0 +1,89 @@
+{
+  "sectionLabel": "Wafia, from first brief to distribution",
+  "intro": {
+    "title": "Creator<br></br>campaigns,<br></br><accent>structured.</accent>",
+    "text": "The right idea. The right creators. Content that lasts. Wafia brings influence, creative, production and ads together to move your brand forward.",
+    "seeWork": "See our work",
+    "openBook": "Open the book",
+    "disciplines": ["Influence", "Creative", "Production", "Ads"]
+  },
+  "cover": {
+    "label": "THE WAFIA BOOK",
+    "tagline": "From ideas to distribution."
+  },
+  "bookHeader": {
+    "title": "The Wafia book"
+  },
+  "panel": {
+    "ariaLabel": "Our expertise",
+    "navAriaLabel": "Book chapters",
+    "cta": "Let’s build your campaign"
+  },
+  "bottomLine": {
+    "closed": "YOUR BRAND HAS A STORY. LET’S MAKE IT RESONATE.",
+    "opened": "ONE TEAM. FROM BRIEF TO DISTRIBUTION.",
+    "discover": "Discover",
+    "nextChapter": "Next chapter",
+    "next": "Continue"
+  },
+  "chapters": [
+    {
+      "service": "Influence",
+      "headline": ["THE RIGHT", "VOICES.", "REAL", "CONNECTIONS."],
+      "promise": "Bring your brand into the conversation.",
+      "body": "We choose creators for what they stand for and the trust they have built. Then we work with you on a message that makes people want to listen to your brand.",
+      "deliverables": [
+        "Tailored strategy & casting",
+        "Talent negotiation & follow-up",
+        "Activation & results measurement"
+      ],
+      "caption": "Trust isn’t bought by the thousand. It’s built with the right people.",
+      "footer": "RELEVANCE BEFORE REACH."
+    },
+    {
+      "service": "Creative",
+      "headline": ["AN IDEA", "BEFORE", "A FORMAT."],
+      "promise": "Give people a reason to stop and notice your brand.",
+      "body": "A format is not an idea. We find the angle that is yours, then turn it into concepts, scripts and art direction that creators can truly make their own.",
+      "deliverables": [
+        "Campaign concept & territory",
+        "Art direction & scripts",
+        "Social-first adaptations"
+      ],
+      "caption": "A distinctive idea. Content that could only be yours.",
+      "footer": "YOUR UNIQUENESS. OUR STARTING POINT."
+    },
+    {
+      "service": "Production",
+      "headline": ["ONE ASSET.", "MANY", "LIVES."],
+      "promise": "Produce today what you will roll out tomorrow.",
+      "body": "From the shoot to the final export, we make content built for how you will use it: social, e-commerce, paid campaigns. Formats and usage rights are agreed from the start.",
+      "deliverables": [
+        "Shoots, photo & UGC",
+        "Editing & multi-format adaptations",
+        "Usage rights & structured delivery"
+      ],
+      "caption": "Every shot counts. Every adaptation has its place.",
+      "footer": "MADE TO BE SEEN. BUILT TO BE REUSED."
+    },
+    {
+      "service": "Ads",
+      "headline": ["CREATIVE", "ATTRACTS.", "ADS", "AMPLIFY."],
+      "promise": "Give your best content the means to go further.",
+      "body": "We connect creative and media buying: content selection, angle testing, amplification and optimization. Your budget follows what works, with a clear read on results.",
+      "deliverables": [
+        "Social ads & creator ads",
+        "Creative testing & optimization",
+        "Goal-oriented reporting"
+      ],
+      "caption": "Test. Learn. Amplify. Then put the creative back to work.",
+      "footer": "ATTENTION IS A START. ACTION IS THE GOAL."
+    }
+  ],
+  "scene": {
+    "coverDisciplines": ["INFLUENCE / CREATIVE", "PRODUCTION / ADS"],
+    "coverTitle": "Your next chapter.",
+    "coverTagline": "FROM IDEAS TO DISTRIBUTION.",
+    "studyLabel": "/ CREATIVE STUDY"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "brandLinks": {
+    "cases": "Nos réalisations",
+    "process": "Notre méthode",
+    "faq": "Questions"
+  },
+  "mobileLabel": "Pour les marques",
+  "navAriaLabel": "Navigation Marques",
+  "mobileNavAriaLabel": "Navigation mobile Marques",
+  "contact": "Nous contacter",
+  "homeAriaLabel": "Wafia, accueil",
+  "openMenu": "Ouvrir le menu",
+  "closeMenu": "Fermer le menu",
+  "language": "Langue",
+  "switchTo": "Passer le site en {language}",
+  "languages": {
+    "fr": "Français",
+    "en": "English"
+  }
+}

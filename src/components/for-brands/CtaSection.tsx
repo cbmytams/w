@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import styles from "./CtaSection.module.css";
 
 type CtaSectionProps = {
@@ -16,6 +17,7 @@ const VIEWPORT = { once: true, amount: 0.36 } as const;
 export function CtaSection({
   estimateHref = "/contact/brands",
 }: CtaSectionProps) {
+  const t = useTranslations("cta");
   const reduceMotion = useReducedMotion();
 
   return (
@@ -24,7 +26,6 @@ export function CtaSection({
         src="/images/cases/cta-studio-shoot.webp"
         alt=""
         fill
-        loading="eager"
         sizes="100vw"
         className={styles.image}
         aria-hidden="true"
@@ -40,12 +41,8 @@ export function CtaSection({
           viewport={VIEWPORT}
           transition={{ duration: 0.56, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className={styles.eyebrow}>Studio de campagne</p>
-          <h2 id="brands-cta-title">
-            Parlons de votre
-            <br />
-            prochaine campagne.
-          </h2>
+          <p className={styles.eyebrow}>{t("eyebrow")}</p>
+          <h2 id="brands-cta-title">{t.rich("title", { br: () => <br /> })}</h2>
         </motion.div>
 
         <motion.aside
@@ -60,12 +57,9 @@ export function CtaSection({
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          <p>
-            Une idée, un enjeu, une marque ? Discutons de la meilleure façon de
-            la faire vivre avec les bons créateurs.
-          </p>
+          <p>{t("body")}</p>
           <Link href={estimateHref} className={styles.cta}>
-            Nous contacter
+            {t("button")}
             <ArrowRight aria-hidden="true" size={20} strokeWidth={1.8} />
           </Link>
         </motion.aside>

@@ -1,0 +1,235 @@
+{
+  "courtesyNotice": "Courtesy translation. The French version prevails.",
+  "nav": {
+    "links": {
+      "mentions": "Legal notice",
+      "privacy": "Privacy",
+      "cookies": "Cookies"
+    },
+    "mobileLabel": "Legal information",
+    "ariaLabel": "Legal navigation",
+    "mobileAriaLabel": "Legal mobile navigation"
+  },
+  "page": {
+    "eyebrow": "Official document",
+    "updated": "Last updated: {date}"
+  },
+  "documents": {
+    "mentions": {
+      "title": "Legal notice",
+      "description": "Publisher, hosting and intellectual property of the Wafia website.",
+      "lede": "The publisher and host of the wafia.fr website.",
+      "updatedAt": "September 22, 2026",
+      "sections": [
+        {
+          "title": "Publisher",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "Company",
+                  "value": "Wafia Agency SASU"
+                },
+                {
+                  "label": "Registered office",
+                  "value": "Villeneuve-le-Roi, 94290 — France"
+                },
+                {
+                  "label": "Trade and Companies Register (RCS)",
+                  "value": "Créteil 929 439 735"
+                },
+                {
+                  "label": "Share capital",
+                  "value": "€1,000"
+                },
+                {
+                  "label": "Intra-Community VAT number",
+                  "value": "FR 91 929 439 735"
+                },
+                {
+                  "label": "Publication director",
+                  "value": "Wahib GUETTAT"
+                },
+                {
+                  "label": "Contact",
+                  "value": "contact@wafia.fr"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Hosting",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "Host",
+                  "value": "OVH SAS"
+                },
+                {
+                  "label": "Address",
+                  "value": "2 rue Kellermann, 59100 Roubaix — France"
+                },
+                {
+                  "label": "Phone",
+                  "value": "1007"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Intellectual property",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The site’s content, its logo and the Wafia brand are protected by intellectual property law. Any reproduction or use without the prior written authorization of Wafia Agency is prohibited."
+            }
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "description": "How your personal data is collected, used and protected on the Wafia website.",
+      "lede": "How Wafia Agency processes the data submitted through wafia.fr.",
+      "updatedAt": "September 22, 2026",
+      "sections": [
+        {
+          "title": "Data controller",
+          "blocks": [
+            {
+              "type": "facts",
+              "items": [
+                {
+                  "label": "Company",
+                  "value": "Wafia Agency SASU"
+                },
+                {
+                  "label": "Registered office",
+                  "value": "Villeneuve-le-Roi, 94290 — France"
+                },
+                {
+                  "label": "Contact",
+                  "value": "contact@wafia.fr"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Data collected",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Only the data needed to process your request:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "First and last name",
+                "Email address",
+                "Phone number",
+                "Links to your social media profiles (applications)"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Purposes and legal bases",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Your data is used to respond to your contact or quote request and to review your application (pre-contractual measures, Art. 6(1)(b) GDPR), and to ensure the security of the site (legitimate interest, Art. 6(1)(f) GDPR)."
+            }
+          ]
+        },
+        {
+          "title": "Retention and recipients",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Contact data is kept for 3 years from the last exchange, and applications for 2 years. The data is intended for the teams of Wafia Agency and its subcontractors: OVH (hosting), Sentry (technical error monitoring) and Upstash (form protection). Some of them may be located outside the European Union, under the European Commission’s standard contractual clauses."
+            }
+          ]
+        },
+        {
+          "title": "Your rights",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Under Articles 15 to 22 of the GDPR, you have the right of access, rectification, erasure, restriction, portability and objection, as well as the right to withdraw your consent at any time. To exercise them, write to us at contact@wafia.fr."
+            }
+          ]
+        },
+        {
+          "title": "Complaints",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You may lodge a complaint with the CNIL (the French data protection authority), 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07."
+            }
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookie policy",
+      "description": "Information about the cookies used on the Wafia website and how to manage them.",
+      "lede": "The cookies set on wafia.fr and how to manage them.",
+      "updatedAt": "September 22, 2026",
+      "sections": [
+        {
+          "title": "What is a cookie?",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A text file placed on your device when you visit the site, used to remember certain information for a limited period."
+            }
+          ]
+        },
+        {
+          "title": "Cookies used",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "No advertising cookies or social network pixels are set on wafia.fr."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Sentry — technical error detection, session duration.",
+                "Google Analytics — audience measurement, loaded only after your consent."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Your choices",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You can refuse or delete cookies at any time in your browser settings (Chrome, Safari, Firefox, Edge), or follow the CNIL guide."
+            },
+            {
+              "type": "links",
+              "items": [
+                {
+                  "label": "CNIL cookie guide (in French)",
+                  "href": "https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser"
+                },
+                {
+                  "label": "Privacy policy",
+                  "href": "/legal/privacy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

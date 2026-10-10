@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { MouseEvent, ReactNode } from "react";
 import { useOrbNavigate } from "@/components/home/orb/useOrbNavigate";
 import { isModifiedClick, resolveOrbTarget } from "@/lib/orb-targets";

@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Linkedin, Mail, X } from "lucide-react";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
-import { BRAND_TEAM_PROFILES } from "@/components/for-brands/brand-team-content";
+import {
+  BRAND_TEAM_PROFILES,
+  type BrandTeamProfileCopy,
+} from "@/components/for-brands/brand-team-content";
 import styles from "./BrandTeamDrawer.module.css";
 
 type BrandTeamDrawerProps = {
@@ -16,6 +20,8 @@ type BrandTeamDrawerProps = {
 };
 
 export function BrandTeamDrawer({ open, onClose }: BrandTeamDrawerProps) {
+  const t = useTranslations("team");
+  const profileCopy = t.raw("profiles") as BrandTeamProfileCopy[];
   const [mounted, setMounted] = useState(false);
   const panelRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
@@ -52,7 +58,7 @@ export function BrandTeamDrawer({ open, onClose }: BrandTeamDrawerProps) {
         <>
           <motion.button
             type="button"
-            aria-label="Fermer la présentation de l'équipe"
+            aria-label={t("drawer.closeBackdropAria")}
             className={styles.backdrop}
             onClick={onClose}
             initial={{ opacity: 0 }}
@@ -80,35 +86,29 @@ export function BrandTeamDrawer({ open, onClose }: BrandTeamDrawerProps) {
               type="button"
               onClick={onClose}
               className={styles.close}
-              aria-label="Fermer"
+              aria-label={t("drawer.closeAria")}
             >
               <X aria-hidden="true" size={28} strokeWidth={1.6} />
             </button>
 
             <div className={styles.drawerHeader}>
-              <p className={styles.drawerEyebrow}>
-                L&apos;équipe opérationnelle
-              </p>
+              <p className={styles.drawerEyebrow}>{t("drawer.eyebrow")}</p>
               <h2 id="brand-team-drawer-title" className={styles.drawerTitle}>
-                L&apos;équipe derrière
-                <br />
-                l&apos;évidence.
+                {t.rich("drawer.title", { br: () => <br /> })}
               </h2>
-              <p className={styles.drawerIntro}>
-                On ne vient pas ajouter du bruit autour d&apos;une marque. On
-                cherche ce qui peut vraiment prendre : une idée simple, une
-                présence juste, un contenu qui donne envie d&apos;être vu.
-              </p>
+              <p className={styles.drawerIntro}>{t("drawer.intro")}</p>
             </div>
 
             <div className={styles.profiles}>
-              {BRAND_TEAM_PROFILES.map((profile) => (
+              {BRAND_TEAM_PROFILES.map((profile, index) => (
                 <article key={profile.id} className={styles.profile}>
                   <div className={styles.profileSide}>
                     <div className={styles.profileMedia}>
                       <Image
                         src={profile.image}
-                        alt={`Portrait de ${profile.fullName}`}
+                        alt={t("drawer.portraitAlt", {
+                          name: profile.fullName,
+                        })}
                         fill
                         sizes="(max-width: 620px) 92px, 132px"
                         className={styles.profileImage}
@@ -119,7 +119,9 @@ export function BrandTeamDrawer({ open, onClose }: BrandTeamDrawerProps) {
                         href={profile.linkedin}
                         target="_blank"
                         rel="noreferrer"
-                        aria-label={`LinkedIn de ${profile.name}`}
+                        aria-label={t("drawer.linkedinAria", {
+                          name: profile.name,
+                        })}
                         className={styles.socialLink}
                       >
                         <Linkedin
@@ -130,7 +132,9 @@ export function BrandTeamDrawer({ open, onClose }: BrandTeamDrawerProps) {
                       </a>
                       <a
                         href={`mailto:${profile.email}`}
-                        aria-label={`Écrire à ${profile.name}`}
+                        aria-label={t("drawer.emailAria", {
+                          name: profile.name,
+                        })}
                         className={styles.socialLink}
                       >
                         <Mail aria-hidden="true" size={17} strokeWidth={1.8} />
@@ -139,14 +143,16 @@ export function BrandTeamDrawer({ open, onClose }: BrandTeamDrawerProps) {
                   </div>
                   <div className={styles.profileCopy}>
                     <h3>{profile.name}</h3>
-                    <p className={styles.profileRole}>{profile.role}</p>
+                    <p className={styles.profileRole}>
+                      {profileCopy[index].role}
+                    </p>
                     <div className={styles.fact}>
-                      <span>Sur le papier</span>
-                      <p>{profile.paper}</p>
+                      <span>{t("drawer.paperLabel")}</span>
+                      <p>{profileCopy[index].paper}</p>
                     </div>
                     <div className={styles.fact}>
-                      <span>Dans la vraie vie</span>
-                      <p>{profile.realLife}</p>
+                      <span>{t("drawer.realLifeLabel")}</span>
+                      <p>{profileCopy[index].realLife}</p>
                     </div>
                   </div>
                 </article>
@@ -154,7 +160,7 @@ export function BrandTeamDrawer({ open, onClose }: BrandTeamDrawerProps) {
             </div>
 
             <Link href="/contact/brands" className={styles.drawerCta}>
-              Parler de votre campagne
+              {t("drawer.cta")}
               <ArrowRight aria-hidden="true" size={19} strokeWidth={1.8} />
             </Link>
           </motion.aside>

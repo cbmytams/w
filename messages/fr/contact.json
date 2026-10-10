@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "hub": {
+      "title": "Contact",
+      "description": "Parlons de vos objectifs de marque et de croissance."
+    },
+    "brands": {
+      "title": "Contact Marques",
+      "description": "Parlez-nous de votre campagne créateurs. Réponse sous 24h."
+    },
+    "talents": {
+      "title": "Contact Talents",
+      "description": "Parlez-nous de votre carrière. Réponse sous 24h."
+    }
+  },
+  "common": {
+    "logoAlt": "Wafia",
+    "homeAriaLabel": "Wafia, accueil",
+    "back": "Retour"
+  },
+  "hub": {
+    "eyebrow": "Contact",
+    "title": "Parlons de votre projet.",
+    "intro": "Une campagne de marque ou un parcours de talent : choisissez votre entrée, nous revenons vers vous sous 24h.",
+    "brandsCta": "Je suis une marque",
+    "talentsCta": "Je suis un talent"
+  },
+  "form": {
+    "brands": {
+      "eyebrow": "Contact marques",
+      "title": "Remplissez le dossier.",
+      "intro": "Le brief qui lance tout : votre marque, vos coordonnées, votre projet. Vous recevez sous 24h un premier cadrage.",
+      "fields": {
+        "company": {
+          "label": "Entreprise",
+          "placeholder": "Votre marque"
+        },
+        "name": {
+          "label": "Votre nom",
+          "placeholder": "Prénom Nom"
+        },
+        "email": {
+          "label": "Email pro",
+          "placeholder": "vous@marque.fr"
+        },
+        "objective": {
+          "label": "Votre projet",
+          "placeholder": "Contexte, enjeux, timing."
+        }
+      }
+    },
+    "talents": {
+      "eyebrow": "Contact talents",
+      "title": "Remplissez le dossier.",
+      "intro": "Qui vous êtes, où vous suivre, où vous voulez aller. Nous revenons vers vous sous 24h.",
+      "fields": {
+        "name": {
+          "label": "Nom complet",
+          "placeholder": "Prénom Nom"
+        },
+        "instagram": {
+          "label": "Instagram",
+          "placeholder": "@pseudo"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "vous@email.fr"
+        },
+        "objective": {
+          "label": "Votre parcours",
+          "placeholder": "Contenus, audience, objectifs."
+        }
+      }
+    },
+    "hint": "20 caractères minimum.",
+    "error": "L’envoi a échoué. Vérifiez votre connexion puis réessayez.",
+    "note": "<highlight>Réponse sous 24h.</highlight> Un interlocuteur, pas un tunnel de vente.",
+    "sending": "Envoi en cours",
+    "submit": "Envoyer le dossier",
+    "rgpd": "En envoyant ce dossier, vous acceptez que Wafia Agency traite vos données pour répondre à votre demande (conservation 3 ans). Droits d’accès, de rectification et de suppression : contact@wafia.fr. <privacy>Politique de confidentialité</privacy>",
+    "success": {
+      "eyebrow": "Dossier reçu",
+      "title": "Merci, c’est bien reçu.",
+      "text": "Nous revenons vers vous sous 24h.",
+      "back": "Retour"
+    }
+  }
+}

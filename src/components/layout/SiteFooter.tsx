@@ -1,12 +1,20 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { FOOTER_NAVIGATION } from "@/constants/navigation";
+import { Link } from "@/i18n/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 import styles from "./SiteFooter.module.css";
+
+const LINKS = [
+  { key: "mentions", href: "/legal/mentions" },
+  { key: "privacy", href: "/legal/privacy" },
+  { key: "cookies", href: "/legal/cookies" },
+] as const;
 
 export function SiteFooter() {
   const pathname = usePathname();
+  const t = useTranslations("footer");
 
   if (pathname?.startsWith("/dev")) {
     return null;
@@ -14,13 +22,16 @@ export function SiteFooter() {
 
   return (
     <footer className={styles.footer}>
-      <nav className={styles.nav} aria-label="Informations légales">
+      <nav className={styles.nav} aria-label={t("navAriaLabel")}>
         <ul>
-          {FOOTER_NAVIGATION.map((link) => (
+          {LINKS.map((link) => (
             <li key={link.href}>
-              <Link href={link.href}>{link.name}</Link>
+              <Link href={link.href}>{t(`links.${link.key}`)}</Link>
             </li>
           ))}
+          <li>
+            <LocaleSwitcher className={styles.locales} />
+          </li>
         </ul>
       </nav>
     </footer>

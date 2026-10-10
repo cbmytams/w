@@ -20,8 +20,7 @@ export default function TwitterImage() {
         flexDirection: "column",
         justifyContent: "center",
         padding: 80,
-        background:
-          "linear-gradient(120deg, #0b111a 0%, #111827 50%, #1f2937 100%)",
+        background: "#151716",
         color: "white",
       }}
     >
@@ -29,10 +28,7 @@ export default function TwitterImage() {
       <div
         style={{ fontSize: 28, marginTop: 22, maxWidth: 900, lineHeight: 1.3 }}
       >
-        Influence, Talents, Studio Créatif & Stratégie
-      </div>
-      <div style={{ fontSize: 20, marginTop: 16, color: "#d1d5db" }}>
-        Campagnes traçables, production brand-ready.
+        Influence · Studio · Production
       </div>
     </div>,
     size

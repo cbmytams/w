@@ -189,6 +189,7 @@
   font-weight: 500;
   margin-bottom: 18px;
   letter-spacing: 0;
+  text-wrap: balance;
 }
 .pitch p {
   color: var(--book-muted);

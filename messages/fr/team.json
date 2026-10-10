@@ -1,0 +1,39 @@
+{
+  "section": {
+    "eyebrow": "L'équipe opérationnelle",
+    "title": "Des experts<br></br>de terrain.<br></br>Et de culture.",
+    "body": "Les bonnes campagnes ont quelque chose d'évident. Elles ne forcent pas. Elles trouvent le bon rythme, le bon visage, la bonne façon d'exister. C'est ce que l'équipe Wafia cherche à construire.",
+    "discover": "Découvrir l'équipe",
+    "portraitsAria": "L'équipe Wafia",
+    "portraitAria": "Découvrir l'équipe avec {name}",
+    "portraitAlt": "Portrait de {name}",
+    "caption": "Du brief à l'idée · de l'idée au contenu",
+    "noteAria": "Notre manière de travailler",
+    "note": "Des humains.<br></br>Des idées.<br></br>Du concret."
+  },
+  "drawer": {
+    "closeBackdropAria": "Fermer la présentation de l'équipe",
+    "closeAria": "Fermer",
+    "eyebrow": "L'équipe opérationnelle",
+    "title": "L'équipe derrière<br></br>l'évidence.",
+    "intro": "On ne vient pas ajouter du bruit autour d'une marque. On cherche ce qui peut vraiment prendre : une idée simple, une présence juste, un contenu qui donne envie d'être vu.",
+    "portraitAlt": "Portrait de {name}",
+    "linkedinAria": "LinkedIn de {name}",
+    "emailAria": "Écrire à {name}",
+    "paperLabel": "Sur le papier",
+    "realLifeLabel": "Dans la vraie vie",
+    "cta": "Parler de votre campagne"
+  },
+  "profiles": [
+    {
+      "role": "Stratégie & production",
+      "paper": "Stratégie de marque, direction de campagne, production.",
+      "realLife": "Il cherche le point d'équilibre entre l'idée, les créateurs et la marque. Celui où tout paraît naturel."
+    },
+    {
+      "role": "Direction artistique",
+      "paper": "Direction créative, conception, image et univers de marque.",
+      "realLife": "Un œil affûté, des carnets partout, et une obsession : les détails qui font la différence."
+    }
+  ]
+}

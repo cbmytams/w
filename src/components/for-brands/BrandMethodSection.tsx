@@ -2,37 +2,18 @@
 
 import { useRef } from "react";
 import { useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import styles from "./BrandMethodSection.module.css";
 
-const METHOD_STEPS = [
-  {
-    title: "Audit",
-    description:
-      "Votre marque, vos publics, vos objectifs. On part du terrain.",
-  },
-  {
-    title: "Stratégie",
-    description: "Une idée juste. Un angle qui donne envie de vous écouter.",
-  },
-  {
-    title: "Casting",
-    description:
-      "Les bonnes voix pour votre marque. Pas seulement des audiences.",
-  },
-  {
-    title: "Production",
-    description:
-      "Du brief au dernier montage. Des contenus faits pour leur public.",
-  },
-  {
-    title: "Diffusion & reporting",
-    description:
-      "Amplifier, mesurer, réutiliser. Faire durer ce qui fonctionne.",
-  },
-] as const;
+type MethodStep = {
+  title: string;
+  description: string;
+};
 
 export function BrandMethodSection() {
+  const t = useTranslations("method");
+  const steps = t.raw("steps") as MethodStep[];
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useInView(sectionRef, { amount: 0.1 });
 
@@ -47,8 +28,8 @@ export function BrandMethodSection() {
     >
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2 id="brand-method-title">Notre méthode</h2>
-          <p>Du diagnostic à l&apos;impact</p>
+          <h2 id="brand-method-title">{t("title")}</h2>
+          <p>{t("subtitle")}</p>
         </header>
         <div className={styles.rail} aria-hidden="true">
           <span className={styles.runner} />
@@ -56,7 +37,7 @@ export function BrandMethodSection() {
         <div className={styles.trackArea}>
           <span className={styles.mobileRunner} aria-hidden="true" />
           <ol className={styles.steps}>
-            {METHOD_STEPS.map((step, index) => (
+            {steps.map((step, index) => (
               <li key={step.title} className={styles.step}>
                 <div className={styles.marker} aria-hidden="true">
                   <span>{String(index + 1).padStart(2, "0")}</span>

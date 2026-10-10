@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CornerRightDown } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import clsx from "clsx";
 import { CLIENTS, type Client } from "@/constants/clients";
 import styles from "./ClientsSection.module.css";
@@ -50,7 +51,9 @@ function LogoSequence({ clients, duplicate = false }: LogoSequenceProps) {
   );
 }
 
-export function ClientsSection() {
+export async function ClientsSection() {
+  const t = await getTranslations("clients");
+
   return (
     <section
       id="trusted-brands"
@@ -60,7 +63,7 @@ export function ClientsSection() {
     >
       <header className={styles.header}>
         <div className={styles.trustSignal}>
-          <h2 id="trusted-brands-title">Ils nous font confiance</h2>
+          <h2 id="trusted-brands-title">{t("title")}</h2>
           <CornerRightDown
             className={styles.signalArrow}
             aria-hidden="true"
@@ -72,7 +75,7 @@ export function ClientsSection() {
 
       <div
         className={clsx(styles.corridor, motionStyles.corridor)}
-        aria-label="Marques accompagnées par Wafia"
+        aria-label={t("corridorAriaLabel")}
       >
         <div className={styles.logoRows}>
           {CLIENT_ROWS.map((clients, rowIndex) => (

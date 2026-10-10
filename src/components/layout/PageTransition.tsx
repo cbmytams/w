@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import {
   getRouteCluster,

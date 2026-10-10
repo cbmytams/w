@@ -1,0 +1,75 @@
+{
+  "title": "Our work: three brands, three ways to express themselves.",
+  "viewCase": "View case study",
+  "viewCaseAria": "View the {client} case study",
+  "resultsAria": "{client} results",
+  "proofHeading": "Case study",
+  "closeAria": "Close the case study",
+  "brandMarkAlt": "Official CJ logo",
+  "dialogContact": "What about your brand?",
+  "studies": [
+    {
+      "client": "BASIC-FIT",
+      "context": "Boost Your Mood / Fitness",
+      "title": "And you, how do you boost your mood?",
+      "detail": "The brief fits in a single Reel: a hook about mood, the workout routine, the moment after (a walk, reading, a healthy meal), then an inspiring note that invites the audience to respond. Wafia handles the casting of ten lifestyle and fitness profiles, writes the intent brief and lets each creator adapt it to their own world: no imposed lines, with the #BoostYourMood hashtag as the only common thread. The result: credible TikToks and Reels that live on beyond their first release and that anyone can relate to.",
+      "scope": "Boost Your Mood campaign · 10-creator casting · Creative brief · TikTok & Reels",
+      "proof": [
+        { "value": "10", "label": "creators activated" },
+        { "value": "6M", "label": "organic views" },
+        { "value": "21.44%", "label": "engagement rate" }
+      ]
+    },
+    {
+      "client": "CJ GROUP",
+      "subtitle": "KOREA HOUSE",
+      "context": "Activation / Paris 2024",
+      "title": "A cultural immersion in the heart of Paris.",
+      "description": "Bringing Korean culture to life through the people who discover it. And extending the encounter beyond the event.",
+      "imageAlt": "Visitors being welcomed outside Korea House in Paris",
+      "detail": "At Korea House, the creators’ presence turns the activation into stories of discovery. From on-site encounters to shared content, the campaign gives Korean culture voices, perspectives and a presence that carries on after the event.",
+      "scope": "Creator activation · Event coverage · Social content",
+      "proof": [
+        { "value": "67", "label": "creators mobilized" },
+        { "value": "11M", "label": "impressions" },
+        { "value": "+150", "label": "pieces of content" }
+      ]
+    },
+    {
+      "client": "AUTO SHOW",
+      "subtitle": "50TH EDITION",
+      "context": "Media coverage / Paris Expo",
+      "title": "The show is lived on site. And far beyond.",
+      "description": "Four days at the pace of the show: interviews, innovations and short formats. Coverage designed to bring the event to life on social media.",
+      "imageAlt": "A new car reveal photographed by the audience at the EQUIP AUTO Paris show",
+      "detail": "At Paris Expo, Wafia deploys a media and campaign setup to cover the show’s innovations in real time. A content factory brings together 23 creators and journalists around interviews, live coverage and short formats. The newsroom approach links the on-site highlights to how people use social media, to speak to professionals and the general public alike.",
+      "scope": "Media & campaign setup · Interviews · Content factory · Live",
+      "proof": [
+        { "value": "23", "label": "creators / journalists" },
+        { "value": "+100", "label": "pieces of content produced" },
+        { "value": "4 days", "label": "of live" }
+      ]
+    }
+  ],
+  "showcase": {
+    "kicker": "Creator production",
+    "previewCount": "{count} previews",
+    "heading": "BASIC-FIT",
+    "title": "Content that moves the needle.",
+    "description": "Boost Your Mood campaign: ten creators share how exercise changes their mood, to engage a new generation around everyday fitness.",
+    "ctaAria": "View the Basic-Fit case study",
+    "railAria": "Basic-Fit video previews",
+    "services": ["Influence", "Creative", "Production", "Ads"],
+    "tagline": "From ideas to distribution.",
+    "videoAria": "{talent} video preview for Basic-Fit",
+    "avatarAlt": "{talent}’s TikTok profile picture",
+    "followersLabel": "{followers} followers",
+    "profileAria": "View {talent}’s TikTok profile {handle}, {followers} followers",
+    "previews": [
+      { "followers": "5.8M" },
+      { "followers": "1.6M" },
+      { "followers": "2M" },
+      { "followers": "256K" }
+    ]
+  }
+}

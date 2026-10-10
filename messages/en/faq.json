@@ -1,0 +1,30 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Your questions.<br></br>Our answers.",
+  "items": [
+    {
+      "q": "Do you work with startups?",
+      "a": "Yes. The right question isn’t the size of the brand, but how clear the moment is: what needs to be told, to whom, and with what ambition."
+    },
+    {
+      "q": "Can we start with a single campaign?",
+      "a": "Yes. A first campaign can be a clean testing ground: we learn quickly, keep what works and build what comes next with more precision."
+    },
+    {
+      "q": "Is influence all you do?",
+      "a": "No. We start from the idea, then bring together the right creators, the right formats, production and distribution. Influence gets stronger when it has real direction."
+    },
+    {
+      "q": "How do you measure results?",
+      "a": "We look at what helps make decisions: attention, engagement, traffic, content reuse, cost per result and signal quality. Not only the numbers that look good."
+    },
+    {
+      "q": "Are usage rights handled?",
+      "a": "Yes. When a piece of content deserves to last, you need to be able to reuse it easily: organically, in paid, on the right channels and at the right time."
+    },
+    {
+      "q": "This is our first influencer campaign. Can you help?",
+      "a": "Yes. We set the framework with you, then move forward step by step: idea, talent, formats, production, distribution, reviewing the results."
+    }
+  ]
+}

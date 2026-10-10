@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { forwardRef, useEffect, useRef, type SVGProps } from "react";
 import { ArrowRight } from "lucide-react";
 import styles from "./BasicFitShowcase.module.css";
@@ -10,7 +11,6 @@ type Preview = {
   readonly talent: string;
   readonly handle: string;
   readonly platform: string;
-  readonly followers: string;
   readonly avatar: string;
   readonly poster: string;
   readonly duration: string;
@@ -24,7 +24,6 @@ const previews: readonly Preview[] = [
     talent: "Redha",
     handle: "@redhajr",
     platform: "TikTok",
-    followers: "5,8M",
     avatar: "/images/talents/basic-fit/redha.jpeg",
     duration: "00:43",
     video: "/studio/krh/basic-fit-redha-preview.mp4",
@@ -36,7 +35,6 @@ const previews: readonly Preview[] = [
     talent: "Noah",
     handle: "@noah_sgds",
     platform: "TikTok",
-    followers: "1,6M",
     avatar: "/images/talents/basic-fit/noah.jpeg",
     duration: "00:59",
     video: "/studio/krh/noah-basic-fit-preview.mp4",
@@ -48,7 +46,6 @@ const previews: readonly Preview[] = [
     talent: "Ana",
     handle: "@ana.hnf",
     platform: "TikTok",
-    followers: "2M",
     avatar: "/images/talents/basic-fit/ana.jpeg",
     duration: "00:51",
     video: "/studio/krh/ana-basic-fit-preview.mp4",
@@ -60,7 +57,6 @@ const previews: readonly Preview[] = [
     talent: "Shayna",
     handle: "@shaynapropagandeclub",
     platform: "TikTok",
-    followers: "256K",
     avatar: "/images/talents/basic-fit/shayna.jpeg",
     duration: "00:55",
     video: "/studio/krh/shayna-basic-fit-preview.mp4",
@@ -75,6 +71,12 @@ type BasicFitShowcaseProps = {
 
 export const BasicFitShowcase = forwardRef<HTMLElement, BasicFitShowcaseProps>(
   function BasicFitShowcase({ onOpen }, ref) {
+    const t = useTranslations("cases");
+    const services = t.raw("showcase.services") as string[];
+    const previewCopy = t.raw("showcase.previews") as Array<{
+      followers: string;
+    }>;
+
     return (
       <article
         ref={ref}
@@ -83,14 +85,14 @@ export const BasicFitShowcase = forwardRef<HTMLElement, BasicFitShowcaseProps>(
         data-revealed="false"
       >
         <div className={styles.kicker}>
-          <span>Production créateur</span>
+          <span>{t("showcase.kicker")}</span>
           <i />
-          <span>4 previews</span>
+          <span>{t("showcase.previewCount", { count: previews.length })}</span>
         </div>
 
         <div className={styles.layout}>
           <div className={styles.copy}>
-            <h3 className="sr-only">BASIC-FIT</h3>
+            <h3 className="sr-only">{t("showcase.heading")}</h3>
             <div className={styles.brandLogo} aria-hidden="true">
               <Image
                 src="/logos/official/basic-fit-orange.png"
@@ -100,48 +102,52 @@ export const BasicFitShowcase = forwardRef<HTMLElement, BasicFitShowcaseProps>(
               />
             </div>
             <span className={styles.mark} aria-hidden="true" />
-            <p className={styles.title}>
-              Du contenu qui fait bouger les lignes.
-            </p>
-            <p className={styles.description}>
-              Campagne Boost Your Mood : dix créateurs racontent comment le
-              sport change leur humeur, pour engager une nouvelle génération
-              autour du sport au quotidien.
-            </p>
+            <p className={styles.title}>{t("showcase.title")}</p>
+            <p className={styles.description}>{t("showcase.description")}</p>
             <button
               className={styles.cta}
               onClick={onOpen}
               aria-haspopup="dialog"
-              aria-label="Voir le cas client Basic-Fit"
+              aria-label={t("showcase.ctaAria")}
             >
-              Voir le cas client
+              {t("viewCase")}
               <ArrowRight size={17} aria-hidden="true" />
             </button>
           </div>
 
           <div
             className={styles.previewRail}
-            aria-label="Previews vidéo Basic-Fit"
+            aria-label={t("showcase.railAria")}
           >
-            {previews.map((preview) => (
-              <PreviewCard key={preview.id} preview={preview} />
+            {previews.map((preview, index) => (
+              <PreviewCard
+                key={preview.id}
+                preview={preview}
+                followers={previewCopy[index].followers}
+              />
             ))}
           </div>
         </div>
 
         <div className={styles.footer}>
-          <span>Influence</span>
-          <span>Création</span>
-          <span>Production</span>
-          <span>Ads</span>
-          <small>Des idées à leur diffusion.</small>
+          {services.map((service) => (
+            <span key={service}>{service}</span>
+          ))}
+          <small>{t("showcase.tagline")}</small>
         </div>
       </article>
     );
   }
 );
 
-function PreviewCard({ preview }: { readonly preview: Preview }) {
+function PreviewCard({
+  preview,
+  followers,
+}: {
+  readonly preview: Preview;
+  readonly followers: string;
+}) {
+  const t = useTranslations("cases");
   const cardRef = useRef<HTMLAnchorElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -177,7 +183,7 @@ function PreviewCard({ preview }: { readonly preview: Preview }) {
         loop
         playsInline
         preload="none"
-        aria-label={`Preview vidéo ${preview.talent} pour Basic-Fit`}
+        aria-label={t("showcase.videoAria", { talent: preview.talent })}
       />
       <span className={styles.duration}>{preview.duration}</span>
       <span className={styles.more} aria-hidden="true">
@@ -187,7 +193,7 @@ function PreviewCard({ preview }: { readonly preview: Preview }) {
         <span className={styles.avatar}>
           <Image
             src={preview.avatar}
-            alt={`Photo de profil TikTok de ${preview.talent}`}
+            alt={t("showcase.avatarAlt", { talent: preview.talent })}
             width={48}
             height={48}
             sizes="48px"
@@ -197,7 +203,7 @@ function PreviewCard({ preview }: { readonly preview: Preview }) {
           <TikTokLogo aria-hidden="true" />
           <span>
             <strong>{preview.platform}</strong>
-            <em>{preview.followers} abonnés</em>
+            <em>{t("showcase.followersLabel", { followers })}</em>
           </span>
         </span>
       </span>
@@ -211,7 +217,11 @@ function PreviewCard({ preview }: { readonly preview: Preview }) {
       href={preview.href}
       target="_blank"
       rel="noreferrer"
-      aria-label={`Voir le profil TikTok ${preview.handle} de ${preview.talent}, ${preview.followers} abonnés`}
+      aria-label={t("showcase.profileAria", {
+        handle: preview.handle,
+        talent: preview.talent,
+        followers,
+      })}
     >
       {content}
     </a>

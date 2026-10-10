@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { isModifiedClick, type OrbTargetVariant } from "@/lib/orb-targets";
 
 /**

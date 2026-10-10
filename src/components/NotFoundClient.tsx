@@ -1,11 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { OrbLink } from "@/components/navigation/OrbLink";
 import { motion } from "framer-motion";
 import { EASING } from "@/lib/easing";
 import { ArrowRight, Home } from "lucide-react";
 
 export default function NotFoundClient() {
+  const t = useTranslations("errors");
+
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#050505] text-white selection:bg-orange-500/30">
       {/* Background ambient noise/grid */}
@@ -44,7 +47,7 @@ export default function NotFoundClient() {
             transition={{ delay: 0.3, duration: 0.8, ease: EASING.premium }}
             className="absolute whitespace-nowrap bg-black/60 px-6 py-2.5 backdrop-blur-md rounded-full border border-white/10 text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-white/90 shadow-2xl"
           >
-            Page introuvable
+            {t("notFound.title")}
           </motion.div>
         </motion.div>
 
@@ -55,8 +58,7 @@ export default function NotFoundClient() {
           transition={{ delay: 0.4, duration: 0.8, ease: EASING.premium }}
           className="mt-8 max-w-md text-base sm:text-lg text-white/50"
         >
-          L'URL que vous recherchez semble incorrecte ou la page a été déplacée.
-          Reprenons une connexion plus stable.
+          {t("notFound.description")}
         </motion.p>
 
         {/* Buttons */}
@@ -71,14 +73,14 @@ export default function NotFoundClient() {
             className="group relative flex w-full sm:w-auto items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-semibold text-black transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-white/5"
           >
             <Home className="h-4 w-4" />
-            Retour à l'accueil
+            {t("notFound.home")}
           </OrbLink>
 
           <OrbLink
             href="/contact/brands"
             className="group relative flex w-full sm:w-auto items-center justify-center gap-2 overflow-hidden rounded-full bg-white/5 px-8 py-4 text-sm font-medium text-white ring-1 ring-inset ring-white/10 transition-all hover:bg-white/10 hover:ring-white/20 active:scale-95"
           >
-            Contacter l'agence
+            {t("notFound.contact")}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </OrbLink>
         </motion.div>

@@ -1,8 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { useRef, useState } from "react";
+import { Link } from "@/i18n/navigation";
+import { Fragment, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   AnimatePresence,
   motion,
@@ -13,7 +14,7 @@ import {
 } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
-import { BOOK_CHAPTERS, chapterAt } from "./brand-book-content";
+import { chapterAt, type BookChapterCopy } from "./brand-book-content";
 import styles from "./BrandBook.module.css";
 
 const BrandBookScene = dynamic(() => import("./BrandBookScene"), {
@@ -21,6 +22,9 @@ const BrandBookScene = dynamic(() => import("./BrandBookScene"), {
 });
 
 export function BrandHeroV2() {
+  const t = useTranslations("hero");
+  const chapters = t.raw("chapters") as BookChapterCopy[];
+  const disciplines = t.raw("intro.disciplines") as string[];
   const section = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
   const [chapter, setChapter] = useState(0);
@@ -45,7 +49,7 @@ export function BrandHeroV2() {
   const chapterOpacity = useTransform(() =>
     transform(scrollYProgress.get(), [0.23, 0.32], [0, 1])
   );
-  const entry = BOOK_CHAPTERS[chapter];
+  const entry = chapters[chapter];
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
     setChapter(chapterAt(progress + 0.025));
@@ -72,7 +76,7 @@ export function BrandHeroV2() {
     <section
       ref={section}
       className={styles.story}
-      aria-label="Wafia, du premier brief à la diffusion"
+      aria-label={t("sectionLabel")}
       data-book-story
     >
       <motion.div
@@ -96,31 +100,35 @@ export function BrandHeroV2() {
           inert={opened}
         >
           <h1>
-            Des campagnes
-            <br />
-            créateurs
-            <br />
-            <span>structurées.</span>
+            {t.rich("intro.title", {
+              br: () => <br />,
+              accent: (chunks) => <span>{chunks}</span>,
+            })}
           </h1>
-          <p>
-            Une idée juste. Les bons créateurs. Des contenus qui restent. Wafia
-            réunit influence, création, production et ads pour faire avancer
-            votre marque.
-          </p>
+          <p>{t("intro.text")}</p>
           <div className={styles.actions}>
             <Link href="#case-studies" className={styles.primary}>
-              Voir nos réalisations <ArrowUpRight size={18} />
+              {t("intro.seeWork")} <ArrowUpRight size={18} />
             </Link>
             <button
               onClick={() => goToChapter(0)}
               className={styles.textButton}
             >
-              Ouvrir le dossier <ArrowDown size={16} />
+              {t("intro.openBook")} <ArrowDown size={16} />
             </button>
           </div>
           <div className={styles.disciplines}>
-            Influence <span>/</span> Création <span>/</span> Production{" "}
-            <span>/</span> Ads
+            {disciplines.map((name, index) => (
+              <Fragment key={name}>
+                {index > 0 && (
+                  <>
+                    {" "}
+                    <span>/</span>{" "}
+                  </>
+                )}
+                {name}
+              </Fragment>
+            ))}
           </div>
         </motion.div>
         <motion.div
@@ -128,15 +136,15 @@ export function BrandHeroV2() {
           style={{ opacity: introOpacity }}
           aria-hidden="true"
         >
-          <span>LE DOSSIER WAFIA</span>
-          <span>Des idées à leur diffusion.</span>
+          <span>{t("cover.label")}</span>
+          <span>{t("cover.tagline")}</span>
         </motion.div>
         <motion.div
           className={styles.bookHeader}
           style={{ opacity: chapterOpacity }}
           aria-hidden="true"
         >
-          <span>Le dossier Wafia</span>
+          <span>{t("bookHeader.title")}</span>
           <div>
             <motion.i style={{ scaleX: scrollYProgress }} />
           </div>
@@ -146,10 +154,13 @@ export function BrandHeroV2() {
           className={styles.chapterPanel}
           style={{ opacity: chapterOpacity }}
           inert={!opened}
-          aria-label="Nos expertises"
+          aria-label={t("panel.ariaLabel")}
         >
-          <nav className={styles.chapterNav} aria-label="Chapitres du dossier">
-            {BOOK_CHAPTERS.map((item, index) => (
+          <nav
+            className={styles.chapterNav}
+            aria-label={t("panel.navAriaLabel")}
+          >
+            {chapters.map((item, index) => (
               <button
                 key={item.service}
                 onClick={() => goToChapter(index)}
@@ -180,14 +191,12 @@ export function BrandHeroV2() {
             </motion.div>
           </AnimatePresence>
           <Link href="/contact/brands" className={styles.chapterCta}>
-            Construisons votre campagne <ArrowUpRight size={17} />
+            {t("panel.cta")} <ArrowUpRight size={17} />
           </Link>
         </motion.aside>
         <div className={styles.bottomLine}>
           <span>
-            {opened
-              ? "UNE ÉQUIPE. DU BRIEF À LA DIFFUSION."
-              : "VOTRE MARQUE A UNE HISTOIRE. DONNONS-LUI DE L’ÉCHO."}
+            {opened ? t("bottomLine.opened") : t("bottomLine.closed")}
           </span>
           <button
             onClick={() =>
@@ -200,9 +209,9 @@ export function BrandHeroV2() {
           >
             {opened
               ? chapter === 3
-                ? "La suite"
-                : "Chapitre suivant"
-              : "Découvrir"}{" "}
+                ? t("bottomLine.next")
+                : t("bottomLine.nextChapter")
+              : t("bottomLine.discover")}{" "}
             {opened && chapter === 3 ? (
               <ArrowRight size={16} />
             ) : (

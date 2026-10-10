@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -10,29 +12,11 @@ import styles from "./ContactForm.module.css";
 
 type ContactVariant = "brands" | "talents";
 
-const CONTENT: Record<
-  ContactVariant,
-  { eyebrow: string; title: string; intro: string }
-> = {
-  brands: {
-    eyebrow: "Contact marques",
-    title: "Remplissez le dossier.",
-    intro:
-      "Le brief qui lance tout : votre marque, vos coordonnées, votre projet. Vous recevez sous 24h un premier cadrage.",
-  },
-  talents: {
-    eyebrow: "Contact talents",
-    title: "Remplissez le dossier.",
-    intro:
-      "Qui vous êtes, où vous suivre, où vous voulez aller. Nous revenons vers vous sous 24h.",
-  },
-};
-
 type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactForm({ variant }: { variant: ContactVariant }) {
+  const t = useTranslations("contact");
   const reduceMotion = useReducedMotion();
-  const content = CONTENT[variant];
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -73,50 +57,59 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
     }
   }
 
-  const entrance = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 18 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
-      };
+  // `animate` stays set under reduced motion: the server HTML already carries
+  // the `initial` opacity 0, so only a zero-duration animate can reveal it.
+  const entrance = {
+    initial: { opacity: 0, y: 18 },
+    animate: { opacity: 1, y: 0 },
+    transition: reduceMotion
+      ? { duration: 0 }
+      : { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+  };
 
   return (
-    <main className={styles.section}>
+    <main id="main-content" className={styles.section}>
       <div className={styles.top}>
-        <Link href="/" aria-label="Wafia, accueil" className={styles.logo}>
+        <Link
+          href="/"
+          aria-label={t("common.homeAriaLabel")}
+          className={styles.logo}
+        >
           <Image
             src="/wafia.svg"
-            alt="Wafia"
+            alt={t("common.logoAlt")}
             width={104}
             height={34}
             priority
           />
         </Link>
-        <Link href="/" className={styles.back}>
-          <ArrowLeft aria-hidden="true" size={15} />
-          Retour
-        </Link>
+        <div className={styles.topEnd}>
+          <LocaleSwitcher className={styles.locales} />
+          <Link href="/" className={styles.back}>
+            <ArrowLeft aria-hidden="true" size={15} />
+            {t("common.back")}
+          </Link>
+        </div>
       </div>
 
       <motion.div {...entrance}>
         <div className={styles.head}>
           <div>
-            <p className={styles.eyebrow}>{content.eyebrow}</p>
-            <h1 className={styles.title}>{content.title}</h1>
+            <p className={styles.eyebrow}>{t(`form.${variant}.eyebrow`)}</p>
+            <h1 className={styles.title}>{t(`form.${variant}.title`)}</h1>
           </div>
-          <p className={styles.intro}>{content.intro}</p>
+          <p className={styles.intro}>{t(`form.${variant}.intro`)}</p>
         </div>
 
         {status === "sent" ? (
           <div className={styles.success} role="status">
             <span aria-hidden="true" className={styles.successMark} />
-            <p className={styles.eyebrow}>Dossier reçu</p>
-            <h2 className={styles.title}>Merci, c’est bien reçu.</h2>
-            <p className={styles.intro}>Nous revenons vers vous sous 24h.</p>
-            <p style={{ marginTop: 28 }}>
+            <p className={styles.eyebrow}>{t("form.success.eyebrow")}</p>
+            <h2 className={styles.title}>{t("form.success.title")}</h2>
+            <p className={styles.intro}>{t("form.success.text")}</p>
+            <p className={styles.successAction}>
               <Link href="/" className={styles.submit}>
-                Retour
+                {t("form.success.back")}
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
             </p>
@@ -129,13 +122,15 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                   <span aria-hidden="true" className={styles.num}>
                     01
                   </span>
-                  <label htmlFor="v2-company">Entreprise</label>
+                  <label htmlFor="v2-company">
+                    {t("form.brands.fields.company.label")}
+                  </label>
                   <input
                     id="v2-company"
                     name="company"
                     type="text"
                     autoComplete="organization"
-                    placeholder="Votre marque"
+                    placeholder={t("form.brands.fields.company.placeholder")}
                     required
                     maxLength={120}
                   />
@@ -145,13 +140,15 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                     <span aria-hidden="true" className={styles.num}>
                       02
                     </span>
-                    <label htmlFor="v2-name">Votre nom</label>
+                    <label htmlFor="v2-name">
+                      {t("form.brands.fields.name.label")}
+                    </label>
                     <input
                       id="v2-name"
                       name="name"
                       type="text"
                       autoComplete="name"
-                      placeholder="Prénom Nom"
+                      placeholder={t("form.brands.fields.name.placeholder")}
                       required
                       minLength={2}
                       maxLength={80}
@@ -161,13 +158,15 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                     <span aria-hidden="true" className={styles.num}>
                       03
                     </span>
-                    <label htmlFor="v2-email">Email pro</label>
+                    <label htmlFor="v2-email">
+                      {t("form.brands.fields.email.label")}
+                    </label>
                     <input
                       id="v2-email"
                       name="email"
                       type="email"
                       autoComplete="email"
-                      placeholder="vous@marque.fr"
+                      placeholder={t("form.brands.fields.email.placeholder")}
                       required
                       maxLength={160}
                     />
@@ -177,18 +176,22 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                   <span aria-hidden="true" className={styles.num}>
                     04
                   </span>
-                  <label htmlFor="v2-objective">Votre projet</label>
+                  <label htmlFor="v2-objective">
+                    {t("form.brands.fields.objective.label")}
+                  </label>
                   <div>
                     <textarea
                       id="v2-objective"
                       name="objective"
-                      placeholder="Contexte, enjeux, timing."
+                      placeholder={t(
+                        "form.brands.fields.objective.placeholder"
+                      )}
                       required
                       minLength={20}
                       maxLength={3000}
                       rows={4}
                     />
-                    <span className={styles.hint}>20 caractères minimum.</span>
+                    <span className={styles.hint}>{t("form.hint")}</span>
                   </div>
                 </div>
               </>
@@ -199,13 +202,15 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                     <span aria-hidden="true" className={styles.num}>
                       01
                     </span>
-                    <label htmlFor="v2-name">Nom complet</label>
+                    <label htmlFor="v2-name">
+                      {t("form.talents.fields.name.label")}
+                    </label>
                     <input
                       id="v2-name"
                       name="name"
                       type="text"
                       autoComplete="name"
-                      placeholder="Prénom Nom"
+                      placeholder={t("form.talents.fields.name.placeholder")}
                       required
                       minLength={2}
                       maxLength={80}
@@ -215,13 +220,17 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                     <span aria-hidden="true" className={styles.num}>
                       02
                     </span>
-                    <label htmlFor="v2-instagram">Instagram</label>
+                    <label htmlFor="v2-instagram">
+                      {t("form.talents.fields.instagram.label")}
+                    </label>
                     <input
                       id="v2-instagram"
                       name="instagram"
                       type="text"
                       autoComplete="off"
-                      placeholder="@pseudo"
+                      placeholder={t(
+                        "form.talents.fields.instagram.placeholder"
+                      )}
                       required
                       maxLength={60}
                     />
@@ -231,13 +240,15 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                   <span aria-hidden="true" className={styles.num}>
                     03
                   </span>
-                  <label htmlFor="v2-email">Email</label>
+                  <label htmlFor="v2-email">
+                    {t("form.talents.fields.email.label")}
+                  </label>
                   <input
                     id="v2-email"
                     name="email"
                     type="email"
                     autoComplete="email"
-                    placeholder="vous@email.fr"
+                    placeholder={t("form.talents.fields.email.placeholder")}
                     required
                     maxLength={160}
                   />
@@ -246,18 +257,22 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                   <span aria-hidden="true" className={styles.num}>
                     04
                   </span>
-                  <label htmlFor="v2-objective">Votre parcours</label>
+                  <label htmlFor="v2-objective">
+                    {t("form.talents.fields.objective.label")}
+                  </label>
                   <div>
                     <textarea
                       id="v2-objective"
                       name="objective"
-                      placeholder="Contenus, audience, objectifs."
+                      placeholder={t(
+                        "form.talents.fields.objective.placeholder"
+                      )}
                       required
                       minLength={20}
                       maxLength={3000}
                       rows={4}
                     />
-                    <span className={styles.hint}>20 caractères minimum.</span>
+                    <span className={styles.hint}>{t("form.hint")}</span>
                   </div>
                 </div>
               </>
@@ -265,14 +280,15 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
 
             {status === "error" ? (
               <p className={styles.error} role="alert">
-                L’envoi a échoué. Vérifiez votre connexion puis réessayez.
+                {t("form.error")}
               </p>
             ) : null}
 
             <div className={styles.foot}>
               <p className={styles.note}>
-                <span>Réponse sous 24h.</span> Un interlocuteur, pas un tunnel
-                de vente.
+                {t.rich("form.note", {
+                  highlight: (chunks) => <span>{chunks}</span>,
+                })}
               </p>
               <button
                 type="submit"
@@ -280,15 +296,22 @@ export function ContactForm({ variant }: { variant: ContactVariant }) {
                 disabled={status === "sending"}
               >
                 {status === "sending" ? (
-                  "Envoi en cours"
+                  t("form.sending")
                 ) : (
                   <>
-                    Envoyer le dossier
+                    {t("form.submit")}
                     <ArrowRight aria-hidden="true" size={18} />
                   </>
                 )}
               </button>
             </div>
+            <p className={styles.legal}>
+              {t.rich("form.rgpd", {
+                privacy: (chunks) => (
+                  <Link href="/legal/privacy">{chunks}</Link>
+                ),
+              })}
+            </p>
           </form>
         )}
       </motion.div>

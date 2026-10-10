@@ -1,0 +1,17 @@
+{
+  "error": {
+    "metaTitle": "Error – Wafia",
+    "eyebrow": "Error 500",
+    "title": "Something went wrong",
+    "description": "Try again, or contact us if the problem persists.",
+    "retry": "Try again",
+    "support": "Support"
+  },
+  "notFound": {
+    "metaDescription": "The page you requested doesn’t exist. Find all our resources on influencer marketing.",
+    "title": "Page not found",
+    "description": "The URL you’re looking for looks incorrect, or the page has moved. Let’s get you back on a more stable connection.",
+    "home": "Back to home",
+    "contact": "Contact the agency"
+  }
+}

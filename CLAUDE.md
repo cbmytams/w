@@ -9,20 +9,21 @@ Site marketing Wafia. Production : https://wafia.fr — VPS OVH (`ssh wafia`), D
 - **framer-motion** pour toutes les animations
 - **Jest** (ts-jest) pour les tests — `src/__tests__`
 - **Sentry** + **Upstash** (rate-limit `/api/contact`)
-- Pas de base de données, pas d'auth, pas de back-office — site vitrine + wiki + formulaires de contact
+- Pas de base de données, pas d'auth, pas de back-office — site vitrine + formulaires de contact
 
-## Pages
+## Pages (prod = page unique)
 
-`/` (home orbes) · `/for-brands` · `/for-talents` · `/services` · `/studio` · `/wiki/*` · `/legal/*` · `/contact` + `/contact/brands` + `/contact/talents`
+Servies : `/` (page Marques) · `/contact` + `/contact/brands` + `/contact/talents` · `/legal/{mentions,privacy,cookies}`.
+Tout le reste (`/for-brands`, `/for-talents`, `/services`, `/studio`, `/equipe`, `/wiki/*`) redirige vers `/` dans `next.config.ts` ; le code wiki/talents est conservé mais non servi. Ne pas rediriger `/studio/krh/*` (médias Basic-Fit).
 
 ## Architecture clé
 
-- **Orbes persistants** : `OrbTransitionProvider` + `BackgroundFlow` + `GlobalBackground` — champ d'orbes unique qui morphe entre variantes (home/brands/talents) à la navigation
-- **Transitions de route** : `PageTransition` (racine) + `lib/route-motion` — timings par cluster × device
-- **Moteur d'arrière-plan** : `lib/background-flow` (variantes, profils runtime, reduced-motion, mobile-lite)
+- **Accueil** : `BrandHeroV2` (livre 3D Three.js, chargé en `dynamic` ssr:false) + sections `for-brands/*` (méthode, clients, cas, équipe, FAQ, CTA)
+- **Transitions de route** : `PageTransition` (racine) + `lib/route-motion` ; navigation via `OrbLink` / `useOrbNavigate` (simple `router.push`, plus d'orbes)
 - **Middleware** : `src/proxy.ts` — CSP par nonce + headers de sécurité uniquement
-- **Wiki** : contenu source dans `wiki/src/content/blog`, lu au build par `src/lib/wiki.ts`
-- **Contact** : formulaires factices (succès local) ; `/api/contact` prêt pour un webhook (`CONTACT_WEBHOOK_URL`)
+- **i18n** : `next-intl`, locales `fr` (défaut, sans préfixe) et `en` (`/en/...`) — config dans `src/i18n/`, catalogues `messages/<locale>/<namespace>.json` (mêmes clés dans toutes les langues, vérifié par `src/__tests__/i18n`). Pages sous `src/app/[locale]/`. Liens/navigation : toujours `Link`/`usePathname`/`useRouter` de `@/i18n/navigation`, jamais `next/link`. Pas de détection de langue ni de cookie : l'URL fait foi. Ajouter une langue = l'ajouter dans `src/i18n/config.ts` + un dossier `messages/<locale>/`.
+- **Contenu** : copy dans `messages/`, données non textuelles (ids, images, hrefs) dans `src/constants/*`
+- **Contact** : `ContactForm` → `POST /api/contact` (rate-limit Upstash, webhook `CONTACT_WEBHOOK_URL`)
 
 ## Règles impératives
 

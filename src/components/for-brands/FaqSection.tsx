@@ -4,12 +4,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { FAQ_ITEMS } from "@/constants/faq";
+import { useTranslations } from "next-intl";
+import type { FaqItem } from "@/constants/faq";
 import styles from "./FaqSection.module.css";
 
 const VIEWPORT = { once: true, amount: 0.28 } as const;
 
 export function FaqSection() {
+  const t = useTranslations("faq");
+  const items = t.raw("items") as FaqItem[];
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const reduceMotion = useReducedMotion();
 
@@ -24,16 +27,12 @@ export function FaqSection() {
           viewport={VIEWPORT}
           transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className={styles.eyebrow}>FAQ</p>
-          <h2 id="faq-title">
-            Vos questions.
-            <br />
-            Nos réponses.
-          </h2>
+          <p className={styles.eyebrow}>{t("eyebrow")}</p>
+          <h2 id="faq-title">{t.rich("title", { br: () => <br /> })}</h2>
         </motion.header>
 
         <div className={styles.list}>
-          {FAQ_ITEMS.map((item, index) => (
+          {items.map((item, index) => (
             <FaqItem
               key={item.q}
               answer={item.a}

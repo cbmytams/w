@@ -1,4 +1,12 @@
+import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
+import { routing } from "./i18n/routing";
+
+const handleI18nRouting = createMiddleware(routing);
+
+// Routes that live outside app/[locale]: APIs, Sentry tunnel, generated images, files.
+const NON_LOCALIZED =
+  /^\/(api|monitoring|dev|opengraph-image|twitter-image)(\/|$)|\.[^/]+$/;
 
 function buildDefaultCspHeader(nonce: string) {
   const scriptSource =
@@ -48,14 +56,12 @@ export default async function proxy(req: NextRequest) {
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set("x-nonce", nonce);
 
-  return applySecurityHeaders(
-    NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    }),
-    nonce
-  );
+  const request = new NextRequest(req, { headers: requestHeaders });
+  const response = NON_LOCALIZED.test(req.nextUrl.pathname)
+    ? NextResponse.next({ request: { headers: requestHeaders } })
+    : handleI18nRouting(request);
+
+  return applySecurityHeaders(response, nonce);
 }
 
 export const config = {

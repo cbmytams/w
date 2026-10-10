@@ -299,6 +299,10 @@
     grid-template-columns: 1fr;
   }
 
+  .duo .row {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
   .duo .row:first-child {
     border-right: 0;
     padding-right: 0;
@@ -325,6 +329,81 @@
 
 @media (prefers-reduced-motion: reduce) {
   .submit svg {
+    transition: none;
+  }
+}
+
+.successAction {
+  margin-top: 28px;
+}
+
+.legal {
+  margin: 20px 0 0;
+  max-width: 62ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--contact-ink);
+  opacity: 0.8;
+}
+
+.legal a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.topEnd {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.locales {
+  display: flex;
+  align-items: center;
+}
+
+.locales a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--contact-ink);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.locales a:hover,
+.locales a[aria-current="true"] {
+  opacity: 1;
+}
+
+.locales a[aria-current="true"] {
+  font-weight: 700;
+}
+
+.locales a:focus-visible {
+  outline: 2px solid var(--contact-accent);
+  outline-offset: 3px;
+}
+
+@media (pointer: coarse) {
+  .back {
+    position: relative;
+  }
+
+  .back::after {
+    content: "";
+    position: absolute;
+    inset: -12px -8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .locales a {
     transition: none;
   }
 }

@@ -22,13 +22,15 @@ export const organizationSchema = {
   ...(siteConfig.socials.length > 0 ? { sameAs: siteConfig.socials } : {}),
 };
 
-export const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  inLanguage: "fr",
-};
+export function getWebsiteSchema(locale: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    inLanguage: locale,
+  };
+}
 
 export function personSchema(author: AuthorProfile, profileUrl: string) {
   return {

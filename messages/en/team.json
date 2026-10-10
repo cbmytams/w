@@ -1,0 +1,39 @@
+{
+  "section": {
+    "eyebrow": "The hands-on team",
+    "title": "Experts<br></br>in the field.<br></br>And in culture.",
+    "body": "Good campaigns feel obvious. They don’t push. They find the right rhythm, the right face, the right way to exist. That’s what the Wafia team sets out to build.",
+    "discover": "Meet the team",
+    "portraitsAria": "The Wafia team",
+    "portraitAria": "Meet the team, with {name}",
+    "portraitAlt": "Portrait of {name}",
+    "caption": "From brief to idea · from idea to content",
+    "noteAria": "How we work",
+    "note": "People.<br></br>Ideas.<br></br>Real work."
+  },
+  "drawer": {
+    "closeBackdropAria": "Close the team introduction",
+    "closeAria": "Close",
+    "eyebrow": "The hands-on team",
+    "title": "The team behind<br></br>what feels obvious.",
+    "intro": "We’re not here to add noise around a brand. We look for what can genuinely catch on: a simple idea, the right presence, content people want to watch.",
+    "portraitAlt": "Portrait of {name}",
+    "linkedinAria": "{name} on LinkedIn",
+    "emailAria": "Email {name}",
+    "paperLabel": "On paper",
+    "realLifeLabel": "In real life",
+    "cta": "Talk about your campaign"
+  },
+  "profiles": [
+    {
+      "role": "Strategy & production",
+      "paper": "Brand strategy, campaign direction, production.",
+      "realLife": "He looks for the balance point between the idea, the creators and the brand. The one where everything feels natural."
+    },
+    {
+      "role": "Art direction",
+      "paper": "Creative direction, concept design, imagery and brand world.",
+      "realLife": "A sharp eye, notebooks everywhere, and one obsession: the details that make the difference."
+    }
+  ]
+}

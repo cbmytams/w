@@ -1,0 +1,26 @@
+{
+  "title": "Our method",
+  "subtitle": "From diagnosis to impact",
+  "steps": [
+    {
+      "title": "Audit",
+      "description": "Your brand, your audiences, your goals. We start from the ground up."
+    },
+    {
+      "title": "Strategy",
+      "description": "The right idea. An angle that makes people want to listen."
+    },
+    {
+      "title": "Casting",
+      "description": "The right voices for your brand. Not just audiences."
+    },
+    {
+      "title": "Production",
+      "description": "From brief to final cut. Content made for its audience."
+    },
+    {
+      "title": "Distribution & reporting",
+      "description": "Amplify, measure, reuse. Make what works last."
+    }
+  ]
+}

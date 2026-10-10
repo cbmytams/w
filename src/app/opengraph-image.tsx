@@ -20,8 +20,7 @@ export default function OpenGraphImage() {
         flexDirection: "column",
         justifyContent: "center",
         padding: 80,
-        background:
-          "linear-gradient(120deg, #0b111a 0%, #111827 50%, #1f2937 100%)",
+        background: "#151716",
         color: "white",
       }}
     >
@@ -29,18 +28,14 @@ export default function OpenGraphImage() {
       <div
         style={{ fontSize: 30, marginTop: 24, maxWidth: 900, lineHeight: 1.3 }}
       >
-        Influence, Talents, Studio Créatif & Stratégie
-      </div>
-      <div style={{ fontSize: 22, marginTop: 16, color: "#d1d5db" }}>
-        Campagnes traçables, production brand-ready.
+        Influence · Studio · Production
       </div>
       <div
         style={{
           marginTop: 48,
           height: 6,
           width: 220,
-          background:
-            "linear-gradient(90deg, #f97316 0%, #ef4444 50%, #ec4899 100%)",
+          background: "#e54c2c",
           borderRadius: 999,
         }}
       />

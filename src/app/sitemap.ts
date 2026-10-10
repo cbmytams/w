@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { locales } from "@/i18n/config";
+import { localizedPath } from "@/lib/seo";
 import { siteConfig, sitePaths } from "@/lib/site";
 
 const HIGH_PRIORITY_ROUTES = new Set([sitePaths.forTalents]);
@@ -37,11 +39,18 @@ const ALL_ROUTES = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const abs = (route: string, locale: string) =>
+    new URL(localizedPath(route, locale), siteConfig.url).toString();
 
-  return ALL_ROUTES.map((route) => ({
-    url: new URL(route, siteConfig.url).toString(),
-    lastModified: now,
-    changeFrequency: getRouteChangeFrequency(route),
-    priority: getRoutePriority(route),
-  }));
+  return ALL_ROUTES.flatMap((route) =>
+    locales.map((locale) => ({
+      url: abs(route, locale),
+      lastModified: now,
+      changeFrequency: getRouteChangeFrequency(route),
+      priority: getRoutePriority(route),
+      alternates: {
+        languages: Object.fromEntries(locales.map((l) => [l, abs(route, l)])),
+      },
+    }))
+  );
 }

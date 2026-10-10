@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import type { MotionValue } from "framer-motion";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
@@ -11,7 +12,12 @@ import {
   grainTexture,
   contactShadowTexture,
 } from "./brand-book-model";
-import { BOOK_CHAPTERS, chapterAt } from "./brand-book-content";
+import {
+  BOOK_CHAPTER_COUNT,
+  chapterAt,
+  type BookChapterCopy,
+  type BookSceneCopy,
+} from "./brand-book-content";
 import styles from "./BrandBook.module.css";
 
 const PAGE_W = 2.65;
@@ -90,15 +96,17 @@ function wrap(
 function coverTexture(
   font: string,
   logo: HTMLImageElement,
-  maxAnisotropy: number
+  maxAnisotropy: number,
+  copy: BookSceneCopy
 ) {
   const { canvas, ctx } = surface();
   ctx.fillStyle = "#131814";
   ctx.fillRect(24, 0, 6, 1400);
   ctx.fillStyle = "#f4f2e8";
   ctx.font = `500 28px ${font}`;
-  ctx.fillText("INFLUENCE / CRÉATION", 90, 120);
-  ctx.fillText("PRODUCTION / ADS", 90, 162);
+  copy.coverDisciplines.forEach((line, n) =>
+    ctx.fillText(line, 90, 120 + n * 42)
+  );
   ctx.save();
   ctx.filter = "invert(1)";
   ctx.globalAlpha = 0.2;
@@ -108,14 +116,19 @@ function coverTexture(
   ctx.fillRect(95, 1040, 92, 4);
   ctx.fillStyle = "#f4f2e8";
   ctx.font = `400 32px ${font}`;
-  ctx.fillText("Votre prochain chapitre.", 95, 1170);
+  ctx.fillText(copy.coverTitle, 95, 1170);
   ctx.fillStyle = "#afb6aa";
   ctx.font = `400 23px ${font}`;
-  ctx.fillText("DES IDÉES À LEUR DIFFUSION.", 95, 1230);
+  ctx.fillText(copy.coverTagline, 95, 1230);
   return texture(canvas, maxAnisotropy);
 }
 
-function leftTexture(index: number, font: string, maxAnisotropy: number) {
+function leftTexture(
+  index: number,
+  font: string,
+  maxAnisotropy: number,
+  item: BookChapterCopy
+) {
   const { canvas, ctx } = surface();
   const shading = ctx.createLinearGradient(0, 0, 1000, 0);
   shading.addColorStop(0, "#00000035");
@@ -124,7 +137,6 @@ function leftTexture(index: number, font: string, maxAnisotropy: number) {
   shading.addColorStop(1, "#000000b0");
   ctx.fillStyle = shading;
   ctx.fillRect(0, 0, 1000, 1400);
-  const item = BOOK_CHAPTERS[index];
   ctx.fillStyle = "#f4f2e8";
   ctx.font = `400 80px ${font}`;
   ctx.fillText(`0${index + 1}`, 88, 155);
@@ -230,7 +242,9 @@ function rightTexture(
   index: number,
   font: string,
   logo: HTMLImageElement,
-  maxAnisotropy: number
+  maxAnisotropy: number,
+  item: BookChapterCopy,
+  studyLabel: string
 ) {
   const { canvas, ctx } = surface("#e9e7df");
   const shading = ctx.createLinearGradient(0, 0, 1000, 0);
@@ -250,7 +264,7 @@ function rightTexture(
   ctx.fillStyle = "#202724";
   ctx.font = `600 68px ${font}`;
   ctx.textAlign = "center";
-  ctx.fillText(BOOK_CHAPTERS[index].service.toUpperCase(), 500, 1010);
+  ctx.fillText(item.service.toUpperCase(), 500, 1010);
   ctx.textAlign = "left";
   ctx.strokeStyle = "#8f978d";
   ctx.lineWidth = 2;
@@ -260,11 +274,11 @@ function rightTexture(
   ctx.stroke();
   ctx.fillStyle = "#202724";
   ctx.font = `500 27px ${font}`;
-  wrap(ctx, BOOK_CHAPTERS[index].footer, 88, 1178, 780, 40);
+  wrap(ctx, item.footer, 88, 1178, 780, 40);
   ctx.fillStyle = "#59635a";
   ctx.font = `400 19px ${font}`;
   ctx.drawImage(logo, 88, 1288, 105, 34);
-  ctx.fillText("/ ÉTUDE CRÉATIVE", 215, 1320);
+  ctx.fillText(studyLabel, 215, 1320);
   ctx.fillText(`0${index + 1}`, 865, 1320);
   return texture(canvas, maxAnisotropy);
 }
@@ -276,6 +290,9 @@ export default function BrandBookScene({
   progress: MotionValue<number>;
   reducedMotion: boolean;
 }) {
+  const t = useTranslations("hero");
+  const chapters = t.raw("chapters") as BookChapterCopy[];
+  const sceneCopy = t.raw("scene") as BookSceneCopy;
   const host = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
 
@@ -353,13 +370,20 @@ export default function BrandBookScene({
         renderer.capabilities.getMaxAnisotropy(),
         16
       );
-      const cover = coverTexture(font, logo, maxAnisotropy);
+      const cover = coverTexture(font, logo, maxAnisotropy, sceneCopy);
       // The closed book only shows the cover and chapter-0 pages. Later
       // chapters generate after first paint so opening the page never waits.
       const leftMaps: Array<THREE.Texture | null> = [null, null, null, null];
       const rightMaps: Array<THREE.Texture | null> = [null, null, null, null];
-      const leftZero = leftTexture(0, font, maxAnisotropy);
-      const rightZero = rightTexture(0, font, logo, maxAnisotropy);
+      const leftZero = leftTexture(0, font, maxAnisotropy, chapters[0]);
+      const rightZero = rightTexture(
+        0,
+        font,
+        logo,
+        maxAnisotropy,
+        chapters[0],
+        sceneCopy.studyLabel
+      );
       leftMaps[0] = leftZero;
       rightMaps[0] = rightZero;
       const pendingChapters = [1, 2, 3];
@@ -367,8 +391,20 @@ export default function BrandBookScene({
         if (disposed) return;
         const index = pendingChapters.shift();
         if (index === undefined) return;
-        leftMaps[index] = leftTexture(index, font, maxAnisotropy);
-        rightMaps[index] = rightTexture(index, font, logo, maxAnisotropy);
+        leftMaps[index] = leftTexture(
+          index,
+          font,
+          maxAnisotropy,
+          chapters[index]
+        );
+        rightMaps[index] = rightTexture(
+          index,
+          font,
+          logo,
+          maxAnisotropy,
+          chapters[index],
+          sceneCopy.studyLabel
+        );
         if (pendingChapters.length > 0) scheduleIdle(fillNextChapter);
         else requestRender();
       };
@@ -596,7 +632,7 @@ export default function BrandBookScene({
         let turning = -1;
         let turn = 0;
         if (!reducedMotion && open > 0.98) {
-          for (let i = 0; i < BOOK_CHAPTERS.length - 1; i++) {
+          for (let i = 0; i < BOOK_CHAPTER_COUNT - 1; i++) {
             const boundary = 0.32 + (i + 1) * 0.205;
             if (current >= boundary - 0.045 && current <= boundary + 0.045) {
               // Turning needs both faces generated; until then the open
@@ -737,19 +773,22 @@ export default function BrandBookScene({
       disposed = true;
       cleanup();
     };
-  }, [progress, reducedMotion]);
+  }, [progress, reducedMotion, chapters, sceneCopy]);
 
   return (
     <div ref={host} style={{ width: "100%", height: "100%" }}>
       {!ready && (
         <div className={styles.fallback}>
           <span>
-            INFLUENCE / CRÉATION
-            <br />
-            PRODUCTION / ADS
+            {sceneCopy.coverDisciplines.map((line, index) => (
+              <Fragment key={line}>
+                {index > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
           </span>
           <Image src="/wafia.svg" width={172} height={56} alt="" />
-          <span>Votre prochain chapitre.</span>
+          <span>{sceneCopy.coverTitle}</span>
         </div>
       )}
     </div>

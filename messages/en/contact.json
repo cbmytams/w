@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "hub": {
+      "title": "Contact",
+      "description": "Let’s talk about your brand and growth goals."
+    },
+    "brands": {
+      "title": "Brand Contact",
+      "description": "Tell us about your creator campaign. Reply within 24 hours."
+    },
+    "talents": {
+      "title": "Talent Contact",
+      "description": "Tell us about your career. Reply within 24 hours."
+    }
+  },
+  "common": {
+    "logoAlt": "Wafia",
+    "homeAriaLabel": "Wafia, home",
+    "back": "Back"
+  },
+  "hub": {
+    "eyebrow": "Contact",
+    "title": "Let’s talk about your project.",
+    "intro": "A brand campaign or a talent journey: choose your way in, and we’ll get back to you within 24 hours.",
+    "brandsCta": "I’m a brand",
+    "talentsCta": "I’m a talent"
+  },
+  "form": {
+    "brands": {
+      "eyebrow": "Brand contact",
+      "title": "Complete your file.",
+      "intro": "The brief that starts everything: your brand, your contact details, your project. Within 24 hours, you receive an initial scoping.",
+      "fields": {
+        "company": {
+          "label": "Company",
+          "placeholder": "Your brand"
+        },
+        "name": {
+          "label": "Your name",
+          "placeholder": "First name Last name"
+        },
+        "email": {
+          "label": "Work email",
+          "placeholder": "you@brand.com"
+        },
+        "objective": {
+          "label": "Your project",
+          "placeholder": "Context, stakes, timing."
+        }
+      }
+    },
+    "talents": {
+      "eyebrow": "Talent contact",
+      "title": "Complete your file.",
+      "intro": "Who you are, where to follow you, where you want to go. We’ll get back to you within 24 hours.",
+      "fields": {
+        "name": {
+          "label": "Full name",
+          "placeholder": "First name Last name"
+        },
+        "instagram": {
+          "label": "Instagram",
+          "placeholder": "@handle"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "you@email.com"
+        },
+        "objective": {
+          "label": "Your background",
+          "placeholder": "Content, audience, goals."
+        }
+      }
+    },
+    "hint": "20 characters minimum.",
+    "error": "Sending failed. Check your connection, then try again.",
+    "note": "<highlight>Reply within 24 hours.</highlight> One point of contact, not a sales funnel.",
+    "sending": "Sending",
+    "submit": "Send your file",
+    "rgpd": "By sending this file, you agree that Wafia Agency may process your data to answer your request (retained for 3 years). Rights of access, rectification and erasure: contact@wafia.fr. <privacy>Privacy policy</privacy>",
+    "success": {
+      "eyebrow": "File received",
+      "title": "Thank you, we’ve got it.",
+      "text": "We’ll get back to you within 24 hours.",
+      "back": "Back"
+    }
+  }
+}
